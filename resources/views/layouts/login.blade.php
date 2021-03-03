@@ -17,14 +17,14 @@
 <body>
     <div class="app-container app-theme-white body-tabs-shadow">
         <div class="app-container">
-            <div class="h-100 bg-premium-dark">
+            <div class="h-100 bg-sunny-morning">
                 <div class="d-flex h-100 justify-content-center align-items-center">
                     <div class="mx-auto app-login-box col-md-8">
                         <div class="app-logo-inverse mx-auto mb-3"></div>
                         <div class="modal-dialog w-100">
                             @yield('content')
                         </div>
-                        <div class="text-center text-white opacity-8 mt-3">Copyright © ArchitectUI 2019</div>
+                        <div class="text-center text-white opacity-8 mt-3">Copyright © MotOstion 2019</div>
                     </div>
                 </div>
             </div>

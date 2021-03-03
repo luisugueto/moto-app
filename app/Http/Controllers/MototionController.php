@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Redirect;
 
 class MototionController extends Controller
 {
@@ -15,7 +14,7 @@ class MototionController extends Controller
      */
     public function index()
     {
-        return view('backend.mototion.index');
+        return view('backend.tasacion_motos.index');
     }
 
     /**
@@ -25,7 +24,7 @@ class MototionController extends Controller
      */
     public function create()
     {
-        return view('backend.mototion.create');
+        //
     }
 
     /**
