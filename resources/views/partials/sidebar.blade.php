@@ -19,7 +19,7 @@
     
     <li class="app-sidebar__heading">Configuracion</li>
     <li>
-        <a href="#">
+        <a href="{{ url('/users') }}">
             <i class="metismenu-icon pe-7s-add-user"></i>Usuarios
         </a>
     </li>

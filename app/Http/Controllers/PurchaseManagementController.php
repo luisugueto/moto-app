@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\GestionCompra;
+use App\PurchaseManagement;
 use App\Http\Requests;
 use Redirect;
 
 
-class GestionCompraController extends Controller
+class PurchaseManagementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class GestionCompraController extends Controller
      */
     public function index()
     {
-        $gestion = GestionCompra::all();
-        return view('backend.gestion_compra.index', compact($gestion));
+        $gestion = PurchaseManagement::all();
+        return view('backend.purchase_management.index', compact($gestion));
     }
 
     /**
@@ -28,7 +28,7 @@ class GestionCompraController extends Controller
      */
     public function create()
     {
-        return view('backend.gestion_compra.create');
+        return view('backend.purchase_management.create');
     }
 
     /**
@@ -88,11 +88,11 @@ class GestionCompraController extends Controller
             'vehicle_state' => 'required'
         ]);
 
-        $gestion = new GestionCompra($request->all());
+        $gestion = new PurchaseManagement($request->all());
        
         $gestion->save();
 
-        return Redirect::to('/gestion_compra')->with('notification', 'Gestion de compra creada exitosamente!');
+        return Redirect::to('/purchase_management')->with('notification', 'Gestion de compra creada exitosamente!');
     }
 
     /**

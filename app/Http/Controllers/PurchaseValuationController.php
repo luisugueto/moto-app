@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Redirect;
 
-class MototionController extends Controller
+class PurchaseValuationController extends Controller
 {
     /**
      * Display a listing of the resource.

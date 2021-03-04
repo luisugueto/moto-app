@@ -12,7 +12,7 @@ class CreateMototionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mototions', function (Blueprint $table) {
+        Schema::create('purchase_valuation', function (Blueprint $table) {
             $table->increments('id');
             $table->string('estado');
             $table->date('fecha');
@@ -42,6 +42,6 @@ class CreateMototionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('mototions');
+        Schema::drop('purchase_valuation');
     }
 }

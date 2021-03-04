@@ -12,7 +12,7 @@ class CreateTableGestionCompra extends Migration
      */
     public function up()
     {
-        Schema::create('gestion_compra', function (Blueprint $table) {
+        Schema::create('purchase_management', function (Blueprint $table) {
             $table->increments('id');
             $table->string('file_no');
             $table->date('current_year');
@@ -71,6 +71,6 @@ class CreateTableGestionCompra extends Migration
      */
     public function down()
     {
-        Schema::drop('gestion_compra');
+        Schema::drop('purchase_management');
     }
 }
