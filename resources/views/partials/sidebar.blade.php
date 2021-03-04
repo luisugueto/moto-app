@@ -7,12 +7,12 @@
     </li>
     <li class="app-sidebar__heading">Funcionalidad</li>
     <li>
-        <a href="{{ url('/mototion') }}">
+        <a href="{{ url('/purchase_valuation') }}">
             <i class="metismenu-icon pe-7s-network"></i>Mototion
         </a>
     </li> 
     <li>
-        <a href="{{ url('/gestion_compra/create') }}">
+        <a href="{{ url('/purchase_management/create') }}">
             <i class="metismenu-icon pe-7s-note2"></i>Gestion de Compra
         </a>
     </li>     

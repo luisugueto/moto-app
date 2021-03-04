@@ -14,7 +14,7 @@ class PurchaseValuationController extends Controller
      */
     public function index()
     {
-        return view('backend.tasacion_motos.index');
+        return view('backend.purchase_valuation.index');
     }
 
     /**

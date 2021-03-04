@@ -16,7 +16,7 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="{{ url('gestion_compra') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
+                    <a href="{{ url('purchase_management') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
                             class="pe-7s-back-2 btn-icon-wrapper"> </i>Volver</a>
                 </div>
             </div>
@@ -40,9 +40,8 @@
                             </div>
                         </strong>
                     </h4>
-                    <form class="" role="form" method="POST" action="{{ route('gestion_compra.store') }}">
+                    <form class="" role="form" method="POST" action="{{ route('purchase_management.store') }}">
                         {{ csrf_field() }}
-                    {{-- {!! Form::open(['route' => 'gestion_compra.store', 'method' => 'post']) !!} --}}
                         <div class="divider"></div>
                         <h6><strong>Datos a cumplimentar por el centro CATv</strong> </h6>
                         <div class="form-row row g-1">
@@ -662,7 +661,6 @@
                             </div>
                         </div>
                         <button type='submit' class="mt-2 btn btn-primary btn-lg">Enviar</button>
-                    {{-- {!! Form::close() !!} --}}
                     </form>
                 </div>
             </div>
