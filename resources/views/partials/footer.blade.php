@@ -6,7 +6,7 @@
                     <div class="badge badge-success mr-1 ml-0">
                         <small>V 1.0</small>
                     </div>
-                    Copyright © 2021 MOTOTION. Todos los derechos reservados                     
+                    Copyright © 2021 MOTOSTION. Todos los derechos reservados                     
                 </li>
             </ul>
         </div>
