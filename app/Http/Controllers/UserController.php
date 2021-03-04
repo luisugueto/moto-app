@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\UserTypes;
 use App\Http\Requests;
+use Redirect;
 
 class UserController extends Controller
 {
@@ -15,8 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-
+        $users = User::all();      
         return view('backend.users.index', compact('users'));
     }
 
@@ -40,10 +40,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+         
         User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
+            'phone' => $request->email,
             'password' => bcrypt($request->password),
             'user_type_id' => $request->user_type_id
         ]);
@@ -71,9 +73,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $profiles = Profile::all();
+        $user_types = UserTypes::all();
 
-        return view('backend.users.edit', compact('user', 'profiles'));
+        return view('backend.users.edit', compact('user', 'user_types'));
     }
 
     /**
@@ -91,6 +93,7 @@ class UserController extends Controller
             'name' => $request->name,
             'last_name' => $request->last_name,
             'email' => $request->email,
+            'phone' => $request->email,
             'password' => bcrypt($request->password),
             'user_type_id' => $request->user_type_id
         ]);
@@ -105,7 +108,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
+        User::destroy($id);         
         return Redirect::to('/users')->with('notification', 'Registro eliminado exitosamente!');
     }
 }

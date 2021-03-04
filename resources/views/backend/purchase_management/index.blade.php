@@ -15,35 +15,40 @@
         </div>
         <div class="page-title-actions">            
             <div class="d-inline-block dropdown">
-                {{-- <a href="{{ url('gestion_compra/create') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i class="pe-7s-plus btn-icon-wrapper"> </i>Nuevo</a> --}}
+                <a href="{{ url('purchase_management/create') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i class="pe-7s-plus btn-icon-wrapper"> </i>Nueva</a>
             </div>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
+        @if (session('notification'))
+            <div class="alert alert-success notification">
+                {{ session('notification') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-block notification">
+                {{ session('error') }}
+            </div>
+        @endif
+        <br>
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Gestion de Compra</h5>
-                <table style="width: 100%;" id="tableGestionCompras" class="table table-hover table-striped table-bordered">
+                <table style="width: 100%;" id="tableGestionCompras" class="table table-hover table-striped table-bordered pag-table">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th class="text-center">Estado</th>
-                            <th class="text-center">Fecha</th>
-                            <th class="text-center">Moto</th>
-                            <th class="text-center">Año</th>
-                            <th class="text-center">KM</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Lugar de Retiro</th>
-                            <th class="text-center">Estado en Tráfico</th>
-                            <th class="text-center">Golpe Del.</th>
-                            <th class="text-center">Golpe Tras</th>
-                            <th class="text-center">Av. Elec</th>
-                            <th class="text-center">Av. Mec</th>
-                            <th class="text-center">Aband. Viejo</th>
-                            <th class="text-center">Mínimo</th>
-                            <th class="text-center">Observaciones</th>
+                            <th class="text-center">Nº Expediente</th>
+                            <th class="text-center">Propietario</th>
+                            <th class="text-center">Dni/nif</th>
+                            <th class="text-center">Teléfono</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Representante</th>                            
+                            <th class="text-center">Matricula</th>
+                            <th class="text-center">Est.Tráfico</th>
+                            <th class="text-center">Est.Vehículo</th>
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
@@ -59,13 +64,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td></td>                             
                         </tr>
                     </tbody>
                 </table>

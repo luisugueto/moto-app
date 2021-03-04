@@ -8,11 +8,11 @@
     <li class="app-sidebar__heading">Funcionalidad</li>
     <li>
         <a href="{{ url('/purchase_valuation') }}">
-            <i class="metismenu-icon pe-7s-network"></i>Mototion
+            <i class="metismenu-icon pe-7s-network"></i>Tasación Motos
         </a>
     </li> 
     <li>
-        <a href="{{ url('/purchase_management/create') }}">
+        <a href="{{ url('/purchase_management') }}">
             <i class="metismenu-icon pe-7s-note2"></i>Gestion de Compra
         </a>
     </li>     

@@ -11,7 +11,18 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Web Mototion.">
     <meta name="msapplication-tap-highlight" content="no">
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.min.css') }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+
+
+     <!-- JS -->
+     <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
+     <script src="{{ asset('assets/scripts/base/popper.min.js') }}"></script>
+     <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script>
 </head>
 
 <body>
@@ -200,7 +211,16 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{{ asset('assets/scripts/main.js') }}"></script>
+   
+    <!-- Web Components -->
+    <script src="{{ asset('assets/web_component/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/dataTables.responsive.min.js') }}">
+    </script>
+    <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.js') }}">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('assets/scripts/page.js') }}"></script>
 </body>
 
 </html>
