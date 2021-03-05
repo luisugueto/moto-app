@@ -44,27 +44,27 @@
 	                            <div class="form-group">
 	                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nombre</label>
 	                                <div class="col-md-10 col-sm-9 col-xs-12">
-	                                    <input type="text" class="form-control" name="name" id="name" required="" value="{{ $user->name }}">
+	                                    <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
 	                                </div>
 	                            </div>
                                 <div class="form-group">
 	                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Apellido</label>
 	                                <div class="col-md-10 col-sm-9 col-xs-12">
-	                                    <input type="text" class="form-control" name="last_name" id="last_name" required="" value="{{ $user->last_name }}">
+	                                    <input type="text" class="form-control" name="last_name" id="last_name" value="{{ $user->last_name }}">
 	                                </div>
 	                            </div>
 	                            <div class="form-group">
 	                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Teléfono</label>
 	                                <div class="col-md-10 col-sm-9 col-xs-12">
-	                                    <input type="text" class="form-control" name="phone" id="phone" required="" value="{{ $user->phone }}">
+	                                    <input type="text" class="form-control" name="phone" id="phone" value="{{ $user->phone }}">
 	                                </div>
 	                            </div>
-                                
+
 	                            <div class='form-group'>
                                     <label for='userPicture' class='col-md-2 col-sm-3 col-xs-12 control-label'>Subir una Foto</label>
                                     <div class='col-md-10 col-sm-9 col-xs-12'>
                                         <div class="input-group">
-            
+
                                             <input type="text" class="form-control" readonly>
                                             <label class="input-group-append" style="height: 38px;">
                                                 <span class="btn btn-success">
@@ -72,10 +72,10 @@
                                                     <input type="file" style="display: none;" id='image' name='image'>
                                                 </span>
                                             </label>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
-                                
+
 	                        </fieldset>
 	                        <hr>
 	                        <div class="form-group">
@@ -87,7 +87,7 @@
 	                </div>
 	                <div class="tab-pane" id="tab-eg10-1" role="tabpanel">
 	                	<div class="fieldset">
-	                        <h3 class="fieldset-title">Cambiar Contraseña</h3><br>                           
+	                        <h3 class="fieldset-title">Cambiar Contraseña</h3><br>
 	                       <form class="form-horizontal" role="form" method="POST" action="{{ route('update_password') }}"
                             enctype='multipart/form-data'>
                             {{ csrf_field() }}
@@ -124,7 +124,7 @@
                                             <strong>{{ $errors->first('reptyPassword') }}</strong>
                                         </span>
                                     @endif
-		                            
+
 		                        </div>
 		                        <hr>
 		                        <div class="form-group">

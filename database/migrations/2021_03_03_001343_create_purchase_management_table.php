@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableGestionCompra extends Migration
+class CreatePurchaseManagementTable extends Migration
 {
     /**
      * Run the migrations.
@@ -59,8 +59,8 @@ class CreateTableGestionCompra extends Migration
             $table->string('motor_no');
             $table->boolean('vehicle_state_trafic');
             $table->boolean('vehicle_state');
-            $table->timestamps();            
-            
+            $table->timestamps();
+
         });
     }
 

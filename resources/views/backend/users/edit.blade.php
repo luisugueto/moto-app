@@ -91,17 +91,6 @@
                         @endif
                     </div>
 
-                    <div class='position-relative form-group'>
-                        <label for='password'>Contraseña</label>
-                        <input class='form-control' id='password' name='password' type='password'
-                            value="{{ $user->password }}" required>
-                        @if ($errors->has('password'))
-                            <span class="error text-danger">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
                     <div class='position-relative form-group '>
                         <button class='btn btn-primary' type='submit'><i class='fa fa-save'></i>
                             Editar
