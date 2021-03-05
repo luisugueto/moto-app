@@ -28,7 +28,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Editar Usuario</h5>
-                    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                    {!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
 
                     <div class="divider"></div>
                     <div class="position-relative form-group">

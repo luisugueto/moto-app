@@ -20,7 +20,12 @@
     <li class="app-sidebar__heading">Configuracion</li>
     <li>
         <a href="{{ url('/users') }}">
-            <i class="metismenu-icon pe-7s-add-user"></i>Usuarios
+            <i class="metismenu-icon pe-7s-users"></i>Usuarios
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('/user_types') }}">
+            <i class="metismenu-icon pe-7s-key"></i>Roles
         </a>
     </li>
 </ul>

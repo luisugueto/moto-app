@@ -61,7 +61,7 @@ $(document).ready(function () {
 
     setTimeout(function () {
         $(".notification").alert("close");
-    }, 10000);
+    }, 6000);
 
     $('.pag-table').DataTable({
         responsive: true,
