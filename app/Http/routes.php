@@ -14,7 +14,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('user_types', 'UserTypesController');
     Route::get('profile/{id}', 'UserController@profile')->name('profile');
     Route::post('update_profile', 'UserController@update_profile')->name('update_profile');
-    Route::get('change-password/{id}', 'UserController@change_password')->name('change-password');
     Route::post('update_password', 'UserController@update_password')->name('update_password');
 });
 

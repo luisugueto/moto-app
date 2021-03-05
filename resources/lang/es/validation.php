@@ -135,6 +135,10 @@ return [
         'email'    => [
             'unique' => 'El :attribute ya ha sido registrado.',
         ],
+        'current_password' => [
+            'current_password' => 'La contraseña actual no coincide con la contraseña almacenada en la base de datos.',
+        ],
+        
     ],
 
     /*

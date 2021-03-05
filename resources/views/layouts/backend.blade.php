@@ -98,9 +98,14 @@
                                     <div class="btn-group">
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             class="p-0 btn">
-                                            <img width="42" class="rounded-circle"
-                                                src="{{ asset('assets/images/avatars/1.jpg') }}" alt="" />
+                                            @if (isset(Auth::user()->image))
+                                                <img width="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            @else
+                                                <img width="42" class="rounded-circle"
+                                                src="{{ asset('assets/images/avatars/1.jpg') }}" alt="" />
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            @endif
                                         </a>
                                         <div tabindex="-1" role="menu" aria-hidden="true"
                                             class="rm-pointers dropdown-menu-lg dropdown-menu dropdown-menu-right">
@@ -113,9 +118,14 @@
                                                         <div class="widget-content p-0">
                                                             <div class="widget-content-wrapper">
                                                                 <div class="widget-content-left mr-3">
+                                                                    @if (isset(Auth::user()->image))
+                                                                    <img width="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+                                                                    @else
                                                                     <img width="42" class="rounded-circle"
                                                                         src="{{ asset('assets/images/avatars/1.jpg') }}"
                                                                         alt="" />
+                                                                        @endif
+                                                                    
                                                                 </div>
                                                                 <div class="widget-content-left">
                                                                     <div class="widget-heading">
@@ -127,7 +137,7 @@
                                                                     <a href="{{ url('/logout') }}"
                                                                         class="btn-pill btn-shadow btn-shine btn btn-focus"><i
                                                                             class="fa fa-btn fa-sign-out"></i>
-                                                                        Logout</a>
+                                                                        Cerrar Sesión</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -139,11 +149,7 @@
                                                     <ul class="nav flex-column">
                                                         <li class="nav-item-header nav-item">Mi cuenta</li>
                                                         <li class="nav-item">
-                                                            <a onclick="javascript:void(0);" class="nav-link">Perfil</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a href="javascript:void(0);" class="nav-link">Cambiar
-                                                                Contraseña</a>
+                                                            <a href="{{ route('profile', Auth::user()->id )}}" class="nav-link">Perfil</a>
                                                         </li>
                                                     </ul>
                                                 </div>

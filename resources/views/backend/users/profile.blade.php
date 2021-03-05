@@ -1,110 +1,143 @@
 @extends('layouts.backend')
 
 @section('content')
-<div class="page animsition">
-
-    <div class="page-content">
-
-        <div class="row">
-            <div class="col-md-3">
-                <link rel="stylesheet" href="{{ asset('themes/admin/css/pages/profile.css') }}">
-                <div class="widget widget-shadow text-center">
-                    <div class="widget-header">
-                        <div class="widget-header-content">
-                            <a class="avatar-profile" href="#">
-                                @if (isset($user->user_image))
-                                <img src="{{ asset('local/public/images_profile/'.$user->user_image) }}" alt="{{$user->name}}" title="{{$user->name}}">
-                                @else
-                                <img src="{{ asset('themes/admin/images/avatar/default.png') }}" alt="Image" title="User Image">
-                                @endif
-                            </a>
-                            <h4 class="profile-user">{{ ucwords($user->name)}}</h4>
-                            <p class="profile-job">{{ $user->profile->description}}</p>
-
-                            <hr>
-                            <ul class="list-unstyled text-center">
-                                <li>
-                                    <p><em class="fa fa-user m-r-xs"></em><a href="#">
-                                            {{ ucwords($user->name)}}</a></p>
-                                </li>
-                                <li>
-                                    <p><em class="fa fa-envelope m-r-xs"></em><a href="#">
-                                            {{ ucwords($user->email)}}</a>
-                                    </p>
-                                </li>
-                                <hr>
-                                <p class="text-center">
-                                    <a class="btn btn-primary btn-raised" href="{{ route('change-image', $user->id )}}">
-                                        Actualizar Foto
-                                    </a>
-                                </p>
-                                <p class="text-center">
-                                    <a class="btn btn-info btn-raised" href="{{ route('change-password', $user->id )}}">
-                                        Cambiar Contraseña
-                                    </a>
-                                </p>
-                            </ul>
-                        </div>
+<link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+<div class="container-fluid">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    <div class="user-info">
+                        @if (isset($user->image))
+                            <img  class="img-profile img-circle img-responsive center-block" src="{{ asset('profile_images/'.$user->image) }}" alt="{{$user->name}}" title="{{$user->name}}">
+                        @else
+                            <img  class="img-profile img-circle img-responsive center-block" src="{{asset('assets/images/avatars/avatar1.png')}}" alt="Image" title="User Image">
+                        @endif
                     </div>
+            		<nav class="side-menu">
+        				<ul class="nav nav-tabs">
+        					<li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#tab-eg10-0" ><span class="fa fa-user"></span> Perfil</a></li>
+        					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-eg10-1" id="tabChangePassword" ><span class="fa fa-cog"></span> Cambiar Contraseña</a></li>
+        				</ul>
+        			</nav>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div class="panel panel-white">
-                    <div class="panel-body">
-                        <h3>Perfil</h3><br />
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('update_password') }}"
+                <div class="content-panel tab-content">
+                    @if (session('notification'))
+                        <div class="alert alert-success notification">
+                            {{ session('notification') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger alert-block notification">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                	<div class="tab-pane active" id="tab-eg10-0" role="tabpanel">
+	                    <h2 class="title">Perfil</h2>
+	                    <form class="needs-validationTwo form-horizontal" method="POST" action="{{ route('update_profile') }}"
+                        enctype='multipart/form-data'>
+                        {{ csrf_field() }}
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+	                        <fieldset class="fieldset">
+	                            <h3 class="fieldset-title">Información de Contacto</h3>
+                                <br>
+	                            <div class="form-group">
+	                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nombre</label>
+	                                <div class="col-md-10 col-sm-9 col-xs-12">
+	                                    <input type="text" class="form-control" name="name" id="name" required="" value="{{ $user->name }}">
+	                                </div>
+	                            </div>
+                                <div class="form-group">
+	                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Apellido</label>
+	                                <div class="col-md-10 col-sm-9 col-xs-12">
+	                                    <input type="text" class="form-control" name="last_name" id="last_name" required="" value="{{ $user->last_name }}">
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Teléfono</label>
+	                                <div class="col-md-10 col-sm-9 col-xs-12">
+	                                    <input type="text" class="form-control" name="phone" id="phone" required="" value="{{ $user->phone }}">
+	                                </div>
+	                            </div>
+                                
+	                            <div class='form-group'>
+                                    <label for='userPicture' class='col-md-2 col-sm-3 col-xs-12 control-label'>Subir una Foto</label>
+                                    <div class='col-md-10 col-sm-9 col-xs-12'>
+                                        <div class="input-group">
+            
+                                            <input type="text" class="form-control" readonly>
+                                            <label class="input-group-append" style="height: 38px;">
+                                                <span class="btn btn-success">
+                                                    Subir
+                                                    <input type="file" style="display: none;" id='image' name='image'>
+                                                </span>
+                                            </label>
+                                        </div> 
+                                    </div>
+                                </div>
+                                
+	                        </fieldset>
+	                        <hr>
+	                        <div class="form-group">
+	                            <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+	                                <button type="submit" class="btn btn-primary" id="btnSaveProfile">Actualizar Datos</button>
+	                            </div>
+	                        </div>
+	                    </form>
+	                </div>
+	                <div class="tab-pane" id="tab-eg10-1" role="tabpanel">
+	                	<div class="fieldset">
+	                        <h3 class="fieldset-title">Cambiar Contraseña</h3><br>                           
+	                       <form class="form-horizontal" role="form" method="POST" action="{{ route('update_password') }}"
                             enctype='multipart/form-data'>
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
-                            <div class='form-group  '>
-                                <label for='name' class='col-sm-2 control-label'>Nombres</label>
-                                <div class='col-sm-10'>
-                                    <input class='form-control ' id='name' name='name' maxlength='30' type='text'
-                                        value='{{ $user->name }}' required>
-                                </div>
-                            </div>
-                            <div class='form-group  '>
-                                <label for='lastName' class='col-sm-2 control-label'>Apellidos</label>
-                                <div class='col-sm-10'>
-                                    <input class='form-control ' id='lastName' name='lastName' maxlength='30'
-                                        type='text' value='{{ $user->lastName }}' required>
-                                </div>
-                            </div>
-                            <div class='form-group  '>
-                                <label for='birthdate' class='col-sm-2 control-label'>Fecha de
-                                    Nacimiento</label>
-                                <div class='col-sm-10'>
-                                    <div class='input-group'>
-                                        <span class='input-group-addon'>
-                                            <em class='icon wb-calendar' aria-hidden='true'> </em>
+	                        	<div class="position-relative form-group">
+		                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Contraseña Actual</label>
+		                            <div class="col-md-10 col-sm-9 col-xs-12">
+		                                <input class="form-control" id="current_password" name="current_password" type="password" value="" required="">
+                                        @if ($errors->has('current_password'))
+                                            <span class="error text-danger">
+                                                <strong>{{ $errors->first('current_password') }}</strong>
+                                            </span>
+                                        @endif
+		                            </div>
+		                        </div>
+	                            <div class="position-relative form-group">
+		                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Nueva Contraseña</label>
+		                            <div class="col-md-10 col-sm-9 col-xs-12">
+		                                <input class="form-control" id="password" name="password" type="password" value="" required="">
+		                            </div>
+		                            @if ($errors->has('password'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('password') }}</strong>
                                         </span>
-                                        <input class='form-control ' data-plugin='datepicker' id='birthdate'
-                                            name='birthdate' type='text' value='{{ $user->birthdate }}'>
+                                    @endif
+		                        </div>
+		                        <div class="position-relative form-group">
+		                            <label class="col-md-3 col-sm-3 col-xs-12 control-label">Confirmar Contraseña</label>
+		                            <div class="col-md-10 col-sm-9 col-xs-12">
+		                                <input class="form-control " id="reptyPassword" name="reptyPassword" type="password" value="" required="">
                                     </div>
-                                </div>
-                            </div>
-                            <div class='form-group  '>
-                                <label for='phone' class='col-sm-2 control-label'>Teléfono</label>
-                                <div class='col-sm-10'>
-                                    <input class='form-control ' id='phone' name='phone' maxlength='15'
-                                        type='text' value='{{ $user->phone }}'>
-                                </div>
-                            </div>
-                            <div class='form-group '>
-                                <div class='col-sm-2'></div>
-                                <div class='col-sm-10'>
-                                    <button class='btn btn-primary  btn-raised ladda-button' data-style='expand-left'
-                                        data-plugin='ladda' id='SaveProfile' name='SaveProfile' type='submit'>
-                                        <em class='fa fa-save'></em> Guardar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                                    @if ($errors->has('reptyPassword'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('reptyPassword') }}</strong>
+                                        </span>
+                                    @endif
+		                            
+		                        </div>
+		                        <hr>
+		                        <div class="form-group">
+		                            <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+		                                <button type="submit" class="btn btn-primary" id="btnSaveProfilePassword">Actualizar Cambios</button>
+		                            </div>
+		                        </div>
+	                        </form>
+	                    </div>
+	                </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-
 </div>
 @endsection

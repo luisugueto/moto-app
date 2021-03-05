@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\User;
 use App\UserTypes;
 use App\Http\Requests;
 use Redirect;
+
 
 class UserController extends Controller
 {
@@ -111,5 +113,71 @@ class UserController extends Controller
     {   
         User::destroy($id);         
         return Redirect::to('/users')->with('notification', 'Registro eliminado exitosamente!');
+    }
+
+    public function profile($id)
+    {
+        $user = User::findOrFail($id);
+        return view('backend.users.profile', compact('user'));
+    }
+
+    public function update_profile(Request $request)
+    {        
+        // dd($request->all());
+        $user = User::find($request->user_id);
+      
+        if ($request->hasFile('image')) {
+
+            $usersImage = public_path("profile_images/{$user->image}"); // get previous image from folder
+            if (\File::exists($usersImage)) { // unlink or remove previous image from folder
+                unlink($usersImage);
+            }
+
+            $file = $request->file('image');
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+
+            $user->image = $fileNameToStore;
+            // SUBIR IMAGE
+            $image_resize = Image::make($file->getRealPath());
+            $img = Image::make($file->getRealPath())->widen(64, function ($constraint) {
+                $constraint->upsize();
+            });
+            $img->save(public_path('profile_images/' .$fileNameToStore));
+        }
+        if (isset($fileNameToStore)) {
+            $user->image = $fileNameToStore;
+            $user->save();
+        }
+
+        $user->update($request->except(['image']));
+
+        return Redirect::to('profile/' . $user->id)->with('notification', 'Datos actualizdos exitosamente!');
+    }
+
+    public function change_password($id)
+    {
+        $user = User::findOrFail($id);
+        return view('backend.users.change-password', compact('user'));
+    }
+
+    public function update_password(Request $request)
+    {
+        $user = User::find($request->user_id);
+
+        $this->validate($request, [
+            'password' => 'required|min:6',
+            'reptyPassword' => 'required|same:password',
+            'current_password' => 'required|current_password'
+        ]);
+
+        
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        return Redirect::to('profile/' . $user->id)->with('notification', 'Datos actualizdos exitosamente!');
     }
 }
