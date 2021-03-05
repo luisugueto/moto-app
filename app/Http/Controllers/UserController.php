@@ -49,7 +49,7 @@ class UserController extends Controller
             'email' => $request->email,
             'phone' => $request->email,
             'password' => bcrypt($request->password),
-            'user_type_id' => $request->user_type_id
+            // 'user_type_id' => $request->user_type_id
         ]);
 
         return Redirect::to('/users')->with('notification', 'Usuario creado exitosamente!');

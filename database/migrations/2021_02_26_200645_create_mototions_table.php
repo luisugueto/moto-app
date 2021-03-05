@@ -14,23 +14,25 @@ class CreateMototionsTable extends Migration
     {
         Schema::create('purchase_valuation', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('estado');
-            $table->date('fecha');
-            $table->string('moto');
-            $table->integer('anio');
+            $table->date('date');
+            $table->string('brand');
+            $table->string('model');
+            $table->datetime('year');
             $table->string('km');
-            $table->string('nombre');
-            $table->string('correo');
-            $table->string('telefono');
-            $table->string('lugar_retiro');
-            $table->string('estado_trafico');
-            $table->string('golpe_del');
-            $table->string('golpe_tras');
-            $table->string('av_elec');
-            $table->string('av_mec');
-            $table->string('aband_viejo');
-            $table->string('minimo');
-            $table->string('observaciones');
+            $table->string('email');
+            $table->string('name');
+            $table->string('lastname');
+            $table->string('phone');
+            $table->string('province');
+            $table->string('status_trafic');
+            $table->integer('g_del')->default(0);
+            $table->integer('g_tras')->default(0);
+            $table->integer('av_elec')->default(0);
+            $table->integer('av_mec')->default(0);
+            $table->integer('old')->default(0);
+            $table->string('price_min');
+            $table->string('observations');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

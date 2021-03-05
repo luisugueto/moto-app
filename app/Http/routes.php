@@ -15,6 +15,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/{id}', 'UserController@profile')->name('profile');
     Route::post('update_profile', 'UserController@update_profile')->name('update_profile');
     Route::post('update_password', 'UserController@update_password')->name('update_password');
+
+    // AJAX
+	Route::post('getModel', 'HomeController@getModel');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

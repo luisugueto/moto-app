@@ -54,6 +54,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'images_purchase' => [
+            "driver" => "local",
+            "root"   => public_path().'/images_purchase',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

@@ -15,7 +15,7 @@
         </div>
         <div class="page-title-actions">            
             <div class="d-inline-block dropdown">
-                {{-- <a href="{{ url('gestion_compra/create') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i class="pe-7s-plus btn-icon-wrapper"> </i>Nuevo</a> --}}
+                <a href="{{ url('purchase_valuation/create') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i class="pe-7s-plus btn-icon-wrapper"> </i>Nuevo</a>
             </div>
         </div>
     </div>
@@ -31,11 +31,11 @@
                             <th>#</th>
                             <th class="text-center">Estado</th>
                             <th class="text-center">Fecha</th>
-                            <th class="text-center">Moto</th>
+                            <th class="text-center">Modelo</th>
                             <th class="text-center">Año</th>
                             <th class="text-center">KM</th>
                             <th class="text-center">Nombre</th>
-                            <th class="text-center">Lugar de Retiro</th>
+                            <th class="text-center">Provincia</th>
                             <th class="text-center">Estado en Tráfico</th>
                             <th class="text-center">Golpe Del.</th>
                             <th class="text-center">Golpe Tras</th>
@@ -48,25 +48,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        @foreach($purchase_valuation as $purchase)
+                            <tr>
+                                <td>{{ $purchase->id }}</td>
+                                <td>{{ $purchase->status }}</td>
+                                <td>{{ $purchase->date }}</td>
+                                <td>{{ $purchase->model }}</td>
+                                <td>{{ $purchase->year }}</td>
+                                <td>{{ $purchase->km }}</td>
+                                <td>{{ $purchase->name }} {{ $purchase->lastname }}</td>
+                                <td>{{ $purchase->province }}</td>
+                                <td>{{ $purchase->status_trafic }}</td>
+                                <td>{{ ($purchase->g_del == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->g_tras == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->av_elec == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->av_mec == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->old == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ $purchase->price_min }}</td>
+                                <td>{{ $purchase->observations }}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
