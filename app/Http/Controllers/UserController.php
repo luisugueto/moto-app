@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();      
+        $users = User::all();
         return view('backend.users.index', compact('users'));
     }
 
@@ -30,7 +30,6 @@ class UserController extends Controller
     public function create()
     {
         $user_types = UserTypes::all();
-
         return view('backend.users.create', compact('user_types'));
     }
 
@@ -42,7 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-         
+
         User::create([
             'name' => $request->name,
             'last_name' => $request->last_name,
@@ -110,8 +109,8 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {   
-        User::destroy($id);         
+    {
+        User::destroy($id);
         return Redirect::to('/users')->with('notification', 'Registro eliminado exitosamente!');
     }
 
@@ -122,15 +121,15 @@ class UserController extends Controller
     }
 
     public function update_profile(Request $request)
-    {        
+    {
         // dd($request->all());
         $user = User::find($request->user_id);
-      
+
         if ($request->hasFile('image')) {
 
-            $usersImage = public_path("profile_images/{$user->image}"); // get previous image from folder
-            if (\File::exists($usersImage)) { // unlink or remove previous image from folder
-                unlink($usersImage);
+            $userImage = public_path("profile_images/{$user->image}"); // get previous image from folder
+            if (\File::exists($userImage)) { // unlink or remove previous image from folder
+                \Storage::delete($userImage);
             }
 
             $file = $request->file('image');
@@ -173,7 +172,7 @@ class UserController extends Controller
             'current_password' => 'required|current_password'
         ]);
 
-        
+
         $user->update([
             'password' => bcrypt($request->password)
         ]);

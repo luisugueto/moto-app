@@ -69,7 +69,7 @@
                         </div>
                         <button class="close"></button>
                     </div>
-                    {{-- <ul class="header-menu nav"> 
+                    {{-- <ul class="header-menu nav">
                         <li class="nav-item">
                             <a href="javascript:void(0);" class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
@@ -99,10 +99,10 @@
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             class="p-0 btn">
                                             @if (isset(Auth::user()->image))
-                                                <img width="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+                                                <img width="42" height="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             @else
-                                                <img width="42" class="rounded-circle"
+                                                <img width="42" height="42" class="rounded-circle"
                                                 src="{{ asset('assets/images/avatars/1.jpg') }}" alt="" />
                                                 <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             @endif
@@ -119,13 +119,13 @@
                                                             <div class="widget-content-wrapper">
                                                                 <div class="widget-content-left mr-3">
                                                                     @if (isset(Auth::user()->image))
-                                                                    <img width="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+                                                                    <img width="42" height="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
                                                                     @else
-                                                                    <img width="42" class="rounded-circle"
+                                                                    <img width="42" height="42" class="rounded-circle"
                                                                         src="{{ asset('assets/images/avatars/1.jpg') }}"
                                                                         alt="" />
                                                                         @endif
-                                                                    
+
                                                                 </div>
                                                                 <div class="widget-content-left">
                                                                     <div class="widget-heading">
@@ -217,7 +217,7 @@
             </div>
         </div>
     </div>
-   
+
     <!-- Web Components -->
     <script src="{{ asset('assets/web_component/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
