@@ -66,6 +66,18 @@ return [
             'engine' => null,
         ],
 
+        'recambio_ps'  => [
+            'driver'     => 'mysql',
+            'host'       => env('RECAMBIO_HOST', 'localhost'),
+            'database'   => env('RECAMBIO_DATABASE', 'forge'),
+            'username'   => env('RECAMBIO_USERNAME', 'forge'),
+            'password'   => env('RECAMBIO_PASSWORD', ''),
+            'charset'    => 'utf8',
+            'collation'  => 'utf8_unicode_ci',
+            'prefix'     => '',
+            'strict'     => false,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),

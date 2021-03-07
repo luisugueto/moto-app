@@ -12,12 +12,10 @@
     <meta name="description" content="Web Mototion.">
     <meta name="msapplication-tap-highlight" content="no">
     <link rel="stylesheet" href="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.css') }}" />
-    <link rel="stylesheet"
-        href="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.min.css') }}" />
-
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.min.css') }}" />
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
      <!-- JS -->
      <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
