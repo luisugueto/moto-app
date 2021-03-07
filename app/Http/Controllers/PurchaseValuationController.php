@@ -7,6 +7,7 @@ use App\PurchaseValuation;
 use App\ImagesPurchase;
 use Redirect;
 use Storage;
+use DB;
 
 class PurchaseValuationController extends Controller
 {
@@ -18,6 +19,9 @@ class PurchaseValuationController extends Controller
     public function index()
     {
         $purchase_valuation = PurchaseValuation::all();
+
+        
+
         return view('backend.purchase_valuation.index', compact('purchase_valuation'));
     }
 
@@ -28,7 +32,20 @@ class PurchaseValuationController extends Controller
      */
     public function create()
     {
-        return view('backend.purchase_valuation.create');
+        $marcas = DB::connection('recambio_ps')->table('ps_category')
+                ->leftJoin('ps_category_lang', function($join)
+                {
+                    $join->on('ps_category_lang.id_category', '=', 'ps_category_lang.id_category');
+                })
+                ->select('ps_category.*', 'ps_category_lang.name as marca')
+                ->where('ps_category.id_parent', '=', '13042')  
+                ->where('ps_category_lang.id_lang', '=', '4')
+                ->orderBy('ps_category_lang.name', 'asc')
+                ->groupBy('ps_category_lang.name')
+                ->limit(10)
+                ->get();
+
+        return view('backend.purchase_valuation.create', compact('marcas'));
     }
 
     /**

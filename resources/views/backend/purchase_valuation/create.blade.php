@@ -45,7 +45,8 @@
                             </div>
                         </strong>
                     </h4>
-                    <form class="" role="form" method="POST" action="{{ route('purchase_valuation.store') }}" enctype="multipart/form-data">
+                    {!! Form::open(['route' => 'purchase_valuation.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+
                         {{ csrf_field() }}
                         <div class="divider"></div>
                         <div class="card ">
@@ -55,8 +56,11 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
-                                            <select class="form-control" name="brand" id="brand" >
+                                            <select class="form-control" name="brand" id="brand" onChange="setModel()">
                                                 <option value="" disabled selected="">Seleccione</option>
+                                                @foreach($marcas as $marca)
+                                                    <option value="{{ $marca->id_category }}">{{ $marca->marca }}</option>
+                                                @endforeach
                                             </select>
                                             @if ($errors->has('brand'))
                                                 <span class="error text-danger">
@@ -258,7 +262,7 @@
                             </div>
                         </div>
                         <button type='submit' class="mt-2 btn btn-primary btn-lg">Enviar</button>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -310,7 +314,7 @@
         var setModel = () => {
         let id = $("#brand").val();
         $.ajax({
-            url: '{{ url("getBrand") }}',
+            url: '{{ url("getModel") }}',
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             data: {
                 id:id
@@ -323,10 +327,10 @@
                 $("#model").empty();
                 
                 resp.model.forEach(function(model, index){
-
+                    console.log(model);
                     select.append($('<option>', {
-                        value: model.id,
-                        text: model.name
+                        value: model.id_category,
+                        text: model.marca
                     }));
                 });
 
