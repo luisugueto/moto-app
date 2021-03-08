@@ -31,6 +31,7 @@
                             <th>#</th>
                             <th class="text-center">Estado</th>
                             <th class="text-center">Fecha</th>
+                            <th class="text-center">Marca</th>
                             <th class="text-center">Modelo</th>
                             <th class="text-center">Año</th>
                             <th class="text-center">KM</th>
@@ -53,6 +54,7 @@
                                 <td>{{ $purchase->id }}</td>
                                 <td>{{ $purchase->status }}</td>
                                 <td>{{ $purchase->date }}</td>
+                                <td>{{ $purchase->brand }}</td>
                                 <td>{{ $purchase->model }}</td>
                                 <td>{{ $purchase->year }}</td>
                                 <td>{{ $purchase->km }}</td>

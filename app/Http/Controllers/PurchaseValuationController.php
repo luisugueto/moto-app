@@ -32,18 +32,7 @@ class PurchaseValuationController extends Controller
      */
     public function create()
     {
-        $marcas = DB::connection('recambio_ps')->table('ps_category')
-                ->leftJoin('ps_category_lang', function($join)
-                {
-                    $join->on('ps_category_lang.id_category', '=', 'ps_category_lang.id_category');
-                })
-                ->select('ps_category.*', 'ps_category_lang.name as marca')
-                ->where('ps_category.id_parent', '=', '13042')  
-                ->where('ps_category_lang.id_lang', '=', '4')
-                ->orderBy('ps_category_lang.name', 'asc')
-                ->groupBy('ps_category_lang.name')
-                ->limit(10)
-                ->get();
+        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
 
         return view('backend.purchase_valuation.create', compact('marcas'));
     }

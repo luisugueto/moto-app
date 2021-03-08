@@ -59,7 +59,7 @@
                                             <select class="form-control" name="brand" id="brand" onChange="setModel()">
                                                 <option value="" disabled selected="">Seleccione</option>
                                                 @foreach($marcas as $marca)
-                                                    <option value="{{ $marca->id_category }}">{{ $marca->marca }}</option>
+                                                    <option data-id="{{ $marca->id_category }}" value="{{ $marca->marca }}">{{ $marca->marca }}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('brand'))
@@ -72,7 +72,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
-                                            <select class="form-control" name="model" id="model" >
+                                            <select class="form-control" name="model" id="model" disabled >
                                                 <option value="" disabled selected="">Seleccione</option>
                                             </select>
                                             @if ($errors->has('model'))
@@ -312,7 +312,8 @@
 
     <script>
         var setModel = () => {
-        let id = $("#brand").val();
+        let id = $("#brand").find(':selected').data('id');
+
         $.ajax({
             url: '{{ url("getModel") }}',
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
@@ -323,16 +324,19 @@
             datatype: 'JSON',
             success: function (resp) {
                 let select = $("#model").empty().append("<option disabled='disabled' selected>Seleccione</option>");
-                
+
+                select.prop('disabled', 'disabled');
                 $("#model").empty();
                 
                 resp.model.forEach(function(model, index){
-                    console.log(model);
+        
                     select.append($('<option>', {
-                        value: model.id_category,
+                        value: model.marca,
                         text: model.marca
                     }));
                 });
+
+                select.prop('disabled', false);
 
             }
         });
