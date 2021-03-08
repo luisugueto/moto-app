@@ -119,7 +119,7 @@ class UserController extends Controller
         return view('backend.users.profile', compact('user'));
     }
 
-    public function update_profile(Request $request)
+    public function updateProfile(Request $request)
     {
         // dd($request->all());
         $user = User::find($request->user_id);
@@ -155,13 +155,7 @@ class UserController extends Controller
         return Redirect::to('profile/' . $user->id)->with('notification', 'Datos actualizdos exitosamente!');
     }
 
-    public function change_password($id)
-    {
-        $user = User::findOrFail($id);
-        return view('backend.users.change-password', compact('user'));
-    }
-
-    public function update_password(Request $request)
+    public function updatePassword(Request $request)
     {
         $user = User::find($request->user_id);
 
