@@ -20,8 +20,6 @@ class PurchaseValuationController extends Controller
     {
         $purchase_valuation = PurchaseValuation::all();
 
-        
-
         return view('backend.purchase_valuation.index', compact('purchase_valuation'));
     }
 
