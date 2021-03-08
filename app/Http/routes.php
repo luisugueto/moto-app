@@ -13,8 +13,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UserController');
     Route::resource('user_types', 'UserTypesController');
     Route::get('profile/{id}', 'UserController@profile')->name('profile');
-    Route::post('update_profile', 'UserController@update_profile')->name('update_profile');
-    Route::post('update_password', 'UserController@update_password')->name('update_password');
+    Route::post('update_profile', 'UserController@updateProfile')->name('updateProfile');
+    Route::post('update_password', 'UserController@updatePassword')->name('updatePassword');
+    Route::resource('states', 'StatesController');
+    Route::post('change-status-state/{id}', 'StatesController@changeStatus')->name('changeStatusStates');
 
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');

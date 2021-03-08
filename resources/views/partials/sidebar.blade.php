@@ -28,4 +28,9 @@
             <i class="metismenu-icon pe-7s-key"></i>Roles
         </a>
     </li>
+    <li>
+        <a href="{{ url('/states') }}">
+            <i class="metismenu-icon pe-7s-flag"></i>Estados
+        </a>
+    </li>
 </ul>

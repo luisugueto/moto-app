@@ -34,7 +34,7 @@
                     @endif
                 	<div class="tab-pane active" id="tab-eg10-0" role="tabpanel">
 	                    <h2 class="title">Perfil</h2>
-	                    <form class="needs-validationTwo form-horizontal" method="POST" action="{{ route('update_profile') }}"
+	                    <form class="needs-validationTwo form-horizontal" method="POST" action="{{ route('updateProfile') }}"
                         enctype='multipart/form-data'>
                         {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
@@ -88,7 +88,7 @@
 	                <div class="tab-pane" id="tab-eg10-1" role="tabpanel">
 	                	<div class="fieldset">
 	                        <h3 class="fieldset-title">Cambiar Contraseña</h3><br>
-	                       <form class="form-horizontal" role="form" method="POST" action="{{ route('update_password') }}"
+	                       <form class="form-horizontal" role="form" method="POST" action="{{ route('updatePassword') }}"
                             enctype='multipart/form-data'>
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
