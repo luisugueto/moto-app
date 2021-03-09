@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update_profile', 'UserController@updateProfile')->name('updateProfile');
     Route::post('update_password', 'UserController@updatePassword')->name('updatePassword');
     Route::resource('states', 'StatesController');
+    Route::resource('emails', 'EmailsController');
     Route::post('change-status-state/{id}', 'StatesController@changeStatus')->name('changeStatusStates');
 
     // AJAX

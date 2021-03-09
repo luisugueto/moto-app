@@ -1,5 +1,9 @@
 
 $(document).ready(function () {
+    $("#content").summernote({
+        placeholder: "Escribe el contenido para la plantilla de correo",
+        height: 200,
+    });
 
     $(".btn-open-options").click(function () {
         $(".ui-theme-settings").toggleClass("settings-open")

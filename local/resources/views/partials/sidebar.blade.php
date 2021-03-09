@@ -19,6 +19,11 @@
     
     <li class="app-sidebar__heading">Configuracion</li>
     <li>
+        <a href="{{ url('/emails') }}">
+            <i class="metismenu-icon pe-7s-mail"></i>Correos
+        </a>
+    </li>  
+    <li>
         <a href="{{ url('/users') }}">
             <i class="metismenu-icon pe-7s-users"></i>Usuarios
         </a>
