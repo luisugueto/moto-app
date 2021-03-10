@@ -40,7 +40,6 @@ class EmailsController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|min:5|max:100',
             'subject' => 'required|string',
@@ -72,7 +71,9 @@ class EmailsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $email = Email::find($id);
+
+        return view('backend.emails.edit', compact('email'));
     }
 
     /**
@@ -84,7 +85,10 @@ class EmailsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $email = Email::find($id);
+        $email->update($request->all());
+
+        return Redirect::to('/emails')->with('notification', 'Correo editado exitosamente!');
     }
 
     /**
@@ -95,6 +99,13 @@ class EmailsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $email = Email::findOrFail($id);
+        if(isset($email)){
+            Email::destroy($id);
+            return Redirect::to('/emails')->with('notification', 'Correo eliminado exitosamente!');
+        }
+        else{
+            return Redirect::to('/emails')->with('notification', 'Correo no encontrado! No se pudo eliminar');
+        }
     }
 }

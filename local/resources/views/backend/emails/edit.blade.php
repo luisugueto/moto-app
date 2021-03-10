@@ -27,13 +27,13 @@
         <div class="col-lg-8">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Nuevo Correo</h5>
-                    <form class="" role="form" method="POST" action="{{ route('emails.store') }}">
-                        {{ csrf_field() }}
+                    <h5 class="card-title">Editar Correo</h5>
+                    {!! Form::model($email, ['route' => ['emails.update', $email->id], 'method' => 'put', 'enctype' =>
+            'multipart/form-data', 'class' => 'form-horizontal']) !!}
                         <div class="divider"></div>
                         <div class="position-relative form-group">
                             <label>Nombre</label>
-                            <input class='form-control' id='name' name='name' type='text' value="{{ old('name') }}"
+                            <input class='form-control' id='name' name='name' type='text' value="{{ $email->name }}"
                                 required>
 
                             @if ($errors->has('name'))
@@ -45,7 +45,7 @@
                         <div class="position-relative form-group">
                             <label>Asunto</label>
                             <input class='form-control' id='subject' name='subject' type='text'
-                                value="{{ old('subject') }}" required>
+                                value="{{ $email->subject }}" required>
 
                             @if ($errors->has('subject'))
                                 <span class="error text-danger">
@@ -56,8 +56,7 @@
 
                         <div class="position-relative form-group">
                             <label>Contenido</label>
-                            <textarea class='form-control' id='content' name='content' type='text'
-                                value="{{ old('content') }}" required></textarea>
+                            <textarea class='form-control' id='content' name='content' type='text' required>{{ $email->content }}</textarea>
 
                             @if ($errors->has('content'))
                                 <span class="error text-danger">
@@ -69,7 +68,7 @@
 
                         <div class='position-relative form-group '>
                             <button class='btn btn-primary' type='submit'><i class='fa fa-save'></i>
-                                Registrar
+                                Editar
                             </button>
                         </div>
                     </form>

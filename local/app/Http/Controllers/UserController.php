@@ -121,7 +121,6 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // dd($request->all());
         $user = User::find($request->user_id);
 
         if ($request->hasFile('image')) {

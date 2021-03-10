@@ -53,7 +53,17 @@
                                    <td>{{ $email->name }}</td>
                                    <td>{{ $email->subject }}</td>
                                    <td>{{ $email->content }}</td>
-                                   <td></td>
+                                   <td>
+                                        {!! Form::open(['route' => ['emails.destroy', $email->id], 'method' =>
+                                    'delete']) !!}
+                                            <a class="btn btn-outline btn-info btn-xs"
+                                                href="{{ url('emails/'.$email->id.'/edit') }}"><em
+                                                    class="metismenu-icon pe-7s-edit"></em> Editar</a>
+
+                                            <button class="btn btn-outline btn-xs btn-danger delete"><em
+                                                    class="metismenu-icon pe-7s-trash"></em> Eliminar</button>
+                                        {!! Form::close() !!}
+                                    </td>
                                </tr>
                             @endforeach
                         </tbody>
