@@ -126,7 +126,7 @@ class UserController extends Controller
 
         if ($request->hasFile('image')) {
 
-            $userImage = public_path("profile_images/{$user->image}"); // get previous image from folder
+            $userImage = public_path("img_app/profile_images/{$user->image}"); // get previous image from folder
             if (\File::exists($userImage)) { // unlink or remove previous image from folder
                 \Storage::delete($userImage);
             }
@@ -143,7 +143,7 @@ class UserController extends Controller
             $img = Image::make($file->getRealPath())->widen(64, function ($constraint) {
                 $constraint->upsize();
             });
-            $img->save(public_path('profile_images/' .$fileNameToStore));
+            $img->save(public_path('img_app/profile_images/' .$fileNameToStore));
         }
         if (isset($fileNameToStore)) {
             $user->image = $fileNameToStore;

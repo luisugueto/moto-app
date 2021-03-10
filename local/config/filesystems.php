@@ -56,7 +56,7 @@ return [
 
         'images_purchase' => [
             "driver" => "local",
-            "root"   => public_path().'/images_purchase',
+            "root"   => public_path().'/img_app/images_purchase',
         ],
 
         's3' => [
