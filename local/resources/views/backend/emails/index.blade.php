@@ -59,6 +59,9 @@
                                             <a class="btn btn-outline btn-info btn-xs"
                                                 href="{{ url('emails/'.$email->id.'/edit') }}"><em
                                                     class="metismenu-icon pe-7s-edit"></em> Editar</a>
+                                            <a class="btn btn-outline btn-info btn-xs"
+                                                    href="{{ url('emails/'.$email->id) }}"><em
+                                                        class="metismenu-icon pe-7s-edit"></em> Ver</a>
 
                                             <button class="btn btn-outline btn-xs btn-danger delete"><em
                                                     class="metismenu-icon pe-7s-trash"></em> Eliminar</button>

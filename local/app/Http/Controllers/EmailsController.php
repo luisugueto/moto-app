@@ -60,7 +60,9 @@ class EmailsController extends Controller
      */
     public function show($id)
     {
-        //
+        $email = Email::find($id);
+
+        return view('backend.emails.template', compact('email'));
     }
 
     /**
