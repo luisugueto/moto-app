@@ -52,7 +52,22 @@
                                     <strong>{{ $errors->first('description') }}</strong>
                                 </span>
                             @endif
-                        </div>                         
+                        </div> 
+                        
+                        <div class="position-relative form-group">
+                            <label for="email_id" class="">Plantilla Email</label>
+                            <select class="form-control" name="email_id" id="email_id" >
+                                <option value="">Seleccione</option>
+                                @foreach($emails as $email)
+                                    <option value="{{ $email->id }}">{{ $email->name }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('email_id'))
+                                <span class="error text-danger">
+                                    <strong>{{ $errors->first('email_id') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
                         <div class='position-relative form-group '>
                             <button class='btn btn-primary' type='submit'><i class='fa fa-save'></i>

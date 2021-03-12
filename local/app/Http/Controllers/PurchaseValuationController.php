@@ -32,7 +32,7 @@ class PurchaseValuationController extends Controller
     {
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
 
-        return view('backend.purchase_valuation.create', compact('marcas'));
+        return view('backend.purchase_valuation.create', compact('marcas'));   
     }
 
     /**

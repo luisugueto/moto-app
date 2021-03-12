@@ -43,6 +43,7 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
+                                <th>Plantilla Email</th>
                                 <th>Status</th>
                                 <th>Opciones</th>
                             </tr>
@@ -52,6 +53,7 @@
                                 <tr>
                                     <td>{{ strtoupper($state->name) }}</td>
                                     <td>{{ strtoupper($state->description) }}</td>
+                                    <td>{{ strtoupper($state->email->name) }}</td>
                                     <td>
                                         @if($state->status == 1)
                                         <form action="{{ route('changeStatusStates', $state->id) }}" method="POST">

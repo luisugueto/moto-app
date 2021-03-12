@@ -16,6 +16,8 @@ class CreateStatesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->integer('email_id')->unsigned();
+            $table->foreign('email_id')->references('id')->on('emails')->onDelete('Cascade');
             $table->tinyInteger('status')->default('1');
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\States;
+use App\Email;
 use Redirect;
 use App\Http\Requests;
 
@@ -26,7 +27,8 @@ class StatesController extends Controller
      */
     public function create()
     {
-        return view('backend.states.create');
+        $emails = Email::all();
+        return view('backend.states.create', compact('emails'));
     }
 
     /**
@@ -39,7 +41,8 @@ class StatesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'email_id' => 'required'
         ]);
         $state = new States($request->all());
         $state->save();
@@ -67,8 +70,8 @@ class StatesController extends Controller
     public function edit($id)
     {
         $state = States::find($id);
-
-        return view('backend.states.edit', compact('state'));
+        $emails = Email::all();
+        return view('backend.states.edit', compact('state','emails'));
     }
 
     /**
@@ -82,12 +85,14 @@ class StatesController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'email_id' => 'required'
         ]);
       
         $state = States::find($id);
         $state->name = $request->name;
         $state->description = $request->description;
+        $state->email_id = $request->email_id;
         $state->save();
 
          return Redirect::to('/states')->with('notification', 'Estado modificado exitosamente!');

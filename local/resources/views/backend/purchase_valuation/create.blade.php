@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.outside')
 
 @section('content')
 <style>
@@ -6,27 +6,6 @@
   display:none;
 }
 </style>
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="pe-7s-speaker icon-gradient bg-night-fade">
-                    </i>
-                </div>
-                <div>Tasación Motos
-                    <div class="page-title-subheading">Ingrese los detalles del formulario para registrar la información
-                        solicitada.
-                    </div>
-                </div>
-            </div>
-            <div class="page-title-actions">
-                <div class="d-inline-block dropdown">
-                    <a href="{{ url('purchase_valuation') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
-                            class="pe-7s-back-2 btn-icon-wrapper"> </i>Volver</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
@@ -35,11 +14,12 @@
                         <strong>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="float-left">
+                                    <div class="float-left text-dark">
                                         Solicitud de venta de moto averiada o siniestrada
                                     </div>
                                     <div class="float-right">
-                                       
+                                        <a href="{{ url('purchase_valuation') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
+                                            class="pe-7s-back-2 btn-icon-wrapper"> </i>Volver</a>
                                     </div>
                                 </div>
                             </div>
@@ -261,7 +241,14 @@
                                 </div>
                             </div>
                         </div>
-                        <button type='submit' class="mt-2 btn btn-primary btn-lg">Enviar</button>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 ml-auto mt-2">
+                                <button type='submit' class="mt-2 btn btn-primary btn-lg btn-block">Enviar</button>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                        
                     {!! Form::close() !!}
                 </div>
             </div>

@@ -11,4 +11,9 @@ class Email extends Model
     protected $fillable = [
     	'name', 'subject', 'content'
     ];
+
+    public function states()
+    {
+        return $this->hasMany('App\States');
+    }
 }

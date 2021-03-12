@@ -25,7 +25,7 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Tasación Motos</h5>
-                <table style="width: 100%;" id="tableTasacionMotos" class="table table-hover table-striped table-bordered">
+                <table style="width: 100%;" id="tableTasacionMotos" class="table table-hover table-striped table-bordered pag-table">
                     <thead>
                         <tr>
                             <th>#</th>
