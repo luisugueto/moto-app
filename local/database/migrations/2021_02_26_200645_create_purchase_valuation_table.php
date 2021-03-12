@@ -32,7 +32,8 @@ class CreatePurchaseValuationTable extends Migration
             $table->integer('old')->default(0);
             $table->string('price_min');
             $table->string('observations');
-            $table->integer('status')->default(0);
+            $table->integer('states_id')->unsigned();
+            $table->foreign('states_id')->references('id')->on('states')->onDelete('Cascade');
             $table->timestamps();
         });
     }

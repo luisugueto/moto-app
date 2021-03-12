@@ -52,7 +52,7 @@
                         @foreach($purchase_valuation as $purchase)
                             <tr>
                                 <td>{{ $purchase->id }}</td>
-                                <td>{{ $purchase->status }}</td>
+                                <td>{{ $purchase->state->name }}</td>
                                 <td>{{ $purchase->date }}</td>
                                 <td>{{ $purchase->brand }}</td>
                                 <td>{{ $purchase->model }}</td>

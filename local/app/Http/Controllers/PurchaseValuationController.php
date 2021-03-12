@@ -45,6 +45,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
+        $purchase->states_id = 1; // No Interesa
         $purchase->save();
 
         foreach($request->images as $file){
