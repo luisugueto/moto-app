@@ -121,11 +121,11 @@ class PurchaseValuationController extends Controller
         $purchase_model = PurchaseValuation::find($purchase);
         $purchase_model->states_id = $id;
         $purchase_model->update();
-        
+
         // ENVIAR CORREO
         Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state], function ($message) use ($state)
         {
-            $message->from('supermascoteandoperu@gmail.com', 'Test');
+            $message->from('', 'Test');
 
             // SE ENVIARA A
             $message->to('ugueto.luis19@gmail.com')->subject($state->name);
