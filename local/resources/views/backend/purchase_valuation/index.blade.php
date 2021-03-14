@@ -22,6 +22,17 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
+        @if (session('notification'))
+            <div class="alert alert-success notification">
+                {{ session('notification') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-block notification">
+                {{ session('error') }}
+            </div>
+        @endif
+        <br>
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Tasación Motos</h5>
@@ -72,7 +83,13 @@
                                 <td>{{ ($purchase->old == 1) ? 'Si' : 'No' }}</td>
                                 <td>{{ $purchase->price_min }}</td>
                                 <td>{{ $purchase->observations }}</td>
-                                <td></td>
+                                <td>
+                                    @foreach($states as $state)
+                                        @if($state->id != $purchase->states_id)
+                                            <a class="btn btn-warning" href="{{ url('send_mail_state/'.$state->id.'/'.$purchase->id) }}">{{ $state->name }}</a>
+                                        @endif
+                                    @endforeach 
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

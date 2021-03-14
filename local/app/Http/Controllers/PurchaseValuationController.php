@@ -8,6 +8,9 @@ use App\ImagesPurchase;
 use Redirect;
 use Storage;
 use DB;
+use Mail;
+use App\States;
+use App\Emails;
 
 class PurchaseValuationController extends Controller
 {
@@ -19,8 +22,9 @@ class PurchaseValuationController extends Controller
     public function index()
     {
         $purchase_valuation = PurchaseValuation::all();
+        $states = States::all();
 
-        return view('backend.purchase_valuation.index', compact('purchase_valuation'));
+        return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states'));
     }
 
     /**
@@ -109,5 +113,24 @@ class PurchaseValuationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sendMailState($id, $purchase)
+    {
+        $state = States::find($id);
+        $purchase_model = PurchaseValuation::find($purchase);
+        $purchase_model->states_id = $id;
+        $purchase_model->update();
+        
+        // ENVIAR CORREO
+        Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state], function ($message) use ($state)
+        {
+            $message->from('supermascoteandoperu@gmail.com', 'Test');
+
+            // SE ENVIARA A
+            $message->to('ugueto.luis19@gmail.com')->subject($state->name);
+        });
+
+        return Redirect::to('/purchase_valuation')->with('notification','Estado Cambiado Exitosamente!');
     }
 }
