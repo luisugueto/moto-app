@@ -109,6 +109,8 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+    'pretend' => false,
+
     'stream' => [
         'ssl' => [
            'allow_self_signed' => true,

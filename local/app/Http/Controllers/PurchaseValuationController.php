@@ -123,12 +123,12 @@ class PurchaseValuationController extends Controller
         $purchase_model->update();
 
         // ENVIAR CORREO
-        Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state], function ($message) use ($state)
+        Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state], function ($message) use ($state, $purchase_model)
         {
-            $message->from('', 'Test');
+            $message->from('ugueto.luis19@gmail.com', 'MotOstion');
 
             // SE ENVIARA A
-            $message->to('ugueto.luis19@gmail.com')->subject($state->name);
+            $message->to($purchase_model->email)->subject($state->name);
         });
 
         return Redirect::to('/purchase_valuation')->with('notification','Estado Cambiado Exitosamente!');
