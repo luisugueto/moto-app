@@ -280,7 +280,8 @@
                                 reader.onload = function (e) {
                                     $("<img />", {
                                         "src": e.target.result,
-                                            "class": "thumb"
+                                            "class": "rounded img-fluid mr-2 mb-2",
+                                            "style": "height:200px;width:200px"
                                     }).appendTo(image_holder);
                                 }
                 
