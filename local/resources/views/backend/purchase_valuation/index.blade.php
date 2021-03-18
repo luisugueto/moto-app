@@ -36,9 +36,19 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Tasación Motos</h5>
+                {!! Form::open(['url' => 'applyState', 'method' => 'post']) !!}
+                <select name="applyState">
+                    @foreach($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary">Aplicar</button>
+                <hr>
+
                 <table style="width: 100%;" id="tableTasacionMotos" class="table table-hover table-striped table-bordered pag-table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>#</th>
                             <th class="text-center">Estado</th>
                             <th class="text-center">Fecha</th>
@@ -62,6 +72,7 @@
                     <tbody>
                         @foreach($purchase_valuation as $purchase)
                             <tr>
+                                <td><input type="checkbox" name="apply[]" id="apply" value="{{ $purchase->id }}"></td>
                                 <td>{{ $purchase->id }}</td>
                                 @if($purchase->states_id == 0)
                                     <td>En Revisión</td>
@@ -84,11 +95,7 @@
                                 <td>{{ $purchase->price_min }}</td>
                                 <td>{{ $purchase->observations }}</td>
                                 <td>
-                                    @foreach($states as $state)
-                                        @if($state->id != $purchase->states_id)
-                                            <a class="btn btn-warning" href="{{ url('send_mail_state/'.$state->id.'/'.$purchase->id) }}">{{ $state->name }}</a>
-                                        @endif
-                                    @endforeach 
+                                    <a class="btn btn-warning" href="{{ url('purchase_valuation/' . $purchase->id . '/edit') }}">Editar</a>
                                 </td>
                             </tr>
                         @endforeach
