@@ -68,7 +68,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                
-                // console.log(data);
+                //console.log(data);
                 var state = '<tr id="state' + data.id + '">';
                 state += '<td>' + data.id + '</td>';
                 state += '<td>' + data.name + '</td>';
@@ -81,7 +81,7 @@ $(document).ready(function(){
                 }
                 state += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.id + '">Editar</button>';
                 state += ' <button class="btn btn-danger btn-delete delete-state" value="' + data.id + '">Eliminar</button></td></tr>';
-                if (state == "add"){ //if user added a new record
+                if (button == "add"){ //if user added a new record
                     $('#states-list').append(state);
                 }else{ //if user updated an existing record
                     $("#state" + state_id).replaceWith( state );
@@ -100,7 +100,6 @@ $(document).ready(function(){
                         list = '<li>' + value + '</li>';
                         $('.alert').prop('hidden', false);
                         $('#errors').append(list);
-                        console.log(value)
                     });
                  
                 }
@@ -118,7 +117,7 @@ $(document).ready(function(){
             url: url + '/' + state_id,
             success: function (data) {                 
                 var message = `
-                <div class="alert alert-success" role="alert">
+                <div class="notification alert alert-success" role="alert">
                     Registro eliminado exitosamente!
                 </div>`;
                 $('.main-card').before(message);

@@ -87,7 +87,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-danger" hidden>
+                    <div class="notification alert alert-danger" hidden>
                         <ul id="errors"></ul>
                     </div>
                     <form id="frmStates" name="frmStates" novalidate="">

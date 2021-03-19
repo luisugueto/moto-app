@@ -37,12 +37,16 @@
             <div class="card-body">
                 <h5 class="card-title">Tasación Motos</h5>
                 {!! Form::open(['url' => 'applyState', 'method' => 'post']) !!}
-                    <select name="applyState">
-                        @foreach($states as $state)
-                            <option value="{{ $state->id }}">{{ $state->name }}</option>
-                        @endforeach
-                    </select>
-                    <button type="submit" class="btn btn-primary">Aplicar</button>
+                    <div class="input-group col-md-3">
+                        <select name="applyState" class="custom-select">
+                            @foreach($states as $state)
+                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Aplicar</button>
+                        </div>
+                    </div>
                     <hr>
 
                     <table style="width: 100%;" id="tableTasacionMotos" class="table table-hover table-striped table-bordered pag-table">

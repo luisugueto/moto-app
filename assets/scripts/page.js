@@ -63,17 +63,13 @@ $(document).ready(function () {
 
     });
      
-    $(".select").select2();
-    
+    $(".select").select2();    
     
 
     setTimeout(function () {
         $(".notification").alert("close");
     }, 6000);
-
-    setTimeout(function () {
-        $(".alert").alert("close");
-    }, 6000);
+ 
 
     $('.pag-table').DataTable({
         responsive: true,

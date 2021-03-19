@@ -36,7 +36,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
-                                            <select class="form-control" name="brand" id="brand" onChange="setModel()">
+                                            <select class="form-control select" name="brand" id="brand" onChange="setModel()">
                                                 <option value="" disabled selected="">Seleccione</option>
                                                 @foreach($marcas as $marca)
                                                     <option data-id="{{ $marca->id_category }}" value="{{ $marca->marca }}">{{ $marca->marca }}</option>
@@ -52,7 +52,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
-                                            <select class="form-control" name="model" id="model" disabled >
+                                            <select class="form-control select" name="model" id="model" disabled >
                                                 <option value="" disabled selected="">Seleccione</option>
                                             </select>
                                             @if ($errors->has('model'))
