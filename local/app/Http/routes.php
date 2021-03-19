@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('emails', 'EmailsController');
     Route::resource('processes', 'ProcessesController');
 
-    Route::get('send_mail_state/{id}/{purchase}', 'PurchaseValuationController@sendMailState');
+    Route::post('applyState', 'PurchaseValuationController@applyState');
 
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');
