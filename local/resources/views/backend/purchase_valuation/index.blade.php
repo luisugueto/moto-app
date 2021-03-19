@@ -37,8 +37,10 @@
             <div class="card-body">
                 <h5 class="card-title">Tasación Motos</h5>
                 {!! Form::open(['url' => 'applyState', 'method' => 'post']) !!}
+                <div class="row">
                     <div class="input-group col-md-3">
                         <select name="applyState" class="custom-select">
+                            <option value="">Elegir Estado</option>
                             @foreach($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
                             @endforeach
@@ -47,67 +49,79 @@
                             <button type="submit" class="btn btn-primary">Aplicar</button>
                         </div>
                     </div>
-                    <hr>
-
-                    <table style="width: 100%;" id="tableTasacionMotos" class="table table-hover table-striped table-bordered pag-table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>#</th>
-                                <th class="text-center">Estado</th>
-                                <th class="text-center">Fecha</th>
-                                <th class="text-center">Marca</th>
-                                <th class="text-center">Modelo</th>
-                                <th class="text-center">Año</th>
-                                <th class="text-center">KM</th>
-                                <th class="text-center">Nombre</th>
-                                <th class="text-center">Provincia</th>
-                                <th class="text-center">Estado en Tráfico</th>
-                                <th class="text-center">Golpe Del.</th>
-                                <th class="text-center">Golpe Tras</th>
-                                <th class="text-center">Av. Elec</th>
-                                <th class="text-center">Av. Mec</th>
-                                <th class="text-center">Aband. Viejo</th>
-                                <th class="text-center">Mínimo</th>
-                                <th class="text-center">Observaciones</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($purchase_valuation as $purchase)
-                                <tr>
-                                    <td><input type="checkbox" name="apply[]" id="apply" value="{{ $purchase->id }}"></td>
-                                    <td>{{ $purchase->id }}</td>
-                                    @if($purchase->states_id == 0)
-                                        <td>En Revisión</td>
-                                    @else
-                                        <td>{{ $purchase->state->name }}</td>
-                                    @endif
-                                    <td>{{ $purchase->date }}</td>
-                                    <td>{{ $purchase->brand }}</td>
-                                    <td>{{ $purchase->model }}</td>
-                                    <td>{{ $purchase->year }}</td>
-                                    <td>{{ $purchase->km }}</td>
-                                    <td>{{ $purchase->name }} {{ $purchase->lastname }}</td>
-                                    <td>{{ $purchase->province }}</td>
-                                    <td>{{ $purchase->status_trafic }}</td>
-                                    <td>{{ ($purchase->g_del == 1) ? 'Si' : 'No' }}</td>
-                                    <td>{{ ($purchase->g_tras == 1) ? 'Si' : 'No' }}</td>
-                                    <td>{{ ($purchase->av_elec == 1) ? 'Si' : 'No' }}</td>
-                                    <td>{{ ($purchase->av_mec == 1) ? 'Si' : 'No' }}</td>
-                                    <td>{{ ($purchase->old == 1) ? 'Si' : 'No' }}</td>
-                                    <td>{{ $purchase->price_min }}</td>
-                                    <td>{{ $purchase->observations }}</td>
-                                    <td>
-                                        <a class="btn btn-warning" href="{{ url('purchase_valuation/' . $purchase->id . '/edit') }}">Editar</a>
-                                    </td>
-                                </tr>
+                    <div class="input-group col-md-3">
+                        <select name="applyProcess" class="custom-select">
+                            <option value="">Elegir Proceso</option>
+                            @foreach($processes as $process)
+                                <option value="{{ $process->id }}">{{ $process->name }}</option>
                             @endforeach
-                        </tbody>
-                    </table>
+                        </select>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">Aplicar</button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <table width="100%" id="tableTasacionMotos" class="table table-hover table-striped table-bordered pag-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>#</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Fecha</th>
+                            <th class="text-center">Marca</th>
+                            <th class="text-center">Modelo</th>
+                            <th class="text-center">Año</th>
+                            <th class="text-center">KM</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Provincia</th>
+                            <th class="text-center">Estado en Tráfico</th>
+                            <th class="text-center">Golpe Del.</th>
+                            <th class="text-center">Golpe Tras</th>
+                            <th class="text-center">Av. Elec</th>
+                            <th class="text-center">Av. Mec</th>
+                            <th class="text-center">Aband. Viejo</th>
+                            <th class="text-center">Mínimo</th>
+                            <th class="text-center">Observaciones</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($purchase_valuation as $purchase)
+                            <tr>
+                                <td><input type="checkbox" name="apply[]" id="apply" value="{{ $purchase->id }}"></td>
+                                <td>{{ $purchase->id }}</td>
+                                @if($purchase->states_id == 0)
+                                    <td>En Revisión</td>
+                                @else
+                                    <td>{{ $purchase->state->name }}</td>
+                                @endif
+                                <td>{{ $purchase->date }}</td>
+                                <td>{{ $purchase->brand }}</td>
+                                <td>{{ $purchase->model }}</td>
+                                <td>{{ $purchase->year }}</td>
+                                <td>{{ $purchase->km }}</td>
+                                <td>{{ $purchase->name }} {{ $purchase->lastname }}</td>
+                                <td>{{ $purchase->province }}</td>
+                                <td>{{ $purchase->status_trafic }}</td>
+                                <td>{{ ($purchase->g_del == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->g_tras == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->av_elec == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->av_mec == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ ($purchase->old == 1) ? 'Si' : 'No' }}</td>
+                                <td>{{ $purchase->price_min }}</td>
+                                <td>{{ $purchase->observations }}</td>
+                                <td>
+                                    <a class="btn btn-warning" href="{{ url('purchase_valuation/' . $purchase->id . '/edit') }}">Editar</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
 </div>
+ 
 @endsection

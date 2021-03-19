@@ -10,6 +10,7 @@ use Storage;
 use DB;
 use Mail;
 use App\States;
+use App\Processes;
 use App\Emails;
 
 class PurchaseValuationController extends Controller
@@ -23,8 +24,9 @@ class PurchaseValuationController extends Controller
     {
         $purchase_valuation = PurchaseValuation::all();
         $states = States::all();
+        $processes = Processes::all();
 
-        return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states'));
+        return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states', 'processes'));
     }
 
     /**

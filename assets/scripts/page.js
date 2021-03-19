@@ -70,10 +70,10 @@ $(document).ready(function () {
         $(".notification").alert("close");
     }, 6000);
  
-
+    
     $('.pag-table').DataTable({
-        responsive: true,
-        'language': {
+        "responsive": true,
+        "language": {
             "sProcessing": "Procesando...",
             "sLengthMenu": "Mostrar _MENU_ registros",
             "sZeroRecords": "No se encontraron resultados",
