@@ -226,7 +226,20 @@
                                         </div>
                                     </div>
                                     <div class="col-md-2"></div>
-                                    <!-- <div class="col-md-6">
+                                    <div class="col-md-6">
+                                       @if ($images)
+                                          <div class="position-relative form-group">
+                                            <output id="listaAnterior">
+                                                @foreach ($images as $item)
+                                                    @if(file_exists('local/public/img_app/images_purchase/'.$item->name))
+                                                        <img src="{{ url('local/public/img_app/images_purchase/'. $item->name)}}" alt="" class="rounded img-fluid mr-2 mb-2" style="height:200px;width:200px">
+                                                    @endif
+                                                @endforeach
+
+                                            </output>
+                                        </div>  
+                                        @endif
+                                        <!--
                                         <div class="position-relative form-group">
                                             <label class="btn btn-primary btn-file mt-4">
                                                 Cargar Imagenes <span class="requerido" >*</span>
@@ -236,8 +249,8 @@
                                         </div>
                                         <div class="position-relative form-group">
                                             <output id="lista">Debe Cargar 1 foto minimo</output>
-                                        </div>
-                                    </div> -->
+                                        </div>-->
+                                    </div>
                                 </div>
                             </div>
                         </div>

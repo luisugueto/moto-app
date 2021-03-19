@@ -19,6 +19,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('emails', 'EmailsController');
     Route::resource('processes', 'ProcessesController');
 
+    Route::post('show-images', 'PurchaseValuationController@showImages');
+
     Route::post('applyState', 'PurchaseValuationController@applyState');
 
     // AJAX

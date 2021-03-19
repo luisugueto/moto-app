@@ -113,6 +113,7 @@
                                 <td>{{ $purchase->observations }}</td>
                                 <td>
                                     <a class="btn btn-warning" href="{{ url('purchase_valuation/' . $purchase->id . '/edit') }}">Editar</a>
+                                    <button type="button" class="btn btn-info show-images" value="{{$purchase->id}}">Ver Imagenes</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -123,5 +124,51 @@
         </div>
     </div>
 </div>
+ <!-- Passing BASE URL to AJAX -->
+ <input id="url" type="hidden" value="{{ \Request::url() }}">
+    
+ @section('modals')
+ <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLongTitle">Imagenes</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 <div class="notification alert alert-danger" hidden>
+                     <ul id="errors"></ul>
+                 </div>
+                 <form id="frmImagesPurchaseValuation" name="frmImagesPurchaseValuation" novalidate="">
+                     {{ csrf_field() }}
+                     <div class="main-card mb-3 card">
+                        <div class="card-body">
+                            <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" id="imagesCarrousel">
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                 </form>
+             </div>
+             <div class="modal-footer">
+                 <input type="hidden" id="image_id" name="image_id" value="0">
+             </div>
+         </div>
+     </div>
+ </div>
+ <script src="{{ asset('assets/scripts/js/purchase_valuation_images.js') }}"></script>
+ @endsection
  
 @endsection

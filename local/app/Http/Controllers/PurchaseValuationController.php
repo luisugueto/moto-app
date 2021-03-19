@@ -51,7 +51,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
-        $purchase->states_id = 0; // No Interesa
+        $purchase->states_id = 1; // No Interesa
         $purchase->save();
 
         foreach($request->images as $file){
@@ -59,8 +59,15 @@ class PurchaseValuationController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            
 
-            Storage::disk('images_purchase')->put($fileNameToStore,  \File::get($file));
+            $image_resize = Image::make($file->getRealPath());
+            $img = Image::make($file->getRealPath())->widen(250, function ($constraint) {
+                $constraint->upsize();
+            });
+
+            $img->save(public_path('img_app/images_purchase/' .$fileNameToStore));
+            // Storage::disk('images_purchase')->put($fileNameToStore,  \File::get($file));
 
             $images_purchase = new ImagesPurchase();
             $images_purchase->purchase_valuation_id = $purchase->id;
@@ -92,9 +99,10 @@ class PurchaseValuationController extends Controller
     public function edit($id)
     {
         $purchase = PurchaseValuation::find($id);
+        $images = ImagesPurchase::where('purchase_valuation_id', $purchase->id)->get();     
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
 
-        return view('backend.purchase_valuation.edit', compact('purchase', 'marcas'));  
+        return view('backend.purchase_valuation.edit', compact('purchase', 'marcas', 'images'));  
     }
 
     /**
@@ -144,5 +152,13 @@ class PurchaseValuationController extends Controller
         }
 
         return Redirect::to('/purchase_valuation')->with('notification','Estado Cambiado Exitosamente!');
+    }
+
+    public function showImages(Request $request)
+    {
+        $data = $request->id;
+       
+        $images = ImagesPurchase::where('purchase_valuation_id', $data)->get();        
+        return response()->json(['success'=> 200, 'data' => $images]);
     }
 }
