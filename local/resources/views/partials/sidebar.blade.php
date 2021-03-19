@@ -38,4 +38,9 @@
             <i class="metismenu-icon pe-7s-flag"></i>Estados
         </a>
     </li>
+    <li>
+        <a href="{{ url('/processes') }}">
+            <i class="metismenu-icon pe-7s-graph3"></i>Procesos
+        </a>
+    </li>
 </ul>

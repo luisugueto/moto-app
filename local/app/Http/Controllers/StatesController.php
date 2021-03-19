@@ -17,7 +17,8 @@ class StatesController extends Controller
     public function index()
     {
         $states = States::all();
-        return view('backend.states.index', compact('states'));
+        $emails = Email::all();
+        return view('backend.states.index', compact('states', 'emails'));
     }
 
     /**
@@ -39,15 +40,25 @@ class StatesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'email_id' => 'required'
-        ]);
-        $state = new States($request->all());
-        $state->save();
+     
+        $validator = \Validator::make($request->all(), ['name' => 'required', 'email_id' => 'required']);
 
-        return Redirect::to('/states')->with('notification', 'Estado creado exitosamente!');
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+            $state = States::create($request->all());
+            $email = Email::where('id', $state->email_id)->first();
+            
+            $data = [
+                'id' => $state->id,
+                'name' => $state->name,
+                'description' => $state->description,
+                'email' => $email->name,
+                'status' => $state->status,
+            ];
+            return response()->json($data);
+        }
+         
     }
 
     /**
@@ -58,7 +69,8 @@ class StatesController extends Controller
      */
     public function show($id)
     {
-        //
+        $state = States::find($id);
+        return response()->json($state);
     }
 
     /**
@@ -69,9 +81,7 @@ class StatesController extends Controller
      */
     public function edit($id)
     {
-        $state = States::find($id);
-        $emails = Email::all();
-        return view('backend.states.edit', compact('state','emails'));
+      //
     }
 
     /**
@@ -88,14 +98,25 @@ class StatesController extends Controller
             'description' => 'required',
             'email_id' => 'required'
         ]);
-      
+            
         $state = States::find($id);
         $state->name = $request->name;
         $state->description = $request->description;
         $state->email_id = $request->email_id;
         $state->save();
 
-         return Redirect::to('/states')->with('notification', 'Estado modificado exitosamente!');
+        $email = Email::where('id', $state->email_id)->first();
+        $data = [
+
+            'id' => $state->id,
+            'name' => $state->name,
+            'description' => $state->description,
+            'email' => $email->name,
+            'status' => $state->status,
+        ];
+
+        return response()->json($data);
+        // return Redirect::to('/states')->with('notification', 'Estado modificado exitosamente!');
     }
 
     /**
@@ -106,25 +127,9 @@ class StatesController extends Controller
      */
     public function destroy($id)
     {
-        States::destroy($id);
-
-        return Redirect::to('/states')->with('notification', 'Registro eliminado exitosamente!');
+        $state = States::destroy($id);
+        return response()->json($state);
+        // return Redirect::to('/states')->with('notification', 'Registro eliminado exitosamente!');
     }
-
-    public function changeStatus($id)
-    {
-        $state = States::findOrFail($id);
-        $status = 0;
-        if ($state->status == 0) {
-            $status = 1;
-        }
-        if ($state->status == 1) {
-            $status = 0;
-        }
-
-        $state->status = $status;
-        $state->save();
-
-        return Redirect::to('/states')->with('notification', 'Se ha actualizado el estado del registro!');
-    }
+ 
 }

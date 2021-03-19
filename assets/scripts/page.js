@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+    $.fn.modal.Constructor.prototype._enforceFocus = function () { };
+
     $("#content").summernote({
         placeholder: "Escribe el contenido para la plantilla de correo",
         height: 200,
@@ -60,11 +62,17 @@ $(document).ready(function () {
         }
 
     });
-
-    $("select").select2();
+     
+    $(".select").select2();
+    
+    
 
     setTimeout(function () {
         $(".notification").alert("close");
+    }, 6000);
+
+    setTimeout(function () {
+        $(".alert").alert("close");
     }, 6000);
 
     $('.pag-table').DataTable({

@@ -17,7 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update_password', 'UserController@updatePassword')->name('updatePassword');
     Route::resource('states', 'StatesController');
     Route::resource('emails', 'EmailsController');
-    Route::post('change-status-state/{id}', 'StatesController@changeStatus')->name('changeStatusStates');
+    Route::resource('processes', 'ProcessesController');
 
     Route::get('send_mail_state/{id}/{purchase}', 'PurchaseValuationController@sendMailState');
 

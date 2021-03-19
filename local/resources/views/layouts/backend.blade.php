@@ -232,3 +232,5 @@
 </body>
 
 </html>
+
+@yield('modals')
