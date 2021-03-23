@@ -13,4 +13,9 @@ class States extends Model
     public function email(){
         return $this->belongsTo('App\Email', 'email_id');
     }
+
+    public function purchase_valuation()
+    {
+        return $this->hasMany('App\PurchaseValuation');
+    }
 }
