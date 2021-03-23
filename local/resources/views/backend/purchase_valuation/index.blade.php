@@ -36,11 +36,11 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Tasación Motos</h5>
-                {!! Form::open(['url' => 'applyState', 'method' => 'post']) !!}
+                {!! Form::open(['url' => '', 'method' => 'post', 'id' => 'formTasacion']) !!}
                 <div class="row">
                     <div class="input-group col-md-3">
-                        <select name="applyState" class="custom-select">
-                            <option value="">Elegir Estado</option>
+                        <select name="applyState" class="custom-select" id="applyState" onChange="setApply();">
+                            <option value="" disabled selected>Elegir Estado</option>
                             @foreach($states as $state)
                                 <option value="{{ $state->id }}">{{ $state->name }}</option>
                             @endforeach
@@ -50,8 +50,8 @@
                         </div>
                     </div>
                     <div class="input-group col-md-3">
-                        <select name="applyProcess" class="custom-select">
-                            <option value="">Elegir Proceso</option>
+                        <select name="applyProcess" class="custom-select" id="applyProcess" onChange="setApply();">
+                            <option value="" disabled selected>Elegir Proceso</option>
                             @foreach($processes as $process)
                                 <option value="{{ $process->id }}">{{ $process->name }}</option>
                             @endforeach
@@ -170,5 +170,23 @@
  </div>
  <script src="{{ asset('assets/scripts/js/purchase_valuation_images.js') }}"></script>
  @endsection
+
+    <script>
+        var setApply = () => {
+            if($("#applyState").val() != null && $('#applyProcess').val() != null)
+            {
+                $("#applyState").val(null);
+                $('#applyProcess').val(null);
+                $("#formTasacion").attr('action', '');
+            }
+
+            if($("#applyState").val() != null)
+                $("#formTasacion").attr('action', 'applyState');
+
+            if($('#applyProcess').val() != null)
+                $("#formTasacion").attr('action', 'applyProcesses');;
+
+        };
+    </script>
  
 @endsection

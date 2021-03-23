@@ -34,6 +34,8 @@ class CreatePurchaseValuationTable extends Migration
             $table->string('observations');
             $table->integer('states_id')->unsigned();
             $table->foreign('states_id')->references('id')->on('states')->onDelete('Cascade');
+            $table->integer('processes_id')->unsigned();
+            $table->foreign('processes_id')->references('id')->on('processes')->onDelete('Cascade');
             $table->timestamps();
         });
     }

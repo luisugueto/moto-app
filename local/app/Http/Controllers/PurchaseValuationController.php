@@ -51,7 +51,8 @@ class PurchaseValuationController extends Controller
     {
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
-        $purchase->states_id = 1; // No Interesa
+        $purchase->states_id = 0; // En Revision
+        $purchase->processes_id = 0; // Default
         $purchase->save();
 
         foreach($request->images as $file){
@@ -152,6 +153,20 @@ class PurchaseValuationController extends Controller
         }
 
         return Redirect::to('/purchase_valuation')->with('notification','Estado Cambiado Exitosamente!');
+    }
+
+    public function applyProcesses(Request $request)
+    {
+        $processes = Processes::find($request->applyProcess);
+
+        foreach($request->apply as $purchase){
+
+            $purchase_model = PurchaseValuation::find($purchase);
+            $purchase_model->processes_id = $request->applyProcess;
+            $purchase_model->update();
+        }
+        
+        return Redirect::to('/purchase_valuation')->with('notification','Proceso Cambiado Exitosamente!');
     }
 
     public function showImages(Request $request)

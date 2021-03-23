@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('applyState', 'PurchaseValuationController@applyState');
 
+    Route::post('applyProcesses', 'PurchaseValuationController@applyProcesses');
+
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');
 });
