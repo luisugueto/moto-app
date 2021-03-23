@@ -67,7 +67,9 @@ class PurchaseValuationController extends Controller
                 $constraint->upsize();
             });
 
-            $img->save(public_path('img_app/images_purchase/' .$fileNameToStore));
+            $img->stream();
+
+            Storage::disk('images_purchase')->put($fileNameToStore, $img);
             // Storage::disk('images_purchase')->put($fileNameToStore,  \File::get($file));
 
             $images_purchase = new ImagesPurchase();

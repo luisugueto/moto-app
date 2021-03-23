@@ -7,7 +7,7 @@ use App\User;
 use App\UserTypes;
 use App\Http\Requests;
 use Redirect;
-
+use Storage;
 
 class UserController extends Controller
 {
@@ -142,7 +142,11 @@ class UserController extends Controller
             $img = Image::make($file->getRealPath())->widen(64, function ($constraint) {
                 $constraint->upsize();
             });
-            $img->save(public_path('img_app/profile_images/' .$fileNameToStore));
+            
+            $img->stream(); // <-- Key point
+
+            //dd();
+            Storage::disk('images_profile')->put($fileNameToStore, $img);
         }
         if (isset($fileNameToStore)) {
             $user->image = $fileNameToStore;

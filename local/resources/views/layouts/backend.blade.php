@@ -100,7 +100,7 @@
                                         <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                             class="p-0 btn">
                                             @if (isset(Auth::user()->image))
-                                                <img width="42" height="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+                                                <img width="42" height="42" class="rounded-circle" src="{{ url('local/public/img_app/profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
                                             <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                             @else
                                                 <img width="42" height="42" class="rounded-circle"
@@ -120,7 +120,7 @@
                                                             <div class="widget-content-wrapper">
                                                                 <div class="widget-content-left mr-3">
                                                                     @if (isset(Auth::user()->image))
-                                                                    <img width="42" height="42" class="rounded-circle" src="{{ asset('profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+                                                                    <img width="42" height="42" class="rounded-circle" src="{{ url('local/public/img_app/profile_images/'.Auth::user()->image) }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
                                                                     @else
                                                                     <img width="42" height="42" class="rounded-circle"
                                                                         src="{{ asset('assets/images/avatars/1.jpg') }}"

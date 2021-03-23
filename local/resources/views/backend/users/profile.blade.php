@@ -9,7 +9,7 @@
                 <div class="side-bar">
                     <div class="user-info">
                         @if (isset($user->image))
-                            <img  class="img-profile img-circle img-responsive center-block" src="{{ asset('profile_images/'.$user->image) }}" alt="{{$user->name}}" title="{{$user->name}}">
+                            <img  class="img-profile img-circle img-responsive center-block" src="{{ url('local/public/img_app/profile_images/'.$user->image) }}" alt="{{$user->name}}" title="{{$user->name}}">
                         @else
                             <img  class="img-profile img-circle img-responsive center-block" src="{{asset('assets/images/avatars/avatar1.png')}}" alt="Image" title="User Image">
                         @endif

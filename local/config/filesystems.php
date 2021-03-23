@@ -59,6 +59,11 @@ return [
             "root"   => public_path().'/img_app/images_purchase',
         ],
 
+        'images_profile' => [
+            "driver" => "local",
+            "root"   => public_path().'/img_app/profile_images',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',
