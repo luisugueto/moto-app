@@ -62,7 +62,7 @@
                                   @endif
                                   <td width="35%">
                                       <button class="btn btn-warning btn-detail open_modal" value="{{$state->id}}">Editar</button>
-                                      <button class="btn btn-danger btn-delete delete-state" value="{{$state->id}}">Eliminar</button>
+                                      <!-- <button class="btn btn-danger btn-delete delete-state" value="{{$state->id}}">Eliminar</button> -->
                                   </td>
                               </tr>
                             @endforeach
