@@ -21,9 +21,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('show-images', 'PurchaseValuationController@showImages');
 
+    // Apply Functions in Purchase Valuation
     Route::post('applyState', 'PurchaseValuationController@applyState');
-
     Route::post('applyProcesses', 'PurchaseValuationController@applyProcesses');
+
+    // Views Purchase Valuation
+    Route::get('purchase_valuation_no_interested', 'PurchaseValuationController@noInterested');
+    Route::get('purchase_valuation_interested', 'PurchaseValuationController@interested');
 
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');

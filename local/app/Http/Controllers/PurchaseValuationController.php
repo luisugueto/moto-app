@@ -22,11 +22,29 @@ class PurchaseValuationController extends Controller
      */
     public function index()
     {
-        $purchase_valuation = PurchaseValuation::all();
+        $purchase_valuation = PurchaseValuation::where('states_id', 0)->get();
         $states = States::all();
         $processes = Processes::all();
 
         return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states', 'processes'));
+    }
+
+    public function noInterested()
+    {
+        $purchase_valuation = PurchaseValuation::where('states_id', 1)->get();
+        $states = States::all();
+        $processes = Processes::all();
+   
+        return view('backend.purchase_valuation.no_interested', compact('purchase_valuation', 'states', 'processes'));
+    }
+
+    public function interested()
+    {
+        $purchase_valuation = PurchaseValuation::where('states_id', 2)->get();
+        $states = States::all();
+        $processes = Processes::all();
+   
+        return view('backend.purchase_valuation.interested', compact('purchase_valuation', 'states', 'processes'));
     }
 
     /**

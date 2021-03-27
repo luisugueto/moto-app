@@ -9,7 +9,24 @@
     <li>
         <a href="{{ url('/purchase_valuation') }}">
             <i class="metismenu-icon pe-7s-network"></i>Tasación Motos
+            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
         </a>
+
+        <ul>
+            <li>
+                <a href="{{ url('/purchase_valuation_interested') }}">
+                    <i class="metismenu-icon"></i>
+                    Interesan
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('purchase_valuation_no_interested') }}">
+                    <i class="metismenu-icon"></i>
+                    No Interesan
+                </a>
+            </li>
+            
+        </ul>
     </li> 
     <li>
         <a href="{{ url('/purchase_management') }}">
