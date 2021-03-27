@@ -112,7 +112,9 @@
                                 <td>{{ $purchase->price_min }}</td>
                                 <td>{{ $purchase->observations }}</td>
                                 <td>
+                                    @permission('record-edit')  
                                     <a class="btn btn-warning" href="{{ url('purchase_valuation/' . $purchase->id . '/edit') }}">Editar</a>
+                                    @endpermission
                                     <button type="button" class="btn btn-info show-images" value="{{$purchase->id}}">Ver Imagenes</button>
                                 </td>
                             </tr>

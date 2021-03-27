@@ -29,7 +29,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ url('/user_types') }}">
+        <a href="{{ url('/roles') }}">
             <i class="metismenu-icon pe-7s-key"></i>Roles
         </a>
     </li>

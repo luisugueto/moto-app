@@ -11,7 +11,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('purchase_valuation', 'PurchaseValuationController');
     Route::resource('purchase_management', 'PurchaseManagementController');
     Route::resource('users', 'UserController');
-    Route::resource('user_types', 'UserTypesController');
+    Route::resource('roles', 'RoleController');
     Route::get('profile/{id}', 'UserController@profile')->name('profile');
     Route::post('update_profile', 'UserController@updateProfile')->name('updateProfile');
     Route::post('update_password', 'UserController@updatePassword')->name('updatePassword');
@@ -27,6 +27,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');
+    Route::post('getStates', 'StatesController@getStates');
+    Route::post('getProcesses', 'ProcessesController@getProcesses');
+    Route::post('getEmails', 'EmailsController@getEmails');
+    Route::post('getRoles', 'RoleController@getRoles');
+    Route::post('getUsers', 'UserController@getUsers');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

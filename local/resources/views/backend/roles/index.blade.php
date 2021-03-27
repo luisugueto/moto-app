@@ -8,7 +8,7 @@
                     <i class="pe-7s-speaker icon-gradient bg-night-fade">
                     </i>
                 </div>
-                <div><span class="lang" key="heading">Procesos</span>
+                <div><span class="lang" key="heading">Roles de Usuarios</span>
                 </div>
             </div>
             <div class="page-title-actions">
@@ -38,32 +38,32 @@
             <br>
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title lang" key="heading">Mantenimiento de Procesos</h5>
-                    <table style="width: 100%;" class="table table-hover table-striped table-bordered" id="tableProcesses">
+                    <h5 class="card-title lang" key="heading">Mantenimiento de Roles de Usuarios</h5>
+                    <table style="width: 100%;" id="tableRoles" class="table table-hover table-striped table-bordered">
                         <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Status</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </thead> 
+                            <tr>                
+                                <th>No</th>                
+                                <th>Nombre</th>                
+                                <th>Descripción</th>     
+                                <th>Roles</th>           
+                                <th>Opciones</th>               
+                            </tr> 
+                        </thead>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+    @section('modals')
     <!-- Passing BASE URL to AJAX -->
     <input id="url" type="hidden" value="{{ \Request::url() }}">
-    
-    @section('modals')
+
     <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Formulario Procesos</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Formulario de Roles</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -72,35 +72,48 @@
                     <div class="alert alert-danger" hidden>
                         <ul id="errors"></ul>
                     </div>
-                    <form id="frmProcess" name="frmProcess" novalidate="">
+                    <form id="frmRoles" name="frmRoles" novalidate="">
                         {{ csrf_field() }}
                         <div class="divider"></div>
-                        <div class="position-relative form-group">
+                        <div class="position-relative form-group nameDiv">
                             <label>Nombre</label>
                             <input class='form-control' id='name' name='name' type='text' value="{{ old('name') }}"
                                 required>
                         </div>
                         <div class="position-relative form-group">
+                            <label>Nombre para mostrar</label>
+                            <input class='form-control' id='display_name' name='display_name' type='text' value="{{ old('display_name') }}"
+                                required>
+                        </div>
+
+                        <div class="position-relative form-group">
                             <label>Descripción</label>
                             <input class='form-control' id='description' name='description' type='text'
                                 value="{{ old('description') }}" required>
-                        </div>
+                        </div> 
+                        
                         <div class="position-relative form-group">
-                            <label for="status" class="">Estado</label>
-                            <select name="status" id="status" class="custom-select" required>
-                                <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Activo</option>
-                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactivo</option>
-                            </select>
-                        </div>
+                            <label>Permisos:</label><br>
+                            
+                            @foreach($permission as $value)
+                                <div class="custom-control custom-checkbox ">
+                                    {{ Form::checkbox('permission', $value->id, false, array('class' => 'name custom-control-input', 'id' => 'custom_'.$value->id)) }}        
+                                    <label class="custom-control-label" for="custom_{{$value->id}}">{{ $value->display_name }}</label>
+                                </div>        
+                                <br/>       
+                            
+                             @endforeach
+                            
+                        </div>    
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
-                    <input type="hidden" id="process_id" name="process_id" value="0">
+                    <input type="hidden" id="role_id" name="role_id" value="0">
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/scripts/js/processes.js') }}"></script>
+    <script src="{{ asset('assets/scripts/js/roles.js') }}"></script>
     @endsection
 @endsection

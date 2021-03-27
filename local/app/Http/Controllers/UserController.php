@@ -4,22 +4,60 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\User;
-use App\UserTypes;
+use App\Role;
 use App\Http\Requests;
 use Redirect;
 use Storage;
+use DB;
 
 class UserController extends Controller
 {
+ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $users = User::all();
-        return view('backend.users.index', compact('users'));
+    {    
+        $haspermision = auth()->user()->can('record-create');
+        $roles = Role::lists('display_name','id');
+        return view('backend.users.index', compact('roles', 'haspermision'));
+    }
+
+    public function getUsers()
+    {   
+        $users = DB::table('users')
+            ->join('role_user', 'users.id', '=', 'role_user.user_id')
+            ->join('roles', 'role_user.role_id', '=', 'roles.id')
+            ->select('users.*', 'roles.display_name as role')
+            ->get();
+        
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
+    
+            
+        $row = [];  
+        foreach($users as $key => $value){  
+                    
+            $row['id'] = $value->id;
+            if($value->last_name != ''){
+                $row['name'] = $value->name. ' '. $value->last_name;
+            }else{
+                $row['name'] = $value->name;
+            }            
+            $row['email'] = $value->email;
+            // $row['status'] = $value->status;
+            $row['role'] = $value->role;
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+        
+        $json_data = array('data'=> $data);
+        return response()->json($json_data);
     }
 
     /**
@@ -29,8 +67,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user_types = UserTypes::all();
-        return view('backend.users.create', compact('user_types'));
+        $haspermision = auth()->user()->can('record-create');
+         if ($haspermision) {
+            $roles = Role::lists('display_name','id');
+            return view('backend.users.create', compact('roles'));
+        }
+        else {
+            abort(403, 'Lo siento, No tienes permiso.');
+        }
     }
 
     /**
@@ -40,18 +84,30 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
 
-        User::create([
-            'name' => $request->name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->email,
-            'password' => bcrypt($request->password),
-            'user_type_id' => $request->user_type_id
+        $validator = \Validator::make($request->all(),[
+            'name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required',
+            'password' => 'required|same:confirm_password',
+            'roles' => 'required'
+
         ]);
 
-        return Redirect::to('/users')->with('notification', 'Usuario creado exitosamente!');
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+
+            $input = $request->all();
+            $input['password'] = \Hash::make($input['password']);
+
+            $user = User::create($input);
+            $user->attachRole($request->input('roles'));
+            return response()->json($user);
+        }
+ 
     }
 
     /**
@@ -62,7 +118,18 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        $userRole = $user->roles->lists('id','id')->first();
+
+        $data['id'] = $user->id;
+        $data['name'] = $user->name;
+        $data['last_name'] = $user->last_name;
+        $data['email'] = $user->email;
+        $data['phone'] = $user->phone;
+        $data['role'] = $userRole;
+
+        // dd($userRole);
+        return response()->json($data);
     }
 
     /**
@@ -74,9 +141,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $user_types = UserTypes::all();
+        $roles = Role::lists('display_name','id');
+        $userRole = $user->roles->lists('id','id')->toArray();
 
-        return view('backend.users.edit', compact('user', 'user_types'));
+        return view('backend.users.edit',compact('user','roles','userRole'));
     }
 
     /**
@@ -88,17 +156,36 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        
+        $validator = \Validator::make($request->all(),[
+            'name' => 'required',
+            'last_name' => 'required',
+            'phone' => 'required',
+            'roles' => 'required'
 
-        $user->update([
-            'name' => $request->name,
-            'last_name' => $request->last_name,
-            'email' => $request->email,
-            'phone' => $request->email,
-            'user_type_id' => $request->user_type_id
         ]);
 
-        return Redirect::to('/users')->with('notification', 'Usuario modificado exitosamente!');
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+
+            $input = $request->all();
+
+            if(!empty($input['password'])){ 
+                $input['password'] = \Hash::make($input['password']);
+            }else{
+                $input = array_except($input,array('password'));    
+            }
+
+
+            $user = User::find($id);
+            $user->update($input);
+            DB::table('role_user')->where('user_id',$id)->delete();        
+            $user->attachRole($request->input('roles'));
+           
+
+            return response()->json($user);
+        } 
     }
 
     /**
@@ -109,8 +196,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
-        return Redirect::to('/users')->with('notification', 'Registro eliminado exitosamente!');
+        $user = User::destroy($id);
+        return response()->json($user);
+        // return Redirect::to('/users')->with('notification', 'Registro eliminado exitosamente!');
     }
 
     public function profile($id)

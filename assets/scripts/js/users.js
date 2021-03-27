@@ -4,12 +4,12 @@ $(document).ready(function(){
     //get base URL *********************
     var url = $('#url').val();
 
-    var dataTable = $('#tableStates').DataTable({
+    var dataTable = $('#tableUsers').DataTable({
         processing: true,
         responsive: true,
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-            url: "getStates", // json datasource            
+            url: "getUsers", // json datasource            
             type: "post", // method  , by default get
             error: function () {  // error handling
             }
@@ -17,14 +17,11 @@ $(document).ready(function(){
         "columns": [
             { "data": "id" },
             { "data": "name" },
-            { "data": "description" },
             { "data": "email" },
             {"data": null,
                 render:function(data)
                     {
-                        let $class = '', $name = '';
-                        if(data.status == 1) $class = 'success', $name='Activo'; else $class = 'danger', $name = 'Inactivo';
-                        return '<span class="badge badge-'+ $class +'">'+ $name +'</span>';
+                        return '<span class="badge badge-info">'+ data.role +'</span>';
             
                     },
                     "targets": -1
@@ -52,7 +49,9 @@ $(document).ready(function(){
     //display modal form for creating new product *********************
     $('#btn_add').click(function(){
         $('#btn-save').val("add");
-        $('#frmStates').trigger("reset");
+        $('#frmUsers').trigger("reset");
+        $('#email').prop('readonly', false);
+        $('.hide').prop('hidden', false);
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -65,18 +64,22 @@ $(document).ready(function(){
     $(document).on('click', '.button_edit', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var state_id = data.id;
+        var user_id = data.id;
        
         // Populate Data in Edit Modal Form
         $.ajax({
             type: "GET",
-            url: url + '/' + state_id,
+            url: url + '/' + user_id,
             success: function (data) {
-                $('#state_id').val(data.id);
+                $('#user_id').val(data.id);
                 $('#name').val(data.name);
-                $('#description').val(data.description);
-                $('#email_id').val(data.email_id);
-                $('#status').val(data.status); 
+                $('#last_name').val(data.last_name);
+                $('#email').val(data.email);
+                $('#email').prop('readonly', true);
+                $('#phone').val(data.phone);
+                $('#rol_id').val(data.role);
+                $('.hide').prop('hidden', true);
+                
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -93,19 +96,22 @@ $(document).ready(function(){
         e.preventDefault(); 
         var formData = {
             name: $('#name').val(),
-            description: $('#description').val(),
-            email_id: $('#email_id').val(),
-            status: $('#status').val(),
+            last_name: $('#last_name').val(),
+            email: $('#email').val(),
+            phone: $('#phone').val(),
+            password: $('#password').val(),
+            confirm_password: $('#confirm-password').val(),
+            roles: $('#rol_id').val(),
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
-        var button = $('#btn-save').val();
+        var button = $('#btn-save').val();       
         var type = "POST"; //for creating new resource
-        var state_id = $('#state_id').val();;
+        var user_id = $('#user_id').val();
         var my_url = url;
         if (button == "update"){
             type = "PUT"; //for updating existing resource
-            my_url += '/' + state_id;
+            my_url += '/' + user_id;
         }
       
         $.ajax({
@@ -117,7 +123,7 @@ $(document).ready(function(){
             success: function (data) {
                
                 dataTable.ajax.reload();
-                $('#frmState').trigger("reset");
+                $('#frmUsers').trigger("reset");
                 $('#errors').html('');
                 $('.alert').prop('hidden', true);
                 $('#myModal').modal('hide')
@@ -143,11 +149,11 @@ $(document).ready(function(){
     $(document).on('click', '.button_delete', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var state_id = data.id;
+        var user_id = data.id;
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             type: "DELETE",
-            url: url + '/' + state_id,
+            url: url + '/' + user_id,
             success: function (data) {                 
                 var message = `
                 <div class="notification alert alert-success" role="alert">

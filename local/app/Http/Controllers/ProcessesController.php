@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\Processes;
 use Redirect;
 use App\Http\Requests;
+
 
 class ProcessesController extends Controller
 {
@@ -15,9 +17,33 @@ class ProcessesController extends Controller
      */
     public function index()
     {
-        $processes = Processes::all();
+        $haspermision = auth()->user()->can('record-create');
+        return view('backend.processes.index', compact('haspermision'));
+    }
+
+    public function getProcesses()
+    {
+        $procceses = Processes::select(['id','name','description','status'])->get();
+ 
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');    
+            
+        $row = [];  
+        foreach($procceses as $key => $value){  
+                    
+            $row['id'] = $value->id;
+            $row['name'] = $value->name;
+            $row['description'] = $value->description;
+            $row['status'] = $value->status;
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
         
-        return view('backend.processes.index')->with('processes', $processes);
+        $json_data = array('data'=> $data);        
+        return response()->json($json_data);
     }
 
     /**

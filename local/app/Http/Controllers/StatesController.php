@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\States;
 use App\Email;
 use Redirect;
+use DB;
 use App\Http\Requests;
 
 class StatesController extends Controller
@@ -16,9 +18,40 @@ class StatesController extends Controller
      */
     public function index()
     {
-        $states = States::all();
-        $emails = Email::all();
-        return view('backend.states.index', compact('states', 'emails'));
+        
+        $emails = Email::all();    
+        $haspermision = auth()->user()->can('record-create');    
+        return view('backend.states.index', compact('emails', 'haspermision'));
+    }
+
+    public function getStates()
+    {   
+        $states = DB::table('states')
+            ->leftJoin('emails', 'states.email_id', '=', 'emails.id')
+            ->select('states.*', 'emails.name as email')
+            ->get();
+         
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
+    
+            
+        $row = [];  
+        foreach($states as $key => $value){  
+                    
+            $row['id'] = $value->id;
+            $row['name'] = $value->name;
+            $row['description'] = $value->description;
+            $row['status'] = $value->status;
+            $row['email'] = $value->email;
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        return response()->json($json_data);
     }
 
     /**
@@ -49,13 +82,6 @@ class StatesController extends Controller
             $state = States::create($request->all());
             $email = Email::where('id', $state->email_id)->first();
             
-            $data = [
-                'id' => $state->id,
-                'name' => $state->name,
-                'description' => $state->description,
-                'email' => $email->name,
-                'status' => $state->status,
-            ];
             return response()->json($data);
         }
          

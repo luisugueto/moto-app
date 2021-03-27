@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use App\Http\Requests;
 use Redirect;
 use App\Email;
@@ -16,10 +17,36 @@ class EmailsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {       
+        $haspermision = auth()->user()->can('record-create');
+        return view('backend.emails.index', compact('haspermision'));
+    }
+    
+    public function getEmails()
     {
-        $emails = Email::all();
+        $emails = Email::select(['id','name','subject','content'])->get();
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
 
-        return view('backend.emails.index', compact('emails'));
+        
+        $row = [];  
+        foreach($emails as $value){  
+                 
+            $row['id'] = $value['id'];
+            $row['name'] = $value['name'];
+            $row['subject'] = $value['subject'];
+            $row['content'] = $value['content'];
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        return response()->json($json_data);
+      
+       
     }
 
     /**
@@ -40,16 +67,15 @@ class EmailsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|min:5|max:100',
-            'subject' => 'required|string',
-            'content' => 'required|string|min:5'
-        ]);
+        $validator = \Validator::make($request->all(), ['name' => 'required|string|min:5|max:100', 'subject' => 'required|string','content' => 'required|string|min:5']);
 
-        $email = new Email($request->all());
-        $email->save();
-
-        return Redirect::to('/emails')->with('notification', 'Correo creado exitosamente!');
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+            $email = Email::create($request->all());
+            
+            return response()->json($email);
+        }       
     }
 
     /**
@@ -61,8 +87,7 @@ class EmailsController extends Controller
     public function show($id)
     {
         $email = Email::find($id);
-
-        return view('backend.emails.template', compact('email'));
+        return response()->json($email);
     }
 
     /**
@@ -73,9 +98,7 @@ class EmailsController extends Controller
      */
     public function edit($id)
     {
-        $email = Email::find($id);
-
-        return view('backend.emails.edit', compact('email'));
+        //
     }
 
     /**
@@ -89,8 +112,8 @@ class EmailsController extends Controller
     {
         $email = Email::find($id);
         $email->update($request->all());
-
-        return Redirect::to('/emails')->with('notification', 'Correo editado exitosamente!');
+        return response()->json($email);
+        // return Redirect::to('/emails')->with('notification', 'Correo editado exitosamente!');
     }
 
     /**
@@ -104,10 +127,17 @@ class EmailsController extends Controller
         $email = Email::findOrFail($id);
         if(isset($email)){
             Email::destroy($id);
-            return Redirect::to('/emails')->with('notification', 'Correo eliminado exitosamente!');
+            return response()->json($email);
+            // return Redirect::to('/emails')->with('notification', 'Correo eliminado exitosamente!');
         }
         else{
-            return Redirect::to('/emails')->with('notification', 'Correo no encontrado! No se pudo eliminar');
+            return response()->json('Correo no encontrado! No se pudo eliminar', 422);
+            // return Redirect::to('/emails')->with('notification', 'Correo no encontrado! No se pudo eliminar');
         }
+    }
+
+    public function view($id)
+    {
+       
     }
 }

@@ -68,7 +68,8 @@ $(document).ready(function () {
 
     setTimeout(function () {
         $(".notification").alert("close");
-    }, 6000);
+        $(".notification_modal").css("display", "none");
+    }, 9000);
  
     
     $('.pag-table').DataTable({

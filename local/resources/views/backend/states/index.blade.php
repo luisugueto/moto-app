@@ -12,12 +12,14 @@
                 </div>
             </div>
             <div class="page-title-actions">
+                @if ($haspermision)
                 <div class="d-inline-block dropdown">
                     <button class="mb-2 mr-2 btn-icon btn-pill btn btn-primary" id="btn_add" name="btn_add">
                         <i class="pe-7s-plus btn-icon-wrapper"> </i>
                         <span class="lang" key="new">Nuevo</span>
                     </button>
                 </div>
+                @endif
             </div>
         </div>
     </div>
@@ -37,7 +39,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title lang" key="heading">Mantenimiento de Estados</h5>
-                    <table style="width: 100%;" class="table table-hover table-striped table-bordered pag-table">
+                    <table style="width: 100%;" class="table table-hover table-striped table-bordered" id="tableStates">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -48,25 +50,6 @@
                                 <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tbody id="states-list" name="states-list">
-                            @foreach ($states as $state)
-                              <tr id="state{{$state->id}}" class="active">
-                                  <td>{{$state->id}}</td>
-                                  <td>{{$state->name}}</td>
-                                  <td>{{$state->description}}</td>
-                                  <td>{{$state->email->name}}</td>
-                                  @if ($state->status == 1)
-                                  <td><span class="badge badge-success">Activo</span></td>
-                                  @else
-                                  <td><span class="badge badge-danger">Inactivo</span></td>
-                                  @endif
-                                  <td width="35%">
-                                      <button class="btn btn-warning btn-detail open_modal" value="{{$state->id}}">Editar</button>
-                                      <button class="btn btn-danger btn-delete delete-state" value="{{$state->id}}">Eliminar</button>
-                                  </td>
-                              </tr>
-                            @endforeach
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -87,7 +70,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="notification alert alert-danger" hidden>
+                    <div class="alert alert-danger" hidden>
                         <ul id="errors"></ul>
                     </div>
                     <form id="frmStates" name="frmStates" novalidate="">

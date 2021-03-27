@@ -56,6 +56,7 @@
                         @endif
                     </div>
                 </div>
+                <input type="hidden" name="roles" value="1">
             </div>
             <div class="divider row"></div>
             <h6 class="mb-0">¿Ya tienes una cuenta?
