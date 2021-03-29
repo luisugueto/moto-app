@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getEmails', 'EmailsController@getEmails');
     Route::post('getRoles', 'RoleController@getRoles');
     Route::post('getUsers', 'UserController@getUsers');
+    Route::post('getPurchaseValuations', 'PurchaseValuationController@getPurchaseValuations');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

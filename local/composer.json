@@ -12,7 +12,7 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "~5.0",
         "intervention/image": "^2.5",
-        "zizaco/entrust": "5.2.x-dev",
+        "zizaco/entrust": "dev-laravel-5",
         "yajra/laravel-datatables-oracle": "6.*"
     },
     "require-dev": {

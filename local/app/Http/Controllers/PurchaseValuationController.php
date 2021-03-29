@@ -12,6 +12,7 @@ use Mail;
 use App\States;
 use App\Processes;
 use App\Emails;
+use Yajra\Datatables\Datatables;
 
 class PurchaseValuationController extends Controller
 {
@@ -25,8 +26,49 @@ class PurchaseValuationController extends Controller
         $purchase_valuation = PurchaseValuation::where('states_id', 0)->get();
         $states = States::all();
         $processes = Processes::all();
+        $haspermision = auth()->user()->can('record-create');
 
-        return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states', 'processes'));
+        return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states', 'processes', 'haspermision'));
+    }
+
+    public function getPurchaseValuations()
+    {
+        $purchases = PurchaseValuation::where('states_id', 0)->get();
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
+
+        
+        $row = [];  
+        foreach($purchases as $value){  
+                 
+            $row['id'] = $value['id'];
+            $row['date'] = $value['date'];
+            $row['brand'] = $value['subject'];
+            $row['model'] = $value['model'];
+            $row['year'] = $value['year'];
+            $row['km'] = $value['km'];
+            $row['email'] = $value['email'];
+            $row['name'] = $value['name'];
+            $row['lastname'] = $value['lastname'];
+            $row['phone'] = $value['phone'];
+            $row['province'] = $value['province'];
+            $row['status_trafic'] = $value['status_trafic'];
+            $row['g_del'] = $value['g_del'];
+            $row['g_tras'] = $value['g_tras'];
+            $row['av_elec'] = $value['av_elec'];
+            $row['av_mec'] = $value['av_mec'];
+            $row['old'] = $value['old'];
+            $row['price_min'] = $value['price_min'];
+            $row['observations'] = $value['observations'];
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        return response()->json($json_data);
     }
 
     public function noInterested()
