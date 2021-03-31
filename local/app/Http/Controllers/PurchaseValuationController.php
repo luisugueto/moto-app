@@ -23,12 +23,11 @@ class PurchaseValuationController extends Controller
      */
     public function index()
     {
-        $purchase_valuation = PurchaseValuation::where('states_id', 0)->get();
         $states = States::all();
         $processes = Processes::all();
-        $haspermision = auth()->user()->can('record-create');
-
-        return view('backend.purchase_valuation.index', compact('purchase_valuation', 'states', 'processes', 'haspermision'));
+        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
+   
+        return view('backend.purchase_valuation.index', compact('states', 'processes', 'marcas'));
     }
 
     public function getPurchaseValuations()
@@ -37,14 +36,13 @@ class PurchaseValuationController extends Controller
         $view = auth()->user()->can('record-view');
         $edit = auth()->user()->can('record-edit');
         $delete = auth()->user()->can('record-delete');
-
         
         $row = [];  
         foreach($purchases as $value){  
                  
             $row['id'] = $value['id'];
             $row['date'] = $value['date'];
-            $row['brand'] = $value['subject'];
+            $row['brand'] = $value['brand'];
             $row['model'] = $value['model'];
             $row['year'] = $value['year'];
             $row['km'] = $value['km'];
@@ -61,6 +59,90 @@ class PurchaseValuationController extends Controller
             $row['old'] = $value['old'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
+            $row['states_id'] = $value['states_id'];
+            $row['processes_id'] = $value['processes_id'];
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        return response()->json($json_data);
+    }
+
+    public function getPurchaseValuationsInterested()
+    {
+        $purchases = PurchaseValuation::where('states_id', 2)->get();
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
+        
+        $row = [];  
+        foreach($purchases as $value){  
+                 
+            $row['id'] = $value['id'];
+            $row['date'] = $value['date'];
+            $row['brand'] = $value['brand'];
+            $row['model'] = $value['model'];
+            $row['year'] = $value['year'];
+            $row['km'] = $value['km'];
+            $row['email'] = $value['email'];
+            $row['name'] = $value['name'];
+            $row['lastname'] = $value['lastname'];
+            $row['phone'] = $value['phone'];
+            $row['province'] = $value['province'];
+            $row['status_trafic'] = $value['status_trafic'];
+            $row['g_del'] = $value['g_del'];
+            $row['g_tras'] = $value['g_tras'];
+            $row['av_elec'] = $value['av_elec'];
+            $row['av_mec'] = $value['av_mec'];
+            $row['old'] = $value['old'];
+            $row['price_min'] = $value['price_min'];
+            $row['observations'] = $value['observations'];
+            $row['states_id'] = $value['states_id'];
+            $row['processes_id'] = $value['processes_id'];
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        return response()->json($json_data);
+    }
+
+    public function getPurchaseValuationsNoInterested()
+    {
+        $purchases = PurchaseValuation::where('states_id', 1)->get();
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
+        
+        $row = [];  
+        foreach($purchases as $value){  
+                 
+            $row['id'] = $value['id'];
+            $row['date'] = $value['date'];
+            $row['brand'] = $value['brand'];
+            $row['model'] = $value['model'];
+            $row['year'] = $value['year'];
+            $row['km'] = $value['km'];
+            $row['email'] = $value['email'];
+            $row['name'] = $value['name'];
+            $row['lastname'] = $value['lastname'];
+            $row['phone'] = $value['phone'];
+            $row['province'] = $value['province'];
+            $row['status_trafic'] = $value['status_trafic'];
+            $row['g_del'] = $value['g_del'];
+            $row['g_tras'] = $value['g_tras'];
+            $row['av_elec'] = $value['av_elec'];
+            $row['av_mec'] = $value['av_mec'];
+            $row['old'] = $value['old'];
+            $row['price_min'] = $value['price_min'];
+            $row['observations'] = $value['observations'];
+            $row['states_id'] = $value['states_id'];
+            $row['processes_id'] = $value['processes_id'];
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -76,8 +158,9 @@ class PurchaseValuationController extends Controller
         $purchase_valuation = PurchaseValuation::where('states_id', 1)->get();
         $states = States::all();
         $processes = Processes::all();
+        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
    
-        return view('backend.purchase_valuation.no_interested', compact('purchase_valuation', 'states', 'processes'));
+        return view('backend.purchase_valuation.no_interested', compact('purchase_valuation', 'states', 'processes', 'marcas'));
     }
 
     public function interested()
@@ -85,8 +168,9 @@ class PurchaseValuationController extends Controller
         $purchase_valuation = PurchaseValuation::where('states_id', 2)->get();
         $states = States::all();
         $processes = Processes::all();
+        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
    
-        return view('backend.purchase_valuation.interested', compact('purchase_valuation', 'states', 'processes'));
+        return view('backend.purchase_valuation.interested', compact('purchase_valuation', 'states', 'processes', 'marcas'));
     }
 
     /**
@@ -111,8 +195,8 @@ class PurchaseValuationController extends Controller
     {
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
-        $purchase->states_id = 0; // En Revision
-        $purchase->processes_id = 0; // Default
+        $purchase->states_id = 0; // En Revisión
+        $purchase->processes_id = 1; // Default
         $purchase->save();
 
         foreach($request->images as $file){
@@ -122,8 +206,8 @@ class PurchaseValuationController extends Controller
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             
 
-            $image_resize = Image::make($file->getRealPath());
-            $img = Image::make($file->getRealPath())->widen(250, function ($constraint) {
+            $image_resize = \Image::make($file->getRealPath());
+            $img = \Image::make($file->getRealPath())->widen(250, function ($constraint) {
                 $constraint->upsize();
             });
 
@@ -150,7 +234,29 @@ class PurchaseValuationController extends Controller
      */
     public function show($id)
     {
-        //
+        $purchase_valuation = PurchaseValuation::find($id);
+
+        $data['id'] = $purchase_valuation['id'];
+        $data['date'] = $purchase_valuation['date'];
+        $data['brand'] = $purchase_valuation['brand'];
+        $data['model'] = $purchase_valuation['model'];
+        $data['year'] = $purchase_valuation['year'];
+        $data['km'] = $purchase_valuation['km'];
+        $data['email'] = $purchase_valuation['email'];
+        $data['name'] = $purchase_valuation['name'];
+        $data['lastname'] = $purchase_valuation['lastname'];
+        $data['phone'] = $purchase_valuation['phone'];
+        $data['province'] = $purchase_valuation['province'];
+        $data['status_trafic'] = $purchase_valuation['status_trafic'];
+        $data['g_del'] = $purchase_valuation['g_del'];
+        $data['g_tras'] = $purchase_valuation['g_tras'];
+        $data['av_elec'] = $purchase_valuation['av_elec'];
+        $data['av_mec'] = $purchase_valuation['av_mec'];
+        $data['old'] = $purchase_valuation['old'];
+        $data['price_min'] = $purchase_valuation['price_min'];
+        $data['observations'] = $purchase_valuation['observations'];
+
+        return response()->json($data);
     }
 
     /**
@@ -177,10 +283,29 @@ class PurchaseValuationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $purchase = PurchaseValuation::find($id);
-        $purchase->update($request->all());
+        $validator = \Validator::make($request->all(),[
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required', 
+            'km' => 'required', 
+            'email' => 'required', 
+            'name' => 'required', 
+            'lastname' => 'required', 
+            'phone' => 'required', 
+            'province' => 'required', 
+            'price_min' => 'required', 
+            'observations' => 'required'
+        ]);
 
-        return Redirect::to('/purchase_valuation')->with('notification', 'Tasación editada exitosamente!');
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        } else {
+            $purchase = PurchaseValuation::find($id);
+            $input = $request->all();
+            $purchase->update($input);
+
+            return response()->json($purchase);
+        }
     }
 
     /**
@@ -191,7 +316,9 @@ class PurchaseValuationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $purchase = PurchaseValuation::destroy($id);
+        
+        return response()->json($purchase);
     }
 
     public function applyState(Request $request)
@@ -214,7 +341,7 @@ class PurchaseValuationController extends Controller
             });
         }
 
-        return Redirect::to('/purchase_valuation')->with('notification','Estado Cambiado Exitosamente!');
+        return Redirect::back()->with('notification','Estado Cambiado Exitosamente!');
     }
 
     public function applyProcesses(Request $request)
@@ -228,7 +355,7 @@ class PurchaseValuationController extends Controller
             $purchase_model->update();
         }
         
-        return Redirect::to('/purchase_valuation')->with('notification','Proceso Cambiado Exitosamente!');
+        return Redirect::back()->with('notification','Proceso Cambiado Exitosamente!');
     }
 
     public function showImages(Request $request)

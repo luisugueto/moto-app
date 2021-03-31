@@ -13,11 +13,6 @@
                 </div>
             </div>
         </div>
-        <div class="page-title-actions">            
-            <div class="d-inline-block dropdown">
-                <a href="{{ url('purchase_valuation/create') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i class="pe-7s-plus btn-icon-wrapper"> </i>Nuevo</a>
-            </div>
-        </div>
     </div>
 </div>
 <div class="row">
@@ -85,33 +80,6 @@
                             <th class="text-center">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach($purchase_valuation as $purchase)
-                            <tr>
-                                <td><input type="checkbox" name="apply[]" id="apply" value="{{ $purchase->id }}"></td>
-                                <td>{{ $purchase->id }}</td>
-                                <td>{{ $purchase->date }}</td>
-                                <td>{{ $purchase->brand }}</td>
-                                <td>{{ $purchase->model }}</td>
-                                <td>{{ $purchase->year }}</td>
-                                <td>{{ $purchase->km }}</td>
-                                <td>{{ $purchase->name }} {{ $purchase->lastname }}</td>
-                                <td>{{ $purchase->province }}</td>
-                                <td>{{ $purchase->status_trafic }}</td>
-                                <td>{{ ($purchase->g_del == 1) ? 'Si' : 'No' }}</td>
-                                <td>{{ ($purchase->g_tras == 1) ? 'Si' : 'No' }}</td>
-                                <td>{{ ($purchase->av_elec == 1) ? 'Si' : 'No' }}</td>
-                                <td>{{ ($purchase->av_mec == 1) ? 'Si' : 'No' }}</td>
-                                <td>{{ ($purchase->old == 1) ? 'Si' : 'No' }}</td>
-                                <td>{{ $purchase->price_min }}</td>
-                                <td>{{ $purchase->observations }}</td>
-                                <td>
-                                    <a class="btn btn-warning" href="{{ url('purchase_valuation/' . $purchase->id . '/edit') }}">Editar</a>
-                                    <button type="button" class="btn btn-info show-images" value="{{$purchase->id}}">Ver Imagenes</button>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
                 </table>
                 {!! Form::close() !!}
             </div>
@@ -119,7 +87,7 @@
     </div>
 </div>
  <!-- Passing BASE URL to AJAX -->
- <input id="url" type="hidden" value="{{ \Request::url() }}">
+ <input id="url" type="hidden" value="{{ url('/purchase_valuation') }}">
     
  @section('modals')
  <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -162,8 +130,274 @@
          </div>
      </div>
  </div>
+
+
+
+<!-- MODALLLLLLLLLLLLLLLLLLLLLLL -->
+
+<div class="modal fade" id="modalPurchase" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Solicitud de venta de moto averiada o siniestrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" hidden>
+                        <ul id="errors"></ul>
+                    </div>
+                    <form id="frmPurchase" name="frmPurchase" enctype="multipart/form-data" >
+                        {{ csrf_field() }}
+                        <div class="card ">
+                            <h5 class="card-header text-white bg-secondary mb-3">Datos de la moto</h5>
+                            <div class="card-body">
+                                <div class="form-row row g-1">
+                                    <div class="col-md-3">
+                                        <div class="position-relative form-group">
+                                            <label for="brand" class="">Marca:</label>
+                                            <select class="form-control select" name="brand" id="brand" onChange="setModel()">
+                                                <option value="" disabled selected="">Seleccione</option>
+                                                @foreach($marcas as $marca)
+                                                    <option data-id="{{ $marca->id_category }}" value="{{ $marca->marca }}">{{ $marca->marca }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('brand'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('brand') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="position-relative form-group">
+                                            <label for="model" class="">Modelo:</label>
+                                            <select class="form-control select" name="model" id="model" disabled >
+                                                <option value="" disabled selected="">Seleccione</option>
+                                            </select>
+                                            @if ($errors->has('model'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('model') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-3">
+                                        <div class="position-relative form-group">
+                                            <label for="year" class="">Año:</label>
+                                            <input name="year" id="year" type="date"
+                                                class="form-control" value="{{ old('year') }}" required>
+                                            @if ($errors->has('year'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('year') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="position-relative form-group">
+                                            <label for="km" class="">KM:</label>
+                                            <input name="km" id="km" type="text"
+                                                class="form-control" value="{{ old('km') }}" required>
+                                            @if ($errors->has('km'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('km') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card ">
+                            <h5 class="card-header text-white bg-secondary mb-3">Datos de Contacto</h5>
+                            <div class="card-body">
+                                <div class="form-row row g-1">
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <label for="name" class="">Nombre:</label>
+                                            <input name="name" id="name" type="text" class="form-control"
+                                                value="{{ old('name') }}" required>
+                                            @if ($errors->has('name'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('name') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="position-relative form-group">
+                                            <label for="lastname" class="">Apellido:</label>
+                                            <input name="lastname" id="lastname" type="text" class="form-control"
+                                                value="{{ old('lastname') }}" required>
+                                            @if ($errors->has('lastname'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('lastname') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <label for="email" class="">Email:</label>
+                                            <input name="email" id="email" type="text" class="form-control"
+                                                value="{{ old('email') }}" required>
+                                            @if ($errors->has('email'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>                                   
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <label for="phone" class="">Teléfono:</label>
+                                            <input name="phone" id="phone" type="text" class="form-control"
+                                                value="{{ old('phone') }}" required>
+                                            @if ($errors->has('phone'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <label for="province" class="">Provincia:</label>
+                                            <input name="province" id="province" type="province" class="form-control"
+                                                value="{{ old('province') }}" required>
+                                            @if ($errors->has('province'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('province') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card ">
+                            <h5 class="card-header text-white bg-secondary mb-3">Estado de la Moto</h5>
+                            <div class="card-body">
+                                <div class="form-row row g-1">
+                                    <div class="col-md-3">
+                                        <div class="position-relative form-group">
+                                            <label for="status_trafic" class="">Estado en tráfico: </label>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="high" name="status_trafic"
+                                                    class="custom-control-input" value="Alta">
+                                                <label class="custom-control-label" for="high">Alta</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="low" name="status_trafic"
+                                                    class="custom-control-input" value="Baja definitiva">
+                                                <label class="custom-control-label" for="low">Baja</label>
+                                            </div>
+                                            @if ($errors->has('status_trafic'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('status_trafic') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="position-relative form-group">
+                                            <label for="status_vehicle" class="">Estado de la Moto: </label>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="g_del" name="g_del"
+                                                    class="custom-control-input" value="1">
+                                                <label class="custom-control-label" for="g_del">Golpe Delantero</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="g_tras" name="g_tras"
+                                                    class="custom-control-input" value="1">
+                                                <label class="custom-control-label" for="g_tras">Golpe Trasero</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="av_elec" name="av_elec"
+                                                    class="custom-control-input" value="1">
+                                                <label class="custom-control-label" for="av_elec">Avería Eléctrica</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="av_mec" name="av_mec"
+                                                    class="custom-control-input" value="1">
+                                                <label class="custom-control-label" for="av_mec">Avería Mecánica</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="old" name="old"
+                                                    class="custom-control-input" value="1">
+                                                <label class="custom-control-label" for="old">Vieja o Abandonada</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="position-relative form-group">
+                                            <label for="status_vehicle" class="">Observaciones: </label>
+                                            <textarea class="form-control" id="observations" name="observations"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative form-group">
+                                            <label for="status_vehicle" class="">¿Cual es el precio mínimo que aceptas?: </label>
+                                            <input type="number" step="any" class="form-control" id="price_min" name="price_min" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
+                    <input type="hidden" id="purchase_id" name="id" value="0">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+        var setModel = () => {
+        let id = $("#brand").find(':selected').data('id');
+
+        $.ajax({
+            url: '{{ url("getModel") }}',
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            data: {
+                id:id
+            },
+            type: 'POST',
+            datatype: 'JSON',
+            success: function (resp) {
+                let select = $("#model").empty().append("<option disabled='disabled' selected>Seleccione</option>");
+
+                select.prop('disabled', 'disabled');
+                $("#model").empty();
+                
+                resp.model.forEach(function(model, index){
+        
+                    select.append($('<option>', {
+                        value: model.marca,
+                        text: model.marca
+                    }));
+                });
+
+                select.prop('disabled', false);
+
+            }
+        });
+    };
+    </script>
+
  <script src="{{ asset('assets/scripts/js/purchase_valuation_images.js') }}"></script>
  @endsection
+
+ <script src="{{ asset('assets/scripts/js/purchase_valuation_no_interested.js') }}"></script>
 
     <script>
         var setApply = () => {
