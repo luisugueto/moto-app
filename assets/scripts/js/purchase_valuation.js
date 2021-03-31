@@ -29,7 +29,7 @@ $(document).ready(function(){
                         echo = "En Revisión";
                     else if(data.states_id == 1)
                         echo = "No Interesa";
-                    else if(data.states_id == 1)
+                    else if(data.states_id == 2)
                         echo = "Interesa";
 
                     return echo;
