@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <hr>
-                <table width="100%" id="tableTasacionMotos" class="table table-hover table-striped table-bordered pag-table">
+                <table width="100%" id="tableTasacionMotos" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <th></th>

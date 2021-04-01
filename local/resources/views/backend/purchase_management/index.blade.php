@@ -36,7 +36,7 @@
         <div class="main-card mb-3 card">
             <div class="card-body">
                 <h5 class="card-title">Gestion de Compra</h5>
-                <table style="width: 100%;" id="tableGestionCompras" class="table table-hover table-striped table-bordered pag-table">
+                <table style="width: 100%;" id="tableGestionCompras" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
