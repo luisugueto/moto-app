@@ -19,3 +19,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Menu::class, function (Faker\Generator $faker) {
+    $name = $faker->name;
+    $menus = App\Menu::all();
+    return [
+        'name' => $name,
+        'slug' => str_slug($name),
+        'parent' => (count($menus) > 0) ? $faker->randomElement($menus->pluck('id')->toArray()) : 0,
+        'order' => 0
+    ];
+});

@@ -204,7 +204,7 @@
                 </div>
                 <div class="scrollbar-sidebar">
                     <div class="app-sidebar__inner">
-                        @include('partials.sidebar')
+                        @include('partials.sidebar', ['menus' => $menus])                        
                     </div>
                 </div>
             </div>
@@ -227,6 +227,8 @@
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.js') }}">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
+        
     <script src="{{ asset('assets/scripts/page.js') }}"></script>
     
 </body>

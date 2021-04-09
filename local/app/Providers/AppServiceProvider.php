@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use App\Menu;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -18,6 +18,11 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('current_password', function($attribute, $value, $parameters) {
             return Hash::check($value, auth()->user()->password);
         });
+
+        view()->composer('welcome', function($view) {
+            $view->with('menus', Menu::menus());
+        });
+        
     }
 
     /**

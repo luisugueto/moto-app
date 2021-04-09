@@ -62,7 +62,25 @@ $(document).ready(function () {
         }
 
     });
-     
+
+    $('.vertical-nav-menu').metisMenu();
+
+    if ($(".scrollbar-container")[0]) {
+        $(".scrollbar-container").each(function() {
+            $($(this)[0], {
+                wheelSpeed: 2,
+                wheelPropagation: !1,
+                minScrollbarLength: 20
+            })
+        });
+        $(".scrollbar-sidebar", {
+            wheelSpeed: 2,
+            wheelPropagation: !1,
+            minScrollbarLength: 20
+        })
+    }
+
+    
     $(".select").select2();    
     
 
