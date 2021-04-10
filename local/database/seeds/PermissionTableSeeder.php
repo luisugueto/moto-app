@@ -18,7 +18,7 @@ class PermissionTableSeeder extends Seeder
 
         		'name' => 'record-list',
 
-        		'display_name' => 'Mostrar lista de registros',
+        		'display_name' => 'Mostrar lista',
 
         		'description' => 'Mostrar lista de registros'
 
@@ -28,7 +28,7 @@ class PermissionTableSeeder extends Seeder
 
         		'name' => 'record-create',
 
-        		'display_name' => 'Crear registro',
+        		'display_name' => 'Crear',
 
         		'description' => 'Crear nuevo registro'
 
@@ -38,9 +38,9 @@ class PermissionTableSeeder extends Seeder
 
         		'name' => 'record-edit',
 
-        		'display_name' => 'Editar registro',
+        		'display_name' => 'Modificar',
 
-        		'description' => 'Editar registro'
+        		'description' => 'Modificar registro'
 
         	],
 
@@ -48,7 +48,7 @@ class PermissionTableSeeder extends Seeder
 
         		'name' => 'record-delete',
 
-        		'display_name' => 'Eliminar el registro',
+        		'display_name' => 'Eliminar',
 
         		'description' => 'Eliminar el registro'
 
@@ -58,7 +58,7 @@ class PermissionTableSeeder extends Seeder
 
         		'name' => 'record-view',
 
-        		'display_name' => 'Ver registro',
+        		'display_name' => 'Ver',
 
         		'description' => 'Ver registro'
 

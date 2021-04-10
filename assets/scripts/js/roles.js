@@ -18,35 +18,38 @@ $(document).ready(function(){
             { "data": "id" },
             { "data": "name" },
             { "data": "description" },
-            {
-                "data": null,
-                render: function (data, type, row) {
-                    var permision = data.permissions.split(',');
-                    var val = [];
-                    $.each(permision, function(i, v){
-                        val.push('<label class="badge badge-info">'+v+'</label>');
-                    })
-                    return val;                    
-                },
-                "targets": -1
-            },
+            // {
+            //     "data": null,
+            //     render: function (data, type, row) {
+            //         var permision = data.permissions.split(',');
+            //         var val = [];
+            //         $.each(permision, function(i, v){
+            //             val.push('<label class="badge badge-info">'+v+'</label>');
+            //         })
+            //         return val;                    
+            //     },
+            //     "targets": -1
+            // },
             {"data": null,
                 render: function (data, type, row) {
                     var echo = '';
-                    if (data.view == true && data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-info text-white button_view' title='Ver Email'>Ver</a>"
-                            + "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Email'>Editar</a>"
-                            +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Email'>Eliminar</a>";
-                    }
-                    else if (data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                    }
-                    else if (data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                    } else {
-                        echo = "No tienes permiso";
-                    }
+                    echo = "<a class='mb-2 mr-2 btn btn-info text-white button_view' title='Ver Email'>Ver</a>"
+                    + "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Email'>Editar</a>"
+                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Email'>Eliminar</a>";
+                    // if (data.view == true && data.edit == true && data.delete == true) {
+                    //     echo = "<a class='mb-2 mr-2 btn btn-info text-white button_view' title='Ver Email'>Ver</a>"
+                    //         + "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Email'>Editar</a>"
+                    //         +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Email'>Eliminar</a>";
+                    // }
+                    // else if (data.edit == true && data.delete == true) {
+                    //     echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                    //             +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                    // }
+                    // else if (data.delete == true) {
+                    //     echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                    // } else {
+                    //     echo = "No tienes permiso";
+                    // }
                     return echo;
                 },
                 "targets": -1
@@ -87,13 +90,13 @@ $(document).ready(function(){
                 $('#display_name').val(data.display_name);
                 $('#description').val(data.description);
 
-                var array = data.permisions.split(',').slice(0,-1);
-                $.each(array, function (i) {
-                    var array2 = array[i].split(":=");
-                    $('#custom_'+array2[0]).val(array2[0]);
-                    $('#custom_'+array2[0]).attr('checked', array2[0]);
+                // var array = data.permisions.split(',').slice(0,-1);
+                // $.each(array, function (i) {
+                //     var array2 = array[i].split(":=");
+                //     $('#custom_'+array2[0]).val(array2[0]);
+                //     $('#custom_'+array2[0]).attr('checked', array2[0]);
 
-                });
+                // });
                  
                 $('#status').val(data.status); 
                 $('#btn-save').val("update");

@@ -12,6 +12,7 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
+        
         $role = [
 
         	[
@@ -40,5 +41,6 @@ class RoleTableSeeder extends Seeder
         	Role::create($value);
 
         }
+
     }
 }

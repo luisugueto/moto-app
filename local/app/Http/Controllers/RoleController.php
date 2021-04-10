@@ -31,12 +31,10 @@ class RoleController extends Controller
     public function getRoles()
     {   
         $roles = DB::table('roles')
-            ->join('permission_role', 'permission_role.role_id', '=', 'roles.id')
-            ->join('permissions', 'permission_role.permission_id', '=', 'permissions.id')
-            ->select('roles.*', DB::raw('group_concat(permissions.display_name) as permisos'))
+            ->select('roles.*')
             ->groupBy('roles.id')
             ->get();            
-         
+       
         $view = auth()->user()->can('record-view');
         $edit = auth()->user()->can('record-edit');
         $delete = auth()->user()->can('record-delete');
@@ -48,7 +46,7 @@ class RoleController extends Controller
             $row['id'] = $value->id;
             $row['name'] = $value->name;
             $row['description'] = $value->description;
-            $row['permissions'] = $value->permisos;
+            // $row['permissions'] = $value->permisos;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -84,7 +82,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         
-        $validator = \Validator::make($request->all(), ['name' => 'required|unique:roles,name', 'display_name' => 'required', 'description' => 'required','permission' => 'required']);
+        $validator = \Validator::make($request->all(), ['name' => 'required|unique:roles,name', 'display_name' => 'required', 'description' => 'required']);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -96,9 +94,9 @@ class RoleController extends Controller
             $role->save();
 
 
-            foreach ($request->input('permission') as $key => $value) {
-                $role->attachPermission($value);
-            }
+            // foreach ($request->input('permission') as $key => $value) {
+            //     $role->attachPermission($value);
+            // }
 
             return response()->json($role);
             // return Redirect::to('/roles')->with('notification', 'Rol creado exitosamente!');
@@ -122,9 +120,9 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
 
-        $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
-            ->where("permission_role.role_id",$id)
-            ->get();
+        // $rolePermissions = Permission::join("permission_role","permission_role.permission_id","=","permissions.id")
+        //     ->where("permission_role.role_id",$id)
+        //     ->get();
         
         $data = [];
         $data['id'] = $role->id;
@@ -132,11 +130,11 @@ class RoleController extends Controller
         $data['display_name'] = $role->display_name;
         $data['description'] = $role->description;
 
-        $id_roles = '';
-        foreach($rolePermissions as $value){
-            $id_roles .= $value->id .',';
-        }
-        $data['permisions'] = $id_roles;
+        // $id_roles = '';
+        // foreach($rolePermissions as $value){
+        //     $id_roles .= $value->id .',';
+        // }
+        // $data['permisions'] = $id_roles;
         
         return response()->json(collect($data));
 
@@ -168,7 +166,7 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
 
-        $validator = \Validator::make($request->all(), ['display_name' => 'required', 'description' => 'required','permission' => 'required']);
+        $validator = \Validator::make($request->all(), ['display_name' => 'required', 'description' => 'required']);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -179,12 +177,12 @@ class RoleController extends Controller
             $role->save();
 
 
-            DB::table("permission_role")->where("permission_role.role_id",$id)
-            ->delete();
+            // DB::table("permission_role")->where("permission_role.role_id",$id)
+            // ->delete();
 
-            foreach ($request->input('permission') as $key => $value) {
-                $role->attachPermission($value);
-            }
+            // foreach ($request->input('permission') as $key => $value) {
+            //     $role->attachPermission($value);
+            // }
 
             return response()->json($role);
             // return Redirect::to('/roles')->with('notification', 'Rol creado exitosamente!');

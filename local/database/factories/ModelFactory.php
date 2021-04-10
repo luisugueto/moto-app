@@ -30,3 +30,13 @@ $factory->define(App\Menu::class, function (Faker\Generator $faker) {
         'order' => 0
     ];
 });
+
+$factory->define(App\Role::class, function (Faker\Generator $faker) { 
+    $name = $faker->name; 
+    $roles = App\Role::all();
+    return [
+        'name' => $faker->name,
+        'display_name' => $faker->display_name,
+        'description' => $faker->description
+    ];
+});

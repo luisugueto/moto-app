@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
             return Hash::check($value, auth()->user()->password);
         });
 
-        view()->composer('welcome', function($view) {
+        view()->composer('layouts.backend', function($view){
             $view->with('menus', Menu::menus());
         });
         

@@ -8,18 +8,18 @@
                     <i class="pe-7s-speaker icon-gradient bg-night-fade">
                     </i>
                 </div>
-                <div><span class="lang" key="heading">Roles de Usuarios</span>
+                <div><span class="lang" key="heading">Perfiles de Usuarios</span>
                 </div>
             </div>
             <div class="page-title-actions">
-                @if ($haspermision)
+         
                 <div class="d-inline-block dropdown">
                     <button class="mb-2 mr-2 btn-icon btn-pill btn btn-primary" id="btn_add" name="btn_add">
                         <i class="pe-7s-plus btn-icon-wrapper"> </i>
                         <span class="lang" key="new">Nuevo</span>
                     </button>
                 </div>
-                @endif
+                
             </div>
         </div>
     </div>
@@ -38,14 +38,13 @@
             <br>
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title lang" key="heading">Mantenimiento de Roles de Usuarios</h5>
+                    <h5 class="card-title lang" key="heading">Mantenimiento de PErfiles de Usuarios</h5>
                     <table style="width: 100%;" id="tableRoles" class="table table-hover table-striped table-bordered">
                         <thead>
                             <tr>                
                                 <th>No</th>                
                                 <th>Nombre</th>                
-                                <th>Descripción</th>     
-                                <th>Roles</th>           
+                                <th>Descripción</th>          
                                 <th>Opciones</th>               
                             </tr> 
                         </thead>
@@ -60,10 +59,10 @@
 
     <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Formulario de Roles</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Formulario de Perfiles</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -90,21 +89,7 @@
                             <label>Descripción</label>
                             <input class='form-control' id='description' name='description' type='text'
                                 value="{{ old('description') }}" required>
-                        </div> 
-                        
-                        <div class="position-relative form-group">
-                            <label>Permisos:</label><br>
-                            
-                            @foreach($permission as $value)
-                                <div class="custom-control custom-checkbox ">
-                                    {{ Form::checkbox('permission', $value->id, false, array('class' => 'name custom-control-input', 'id' => 'custom_'.$value->id)) }}        
-                                    <label class="custom-control-label" for="custom_{{$value->id}}">{{ $value->display_name }}</label>
-                                </div>        
-                                <br/>       
-                            
-                             @endforeach
-                            
-                        </div>    
+                        </div>     
                     </form>
                 </div>
                 <div class="modal-footer">
