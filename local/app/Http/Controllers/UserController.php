@@ -22,7 +22,10 @@ class UserController extends Controller
     {    
         $haspermision = auth()->user()->can('record-create');
         $roles = Role::lists('display_name','id');
-        return view('backend.users.index', compact('roles', 'haspermision'));
+        $lang = DB::table('lang')
+        ->select('lang.*')
+        ->get();
+        return view('backend.users.index', compact('roles', 'lang','haspermision'));
     }
 
     public function getUsers()
@@ -48,7 +51,7 @@ class UserController extends Controller
                 $row['name'] = $value->name;
             }            
             $row['email'] = $value->email;
-            // $row['status'] = $value->status;
+            $row['status'] = $value->status;
             $row['role'] = $value->role;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -262,5 +265,60 @@ class UserController extends Controller
         ]);
 
         return Redirect::to('profile/' . $user->id)->with('notification', 'Datos actualizdos exitosamente!');
+    }
+
+    public function changeStatus(Request $request)
+    {
+        //dd($request->all());
+        $user = User::findOrFail($request->id);
+        $status = 0;
+        $mensaje = '';
+        if ($user->status == 0) {
+            $status = 1;
+            $mensaje = 'Usuario habilitado exitosamente. !';
+        }
+        if ($user->status == 1) {
+            $status = 0;
+            $mensaje = 'Usuario inahabilitado exitosamente. !';
+        }
+
+        $user->status = $status;
+        $user->save();
+
+        $data['code']    = 200;
+        $data['message'] = $mensaje;
+
+        return response()->json($data);
+    }
+
+    public function getEmployeesPrestashop()
+    {          
+ 
+        
+        $inserts = [];
+
+        $select = DB::connection('recambio_ps')
+        ->table('recambio_ps.ps_employee')
+        ->select(array('id_lang', 'firstname', 'lastname', 'email', 'passwd', 'last_passwd_gen'))
+        ->get();         
+ 
+        foreach($select as $bid) {
+            $inserts[] = [ 
+                'id_lang' => $bid->id_lang,
+                'name'=> $bid->firstname,
+                'last_name' => $bid->lastname,
+                'email' => $bid->email,
+                'password' => $bid->passwd,
+                'last_password_gen' => $bid->last_passwd_gen
+            ]; 
+        }
+        //aqui es que me da el errorZ
+        DB::table('users')->insert($inserts);
+  
+        
+        $data['code'] =  200;
+        $data['message'] = 'Refresh';
+        return response()->json($data);
+ 
     }
 }

@@ -141,3 +141,39 @@ $(document).ready(function () {
         });
     });
 });
+
+
+/**
+ * show_preloader
+ * @param {String} type
+ * @param {String} message
+ * @param {String} status
+ */
+ function preloader(type, message = '', status = '') {
+	Swal.fire({
+		title: message == '' ? "Loading!" : message,
+		showConfirmButton: false,
+		showCancelButton: false,
+		allowOutsideClick: false,
+		onOpen: function() {
+			if (type == 'show') {
+				swal.showLoading()
+			} else {
+				if (message != '') {
+					Swal.fire({
+						icon: status,
+						title: message,
+						type: status,
+						timer: 2000
+					});
+				} else {
+					swal.close()
+				}
+			}
+
+		}
+	}).then(function(e) {
+		"timer" === e.dismiss && console.log("I was closed by the timer")
+	})
+	//Swal.fire('Any fool can use a computer')
+}

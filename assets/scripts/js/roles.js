@@ -4,9 +4,32 @@ $(document).ready(function(){
     //get base URL *********************
     var url = $('#url').val();
 
+    $('#tableRoles thead tr').clone(true).appendTo('#tableRoles thead');
+ 
+    $('#tableRoles thead tr:eq(1) th').each( function (i) {
+        if (i != 3) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
     var dataTable = $('#tableRoles').DataTable({
         processing: true,
         responsive: true,
+        orderCellsTop: true,
+        fixedHeader: true,        
+      
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             url: "getRoles", // json datasource            

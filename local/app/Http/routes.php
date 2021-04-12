@@ -30,6 +30,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('purchase_valuation_no_interested', 'PurchaseValuationController@noInterested');
     Route::get('purchase_valuation_interested', 'PurchaseValuationController@interested');
 
+    //Change Status Views
+    Route::post('empleados/change_status_user', 'UserController@changeStatus');
+
+    //getData from prestashop
+    Route::post('empleados/get_employees_prestashop', 'UserController@getEmployeesPrestashop');
+
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');
     Route::post('getStates', 'StatesController@getStates');

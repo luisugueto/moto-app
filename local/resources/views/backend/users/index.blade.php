@@ -13,14 +13,9 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    @if ($haspermision)
-                    <div class="d-inline-block dropdown">
-                        <button class="mb-2 mr-2 btn-icon btn-pill btn btn-primary" id="btn_add" name="btn_add">
-                            <i class="pe-7s-plus btn-icon-wrapper"> </i>
-                            <span class="lang" key="new">Nuevo</span>
-                        </button>
-                    </div>
-                    @endif
+                    {{-- @if ($haspermision) --}}
+                     
+                    {{-- @endif --}}
                 </div>
             </div>
         </div>
@@ -40,15 +35,22 @@
             <br>
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title lang" key="heading">Mantenimiento de Usuarios</h5>
+                    <h5 class="card-title lang" key="heading">Mantenimiento de Usuarios
+                        <button class="float-right btn btn-light" id="btn_refresh" name="btn_refresh"><i class="pe-7s-refresh"></i> Actualizar</button>
+                        <button class="mb-2 mr-2   btn btn-primary float-right" id="btn_add" name="btn_add">
+                            <i class="pe-7s-plus btn-icon-wrapper"> </i>
+                            <span class="lang" key="new">Nuevo</span>
+                        </button>                        
+                    </h5>
                     <table style="width: 100%;" id="tableUsers" class="table table-hover table-striped table-bordered">
                         <thead>
                             <tr>                
                                 <th>No</th>                
-                                <th>Nombre</th>                
-                                <th>Email</th>                
-                                <th>Rol</th>                
-                                <th width="280px">Optiones</th>                
+                                <th style="width: 200px">Nombre</th>                
+                                <th style="width: 200px">Email</th>                
+                                <th>Perfil</th>    
+                                <th>Estado</th>             
+                                <th width="160px">Optiones</th>                
                             </tr> 
                         </thead>            
                     </table>             
@@ -92,6 +94,23 @@
                             <label for='email'>Correo Electrónico</label>
                             <input class='form-control' id='email' name='email' type='email' value="{{ old('email') }}" required>
                         </div>
+                        {{-- <div class='position-relative form-group'>
+                            <img src="" alt="" class="img-thumbnail previsualizar" width="150" height="150">
+                             
+                        </div>
+                        <div class='position-relative form-group'>                                    
+                            <label for='userPicture' class=''>Subir una Foto</label>                                
+                            <div class="input-group">
+                                <input type="text" class="form-control upload-drag" readonly>
+                                <label class="input-group-append" style="height: 38px;">
+                                    <span class="btn btn-success">
+                                        Subir
+                                        <input type="file" style="display: none;" id='image' name='image'>
+                                    </span>
+                                </label>
+                            </div>                                    
+                        </div>                            --}}
+                        
                         <div class='position-relative form-group'>
                             <label for='phone'>Teléfono</label>
                             <input class='form-control' id='phone' name='phone' type='text' value="{{ old('phone') }}" required>
