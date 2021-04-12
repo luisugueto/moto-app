@@ -88,7 +88,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {   
-
+        dd($request->input('roles'));
         $validator = \Validator::make($request->all(),[
             'name' => 'required',
             'last_name' => 'required',
@@ -103,8 +103,31 @@ class UserController extends Controller
             return response()->json($validator->errors(), 422);
         } else {
 
+            if($request->hasFile('image')){                
+    
+                $file = $request->file('image');                
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;              
+                 
+                // SUBIR IMAGE
+                $image_resize = Image::make($file->getRealPath());
+                $img = Image::make($file->getRealPath())->widen(64, function ($constraint) {
+                    $constraint->upsize();
+                });
+                
+                $img->stream(); // <-- Key point
+    
+                //dd();
+                Storage::disk('images_profile')->put($fileNameToStore, $img);
+            } else {
+                $fileNameToStore = '';
+            }
+            
             $input = $request->all();
             $input['password'] = \Hash::make($input['password']);
+            $input['image'] = $fileNameToStore;
 
             $user = User::create($input);
             $user->attachRole($request->input('roles'));
@@ -130,8 +153,10 @@ class UserController extends Controller
         $data['email'] = $user->email;
         $data['phone'] = $user->phone;
         $data['role'] = $userRole;
+        $data['ruta'] = $user->image;
+        $data['image'] = utf8_encode(\File::get(public_path('img_app/profile_images/'.$user->image)));
 
-        // dd($userRole);
+        
         return response()->json($data);
     }
 
@@ -159,7 +184,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        //dd($request->file('image'));
         $validator = \Validator::make($request->all(),[
             'name' => 'required',
             'last_name' => 'required',
@@ -171,17 +196,43 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         } else {
-
+            $user = User::find($id);
             $input = $request->all();
 
+            if($request->hasFile('image')){
+                $userImage = public_path("img_app/profile_images/{$user->image}"); // get previous image from folder
+                if (\File::exists($userImage)) { // unlink or remove previous image from folder
+                    \Storage::delete($userImage);
+                }
+
+                $file = $request->file('image');
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+
+                $user->image = $fileNameToStore;
+                // SUBIR IMAGE
+                $image_resize = Image::make($file->getRealPath());
+                $img = Image::make($file->getRealPath())->widen(64, function ($constraint) {
+                    $constraint->upsize();
+                });
+                
+                $img->stream(); // <-- Key point
+
+                //dd();
+                Storage::disk('images_profile')->put($fileNameToStore, $img);
+                $input['image'] = $fileNameToStore;
+
+            }
+           
             if(!empty($input['password'])){ 
                 $input['password'] = \Hash::make($input['password']);
             }else{
                 $input = array_except($input,array('password'));    
             }
 
-
-            $user = User::find($id);
+            
             $user->update($input);
             DB::table('role_user')->where('user_id',$id)->delete();        
             $user->attachRole($request->input('roles'));

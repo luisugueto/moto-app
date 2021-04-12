@@ -94,7 +94,7 @@
                             <label for='email'>Correo Electrónico</label>
                             <input class='form-control' id='email' name='email' type='email' value="{{ old('email') }}" required>
                         </div>
-                        {{-- <div class='position-relative form-group'>
+                        <div class='position-relative form-group'>
                             <img src="" alt="" class="img-thumbnail previsualizar" width="150" height="150">
                              
                         </div>
@@ -109,7 +109,7 @@
                                     </span>
                                 </label>
                             </div>                                    
-                        </div>                            --}}
+                        </div>                           
                         
                         <div class='position-relative form-group'>
                             <label for='phone'>Teléfono</label>

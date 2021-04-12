@@ -112,6 +112,7 @@ $(document).ready(function(){
                 $('#email').prop('readonly', true);
                 $('#phone').val(data.phone);
                 $('#rol_id').val(data.role);
+                $('.previsualizar').attr('src', 'local/public/img_app/profile_images/' + data.ruta);            
                 $('.hide').prop('hidden', true);
                 
                 $('#btn-save').val("update");
@@ -127,20 +128,8 @@ $(document).ready(function(){
 
     //create new product / update existing product ***************************
     $("#btn-save").click(function (e) {
-        e.preventDefault(); 
-        
-        var formData = {
-            name: $('#name').val(),
-            last_name: $('#last_name').val(),
-            email: $('#email').val(),
-            phone: $('#phone').val(),
-            password: $('#password').val(),
-            confirm_password: $('#confirm-password').val(),
-            roles: $('#rol_id').val()
-             
-        }
-        // console.log(formData)
-        //used to determine the http verb to use [add=POST], [update=PUT]
+        e.preventDefault();
+
         var button = $('#btn-save').val();       
         var type = "POST"; //for creating new resource
         var user_id = $('#user_id').val();
@@ -149,35 +138,95 @@ $(document).ready(function(){
             type = "PUT"; //for updating existing resource
             my_url += '/' + user_id;
         }
-      
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: type,
-            url: my_url,
-            data: formData,
-            dataType: 'json',
-            success: function (data) {
-               
-                dataTable.ajax.reload();
-                $('#frmUsers').trigger("reset");
-                $('#errors').html('');
-                $('.alert').prop('hidden', true);
-                $('#myModal').modal('hide')
-            },
-            error: function (data) {
-                //console.log('Error:', data);
-                if (data.status == 422) {
+        
+        if (fileInput2.length > 0) {
+            var formData = new FormData();
+            formData.append("name", $('#name').val());
+            formData.append("last_name", $('#last_name').val());
+            formData.append("email", $('#email').val());
+            formData.append("phone", $('#phone').val());
+            formData.append("password", $('#password').val());
+            formData.append("confirm_password", $('#confirm-password').val());
+            formData.append("roles", $('#rol_id').val());
+            formData.append("image", fileInput2);
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+                type: type,
+                url: my_url,
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                   
+                    dataTable.ajax.reload();
+                    $('#frmUsers').trigger("reset");
                     $('#errors').html('');
-                    var list = '';
-                    $.each(data.responseJSON, function (i, value) {
-                        list = '<li>' + value + '</li>';
-                        $('.alert').prop('hidden', false);
-                        $('#errors').append(list);
-                    });
-                 
+                    $('.alert').prop('hidden', true);
+                    $('#myModal').modal('hide')
+                },
+                error: function (data) {
+                    //console.log('Error:', data);
+                    if (data.status == 422) {
+                        $('#errors').html('');
+                        var list = '';
+                        $.each(data.responseJSON, function (i, value) {
+                            list = '<li>' + value + '</li>';
+                            $('.alert').prop('hidden', false);
+                            $('#errors').append(list);
+                        });
+                     
+                    }
                 }
+            });
+        }
+        else { // no attached file(s)
+
+            var formData = {
+                name: $('#name').val(),
+                last_name: $('#last_name').val(),
+                email: $('#email').val(),
+                phone: $('#phone').val(),
+                password: $('#password').val(),
+                confirm_password: $('#confirm-password').val(),
+                roles: $('#rol_id').val()
             }
-        });
+
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+                type: type,
+                url: my_url,
+                data: formData,
+                dataType: 'json',
+                success: function (data) {
+                   
+                    dataTable.ajax.reload();
+                    $('#frmUsers').trigger("reset");
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                    $('#myModal').modal('hide')
+                },
+                error: function (data) {
+                    //console.log('Error:', data);
+                    if (data.status == 422) {
+                        $('#errors').html('');
+                        var list = '';
+                        $.each(data.responseJSON, function (i, value) {
+                            list = '<li>' + value + '</li>';
+                            $('.alert').prop('hidden', false);
+                            $('#errors').append(list);
+                        });
+                     
+                    }
+                }
+            });
+            
+        }
+        //used to determine the http verb to use [add=POST], [update=PUT]
+        
+      
+        
     });
 
 
@@ -254,8 +303,7 @@ $(document).ready(function(){
 
     });
 
-    $("#image").change(function(event) { //validar que sea imagen
-        console.log('imagen change');
+    $("#image").change(function(event) { //validar que sea imagen     
         var fileInput = document.getElementById('image');
         var imagen = this.files[0];
         var filePath = fileInput.value;
@@ -265,6 +313,9 @@ $(document).ready(function(){
             Swal.fire("Ups..", 'Cargue el archivo con las extensiones .jpeg / .jpg / .png / .gif solamente', "warning");
             $("#image").val('');
         }
+        fileInput2 = '';
+        fileInput2 = imagen;
+    
         var datosImagen = new FileReader();
         datosImagen.readAsDataURL(imagen);
         $(datosImagen).on("load", function(event) {
@@ -314,6 +365,7 @@ $(document).ready(function(){
         });
         
         // fd.append('file', file[0]);
+        fileInput2 = '';
         fileInput2 = file[0];
         // uploadData(fd);
     }); 
