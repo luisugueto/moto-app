@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\User;
 use App\Role;
+use App\Configuration;
 use App\Http\Requests;
 use Redirect;
 use Storage;
@@ -88,7 +89,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {   
-        dd($request->input('roles'));
         $validator = \Validator::make($request->all(),[
             'name' => 'required',
             'last_name' => 'required',
@@ -153,8 +153,14 @@ class UserController extends Controller
         $data['email'] = $user->email;
         $data['phone'] = $user->phone;
         $data['role'] = $userRole;
-        $data['ruta'] = $user->image;
-        $data['image'] = utf8_encode(\File::get(public_path('img_app/profile_images/'.$user->image)));
+        if(!empty($user->image)){
+            $data['ruta'] = $user->image;
+            $data['image'] = utf8_encode(\File::get(public_path('img_app/profile_images/'.$user->image)));
+        }
+        else{
+            $data['ruta'] = "avatar1.png";
+            $data['image'] = utf8_encode(\File::get(public_path('img_app/profile_images/avatar1.png')));
+        }
 
         
         return response()->json($data);
@@ -344,29 +350,37 @@ class UserController extends Controller
 
     public function getEmployeesPrestashop()
     {          
- 
-        
         $inserts = [];
 
         $select = DB::connection('recambio_ps')
         ->table('recambio_ps.ps_employee')
-        ->select(array('id_lang', 'firstname', 'lastname', 'email', 'passwd', 'last_passwd_gen'))
+        ->select(array('firstname', 'lastname', 'email', 'passwd'))
+        ->where('active', 1)
         ->get();         
- 
+
+        $last_email = '';
         foreach($select as $bid) {
-            $inserts[] = [ 
-                'id_lang' => $bid->id_lang,
-                'name'=> $bid->firstname,
-                'last_name' => $bid->lastname,
-                'email' => $bid->email,
-                'password' => $bid->passwd,
-                'last_password_gen' => $bid->last_passwd_gen
-            ]; 
+            // CHECK IF EXIST
+            $user = User::where('email', $bid->email)->count();
+
+            if($user < 1){ // IF IS FALSE, INSERT
+                    $inserts[] = [ 
+                        'name'=> $bid->firstname,
+                        'last_name' => $bid->lastname,
+                        'email' => $bid->email,
+                        'password' => $bid->passwd
+                    ]; 
+                $last_email = $bid->email;
+            }
         }
-        //aqui es que me da el errorZ
+
+        $configuration = Configuration::find(1);
+        $configuration->last_email_employed = $last_email;
+        $configuration->update();
+
+        // INSERT NEW USERS
         DB::table('users')->insert($inserts);
   
-        
         $data['code'] =  200;
         $data['message'] = 'Refresh';
         return response()->json($data);
