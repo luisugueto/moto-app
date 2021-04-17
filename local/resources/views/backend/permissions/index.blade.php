@@ -56,7 +56,7 @@
                         </div>
                    </div>
                     <!-- Tabs content -->
-                    <form class="" role="form" method="put" action="{{ route('permisos.update') }}">
+                    <form class="" role="form" method="put" action="{{ route('permisos.store') }}">
                         {{ csrf_field() }}
                     <div class="tab-content" id="v-pills-tabContent">
                         @foreach ($roles as $item)
