@@ -56,6 +56,8 @@
                         </div>
                    </div>
                     <!-- Tabs content -->
+                    <form class="" role="form" method="put" action="{{ route('permisos.store') }}">
+                        {{ csrf_field() }}
                     <div class="tab-content" id="v-pills-tabContent">
                         @foreach ($roles as $item)
                             <div class="tab-pane fade shadow rounded bg-white {{ $item->id == 1 ? 'show active' : '' }} p-5" id="v-pills-{{$item->id}}" role="tabpanel" aria-labelledby="v-pills-{{$item->id}}-tab">
@@ -82,40 +84,48 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @foreach ($menus as $item)                                       
+                                        @foreach ($permissionsMenu as $option)        
+                                            @if($item->id == $option->roles_id)                               
                                             <li class="list-group-item">
                                                 <div class="row">
-                                                    <div class="col-md-3">{{ $item->name}}</div>
+                                                    <div class="col-md-3">{{ $option->menu->name}}</div>
                                                     
                                                     <div class="col-md-9 row">    
 
                                                         @foreach($permission as $value)
                                                             <div class="col">
                                                                 <div class="custom-control custom-checkbox ">
-                                                                    {{ Form::checkbox('permission', $value->id, false, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$item->id)) }}  
-                                                                    <label class="custom-control-label" for="inlineCheckbox{{$item->id}}"></label>
+                                                                    @if (str_contains($option->permissions, $value->id))                                                                    
+                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, true, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$option->id)) }}  
+                                                                        <label class="custom-control-label" for="inlineCheckbox{{$option->id}}"></label>
+                                                                    @else
+                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, false, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$option->id)) }}  
+                                                                        <label class="custom-control-label" for="inlineCheckbox{{$option->id}}"></label>
+                                                                    @endif
                                                                 </div>
                                                             </div>     
                                                             <br/>   
                                                         @endforeach
                                                         <div class="col">
                                                             <div class="custom-control custom-checkbox ">
-                                                                {{ Form::checkbox('permission', $value->id, false, array('class' => 'custom-control-input', 'id' => 'inlineCheckbox'.$item->id)) }}  
+                                                                {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'_all', $value->id, false, array('class' => 'custom-control-input', 'id' => 'inlineCheckbox'.$item->id)) }}  
                                                                 <label class="custom-control-label" for="inlineCheckbox{{$item->id}}"></label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
+                                            @endif
                                         @endforeach
                                     </div>
                                </div>
                                <div class="mx-auto text-center">
-                               <button type="button" class="btn btn-primary mt-3" id="btn-save" value="add">Guardar Cambios</button></div>
+                               <button type="submit" class="btn btn-primary mt-3" id="btn-save" value="add">Guardar Cambios</button></div>
                             </div>
                         @endforeach
                         
                     </div>
+                    </form>
                 </div>
             </div>
             

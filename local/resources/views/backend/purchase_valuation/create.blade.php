@@ -18,14 +18,14 @@
                                         Solicitud de venta de moto averiada o siniestrada
                                     </div>
                                     <div class="float-right">
-                                        <a href="{{ url('purchase_valuation') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
+                                        <a href="{{ url('motos-que-nos-ofrecen') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
                                             class="pe-7s-back-2 btn-icon-wrapper"> </i>Volver</a>
                                     </div>
                                 </div>
                             </div>
                         </strong>
                     </h4>
-                    {!! Form::open(['route' => 'purchase_valuation.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'motos-que-nos-ofrecen.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
 
                         {{ csrf_field() }}
                         <div class="divider"></div>
