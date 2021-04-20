@@ -177,3 +177,29 @@ $(document).ready(function () {
 	})
 	//Swal.fire('Any fool can use a computer')
 }
+
+/**
+ * randString
+ * @param {Integer} size
+ */
+ function randString(size) {
+    var possible = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    var text = '';
+    for (var i = 0; i < size; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+}
+
+function ageCalculate(birthdate, input) {
+    var today = new Date();
+    var birthdate = new Date(birthdate);
+    var age = today.getFullYear() - birthdate.getFullYear();
+    var m = today.getMonth() - birthdate.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+        age--;
+    }
+
+    $('#' + input).val(age);
+}

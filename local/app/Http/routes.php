@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('states', 'StatesController');
     Route::resource('emails', 'EmailsController');
     Route::resource('processes', 'ProcessesController');
+    Route::resource('formularios', 'FormsController');
 
     Route::post('show-images', 'PurchaseValuationController@showImages');
 
@@ -46,6 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getPurchaseValuations', 'PurchaseValuationController@getPurchaseValuations');
     Route::post('getPurchaseValuationsInterested', 'PurchaseValuationController@getPurchaseValuationsInterested');
     Route::post('getPurchaseValuationsNoInterested', 'PurchaseValuationController@getPurchaseValuationsNoInterested');
+    Route::post('getForms', 'FormsController@getForms');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });
