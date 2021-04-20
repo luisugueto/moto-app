@@ -56,7 +56,7 @@
                         </div>
                    </div>
                     <!-- Tabs content -->
-                    <form class="" role="form" method="put" action="{{ route('permisos.store') }}">
+                    <form class="" role="form" method="post" action="{{ route('permisos.store') }}">
                         {{ csrf_field() }}
                     <div class="tab-content" id="v-pills-tabContent">
                         @foreach ($roles as $item)
@@ -84,32 +84,35 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @foreach ($permissionsMenu as $option)        
+                                        @foreach ($permissionsMenu as $option)
+                                            
                                             @if($item->id == $option->roles_id)                               
                                             <li class="list-group-item">
                                                 <div class="row">
                                                     <div class="col-md-3">{{ $option->menu->name}}</div>
                                                     
                                                     <div class="col-md-9 row">    
-
-                                                        @foreach($permission as $value)
+                                                        
+                                                        @foreach($permission as $key => $value)
+                                                            <?php $num = rand(0, 99999); ?>  
                                                             <div class="col">
                                                                 <div class="custom-control custom-checkbox ">
                                                                     @if (str_contains($option->permissions, $value->id))                                                                    
-                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, true, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$option->id)) }}  
-                                                                        <label class="custom-control-label" for="inlineCheckbox{{$option->id}}"></label>
+                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, true, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$num)) }}  
+                                                                        <label class="custom-control-label" for="inlineCheckbox{{$num}}"></label>
                                                                     @else
-                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, false, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$option->id)) }}  
-                                                                        <label class="custom-control-label" for="inlineCheckbox{{$option->id}}"></label>
+                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, false, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$num)) }}  
+                                                                        <label class="custom-control-label" for="inlineCheckbox{{$num}}"></label>
                                                                     @endif
                                                                 </div>
                                                             </div>     
                                                             <br/>   
                                                         @endforeach
+                                                        <?php $num = rand(0, 99999); ?>
                                                         <div class="col">
                                                             <div class="custom-control custom-checkbox ">
-                                                                {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'_all', $value->id, false, array('class' => 'custom-control-input', 'id' => 'inlineCheckbox'.$item->id)) }}  
-                                                                <label class="custom-control-label" for="inlineCheckbox{{$item->id}}"></label>
+                                                                {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'_all', $value->id, false, array('class' => 'custom-control-input', 'id' => 'inlineCheckbox'.$num)) }}  
+                                                                <label class="custom-control-label" for="inlineCheckbox{{$num}}"></label>
                                                             </div>
                                                         </div>
                                                     </div>

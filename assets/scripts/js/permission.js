@@ -26,9 +26,7 @@ $(document).ready(function(){
     
     //todas
     $('#check_all').on("change", ".custom-control-input", function () {
-        console.log(this)
         $("input:checkbox[name='permission']").not(this).prop('checked', this.checked);
-        
     });
 
 });
