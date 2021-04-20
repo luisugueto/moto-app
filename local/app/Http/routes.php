@@ -8,7 +8,7 @@ Route::auth();
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('dashboard');
-    Route::resource('purchase_valuation', 'PurchaseValuationController');
+    Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
     Route::resource('purchase_management', 'PurchaseManagementController');
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
