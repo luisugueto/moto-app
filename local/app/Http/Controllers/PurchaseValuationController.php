@@ -33,42 +33,48 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuations()
     {
         $purchases = PurchaseValuation::where('states_id', 0)->get();
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
-        
-        $row = [];  
-        foreach($purchases as $value){  
-                 
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
-            $row['view'] = $view;
-            $row['edit'] = $edit;
-            $row['delete'] = $delete;
-            $data[] = $row;
-        }
 
-        $json_data = array('data'=> $data);
-        return response()->json($json_data);
+        return Datatables::of($purchases)
+ 
+        ->make(true);
+        // $view = auth()->user()->can('record-view');
+        // $edit = auth()->user()->can('record-edit');
+        // $delete = auth()->user()->can('record-delete');
+        
+
+        // $row = [];  
+        // foreach($purchases as $value){    
+        //     $row['id'] = $value['id'];
+        //     $row['date'] = $value['date'];
+        //     $row['brand'] = $value['brand'];
+        //     $row['model'] = $value['model'];
+        //     $row['year'] = $value['year'];
+        //     $row['km'] = $value['km'];
+        //     $row['email'] = $value['email'];
+        //     $row['name'] = $value['name'];
+        //     $row['lastname'] = $value['lastname'];
+        //     $row['phone'] = $value['phone'];
+        //     $row['province'] = $value['province'];
+        //     $row['status_trafic'] = $value['status_trafic'];
+        //     $row['g_del'] = $value['g_del'];
+        //     $row['g_tras'] = $value['g_tras'];
+        //     $row['av_elec'] = $value['av_elec'];
+        //     $row['av_mec'] = $value['av_mec'];
+        //     $row['old'] = $value['old'];
+        //     $row['price_min'] = $value['price_min'];
+        //     $row['observations'] = $value['observations'];
+        //     $row['states_id'] = $value['states_id'];
+        //     $row['processes_id'] = $value['processes_id'];
+        //     $row['view'] = $view;
+        //     $row['edit'] = $edit;
+        //     $row['delete'] = $delete;
+        //     $data[] = $row;
+        // }
+
+        // $json_data = array('data'=> $data);
+        
+       
+        // return response()->json($json_data);
     }
 
     public function getPurchaseValuationsInterested()

@@ -16,9 +16,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile/{id}', 'UserController@profile')->name('profile');
     Route::post('update_profile', 'UserController@updateProfile')->name('updateProfile');
     Route::post('update_password', 'UserController@updatePassword')->name('updatePassword');
-    Route::resource('states', 'StatesController');
-    Route::resource('emails', 'EmailsController');
-    Route::resource('processes', 'ProcessesController');
+    Route::resource('estados-gc', 'StatesController');
+    Route::resource('mensajes-gc', 'EmailsController');
+    Route::resource('procesos', 'ProcessesController');
     Route::resource('formularios', 'FormsController');
 
     Route::post('show-images', 'PurchaseValuationController@showImages');

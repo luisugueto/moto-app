@@ -17,7 +17,8 @@ class FormsController extends Controller
      */
     public function index()
     {
-        return view('backend.forms.index');
+        $create = auth()->user()->can('record-create');
+        return view('backend.forms.index', compact('create'));
     }
 
     public function getForms()

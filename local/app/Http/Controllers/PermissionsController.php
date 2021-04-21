@@ -123,4 +123,5 @@ class PermissionsController extends Controller
     {
         //
     }
+   
 }
