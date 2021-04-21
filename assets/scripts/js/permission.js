@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 
     //get base URL *********************
@@ -7,6 +6,11 @@ $(document).ready(function(){
     //ver
     $('.check_record-view').on("change", ".custom-control-input", function () {
         $(".input_record-view:checkbox").not(this).prop('checked', this.checked);
+    });
+
+     //listar
+    $('.check_record-list').on("change", ".custom-control-input", function () {
+        $(".input_record-list:checkbox").not(this).prop('checked', this.checked);
     });
 
     //crear
@@ -25,8 +29,10 @@ $(document).ready(function(){
     });
     
     //todas
-    $('#check_all').on("change", ".custom-control-input", function () {
-        $("input:checkbox[name='permission']").not(this).prop('checked', this.checked);
+    $('.check_all').on("change", ".custom-control-input", function (e) {
+         $("input:checkbox[data-select='permission-"+$(this).data("id")+"']").not(this).prop('checked', this.checked);
     });
+
+    
 
 });

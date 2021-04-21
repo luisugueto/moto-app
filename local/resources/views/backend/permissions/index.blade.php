@@ -77,9 +77,9 @@
                                         
                                                 @endforeach
                                                 <div class="col">
-                                                    <div class="custom-control custom-checkbox " id="check_all">
-                                                        <input type="checkbox" value="" class="custom-control-input" id="custom_check">
-                                                        <label class="custom-control-label" for="custom_check">Todas</label>
+                                                    <div class="custom-control custom-checkbox check_all">
+                                                        <input type="checkbox" value="" class="custom-control-input" id="custom_check" data-id="{{ $item->id }}">
+                                                        <label class="custom-control-label" for="custom_check" data-id="{{ $item->id }}">Todas</label>
                                                     </div> 
                                                 </div>
                                             </div>
@@ -98,10 +98,10 @@
                                                             <div class="col">
                                                                 <div class="custom-control custom-checkbox ">
                                                                     @if (str_contains($option->permissions, $value->id))                                                                    
-                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, true, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$num)) }}  
+                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, true, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$num, 'data-id' => 'permission', 'data-value' => $item->id, 'data-select' => 'permission-'.$item->id)) }}  
                                                                         <label class="custom-control-label" for="inlineCheckbox{{$num}}"></label>
                                                                     @else
-                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, false, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$num)) }}  
+                                                                        {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'[]', $value->id, false, array('class' => 'custom-control-input input_'.$value->name, 'id' => 'inlineCheckbox'.$num, 'data-id' => 'permission', 'data-value' => $item->id, 'data-select' => 'permission-'.$item->id)) }}  
                                                                         <label class="custom-control-label" for="inlineCheckbox{{$num}}"></label>
                                                                     @endif
                                                                 </div>
@@ -111,7 +111,7 @@
                                                         <?php $num = rand(0, 99999); ?>
                                                         <div class="col">
                                                             <div class="custom-control custom-checkbox ">
-                                                                {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'_all', $value->id, false, array('class' => 'custom-control-input', 'id' => 'inlineCheckbox'.$num)) }}  
+                                                                {{ Form::checkbox('permissionRol'.$item->id.'_'.$option->menu->id.'_all', $value->id, false, array('class' => 'custom-control-input', 'id' => 'inlineCheckbox'.$num, 'data-id' => 'permission', 'data-value' => $item->id, 'data-select' => 'permission-'.$item->id)) }}  
                                                                 <label class="custom-control-label" for="inlineCheckbox{{$num}}"></label>
                                                             </div>
                                                         </div>
