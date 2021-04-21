@@ -87,7 +87,7 @@
     </div>
 </div>
  <!-- Passing BASE URL to AJAX -->
- <input id="url" type="hidden" value="{{ url('/purchase_valuation') }}">
+ <input id="url" type="hidden" value="{{ url('/motos-que-nos-ofrecen') }}">
     
  @section('modals')
  <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle"
