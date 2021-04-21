@@ -131,6 +131,37 @@
      </div>
  </div>
 
+<!-- DOCUMENTOS -->
+
+<div class="modal fade" id="modalDocument" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLongTitle">Agregar Documento</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                 </button>
+             </div>
+             <div class="modal-body">
+                 <div class="notification alert alert-danger" hidden>
+                     <ul id="errors"></ul>
+                 </div>
+                 {!! Form::open(['url'=> 'uploadDocument', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
+                    <input type="hidden" id="purchase_id" name="id" value="0">
+                    <div class="dz-message" style="height:200px;">
+                        Arratre sus archivos aquí.
+                    </div>
+                    <div class="dropzone-previews"></div>
+                    <button type="submit" class="btn btn-success" id="uploadDocument">Guardar</button>
+                    {!! Form::close() !!}
+             </div>
+             <div class="modal-footer">
+
+             </div>
+         </div>
+     </div>
+ </div>
 
 
 <!-- MODALLLLLLLLLLLLLLLLLLLLLLL -->

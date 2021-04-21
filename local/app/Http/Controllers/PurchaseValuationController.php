@@ -12,6 +12,7 @@ use Mail;
 use App\States;
 use App\Processes;
 use App\Emails;
+use App\DocumentsPurchaseValuation;
 use Yajra\Datatables\Datatables;
 
 class PurchaseValuationController extends Controller
@@ -34,47 +35,47 @@ class PurchaseValuationController extends Controller
     {
         $purchases = PurchaseValuation::where('states_id', 0)->get();
 
-        return Datatables::of($purchases)
+        // return Datatables::of($purchases)
  
-        ->make(true);
-        // $view = auth()->user()->can('record-view');
-        // $edit = auth()->user()->can('record-edit');
-        // $delete = auth()->user()->can('record-delete');
+        // ->make(true);
+        $view = auth()->user()->can('record-view');
+        $edit = auth()->user()->can('record-edit');
+        $delete = auth()->user()->can('record-delete');
         
 
-        // $row = [];  
-        // foreach($purchases as $value){    
-        //     $row['id'] = $value['id'];
-        //     $row['date'] = $value['date'];
-        //     $row['brand'] = $value['brand'];
-        //     $row['model'] = $value['model'];
-        //     $row['year'] = $value['year'];
-        //     $row['km'] = $value['km'];
-        //     $row['email'] = $value['email'];
-        //     $row['name'] = $value['name'];
-        //     $row['lastname'] = $value['lastname'];
-        //     $row['phone'] = $value['phone'];
-        //     $row['province'] = $value['province'];
-        //     $row['status_trafic'] = $value['status_trafic'];
-        //     $row['g_del'] = $value['g_del'];
-        //     $row['g_tras'] = $value['g_tras'];
-        //     $row['av_elec'] = $value['av_elec'];
-        //     $row['av_mec'] = $value['av_mec'];
-        //     $row['old'] = $value['old'];
-        //     $row['price_min'] = $value['price_min'];
-        //     $row['observations'] = $value['observations'];
-        //     $row['states_id'] = $value['states_id'];
-        //     $row['processes_id'] = $value['processes_id'];
-        //     $row['view'] = $view;
-        //     $row['edit'] = $edit;
-        //     $row['delete'] = $delete;
-        //     $data[] = $row;
-        // }
+        $row = [];  
+        foreach($purchases as $value){    
+            $row['id'] = $value['id'];
+            $row['date'] = $value['date'];
+            $row['brand'] = $value['brand'];
+            $row['model'] = $value['model'];
+            $row['year'] = $value['year'];
+            $row['km'] = $value['km'];
+            $row['email'] = $value['email'];
+            $row['name'] = $value['name'];
+            $row['lastname'] = $value['lastname'];
+            $row['phone'] = $value['phone'];
+            $row['province'] = $value['province'];
+            $row['status_trafic'] = $value['status_trafic'];
+            $row['g_del'] = $value['g_del'];
+            $row['g_tras'] = $value['g_tras'];
+            $row['av_elec'] = $value['av_elec'];
+            $row['av_mec'] = $value['av_mec'];
+            $row['old'] = $value['old'];
+            $row['price_min'] = $value['price_min'];
+            $row['observations'] = $value['observations'];
+            $row['states_id'] = $value['states_id'];
+            $row['processes_id'] = $value['processes_id'];
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
 
-        // $json_data = array('data'=> $data);
+        $json_data = array('data'=> $data);
         
        
-        // return response()->json($json_data);
+        return response()->json($json_data);
     }
 
     public function getPurchaseValuationsInterested()
@@ -370,5 +371,23 @@ class PurchaseValuationController extends Controller
        
         $images = ImagesPurchase::where('purchase_valuation_id', $data)->get();        
         return response()->json(['success'=> 200, 'data' => $images]);
+    }
+
+    public function uploadDocument(Request $request)
+    {
+        $path = public_path().'/documents_purchase/';
+        $files = $request->file('file');
+        foreach($files as $file){
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $file->move($path, $fileNameToStore);
+        }
+
+        $projectImage = new DocumentsPurchaseValuation();
+        $projectImage->purchase_valuation_id = $request->id;
+        $projectImage->name = $fileNameToStore;
+        $projectImage->save();
     }
 }

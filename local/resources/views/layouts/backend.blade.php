@@ -17,11 +17,13 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/css/dropzone.css') }}">
     
     <!-- JS -->
     <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/base/popper.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/scripts/base/dropzone.js') }}"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

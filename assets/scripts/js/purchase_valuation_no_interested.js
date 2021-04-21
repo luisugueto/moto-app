@@ -116,7 +116,8 @@ $(document).ready(function(){
                     let echo = '';
                     if (data.edit == true && data.delete == true) {
                         echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
+                                 +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
                     }
                     else if (data.delete == true) {
                         echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
@@ -283,5 +284,43 @@ $(document).ready(function(){
         });
     });
 
+    //display modal form for add document ***************************
+    $(document).on('click', '.button_document', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable.row($(this).parents($tr)).data();
+        var id = data.id;
 
+        $('#purchase_id').val(id);
+        $('#modalDocument').modal('show');
+    });
 });
+
+Dropzone.options.myDropzone = {
+    autoProcessQueue: false,
+    uploadMultiple: true,
+    maxFilezise: 10,
+    maxFiles: 2,
+    
+    init: function() {
+        var submitBtn = document.querySelector("#uploadDocument");
+        myDropzone = this;
+        
+        submitBtn.addEventListener("click", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            myDropzone.processQueue();
+        });
+        
+        this.on("addedfile", function(file) {
+
+        });
+        
+        this.on("complete", function(file) {
+            myDropzone.removeFile(file);
+        });
+
+        this.on("success", 
+            myDropzone.processQueue.bind(myDropzone)
+        );
+    }
+};
