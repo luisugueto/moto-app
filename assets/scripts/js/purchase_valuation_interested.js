@@ -114,16 +114,16 @@ $(document).ready(function(){
             {"data": null,
                 render: function (data, type, row) {
                     let echo = '';
-                    if (data.edit == true && data.delete == true) {
+                    // if (data.edit == true && data.delete == true) {
                         echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
                                 +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
                                 +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
-                    }
-                    else if (data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                    } else {
-                        echo = "No tienes permiso";
-                    }
+                    // }
+                    // else if (data.delete == true) {
+                    //     echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                    // } else {
+                    //     echo = "No tienes permiso";
+                    // }
                     return echo;
                 },
                 "targets": -1
