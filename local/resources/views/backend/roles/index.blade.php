@@ -12,14 +12,14 @@
                 </div>
             </div>
             <div class="page-title-actions">
-         
+                @if ($haspermision)
                 <div class="d-inline-block dropdown">
                     <button class="mb-2 mr-2 btn-icon btn-pill btn btn-primary" id="btn_add" name="btn_add">
                         <i class="pe-7s-plus btn-icon-wrapper"> </i>
                         <span class="lang" key="new">Nuevo</span>
                     </button>
                 </div>
-                
+                @endif
             </div>
         </div>
     </div>

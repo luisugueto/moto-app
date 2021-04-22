@@ -17,7 +17,7 @@ class ProcessesController extends Controller
      */
     public function index()
     {
-        $haspermision = auth()->user()->can('record-create');
+        $haspermision = getPermission('Procesos', 'record-create');
         return view('backend.processes.index', compact('haspermision'));
     }
 
@@ -25,13 +25,14 @@ class ProcessesController extends Controller
     {
         $procceses = Processes::select(['id','name','description','status'])->get();
  
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');    
-            
-        $row = [];  
+        $view = getPermission('Procesos', 'record-view');
+        $edit = getPermission('Procesos', 'record-edit');
+        $delete = getPermission('Procesos', 'record-delete');
+
+        $data = array(); 
         foreach($procceses as $key => $value){  
-                    
+            
+            $row = array();      
             $row['id'] = $value->id;
             $row['name'] = $value->name;
             $row['description'] = $value->description;
@@ -42,7 +43,8 @@ class ProcessesController extends Controller
             $data[] = $row;
         }
         
-        $json_data = array('data'=> $data);        
+        $json_data = array('data'=> $data); 
+        $json_data= collect($json_data);        
         return response()->json($json_data);
     }
 

@@ -23,7 +23,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $permission = Permission::get();
-        $haspermision = auth()->user()->can('record-create');
+        $haspermision = getPermission('Perfiles', 'record-create');
         return view('backend.roles.index',compact('permission', 'haspermision'));
     }
 
@@ -35,25 +35,25 @@ class RoleController extends Controller
             ->groupBy('roles.id')
             ->get();            
        
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
-    
+            $view = getPermission('Perfiles', 'record-view');
+            $edit = getPermission('Perfiles', 'record-edit');
+            $delete = getPermission('Perfiles', 'record-delete');   
             
-        $row = [];  
+        $data = array();
         foreach($roles as $key => $value){  
+
+            $row = array();  
                     
             $row['id'] = $value->id;
             $row['name'] = $value->name;
             $row['description'] = $value->description;
-            // $row['permissions'] = $value->permisos;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
         }
 
         $json_data = array('data'=> $data);
-        // dd($json_data);
+        $json_data= collect($json_data);   
         return response()->json($json_data);
     }
 
@@ -93,13 +93,7 @@ class RoleController extends Controller
             $role->description = $request->input('description');
             $role->save();
 
-
-            // foreach ($request->input('permission') as $key => $value) {
-            //     $role->attachPermission($value);
-            // }
-
             return response()->json($role);
-            // return Redirect::to('/roles')->with('notification', 'Rol creado exitosamente!');
         }
 
     }

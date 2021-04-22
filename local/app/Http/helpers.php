@@ -6,11 +6,11 @@ use App\PermissionsMenu;
  	function getPermission($menu, $permission){
 
         switch ($permission) { // TIPO DE PERMISOS
-            case 'record-list': $id_permission = 1; break;
+            case 'record-view': $id_permission = 1; break;
             case 'record-create': $id_permission = 2; break;
             case 'record-edit': $id_permission = 3; break;
-            case 'record-delete': $id_permission = 4; break;
-            case 'record-view': $id_permission = 5; break;
+            case 'record-delete': $id_permission = 4; break;            
+            case 'record-list': $id_permission = 5; break;
             default: $id_permission = 0; break;
         }
 

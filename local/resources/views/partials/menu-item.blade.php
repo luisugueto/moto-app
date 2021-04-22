@@ -1,10 +1,14 @@
 @if ($item['submenu'] == [])
+    @if (getPermission($item['name'], 'record-view'))
     <li>
         <a href="{{ $item['slug'] }}">
             <i class="metismenu-icon fa fa-circle" style="font-size: .7rem;"></i>{{ $item['name'] }}
         </a>
     </li> 
-@else
+    @endif
+   
+@else 
+    @if (getPermission($item['name'], 'record-view')) 
     <li class="{{ request()->is($item['slug']) ? 'mm-active' : '' }}">
         <a href="#" aria-expanded="false">
             <i class="metismenu-icon fa fa-circle" style="font-size: .7rem;"></i>
@@ -47,4 +51,5 @@
             @endforeach                
         </ul>
     </li>
+    @endif
 @endif

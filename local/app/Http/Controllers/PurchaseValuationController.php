@@ -24,27 +24,26 @@ class PurchaseValuationController extends Controller
      */
     public function index()
     {
+        $haspermision = getPermission('Empleados', 'record-create');
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
    
-        return view('backend.purchase_valuation.index', compact('states', 'processes', 'marcas'));
+        return view('backend.purchase_valuation.index', compact('states', 'processes', 'marcas', 'haspermision'));
     }
 
     public function getPurchaseValuations()
     {
         $purchases = PurchaseValuation::where('states_id', 0)->get();
 
-        // return Datatables::of($purchases)
- 
-        // ->make(true);
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
+        $view = getPermission('Empleados', 'record-view');
+        $edit = getPermission('Empleados', 'record-edit');
+        $delete = getPermission('Empleados', 'record-delete');
         
+        $data = array();
+        foreach($purchases as $value){ 
+            $row = array();        
 
-        $row = [];  
-        foreach($purchases as $value){    
             $row['id'] = $value['id'];
             $row['date'] = $value['date'];
             $row['brand'] = $value['brand'];
@@ -73,7 +72,7 @@ class PurchaseValuationController extends Controller
         }
 
         $json_data = array('data'=> $data);
-        
+        $json_data= collect($json_data);  
        
         return response()->json($json_data);
     }
@@ -81,13 +80,14 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuationsInterested()
     {
         $purchases = PurchaseValuation::where('states_id', 2)->get();
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
+        $view = getPermission('Empleados', 'record-view');
+        $edit = getPermission('Empleados', 'record-edit');
+        $delete = getPermission('Empleados', 'record-delete');
         
-        $row = [];  
-        foreach($purchases as $value){  
-                 
+        $data = array();
+        foreach($purchases as $value){ 
+
+            $row = array();      
             $row['id'] = $value['id'];
             $row['date'] = $value['date'];
             $row['brand'] = $value['brand'];
@@ -116,18 +116,22 @@ class PurchaseValuationController extends Controller
         }
 
         $json_data = array('data'=> $data);
+        $json_data= collect($json_data);  
+
         return response()->json($json_data);
     }
 
     public function getPurchaseValuationsNoInterested()
     {
         $purchases = PurchaseValuation::where('states_id', 1)->get();
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
+        $view = getPermission('Empleados', 'record-view');
+        $edit = getPermission('Empleados', 'record-edit');
+        $delete = getPermission('Empleados', 'record-delete');
         
-        $row = [];  
-        foreach($purchases as $value){  
+        $data = array();
+        foreach($purchases as $value){ 
+
+            $row = array();  
                  
             $row['id'] = $value['id'];
             $row['date'] = $value['date'];
@@ -157,6 +161,7 @@ class PurchaseValuationController extends Controller
         }
 
         $json_data = array('data'=> $data);
+        $json_data= collect($json_data);  
         return response()->json($json_data);
     }
 

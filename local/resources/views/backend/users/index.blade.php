@@ -13,9 +13,12 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    {{-- @if ($haspermision) --}}
-                     
-                    {{-- @endif --}}
+                    @if ($haspermision)
+                        <button class="mb-2 mr-2 btn-icon btn-pill btn btn-primary" id="btn_add" name="btn_add">
+                            <i class="pe-7s-plus btn-icon-wrapper"> </i>
+                            <span class="lang" key="new">Nuevo</span>
+                        </button>   
+                    @endif
                 </div>
             </div>
         </div>
@@ -36,11 +39,7 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title lang" key="heading">Mantenimiento de Usuarios
-                        <button class="float-right btn btn-light" id="btn_refresh" name="btn_refresh"><i class="pe-7s-refresh"></i> Actualizar</button>
-                        <button class="mb-2 mr-2   btn btn-primary float-right" id="btn_add" name="btn_add">
-                            <i class="pe-7s-plus btn-icon-wrapper"> </i>
-                            <span class="lang" key="new">Nuevo</span>
-                        </button>                        
+                        <button class="float-right btn btn-light" id="btn_refresh" name="btn_refresh"><i class="pe-7s-refresh"></i> Actualizar</button>                                             
                     </h5>
                     <table style="width: 100%;" id="tableUsers" class="table table-hover table-striped table-bordered">
                         <thead>

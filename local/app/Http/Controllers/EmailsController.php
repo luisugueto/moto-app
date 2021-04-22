@@ -18,20 +18,21 @@ class EmailsController extends Controller
      */
     public function index()
     {       
-        $haspermision = auth()->user()->can('record-create');
+        $haspermision = getPermission('Mensajes', 'record-create');
         return view('backend.emails.index', compact('haspermision'));
     }
     
     public function getEmails()
     {
         $emails = Email::select(['id','name','subject','content'])->get();
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
-
-        
-        $row = [];  
+        $view = getPermission('Mensajes', 'record-view');
+        $edit = getPermission('Mensajes', 'record-edit');
+        $delete = getPermission('Mensajes', 'record-delete');   
+                           
+        $data = array();  
         foreach($emails as $value){  
+
+            $row = array();   
                  
             $row['id'] = $value['id'];
             $row['name'] = $value['name'];
@@ -44,6 +45,7 @@ class EmailsController extends Controller
         }
 
         $json_data = array('data'=> $data);
+        $json_data= collect($json_data);  
         return response()->json($json_data);
       
        

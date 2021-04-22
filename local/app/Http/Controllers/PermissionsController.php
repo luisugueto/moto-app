@@ -25,13 +25,6 @@ class PermissionsController extends Controller
         $menus = DB::table('menus')->get();
         $roles = Role::get();
         $permissionsMenu = PermissionsMenu::all();
-        
-        // $roles = DB::table('roles')
-        // ->join('permission_role', 'permission_role.role_id', '=', 'roles.id')
-        // ->join('permissions', 'permission_role.permission_id', '=', 'permissions.id')
-        // ->select('roles.*', DB::raw('group_concat(permissions.display_name) as permisos'))
-        // ->groupBy('roles.id')
-        // ->get();
     
         return view('backend.permissions.index', compact('permission', 'permissionsMenu','menus','roles'));
     }

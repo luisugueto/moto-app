@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\User;
 use App\Role;
@@ -21,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {    
-        $haspermision = auth()->user()->can('record-create');
+        $haspermision = getPermission('Empleados', 'record-create');
         $roles = Role::lists('display_name','id');
         $lang = DB::table('lang')
         ->select('lang.*')
@@ -36,15 +37,17 @@ class UserController extends Controller
             ->join('roles', 'role_user.role_id', '=', 'roles.id')
             ->select('users.*', 'roles.display_name as role')
             ->get();
-        
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
-    
-            
-        $row = [];  
+
+            $view = getPermission('Empleados', 'record-view');
+            $edit = getPermission('Empleados', 'record-edit');
+            $delete = getPermission('Empleados', 'record-delete');
+
+        $data = array();
+
         foreach($users as $key => $value){  
-                    
+
+            $row = array();          
+            
             $row['id'] = $value->id;
             if($value->last_name != ''){
                 $row['name'] = $value->name. ' '. $value->last_name;
@@ -59,9 +62,10 @@ class UserController extends Controller
             $row['delete'] = $delete;
             $data[] = $row;
         }
-        
+
         $json_data = array('data'=> $data);
-        return response()->json($json_data);
+        $json_data= collect($json_data); 
+        return response()->json($json_data);  
     }
 
     /**

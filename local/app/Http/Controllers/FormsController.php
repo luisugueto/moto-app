@@ -17,36 +17,33 @@ class FormsController extends Controller
      */
     public function index()
     {
-        $create = auth()->user()->can('record-create');
-        return view('backend.forms.index', compact('create'));
+        $haspermision = getPermission('Formularios', 'record-create');
+        return view('backend.forms.index', compact('haspermision'));
     }
 
     public function getForms()
     {
         $forms = Forms::select(['id','name','form_original','form_display','status']);
-        return Datatables::of($forms)
- 
-            ->make(true);
- 
-        // $view = auth()->user()->can('record-view');
-        // $edit = auth()->user()->can('record-edit');
-        // $delete = auth()->user()->can('record-delete');    
-            
-        // $row = [];  
-      
-        // foreach($forms as $key => $value){  
-                    
-        //     $row['id'] = $value->id;
-        //     $row['name'] = $value->name;
-        //     $row['status'] = $value->status;
-        //     // $row['view'] = $view;
-        //     // $row['edit'] = $edit;
-        //     // $row['delete'] = $delete;
-        //     $data[] = $row;
-        // }
+
+        $view = getPermission('Formularios', 'record-view');
+        $edit = getPermission('Formularios', 'record-edit');
+        $delete = getPermission('Formularios', 'record-delete');   
+                           
+        $data = array(); 
+        foreach($forms as $key => $value){  
+            $row = array();     
+            $row['id'] = $value->id;
+            $row['name'] = $value->name;
+            $row['status'] = $value->status;
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
         
-        // $json_data = array('data'=> $data);        
-        // return response()->json($json_data);
+        $json_data = array('data'=> $data);  
+        $json_data= collect($json_data);       
+        return response()->json($json_data);
     }
 
 

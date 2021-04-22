@@ -20,7 +20,7 @@ class StatesController extends Controller
     {
         
         $emails = Email::all();    
-        $haspermision = auth()->user()->can('record-create');    
+        $haspermision = getPermission('Estados', 'record-create');  
         return view('backend.states.index', compact('emails', 'haspermision'));
     }
 
@@ -31,13 +31,15 @@ class StatesController extends Controller
             ->select('states.*', 'emails.name as email')
             ->get();
          
-        $view = auth()->user()->can('record-view');
-        $edit = auth()->user()->can('record-edit');
-        $delete = auth()->user()->can('record-delete');
+        $view = getPermission('Estados', 'record-view');
+        $edit = getPermission('Estados', 'record-edit');
+        $delete = getPermission('Estados', 'record-delete');
     
             
-        $row = [];  
-        foreach($states as $key => $value){  
+        $data = array();
+        foreach($states as $key => $value){
+            
+            $row = array();  
                     
             $row['id'] = $value->id;
             $row['name'] = $value->name;
@@ -51,6 +53,7 @@ class StatesController extends Controller
         }
 
         $json_data = array('data'=> $data);
+        $json_data= collect($json_data); 
         return response()->json($json_data);
     }
 
