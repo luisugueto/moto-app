@@ -9,6 +9,10 @@ class DocumentsPurchaseValuation extends Model
     protected $table = 'documents_purchase_valuations';
 
     protected $fillable = [
-    	'name' 
+    	'name', 'purchase_valuation_id'
     ];
+
+    public function purchase_valuation(){
+        return $this->belongsTo('App\PurchaseValuation', 'purchase_valuation_id');
+    }
 }
