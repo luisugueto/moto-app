@@ -3,9 +3,31 @@ $(document).ready(function(){
     //get base URL *********************
     var url = $('#url').val();
 
+    $('#tableTasacionMotos thead tr').clone(true).appendTo('#tableTasacionMotos thead');
+
+    $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
+        if (i != 17) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
     var dataTable = $('#tableTasacionMotos').DataTable({
         processing: true,
         responsive: true,
+        orderCellsTop: true,
+        fixedHeader: true, 
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             url: "getPurchaseValuationsInterested", // json datasource            
@@ -114,16 +136,17 @@ $(document).ready(function(){
             {"data": null,
                 render: function (data, type, row) {
                     let echo = '';
-                    // if (data.edit == true && data.delete == true) {
+                    if (data.edit == true && data.delete == true) {
                         echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
                                 +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
                                 +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
-                    // }
-                    // else if (data.delete == true) {
-                    //     echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                    // } else {
-                    //     echo = "No tienes permiso";
-                    // }
+                    }
+                    else if (data.delete == true) {
+                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
+                                +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                    } else {
+                        echo = "No tienes permiso";
+                    }
                     return echo;
                 },
                 "targets": -1

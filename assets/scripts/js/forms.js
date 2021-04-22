@@ -52,17 +52,15 @@ $(document).ready(function () {
             {"data": null,
                 render: function (data, type, row) {
                     var echo = '';
-                    echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Formulario'>Editar</a>"
-                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Formulario'>Eliminar</a>";
-                    // if (data.edit == true && data.delete == true) {
-                    //     echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Formulario'>Editar</a>"
-                    //             +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Formulario'>Eliminar</a>";
-                    // }
-                    // else if (data.delete == true) {
-                    //     echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Formulario'>Eliminar</a>";
-                    // } else {
-                    //     echo = "No tienes permiso";
-                    // }
+                    if (data.edit == true && data.delete == true) {
+                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Formulario'>Editar</a>"
+                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Formulario'>Eliminar</a>";
+                    }
+                    else if (data.delete == true) {
+                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Formulario'>Eliminar</a>";
+                    } else {
+                        echo = "No tienes permiso";
+                    }
                     return echo;
                 },
                 "targets": -1
