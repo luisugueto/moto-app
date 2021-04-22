@@ -310,6 +310,14 @@ Dropzone.options.myDropzone = {
             e.preventDefault();
             e.stopPropagation();
             myDropzone.processQueue();
+            $('#modalDocument').modal('close');
+
+            var message = `
+                <div class="notification alert alert-success" role="alert">
+                    Registro eliminado exitosamente!
+                </div>`;
+            $('.main-card').before(message);
+                
         });
         
         this.on("addedfile", function(file) {
