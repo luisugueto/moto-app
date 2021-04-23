@@ -73,26 +73,6 @@
                         </div>
                         <button class="close"></button>
                     </div>
-                    {{-- <ul class="header-menu nav">
-                        <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Statistics
-                            </a>
-                        </li>
-                        <li class="btn-group nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-edit"></i>
-                                Projects
-                            </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Settings
-                            </a>
-                        </li>
-                    </ul> --}}
                 </div>
                 <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
@@ -224,13 +204,23 @@
 
     <!-- Web Components -->
     <script src="{{ asset('assets/web_component/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/libs/papaparse.min.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/dataTables.responsive.min.js') }}">
     </script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.js') }}">
-    <script src="{{ asset('assets/web_component/datatables.net/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/dataTables.fixedHeader.min.js') }}"></script>    
+    <script src="{{ asset('assets/web_component/datatables.net/dataTables.editor.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/dataTables.dateTime.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/buttons/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/libs/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/libs/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/libs/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/buttons/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/web_component/datatables.net/buttons/buttons.print.min.js') }}"></script>
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>

@@ -12,13 +12,11 @@
                 </div>
             </div>
             <div class="page-title-actions">
-                @if ($haspermision)
                 <div class="d-inline-block dropdown">
                     <a href="{{ url('formularios') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> 
                         <i class="pe-7s-back btn-icon-wrapper"> </i>Regresar
                     </a>                     
                 </div>
-                @endif
             </div>
         </div>
     </div>
