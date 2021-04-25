@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PurchaseManagement;
 use App\Http\Requests;
 use Redirect;
+use App\LinksRegister;
 
 
 class PurchaseManagementController extends Controller
@@ -26,9 +27,16 @@ class PurchaseManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($purchase_valuation_id)
+    public function create($token)
     {
-        return view('backend.purchase_management.create', compact('purchase_valuation_id'));
+        $linksRegister = LinksRegister::where('token', $token)->first();
+
+        if(!empty($linksRegister)){
+            $purchase_valuation_id = $linksRegister->purchase_valuation_id;
+            return view('backend.purchase_management.create', compact('purchase_valuation_id'));
+        }
+        else
+            return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
 
     /**

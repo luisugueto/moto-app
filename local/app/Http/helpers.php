@@ -23,3 +23,9 @@ use App\PermissionsMenu;
 
         return in_array($id_permission, $explod_permissions); // SE VERIFICA SI EL PERMISO EXISTE EN ESE MENU
     }
+
+    function create_token() 
+    { 
+        $token = md5(uniqid(microtime(), true));
+        return $token;
+    }

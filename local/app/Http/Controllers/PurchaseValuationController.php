@@ -13,6 +13,7 @@ use App\States;
 use App\Processes;
 use App\Emails;
 use App\DocumentsPurchaseValuation;
+use App\LinksRegister;
 use Yajra\Datatables\Datatables;
 
 class PurchaseValuationController extends Controller
@@ -343,8 +344,18 @@ class PurchaseValuationController extends Controller
             $purchase_model->states_id = $request->applyState;
             $purchase_model->update();
 
+            $token = create_token();
+
+            if($request->applyState == 2){ // CHECK IF IS INTERESTED
+                $linksRegister = new LinksRegister();
+                $linksRegister->token = $token;
+                $linksRegister->purchase_valuation_id = $purchase;
+                $linksRegister->save();
+            }
+
+
             // ENVIAR CORREO
-            Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state], function ($message) use ($state, $purchase_model)
+            Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token], function ($message) use ($state, $purchase_model)
             {
                 $message->from('ugueto.luis19@gmail.com', 'MotOstion');
 
