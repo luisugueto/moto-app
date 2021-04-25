@@ -11,6 +11,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
     Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');
     Route::resource('purchase_management', 'PurchaseManagementController');
+
+    Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
+
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
     Route::resource('permisos', 'PermissionsController');

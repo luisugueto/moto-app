@@ -159,6 +159,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div style="background-color:transparent;">
                         <div class="block-grid" style="Margin: 0 auto; min-width: 320px; max-width: 640px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;">
                             <div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">
@@ -212,14 +213,18 @@
                                                     <p style="font-size: 18px; line-height: 1.2; text-align: justify; word-break: break-word; mso-line-height-alt: 29px; margin: 0;"><span style="font-size: 18px; color: #003188;"><strong>{!! $content !!}</strong></span></p>
                                                 </div>
                                             </div>
-                                             
-                                            <div align="center" class="button-container" style="padding-top:15px;padding-right:10px;padding-bottom:15px;padding-left:10px;"> <a href="https://bit.ly/2HxAVMh" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #fb5f3d; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #fb5f3d; border-right: 1px solid #fb5f3d; border-bottom: 1px solid #fb5f3d; border-left: 1px solid #fb5f3d; padding-top: 15px; padding-bottom: 15px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>Link para algo</strong></span></span></a> </div>
+
+                                            <!-- LINK FOR CONTINUE REGISTER  -->
+                                            @if($state->name == 'Interesa')
+                                                <div align="center" class="button-container" style="padding-top:15px;padding-right:10px;padding-bottom:15px;padding-left:10px;"> <a href="{{ url('/purchase_management/create/'.$purchase->id) }}" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #fb5f3d; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #fb5f3d; border-right: 1px solid #fb5f3d; border-bottom: 1px solid #fb5f3d; border-left: 1px solid #fb5f3d; padding-top: 15px; padding-bottom: 15px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>CONTINUAR REGISTRO</strong></span></span></a> </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div style="background-color:transparent;">
                         <div class="block-grid" style="Margin: 0 auto; min-width: 320px; max-width: 640px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: #ffffff;">
                             <div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">

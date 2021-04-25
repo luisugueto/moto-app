@@ -26,9 +26,9 @@ class PurchaseManagementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($purchase_valuation_id)
     {
-        return view('backend.purchase_management.create');
+        return view('backend.purchase_management.create', compact('purchase_valuation_id'));
     }
 
     /**

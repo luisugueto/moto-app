@@ -43,6 +43,9 @@
                     <form class="" role="form" method="POST" action="{{ route('purchase_management.store') }}">
                         {{ csrf_field() }}
                         <div class="divider"></div>
+
+                        <input type="hidden" name="purchase_valuation_id" value="{{ $purchase_valuation_id }}">
+                        
                         <h6><strong>Datos a complementar por el centro CATv</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-4">
