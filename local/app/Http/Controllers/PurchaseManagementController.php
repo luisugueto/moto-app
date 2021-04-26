@@ -30,7 +30,7 @@ class PurchaseManagementController extends Controller
     public function create($token)
     {
         $linksRegister = LinksRegister::where('token', $token)->first();
-
+       
         if(!empty($linksRegister)){
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
             return view('backend.purchase_management.create', compact('purchase_valuation_id'));
@@ -57,16 +57,16 @@ class PurchaseManagementController extends Controller
             'vehicle_delivers' => 'required',
             'name' => 'required',
             'firts_surname' => 'required',
-            'second_surtname' => 'required',
+            // 'second_surtname' => 'required',
             'dni' => 'required|numeric',
-            'birthdate' => 'required|date',
+            // 'birthdate' => 'required|date',
             'phone' => 'required',
             'email' => 'required|email',
             'street' => 'required',
             'nro_street' => 'required|numeric',
-            'stairs' => 'required',
-            'floor' => 'required',
-            'letter' => 'required',
+            // 'stairs' => 'required',
+            // 'floor' => 'required',
+            // 'letter' => 'required',
             'municipality' => 'required',
             'postal_code' => 'required',
             'province' => 'required',
@@ -74,18 +74,18 @@ class PurchaseManagementController extends Controller
             'sale_amount' => 'required',
             'name_representantive' => 'required',
             'firts_surname_representative' => 'required',
-            'second_surtname_representantive' => 'required',
+            // 'second_surtname_representantive' => 'required',
             'dni_representative' => 'required|numeric',
-            'birthdate_representative' => 'required|date',
+            // 'birthdate_representative' => 'required|date',
             'phone_representantive' => 'required',
             'email_representative' => 'required|email',
             'representation_concept' => 'required',
             'brand' => 'required',
             'model' => 'required',
-            'version' => 'required',
+            // 'version' => 'required',
             'type' => 'required',
             'kilometres' => 'required',
-            'color' => 'required',
+            // 'color' => 'required',
             'fuel' => 'required',
             'registration_number' => 'required|numeric',
             'registration_date' => 'required|date',
