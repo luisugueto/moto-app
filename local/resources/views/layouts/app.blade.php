@@ -1,289 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>MotOstion</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-
-
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-        type="text/css">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('assets/css/landing-page.min.css') }}" rel="stylesheet">
-
-</head>
-
-<body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Start Bootstrap</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>MotOstion</title>
+    
+        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ asset('assets/images/logo-inverse.png') }}" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Acerca</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
-                    </li>
-                    @if (Auth::guest())
-                        <li class="nav-item">
-                            <a class="btn btn-primary mr-1" href="{{ url('/login') }}">Ingresar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-info" href="{{ url('/register') }}">Registrarse</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>
-                                Salir</a>
-                        </li>
-                    @endif
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Masthead -->
-    <header class="masthead text-white text-center">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9 mx-auto">
-                    <h1 class="mb-5">Build a landing page for your business or project and generate more leads!</h1>
-                </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0">
-                                <input type="email" class="form-control form-control-lg"
-                                    placeholder="Enter your email...">
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Icons Grid -->
-    <section class="features-icons bg-light text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex">
-                            <i class="icon-screen-desktop m-auto text-primary"></i>
-                        </div>
-                        <h3>Fully Responsive</h3>
-                        <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex">
-                            <i class="icon-layers m-auto text-primary"></i>
-                        </div>
-                        <h3>Bootstrap 4 Ready</h3>
-                        <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                        <div class="features-icons-icon d-flex">
-                            <i class="icon-check m-auto text-primary"></i>
-                        </div>
-                        <h3>Easy to Use</h3>
-                        <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Image Showcases -->
-    <section class="showcase">
-        <div class="container-fluid p-0">
-            <div class="row no-gutters">
-
-                <div class="col-lg-6 order-lg-2 text-white showcase-img"
-                    style="background-image: url({{ asset('assets/images/landing/bg-showcase-1.jpg') }});"></div>
-                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Fully Responsive Design</h2>
-                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will
-                        look great on any device, whether it's a phone, tablet, or desktop the page will behave
-                        responsively!</p>
-                </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col-lg-6 text-white showcase-img"
-                    style="background-image: url('{{ asset('assets/images/landing/bg-showcase-2.jpg') }});">
-                </div>
-                <div class="col-lg-6 my-auto showcase-text">
-                    <h2>Updated For Bootstrap 4</h2>
-                    <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the
-                        way in mobile responsive web development! All of the themes on Start Bootstrap are now using
-                        Bootstrap 4!</p>
-                </div>
-            </div>
-            <div class="row no-gutters">
-                <div class="col-lg-6 order-lg-2 text-white showcase-img"
-                    style="background-image: url('{{ asset('assets/images/landing/bg-showcase-3.jpg') }});"></div>
-                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Easy to Use &amp; Customize</h2>
-                    <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand
-                        some deeper customization options. Out of the box, just add your content and images, and
-                        your
-                        new landing page will be ready to go!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials text-center bg-light">
-        <div class="container">
-            <h2 class="mb-5">What people are saying...</h2>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                        <img class="img-fluid rounded-circle mb-3"
-                            src="{{ asset('assets/images/landing/testimonials-1.jpg') }}" alt="">
-                        <h5>Margaret E.</h5>
-                        <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                        <img class="img-fluid rounded-circle mb-3" src="{{ asset('testimonials-2.jpg') }}" alt="">
-                        <h5>Fred S.</h5>
-                        <p class="font-weight-light mb-0">"Bootstrap is amazing. I've been using it to create lots of
-                            super nice landing pages."</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                        <img class="img-fluid rounded-circle mb-3" src="{{ asset('testimonials-3.jpg') }}" alt="">
-                        <h5>Sarah W.</h5>
-                        <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to
-                            us!"</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="call-to-action text-white text-center">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-9 mx-auto">
-                    <h2 class="mb-4">Ready to get started? Sign up now!</h2>
-                </div>
-                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                    <form>
-                        <div class="form-row">
-                            <div class="col-12 col-md-9 mb-2 mb-md-0">
-                                <input type="email" class="form-control form-control-lg"
-                                    placeholder="Enter your email...">
-                            </div>
-                            <div class="col-12 col-md-3">
-                                <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up!</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item">
-                            <a href="#">About</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Contact</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Terms of Use</a>
-                        </li>
-                        <li class="list-inline-item">&sdot;</li>
-                        <li class="list-inline-item">
-                            <a href="#">Privacy Policy</a>
-                        </li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2020. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="#">
-                                <i class="fab fa-facebook fa-2x fa-fw"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Inicio
+                                <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="list-inline-item mr-3">
-                            <a href="#">
-                                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Acerca</a>
                         </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-instagram fa-2x fa-fw"></i>
-                            </a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Servicios</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                        @if (Auth::guest())
+                            <li class="nav-item">
+                                <a class="btn btn-primary mr-1" href="{{ url('/login') }}">Ingresar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-info" href="{{ url('/register') }}">Registrarse</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/home') }}">{{ Auth::user()->name }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>
+                                    Salir</a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
+        </nav>
+        <!-- Header -->
+        <header class="bg-primary py-5 mb-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <h1 class="display-4 text-white mt-5 mb-2">MotOstion</h1>
+                        <p class="lead mb-5 text-white-50">
+                         @if (session('notification'))
+                            <div class="alert alert-success notification">
+                                {{ session('notification') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger alert-block notification">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Page Content -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mb-5">
+                    <h2>What We Do</h2>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A deserunt neque tempore recusandae animi soluta quasi? Asperiores rem dolore eaque vel, porro, soluta unde debitis aliquam laboriosam. Repellat explicabo, maiores!</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis optio neque consectetur consequatur magni in nisi, natus beatae quidem quam odit commodi ducimus totam eum, alias, adipisci nesciunt voluptate. Voluptatum.</p>
+                    <a class="btn btn-primary btn-lg" href="#">Call to Action &raquo;</a>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h2>Contact Us</h2>
+                    <hr>
+                    <address>
+                        <strong>Start Bootstrap</strong>
+                        <br>3481 Melrose Place
+                        <br>Beverly Hills, CA 90210
+                        <br>
+                    </address>
+                    <address>
+                        <abbr title="Phone">P:</abbr>
+                        (123) 456-7890
+                        <br>
+                        <abbr title="Email">E:</abbr>
+                        <a href="mailto:#">name@example.com</a>
+                    </address>
+                </div>
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <div class="card">
+                        <img class="card-img-top" src="https://placehold.it/300x200" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">Find Out More!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card">
+                        <img class="card-img-top" src="https://placehold.it/300x200" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">Find Out More!</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card">
+                        <img class="card-img-top" src="https://placehold.it/300x200" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Card title</h4>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">Find Out More!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
         </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js">
-    </script>
-
-
-</body>
-
+        <!-- /.container -->
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+            </div>
+            <!-- /.container -->
+        </footer>
+        <!-- Bootstrap core JavaScript -->
+        <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
+        <script src="{{ asset('assets/scripts/base/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script>  
+    </body>
 </html>
+
