@@ -191,7 +191,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
-                                            <select class="form-control select" name="brand" id="brand" onChange="setModel()">
+                                            <select class="form-control select" name="brand" id="brand" onChange="setModel()" style="width: 100%">
                                                 <option value="" disabled selected="">Seleccione</option>
                                                 @foreach($marcas as $marca)
                                                     <option data-id="{{ $marca->id_category }}" value="{{ $marca->marca }}">{{ $marca->marca }}</option>
@@ -207,7 +207,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
-                                            <select class="form-control select" name="model" id="model" disabled >
+                                            <select class="form-control select" name="model" id="model" disabled  style="width: 100%">
                                                 <option value="" disabled selected="">Seleccione</option>
                                             </select>
                                             @if ($errors->has('model'))
@@ -381,6 +381,13 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="card ">
+                            <h5 class="card-header text-white bg-secondary mb-3">Datos de Finalización</h5>
+                            <div class="card-body" id="form_display_complement">
+                                
                             </div>
                         </div>
                     </form>

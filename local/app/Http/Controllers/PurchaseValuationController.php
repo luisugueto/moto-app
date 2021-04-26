@@ -14,6 +14,7 @@ use App\Processes;
 use App\Emails;
 use App\DocumentsPurchaseValuation;
 use App\LinksRegister;
+use App\Forms;
 use Yajra\Datatables\Datatables;
 
 class PurchaseValuationController extends Controller
@@ -28,6 +29,7 @@ class PurchaseValuationController extends Controller
         $haspermision = getPermission('Empleados', 'record-create');
         $states = States::all();
         $processes = Processes::all();
+        
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
    
         return view('backend.purchase_valuation.index', compact('states', 'processes', 'marcas', 'haspermision'));
@@ -35,7 +37,7 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuations()
     {
-        $purchases = PurchaseValuation::where('states_id', 0)->get();
+        $purchases = PurchaseValuation::where('states_id', 1)->get();
 
         $view = getPermission('Empleados', 'record-view');
         $edit = getPermission('Empleados', 'record-edit');
@@ -80,7 +82,7 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsInterested()
     {
-        $purchases = PurchaseValuation::where('states_id', 2)->get();
+        $purchases = PurchaseValuation::where('states_id', 3)->get();
         $view = getPermission('Empleados', 'record-view');
         $edit = getPermission('Empleados', 'record-edit');
         $delete = getPermission('Empleados', 'record-delete');
@@ -124,7 +126,7 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsNoInterested()
     {
-        $purchases = PurchaseValuation::where('states_id', 1)->get();
+        $purchases = PurchaseValuation::where('states_id', 2)->get();
         $view = getPermission('Empleados', 'record-view');
         $edit = getPermission('Empleados', 'record-edit');
         $delete = getPermission('Empleados', 'record-delete');
@@ -168,7 +170,7 @@ class PurchaseValuationController extends Controller
 
     public function noInterested()
     {
-        $purchase_valuation = PurchaseValuation::where('states_id', 1)->get();
+        $purchase_valuation = PurchaseValuation::where('states_id', 2)->get();
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
@@ -178,7 +180,7 @@ class PurchaseValuationController extends Controller
 
     public function interested()
     {
-        $purchase_valuation = PurchaseValuation::where('states_id', 2)->get();
+        $purchase_valuation = PurchaseValuation::where('states_id', 3)->get();
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
@@ -208,7 +210,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
-        $purchase->states_id = 0; // En Revisión
+        $purchase->states_id = 1; // En Revisión
         $purchase->processes_id = 1; // Default
         $purchase->save();
 
@@ -235,7 +237,7 @@ class PurchaseValuationController extends Controller
             $images_purchase->save();
         }
 
-        return Redirect::to('/purchase_valuation')->with('notification', 'Tasación creada exitosamente!');
+        return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Tasación creada exitosamente!');
 
     }
 
@@ -248,6 +250,7 @@ class PurchaseValuationController extends Controller
     public function show($id)
     {
         $purchase_valuation = PurchaseValuation::find($id);
+        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
 
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
@@ -268,6 +271,8 @@ class PurchaseValuationController extends Controller
         $data['old'] = $purchase_valuation['old'];
         $data['price_min'] = $purchase_valuation['price_min'];
         $data['observations'] = $purchase_valuation['observations'];
+        $data['form_display'] = htmlspecialchars_decode($forms->form_display);
+        // dd(htmlspecialchars_decode($forms->form_display));
 
         return response()->json($data);
     }
@@ -346,7 +351,7 @@ class PurchaseValuationController extends Controller
 
             $token = create_token();
 
-            if($request->applyState == 2){ // CHECK IF IS INTERESTED
+            if($request->applyState == 3){ // CHECK IF IS INTERESTED
                 $linksRegister = new LinksRegister();
                 $linksRegister->token = $token;
                 $linksRegister->purchase_valuation_id = $purchase;

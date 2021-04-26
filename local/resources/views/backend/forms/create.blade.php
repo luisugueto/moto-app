@@ -41,8 +41,7 @@
             </h4>
             <div class="row">
                 <div class="col-sm-8">
-                    <div id="form_created">  
-                        {{ csrf_field() }}                      
+                    <div id="form_created">                                              
                         <div id="editorWYS" contenteditable="true">
                             <div style="border: 3px solid;border-color: #1976d2; border-radius: 5px; width: 100%;padding-top:2%;padding-bottom: 0%;margin-bottom: 7px">
                                 <h1 id="title">Title</h1>
@@ -58,6 +57,7 @@
                         </div>
                     </div>
                     <div class="text-right text-capitalize mt-4">
+                        {{ csrf_field() }}  
                         <input type="hidden" id="form_id" name="form_id" value="0">
                         <button onclick="forms_view.savedata();" class="btn btn-primary tr" id="btn-save" value="add" >Guardar Cambios</button>
                     </div>

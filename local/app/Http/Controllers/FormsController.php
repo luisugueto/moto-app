@@ -23,7 +23,7 @@ class FormsController extends Controller
 
     public function getForms()
     {
-        $forms = Forms::select(['id','name','form_original','form_display','status']);
+        $forms = Forms::all();
 
         $view = getPermission('Formularios', 'record-view');
         $edit = getPermission('Formularios', 'record-edit');
@@ -66,14 +66,14 @@ class FormsController extends Controller
     public function store(Request $request)
     {        
         $validator = \Validator::make($request->all(), ['name' => 'required']);
-
+        // dd(htmlentities($request->form));
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         } else {
             $input = $request->all();
             $input['name'] = $input['name'];
-            $input['form_original'] = ($input['form_original']);
-            $input['form_display'] = ($input['form']);
+            $input['form_original'] = htmlentities($input['form_original']);
+            $input['form_display'] = htmlentities($input['form']);
 
             $form = Forms::create($input);
             return response()->json($form);
@@ -91,7 +91,7 @@ class FormsController extends Controller
         $form = Forms::find($id);
         $json_data = array(
             "id_form" => $form->id,
-            "form_original" => utf8_encode($form->form_original),
+            "form_original" => htmlspecialchars_decode($form->form_original),
         );
         return response()->json($json_data);
     }
@@ -123,8 +123,8 @@ class FormsController extends Controller
             return response()->json($validator->errors(), 422);
         } else {
             $form->name = $request->name;
-            $form->form_original = $request->form_original;
-            $form->form_display = $request->form;
+            $form->form_original = htmlentities($request->form_original);
+            $form->form_display = htmlentities($request->form);
             $form->save();
             return response()->json($form);
         }

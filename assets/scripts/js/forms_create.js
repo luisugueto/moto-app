@@ -270,13 +270,7 @@ var forms_view = {
         $('.billing_address').removeAttr('onclick');
         var vform = $('#form_created').html();
         var vForm = vform.replace('contenteditable="true"', 'contenteditable="false"');
-
-
-        var vTabPayment = $('#form_created').find('.tab_payment');
-        if (vTabPayment.length) {
-            var vFormPayment = vTabPayment.html();
-            vFormPayment.replace(/[']/g, "\'");
-        }
+ 
 
 
         //console.log(vFormPayment)
@@ -285,16 +279,17 @@ var forms_view = {
 
         // });
 
-        preloader('show');
- 
+        // preloader('show');
+        var form_display = vForm.replace(/[']/g, "\'");
+        var form_original = formOriginal.replace(/[']/g, "\'");
         var formData = {
             name: $('#title').text(),
             description: $('#desc').text(),            
-            form: vForm.replace(/[']/g, "\'"),
-            form_original: formOriginal.replace(/[']/g, "\'")
+            form: form_display.replace(/\s+/g, " "),
+            form_original: form_original.replace(/\s+/g, " ")
         }
         console.log(formData)
-        //used to determine the http verb to use [add=POST], [update=PUT]
+        // used to determine the http verb to use [add=POST], [update=PUT]
         var button = $('#btn-save').val();
         var type = "POST"; //for creating new resource
         var form_id = $('#form_id').val();

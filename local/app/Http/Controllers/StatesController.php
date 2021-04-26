@@ -85,7 +85,7 @@ class StatesController extends Controller
             $state = States::create($request->all());
             $email = Email::where('id', $state->email_id)->first();
             
-            return response()->json($data);
+            return response()->json($state);
         }
          
     }

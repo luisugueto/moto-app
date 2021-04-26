@@ -47,11 +47,11 @@ $(document).ready(function(){
             { "data": null,
                 render:function(data){
                     var echo = '';
-                    if(data.states_id == 0)
+                    if(data.states_id == 1)
                         echo = "En Revisión";
-                    else if(data.states_id == 1)
-                        echo = "No Interesa";
                     else if(data.states_id == 2)
+                        echo = "No Interesa";
+                    else if(data.states_id == 3)
                         echo = "Interesa";
 
                     return echo;
@@ -182,9 +182,10 @@ $(document).ready(function(){
             type: "GET",
             url: url + '/' + id,
             success: function (data) {
-                
+       
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
+                // $('#brand').val(data.brand).trigger("change");
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
@@ -215,6 +216,10 @@ $(document).ready(function(){
 
                 $('#price_min').val(data.price_min);
                 $('#observations').val(data.observations);
+
+                console.log(data.form_display)
+
+                $('#form_display_complement').html(data.form_display);
 
                 $('.hide').prop('hidden', true);
                 
