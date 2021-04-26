@@ -72,14 +72,14 @@ class PurchaseManagementController extends Controller
             'province' => 'required',
             'iban' => 'required',
             'sale_amount' => 'required',
-            'name_representantive' => 'required',
-            'firts_surname_representative' => 'required',
+            // 'name_representantive' => 'required',
+            // 'firts_surname_representative' => 'required',
             // 'second_surtname_representantive' => 'required',
-            'dni_representative' => 'required|numeric',
+            // 'dni_representative' => 'required|numeric',
             // 'birthdate_representative' => 'required|date',
-            'phone_representantive' => 'required',
-            'email_representative' => 'required|email',
-            'representation_concept' => 'required',
+            // 'phone_representantive' => 'required',
+            // 'email_representative' => 'required|email',
+            // 'representation_concept' => 'required',
             'brand' => 'required',
             'model' => 'required',
             // 'version' => 'required',
@@ -87,7 +87,7 @@ class PurchaseManagementController extends Controller
             'kilometres' => 'required',
             // 'color' => 'required',
             'fuel' => 'required',
-            'registration_number' => 'required|numeric',
+            'registration_number' => 'required',
             'registration_date' => 'required|date',
             'registration_country' => 'required',
             'frame_no' => 'required',
@@ -100,7 +100,7 @@ class PurchaseManagementController extends Controller
        
         $gestion->save();
 
-        return Redirect::to('/purchase_management')->with('notification', 'Gestion de compra creada exitosamente!');
+        return Redirect::to('/')->with('notification', 'Gestion de compra creada exitosamente!');
     }
 
     /**
