@@ -24,8 +24,8 @@
 <body>
     <div class="app-container app-theme-white body-tabs-shadow">
         <div class="app-container">
-            <div class="bg-sunny-morning">
-                {{-- <div class="bg-heavy-rain"> --}}
+            {{-- <div class="bg-sunny-morning"> --}}
+            <div class="bg-heavy-rain">
                 <div class="d-flex">
                     <div class="mx-auto col-md-8">
                         <div class="app-logo-inverse mx-auto mb-3"></div>

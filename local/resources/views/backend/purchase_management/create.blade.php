@@ -1,27 +1,6 @@
-@extends('layouts.backend')
+@extends('layouts.outside')
 
 @section('content')
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="pe-7s-speaker icon-gradient bg-night-fade">
-                    </i>
-                </div>
-                <div>Gestión de compra
-                    <div class="page-title-subheading">Ingrese los detalles del formulario para registrar la información
-                        solicitada.
-                    </div>
-                </div>
-            </div>
-            <div class="page-title-actions">
-                <div class="d-inline-block dropdown">
-                    <a href="{{ url('purchase_management') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
-                            class="pe-7s-back-2 btn-icon-wrapper"> </i>Volver</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
@@ -34,7 +13,7 @@
                                         Datos a Completar Para la entrega de un vehículo
                                     </div>
                                     <div class="float-right">
-                                        Hoja #00
+                                        {{-- Hoja #00 --}}
                                     </div>
                                 </div>
                             </div>
@@ -707,7 +686,7 @@
                             </div>
                         </div>
                         <button type='submit' class="mt-2 btn btn-primary btn-lg">Enviar</button>
-                    </form>
+                    {{-- </form> --}}
                 </div>
             </div>
         </div>
