@@ -6,13 +6,13 @@ Route::get('/', function () {
 
 Route::auth();
 
+Route::resource('purchase_management', 'PurchaseManagementController');
+Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
+
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
-    Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');
-    Route::resource('purchase_management', 'PurchaseManagementController');
-
-    Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
+    Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');    
 
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
