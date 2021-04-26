@@ -5,6 +5,17 @@
     .hidden{
   display:none;
 }
+.disable {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.disable div,
+.disable textarea {
+  overflow: hidden;
+}
+.disable input{
+    
+}
 </style>
     <div class="row">
         <div class="col-lg-12">
@@ -29,11 +40,11 @@
 
                         {{ csrf_field() }}
                         <div class="divider"></div>
-                        <div class="card ">
+                        <div class="card" id="moto">
                             <h5 class="card-header text-white bg-secondary mb-3">Datos de la moto</h5>
                             <div class="card-body">
                                 <div class="form-row row g-1">
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 show">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
                                             <select class="form-control select" name="brand" id="brand" onChange="setModel()">
@@ -49,7 +60,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 show">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
                                             <select class="form-control select" name="model" id="model" disabled >
@@ -61,6 +72,33 @@
                                                 </span>
                                             @endif
                                         </div>
+                                    </div>
+
+                                    <div class="col-md-3 hidden">
+                                        <div class="position-relative form-group">
+                                            <label for="brand" class="">Marca:</label>
+                                            <input type="text" class="form-control" id="modelotxt" name="brand" placeholder="Escribe tu modelo">
+                                            @if ($errors->has('brand'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('brand') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 hidden">
+                                        <div class="position-relative form-group">
+                                            <label for="model" class="">Modelo:</label>
+                                            <input type="text" class="form-control oculto" name="model" id="marcatxt" placeholder="Escribe tu marca">
+                                            @if ($errors->has('model'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('model') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <br>
+                                        <button type="button" id="ver" class="btn btn-danger form-control pull-left">No encuentro Modelo/marca</button>
                                     </div>
                                     
                                     <div class="col-md-3">
@@ -88,10 +126,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="form-group">
+                                    <button type="button" id="continuar" class="btn btn-primary pull-right">Continuar</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
-                        <div class="card ">
+                        <div class="card disable" id="contacto">
                             <h5 class="card-header text-white bg-secondary mb-3">Datos de Contacto</h5>
                             <div class="card-body">
                                 <div class="form-row row g-1">
@@ -156,10 +198,15 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="form-group">
+                                    <button type="button" id="volvermoto" class="btn btn-danger pull-left">Atras</button>
+                                    <button type="button" id="tasacion" class="btn btn-primary pull-right">Continuar</button>
+                                </div>
                             </div>
                         </div>
                         <div class="divider"></div>
-                        <div class="card ">
+                        <div class="card disable" id="estado">
                             <h5 class="card-header text-white bg-secondary mb-3">Estado de la Moto</h5>
                             <div class="card-body">
                                 <div class="form-row row g-1">
@@ -239,14 +286,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="form-group">
+                                    <button type="button" id="volverdatos" class="btn btn-danger pull-left">Atras</button>
+                                    <button type="submit" id="tasacion" class="btn btn-primary pull-right finalizar">Finalizar</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6 ml-auto mt-2">
-                                <button type='submit' class="mt-2 btn btn-primary btn-lg btn-block">Enviar</button>
-                            </div>
-                            <div class="col-md-3"></div>
                         </div>
                         
                     {!! Form::close() !!}
@@ -296,6 +341,76 @@
                 }
             });
         });
+
+        var $i = 1;
+        $('#ver').click(function(){
+            $('.hidden').toggle();
+            $('.show').toggle();
+            if ($i === 0) {
+                $(this).html("No encuentro Modelo/marca");
+                $('#marcatxt').removeAttr('required');
+                $('#modelotxt').removeAttr('required');
+                $('#marcatxt').attr('disabled', 'disabled');
+                $('#modelotxt').attr('disabled', 'disabled');
+               
+                $('#model').removeAttr('disabled');
+                $('#brand').removeAttr('disabled');
+            
+                $i = 1;
+            } else {
+                $(this).html("Elegir marca y modelo de la lista");
+                $('#model').attr('disabled', 'disabled');
+                $('#brand').attr('disabled', 'disabled');
+                $('#marcatxt').removeAttr('disabled');
+                $('#modelotxt').removeAttr('disabled');
+
+                $('#marcatxt').attr('required', 'required');
+                $('#modelotxt').attr('required', 'required');
+                $('#marcatxt').val('');
+                $('#modelotxt').val('');
+                $i = 0;
+            }
+        });
+
+        //primer siguiente
+        $('#continuar').click(function(e){
+            e.preventDefault();
+            var modelo=$('#model').val();
+            var modelotxt=$('#modelotxt').val();
+            if (modelo || modelotxt){
+                $("#moto").addClass("disable");
+                $("#contacto").removeClass("disable");
+            }
+            
+        });
+        //
+        //volver a datos moto
+        $('#volvermoto').click(function(){
+            $("#moto").removeClass("disable");
+            $("#contacto").addClass("disable");
+        });
+        //
+        //sigue a tasacion
+        $('#tasacion').click(function(e){
+            e.preventDefault();
+            var correo=$('#email').val();
+            var nombre=$('#name').val();
+            var telefono=$('#phone').val();
+            var provincia=$('#province').val();
+            if (correo && nombre && telefono && provincia){
+                $("#contacto").addClass("disable");
+                $("#estado").removeClass("disable");
+            }
+            
+        });
+        //
+        //volver a datos contacto
+        $('#volverdatos').click(function(){
+            $("#contacto").removeClass("disable");
+            $("#estado").addClass("disable");
+        });
+        //
+
     </script>
 
     <script>
