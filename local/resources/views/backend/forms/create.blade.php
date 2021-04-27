@@ -93,6 +93,20 @@
                                             </li>
                                             <li class="uk-nestable-item">
                                                 <div class="uk-nestable-panel">
+                                                    <i class="fa fa-sort-numeric-up-alt"></i>
+                                                    <span><strong>Number</strong></span>
+                                                    <button class="mb-2 mr-2 btn-icon btn btn-danger  float-right" data-toggle="modal" data-target="#modal_inputs" onclick="$('#inputs_options').text('Opciones - Number');$('#create_input').val('number');$('.noti').css('opacity', 0);forms_view.clear_select_dynamic();"  style="margin-top: -4px;height: 25px;"><i class="fa fa-plus"></i></button>
+                                                </div>
+                                            </li>
+                                            <li class="uk-nestable-item">
+                                                <div class="uk-nestable-panel">
+                                                    <i class="fa fa-dollar-sign"></i>
+                                                    <span><strong>Price</strong></span>
+                                                    <button class="mb-2 mr-2 btn-icon btn btn-danger  float-right" data-toggle="modal" data-target="#modal_inputs" onclick="$('#inputs_options').text('Opciones - Price');$('#create_input').val('price');$('.noti').css('opacity', 0);forms_view.clear_select_dynamic();"  style="margin-top: -4px;height: 25px;"><i class="fa fa-plus"></i></button>
+                                                </div>
+                                            </li>
+                                            <li class="uk-nestable-item">
+                                                <div class="uk-nestable-panel">
                                                     <i class="fa fa-envelope"></i>
                                                     <span><strong>Email</strong></span>
                                                     <button class="mb-2 mr-2 btn-icon btn btn-danger  float-right" data-toggle="modal" data-target="#modal_inputs" onclick="$('#inputs_options').text('Opciones - Email');$('#create_input').val('email');$('.noti').css('opacity', 0);"  style="margin-top: -4px;height: 25px;"><i class="fa fa-plus"></i></button>

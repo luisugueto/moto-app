@@ -1,31 +1,302 @@
-@extends('layouts.outside')
+@extends('layouts.backend')
 
 @section('content')
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <h4>
-                        <strong>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="float-left">
-                                        Datos a Completar Para la entrega de un vehículo
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-speaker icon-gradient bg-night-fade">
+                </i>
+            </div>
+            <div><span class="lang" key="heading">Tasacion Motos</span>
+                <div class="page-title-subheading">Ficha de la moto.</div>
+            </div>
+        </div>
+        <div class="page-title-actions">
+             
+            <div class="d-inline-block dropdown">
+                <a href="{{ url('purchase_valuation_interested') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> 
+                    <i class="pe-7s-back btn-icon-wrapper"> </i>Regresar
+                </a>                     
+            </div>         
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <div class="mb-3 card">
+            <div class="card-body">
+                <ul class="tabs-animated-shadow tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link active" id="tab-c-0" data-toggle="tab" href="#tab-animated-0">
+                            <span>Fotos</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-1">
+                            <span>Documentos</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
+                        <p class="mb-0">Aqui veran las fotos y agregaran mas</p>
+                    </div>
+                    <div class="tab-pane" id="tab-animated-1" role="tabpanel">
+                        <p class="mb-0">Aqui veran los y agregaran mas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="mb-3 card">
+            <div class="card-body">
+                <ul class="tabs-animated-shadow tabs-animated nav">
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-ficha-0">
+                            <span>Datos de la moto</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-ficha-1">
+                            <span>Datos de Contacto</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-ficha-2">
+                            <span>Estado de la Moto</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-3">
+                            <span>Datos CATv</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-4">
+                            <span>Datos del Propietario</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-5">
+                            <span>Datos Bancarios</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-6">
+                            <span>Datos del Representante</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-7">
+                            <span>Datos del vehículo</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-8">
+                            <span>Datos momento de entrega</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-ficha-0" role="tabpanel">
+                        <div class="divider"></div>
+                        <div class="form-row row g-1">
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="brand" class="">Marca:</label>
+                                    <select class="form-control select" name="brand" id="brand" onChange="setModel()" style="width: 100%">
+                                        <option value="" disabled selected="">Seleccione</option>
+                                        @foreach($marcas as $marca)
+                                            <option data-id="{{ $marca->id_category }}" value="{{ $marca->marca }}">{{ $marca->marca }}</option>
+                                        @endforeach
+                                    </select>
+                                    @if ($errors->has('brand'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('brand') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="model" class="">Modelo:</label>
+                                    <select class="form-control select" name="model" id="model" disabled  style="width: 100%">
+                                        <option value="" disabled selected="">Seleccione</option>
+                                    </select>
+                                    @if ($errors->has('model'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('model') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="year" class="">Año:</label>
+                                    <input name="year" id="year" type="date"
+                                        class="form-control" value="{{ old('year') }}" required>
+                                    @if ($errors->has('year'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('year') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="km" class="">KM:</label>
+                                    <input name="km" id="km" type="text"
+                                        class="form-control" value="{{ old('km') }}" required>
+                                    @if ($errors->has('km'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('km') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-1" role="tabpanel">
+                        <div class="divider"></div>
+                        <div class="form-row row g-1">
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="name" class="">Nombre:</label>
+                                    <input name="name" id="name" type="text" class="form-control"
+                                        value="{{ old('name') }}" required>
+                                    @if ($errors->has('name'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="position-relative form-group">
+                                    <label for="lastname" class="">Apellido:</label>
+                                    <input name="lastname" id="lastname" type="text" class="form-control"
+                                        value="{{ old('lastname') }}" required>
+                                    @if ($errors->has('lastname'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('lastname') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="email" class="">Email:</label>
+                                    <input name="email" id="email" type="text" class="form-control"
+                                        value="{{ old('email') }}" required>
+                                    @if ($errors->has('email'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>                                   
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="phone" class="">Teléfono:</label>
+                                    <input name="phone" id="phone" type="text" class="form-control"
+                                        value="{{ old('phone') }}" required>
+                                    @if ($errors->has('phone'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('phone') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="province" class="">Provincia:</label>
+                                    <input name="province" id="province" type="province" class="form-control"
+                                        value="{{ old('province') }}" required>
+                                    @if ($errors->has('province'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('province') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-2" role="tabpanel">
+                        <div class="divider"></div>
+                        <div class="form-row row g-1">
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="status_trafic" class="">Estado en tráfico: </label>
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="high" name="status_trafic"
+                                            class="custom-control-input" value="Alta">
+                                        <label class="custom-control-label" for="high">Alta</label>
                                     </div>
-                                    <div class="float-right">
-                                        {{-- Hoja #00 --}}
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="low" name="status_trafic"
+                                            class="custom-control-input" value="Baja definitiva">
+                                        <label class="custom-control-label" for="low">Baja</label>
+                                    </div>
+                                    @if ($errors->has('status_trafic'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('status_trafic') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="position-relative form-group">
+                                    <label for="status_vehicle" class="">Estado de la Moto: </label>
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="g_del" name="g_del"
+                                            class="custom-control-input" value="1">
+                                        <label class="custom-control-label" for="g_del">Golpe Delantero</label>
+                                    </div>
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="g_tras" name="g_tras"
+                                            class="custom-control-input" value="1">
+                                        <label class="custom-control-label" for="g_tras">Golpe Trasero</label>
+                                    </div>
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="av_elec" name="av_elec"
+                                            class="custom-control-input" value="1">
+                                        <label class="custom-control-label" for="av_elec">Avería Eléctrica</label>
+                                    </div>
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="av_mec" name="av_mec"
+                                            class="custom-control-input" value="1">
+                                        <label class="custom-control-label" for="av_mec">Avería Mecánica</label>
+                                    </div>
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <input type="radio" id="old" name="old"
+                                            class="custom-control-input" value="1">
+                                        <label class="custom-control-label" for="old">Vieja o Abandonada</label>
                                     </div>
                                 </div>
                             </div>
-                        </strong>
-                    </h4>
-                    <form class="" role="form" method="POST" action="{{ route('purchase_management.store') }}">
-                        {{ csrf_field() }}
+                            <div class="col-md-12">
+                                <div class="position-relative form-group">
+                                    <label for="status_vehicle" class="">Observaciones: </label>
+                                    <textarea class="form-control" id="observations" name="observations"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="position-relative form-group">
+                                    <label for="status_vehicle" class="">¿Cual es el precio mínimo que aceptas?: </label>
+                                    <input type="number" step="any" class="form-control" id="price_min" name="price_min" required>
+                                </div>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">Datos de Finalización</h5>
+                        <div class="card-body" id="form_display_complement">
+                            
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-3" role="tabpanel">
                         <div class="divider"></div>
-
-                        <input type="hidden" name="purchase_valuation_id" value="{{ $purchase_valuation_id }}">
-                        
-                        <h6><strong>Datos a complementar por el centro CATv</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
@@ -127,8 +398,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-4" role="tabpanel">
                         <div class="divider"></div>
-                        <h6><strong>Datos del Propietario del Vehículo</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
@@ -315,8 +587,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-5" role="tabpanel">
                         <div class="divider"></div>
-                        <h6><strong>Datos Bancarios para realizar el pago</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-6">
                                 <div class="position-relative form-group">
@@ -343,8 +616,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-6" role="tabpanel">
                         <div class="divider"></div>
-                        <h6><strong>Datos del Representante del propietario del vehículo</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
@@ -448,8 +722,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-7" role="tabpanel">
                         <div class="divider"></div>
-                        <h6><strong>Datos del vehículo</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
@@ -615,8 +890,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane" id="tab-ficha-8" role="tabpanel">
                         <div class="divider"></div>
-                        <h6><strong>Datos del vehículo en el momento de entrega</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-6">
                                 <div class="position-relative form-group">
@@ -685,10 +961,16 @@
                                 </div>
                             </div>
                         </div>
-                        <button type='submit' class="mt-2 btn btn-primary btn-lg">Enviar</button>
-                    {{-- </form> --}}
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
+</div>
+
+@section('modals')
+<script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>
+@endsection
+
 @endsection

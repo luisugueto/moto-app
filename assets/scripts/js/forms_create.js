@@ -389,6 +389,30 @@ var forms_view = {
                         <textarea id="${nameField}" name="${nameField}" ${requiredField} class="form-control m-input" ${strRows}' /></textarea>
                     </div>`;
                     break;
+                case 'number':
+                    vInput += `<div class="item">
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.destroy_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-info float-right delete" style="margin-top: -5px;margin-bottom: 10px;">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.edit_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-warning float-right edit" style="margin-top: -5px;margin-bottom: 10px; width: 30px;height: 30px; padding: 1px; display:none;">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <label class="capitalize_text">${labelText}</label>
+                                <input type="number" class="form-control m-input" min="0" id="${nameField}" name="${nameField}" ${requiredField} />
+                            </div>`;
+                    break;
+                case 'price':
+                    vInput += `<div class="item">
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.destroy_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-info float-right delete" style="margin-top: -5px;margin-bottom: 10px;">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.edit_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-warning float-right edit" style="margin-top: -5px;margin-bottom: 10px; width: 30px;height: 30px; padding: 1px; display:none;">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <label class="capitalize_text">${labelText}</label>
+                                <input type="number" class="form-control m-input" step="0.1" id="${nameField}" name="${nameField}" ${requiredField} />
+                            </div>`;
+                    break;
                 case 'email':
                     vInput += `<div class="item">
                         <button type="button" id="dest_${nameField}" onclick="forms_view.destroy_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-info float-right delete" style="margin-top: -5px;margin-bottom: 10px;">
@@ -844,6 +868,30 @@ var forms_view = {
                         <label class="capitalize_text">${labelText}</label>
                         <textarea id="${nameField}" name="${nameField}" ${requiredField} class="form-control m-input" ${strRows}' /></textarea>
                     </div>`;
+                    break;
+                case 'number':
+                    vInput += `<div class="item">
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.destroy_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-info float-right delete" style="margin-top: -5px;margin-bottom: 10px;">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.edit_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-warning float-right edit" style="margin-top: -5px;margin-bottom: 10px; width: 30px;height: 30px; padding: 1px; display:none;">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <label class="capitalize_text">${labelText}</label>
+                                <input type="number" class="form-control m-input" min="0" id="${nameField}" name="${nameField}" ${requiredField} />
+                            </div>`;
+                    break;
+                case 'price':
+                    vInput += `<div class="item">
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.destroy_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-info float-right delete" style="margin-top: -5px;margin-bottom: 10px;">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" id="dest_${nameField}" onclick="forms_view.edit_field(\'div_${ nameField}\')" class="btn btn-sm m-btn btn-warning float-right edit" style="margin-top: -5px;margin-bottom: 10px; width: 30px;height: 30px; padding: 1px; display:none;">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <label class="capitalize_text">${labelText}</label>
+                                <input type="number" class="form-control m-input" step="0.1" id="${nameField}" name="${nameField}" ${requiredField} />
+                            </div>`;
                     break;
                 case 'email':
                     vInput += `<div class="item">

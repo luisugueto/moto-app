@@ -137,7 +137,7 @@ $(document).ready(function(){
                 render: function (data, type, row) {
                     let echo = '';
                     if (data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Ficha Moto'>Ficha Moto</a>"
                                 +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
                                 +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
                     }
@@ -161,57 +161,14 @@ $(document).ready(function(){
     $(document).on('click', '.button_edit', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id = data.id;
+        var id_purchase = data.id;
 
-        // Populate Data in Edit Modal Form
-        $.ajax({
-            type: "GET",
-            url: url + '/' + id,
-            success: function (data) {
-                
-                $('#purchase_id').val(data.id);
-                $('#year').val(data.year);
-                $('#km').val(data.km);
-                $('#name').val(data.name);
-                $('#lastname').val(data.lastname);
-                $('#email').val(data.email);
-                $('#phone').val(data.phone);
-                $('#province').val(data.province);
-                
-                if(data.status_trafic == 'Alta')
-                    $('#high').attr('checked', true)
-                else if(data.status_trafic == 'Baja definitiva')
-                    $('#low').attr('checked', true)
-
-                // console.log(data);
-                if(data.g_del == 1)
-                    $('#g_del').attr('checked', true)
-
-                if(data.g_tras == 1)
-                    $('#g_tras').attr('checked', true)
-
-                if(data.av_elec == 1)
-                    $('#av_elec').attr('checked', true)
-
-                if(data.av_mec == 1)
-                    $('#av_mec').attr('checked', true)
-
-                if(data.old == 1)
-                    $('#old').attr('checked', true)
-
-                $('#price_min').val(data.price_min);
-                $('#observations').val(data.observations);
-
-                $('.hide').prop('hidden', true);
-                
-                $('#btn-save').val("update");
-                $('#modalPurchase').modal('show');
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
+        sessionStorage.setItem('id_purchase', id_purchase);
+        sessionStorage.setItem('action', 2);
+        window.location.href = 'purchase_valuation_interested/ficha_de_la_moto';       
+         
     });
+
 
 
     //create new product / update existing product ***************************

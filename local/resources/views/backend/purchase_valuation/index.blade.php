@@ -384,7 +384,7 @@
                             </div>
                         </div>
                         <div class="divider"></div>
-                        <div class="card ">
+                        <div class="card">
                             <h5 class="card-header text-white bg-secondary mb-3">Datos de Finalización</h5>
                             <div class="card-body" id="form_display_complement">
                                 

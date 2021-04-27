@@ -153,7 +153,7 @@ $(document).ready(function(){
                     if (data.edit == true && data.delete == true) {
                         echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
                                 +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                                 
                     }
                     else if (data.delete == true) {
                         echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
@@ -185,7 +185,8 @@ $(document).ready(function(){
        
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
-                // $('#brand').val(data.brand).trigger("change");
+                $('#brand').val(data.brand).trigger("change");
+                $('#model').val(data.model).trigger("change");
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
@@ -217,7 +218,45 @@ $(document).ready(function(){
                 $('#price_min').val(data.price_min);
                 $('#observations').val(data.observations);
 
-                console.log(data.form_display)
+                if (data.data_serialize !== '') {
+                    var response = JSON.parse(data.data_serialize);
+                    setTimeout(function() {
+                        for (i = 0; i < response.length; i++) {
+
+                            if ($('#' + response[i].name + '.date').length) {
+
+                                if (response[i].value != '') {
+                                    var dateValue = response[i].value;
+                                    var date2 = new Date(dateValue);
+                                    if (dateValue.search('-') != -1) {
+                                        date2.setDate(date2.getDate() + 1);
+                                    }
+                                    //console.log('response[i].value: ' + response[i].value + ' ;date2:' + date2);
+                                    $('#' + response[i].name).datepicker('setDate', date2);
+                                }
+                            } else if ($('#' + response[i].name + '.date_us').length) {
+
+                                if (response[i].value != '') {
+                                    var dateValue = response[i].value;
+                                    var date2 = new Date(dateValue);
+                                    if (dateValue.search('-') != -1) {
+                                        date2.setDate(date2.getDate() + 1);
+                                    }
+                                    //console.log('response[i].value: ' + response[i].value + ' ;date2:' + date2);
+                                    $('#' + response[i].name).datepicker('setDate', date2);
+                                }
+                            } else if (response[i].name.indexOf('radio_') > -1) {
+
+                                $("input[name=" + response[i].name + "][value='" + response[i].value + "']").prop("checked", true);
+
+                            } else {
+
+                                $('#' + response[i].name).val(response[i].value);
+                                $('.' + response[i].name + '').text(response[i].value);
+                            }
+                        }
+                    }, 3000);
+                }
 
                 $('#form_display_complement').html(data.form_display);
 
@@ -235,7 +274,45 @@ $(document).ready(function(){
 
     //create new product / update existing product ***************************
     $("#btn-save").click(function (e) {
-        e.preventDefault(); 
+        e.preventDefault();
+        var data = $('#form_display_complement').find('select, textarea, input').serializeArray();
+        var dataArray = [];
+       
+        for (i = 0; i < data.length; i++) {
+            if ($('#' + data[i].name + '.tagss').length) {
+                var find = false;
+                $.each(dataArray, function(key, val) {
+                    if (val.name == data[i].name) {
+                        dataArray[key].value = data[i].value + ',' + val.value;
+                        find = true;
+                    }
+                });
+                if (!find) {
+                    dataArray.push({
+                        name: data[i].name,
+                        value: data[i].value
+                    });
+                }
+            } else if ($('#' + data[i].name + '.date').length) {
+                var today = new Date(data[i].value);
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = yyyy + '-' + mm + '-' + dd;
+
+                dataArray.push({
+                    name: data[i].name,
+                    value: today
+                });
+            }  else {
+                dataArray.push({
+                    name: data[i].name,
+                    value: data[i].value
+                });
+            }
+        }
+        // console.log(dataArray)
+        var dataSerialize = JSON.stringify(dataArray, null, 2);
         var formData = {
             brand: $("#brand").val(),
             model: $("#model").val(),
@@ -254,6 +331,7 @@ $(document).ready(function(){
             old: $("#old").val(),
             price_min: $("#price_min").val(),
             observations: $("#observations").val(),
+            data_serialize: dataSerialize.replace(/\s+/g, " ")
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
@@ -300,7 +378,7 @@ $(document).ready(function(){
                  
                 }
             }
-        });
+         });
     });
 
 

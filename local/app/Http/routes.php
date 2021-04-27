@@ -37,6 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Views Purchase Valuation
     Route::get('purchase_valuation_no_interested', 'PurchaseValuationController@noInterested');
     Route::get('purchase_valuation_interested', 'PurchaseValuationController@interested');
+    Route::get('purchase_valuation_interested/ficha_de_la_moto', 'PurchaseValuationController@showFicha');
+    Route::get('purchase_valuation_interested/ficha_de_la_moto/{id}', 'PurchaseValuationController@getDataFicha');
 
     //Change Status Views
     Route::post('empleados/change_status_user', 'UserController@changeStatus');

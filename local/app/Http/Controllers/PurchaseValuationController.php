@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\PurchaseValuation;
+use App\PurchaseManagement;
 use App\ImagesPurchase;
 use Redirect;
 use Storage;
@@ -272,6 +273,7 @@ class PurchaseValuationController extends Controller
         $data['price_min'] = $purchase_valuation['price_min'];
         $data['observations'] = $purchase_valuation['observations'];
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
+        $data['data_serialize'] = utf8_encode($purchase_valuation['data_serialize']);
         // dd(htmlspecialchars_decode($forms->form_display));
 
         return response()->json($data);
@@ -301,6 +303,7 @@ class PurchaseValuationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request->all());
         $validator = \Validator::make($request->all(),[
             'brand' => 'required',
             'model' => 'required',
@@ -410,5 +413,49 @@ class PurchaseValuationController extends Controller
         $projectImage->purchase_valuation_id = $request->id;
         $projectImage->name = $fileNameToStore;
         $projectImage->save();
+    }
+
+    public function showFicha()
+    {
+        $states = States::all();
+        $processes = Processes::all();
+        
+        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
+   
+        return view('backend.purchase_valuation.ficha', compact('states', 'processes', 'marcas'));
+
+    }
+
+    public function getDataFicha($id)
+    {
+         
+        $purchase_valuation = PurchaseValuation::find($id);
+        // $purchase_management = PurchaseManagement::where('')
+        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
+
+        $data['id'] = $purchase_valuation['id'];
+        $data['date'] = $purchase_valuation['date'];
+        $data['brand'] = $purchase_valuation['brand'];
+        $data['model'] = $purchase_valuation['model'];
+        $data['year'] = $purchase_valuation['year'];
+        $data['km'] = $purchase_valuation['km'];
+        $data['email'] = $purchase_valuation['email'];
+        $data['name'] = $purchase_valuation['name'];
+        $data['lastname'] = $purchase_valuation['lastname'];
+        $data['phone'] = $purchase_valuation['phone'];
+        $data['province'] = $purchase_valuation['province'];
+        $data['status_trafic'] = $purchase_valuation['status_trafic'];
+        $data['g_del'] = $purchase_valuation['g_del'];
+        $data['g_tras'] = $purchase_valuation['g_tras'];
+        $data['av_elec'] = $purchase_valuation['av_elec'];
+        $data['av_mec'] = $purchase_valuation['av_mec'];
+        $data['old'] = $purchase_valuation['old'];
+        $data['price_min'] = $purchase_valuation['price_min'];
+        $data['observations'] = $purchase_valuation['observations'];
+        $data['form_display'] = htmlspecialchars_decode($forms->form_display);
+        $data['data_serialize'] = utf8_encode($purchase_valuation['data_serialize']);
+
+        return response()->json($data);
+
     }
 }
