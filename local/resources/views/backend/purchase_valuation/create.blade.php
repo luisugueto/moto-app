@@ -28,10 +28,10 @@
                                     <div class="float-left text-dark">
                                         Solicitud de venta de moto averiada o siniestrada
                                     </div>
-                                    <div class="float-right">
+                                    {{-- <div class="float-right">
                                         <a href="{{ url('motos-que-nos-ofrecen') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> <i
                                             class="pe-7s-back-2 btn-icon-wrapper"> </i>Volver</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </strong>
@@ -44,7 +44,7 @@
                             <h5 class="card-header text-white bg-secondary mb-3">Datos de la moto</h5>
                             <div class="card-body">
                                 <div class="form-row row g-1">
-                                    <div class="col-md-3 show">
+                                    <div class="col-md-4 show">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
                                             <select class="form-control select" name="brand" id="brand" onChange="setModel()">
@@ -60,7 +60,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-3 show">
+                                    <div class="col-md-4 show">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
                                             <select class="form-control select" name="model" id="model" disabled >
@@ -74,7 +74,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3 hidden">
+                                    <div class="col-md-4 hidden">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
                                             <input type="text" class="form-control" id="modelotxt" name="brand" placeholder="Escribe tu modelo">
@@ -85,7 +85,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-3 hidden">
+                                    <div class="col-md-4 hidden">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
                                             <input type="text" class="form-control oculto" name="model" id="marcatxt" placeholder="Escribe tu marca">
@@ -96,9 +96,11 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <br>
-                                        <button type="button" id="ver" class="btn btn-danger form-control pull-left">No encuentro Modelo/marca</button>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <br>
+                                            <button type="button" id="ver" class="btn btn-danger form-control pull-left">No encuentro Modelo/marca</button>
+                                        </div>
                                     </div>
                                     
                                     <div class="col-md-3">
