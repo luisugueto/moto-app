@@ -77,7 +77,7 @@
                                     <div class="col-md-4 hidden">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
-                                            <input type="text" class="form-control" id="modelotxt" name="brand" placeholder="Escribe tu modelo">
+                                            <input type="text" class="form-control" id="modelotxt" name="brand" placeholder="Escribe tu modelo" disabled>
                                             @if ($errors->has('brand'))
                                                 <span class="error text-danger">
                                                     <strong>{{ $errors->first('brand') }}</strong>
@@ -88,7 +88,7 @@
                                     <div class="col-md-4 hidden">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
-                                            <input type="text" class="form-control oculto" name="model" id="marcatxt" placeholder="Escribe tu marca">
+                                            <input type="text" class="form-control oculto" name="model" id="marcatxt" placeholder="Escribe tu marca" disabled>
                                             @if ($errors->has('model'))
                                                 <span class="error text-danger">
                                                     <strong>{{ $errors->first('model') }}</strong>
