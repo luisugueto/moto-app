@@ -186,7 +186,7 @@ $(document).ready(function(){
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
-                $('#model').val(data.model).trigger("change");
+                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4000);
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
