@@ -430,7 +430,7 @@ class PurchaseValuationController extends Controller
     {
          
         $purchase_valuation = PurchaseValuation::find($id);
-        // $purchase_management = PurchaseManagement::where('')
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
 
         $data['id'] = $purchase_valuation['id'];
@@ -455,7 +455,60 @@ class PurchaseValuationController extends Controller
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
         $data['data_serialize'] = utf8_encode($purchase_valuation['data_serialize']);
 
+
+        //Datos Purchase Management
+        $data['file_no'] = $purchase_management['file_no'];
+        $data['current_year'] = $purchase_management['current_year'];
+        $data['collection_contract_date'] = $purchase_management['collection_contract_date'];
+        $data['documents_attached'] = $purchase_management['documents_attached'];
+        $data['non_existence_document'] = $purchase_management['non_existence_document'];
+        $data['vehicle_delivers'] = $purchase_management['vehicle_delivers'];
+        $data['firts_name'] = $purchase_management['name'];
+        $data['firts_surname'] = $purchase_management['firts_surname'];
+        $data['second_surtname'] = $purchase_management['second_surtname'];
+        $data['dni'] = $purchase_management['dni'];
+        $data['birthdate'] = $purchase_management['birthdate'];
+        $data['phone'] = $purchase_management['phone'];
+        $data['email'] = $purchase_management['email'];
+        $data['street'] = $purchase_management['street'];
+        $data['nro_street'] = $purchase_management['nro_street'];
+        $data['stairs'] = $purchase_management['stairs'];
+        $data['floor'] = $purchase_management['floor'];
+        $data['letter'] = $purchase_management['letter'];
+        $data['municipality'] = $purchase_management['municipality'];
+        $data['postal_code'] = $purchase_management['postal_code'];
+        $data['province_management'] = $purchase_management['province'];
+        $data['iban'] = $purchase_management['iban'];
+        $data['sale_amount'] = $purchase_management['sale_amount'];
+        $data['name_representantive'] = $purchase_management['name_representantive'];
+        $data['firts_surname_representative'] = $purchase_management['firts_surname_representative'];
+        $data['second_surtname_representantive'] = $purchase_management['second_surtname_representantive'];
+        $data['dni_representative'] = $purchase_management['dni_representative'];
+        $data['birthdate_representative'] = $purchase_management['birthdate_representative'];
+        $data['phone_representantive'] = $purchase_management['phone_representantive'];
+        $data['email_representative'] = $purchase_management['email_representative'];
+        $data['representation_concept'] = $purchase_management['representation_concept'];
+        $data['brand_management'] = $purchase_management['brand'];
+        $data['model_management'] = $purchase_management['model'];
+        $data['version'] = $purchase_management['version'];
+        $data['type'] = $purchase_management['type'];
+        $data['kilometres'] = $purchase_management['kilometres'];
+        $data['color'] = $purchase_management['color'];
+        $data['fuel'] = $purchase_management['fuel'];
+        $data['registration_number'] = $purchase_management['registration_number'];
+        $data['registration_date'] = $purchase_management['registration_date'];
+        $data['registration_country'] = $purchase_management['registration_country'];
+        $data['frame_no'] = $purchase_management['frame_no'];
+        $data['motor_no'] = $purchase_management['motor_no'];
+        $data['vehicle_state_trafic'] = $purchase_management['vehicle_state_trafic'];
+        $data['vehicle_state'] = $purchase_management['vehicle_state'];
+ 
         return response()->json($data);
 
+    }
+
+    public function updateFicha(Request $request, $id)
+    {
+         
     }
 }

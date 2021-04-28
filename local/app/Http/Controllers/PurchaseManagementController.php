@@ -96,8 +96,16 @@ class PurchaseManagementController extends Controller
             'vehicle_state' => 'required'
         ]);
 
+        if($request->documents_attached == 'on'){
+            $documents_attached = 1;
+        }
+        if($request->non_existence_document == 'on'){
+            $non_existence_document = 1;
+        }
+            
         $gestion = new PurchaseManagement($request->all());
-       
+        $gestion->documents_attached = $documents_attached;
+        $gestion->non_existence_document = $non_existence_document;       
         $gestion->save();
 
         return Redirect::to('/')->with('notification', 'Gestion de compra creada exitosamente!');
