@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var url = $('#url').val();
 
     var action = sessionStorage.getItem('action');
          
@@ -21,7 +22,7 @@ $(document).ready(function () {
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
-                $('#model').val(data.model).trigger("change");
+                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4500);
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
@@ -110,7 +111,6 @@ $(document).ready(function () {
                     $('#owner').attr('checked', true)
                 else if(data.vehicle_delivers == 'Representante')    
                     $('#representative').attr('checked', true)
-                 
                 $('#firts_name').val(data.firts_name);    
                 $('#firts_surname').val(data.firts_surname);
                 $('#second_surtname').val(data.second_surtname);
@@ -179,6 +179,192 @@ $(document).ready(function () {
             }
         });
     }
+
+    $("#btn-save").click(function (e) {
+        
+        e.preventDefault(); 
+        var data = $('#form_display_complement').find('select, textarea, input').serializeArray();
+        var dataArray = [];
+       
+        for (i = 0; i < data.length; i++) {
+            if ($('#' + data[i].name + '.tagss').length) {
+                var find = false;
+                $.each(dataArray, function(key, val) {
+                    if (val.name == data[i].name) {
+                        dataArray[key].value = data[i].value + ',' + val.value;
+                        find = true;
+                    }
+                });
+                if (!find) {
+                    dataArray.push({
+                        name: data[i].name,
+                        value: data[i].value
+                    });
+                }
+            } else if ($('#' + data[i].name + '.date').length) {
+                var today = new Date(data[i].value);
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = yyyy + '-' + mm + '-' + dd;
+
+                dataArray.push({
+                    name: data[i].name,
+                    value: today
+                });
+            }  else {
+                dataArray.push({
+                    name: data[i].name,
+                    value: data[i].value
+                });
+            }
+        }
+        // console.log(dataArray)
+
+        var status_trafic = '';
+        if($('#high').is(':checked') )
+            status_trafic = 'Alta';
+        else if($('#low').is(':checked') )
+            status_trafic = 'Baja definitiva';
+
+        var g_del = 0; if($('#g_del').is(':checked') ) g_del = 1;
+        var g_tras = 0; if($('#g_tras').is(':checked') ) g_tras = 1;
+        var av_elec = 0; if($('#av_elec').is(':checked') ) av_elec = 1;
+        var av_mec = 0; if($('#av_mec').is(':checked') ) av_mec = 1;
+        var old = 0; if($('#old').is(':checked') ) old = 1;
+
+        var vehicle_delivers = '';  
+        if($('#incumbent').is(':checked') ) 
+            vehicle_delivers = 'Titular';
+        else if($('#owner').is(':checked') )
+            vehicle_delivers = 'Propietario';
+        else if($('#representative').is(':checked') )
+            vehicle_delivers = 'Representante';
+
+        var fuel = ''; 
+        if($('#gasoline').is(':checked') )
+            fuel = 'Gasolina';
+        else if($('#diesel_oil').is(':checked') )    
+            fuel = 'Gasóleo';
+        else if($('#others').is(':checked') )    
+            fuel = 'Otros';
+
+        var vehicle_state_trafic = ''; 
+        if($('#high').is(':checked') )
+            vehicle_state_trafic = 'Alta';
+        else if($('#final_discharge').is(':checked') )    
+            vehicle_state_trafic = 'Baja definitiva';
+        else if($('#temporary_leave').is(':checked') )
+            vehicle_state_trafic = 'Baja temporal';
+
+        var vehicle_state = '';
+        if($('#sinister').is(':checked') )
+            vehicle_state = 'Siniestrado';
+        else if($('#damaged').is(':checked') )    
+            vehicle_state = 'Averiado';
+        else if($('#abandoned').is(':checked') )    
+            vehicle_state = 'Abandonado';
+        else if($('#full').is(':checked') )
+            vehicle_state = 'Completo';    
+        else if($('#partially_disassembled').is(':checked') )   
+            vehicle_state = 'Parcialmente desmontado';
+
+        var dataSerialize = JSON.stringify(dataArray, null, 2);
+        var formData = {
+            purchase_id : $('#purchase_id').val(),
+            brand: $("#brand").val(),
+            model: $("#model").val(),
+            year: $("#year").val(),
+            km: $("#km").val(),
+            name: $("#name").val(),
+            lastname: $("#lastname").val(),
+            email: $("#email").val(),
+            phone: $("#phone").val(),
+            province: $("#province").val(),
+            price_min: $("#price_min").val(),
+            observations: $("#observations").val(),
+            status_trafic: status_trafic,
+            g_del: g_del,
+            g_tras: g_tras,
+            av_elec: av_elec,
+            av_mec: av_mec,
+            old: old,
+            data_serialize: dataSerialize.replace(/\s+/g, " "),
+            file_no: $('#file_no').val(),
+            current_year:        $('#current_year').val(),
+            collection_contract_date:        $('#collection_contract_date').val(),
+            documents_attached:        $('#documents_attached').val(),
+            non_existence_document:        $('#non_existence_document').val(),
+            vehicle_delivers: vehicle_delivers,
+            fuel: fuel,
+            vehicle_state_trafic: vehicle_state_trafic,
+            vehicle_state: vehicle_state,
+            firts_name:       $('#firts_name').val(),    
+            firts_surname:       $('#firts_surname').val(),
+            second_surtname:        $('#second_surtname').val(),
+            dni:        $('#dni').val(),
+            birthdate:        $('#birthdate').val(),
+            phone:        $('#phone').val(),    
+            email:        $('#email').val(),
+            street:        $('#street').val(),
+            nro_street:        $('#nro_street').val(),
+            stairs:        $('#stairs').val(),
+            floor:        $('#floor').val(),    
+            letter:        $('#letter').val(),
+            municipality:        $('#municipality').val(),
+            postal_code:        $('#postal_code').val(),
+            province_management:        $('#province_management').val(),
+            iban:        $('#iban').val(),
+            sale_amount:        $('#sale_amount').val(),
+            name_representantive:        $('#name_representantive').val(),
+            firts_surname_representative:        $('#firts_surname_representative').val(),
+            second_surtname_representantive:        $('#second_surtname_representantive').val(),
+            dni_representative:        $('#dni_representative').val(),
+            birthdate_representative:        $('#birthdate_representative').val(),
+            phone_representantive:        $('#phone_representantive').val(),
+            email_representative:        $('#email_representative').val(),
+            representation_concept:        $('#representation_concept').val(),
+            brand_management:        $('#brand_management').val(),
+            model_management:        $('#model_management').val(),
+            version:        $('#version').val(),
+            type:        $('#type').val(),
+            kilometres:        $('#kilometres').val(),
+            color:        $('#color').val(),
+            registration_number:        $('#registration_number').val(),
+            registration_date:        $('#registration_date').val(),
+            registration_country:        $('#registration_country').val(),
+            frame_no:        $('#frame_no').val(),
+            motor_no:        $('#motor_no').val()
+        }
+
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: 'POST',
+            url: url,
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                var message = `
+                <div class="notification alert alert-success" role="alert">
+                    Registro modificado exitosamente!
+                </div>`;
+                $('#ficha').before(message);
+            },
+            error: function (data) {
+                //console.log('Error:', data);
+                if (data.status == 422) {
+                    $('#errors').html('');
+                    var list = '';
+                    $.each(data.responseJSON, function (i, value) {
+                        list = '<li>' + value + '</li>';
+                        $('.alert').prop('hidden', false);
+                        $('#errors').append(list);
+                    });
+                 
+                }
+            }
+        });
+    });
 
 
     ///////////////////////////////////////////////

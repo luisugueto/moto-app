@@ -22,7 +22,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" id="ficha">
     <div class="col-md-4">
         <div class="mb-3 card">
             <div class="card-body">
@@ -99,7 +99,7 @@
                         </a>
                     </li>
                 </ul>
-                <form role="form" method="POST" action="{{ route('updateFicha') }}" enctype='multipart/form-data'>
+                <form role="form">
                        {{ csrf_field() }}
                     <div class="tab-content" id="formFichaTabs">                    
                         <input type="hidden" id="purchase_id" name="id" value="0">
@@ -424,7 +424,7 @@
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label for="firts_name" class="">Nombre:</label>
-                                        <input firts_name="firts_name" id="firts_name" type="text" class="form-control"
+                                        <input name="firts_name" id="firts_name" type="text" class="form-control"
                                             value="{{ old('firts_name') }}">
                                         @if ($errors->has('firts_name'))
                                             <span class="error text-danger">
@@ -1003,6 +1003,8 @@
     </div>
 </div>
 
+<input id="url" type="hidden" value="{{ url('/purchase_valuation_interested/update_ficha') }}">
+
 @section('modals')
 <script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>
 @endsection
@@ -1020,10 +1022,6 @@
         datatype: 'JSON',
         success: function (resp) {
             let select = $("#model").empty().append("<option disabled='disabled' selected>Seleccione</option>");
-
-            select.prop('disabled', 'disabled');
-            $("#model").empty();
-            
             resp.model.forEach(function(model, index){
     
                 select.append($('<option>', {
@@ -1031,8 +1029,6 @@
                     text: model.marca
                 }));
             });
-
-            select.prop('disabled', false);
 
         }
     });

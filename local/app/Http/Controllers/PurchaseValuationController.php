@@ -30,7 +30,6 @@ class PurchaseValuationController extends Controller
         $haspermision = getPermission('Empleados', 'record-create');
         $states = States::all();
         $processes = Processes::all();
-        
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
    
         return view('backend.purchase_valuation.index', compact('states', 'processes', 'marcas', 'haspermision'));
@@ -171,7 +170,7 @@ class PurchaseValuationController extends Controller
 
     public function noInterested()
     {
-        $purchase_valuation = PurchaseValuation::where('states_id', 2)->get();
+        $request-> PurchaseValuation::where('states_id', 2)->get;
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
@@ -419,7 +418,6 @@ class PurchaseValuationController extends Controller
     {
         $states = States::all();
         $processes = Processes::all();
-        
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
    
         return view('backend.purchase_valuation.ficha', compact('states', 'processes', 'marcas'));
@@ -428,7 +426,6 @@ class PurchaseValuationController extends Controller
 
     public function getDataFicha($id)
     {
-         
         $purchase_valuation = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
@@ -507,8 +504,91 @@ class PurchaseValuationController extends Controller
 
     }
 
-    public function updateFicha(Request $request, $id)
+    public function updateFicha(Request $request)
     {
-         
+        $purchase = PurchaseValuation::find($request->purchase_id);
+        $purchase->date = $request->date;
+        $purchase->brand = $request->brand;
+        $purchase->model = $request->model;
+        $purchase->year = $request->year;
+        $purchase->km = $request->km;
+        $purchase->email = $request->email;
+        $purchase->name = $request->name;
+        $purchase->lastname = $request->lastname;
+        $purchase->phone = $request->phone;
+        $purchase->province = $request->province;
+        $purchase->status_trafic = $request->status_trafic;
+        $purchase->g_del = $request->g_del;
+        $purchase->g_tras = $request->g_tras;
+        $purchase->av_elec = $request->av_elec;
+        $purchase->av_mec = $request->av_mec;
+        $purchase->old = $request->old;
+        $purchase->price_min = $request->price_min;
+        $purchase->observations = $request->observations;
+        $purchase->data_serialize = $request->data_serialize;
+        $purchase->update();
+
+        if($request->documents_attached == 'on'){
+            $documents_attached = 1;
+        }
+        if($request->non_existence_document == 'on'){
+            $non_existence_document = 1;
+        }
+
+        $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+
+        $purchase_management = PurchaseManagement::find($purchaseM->id);
+        $purchase_management->file_no = $request->file_no;
+        $purchase_management->current_year = $request->current_year;
+        $purchase_management->collection_contract_date = $request->collection_contract_date;
+        $purchase_management->documents_attached = $documents_attached;
+        $purchase_management->non_existence_document = $non_existence_document;     
+        $purchase_management->vehicle_delivers = $request->vehicle_delivers;
+        $purchase_management->name = $request->name;
+        $purchase_management->firts_surname = $request->firts_surname;
+        $purchase_management->second_surtname = $request->second_surtname;
+        $purchase_management->dni = $request->dni;
+        $purchase_management->birthdate = $request->birthdate;
+        $purchase_management->phone = $request->phone;
+        $purchase_management->email = $request->email;
+        $purchase_management->street = $request->street;
+        $purchase_management->nro_street = $request->nro_street;
+        $purchase_management->stairs = $request->stairs;
+        $purchase_management->floor = $request->floor;
+        $purchase_management->letter = $request->letter;
+        $purchase_management->municipality = $request->municipality;
+        $purchase_management->postal_code = $request->postal_code;
+        $purchase_management->province = $request->province;
+        $purchase_management->iban = $request->iban;
+        $purchase_management->sale_amount = $request->sale_amount;
+        $purchase_management->name_representantive = $request->name_representantive;
+        $purchase_management->firts_surname_representative = $request->firts_surname_representative;
+        $purchase_management->second_surtname_representantive = $request->second_surtname_representantive;
+        $purchase_management->dni_representative = $request->dni_representative;
+        $purchase_management->birthdate_representative = $request->birthdate_representative;
+        $purchase_management->phone_representantive = $request->phone_representantive;
+        $purchase_management->email_representative = $request->email_representative;
+        $purchase_management->representation_concept = $request->representation_concept;
+        $purchase_management->brand = $request->brand;
+        $purchase_management->model = $request->model;
+        $purchase_management->version = $request->version;
+        $purchase_management->type = $request->type;
+        $purchase_management->kilometres = $request->kilometres;
+        $purchase_management->color = $request->color;
+        $purchase_management->fuel = $request->fuel;
+        $purchase_management->registration_number = $request->registration_number;
+        $purchase_management->registration_date = $request->registration_date;
+        $purchase_management->registration_country = $request->registration_country;
+        $purchase_management->frame_no = $request->frame_no;
+        $purchase_management->motor_no = $request->motor_no;
+        $purchase_management->vehicle_state_trafic = $request->vehicle_state_trafic;
+        $purchase_management->vehicle_state = $request->vehicle_state;
+        $purchase_management->update();
+
+
+        $json_data = array('data'=> $purchase_management);
+        $json_data= collect($json_data);  
+
+        return response()->json($json_data);
     }
 }

@@ -414,10 +414,7 @@
             type: 'POST',
             datatype: 'JSON',
             success: function (resp) {
-                let select = $("#model").empty().append("<option disabled='disabled' selected>Seleccione</option>");
-
-                select.prop('disabled', 'disabled');
-                $("#model").empty();
+                let select = $("#model").prop('disabled', 'disabled').empty().append("<option disabled='disabled' selected>Seleccione</option>");
                 
                 resp.model.forEach(function(model, index){
         
