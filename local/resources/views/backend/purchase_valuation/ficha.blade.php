@@ -43,7 +43,17 @@
                         <p class="mb-0">Aqui veran las fotos y agregaran mas</p>
                     </div>
                     <div class="tab-pane" id="tab-animated-1" role="tabpanel">
-                        <p class="mb-0">Aqui veran los y agregaran mas</p>
+                        <div class="row" id="documents">
+                            
+                        </div>
+                        <hr>
+                        {!! Form::open(['url'=> 'uploadDocument', 'method' => 'POST', 'files'=>'true', 'id' => 'my-dropzone' , 'class' => 'dropzone']) !!}
+                            <input type="hidden" id="document_purchase_id" name="id" value="0">
+                            <div class="dz-message" style="height:200px;">
+                                Arratre sus archivos aquí.
+                            </div>
+                            <div class="dropzone-previews"></div>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>

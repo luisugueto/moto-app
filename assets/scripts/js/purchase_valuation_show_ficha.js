@@ -20,6 +20,7 @@ $(document).ready(function () {
                 });
        
                 $('#purchase_id').val(data.id);
+                $('#document_purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4500);
@@ -171,6 +172,10 @@ $(document).ready(function () {
                     $('#partially_disassembled').attr('checked', true)
 
                 $('.hide').prop('hidden', true);
+
+                data.documents_purchase_valuation.forEach(function(element){
+                    $("#documents").html('<a href="'+data.link_public+"/"+element.name+'" target="_blank"/>'+element.name+'</a>');
+                });
                 
                 $('#btn-save').val("update");
             },
@@ -432,3 +437,27 @@ $(document).ready(function () {
     });
     
 });
+
+Dropzone.options.myDropzone = {
+    autoProcessQueue: true,
+    uploadMultiple: true,
+    maxFilezise: 10,
+    maxFiles: 1,
+    
+    init: function() {
+        myDropzone = this;
+    
+        this.on("addedfile", function(file) {
+
+        });
+        
+        this.on("complete", function(file) {
+            $("#documents").append(file);
+            myDropzone.removeFile(file);
+        });
+
+        this.on("success", 
+            myDropzone.processQueue.bind(myDropzone)
+        );
+    }
+};

@@ -427,6 +427,7 @@ class PurchaseValuationController extends Controller
     public function getDataFicha($id)
     {
         $purchase_valuation = PurchaseValuation::find($id);
+        $documents_purchase_valuation = DocumentsPurchaseValuation::where('purchase_valuation_id', $id)->get();
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
 
@@ -499,6 +500,10 @@ class PurchaseValuationController extends Controller
         $data['motor_no'] = $purchase_management['motor_no'];
         $data['vehicle_state_trafic'] = $purchase_management['vehicle_state_trafic'];
         $data['vehicle_state'] = $purchase_management['vehicle_state'];
+
+        //
+        $data['documents_purchase_valuation'] = $documents_purchase_valuation;
+        $data['link_public'] = public_path('documents_purchase');
  
         return response()->json($data);
 
