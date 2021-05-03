@@ -878,13 +878,11 @@ $(document).ready(function(){
                 {"data": null,
                     render: function (data, type, row) {
                         let echo = '';
-                        if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1' >Publicar</a>";
+                        if (data.publish == 1) {
+                            echo = "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0' >Publicado</a>";
                         }
-                        else if (data.delete == true) {
+                        else if (data.publish == 0) {
                             echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1' >Publicar</a>";
-                        } else {
-                            echo = "No tienes permiso";
                         }
                         return echo;
                     },

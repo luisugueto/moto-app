@@ -27,7 +27,7 @@ class PurchaseValuationController extends Controller
      */
     public function index()
     {
-        $haspermision = getPermission('Empleados', 'record-create');
+        $haspermision = getPermission('Motos que nos ofrecen', 'record-create');
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
@@ -39,9 +39,9 @@ class PurchaseValuationController extends Controller
     {
         $purchases = PurchaseValuation::where('states_id', 1)->get();
 
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
@@ -83,9 +83,9 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuationsInterested()
     {
         $purchases = PurchaseValuation::where('states_id', 3)->get();
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
@@ -127,9 +127,9 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuationsNoInterested()
     {
         $purchases = PurchaseValuation::where('states_id', 2)->get();
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
@@ -171,9 +171,9 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuationsScrapping()
     {
         $purchases = PurchaseValuation::where('states_id', 4)->get();
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
@@ -215,9 +215,9 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuationsSale()
     {
         $purchases = PurchaseValuation::where('states_id', 5)->get();
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
@@ -259,9 +259,9 @@ class PurchaseValuationController extends Controller
     public function getPurchaseValuationsAuction()
     {
         $purchases = PurchaseValuation::where('states_id', 6)->get();
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
@@ -289,6 +289,7 @@ class PurchaseValuationController extends Controller
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
             $row['processes_id'] = $value['processes_id'];
+            $row['publish'] = $value['publish'];
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
