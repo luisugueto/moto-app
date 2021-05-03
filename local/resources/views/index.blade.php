@@ -42,7 +42,7 @@
                     <h4 class="card-title">{{ $item->brand}}</h4>
                     <p class="card-text"><b>Modelo</b> {{$item->model}} <small><b>Km</b> {{ $item->km }}</small></p>
                 </div>
-                <div class="card-footer"><a class="btn btn-primary" href="#!">Ver más!</a></div>
+                <div class="card-footer"><a class="btn btn-primary" href="{{ url('ver-moto/'. $item->id )}}">Ver más</a></div>
             </div>
         </div>  
         @endforeach      

@@ -51,7 +51,7 @@
                                     <p class="btn btn-danger btn-block">{{ $precio}} $</p>
                                 </div>
                                 <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ver</a>
+                                    <a href="{{ url('ver-moto/'. $item->id )}}" class="btn btn-success btn-block">Ver</a>
                                 </div>
                             </div>
                         </div>

@@ -26,15 +26,34 @@ class FrontendController extends Controller
         
         $purchases_last = DB::select('SELECT p.*, i.name AS imagen FROM purchase_valuation AS p LEFT JOIN images_purchase AS i ON i.id =( SELECT pi.id FROM images_purchase AS pi WHERE pi.purchase_valuation_id = p.id ORDER BY pi.id DESC LIMIT 1 ) WHERE p.publish = 1 ');
 
-        return view('motos', compact('purchases'));
+        return view('motos', compact('purchases', 'purchases_last'));
     }
 
-    public function carrito(){
+    public function cart()
+    {
         return view('cart');
     }
 
-    public function contacto(){
+    public function contacto()
+    {
         return view('contacto');
+    }
+
+    public function verMoto(Request $request, $id)
+    {
+        $purchase = DB::table("purchase_valuation")->where('id', $id)->first();
+        $images_purchase = DB::table("images_purchase")->where('purchase_valuation_id',$id)->first();
+        
+        $fieldsArray = (json_decode(utf8_encode($purchase->data_serialize)));
+        foreach ($fieldsArray as $key => $value) {
+            
+            if ($value->name == 'dLQrpaV2'){
+                $precio = $value->value;
+            }
+        }
+             
+        
+        return view('ver-moto', compact('purchase','images_purchase', 'precio'));
     }
 
     public function arrayPaginator($array, $request)

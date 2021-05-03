@@ -2,6 +2,10 @@
  
 Route::get('/', 'FrontendController@index');
 Route::get('motos', 'FrontendController@motos');
+Route::get('cart', 'FrontendController@cart');
+Route::get('contacto', 'FrontendController@contacto');
+Route::get('ver-moto/{id}', 'FrontendController@verMoto');
+
 Route::auth();
 
 Route::resource('purchase_management', 'PurchaseManagementController');

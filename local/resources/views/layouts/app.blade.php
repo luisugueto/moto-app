@@ -22,9 +22,9 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/')}}">Inicio</a>
+                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/')}}">Inicio</a>
                         </li>
-                        <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Acerca</a>
                         </li>
                         <li class="nav-item {{ request()->is('motos') ? 'active' : '' }}">
@@ -54,12 +54,10 @@
                             <a class="btn btn-success btn-sm ml-3" href="{{ url('/register') }}">
                                 Registrarse
                             </a>                      
-                        @else
-                            
-                                <a class="nav-link" href="{{ url('/home') }}">{{ Auth::user()->name }}</a>
-                          
-                                <a class="nav-link" href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>
-                                    Salir</a>
+                        @else                            
+                            <a class="btn btn-light btn-sm ml-3" href="{{ url('/home') }}">{{ Auth::user()->name }}</a>
+                        
+                            <a class="btn btn-secondary btn-sm ml-3" href="{{ url('/logout') }}">Cerrar Sesión</a>
                             
                             <a class="btn btn-success btn-sm ml-3" href="{{ url('cart') }}">
                                 <i class="fa fa-shopping-cart"></i> Carrito
@@ -139,7 +137,8 @@
         <!-- Bootstrap core JavaScript -->
         <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
         <script src="{{ asset('assets/scripts/base/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script>  
+        <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script> 
+        @yield('scripts')
     </body>
 </html>
 
