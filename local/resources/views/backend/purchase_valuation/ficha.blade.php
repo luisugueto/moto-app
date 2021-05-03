@@ -15,7 +15,7 @@
         <div class="page-title-actions">
              
             <div class="d-inline-block dropdown">
-                <a href="{{ url('purchase_valuation_interested') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> 
+                <a href="{{ url('motos-que-nos-ofrecen') }}" class="mb-2 mr-2 btn-icon btn-pill btn btn-primary"> 
                     <i class="pe-7s-back btn-icon-wrapper"> </i>Regresar
                 </a>                     
             </div>         
@@ -40,7 +40,25 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
-                        <p class="mb-0">Aqui veran las fotos y agregaran mas</p>
+                        <form id="frmImagesPurchaseValuation" name="frmImagesPurchaseValuation" novalidate="">
+                            {{ csrf_field() }}
+                            <div class="main-card mb-3 card">
+                               <div class="card-body">
+                                   <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
+                                       <div class="carousel-inner" id="imagesCarrousel">
+                                       </div>
+                                       <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
+                                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                           <span class="sr-only">Previous</span>
+                                       </a>
+                                       <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
+                                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                           <span class="sr-only">Next</span>
+                                       </a>
+                                   </div>
+                               </div>
+                           </div>
+                        </form>
                     </div>
                     <div class="tab-pane" id="tab-animated-1" role="tabpanel">
                         <div class="row" id="documents">

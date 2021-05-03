@@ -17,6 +17,33 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
+        {{-- {!! Form::open(['url' => '', 'method' => 'post', 'id' => 'formTasacion']) !!} --}}
+        <div class="row">
+            <div class="input-group col-md-3">
+                <select name="applyState" class="custom-select" id="applyState" onChange="setApply();">
+                    <option value="" disabled selected>Elegir Estado</option>
+                    @foreach($states as $state)
+                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                    @endforeach
+                </select>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" id="btnApplyState">Aplicar</button>
+                </div>
+            </div>
+            <div class="input-group col-md-3">
+                <select name="applyProcess" class="custom-select" id="applyProcess" onChange="setApply();">
+                    <option value="" disabled selected>Elegir Proceso</option>
+                    @foreach($processes as $process)
+                        <option value="{{ $process->id }}">{{ $process->name }}</option>
+                    @endforeach
+                </select>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" id="btnApplyProcess">Aplicar</button>
+                </div>
+            </div>
+        </div>
+        {{-- {!! Form::close() !!} --}}
+        <br>
         @if (session('notification'))
             <div class="alert alert-success notification">
                 {{ session('notification') }}
@@ -28,63 +55,564 @@
             </div>
         @endif
         <br>
-        <div class="main-card mb-3 card">
-            <div class="card-body">
-                <h5 class="card-title">Tasación Motos</h5>
-                {!! Form::open(['url' => '', 'method' => 'post', 'id' => 'formTasacion']) !!}
-                <div class="row">
-                    <div class="input-group col-md-3">
-                        <select name="applyState" class="custom-select" id="applyState" onChange="setApply();">
-                            <option value="" disabled selected>Elegir Estado</option>
-                            @foreach($states as $state)
-                                <option value="{{ $state->id }}">{{ $state->name }}</option>
-                            @endforeach
-                        </select>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Aplicar</button>
-                        </div>
-                    </div>
-                    <div class="input-group col-md-3">
-                        <select name="applyProcess" class="custom-select" id="applyProcess" onChange="setApply();">
-                            <option value="" disabled selected>Elegir Proceso</option>
-                            @foreach($processes as $process)
-                                <option value="{{ $process->id }}">{{ $process->name }}</option>
-                            @endforeach
-                        </select>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Aplicar</button>
-                        </div>
+        <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+            <li class="nav-item">
+                <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                    <span>En Revisón</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
+                    <span>Interesa</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2">
+                    <span>Desguace</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-3" data-toggle="tab" href="#tab-content-3">
+                    <span>Venta</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-4" data-toggle="tab" href="#tab-content-4">
+                    <span>Subasta</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-5" data-toggle="tab" href="#tab-content-5">
+                    <span>No Interesan</span>
+                </a>
+            </li>
+
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que nos ofrecen en revisión 
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_2" type="checkbox" data-column="2"><label class="inline-label tr" key="Image" for="column_2">Estado</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Fecha" for="column_3">Fecha</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Marca" for="column_4">Marca</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Modelo" for="column_5">Modelo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="Año" for="column_6">Año</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="KM" for="column_7">KM</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_8" type="checkbox" data-column="8" checked><label class="inline-label tr" key="Nombre" for="column_8">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_9" type="checkbox" data-column="9"><label class="inline-label tr" key="Provincia" for="column_9">Provincia</label>
+                                    </button>
+                                     <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_10">Estado en Tráfico</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Del." for="column_11">Golpe Del.</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Golpe Tras" for="column_12">Golpe Tras</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Elec" for="column_13">Av. Elec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Av. Mec" for="column_14">Av. Mec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_15" type="checkbox" data-column="15" checked><label class="inline-label tr" key="Aband. Viejo" for="column_15">Aband. Viejo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_16" type="checkbox" data-column="16"><label class="inline-label tr" key="Mínimo" for="column_16">Mínimo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_17" type="checkbox" data-column="17"><label class="inline-label tr" key="Observaciones" for="column_17">Observaciones</label>
+                                    </button>
+                                </div>
+                            </div>
+                        </h5>                     
+                        <br><br>
+                        <table width="100%" id="tableTasacionMotos" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th class="text-center">Estatus</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Marca</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">KM</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Provincia</th>
+                                    <th class="text-center">Estado en Tráfico</th>
+                                    <th class="text-center">Golpe Del.</th>
+                                    <th class="text-center">Golpe Tras</th>
+                                    <th class="text-center">Av. Elec</th>
+                                    <th class="text-center">Av. Mec</th>
+                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Mínimo</th>
+                                    <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
                     </div>
                 </div>
-                <hr>
-                <table width="100%" id="tableTasacionMotos" class="table table-hover table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>#</th>
-                            <th class="text-center">Estatus</th>
-                            <th class="text-center">Fecha</th>
-                            <th class="text-center">Marca</th>
-                            <th class="text-center">Modelo</th>
-                            <th class="text-center">Año</th>
-                            <th class="text-center">KM</th>
-                            <th class="text-center">Nombre</th>
-                            <th class="text-center">Provincia</th>
-                            <th class="text-center">Estado en Tráfico</th>
-                            <th class="text-center">Golpe Del.</th>
-                            <th class="text-center">Golpe Tras</th>
-                            <th class="text-center">Av. Elec</th>
-                            <th class="text-center">Av. Mec</th>
-                            <th class="text-center">Aband. Viejo</th>
-                            <th class="text-center">Mínimo</th>
-                            <th class="text-center">Observaciones</th>
-                            <th class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                </table>
-                {!! Form::close() !!}
+            </div>
+             <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que Interesan
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_1-2">Fecha</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_1-3">Marca</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_1-4">Modelo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_1-5">Año</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_1-6">KM</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_1-7">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_1-8">Provincia</label>
+                                    </button>
+                                     <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_1-9">Estado en Tráfico</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_1-10">Golpe Del.</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_1-11">Golpe Tras</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_1-12">Av. Elec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_1-13">Av. Mec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_1-14">Aband. Viejo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_1-15">Mínimo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_1-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_1-16">Observaciones</label>
+                                    </button>
+                                </div>
+                            </div>                           
+                        </h5>  
+                                             
+                        <br><br>
+                        <table width="100%" id="tableMotosQueInterensan" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Marca</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">KM</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Provincia</th>
+                                    <th class="text-center">Estado en Tráfico</th>
+                                    <th class="text-center">Golpe Del.</th>
+                                    <th class="text-center">Golpe Tras</th>
+                                    <th class="text-center">Av. Elec</th>
+                                    <th class="text-center">Av. Mec</th>
+                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Mínimo</th>
+                                    <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div>                
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que para Desguace
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_2-2">Fecha</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_2-3">Marca</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_2-4">Modelo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_2-5">Año</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_2-6">KM</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_2-7">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_2-8">Provincia</label>
+                                    </button>
+                                     <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_2-9">Estado en Tráfico</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_2-10">Golpe Del.</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_2-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_2-11">Golpe Tras</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_2-12">Av. Elec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_2-13">Av. Mec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_2-14">Aband. Viejo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_2-15">Mínimo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_2-16">Observaciones</label>
+                                    </button>
+                                </div>
+                            </div>      
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosParaDesguace" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Marca</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">KM</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Provincia</th>
+                                    <th class="text-center">Estado en Tráfico</th>
+                                    <th class="text-center">Golpe Del.</th>
+                                    <th class="text-center">Golpe Tras</th>
+                                    <th class="text-center">Av. Elec</th>
+                                    <th class="text-center">Av. Mec</th>
+                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Mínimo</th>
+                                    <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div>    
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que para Venta
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_3-2">Fecha</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_3-3">Marca</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_3-4">Modelo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_3-5">Año</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_3-6">KM</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_3-7">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_3-8">Provincia</label>
+                                    </button>
+                                     <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_3-9">Estado en Tráfico</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_3-10">Golpe Del.</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_3-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_3-11">Golpe Tras</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_3-12">Av. Elec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_3-13">Av. Mec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_3-14">Aband. Viejo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_3-15">Mínimo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-3" id="column_3-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_3-16">Observaciones</label>
+                                    </button>
+                                </div>
+                            </div>   
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosParaVenta" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Marca</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">KM</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Provincia</th>
+                                    <th class="text-center">Estado en Tráfico</th>
+                                    <th class="text-center">Golpe Del.</th>
+                                    <th class="text-center">Golpe Tras</th>
+                                    <th class="text-center">Av. Elec</th>
+                                    <th class="text-center">Av. Mec</th>
+                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Mínimo</th>
+                                    <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div> 
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-4" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que para Subasta
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_4-2">Fecha</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_4-3">Marca</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_4-4">Modelo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_4-5">Año</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_4-6">KM</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_4-7">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_4-8">Provincia</label>
+                                    </button>
+                                     <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_4-9">Estado en Tráfico</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_4-10">Golpe Del.</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_4-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_4-11">Golpe Tras</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_4-12">Av. Elec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_4-13">Av. Mec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_4-14">Aband. Viejo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_4-15">Mínimo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-4" id="column_4-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_4-16">Observaciones</label>
+                                    </button>
+                                </div>
+                            </div>   
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosParaSubasta" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Marca</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">KM</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Provincia</th>
+                                    <th class="text-center">Estado en Tráfico</th>
+                                    <th class="text-center">Golpe Del.</th>
+                                    <th class="text-center">Golpe Tras</th>
+                                    <th class="text-center">Av. Elec</th>
+                                    <th class="text-center">Av. Mec</th>
+                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Mínimo</th>
+                                    <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div> 
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-5" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que No Interesan
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_5-2">Fecha</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_5-3">Marca</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_5-4">Modelo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_5-5">Año</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_5-6">KM</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_5-7">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_5-8">Provincia</label>
+                                    </button>
+                                     <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_5-9">Estado en Tráfico</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_5-10">Golpe Del.</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-1" id="column_5-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_5-11">Golpe Tras</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_5-12">Av. Elec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_5-13">Av. Mec</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_5-14">Aband. Viejo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_5-15">Mínimo</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-5" id="column_5-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_5-16">Observaciones</label>
+                                    </button>
+                                </div>
+                            </div>   
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosQueNoInteresan" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>#</th>
+                                    <th class="text-center">Fecha</th>
+                                    <th class="text-center">Marca</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Año</th>
+                                    <th class="text-center">KM</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Provincia</th>
+                                    <th class="text-center">Estado en Tráfico</th>
+                                    <th class="text-center">Golpe Del.</th>
+                                    <th class="text-center">Golpe Tras</th>
+                                    <th class="text-center">Av. Elec</th>
+                                    <th class="text-center">Av. Mec</th>
+                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Mínimo</th>
+                                    <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div> 
             </div>
         </div>
+        
+        
     </div>
 </div>
  <!-- Passing BASE URL to AJAX -->
@@ -173,7 +701,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Solicitud de venta de moto averiada o siniestrada</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Editar Datos de la Moto</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -430,8 +958,6 @@
         });
     };
     </script>
-
- <script src="{{ asset('assets/scripts/js/purchase_valuation_images.js') }}"></script>
  @endsection
 
  <script src="{{ asset('assets/scripts/js/purchase_valuation.js') }}"></script>
@@ -442,14 +968,14 @@
             {
                 $("#applyState").val(null);
                 $('#applyProcess').val(null);
-                $("#formTasacion").attr('action', '');
+                $("#formTasacion").val('');
             }
 
             if($("#applyState").val() != null)
-                $("#formTasacion").attr('action', 'applyState');
+                $("#formTasacion").val('applyState');
 
             if($('#applyProcess').val() != null)
-                $("#formTasacion").attr('action', 'applyProcesses');;
+                $("#formTasacion").val('applyProcesses');
 
         };
     </script>

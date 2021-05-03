@@ -18,7 +18,7 @@
         <ul class="{{ request()->is($item['slug']) ? 'mm-show' : '' }}">
             @foreach ($item['submenu'] as $submenu)
                 @if ($submenu['submenu'] == [])
-                    @if ($submenu['slug'] == 'estados-gc')
+                    {{-- @if ($submenu['slug'] == 'estados-gc')
                     <li class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}">
                         <a href="#" aria-expanded="false">
                             <i class="metismenu-icon"></i>  {{ $submenu['name'] }}
@@ -42,11 +42,11 @@
                             </li>
                         </ul>
                     </li>   
-                    @else
+                    @else --}}
                     <li class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}">
                         <a class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}" href="{{ url($submenu['slug']) }}">{{ $submenu['name'] }} </a>
                     </li>
-                    @endif
+                    {{-- @endif --}}
                 @endif
             @endforeach                
         </ul>

@@ -1,10 +1,10 @@
 <?php
-
-Route::get('/', function () {
-    return view('index');
-});
-
+ 
+Route::get('/', 'FrontendController@index');
+Route::get('motos', 'FrontendController@motos');
 Route::auth();
+
+Route::resource('purchase_management', 'PurchaseManagementController');
 
 Route::resource('purchase_management', 'PurchaseManagementController');
 Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
@@ -44,8 +44,11 @@ Route::group(['middleware' => 'auth'], function () {
     //Change Status Views
     Route::post('empleados/change_status_user', 'UserController@changeStatus');
 
+    //Publish Moto to frontend
+    Route::post('empleados/change_status_user', 'UserController@changeStatus');
+
     //getData from prestashop
-    Route::post('empleados/get_employees_prestashop', 'UserController@getEmployeesPrestashop');
+    Route::post('motos-que-nos-ofrecen/subasta', 'PurchaseValuationController@PublishMotocycle');
 
     // AJAX
 	Route::post('getModel', 'HomeController@getModel');
@@ -57,6 +60,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getPurchaseValuations', 'PurchaseValuationController@getPurchaseValuations');
     Route::post('getPurchaseValuationsInterested', 'PurchaseValuationController@getPurchaseValuationsInterested');
     Route::post('getPurchaseValuationsNoInterested', 'PurchaseValuationController@getPurchaseValuationsNoInterested');
+    Route::post('getPurchaseValuationsScrapping', 'PurchaseValuationController@getPurchaseValuationsScrapping');
+    Route::post('getPurchaseValuationsSale', 'PurchaseValuationController@getPurchaseValuationsSale');
+    Route::post('getPurchaseValuationsAuction', 'PurchaseValuationController@getPurchaseValuationsAuction');
+
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');
     Route::post('getServices', 'ServicesController@getServices');
