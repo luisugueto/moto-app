@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
     Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');    
+    Route::post('uploadImage', 'PurchaseValuationController@uploadImage');    
 
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
@@ -71,6 +72,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');
     Route::post('getServices', 'ServicesController@getServices');
+
+    // GET FILES
+    Route::get('document/{filename}', 'PurchaseValuationController@document');
+    Route::get('image/{filename}', 'PurchaseValuationController@image');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

@@ -541,12 +541,30 @@ class PurchaseValuationController extends Controller
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
             $file->move($path, $fileNameToStore);
-        }
 
-        $projectImage = new DocumentsPurchaseValuation();
-        $projectImage->purchase_valuation_id = $request->id;
-        $projectImage->name = $fileNameToStore;
-        $projectImage->save();
+            $projectImage = new DocumentsPurchaseValuation();
+            $projectImage->purchase_valuation_id = $request->id;
+            $projectImage->name = $fileNameToStore;
+            $projectImage->save();
+        }
+    }
+
+    public function uploadImage(Request $request)
+    {
+        $path = public_path().'/images_purchase/';
+        $files = $request->file('file');
+        foreach($files as $file){
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $file->move($path, $fileNameToStore);
+
+            $images_purchase = new ImagesPurchase();
+            $images_purchase->purchase_valuation_id = $request->id;
+            $images_purchase->name = $fileNameToStore;
+            $images_purchase->save();
+        }
     }
 
     public function showFicha()
@@ -563,8 +581,9 @@ class PurchaseValuationController extends Controller
     {
         $purchase_valuation = PurchaseValuation::find($id);
         $documents_purchase_valuation = DocumentsPurchaseValuation::where('purchase_valuation_id', $id)->get();
+        $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $id)->get();
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
-        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
+        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();        
 
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
@@ -638,7 +657,8 @@ class PurchaseValuationController extends Controller
 
         //
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
-        $data['link_public'] = public_path('documents_purchase');
+        $data['images_purchase_valuation'] = $images_purchase_valuation;
+        $data['link'] = url('/');
  
         return response()->json($data);
 
@@ -753,5 +773,15 @@ class PurchaseValuationController extends Controller
         $data['message'] = $mensaje;
 
         return response()->json($data);
+    }
+
+    public function document($fileName){
+        $path = public_path().'/documents_purchase/'.$fileName;
+        return \Response::download($path);        
+    }
+
+    public function image($fileName){
+        $path = public_path().'/images_purchase/'.$fileName;
+        return \Response::download($path);        
     }
 }

@@ -349,12 +349,10 @@ $(document).ready(function(){
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
                             echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'>Ficha Moto</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                         }
                         else if (data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                         } else {
                             echo = "No tienes permiso";
                         }
@@ -1435,16 +1433,6 @@ $(document).ready(function(){
                 console.log('Error:', data);
             }
         });
-    });
-
-    //display modal form for add document ***************************
-    $(document).on('click', '.button_document', function () {
-        var $tr = $(this).closest('tr');
-        var data = dataTable1.row($(this).parents($tr)).data();
-        var id = data.id;
-
-        $('#purchase_id').val(id);
-        $('#modalDocument').modal('show');
     });
 
     //***************************
