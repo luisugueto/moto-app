@@ -111,7 +111,8 @@ class DocumentsPurchaseValuationController extends Controller
     public function destroy($id)
     {
         $documentFind = DocumentsPurchaseValuation::find($id);
-        unlink(public_path().'/documents_purchase/'.$documentFind->name);
+        if(file_exists(public_path().'/documents_purchase/'.$documentFind->name))
+            unlink(public_path().'/documents_purchase/'.$documentFind->name);
         $document = DocumentsPurchaseValuation::destroy($id);
         
         return response()->json($id);
