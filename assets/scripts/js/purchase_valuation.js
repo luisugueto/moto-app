@@ -2,17 +2,20 @@ $(document).ready(function(){
 
     //get base URL *********************
     var url = $('#url').val();
+    let dataTable = '', dataTable1 = '', dataTable2 = '', dataTable3 = '', dataTable4 = '', dataTable5 = '';
 
+    //Tabla para el estado en revision
     $('#tableTasacionMotos thead tr').clone(true).appendTo('#tableTasacionMotos thead');
- 
+
     $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
-        if (i != 17) {
+        
+        if (i != 18) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
             $(this).css('display', 'none');
         }
- 
+    
         $( 'input', this ).on( 'keyup change', function () {
             if (dataTable.column(i).search() !== this.value) {             
                 dataTable
@@ -21,155 +24,1140 @@ $(document).ready(function(){
                     .draw();
             }
         } );
-    } );
-
-    var dataTable = $('#tableTasacionMotos').DataTable({
-        processing: true,
-        responsive: true,
-        orderCellsTop: true,
-        fixedHeader: true, 
-        "ajax": {
-            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-            url: "getPurchaseValuations", // json datasource            
-            type: "post", // method  , by default get
-            error: function () {  // error handling
-            }
-        },
-        "columns": [
-            { "data": null,
-                render:function(data){
-                    return '<input type="checkbox" name="apply[]" id="apply" value="'+data.id+'">';
-        
-                },
-                "targets": -1
-            },  
-            { "data": "id" },
-            { "data": null,
-                render:function(data){
-                    var echo = '';
-                    if(data.states_id == 1)
-                        echo = "En Revisión";
-                    else if(data.states_id == 2)
-                        echo = "No Interesa";
-                    else if(data.states_id == 3)
-                        echo = "Interesa";
-
-                    return echo;
-                },
-                "targets": -1
+    });
+   //$('#tab-0').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableTasacionMotos")) {
+            $('#tableTasacionMotos').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableTasacionMotos').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuations", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
             },
-            { "data": "date" },
-            { "data": "brand" },
-            { "data": "model" },
-            { "data": "year" },
-            { "data": "km" },
-            { "data": "name" },
-            { "data": "province" },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.status_trafic == "Alta")
-                        echo = "Alta";
-                    else if(data.status_trafic == "Baja definitiva")
-                        echo = "Baja definitiva";
-
-                    return echo;
+            "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
+                { "data": "id" },
+                { "data": null,
+                    render:function(data){
+                        var echo = '';
+                        if(data.states_id == 1)
+                            echo = "En Revisión";
+                        else if(data.states_id == 2)
+                            echo = "No Interesa";
+                        else if(data.states_id == 3)
+                            echo = "Interesa";
+    
+                        return echo;
+                    },
+                    "targets": -1
                 },
-                "targets": -1
-            },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
+                { "data": "date" },
+                { "data": "brand" },
+                { "data": "model" },
+                { "data": "year" },
+                { "data": "km" },
+                { "data": "name" },
+                { "data": "province" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_trafic == "Alta")
+                            echo = "Alta";
+                        else if(data.status_trafic == "Baja definitiva")
+                            echo = "Baja definitiva";
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+     
+                        if(data.g_del == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.g_tras == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_elec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_mec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.old == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+    
+                { "data": "price_min" },
+                { "data": "observations" },
+    
+                {"data": null,
+                    render: function (data, type, row) {
+                        let echo = '';
+                        if (data.edit == true && data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
+                                     
+                        }
+                        else if (data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                        } else {
+                            echo = "No tienes permiso";
+                        }
+                        return echo;
+                    },
+                    "targets": -1
+                },
+    
+            ],
+            "columnDefs": [
+                {
+                    "targets": [ 2 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 15 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 16 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 17 ],
+                    "visible": false
+                }
+            ],
+            "order": [[0, "desc"]]
+        });
+        $('input.toggle-vis').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility
+            console.log(column);             
+            column.visible(!column.visible());
+        });
+    // });
+    
+
+    //Tabla para el estado Interesa   
+    $('#tableMotosQueInterensan thead tr').clone(true).appendTo('#tableMotosQueInterensan thead');
  
-                    if(data.g_del == 1)
-                        echo = "Si";
-                    else
-                        echo = "No";
+    $('#tableMotosQueInterensan thead tr:eq(1) th').each(function (i) {
+    
+        if (i != 17) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
 
-                    return echo;
-                },
-                "targets": -1
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable1.column(i).search() !== this.value) {             
+                dataTable1
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-1').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosQueInterensan")) {
+            $('#tableMotosQueInterensan').DataTable().clear().destroy();
+        }
+        dataTable1 = $('#tableMotosQueInterensan').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsInterested", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
             },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.g_tras == 1)
-                        echo = "Si";
-                    else
-                        echo = "No";
+            "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
+                { "data": "id" },
+                { "data": "date" },
+                { "data": "brand" },
+                { "data": "model" },
+                { "data": "year" },
+                { "data": "km" },
+                { "data": "name" },
+                { "data": "province" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_trafic == "Alta")
+                            echo = "Alta";
+                        else if(data.status_trafic == "Baja definitiva")
+                            echo = "Baja definitiva";
 
-                    return echo;
+                        return echo;
+                    },
+                    "targets": -1
                 },
-                "targets": -1
-            },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.av_elec == 1)
-                        echo = "Si";
-                    else
-                        echo = "No";
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
 
-                    return echo;
+                        if(data.g_del == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
                 },
-                "targets": -1
-            },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.av_mec == 1)
-                        echo = "Si";
-                    else
-                        echo = "No";
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.g_tras == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
 
-                    return echo;
+                        return echo;
+                    },
+                    "targets": -1
                 },
-                "targets": -1
-            },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.old == 1)
-                        echo = "Si";
-                    else
-                        echo = "No";
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_elec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
 
-                    return echo;
+                        return echo;
+                    },
+                    "targets": -1
                 },
-                "targets": -1
-            },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_mec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
 
-            { "data": "price_min" },
-            { "data": "observations" },
-
-            {"data": null,
-                render: function (data, type, row) {
-                    let echo = '';
-                    if (data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                 
-                    }
-                    else if (data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                + "<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
-                    } else {
-                        echo = "No tienes permiso";
-                    }
-                    return echo;
+                        return echo;
+                    },
+                    "targets": -1
                 },
-                "targets": -1
-            },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.old == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
 
-        ],
-        "order": [[0, "desc"]]
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+                { "data": "price_min" },
+                { "data": "observations" },
+
+                {"data": null,
+                    render: function (data, type, row) {
+                        let echo = '';
+                        if (data.edit == true && data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'>Ficha Moto</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                        }
+                        else if (data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                        } else {
+                            echo = "No tienes permiso";
+                        }
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+            ],
+            "columnDefs": [{
+				"targets": [8],
+				"visible": false
+			}, {
+				"targets": [15],
+				"visible": false
+			}, {
+				"targets": [16],
+				"visible": false
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-1').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column1 = dataTable1.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column1.visible(!column1.visible());
+        });
+    });
+    
+
+    //Tabla para el estado Desguace  
+    $('#tableMotosParaDesguace thead tr').clone(true).appendTo('#tableMotosParaDesguace thead');
+
+    $('#tableMotosParaDesguace thead tr:eq(1) th').each( function (i) {
+        if (i != 17) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable2.column(i).search() !== this.value) {             
+                dataTable2
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-2').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosParaDesguace")) {
+            $('#tableMotosParaDesguace').DataTable().clear().destroy();
+        }
+        dataTable2 = $('#tableMotosParaDesguace').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsScrapping", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-2_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-2_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
+                { "data": "id" },
+                { "data": "date" },
+                { "data": "brand" },
+                { "data": "model" },
+                { "data": "year" },
+                { "data": "km" },
+                { "data": "name" },
+                { "data": "province" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_trafic == "Alta")
+                            echo = "Alta";
+                        else if(data.status_trafic == "Baja definitiva")
+                            echo = "Baja definitiva";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+
+                        if(data.g_del == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.g_tras == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_elec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_mec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.old == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+                { "data": "price_min" },
+                { "data": "observations" },
+
+                {"data": null,
+                    render: function (data, type, row) {
+                        let echo = '';
+                        if (data.edit == true && data.delete == true) {
+                            echo = "";
+                        }
+                        else if (data.delete == true) {
+                            echo = "";
+                        } else {
+                            echo = "No tienes permiso";
+                        }
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+            ],
+            "columnDefs": [{
+				"targets": [8],
+				"visible": false
+			}, {
+				"targets": [15],
+				"visible": false
+			}, {
+				"targets": [16],
+				"visible": false
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-2').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column2 = dataTable2.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column2.visible(!column2.visible());
+        });
+    });
+        
+
+    //Tabla para el estado Venta       
+    $('#tableMotosParaVenta thead tr').clone(true).appendTo('#tableMotosParaVenta thead');
+
+    $('#tableMotosParaVenta thead tr:eq(1) th').each( function (i) {
+        if (i != 17) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable3.column(i).search() !== this.value) {             
+                dataTable3
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-3').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosParaVenta")) {
+            $('#tableMotosParaVenta').DataTable().clear().destroy();
+        }
+        dataTable3 = $('#tableMotosParaVenta').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsSale", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-3_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-3_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
+                { "data": "id" },
+                { "data": "date" },
+                { "data": "brand" },
+                { "data": "model" },
+                { "data": "year" },
+                { "data": "km" },
+                { "data": "name" },
+                { "data": "province" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_trafic == "Alta")
+                            echo = "Alta";
+                        else if(data.status_trafic == "Baja definitiva")
+                            echo = "Baja definitiva";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+
+                        if(data.g_del == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.g_tras == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_elec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_mec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.old == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+                { "data": "price_min" },
+                { "data": "observations" },
+
+                {"data": null,
+                    render: function (data, type, row) {
+                        let echo = '';
+                        if (data.edit == true && data.delete == true) {
+                            echo = "";
+                        }
+                        else if (data.delete == true) {
+                            echo = "";
+                        } else {
+                            echo = "No tienes permiso";
+                        }
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+            ],
+            "columnDefs": [{
+				"targets": [8],
+				"visible": false
+			}, {
+				"targets": [15],
+				"visible": false
+			}, {
+				"targets": [16],
+				"visible": false
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-3').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column3 = dataTable3.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column3.visible(!column3.visible());
+        });
+    });
+     
+
+    //Tabla para el estado Subasta 
+    if ($.fn.DataTable.isDataTable("#tableMotosParaSubasta")) {
+        $('#tableMotosParaSubasta').DataTable().clear().destroy();
+    }
+    $('#tableMotosParaSubasta thead tr').clone(true).appendTo('#tableMotosParaSubasta thead');
+
+    $('#tableMotosParaSubasta thead tr:eq(1) th').each( function (i) {
+        if (i != 17) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable4.column(i).search() !== this.value) {             
+                dataTable4
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-4').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosParaSubasta")) {
+            $('#tableMotosParaSubasta').DataTable().clear().destroy();
+        }
+        dataTable4 = $('#tableMotosParaSubasta').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsAuction", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-4_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-4_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
+                { "data": "id" },
+                { "data": "date" },
+                { "data": "brand" },
+                { "data": "model" },
+                { "data": "year" },
+                { "data": "km" },
+                { "data": "name" },
+                { "data": "province" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_trafic == "Alta")
+                            echo = "Alta";
+                        else if(data.status_trafic == "Baja definitiva")
+                            echo = "Baja definitiva";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+
+                        if(data.g_del == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.g_tras == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_elec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_mec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.old == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+                { "data": "price_min" },
+                { "data": "observations" },
+
+                {"data": null,
+                    render: function (data, type, row) {
+                        let echo = '';
+                        if (data.edit == true && data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1' >Publicar</a>";
+                        }
+                        else if (data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1' >Publicar</a>";
+                        } else {
+                            echo = "No tienes permiso";
+                        }
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+            ],
+            "columnDefs": [{
+				"targets": [8],
+				"visible": false
+			}, {
+				"targets": [15],
+				"visible": false
+			}, {
+				"targets": [16],
+				"visible": false
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-4').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column4 = dataTable4.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column4.visible(!column4.visible());
+        });
+    });
+   
+
+    //Tabla para el estado No Interesan 
+    $('#tableMotosQueNoInteresan thead tr').clone(true).appendTo('#tableMotosQueNoInteresan thead');
+
+    $('#tableMotosQueNoInteresan thead tr:eq(1) th').each( function (i) {
+        if (i != 17) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable5.column(i).search() !== this.value) {             
+                dataTable5
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-5').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosQueNoInteresan")) {
+            $('#tableMotosQueNoInteresan').DataTable().clear().destroy();
+        }
+        dataTable5 = $('#tableMotosQueNoInteresan').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsNoInterested", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-5_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-5_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
+                { "data": "id" },
+                { "data": "date" },
+                { "data": "brand" },
+                { "data": "model" },
+                { "data": "year" },
+                { "data": "km" },
+                { "data": "name" },
+                { "data": "province" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_trafic == "Alta")
+                            echo = "Alta";
+                        else if(data.status_trafic == "Baja definitiva")
+                            echo = "Baja definitiva";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+
+                        if(data.g_del == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.g_tras == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_elec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.av_mec == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.old == 1)
+                            echo = "Si";
+                        else
+                            echo = "No";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+                { "data": "price_min" },
+                { "data": "observations" },
+
+                {"data": null,
+                    render: function (data, type, row) {
+                        let echo = '';
+                        if (data.edit == true && data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                            +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                        }
+                        else if (data.delete == true) {
+                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                        } else {
+                            echo = "No tienes permiso";
+                        }
+                        return echo;
+                    },
+                    "targets": -1
+                },
+
+            ],
+            "columnDefs": [{
+				"targets": [8],
+				"visible": false
+			}, {
+				"targets": [15],
+				"visible": false
+			}, {
+				"targets": [16],
+				"visible": false
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-4').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column5 = dataTable5.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column5.visible(!column5.visible());
+        });
     });
 
+
+    ////////////////////////////////////////////////////////////////////////////
+    $('#btnApplyState').click(function() {
+
+        var motos = '';
+        preloader('show');
+       
+        $("input[name=apply]").each(function(index) {
+            if ($(this).is(':checked')) {
+                motos += $(this).val() + ',';
+            }
+        });
+        var formData = {
+            applyState: $('#applyState').val(),
+            apply: motos.slice(0, -1)  
+        };
+
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: 'POST',
+            url: 'applyState',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                dataTable.ajax.reload();
+                preloader('hide', 'Estado Actualizado Exitosamente', 'success');
+                
+            },
+            error: function (data) {
+               console.log('Error:', data);                
+            }
+         });
+        
+    });
+
+     ////////////////////////////////////////////////////////////////////////////
+     $('#btnApplyProcess').click(function() {
+        var motos = '';
+        preloader('show');
+       
+        $("input[name=apply]").each(function(index) {
+            if ($(this).is(':checked')) {
+                motos += $(this).val() + ',';
+            }
+        });
+        var formData = {
+            applyProcess: $('#applyProcess').val(),
+            apply: motos.slice(0, -1)  
+        };
+  
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: 'POST',
+            url: 'applyProcesses',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                dataTable.ajax.reload();
+                preloader('hide', 'Proceso Actualizado Exitosamente', 'success');
+                
+            },
+            error: function (data) {
+               console.log('Error:', data);                
+            }
+         });
+        
+    });
+     
 
     //display modal form for product EDIT ***************************
     $(document).on('click', '.button_edit', function () {
@@ -382,7 +1370,7 @@ $(document).ready(function(){
     });
 
 
-    //delete product and remove it from TABLE list ***************************
+    //delete product and remove it from TABLE list DT 0 ***************************
     $(document).on('click', '.button_delete', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
@@ -405,14 +1393,113 @@ $(document).ready(function(){
         });
     });
 
+    //delete product and remove it from TABLE list DT 1 ***************************
+    $(document).on('click', '.button_delete', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable1.row($(this).parents($tr)).data();
+        var purchase_id = data.id;
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: "DELETE",
+            url: url + '/' + purchase_id,
+            success: function (data) {                 
+                var message = `
+                <div class="notification alert alert-success" role="alert">
+                    Registro eliminado exitosamente!
+                </div>`;
+                $('.main-card').before(message);
+                dataTable.ajax.reload();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+
+    //delete product and remove it from TABLE list DT 5 ***************************
+    $(document).on('click', '.button_delete', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable5.row($(this).parents($tr)).data();
+        var purchase_id = data.id;
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: "DELETE",
+            url: url + '/' + purchase_id,
+            success: function (data) {                 
+                var message = `
+                <div class="notification alert alert-success" role="alert">
+                    Registro eliminado exitosamente!
+                </div>`;
+                $('.main-card').before(message);
+                dataTable.ajax.reload();
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+
     //display modal form for add document ***************************
     $(document).on('click', '.button_document', function () {
         var $tr = $(this).closest('tr');
-        var data = dataTable.row($(this).parents($tr)).data();
+        var data = dataTable1.row($(this).parents($tr)).data();
         var id = data.id;
 
         $('#purchase_id').val(id);
         $('#modalDocument').modal('show');
+    });
+
+    //***************************
+    $(document).on('click', '.button_ficha', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable1.row($(this).parents($tr)).data();
+        var id_purchase = data.id;
+
+        sessionStorage.setItem('id_purchase', id_purchase);
+        sessionStorage.setItem('action', 2);
+        window.location.href = 'purchase_valuation_interested/ficha_de_la_moto';       
+         
+    });
+
+     //***************************
+     $(document).on('click', '.button_publish', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable4.row($(this).parents($tr)).data();
+        var status = $(this).val();
+        if (status == 1) {
+            $(this).text('No Publicado');
+            
+            $(this).val('0'); 
+         }
+         if (status == 0) {
+            $(this).text('Publicado');
+            $(this).addClass('btn-success');
+            $(this).removeClass('btn-info');
+            $(this).val('1'); 
+        }     
+        var formData = {
+            id: data.id,
+            status: status
+        };
+        preloader('show');
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: "POST",
+            url: url + '/subasta',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    preloader('hide', data.message, 'success');                
+                    dataTable.ajax.reload(); 
+                }
+                
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+         
     });
 });
 

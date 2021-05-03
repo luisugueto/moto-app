@@ -183,6 +183,38 @@ $(document).ready(function () {
                 console.log('Error:', data);
             }
         });
+
+        //Peticion para traer las imagenes
+
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: "POST",
+            url: '/show-images',
+            data: {
+                id: id
+            },
+            success: function (response) {
+                if (response.success == 200) {
+                   
+                    $.each(response.data, function (index, el) {
+                        $(`<div class="carousel-item">
+                            <img class="d-block w-100" src="../local/public/img_app/images_purchase/${el.name}" alt="${index}" height="200">
+                        </div>`).appendTo('.carousel-inner');
+                        $(`<li data-target="#carousel" data-slide-to="${index}"></li>`).appendTo('.carousel-indicators');
+                    });                    
+                
+                    $('.carousel-item').first().addClass('active');
+                    $('.carousel-indicators > li').first().addClass('active');
+                    $('#carouselExampleControls1').carousel();
+                    $('#myModal').modal('show');
+                }
+                
+                 
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
     }
 
     $("#btn-save").click(function (e) {
