@@ -40,25 +40,17 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
-                        <form id="frmImagesPurchaseValuation" name="frmImagesPurchaseValuation" novalidate="">
-                            {{ csrf_field() }}
-                            <div class="main-card mb-3 card">
-                               <div class="card-body">
-                                   <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
-                                       <div class="carousel-inner" id="imagesCarrousel">
-                                       </div>
-                                       <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
-                                           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                           <span class="sr-only">Previous</span>
-                                       </a>
-                                       <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
-                                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                           <span class="sr-only">Next</span>
-                                       </a>
-                                   </div>
-                               </div>
-                           </div>
-                        </form>
+                        <div class="row" id="images">
+                            
+                        </div>
+                        <hr>
+                        {!! Form::open(['url'=> 'uploadImage', 'method' => 'POST', 'files'=>'true', 'id' => 'image-dropzone' , 'class' => 'dropzone']) !!}
+                            <input type="hidden" id="image_purchase_id" name="id" value="0">
+                            <div class="dz-message" style="height:200px;">
+                                Arratre sus fotos aquí.
+                            </div>
+                            <div class="dropzone-previews"></div>
+                        {!! Form::close() !!}
                     </div>
                     <div class="tab-pane" id="tab-animated-1" role="tabpanel">
                         <div class="row" id="documents">

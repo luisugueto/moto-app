@@ -21,6 +21,7 @@ $(document).ready(function () {
        
                 $('#purchase_id').val(data.id);
                 $('#document_purchase_id').val(data.id);
+                $('#image_purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4500);
@@ -173,8 +174,12 @@ $(document).ready(function () {
 
                 $('.hide').prop('hidden', true);
 
+                data.images_purchase_valuation.forEach(function(element){
+                    $("#images").append('<img src="'+data.link+'/image/'+element.name+'" width="100px" height="100px" style="margin: 15px">');
+                });
+
                 data.documents_purchase_valuation.forEach(function(element){
-                    $("#documents").html('<a href="'+data.link_public+"/"+element.name+'" target="_blank"/>'+element.name+'</a>');
+                    $("#documents").append('<a href="'+data.link+'/document/'+element.name+'" target="_blank" style="margin: 15px">'+element.name+'</a>');
                 });
                 
                 $('#btn-save').val("update");
@@ -189,7 +194,7 @@ $(document).ready(function () {
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             type: "POST",
-            url: '/show-images',
+            url: '/motoapp/show-images',
             data: {
                 id: id
             },
@@ -198,7 +203,7 @@ $(document).ready(function () {
                    
                     $.each(response.data, function (index, el) {
                         $(`<div class="carousel-item">
-                            <img class="d-block w-100" src="../local/public/img_app/images_purchase/${el.name}" alt="${index}" height="200">
+                            <img class="d-block w-100" src="../local/public/images_purchase/${el.name}" alt="${index}" height="200">
                         </div>`).appendTo('.carousel-inner');
                         $(`<li data-target="#carousel" data-slide-to="${index}"></li>`).appendTo('.carousel-indicators');
                     });                    
@@ -474,22 +479,43 @@ Dropzone.options.myDropzone = {
     autoProcessQueue: true,
     uploadMultiple: true,
     maxFilezise: 10,
-    maxFiles: 1,
-    
+    // maxFiles: 1,
+    acceptedFiles: "application/pdf,.doc,.docx,.xls,.xlsx,.csv,.tsv,.ppt,.pptx",
+
     init: function() {
         myDropzone = this;
     
         this.on("addedfile", function(file) {
-
         });
         
         this.on("complete", function(file) {
             $("#documents").append(file);
-            myDropzone.removeFile(file);
         });
 
         this.on("success", 
             myDropzone.processQueue.bind(myDropzone)
+        );
+    }
+};
+
+Dropzone.options.imageDropzone = {
+    autoProcessQueue: true,
+    uploadMultiple: true,
+    maxFilezise: 10,
+    acceptedFiles: "image/jpeg,image/png,image/gif",
+    
+    init: function() {
+        imageDropzone = this;
+    
+        this.on("addedfile", function(file) {
+        });
+        
+        this.on("complete", function(file) {
+            $("#images").append(file);
+        });
+
+        this.on("success", 
+            imageDropzone.processQueue.bind(imageDropzone)
         );
     }
 };

@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     //get base URL *********************
     var url = $('#url').val();
-    let dataTable = '', dataTable1 = '', dataTable2 = '', dataTable3 = '', dataTable4 = '', dataTable5 = '';
+    let dataTable = '';
 
     //Tabla para el estado en revision
     $('#tableTasacionMotos thead tr').clone(true).appendTo('#tableTasacionMotos thead');
