@@ -159,7 +159,7 @@ $(document).ready(function(){
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
                             echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
+                                + "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                                      
                         }
                         else if (data.delete == true) {
@@ -221,8 +221,8 @@ $(document).ready(function(){
         }
 
         $( 'input', this ).on( 'keyup change', function () {
-            if (dataTable1.column(i).search() !== this.value) {             
-                dataTable1
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
                     .column(i)
                     .search( this.value )
                     .draw();
@@ -233,7 +233,7 @@ $(document).ready(function(){
         if ($.fn.DataTable.isDataTable("#tableMotosQueInterensan")) {
             $('#tableMotosQueInterensan').DataTable().clear().destroy();
         }
-        dataTable1 = $('#tableMotosQueInterensan').DataTable({
+        dataTable = $('#tableMotosQueInterensan').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
@@ -348,13 +348,12 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'>Ficha Moto</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_ficha' title = 'Ficha Moto' > Ficha Moto</a> "
+                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                         }
                         else if (data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_document' title='Agregar Document'>Agregar Documento</a>";
+                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                         } else {
                             echo = "No tienes permiso";
                         }
@@ -380,9 +379,9 @@ $(document).ready(function(){
         $('input.toggle-vis-1').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
-            var column1 = dataTable1.column($(this).attr('data-column'));
+            var column = dataTable.column($(this).attr('data-column'));
             // Toggle the visibility            
-            column1.visible(!column1.visible());
+            column.visible(!column.visible());
         });
     });
     
@@ -399,8 +398,8 @@ $(document).ready(function(){
         }
 
         $( 'input', this ).on( 'keyup change', function () {
-            if (dataTable2.column(i).search() !== this.value) {             
-                dataTable2
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
                     .column(i)
                     .search( this.value )
                     .draw();
@@ -411,7 +410,7 @@ $(document).ready(function(){
         if ($.fn.DataTable.isDataTable("#tableMotosParaDesguace")) {
             $('#tableMotosParaDesguace').DataTable().clear().destroy();
         }
-        dataTable2 = $('#tableMotosParaDesguace').DataTable({
+        dataTable = $('#tableMotosParaDesguace').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
@@ -526,7 +525,7 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "";
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>";
                         }
                         else if (data.delete == true) {
                             echo = "";
@@ -555,9 +554,9 @@ $(document).ready(function(){
         $('input.toggle-vis-2').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
-            var column2 = dataTable2.column($(this).attr('data-column'));
+            var column = dataTable.column($(this).attr('data-column'));
             // Toggle the visibility            
-            column2.visible(!column2.visible());
+            column.visible(!column.visible());
         });
     });
         
@@ -574,8 +573,8 @@ $(document).ready(function(){
         }
 
         $( 'input', this ).on( 'keyup change', function () {
-            if (dataTable3.column(i).search() !== this.value) {             
-                dataTable3
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
                     .column(i)
                     .search( this.value )
                     .draw();
@@ -586,7 +585,7 @@ $(document).ready(function(){
         if ($.fn.DataTable.isDataTable("#tableMotosParaVenta")) {
             $('#tableMotosParaVenta').DataTable().clear().destroy();
         }
-        dataTable3 = $('#tableMotosParaVenta').DataTable({
+        dataTable = $('#tableMotosParaVenta').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
@@ -701,7 +700,7 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "";
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Moto'>Editar</a>";
                         }
                         else if (data.delete == true) {
                             echo = "";
@@ -730,9 +729,9 @@ $(document).ready(function(){
         $('input.toggle-vis-3').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
-            var column3 = dataTable3.column($(this).attr('data-column'));
+            var column = dataTable.column($(this).attr('data-column'));
             // Toggle the visibility            
-            column3.visible(!column3.visible());
+            column.visible(!column.visible());
         });
     });
      
@@ -752,8 +751,8 @@ $(document).ready(function(){
         }
 
         $( 'input', this ).on( 'keyup change', function () {
-            if (dataTable4.column(i).search() !== this.value) {             
-                dataTable4
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
                     .column(i)
                     .search( this.value )
                     .draw();
@@ -764,7 +763,7 @@ $(document).ready(function(){
         if ($.fn.DataTable.isDataTable("#tableMotosParaSubasta")) {
             $('#tableMotosParaSubasta').DataTable().clear().destroy();
         }
-        dataTable4 = $('#tableMotosParaSubasta').DataTable({
+        dataTable = $('#tableMotosParaSubasta').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
@@ -879,10 +878,26 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.publish == 1) {
-                            echo = "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0' >Publicado</a>";
+                            if (data.edit == true && data.delete == true) {
+                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                                        + "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>"
+                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                            }
+                            else if (data.delete == true) {
+                                echo = "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>"
+                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                            }
                         }
                         else if (data.publish == 0) {
-                            echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1' >Publicar</a>";
+                            if (data.edit == true && data.delete == true) {
+                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                                        + "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>"
+                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                            }
+                            else if (data.delete == true) {
+                                echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>"
+                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                            }
                         }
                         return echo;
                     },
@@ -906,9 +921,9 @@ $(document).ready(function(){
         $('input.toggle-vis-4').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
-            var column4 = dataTable4.column($(this).attr('data-column'));
+            var column = dataTable.column($(this).attr('data-column'));
             // Toggle the visibility            
-            column4.visible(!column4.visible());
+            column.visible(!column.visible());
         });
     });
    
@@ -925,8 +940,8 @@ $(document).ready(function(){
         }
 
         $( 'input', this ).on( 'keyup change', function () {
-            if (dataTable5.column(i).search() !== this.value) {             
-                dataTable5
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
                     .column(i)
                     .search( this.value )
                     .draw();
@@ -937,7 +952,7 @@ $(document).ready(function(){
         if ($.fn.DataTable.isDataTable("#tableMotosQueNoInteresan")) {
             $('#tableMotosQueNoInteresan').DataTable().clear().destroy();
         }
-        dataTable5 = $('#tableMotosQueNoInteresan').DataTable({
+        dataTable = $('#tableMotosQueNoInteresan').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
@@ -1082,9 +1097,9 @@ $(document).ready(function(){
         $('input.toggle-vis-4').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
-            var column5 = dataTable5.column($(this).attr('data-column'));
+            var column = dataTable.column($(this).attr('data-column'));
             // Toggle the visibility            
-            column5.visible(!column5.visible());
+            column.visible(!column.visible());
         });
     });
 
@@ -1111,10 +1126,15 @@ $(document).ready(function(){
             url: 'applyState',
             data: formData,
             dataType: 'json',
-            success: function (data) {
-                dataTable.ajax.reload();
-                preloader('hide', 'Estado Actualizado Exitosamente', 'success');
-                
+            success: function (response) {
+                console.log(response)
+                if (response.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', response.message, 'success');
+                }
+                if (response.code == 204) {
+                    preloader('hide', response.message, 'error');
+                }
             },
             error: function (data) {
                console.log('Error:', data);                
@@ -1144,10 +1164,15 @@ $(document).ready(function(){
             url: 'applyProcesses',
             data: formData,
             dataType: 'json',
-            success: function (data) {
-                dataTable.ajax.reload();
-                preloader('hide', 'Proceso Actualizado Exitosamente', 'success');
-                
+            success: function (response) {
+                console.log(response)
+                if (response.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', response.message, 'success');
+                }
+                if (response.code == 204) {
+                    preloader('hide', response.message, 'error');
+                }
             },
             error: function (data) {
                console.log('Error:', data);                
@@ -1391,56 +1416,10 @@ $(document).ready(function(){
         });
     });
 
-    //delete product and remove it from TABLE list DT 1 ***************************
-    $(document).on('click', '.button_delete', function () {
-        var $tr = $(this).closest('tr');
-        var data = dataTable1.row($(this).parents($tr)).data();
-        var purchase_id = data.id;
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: "DELETE",
-            url: url + '/' + purchase_id,
-            success: function (data) {                 
-                var message = `
-                <div class="notification alert alert-success" role="alert">
-                    Registro eliminado exitosamente!
-                </div>`;
-                $('.main-card').before(message);
-                dataTable.ajax.reload();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-
-    //delete product and remove it from TABLE list DT 5 ***************************
-    $(document).on('click', '.button_delete', function () {
-        var $tr = $(this).closest('tr');
-        var data = dataTable5.row($(this).parents($tr)).data();
-        var purchase_id = data.id;
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: "DELETE",
-            url: url + '/' + purchase_id,
-            success: function (data) {                 
-                var message = `
-                <div class="notification alert alert-success" role="alert">
-                    Registro eliminado exitosamente!
-                </div>`;
-                $('.main-card').before(message);
-                dataTable.ajax.reload();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-
     //display modal form for add document ***************************
     $(document).on('click', '.button_document', function () {
         var $tr = $(this).closest('tr');
-        var data = dataTable1.row($(this).parents($tr)).data();
+        var data = dataTable.row($(this).parents($tr)).data();
         var id = data.id;
 
         $('#purchase_id').val(id);
@@ -1450,7 +1429,7 @@ $(document).ready(function(){
     //***************************
     $(document).on('click', '.button_ficha', function () {
         var $tr = $(this).closest('tr');
-        var data = dataTable1.row($(this).parents($tr)).data();
+        var data = dataTable.row($(this).parents($tr)).data();
         var id_purchase = data.id;
 
         sessionStorage.setItem('id_purchase', id_purchase);
@@ -1462,7 +1441,7 @@ $(document).ready(function(){
      //***************************
      $(document).on('click', '.button_publish', function () {
         var $tr = $(this).closest('tr');
-        var data = dataTable4.row($(this).parents($tr)).data();
+        var data = dataTable.row($(this).parents($tr)).data();
         var status = $(this).val();
         if (status == 1) {
             $(this).text('No Publicado');

@@ -479,7 +479,10 @@ class PurchaseValuationController extends Controller
     {
         $state = States::find($request->applyState);
         $motos = explode(",", $request->apply);
-        
+       
+        $out['code'] = 204;
+        $out['message'] = 'Hubo un error';
+
         foreach($motos as &$purchase) {
              
             $purchase_model = PurchaseValuation::find($purchase);
@@ -495,7 +498,6 @@ class PurchaseValuationController extends Controller
                 $linksRegister->save();
             }
 
-
             // ENVIAR CORREO
             Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token], function ($message) use ($state, $purchase_model)
             {
@@ -504,23 +506,34 @@ class PurchaseValuationController extends Controller
                 // SE ENVIARA A
                 $message->to($purchase_model->email)->subject($state->name);
             });
+            $out['code'] = 200;
+            $out['data'] = $purchase;
+            $out['message'] = 'Estado Actualizado Exitosamente';
         }
-
-        return Redirect::back()->with('notification','Estado Cambiado Exitosamente!');
+        
+        return response()->json($out);
     }
 
     public function applyProcesses(Request $request)
     {
         $processes = Processes::find($request->applyProcess);
+        $motos = explode(",", $request->apply);
 
-        foreach($request->apply as $purchase){
+        $out['code'] = 204;
+        $out['message'] = 'Hubo un error';
+        
+        foreach($motos as &$purchase) {
 
             $purchase_model = PurchaseValuation::find($purchase);
             $purchase_model->processes_id = $request->applyProcess;
             $purchase_model->update();
+
+            $out['code'] = 200;
+            $out['data'] = $purchase;
+            $out['message'] = 'Estado Actualizado Exitosamente';
         }
         
-        return Redirect::back()->with('notification','Proceso Cambiado Exitosamente!');
+        return response()->json($out);
     }
 
     public function showImages(Request $request)
