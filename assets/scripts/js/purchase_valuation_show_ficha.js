@@ -175,11 +175,11 @@ $(document).ready(function () {
                 $('.hide').prop('hidden', true);
 
                 data.images_purchase_valuation.forEach(function(element){
-                    $("#images").append('<img src="'+data.link+'/image/'+element.name+'" width="100px" height="100px" style="margin: 15px">');
+                    $("#images").append('<img src="'+data.link+'/local/public/img_app/images_purchase/'+element.name+'" width="100px" height="100px" style="margin: 15px">');
                 });
 
                 data.documents_purchase_valuation.forEach(function(element){
-                    $("#documents").append('<a href="'+data.link+'/document/'+element.name+'" target="_blank" style="margin: 15px">'+element.name+'</a>');
+                    $("#documents").append('<a href="'+data.link+'/local/public/img_app/documents_purchase/'+element.name+'" target="_blank" style="margin: 15px">'+element.name+'</a>');
                 });
                 
                 $('#btn-save').val("update");
@@ -191,35 +191,7 @@ $(document).ready(function () {
 
         //Peticion para traer las imagenes
 
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: "POST",
-            url: '/motoapp/show-images',
-            data: {
-                id: id
-            },
-            success: function (response) {
-                if (response.success == 200) {
-                   
-                    $.each(response.data, function (index, el) {
-                        $(`<div class="carousel-item">
-                            <img class="d-block w-100" src="../local/public/images_purchase/${el.name}" alt="${index}" height="200">
-                        </div>`).appendTo('.carousel-inner');
-                        $(`<li data-target="#carousel" data-slide-to="${index}"></li>`).appendTo('.carousel-indicators');
-                    });                    
-                
-                    $('.carousel-item').first().addClass('active');
-                    $('.carousel-indicators > li').first().addClass('active');
-                    $('#carouselExampleControls1').carousel();
-                    $('#myModal').modal('show');
-                }
-                
-                 
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
+         
     }
 
     $("#btn-save").click(function (e) {
