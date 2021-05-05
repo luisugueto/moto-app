@@ -100,7 +100,7 @@ $(document).ready(function () {
 
 
                 // Datos Purchase Management
-                $('#file_no').val(data.file_no);
+                $('#file_no').val(data.id);
                 $('#current_year').val(data.current_year);
                 $('#collection_contract_date').val(data.collection_contract_date);
                 if(data.documents_attached == 1)
@@ -181,7 +181,7 @@ $(document).ready(function () {
                 data.documents_purchase_valuation.forEach(function(element){
                     $("#documents").append('<a href="'+data.link+'/local/public/img_app/documents_purchase/'+element.name+'" target="_blank" style="margin: 15px">'+element.name+'</a>');
                 });
-                
+                console.log(data);
                 $('#btn-save').val("update");
             },
             error: function (data) {
