@@ -348,8 +348,7 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-primary text-white button_ficha' title = 'Ficha Moto' > Ficha Moto</a> "
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
                                     +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                         }
                         else if (data.delete == true) {
@@ -525,7 +524,7 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>";
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
                         }
                         else if (data.delete == true) {
                             echo = "";
@@ -700,7 +699,7 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Moto'>Editar</a>";
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
                         }
                         else if (data.delete == true) {
                             echo = "";
@@ -879,7 +878,7 @@ $(document).ready(function(){
                         let echo = '';
                         if (data.publish == 1) {
                             if (data.edit == true && data.delete == true) {
-                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
                                         + "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>"
                                         +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                             }
@@ -890,7 +889,7 @@ $(document).ready(function(){
                         }
                         else if (data.publish == 0) {
                             if (data.edit == true && data.delete == true) {
-                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
                                         + "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>"
                                         +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                             }
@@ -1067,7 +1066,7 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
                             +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                         }
                         else if (data.delete == true) {
@@ -1355,7 +1354,7 @@ $(document).ready(function(){
             type = "PUT"; //for updating existing resource
             my_url += '/' + purchase_id;
         }
-
+        preloader('show');
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             type: type,
@@ -1364,16 +1363,11 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 dataTable.ajax.reload();
+                preloader('hide', data.message, 'success'); 
                 $('#frmPurchase').trigger("reset");
                 $('#errors').html('');
                 $('.alert').prop('hidden', true);
                 $('#modalPurchase').modal('hide');
-
-                var message = `
-                <div class="notification alert alert-success" role="alert">
-                    Registro modificado exitosamente!
-                </div>`;
-                $('.main-card').before(message);
                 
             },
             error: function (data) {

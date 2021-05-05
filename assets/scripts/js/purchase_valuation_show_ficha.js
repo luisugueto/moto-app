@@ -350,7 +350,7 @@ $(document).ready(function () {
             frame_no:        $('#frame_no').val(),
             motor_no:        $('#motor_no').val()
         }
-
+        preloader('show');
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             type: 'POST',
@@ -358,24 +358,13 @@ $(document).ready(function () {
             data: formData,
             dataType: 'json',
             success: function (data) {
-                var message = `
-                <div class="notification alert alert-success" role="alert">
-                    Registro modificado exitosamente!
-                </div>`;
-                $('#ficha').before(message);
+                if (data.code == 200) {                
+                    preloader('hide', data.message, 'success');
+                }
             },
             error: function (data) {
-                //console.log('Error:', data);
-                if (data.status == 422) {
-                    $('#errors').html('');
-                    var list = '';
-                    $.each(data.responseJSON, function (i, value) {
-                        list = '<li>' + value + '</li>';
-                        $('.alert').prop('hidden', false);
-                        $('#errors').append(list);
-                    });
-                 
-                }
+                console.log('Error:', data);
+                
             }
         });
     });
