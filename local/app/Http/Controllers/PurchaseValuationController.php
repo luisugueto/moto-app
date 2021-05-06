@@ -501,6 +501,55 @@ class PurchaseValuationController extends Controller
                 $linksRegister->token = $token;
                 $linksRegister->purchase_valuation_id = $purchase;
                 $linksRegister->save();
+
+                $purchase_management = new PurchaseManagement();
+                $purchase_management->purchase_valuation_id = $purchase;
+                $purchase_management->file_no = $purchase;
+                $purchase_management->current_year = '';
+                $purchase_management->collection_contract_date = '';
+                $purchase_management->documents_attached = '';
+                $purchase_management->non_existence_document = '';
+                $purchase_management->vehicle_delivers = '';
+                $purchase_management->name = '';
+                $purchase_management->firts_surname = '';
+                $purchase_management->second_surtname = '';
+                $purchase_management->dni = '';
+                $purchase_management->birthdate = '';
+                $purchase_management->phone = '';
+                $purchase_management->email = '';
+                $purchase_management->street = '';
+                $purchase_management->nro_street = '';
+                $purchase_management->stairs = '';
+                $purchase_management->floor = '';
+                $purchase_management->letter = '';
+                $purchase_management->municipality = '';
+                $purchase_management->postal_code = '';
+                $purchase_management->province = '';
+                $purchase_management->iban = '';
+                $purchase_management->sale_amount = '';
+                $purchase_management->name_representantive = '';
+                $purchase_management->firts_surname_representative = '';
+                $purchase_management->second_surtname_representantive = '';
+                $purchase_management->dni_representative = '';
+                $purchase_management->birthdate_representative = '';
+                $purchase_management->phone_representantive = '';
+                $purchase_management->email_representative = '';
+                $purchase_management->representation_concept = '';
+                $purchase_management->brand = '';
+                $purchase_management->model = '';
+                $purchase_management->version = '';
+                $purchase_management->type = '';
+                $purchase_management->kilometres = '';
+                $purchase_management->color = '';
+                $purchase_management->fuel = '';
+                $purchase_management->registration_number = '';
+                $purchase_management->registration_date = '';
+                $purchase_management->registration_country = '';
+                $purchase_management->frame_no = '';
+                $purchase_management->motor_no = '';
+                $purchase_management->vehicle_state_trafic = '';
+                $purchase_management->vehicle_state = '';
+                $purchase_management->save();
             }
 
             // ENVIAR CORREO
@@ -628,7 +677,7 @@ class PurchaseValuationController extends Controller
 
         //Datos Purchase Management
         $data['file_no'] = $purchase_management['file_no'];
-        $data['current_year'] = $purchase_management['current_year'];
+        $data['current_year'] = date('Y-m-d');
         $data['collection_contract_date'] = $purchase_management['collection_contract_date'];
         $data['documents_attached'] = $purchase_management['documents_attached'];
         $data['non_existence_document'] = $purchase_management['non_existence_document'];
