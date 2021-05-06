@@ -453,12 +453,17 @@ class PurchaseValuationController extends Controller
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
+            
         } else {
             $purchase = PurchaseValuation::find($id);
             $input = $request->all();
             $purchase->update($input);
 
-            return response()->json($purchase);
+            $out['code'] = 200;
+            $out['data'] = $purchase;
+            $out['message'] = 'Registro Actualizado Exitosamente';
+
+            return response()->json($out);
         }
     }
 
@@ -564,7 +569,7 @@ class PurchaseValuationController extends Controller
 
     public function uploadImage(Request $request)
     {
-        $path = public_path().'/images_purchase/';
+        $path = public_path().'/img_app/images_purchase/';
         $files = $request->file('file');
         foreach($files as $file){
             $filenameWithExt = $file->getClientOriginalName();
@@ -618,7 +623,7 @@ class PurchaseValuationController extends Controller
         $data['price_min'] = $purchase_valuation['price_min'];
         $data['observations'] = $purchase_valuation['observations'];
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
-        $data['data_serialize'] = utf8_encode($purchase_valuation['data_serialize']);
+        $data['data_serialize'] = ($purchase_valuation['data_serialize']);
 
 
         //Datos Purchase Management
@@ -762,7 +767,11 @@ class PurchaseValuationController extends Controller
         $json_data = array('data'=> $purchase_management);
         $json_data= collect($json_data);  
 
-        return response()->json($json_data);
+        $out['code'] = 200;
+        $out['data'] = $json_data;
+        $out['message'] = 'Registro Actualizado Exitosamente';
+
+        return response()->json($out);
     }
 
     public function PublishMotocycle(Request $request)
