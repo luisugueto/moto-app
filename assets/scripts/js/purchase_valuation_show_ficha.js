@@ -174,14 +174,29 @@ $(document).ready(function () {
 
                 $('.hide').prop('hidden', true);
 
-                data.images_purchase_valuation.forEach(function(element){
-                    $("#images").append('<img src="'+data.link+'/local/public/img_app/images_purchase/'+element.name+'" width="100px" height="100px" style="margin: 15px">');
+                var i = 0;
+                $('#titleModalImage').text('');
+                data.images_purchase_valuation.forEach(function (element) {
+                    $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 " data-toggle="modal" data-target="#modal">
+                        <a href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail my-3"></a>
+                    </div>`);
+
+                    $(`<div class="carousel-item">
+                        <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" height="200">
+                    </div>`).appendTo('.carousel-inner');
+                    $(`<li data-target="#lightbox" data-slide-to="${i}"></li>`).appendTo('.carousel-indicators');
+                    
+                    i++;
                 });
+                $('#titleModalImage').text('Imagenes de la moto '+data.model);
+                $('.carousel-item').first().addClass('active');
+                $('.carousel-indicators > li').first().addClass('active');
+                $('#carouselExampleControls1').carousel();
 
                 data.documents_purchase_valuation.forEach(function(element){
                     $("#documents").append('<a href="'+data.link+'/local/public/img_app/documents_purchase/'+element.name+'" target="_blank" style="margin: 15px">'+element.name+'</a>');
                 });
-                console.log(data);
+                // console.log(data);
                 $('#btn-save').val("update");
             },
             error: function (data) {
@@ -432,7 +447,9 @@ $(document).ready(function () {
         $('#tab-ficha-8').find('select, textarea, input').each(function () {
             if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
         });
-    });
+     });
+     
+    
     
 });
 
@@ -480,3 +497,63 @@ Dropzone.options.imageDropzone = {
         );
     }
 };
+
+
+
+    // //This function disables buttons when needed
+    // function disableButtons(counter_max, counter_current){
+    //     $('#show-previous-image, #show-next-image').show();
+    //     if(counter_max == counter_current){
+    //         $('#show-next-image').hide();
+    //     } else if (counter_current == 1){
+    //         $('#show-previous-image').hide();
+    //     }
+    // }
+
+    // /**
+    //  *
+    //  * @param setIDs        Sets IDs when DOM is loaded. If using a PHP counter, set to false.
+    //  * @param setClickAttr  Sets the attribute for the click handler.
+    //  */
+
+    // function loadGallery(setIDs, setClickAttr) {
+        
+    //     var current_image = '',
+    //         selector = '',
+    //         counter = 0;
+            
+    //     $('#show-next-image, #show-previous-image').click(function(){
+    //         if($(this).attr('id') == 'show-previous-image'){
+    //             current_image--;
+    //         } else if ($(this).attr('id') == 'show-next-image') {
+    //             current_image++;
+    //         }
+            
+    //         selector = $('[data-image-id="' + current_image + '"]');         
+    //         console.log($('[data-image-id="' + current_image + '"]'))
+    //         updateGallery(selector);
+    //     });
+
+    //     function updateGallery(selector) {
+    //         var $sel = selector;
+           
+    //         current_image = $sel.dataset.imageId;
+    //        console.log($sel.dataset.image)
+    //         $('#image-gallery-caption').text($sel.dataset.caption);
+    //         $('#image-gallery-title').text($sel.dataset.title);
+    //         $('#image-gallery-image').attr('src', $sel.dataset.image);
+    //         disableButtons(counter, $sel.dataset.imageId);
+    //     }
+
+    //     if(setIDs == true){
+    //         $('[data-image-id]').each(function () {
+                
+    //             counter++;
+    //             console.log(counter)
+    //             $(this).attr('data-image-id',counter);
+    //         });
+    //     }
+    //     $(setClickAttr).on('click',function(){
+    //         updateGallery($(this));
+    //     });
+    // }
