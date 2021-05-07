@@ -812,13 +812,23 @@ class PurchaseValuationController extends Controller
         $purchase_management->vehicle_state = $request->vehicle_state;
         $purchase_management->update();
 
+        // CREATE PDF
+        $date = date('Y-m-d');
+        $view =  \View::make('pdf.ficha', compact('date'))->render(); // send data to view
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        $output = $pdf->output();
+        $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
+        file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
 
         $json_data = array('data'=> $purchase_management);
         $json_data= collect($json_data);  
 
         $out['code'] = 200;
         $out['data'] = $json_data;
-        $out['message'] = 'Registro Actualizado Exitosamente';
+        $out['message'] = 'Registro Actualizado Exitosamente. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
 
         return response()->json($out);
     }
@@ -853,6 +863,11 @@ class PurchaseValuationController extends Controller
 
     public function image($fileName){
         $path = public_path().'/images_purchase/'.$fileName;
+        return \Response::download($path);        
+    }
+
+    public function pdf($fileName){
+        $path = public_path().'/pdfs/'.$fileName;
         return \Response::download($path);        
     }
 }
