@@ -124,7 +124,7 @@
         <p class="s14" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">Còpia Nº 1</p>
         <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
         <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil</p>
-        <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span><img width="167" height="68" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span><span><img width="53" height="51" alt="image" src="{{ asset('index_files/Image_002.png') }}"/></span></p>
+        <p style="padding-left: 5pt;text-indent: 0pt;text-align: left; margin-top: 10pt"><span><img width="167" height="68" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span><span><img width="53" height="51" alt="image" src="{{ asset('index_files/Image_002.png') }}"/></span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
             <tr style="height:14pt">
@@ -134,24 +134,24 @@
             </tr>
             <tr style="height:27pt">
                 <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca:</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
                 </td>
                 <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
                 </td>
                 <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo:</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
                 </td>
             </tr>
             <tr style="height:16pt">
                 <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula:</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
                 </td>
                 <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación:</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación: {{ $purchase_management->registration_date }}</p>
                 </td>
                 <td style="width:92pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación:</span></p>
+                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación: {{ $purchase_management->registration_country }}</span></p>
                 </td>
                 <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p class="s2" style="padding-right: 35pt;text-indent: 0pt;line-height: 9pt;text-align: right;">1.7 Combustible</p>
@@ -462,18 +462,18 @@
             </tr>
             <tr style="height:15pt">
                 <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca:</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
                 </td>
                 <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
                 </td>
                 <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo:</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
                 </td>
             </tr>
             <tr style="height:16pt">
                 <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula:</p>
+                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
                 </td>
                 <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
                     <p class="s8" style="padding-left: 3pt;padding-right: 40pt;text-indent: 0pt;text-align: left;"><span>1.5 Fecha<br/>matriculación:</span></p>
@@ -776,18 +776,18 @@
             </tr>
             <tr style="height:15pt">
                 <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca:</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
                 </td>
                 <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
                 </td>
                 <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo:</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
                 </td>
             </tr>
             <tr style="height:16pt">
                 <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula:</p>
+                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
                 </td>
                 <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
                     <p class="s8" style="padding-left: 3pt;padding-right: 40pt;text-indent: 0pt;text-align: left;"><span>1.5 Fecha<br/>matriculación:</span></p>
@@ -1082,18 +1082,18 @@
             </tr>
             <tr style="height:33pt">
                 <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca:</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
                 </td>
                 <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
                 </td>
                 <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo:</p>
+                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
                 </td>
             </tr>
             <tr style="height:16pt">
                 <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula:</p>
+                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
                 </td>
                 <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
                     <p class="s8" style="padding-left: 3pt;padding-right: 40pt;text-indent: 0pt;text-align: left;"><span>1.5 Fecha<br/>matriculación:</span></p>
@@ -1442,14 +1442,14 @@
             </tr>
             <tr style="height:123pt">
                 <td style="width:246pt">
-                    <p class="s21" style="padding-top: 7pt;padding-left: 33pt;padding-right: 177pt;text-indent: 0pt;line-height: 193%;text-align: left;"><span>Marca:<br/>Modelo:<br/>Versión:</span></p>
+                    <p class="s21" style="padding-top: 7pt;padding-left: 33pt;padding-right: 177pt;text-indent: 0pt;line-height: 193%;text-align: left;"><span>Marca: {{ $purchase->brand }}<br/>Modelo: {{ $purchase->model }}<br/>Versión: {{ $purchase_management->version }}</span></p>
                 </td>
                 <td style="width:288pt">
                     <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de bastidor:</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de motor: _ _</p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de motor: {{ $purchase_management->motor_no }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Matrícula:</p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Matrícula: {{ $purchase_management->registration_number }}</p>
                 </td>
             </tr>
             <tr style="height:97pt">

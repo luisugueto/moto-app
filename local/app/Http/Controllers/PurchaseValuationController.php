@@ -813,8 +813,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->update();
 
         // CREATE PDF
-        $date = date('Y-m-d');
-        $view =  \View::make('pdf.ficha', compact('date'))->render(); // send data to view
+        $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
 
