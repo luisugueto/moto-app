@@ -191,7 +191,7 @@ $(document).ready(function () {
                 $('#titleModalImage').text('Imagenes de la moto '+data.model);
                 $('.carousel-item').first().addClass('active');
                 $('.carousel-indicators > li').first().addClass('active');
-                $('#carouselExampleControls1').carousel();
+                $('#lightbox').carousel();
 
                 data.documents_purchase_valuation.forEach(function(element){
                     $("#documents").append('<a href="'+data.link+'/local/public/img_app/documents_purchase/'+element.name+'" target="_blank" style="margin: 15px">'+element.name+'</a>');
