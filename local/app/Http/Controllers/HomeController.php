@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use DB;
+use App;
 
 class HomeController extends Controller
 {
@@ -24,8 +25,8 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        // getPermission('Administración', 'record-view');
+    {  
+        getPermission('Administración', 'record-view');
 
         $invoices = DB::connection('recambio_ps')->table('ps_category_lang')->offset(0)->limit(10)->get();        
         return view('welcome', compact('invoices'));
