@@ -1,10 +1,23 @@
-<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>index</title>
-        <meta name="author" content="juan"/>
-        <style type="text/css"> * {margin:0; padding:0; text-indent:0; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	  <style type="text/css">
+	  		* {margin:0; padding:0; text-indent:0; }
+			html,
+			body,
+			.container-fluid {			 
+			  width: 100%;
+			  padding-right: 15px;
+			  padding-left: 15px;
+			  margin-top: 5px;
+			  margin-right: auto;
+			  margin-left: auto;
+			}
+			.saltoDePagina{page-break-after: always;}
+
             .s1 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 12pt; }
             .s2 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 8pt; }
             .s3 { color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 11pt; }
@@ -114,81 +127,144 @@
             #l14 {padding-left: 0pt; }
             #l14> li>*:first-child:before {content: "- "; color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt; }
             table, tbody {vertical-align: top; overflow: visible; }
+            /* .x-option{margin-top:0.79px;margin-left: 5.60px;} */
         </style>
-    </head>
-    <body>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s12" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;"><a name="bookmark0">COMUNIDAD AUTÓNOMA DE MADRID</a></p>
-        <p class="s13" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">CONSEJERIA DE MEDIO AMBIENTE</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+</head>
+<body>
+	<div class="container-fluid">
+        {{-- Hoja 1 --}}
+		<table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+		 	<tr style="height:14pt">
+                <td style="width:400px;" colspan="4">
+                    <p class="s12" style="padding-left: 4pt;text-indent: 1pt;line-height: 9pt;text-align: left;"><a name="bookmark0">COMUNIDAD AUTÓNOMA DE MADRID</a></p>
+                     <p class="s13" style="padding-left: 4pt;text-indent: 1pt;text-align: left;">CONSEJERIA DE MEDIO AMBIENTE</p>
+        	 
+                </td>
+                <td style="width:200px;">
+                	<img width="53" height="50" alt="image" src="{{ asset('index_files/Image_002.png') }}"/>                
+                	<img width="167" height="50" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span>
+                </td>                
+            </tr>
+		 </table>
+
         <p class="s14" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">Còpia Nº 1</p>
-        <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
-        <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil</p>
-        <p style="padding-left: 5pt;text-indent: 0pt;text-align: left; margin-top: 10pt"><span><img width="167" height="68" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span><span><img width="53" height="51" alt="image" src="{{ asset('index_files/Image_002.png') }}"/></span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
+		<table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+		 	<tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil</p>
+        	 		<p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                	<p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
+                </td>                
+            </tr>
+		</table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" >
                     <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">1. Datos del vehículo a descontaminar</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
             <tr style="height:27pt">
-                <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
+                <td style=";border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: &nbsp; {{ $purchase->brand }}</p>
                 </td>
-                <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo &nbsp; {{ $purchase->model }}</p>
                 </td>
-                <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: &nbsp; {{ $purchase_management->type }}</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
             <tr style="height:16pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula:  &nbsp; {{ $purchase_management->registration_number }}</p>
                 </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación: {{ $purchase_management->registration_date }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación:  &nbsp; {{ $purchase_management->registration_date }}</p>
                 </td>
-                <td style="width:92pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación: {{ $purchase_management->registration_country }}</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación:  &nbsp; {{ $purchase_management->registration_country }}</span></p>
                 </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p class="s2" style="padding-right: 35pt;text-indent: 0pt;line-height: 9pt;text-align: right;">1.7 Combustible</p>
                 </td>
-                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                @if($purchase_management->fuel == 'Gasolina')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
                     <p class="s2" style="padding-left: 12pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.7.1 Gasolina</p>
                 </td>
+                @endif
             </tr>
             <tr style="height:19pt">
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s2" style="padding-right: 34pt;text-indent: 0pt;line-height: 9pt;text-align: right;">1.7.2 Gasóleo</p>
+                @if($purchase_management->fuel == 'Gasóleo')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo  <span class="x-option">X</span></p>
                 </td>
-                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s2" style="padding-left: 14pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.7.3 Otros</p>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
                 </td>
+                @endif
+
+                @if($purchase_management->fuel == 'Otros')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
+                </td>
+                @endif
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
             <tr style="height:23pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s2" style="padding-left: 3pt;padding-right: 367pt;text-indent: 0pt;line-height: 11pt;text-align: left;"><span>1.8 Número de identificación (Bastidor)<br/>(EOLO)</span></p>
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 0pt;text-indent: 0pt;line-height: 11pt;text-align: left;"><span>1.8 Número de identificación (Bastidor)<br/>(EOLO)  &nbsp; {{ $purchase_management->frame_no }}</span></p>
                 </td>
             </tr>
-            <tr style="height:24pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
+            <tr style="height:24pt">                
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
                     <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
                 </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                @if($purchase_management->vehicle_state == 'Completo')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero  <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
                     <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero</p>
                 </td>
-                <td style="width:220pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
-                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
+                @endif
+                @if($purchase_management->vehicle_state == 'Parcialmente desmontado')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado  <input type="checkbox" name="" id="" checked=""></p>
                 </td>
-                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
+                </td>   
+                @endif              
+                @if($purchase_management->vehicle_state == 'Siniestrado')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
                     <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado</p>
                 </td>
+                @endif
             </tr>
             <tr style="height:21pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.10 Otros datos de interes:</p>
                 </td>
             </tr>
@@ -196,116 +272,122 @@
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
                     <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2. Datos del titular del vehículo entregado</p>
                 </td>
             </tr>
             <tr style="height:39pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;padding-right: 5pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la Razón<br/>Social</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 5pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la Razón Social</span>  <br>{{ $purchase_management->name  }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
                 </td>
-                <td style="width:277pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
                     <p class="s3" style="padding-left: 60pt;padding-right: 6pt;text-indent: -52pt;text-align: left;"><span>Declaro que he entregado el vehículo reseñado en<br/>esta Instalación de Recepción</span></p>
                 </td>
             </tr>
             <tr style="height:31pt">
-                <td style="width:131pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:  <br>{{ $purchase_management->dni }}</p>
                 </td>
-                <td style="width:113pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
                 </td>
-                <td style="width:277pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s2" style="padding-top: 2pt;padding-left: 37pt;text-indent: 0pt;text-align: left;">2.9 Nombre y a<span class="s4">1</span>p:ellidos</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 0;text-indent: 0pt;text-align: left;">2.9 Nombre y Apellidos <br> {{ $purchase_management->name_representantive }} {{ $purchase_management->firts_surname_representative }} {{ $purchase_management->second_surtname_representantive }}</p>
                 </td>
             </tr>
             <tr style="height:31pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }} </p>
                 </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.10 CIF / DNI / NIF / Otro:</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.10 CIF / DNI / NIF / Otro: {{ $purchase_management->dni_representative }}</p>
                 </td>
-                <td style="width:149pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-top: 7pt;padding-left: 14pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">2.12 Fecha <span class="s5">:</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-top: 7pt;padding-left: 14pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>                   
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">2.12 Fecha <span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
                 </td>
             </tr>
             <tr style="height:21pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio <br>	{{ $purchase_management->municipality }}</p>
                 </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal <br>	{{ $purchase_management->postal_code }}</p>
                 </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;padding-right: 52pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;padding-right: 52pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span> <br>	{{ $purchase_management->representation_concept }}</p>
                 </td>
             </tr>
             <tr style="height:19pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província <br>	{{ $purchase_management->province }}</p>
                 </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">2.8 País</p>
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">ESPAÑA</p>
                 </td>
             </tr>
             <tr style="height:7pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:2pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
                     <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">3. Datos de la instalación de recepción de vehículos</p>
                 </td>
             </tr>
             <tr style="height:19pt">
-                <td style="width:350pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
                 </td>
-                <td style="width:171pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 66pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span></p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
                 </td>
             </tr>
             <tr style="height:22pt">
-                <td style="width:103pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
                 </td>
-                <td style="width:247pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
                 </td>
             </tr>
             <tr style="height:22pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
                 </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
                 </td>
             </tr>
             <tr style="height:25pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
                 </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
                 </td>
             </tr>
         </table>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
-                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A cumplimentar por el propio centro)</p>
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
+                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A complementar por el propio centro)</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
                 <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.1 Nombre o Razón social:</p>
@@ -328,6 +410,8 @@
                     <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">B80804156</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
                 <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
@@ -338,13 +422,15 @@
                 <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
-                <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.4 N.I.R.I.</p>
                     <p class="s6" style="padding-left: 46pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28/59631</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
-                <td style="width:338pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.5 Dirección centro gestor</p>
                     <p class="s2" style="padding-left: 112pt;text-indent: 0pt;line-height: 8pt;text-align: left;">c/ Matilde Hernandez nº10</p>
                 </td>
@@ -353,6 +439,8 @@
                     <p class="s2" style="padding-left: 64pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
                 <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
@@ -362,15 +450,17 @@
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
                     <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
                 </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.9 Teléfono</p>
                     <p class="s2" style="padding-left: 57pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
                 </td>
-                <td style="width:121pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.10 Fax</p>
                     <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
                 <td style="width:321pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.11 Persona responsable</p>
@@ -381,876 +471,304 @@
                     <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
                 </td>
             </tr>
-            <tr style="height:92pt">
-                <td style="width:315pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su<br/>número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula,<br/>corresponden  al vehículo entregado. Procediendo a cumplir con  el apartado   del art.</span></p>
-                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo<br/>así con lo establecido en el Anexo II de manera que se favorezca la reutilización y     el<br/>reciclado, por este orden.</span></p>
+                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula, corresponden  al vehículo entregado. Procediendo a cumplir con  el apartado   del art.</span><br><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo así con lo establecido en el Anexo II de manera que se favorezca la reutilización y el reciclado, por este orden.</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">DECLARO</p>
-                </td>
-                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                    @if ($purchase_management->documents_attached == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1" checked>  Que se adjunta el correspondiente documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1">  Que se adjunta el correspondiente documento de matriculación</p>
+                    @endif
+
+                    @if ($purchase_management->non_existence_document == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2" checked> La inexistencia del documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2"> La inexistencia del documento de matriculación</p>
+                    @endif 
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>                   
+                </td>                
+
+                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la<br/>aceptación del residuo descrito para su tratamiento<br/>apropiado, de acuerdo con el Real Decreto 1383/2002,<br/>de 20 de diciembre, sobre gestión de vehiculos al final<br/>de su vida útil</span></p>
-                </td>
-            </tr>
-            <tr style="height:11pt">
-                <td style="width:24pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:3pt" rowspan="2">
-                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1</p>
+                    <p class="s5" style="padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la aceptación del residuo descrito para su tratamiento apropiado, de acuerdo con el Real Decreto 1383/2002, de 20 de diciembre, sobre gestión de vehiculos al final de su vida útil</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2</p>
-                </td>
-                <td style="width:16pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:275pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 7pt;text-indent: 0pt;text-align: left;">Que se adjunta el correspondiente documento de matriculación</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 7pt;text-indent: 0pt;text-align: left;">La inexistencia del documento de matriculación</p>
-                </td>
-                <td style="width:64pt;border-left-style:solid;border-left-width:1pt" colspan="2">
+                    <p class="s8" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">5.3 Fecha: {{ $purchase_management->collection_contract_date}}  <span class="s8" style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor (Sello y firma)</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:21pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:121pt;border-right-style:solid;border-right-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-            </tr>
-            <tr style="height:14pt">
-                <td style="width:16pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:3pt;border-right-style:solid;border-right-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:64pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">5.3 Fecha:</p>
-                </td>
-                <td style="width:21pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:121pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-top: 3pt;padding-left: 19pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor (Sello y firma)</p>
                 </td>
             </tr>
         </table>
-        <p style="text-indent: 0pt;text-align: left;"/>
         <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: Comunidad Autónoma</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A cumplimentar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"><span><img width="181" height="73" alt="image" src="{{ asset('index_files/Image_003.jpg') }}"/></span></p>
-        <p class="s12" style="padding-left: 10pt;text-indent: 0pt;line-height: 9pt;text-align: left;">COMUNIDAD AUTÓNOMA DE MADRID</p>
-        <p class="s13" style="padding-left: 10pt;text-indent: 0pt;text-align: left;">CONSEJERÍA DE MEDIO AMBIENTE</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s14" style="padding-left: 10pt;text-indent: 0pt;text-align: left;">Còpia Nº 2</p>
-        <p class="s30" style="padding-top: 1pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
-        <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil</p>
-        <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
+        <div class="saltoDePagina"></div>
+    </div>        
+        {{-- Hoja 2 --}}
+    <div class="container-fluid">
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+               <td style="width:400px;" colspan="4">
+                   <p class="s12" style="padding-left: 4pt;text-indent: 1pt;line-height: 9pt;text-align: left;"><a name="bookmark0">COMUNIDAD AUTÓNOMA DE MADRID</a></p>
+                    <p class="s13" style="padding-left: 4pt;text-indent: 1pt;text-align: left;">CONSEJERIA DE MEDIO AMBIENTE</p>
+            
+               </td>
+               <td style="width:200px;">
+                   <img width="53" height="50" alt="image" src="{{ asset('index_files/Image_002.png') }}"/>                
+                   <img width="167" height="50" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span>
+               </td>                
+           </tr>
+        </table>
+        <p class="s14" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">Còpia Nº 2</p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+                <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil</p>
+                        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
+                </td>                
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" >
                     <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">1. Datos del vehículo a descontaminar</p>
                 </td>
             </tr>
-            <tr style="height:15pt">
-                <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:27pt">
+                <td style=";border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: &nbsp; {{ $purchase->brand }}</p>
                 </td>
-                <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo &nbsp; {{ $purchase->model }}</p>
                 </td>
-                <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: &nbsp; {{ $purchase_management->type }}</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
             <tr style="height:16pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula:  &nbsp; {{ $purchase_management->registration_number }}</p>
                 </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 40pt;text-indent: 0pt;text-align: left;"><span>1.5 Fecha<br/>matriculación:</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación:  &nbsp; {{ $purchase_management->registration_date }}</p>
                 </td>
-                <td style="width:92pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 4pt;padding-right: 26pt;text-indent: 0pt;text-align: left;"><span>1.6 País de<br/>matriculación:</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación:  &nbsp; {{ $purchase_management->registration_country }}</span></p>
                 </td>
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-right: 42pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7 Combustible</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 35pt;text-indent: 0pt;line-height: 9pt;text-align: right;">1.7 Combustible</p>
                 </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina</p>
+                @if($purchase_management->fuel == 'Gasolina')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 12pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.7.1 Gasolina</p>
+                </td>
+                @endif
+            </tr>
+            <tr style="height:19pt">
+                @if($purchase_management->fuel == 'Gasóleo')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo  <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
+                </td>
+                @endif
+
+                @if($purchase_management->fuel == 'Otros')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
+                </td>
+                @endif
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:23pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 0pt;text-indent: 0pt;line-height: 11pt;text-align: left;"><span>1.8 Número de identificación (Bastidor)<br/>(EOLO)  &nbsp; {{ $purchase_management->frame_no }}</span></p>
                 </td>
             </tr>
-            <tr style="height:26pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
+            <tr style="height:24pt">                
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
                 </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
+                @if($purchase_management->vehicle_state == 'Completo')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero  <input type="checkbox" name="" id="" checked=""></p>
                 </td>
-            </tr>
-            <tr style="height:25pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.8 Número de identificación (Bastidor)</p>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero</p>
                 </td>
-            </tr>
-            <tr style="height:25pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
+                @endif
+                @if($purchase_management->vehicle_state == 'Parcialmente desmontado')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado  <input type="checkbox" name="" id="" checked=""></p>
                 </td>
-                <td style="width:155pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
-                    <p class="s8" style="padding-left: 60pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9. 1 Entero</p>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
+                </td>   
+                @endif              
+                @if($purchase_management->vehicle_state == 'Siniestrado')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado <input type="checkbox" name="" id="" checked=""></p>
                 </td>
-                <td style="width:182pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-left: 41pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado</p>
                 </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 22pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9.3 Siniestrado</p>
-                </td>
+                @endif
             </tr>
             <tr style="height:21pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.10 Otros datos de interes:</p>
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.10 Otros datos de interes:</p>
                 </td>
             </tr>
         </table>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
                     <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2. Datos del titular del vehículo entregado</p>
                 </td>
             </tr>
             <tr style="height:39pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 4pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la<br/>Razón Social</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 5pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la Razón Social</span>  <br>{{ $purchase_management->name  }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
                 </td>
-                <td style="width:276pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
                     <p class="s3" style="padding-left: 60pt;padding-right: 6pt;text-indent: -52pt;text-align: left;"><span>Declaro que he entregado el vehículo reseñado en<br/>esta Instalación de Recepción</span></p>
                 </td>
             </tr>
-            <tr style="height:20pt">
-                <td style="width:131pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:</p>
+            <tr style="height:31pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:  <br>{{ $purchase_management->dni }}</p>
                 </td>
-                <td style="width:114pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
                 </td>
-                <td style="width:276pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">2.9 Nombre y apellidos <span class="s15">1</span>:</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 0;text-indent: 0pt;text-align: left;">2.9 Nombre y Apellidos <br> {{ $purchase_management->name_representantive }} {{ $purchase_management->firts_surname_representative }} {{ $purchase_management->second_surtname_representantive }}</p>
                 </td>
             </tr>
-            <tr style="height:22pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección</p>
+            <tr style="height:31pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }} </p>
                 </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.10 CIF / DNI / NIF / Otro:</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.10 CIF / DNI / NIF / Otro: {{ $purchase_management->dni_representative }}</p>
                 </td>
-                <td style="width:149pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 6pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 49pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.12 Fecha <span class="s16">:</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-top: 7pt;padding-left: 14pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>                   
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">2.12 Fecha <span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
                 </td>
             </tr>
             <tr style="height:21pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio <br>	{{ $purchase_management->municipality }}</p>
                 </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal <br>	{{ $purchase_management->postal_code }}</p>
                 </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 43pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span></p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província</p>
-                </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.8 País</p>
-                    <p class="s2" style="padding-left: 2pt;text-indent: 0pt;line-height: 9pt;text-align: left;">ESPAÑA</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;padding-right: 52pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span> <br>	{{ $purchase_management->representation_concept }}</p>
                 </td>
             </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="3">
-                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">3. Datos de la instalación de recepción de vehículos</p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:351pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.1 Nombre o Razón social</p>
-                </td>
-                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 10pt;padding-right: 8pt;text-indent: 0pt;text-align: center;">Instalación de recepción (sello y firma)</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 10pt;padding-right: 8pt;text-indent: 0pt;line-height: 10pt;text-align: center;">3.8 Fecha<span class="s16">: . . . / . . . . . . /200 . . .</span></p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:96pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF</p>
-                </td>
-                <td style="width:255pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.3 Dirección</p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.4 Municipio</p>
-                </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.5 Codigo postal</p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.6 Província</p>
-                </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.7 País</p>
-                </td>
-            </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:13pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
-                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A cumplimentar por el propio centro)</p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.1 Nombre o Razón social:</p>
-                    <p class="s2" style="padding-left: 119pt;text-indent: 0pt;line-height: 8pt;text-align: left;">motOstion SL</p>
-                </td>
-                <td style="width:42pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:6pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:17pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:55pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.2 CIF:</p>
-                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">B80804156</p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
-                </td>
-                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p class="s2" style="padding-top: 5pt;padding-left: 31pt;text-indent: 0pt;text-align: left;">CATv/MD/12173</p>
-                </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.4 N.I.R.I.</p>
-                    <p class="s6" style="padding-left: 45pt;padding-right: 45pt;text-indent: 0pt;text-align: center;">28/59631</p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:338pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.5 Dirección centro gestor</p>
-                    <p class="s2" style="padding-left: 112pt;text-indent: 0pt;line-height: 8pt;text-align: left;">c/ Matilde Hernandez nº10</p>
-                </td>
-                <td style="width:183pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.6 Municipio</p>
-                    <p class="s2" style="padding-left: 64pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.7 Código postal</p>
-                    <p class="s2" style="padding-left: 81pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28019</p>
-                </td>
-                <td style="width:156pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.8 Província</p>
-                    <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
-                </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.9 Teléfono</p>
-                    <p class="s2" style="padding-left: 59pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
-                </td>
-                <td style="width:121pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.10 Fax</p>
-                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:321pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.11 Persona responsable</p>
-                    <p class="s2" style="padding-left: 107pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Juan Miguel Sevilla Gómez de Zamora</p>
-                </td>
-                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="3">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">4.12 E-mail</p>
-                    <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
-                </td>
-            </tr>
-            <tr style="height:86pt">
-                <td style="width:315pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s5" style="padding-top: 7pt;padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su<br/>número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula,<br/>corresponden   al vehículo entregado. Procediendo a cumplir con el apartado    del art.</span></p>
-                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo<br/>así con lo establecido en el Anexo II de manera que se favorezca la reutilización y     el<br/>reciclado, por este orden.</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">DECLARO</p>
-                </td>
-                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-top: 7pt;padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la<br/>aceptación del residuo descrito para su tratamiento<br/>apropiado, de acuerdo con el Real Decreto 1383/2002,<br/>de 20 de diciembre, sobre gestión de vehiculos al final<br/>de su vida útil</span></p>
-                </td>
-            </tr>
-            <tr style="height:47pt">
-                <td style="width:41pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;text-align: left;">5.1</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;text-align: left;">5.2</p>
-                </td>
-                <td style="width:5pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:269pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: left;"><span>Que     se     adjunta     el     correspondiente     documento de<br/>matriculación</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">La inexistencia del documento de matriculación</p>
-                </td>
-                <td style="width:78pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s16" style="padding-left: 12pt;text-indent: 0pt;line-height: 10pt;text-align: left;">..…../………./200</p>
-                    <p class="s16" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">.<b>5.3 </b>Fecha</p>
-                </td>
-                <td style="width:7pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:121pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 19pt;text-indent: 0pt;line-height: 10pt;text-align: left;">Gestor (Sello y firma)</p>
-                </td>
-            </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: DGT – Jefatura Provincial de Tráfico</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A cumplimentar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"><span><img width="181" height="73" alt="image" src="{{ asset('index_files/Image_004.jpg') }}"/></span></p>
-        <p class="s12" style="padding-left: 10pt;text-indent: 0pt;line-height: 9pt;text-align: left;">COMUNIDAD AUTÓNOMA DE MADRID</p>
-        <p class="s13" style="padding-left: 10pt;text-indent: 0pt;text-align: left;">CONSEJERÍA DE MEDIO AMBIENTE</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s14" style="padding-top: 5pt;padding-left: 10pt;text-indent: 0pt;text-align: left;">Còpia Nº 3</p>
-        <p class="s30" style="padding-left: 5pt;text-indent: 0pt;line-height: 13pt;text-align: left;">CTV/MD/12173/</p>
-        <p class="s59" style="padding-left: 6pt;text-indent: 0pt;line-height: 16pt;text-align: center;">Certificado de destrucción del vehículo al final de su vida útil</p>
-        <p class="s30" style="padding-left: 6pt;text-indent: 0pt;line-height: 14pt;text-align: center;">(Espacio para otras lenguas oficiales, en adelante EOLO)</p>
-        <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">1. Datos del vehículo a descontaminar</p>
-                </td>
-            </tr>
-            <tr style="height:15pt">
-                <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
-                </td>
-                <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
-                </td>
-                <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
-                </td>
-            </tr>
-            <tr style="height:16pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
-                </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 40pt;text-indent: 0pt;text-align: left;"><span>1.5 Fecha<br/>matriculación:</span></p>
-                </td>
-                <td style="width:92pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 4pt;padding-right: 26pt;text-indent: 0pt;text-align: left;"><span>1.6 País de<br/>matriculación:</span></p>
-                </td>
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-right: 42pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7 Combustible</p>
-                </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina</p>
-                </td>
-            </tr>
-            <tr style="height:26pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
-                </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
-                </td>
-            </tr>
-            <tr style="height:25pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.8 Número de identificación (Bastidor)</p>
-                </td>
-            </tr>
-            <tr style="height:25pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
-                </td>
-                <td style="width:155pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
-                    <p class="s8" style="padding-left: 60pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9. 1 Entero</p>
-                </td>
-                <td style="width:182pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-left: 41pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
-                </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 22pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9.3 Siniestrado</p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.10 Otros datos de interes:</p>
-                </td>
-            </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
-                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2. Datos del titular del vehículo entregado</p>
-                </td>
-            </tr>
-            <tr style="height:39pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 4pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la<br/>Razón Social</span></p>
-                </td>
-                <td style="width:277pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s3" style="padding-left: 60pt;padding-right: 6pt;text-indent: -52pt;text-align: left;"><span>Declaro que he entregado el vehículo reseñado en<br/>esta Instalación de Recepción</span></p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:131pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:</p>
-                </td>
-                <td style="width:113pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
-                    <p class="s2" style="padding-left: 14pt;text-indent: 0pt;line-height: 7pt;text-align: left;">.</p>
-                </td>
-                <td style="width:277pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">.9 Nombre y apellidos <span class="s15">1</span>:</p>
-                </td>
-            </tr>
-            <tr style="height:22pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección</p>
-                </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.10 CIF / DNI / NIF / Otro:</p>
-                </td>
-                <td style="width:149pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 6pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 49pt;text-indent: 0pt;line-height: 7pt;text-align: left;">2.12 Fecha <span class="s16">:</span></p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio</p>
-                </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal</p>
-                </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 4pt;padding-right: 52pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span></p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província</p>
-                </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.8 País</p>
-                    <p class="s2" style="padding-left: 7pt;text-indent: 0pt;line-height: 9pt;text-align: left;">ESPAÑA</p>
+            <tr style="height:19pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província <br>	{{ $purchase_management->province }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">2.8 País</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">ESPAÑA</p>
                 </td>
             </tr>
             <tr style="height:7pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:2pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
                     <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">3. Datos de la instalación de recepción de vehículos</p>
                 </td>
             </tr>
-            <tr style="height:21pt">
-                <td style="width:351pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.1 Nombre o Razón social</p>
-                </td>
-                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 11pt;padding-right: 8pt;text-indent: 0pt;text-align: center;">Instalación de recepción (sello y firma)</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 11pt;padding-right: 8pt;text-indent: 0pt;line-height: 10pt;text-align: center;">3.8 Fecha<span class="s16">: . . . / . . . . . . /200 . . .</span></p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:96pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF</p>
-                </td>
-                <td style="width:255pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.3 Dirección</p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.4 Municipio</p>
-                </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.5 Codigo postal</p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:244pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.6 Província</p>
-                </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.7 País</p>
-                </td>
-            </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:13pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
-                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A cumplimentar por el propio centro)</p>
-                </td>
-            </tr>
             <tr style="height:19pt">
-                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.1 Nombre o Razón social:</p>
-                    <p class="s2" style="padding-left: 119pt;text-indent: 0pt;line-height: 8pt;text-align: left;">motOstion SL</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
                 </td>
-                <td style="width:42pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:7pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:17pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:55pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.2 CIF:</p>
-                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">B80804156</p>
-                </td>
-            </tr>
-            <tr style="height:28pt">
-                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s2" style="padding-top: 4pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
-                </td>
-                <td style="width:121pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 31pt;text-indent: 0pt;text-align: left;">CATv/MD/12173</p>
-                </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s2" style="padding-left: 3pt;padding-right: 9pt;text-indent: 0pt;text-align: left;"><span>4.3 Codigo de autorización de<br/>gestor de residus peligrosos</span></p>
-                    <p class="s6" style="padding-left: 45pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28/59631</p>
-                </td>
-            </tr>
-            <tr style="height:19pt">
-                <td style="width:339pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.5 Dirección centro gestor</p>
-                    <p class="s2" style="padding-left: 112pt;text-indent: 0pt;line-height: 8pt;text-align: left;">c/ Matilde Hernandez nº10</p>
-                </td>
-                <td style="width:182pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.6 Municipio</p>
-                    <p class="s2" style="padding-left: 63pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
-                </td>
-            </tr>
-            <tr style="height:19pt">
-                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
-                    <p class="s2" style="padding-left: 72pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28019</p>
-                </td>
-                <td style="width:156pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
-                    <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
-                </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
-                    <p class="s2" style="padding-left: 72pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28019</p>
-                </td>
-                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
-                    <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
-                </td>
-            </tr>
-            <tr style="height:19pt">
-                <td style="width:322pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.11 Persona responsable</p>
-                    <p class="s2" style="padding-left: 107pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Juan Miguel Sevilla Gómez de Zamora</p>
-                </td>
-                <td style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.12 E-mail</p>
-                    <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
-                </td>
-            </tr>
-            <tr style="height:93pt">
-                <td style="width:315pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-top: 7pt;padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su<br/>número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula,<br/>corresponden  al vehículo entregado. Procediendo a cumplir con  el apartado   del art.</span></p>
-                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo<br/>así con lo establecido en el Anexo II de manera que se favorezca la reutilización y     el<br/>reciclado, por este orden.</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">DECLARO</p>
-                </td>
-                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-top: 7pt;padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la<br/>aceptación del residuo descrito para su tratamiento<br/>apropiado, de acuerdo con el Real Decreto 1383/2002,<br/>de 20 de diciembre, sobre gestión de vehiculos al final<br/>de su vida útil</span></p>
-                </td>
-            </tr>
-            <tr style="height:43pt">
-                <td style="width:46pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-top: 5pt;padding-left: 7pt;text-indent: 0pt;text-align: left;">5.1</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;text-align: left;">5.2</p>
-                </td>
-                <td style="width:269pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;text-align: left;"><span>Que     se     adjunta     el     correspondiente     documento de<br/>matriculación</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">La inexistencia del documento de matriculación</p>
-                </td>
-                <td style="width:79pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="3">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s16" style="padding-left: 12pt;text-indent: 0pt;line-height: 10pt;text-align: left;">..…../………./200</p>
-                    <p class="s16" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">.<b>5.3 </b>Fecha</p>
-                </td>
-                <td style="width:7pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:120pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 18pt;text-indent: 0pt;line-height: 10pt;text-align: left;">Gestor (Sello y firma)</p>
-                </td>
-            </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: Titular o instalación de recepción</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A cumplimentar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
-        <p class="s14" style="padding-left: 10pt;text-indent: 0pt;text-align: left;">Còpia Nº 4</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s12" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">COMUNIDAD AUTÓNOMA DE MADRID</p>
-        <p class="s13" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">CONSEJERÍA DE MEDIO AMBIENTE</p>
-        <p class="s30" style="padding-left: 4pt;text-indent: 0pt;line-height: 13pt;text-align: left;">CTV/MD/12173/</p>
-        <p class="s59" style="padding-left: 6pt;text-indent: 0pt;line-height: 16pt;text-align: center;">Certificado de destrucción del vehículo al final de su vida útil</p>
-        <p class="s30" style="padding-left: 6pt;text-indent: 0pt;line-height: 14pt;text-align: center;">(Espacio para otras lenguas oficiales, en adelante EOLO)</p>
-        <p style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span><img width="181" height="73" alt="image" src="{{ asset('index_files/Image_005.jpg') }}"/></span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">1. Datos del vehículo a descontaminar</p>
-                </td>
-            </tr>
-            <tr style="height:33pt">
-                <td style="width:154pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: {{ $purchase->brand }}</p>
-                </td>
-                <td style="width:119pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo: {{ $purchase->model }}</p>
-                </td>
-                <td style="width:248pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: {{ $purchase_management->type }}</p>
-                </td>
-            </tr>
-            <tr style="height:16pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.4 Matrícula: {{ $purchase_management->registration_number }}</p>
-                </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 40pt;text-indent: 0pt;text-align: left;"><span>1.5 Fecha<br/>matriculación:</span></p>
-                </td>
-                <td style="width:92pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 4pt;padding-right: 26pt;text-indent: 0pt;text-align: left;"><span>1.6 País de<br/>matriculación:</span></p>
-                </td>
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-right: 42pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7 Combustible</p>
-                </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina</p>
-                </td>
-            </tr>
-            <tr style="height:26pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s8" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
-                </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
-                </td>
-            </tr>
-            <tr style="height:25pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.8 Número de identificación (Bastidor)</p>
-                </td>
-            </tr>
-            <tr style="height:25pt">
-                <td style="width:74pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
-                </td>
-                <td style="width:155pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
-                    <p class="s8" style="padding-left: 60pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9. 1 Entero</p>
-                </td>
-                <td style="width:182pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-left: 41pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
-                </td>
-                <td style="width:110pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s8" style="padding-left: 22pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.9.3 Siniestrado</p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">1.10 Otros datos de interes:</p>
-                </td>
-            </tr>
-        </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
-                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2. Datos del titular del vehículo entregado</p>
-                </td>
-            </tr>
-            <tr style="height:39pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 4pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la<br/>Razón Social</span></p>
-                </td>
-                <td style="width:276pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s3" style="padding-left: 60pt;padding-right: 6pt;text-indent: -52pt;text-align: left;"><span>Declaro que he entregado el vehículo reseñado en<br/>esta Instalación de Recepción</span></p>
-                </td>
-            </tr>
-            <tr style="height:20pt">
-                <td style="width:131pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:</p>
-                </td>
-                <td style="width:114pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
-                </td>
-                <td style="width:276pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">2.9 Nombre y apellidos <span class="s15">1</span>:</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
                 </td>
             </tr>
             <tr style="height:22pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
                 </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.10 CIF / DNI / NIF / Otro:</p>
-                </td>
-                <td style="width:149pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 6pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 49pt;text-indent: 0pt;line-height: 10pt;text-align: left;">2.12 Fecha <span class="s16">:</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
                 </td>
             </tr>
-            <tr style="height:21pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio</p>
+            <tr style="height:22pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
                 </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal</p>
-                </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
-                    <p class="s8" style="padding-left: 3pt;padding-right: 43pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
                 </td>
             </tr>
-            <tr style="height:21pt">
-                <td style="width:138pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província</p>
+            <tr style="height:25pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
                 </td>
-                <td style="width:107pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.8 País <span class="s2">.ESPAÑA</span></p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
                 </td>
             </tr>
         </table>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:14pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="3">
-                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">3. Datos de la instalación de recepción de vehículos</p>
-                </td>
-            </tr>
-            <tr style="height:21pt">
-                <td style="width:351pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.1 Nombre o Razón social</p>
-                </td>
-                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 10pt;padding-right: 8pt;text-indent: 0pt;text-align: center;">Instalación de recepción (sello y firma)</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 10pt;padding-right: 8pt;text-indent: 0pt;line-height: 10pt;text-align: center;">3.8 Fecha<span class="s16">: . . . / . . . . . . /200 . . .</span></p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:96pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF</p>
-                </td>
-                <td style="width:255pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.3 Dirección</p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.4 Municipio</p>
-                </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.5 Codigo postal</p>
-                </td>
-            </tr>
-            <tr style="height:24pt">
-                <td style="width:245pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.6 Província</p>
-                </td>
-                <td style="width:106pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 3pt;text-indent: 0pt;line-height: 10pt;text-align: left;">3.7 País</p>
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
+                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A complementar por el propio centro)</p>
                 </td>
             </tr>
         </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
-            <tr style="height:13pt">
-                <td style="width:521pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
-                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A cumplimentar por el propio centro)</p>
-                </td>
-            </tr>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
                 <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.1 Nombre o Razón social:</p>
@@ -1265,29 +783,35 @@
                 <td style="width:17pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
-                <td style="width:55pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.2 CIF:</p>
                     <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">B80804156</p>
                 </td>
             </tr>
-            <tr style="height:28pt">
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
                 <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
-                    <p class="s2" style="padding-top: 4pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
                 </td>
-                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
+                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt" colspan="3">
+                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">CATv/MD/12173</p>
+                </td>
+                <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 31pt;text-indent: 0pt;text-align: left;">CATv/MD/12173</p>
                 </td>
-                <td style="width:128pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s2" style="padding-left: 4pt;padding-right: 9pt;text-indent: 0pt;text-align: left;"><span>4.3 Codigo de autorización de<br/>gestor de residus peligrosos</span></p>
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.4 N.I.R.I.</p>
                     <p class="s6" style="padding-left: 46pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28/59631</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
-                <td style="width:338pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.5 Dirección centro gestor</p>
                     <p class="s2" style="padding-left: 112pt;text-indent: 0pt;line-height: 8pt;text-align: left;">c/ Matilde Hernandez nº10</p>
                 </td>
@@ -1296,6 +820,8 @@
                     <p class="s2" style="padding-left: 64pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:19pt">
                 <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
@@ -1305,131 +831,913 @@
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
                     <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
                 </td>
-                <td style="width:127pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
-                    <p class="s2" style="padding-left: 73pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28019</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.9 Teléfono</p>
+                    <p class="s2" style="padding-left: 57pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
                 </td>
-                <td style="width:121pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
-                    <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
-                </td>
-            </tr>
-            <tr style="height:19pt">
-                <td style="width:321pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.11 Persona responsable</p>
-                    <p class="s2" style="padding-left: 107pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Juan Miguel Sevilla Gómez de Zamora</p>
-                </td>
-                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.12 E-mail</p>
-                    <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
-                </td>
-            </tr>
-            <tr style="height:93pt">
-                <td style="width:315pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-top: 7pt;padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su<br/>número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula,<br/>corresponden   al vehículo entregado. Procediendo a cumplir con el apartado    del art.</span></p>
-                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo<br/>así con lo establecido en el Anexo II de manera que se favorezca la reutilización y     el<br/>reciclado, por este orden.</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">DECLARO</p>
-                </td>
-                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s5" style="padding-top: 7pt;padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la<br/>aceptación del residuo descrito para su tratamiento<br/>apropiado, de acuerdo con el Real Decreto 1383/2002,<br/>de 20 de diciembre, sobre gestión de vehiculos al final<br/>de su vida útil</span></p>
-                </td>
-            </tr>
-            <tr style="height:43pt">
-                <td style="width:46pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p class="s8" style="padding-top: 5pt;padding-left: 7pt;text-indent: 0pt;text-align: left;">5.1</p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;text-align: left;">5.2</p>
-                </td>
-                <td style="width:269pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;text-align: left;"><span>Que     se     adjunta     el     correspondiente     documento de<br/>matriculación</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">La inexistencia del documento de matriculación</p>
-                </td>
-                <td style="width:78pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="3">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s16" style="padding-left: 12pt;text-indent: 0pt;line-height: 10pt;text-align: left;">..…../………./200</p>
-                    <p class="s16" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">.<b>5.3 </b>Fecha</p>
-                </td>
-                <td style="width:7pt;border-bottom-style:solid;border-bottom-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                </td>
-                <td style="width:121pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s8" style="padding-left: 19pt;text-indent: 0pt;line-height: 10pt;text-align: left;">Gestor (Sello y firma)</p>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.10 Fax</p>
+                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
                 </td>
             </tr>
         </table>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: Centro Autorizado de Tratmeinto</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A cumplimentar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
-        <table style="border-collapse:collapse;margin-left:8.52pt" cellspacing="0">
-            <tr style="height:22pt">
-                <td style="width:246pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:321pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.11 Persona responsable</p>
+                    <p class="s2" style="padding-left: 107pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Juan Miguel Sevilla Gómez de Zamora</p>
                 </td>
-                <td style="width:288pt">
-                    <p class="s17" style="padding-left: 64pt;text-indent: 0pt;line-height: 16pt;text-align: left;"><a name="bookmark1">Número de expediente: </a><span class="s18">F0000000</span></p>
+                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="3">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">4.12 E-mail</p>
+                    <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula, corresponden  al vehículo entregado. Procediendo a cumplir con  el apartado   del art.</span><br><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo así con lo establecido en el Anexo II de manera que se favorezca la reutilización y el reciclado, por este orden.</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">DECLARO</p>
+                    @if ($purchase_management->documents_attached == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1" checked>  Que se adjunta el correspondiente documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1">  Que se adjunta el correspondiente documento de matriculación</p>
+                    @endif
+
+                    @if ($purchase_management->non_existence_document == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2" checked> La inexistencia del documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2"> La inexistencia del documento de matriculación</p>
+                    @endif 
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>                   
+                </td>                
+
+                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s5" style="padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la aceptación del residuo descrito para su tratamiento apropiado, de acuerdo con el Real Decreto 1383/2002, de 20 de diciembre, sobre gestión de vehiculos al final de su vida útil</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s8" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">5.3 Fecha: {{ $purchase_management->collection_contract_date}}  <span class="s8" style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor (Sello y firma)</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+            </tr>
+        </table>
+        <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: DGT – Jefatura Provincial de Tráfico</p>
+        <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A cumplimentar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
+        <div class="saltoDePagina"></div>
+    </div>   
+    <div class="container-fluid">
+        {{-- Hoja 3 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:400px;" colspan="4">
+                    <p class="s12" style="padding-left: 4pt;text-indent: 1pt;line-height: 9pt;text-align: left;"><a name="bookmark0">COMUNIDAD AUTÓNOMA DE MADRID</a></p>
+                    <p class="s13" style="padding-left: 4pt;text-indent: 1pt;text-align: left;">CONSEJERIA DE MEDIO AMBIENTE</p>
+            
+                </td>
+                <td style="width:200px;">
+                    <img width="53" height="50" alt="image" src="{{ asset('index_files/Image_002.png') }}"/>                
+                    <img width="167" height="50" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span>
+                </td>                
+            </tr>
+        </table>
+        <p class="s14" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">Còpia Nº 4</p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+                <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil <br>
+                        (Espacio para otras lenguas oficiales, en adelante EOLO) 
+                    </p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
+                </td>                
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" >
+                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">1. Datos del vehículo a descontaminar</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:27pt">
+                <td style=";border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: &nbsp; {{ $purchase->brand }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo &nbsp; {{ $purchase->model }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: &nbsp; {{ $purchase_management->type }}</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:16pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula:  &nbsp; {{ $purchase_management->registration_number }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación:  &nbsp; {{ $purchase_management->registration_date }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación:  &nbsp; {{ $purchase_management->registration_country }}</span></p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 35pt;text-indent: 0pt;line-height: 9pt;text-align: right;">1.7 Combustible</p>
+                </td>
+                @if($purchase_management->fuel == 'Gasolina')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 12pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.7.1 Gasolina</p>
+                </td>
+                @endif
+            </tr>
+            <tr style="height:19pt">
+                @if($purchase_management->fuel == 'Gasóleo')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo  <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
+                </td>
+                @endif
+
+                @if($purchase_management->fuel == 'Otros')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
+                </td>
+                @endif
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:23pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 0pt;text-indent: 0pt;line-height: 11pt;text-align: left;"><span>1.8 Número de identificación (Bastidor)<br/>(EOLO)  &nbsp; {{ $purchase_management->frame_no }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:24pt">                
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
+                </td>
+                @if($purchase_management->vehicle_state == 'Completo')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero  <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero</p>
+                </td>
+                @endif
+                @if($purchase_management->vehicle_state == 'Parcialmente desmontado')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado  <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
+                </td>   
+                @endif              
+                @if($purchase_management->vehicle_state == 'Siniestrado')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado</p>
+                </td>
+                @endif
+            </tr>
+            <tr style="height:21pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.10 Otros datos de interes:</p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2. Datos del titular del vehículo entregado</p>
+                </td>
+            </tr>
+            <tr style="height:39pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 5pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la Razón Social</span>  <br>{{ $purchase_management->name  }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s3" style="padding-left: 60pt;padding-right: 6pt;text-indent: -52pt;text-align: left;"><span>Declaro que he entregado el vehículo reseñado en<br/>esta Instalación de Recepción</span></p>
+                </td>
+            </tr>
+            <tr style="height:31pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:  <br>{{ $purchase_management->dni }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 0;text-indent: 0pt;text-align: left;">2.9 Nombre y Apellidos <br> {{ $purchase_management->name_representantive }} {{ $purchase_management->firts_surname_representative }} {{ $purchase_management->second_surtname_representantive }}</p>
+                </td>
+            </tr>
+            <tr style="height:31pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }} </p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.10 CIF / DNI / NIF / Otro: {{ $purchase_management->dni_representative }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-top: 7pt;padding-left: 14pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>                   
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">2.12 Fecha <span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                </td>
+            </tr>
+            <tr style="height:21pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio <br>	{{ $purchase_management->municipality }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal <br>	{{ $purchase_management->postal_code }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;padding-right: 52pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span> <br>	{{ $purchase_management->representation_concept }}</p>
+                </td>
+            </tr>
+            <tr style="height:19pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província <br>	{{ $purchase_management->province }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">2.8 País</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">ESPAÑA</p>
+                </td>
+            </tr>
+            <tr style="height:7pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+            </tr>
+            <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">3. Datos de la instalación de recepción de vehículos</p>
+                </td>
+            </tr>
+            <tr style="height:19pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                </td>
+            </tr>
+            <tr style="height:22pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
+                </td>
+            </tr>
+            <tr style="height:22pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
+                </td>
+            </tr>
+            <tr style="height:25pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
+                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A complementar por el propio centro)</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.1 Nombre o Razón social:</p>
+                    <p class="s2" style="padding-left: 119pt;text-indent: 0pt;line-height: 8pt;text-align: left;">motOstion SL</p>
+                </td>
+                <td style="width:42pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:6pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:17pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.2 CIF:</p>
+                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">B80804156</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
+                </td>
+                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt" colspan="3">
+                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">CATv/MD/12173</p>
+                </td>
+                <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.4 N.I.R.I.</p>
+                    <p class="s6" style="padding-left: 46pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28/59631</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.5 Dirección centro gestor</p>
+                    <p class="s2" style="padding-left: 112pt;text-indent: 0pt;line-height: 8pt;text-align: left;">c/ Matilde Hernandez nº10</p>
+                </td>
+                <td style="width:183pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.6 Municipio</p>
+                    <p class="s2" style="padding-left: 64pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
+                    <p class="s2" style="padding-left: 72pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28019</p>
+                </td>
+                <td style="width:156pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
+                    <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.9 Teléfono</p>
+                    <p class="s2" style="padding-left: 57pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.10 Fax</p>
+                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:321pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.11 Persona responsable</p>
+                    <p class="s2" style="padding-left: 107pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Juan Miguel Sevilla Gómez de Zamora</p>
+                </td>
+                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="3">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">4.12 E-mail</p>
+                    <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula, corresponden  al vehículo entregado. Procediendo a cumplir con  el apartado   del art.</span><br><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo así con lo establecido en el Anexo II de manera que se favorezca la reutilización y el reciclado, por este orden.</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">DECLARO</p>
+                    @if ($purchase_management->documents_attached == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1" checked>  Que se adjunta el correspondiente documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1">  Que se adjunta el correspondiente documento de matriculación</p>
+                    @endif
+
+                    @if ($purchase_management->non_existence_document == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2" checked> La inexistencia del documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2"> La inexistencia del documento de matriculación</p>
+                    @endif                
+                </td>                
+
+                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s5" style="padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la aceptación del residuo descrito para su tratamiento apropiado, de acuerdo con el Real Decreto 1383/2002, de 20 de diciembre, sobre gestión de vehiculos al final de su vida útil</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s8" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">5.3 Fecha: {{ $purchase_management->collection_contract_date}}  <span class="s8" style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor (Sello y firma)</span></p>
+                </td>
+            </tr>
+        </table>
+        <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: Titular o instalación de recepción 
+        </p>
+        <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A complementar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
+        <div class="saltoDePagina"></div>
+    </div>
+
+    <div class="container-fluid">
+        {{-- Hoja 4 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:400px;" colspan="4">
+                    <p class="s12" style="padding-left: 4pt;text-indent: 1pt;line-height: 9pt;text-align: left;"><a name="bookmark0">COMUNIDAD AUTÓNOMA DE MADRID</a></p>
+                    <p class="s13" style="padding-left: 4pt;text-indent: 1pt;text-align: left;">CONSEJERIA DE MEDIO AMBIENTE</p>
+            
+                </td>
+                <td style="width:200px;">
+                    <img width="53" height="50" alt="image" src="{{ asset('index_files/Image_002.png') }}"/>                
+                    <img width="167" height="50" alt="image" src="{{ asset('index_files/Image_001.jpg') }}"/></span>
+                </td>                
+            </tr>
+        </table>
+        <p class="s14" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">Còpia Nº 1</p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+                <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s59" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Certificado de destrucción del vehículo al final de su vida útil <br>
+                        (Espacio para otras lenguas oficiales, en adelante EOLO) 
+                    </p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">CTV/MD/12173/</p>
+                </td>                
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" >
+                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">1. Datos del vehículo a descontaminar</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:27pt">
+                <td style=";border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.1 Marca: &nbsp; {{ $purchase->brand }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">1.2 Modelo &nbsp; {{ $purchase->model }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.3 Tipo: &nbsp; {{ $purchase_management->type }}</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:16pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.4 Matrícula:  &nbsp; {{ $purchase_management->registration_number }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.5 Fecha matriculación:  &nbsp; {{ $purchase_management->registration_date }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-left: 4pt;padding-right: 31pt;text-indent: 0pt;text-align: left;"><span>1.6  País de<br/>matriculación:  &nbsp; {{ $purchase_management->registration_country }}</span></p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 35pt;text-indent: 0pt;line-height: 9pt;text-align: right;">1.7 Combustible</p>
+                </td>
+                @if($purchase_management->fuel == 'Gasolina')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.1 Gasolina <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 12pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.7.1 Gasolina</p>
+                </td>
+                @endif
+            </tr>
+            <tr style="height:19pt">
+                @if($purchase_management->fuel == 'Gasóleo')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo  <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-right: 40pt;text-indent: 0pt;line-height: 10pt;text-align: right;">1.7.2 Gasóleo</p>
+                </td>
+                @endif
+
+                @if($purchase_management->fuel == 'Otros')
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros <span class="x-option">X</span></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 8pt;text-indent: 0pt;text-align: left;">1.7.3 Otros</p>
+                </td>
+                @endif
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt; width: 755px" cellspacing="0">
+            <tr style="height:23pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 0pt;text-indent: 0pt;line-height: 11pt;text-align: left;"><span>1.8 Número de identificación (Bastidor)<br/>(EOLO)  &nbsp; {{ $purchase_management->frame_no }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:24pt">                
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">1.9 Estado</p>
+                </td>
+                @if($purchase_management->vehicle_state == 'Completo')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero  <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">1.9. 1 Entero</p>
+                </td>
+                @endif
+                @if($purchase_management->vehicle_state == 'Parcialmente desmontado')               
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado  <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">1.9.2 Parcialmente desmontado</p>
+                </td>   
+                @endif              
+                @if($purchase_management->vehicle_state == 'Siniestrado')
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado <input type="checkbox" name="" id="" checked=""></p>
+                </td>
+                @else
+                <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">1.9.3 Siniestrado</p>
+                </td>
+                @endif
+            </tr>
+            <tr style="height:21pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="5">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">1.10 Otros datos de interes:</p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2. Datos del titular del vehículo entregado</p>
+                </td>
+            </tr>
+            <tr style="height:39pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;padding-right: 5pt;text-indent: 0pt;text-align: left;"><span>2.1 Nombre y apellidos del titular ó denominación de la Razón Social</span>  <br>{{ $purchase_management->name  }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s3" style="padding-left: 60pt;padding-right: 6pt;text-indent: -52pt;text-align: left;"><span>Declaro que he entregado el vehículo reseñado en<br/>esta Instalación de Recepción</span></p>
+                </td>
+            </tr>
+            <tr style="height:31pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.2 CIF / DNI / NIF / Otro:  <br>{{ $purchase_management->dni }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.3 Nacionalidad ESPAÑA</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 0;text-indent: 0pt;text-align: left;">2.9 Nombre y Apellidos <br> {{ $purchase_management->name_representantive }} {{ $purchase_management->firts_surname_representative }} {{ $purchase_management->second_surtname_representantive }}</p>
+                </td>
+            </tr>
+            <tr style="height:31pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.4 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }} </p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.10 CIF / DNI / NIF / Otro: {{ $purchase_management->dni_representative }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="3">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-top: 7pt;padding-left: 14pt;text-indent: 0pt;text-align: left;">Firma del titular o representante</p>                   
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">2.12 Fecha <span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                </td>
+            </tr>
+            <tr style="height:21pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.5 Municipio <br>	{{ $purchase_management->municipality }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: left;">2.6 Codigo postal <br>	{{ $purchase_management->postal_code }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" rowspan="2">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;padding-right: 52pt;text-indent: 0pt;text-align: left;"><span>2.11  Concepto de<br/>representación:</span> <br>	{{ $purchase_management->representation_concept }}</p>
+                </td>
+            </tr>
+            <tr style="height:19pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">2.7 Província <br>	{{ $purchase_management->province }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 2pt;padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">2.8 País</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;">ESPAÑA</p>
+                </td>
+            </tr>
+            <tr style="height:7pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-bottom-style:solid;border-bottom-width:2pt" colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+            </tr>
+            <tr style="height:14pt">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="4">
+                    <p class="s1" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">3. Datos de la instalación de recepción de vehículos</p>
+                </td>
+            </tr>
+            <tr style="height:19pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                </td>
+            </tr>
+            <tr style="height:22pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
+                </td>
+            </tr>
+            <tr style="height:22pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
+                </td>
+            </tr>
+            <tr style="height:25pt">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="6">
+                    <p class="s3" style="padding-left: 3pt;text-indent: 0pt;line-height: 12pt;text-align: left;">4. Datos del centro autorizado de tratamiento de vehículos (A complementar por el propio centro)</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.1 Nombre o Razón social:</p>
+                    <p class="s2" style="padding-left: 119pt;text-indent: 0pt;line-height: 8pt;text-align: left;">motOstion SL</p>
+                </td>
+                <td style="width:42pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:6pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:17pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.2 CIF:</p>
+                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">B80804156</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:273pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.3 Codigo de autorización de gestor de residus peligrosos</p>
+                </td>
+                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt" colspan="3">
+                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">CATv/MD/12173</p>
+                </td>
+                <td style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.4 N.I.R.I.</p>
+                    <p class="s6" style="padding-left: 46pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28/59631</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:10px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="4">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.5 Dirección centro gestor</p>
+                    <p class="s2" style="padding-left: 112pt;text-indent: 0pt;line-height: 8pt;text-align: left;">c/ Matilde Hernandez nº10</p>
+                </td>
+                <td style="width:183pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt" colspan="2">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.6 Municipio</p>
+                    <p class="s2" style="padding-left: 64pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:117pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.7 Código postal</p>
+                    <p class="s2" style="padding-left: 72pt;text-indent: 0pt;line-height: 8pt;text-align: left;">28019</p>
+                </td>
+                <td style="width:156pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.8 Província</p>
+                    <p class="s2" style="padding-left: 68pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Madrid</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.9 Teléfono</p>
+                    <p class="s2" style="padding-left: 57pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:2pt">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">4.10 Fax</p>
+                    <p class="s2" style="padding-left: 39pt;text-indent: 0pt;line-height: 8pt;text-align: left;">914 716 248</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:19pt">
+                <td style="width:321pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="3">
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">4.11 Persona responsable</p>
+                    <p class="s2" style="padding-left: 107pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Juan Miguel Sevilla Gómez de Zamora</p>
+                </td>
+                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" colspan="3">
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">4.12 E-mail</p>
+                    <p style="padding-left: 50pt;text-indent: 0pt;line-height: 8pt;text-align: left;"><a href="mailto:info@motostion.com" class="s7">info@motostion.com</a></p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="">
+                <td style="border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:2pt;border-right-style:solid;border-right-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s5" style="padding-left: 3pt;padding-right: 2pt;text-indent: 0pt;text-align: justify;"><span>CERTIFICO POR LA PRESENTE: haber verificado  sobre  el  mismo  vehículo  que su número de  serie,  reproducido  en  el  chasis,  así  como  su  placa  de matrícula, corresponden  al vehículo entregado. Procediendo a cumplir con  el apartado   del art.</span><br><span>8.1 del R.D. 1383/2002, realizando las operaciones de descontaminación, cumpliendo así con lo establecido en el Anexo II de manera que se favorezca la reutilización y el reciclado, por este orden.</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">DECLARO</p>
+                    @if ($purchase_management->documents_attached == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1" checked>  Que se adjunta el correspondiente documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.1  
+                        <input type="checkbox" name="5.1" id="5.1">  Que se adjunta el correspondiente documento de matriculación</p>
+                    @endif
+
+                    @if ($purchase_management->non_existence_document == 1)
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2" checked> La inexistencia del documento de matriculación</p>
+                    @else
+                    <p class="s8" style="padding-left: 7pt;text-indent: 0pt;line-height: 10pt;text-align: left;">5.2 
+                        <input type="checkbox" name="5.2" id="5.2"> La inexistencia del documento de matriculación</p>
+                    @endif                 
+                </td>                
+
+                <td style="width:206pt;border-top-style:solid;border-top-width:2pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s5" style="padding-left: 4pt;padding-right: 1pt;text-indent: 0pt;text-align: justify;"><span>La  persona  que   firma   se   hace   responsable   de la aceptación del residuo descrito para su tratamiento apropiado, de acuerdo con el Real Decreto 1383/2002, de 20 de diciembre, sobre gestión de vehiculos al final de su vida útil</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s8" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">5.3 Fecha: {{ $purchase_management->collection_contract_date}}  <span class="s8" style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor (Sello y firma)</span></p>
+                </td>
+            </tr>
+        </table>
+        <p class="s9" style="padding-left: 10pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Ejemplar para: Centro Autorizado de Tratmeinto
+        </p>
+        <p class="s10" style="padding-left: 14pt;text-indent: 0pt;text-align: left;">1<span class="s11">A complementar sólo en caso de que el titular del vehículo no coincida con la persona que realiza la entrega</span></p>
+        <div class="saltoDePagina"></div>
+    </div>  
+    <div class="container-fluid">
+        {{-- Hoja 5 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
+            <tr style="height:22pt">
+                <td style="">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                </td>
+                <td style="">
+                    <p class="s17" style="padding-left: 64pt;text-indent: 0pt;line-height: 16pt;text-align: left;"><a name="bookmark1">Número de expediente: </a><span class="s18">F {{ $purchase_management->file_no}}</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br></p>
+                </td>
+            </tr>
+            
             <tr style="height:32pt">
-                <td style="width:534pt" colspan="2">
-                    <p class="s17" style="padding-top: 5pt;padding-left: 18pt;padding-right: 113pt;text-indent: 0pt;text-align: center;">En Madrid a:</p>
+                <td style="" colspan="2">
+                    <p class="s17" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">En Madrid a:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:53pt">
-                <td style="width:534pt" colspan="2">
-                    <p class="s19" style="padding-top: 9pt;padding-left: 140pt;padding-right: 51pt;text-indent: -75pt;text-align: left;">Entrega de motocicleta a centro autorizado de tratamiento<span class="s20"><br/></span>de vehículos al final de su vida útil.</p>
+                <td style="" colspan="2">
+                    <p class="s19" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">Entrega de motocicleta a centro autorizado de tratamiento de vehículos al final de su vida útil.</p>
                 </td>
             </tr>
             <tr style="height:28pt">
-                <td style="width:534pt" colspan="2">
+                <td style="" colspan="2">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">Propietario:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:42pt">
                 <td style="width:534pt" colspan="2">
-                    <p class="s21" style="padding-top: 1pt;padding-left: 10pt;text-indent: 0pt;line-height: 11pt;text-align: left;">De una parte, D. con D.N.I.: y domicilio en:</p>
-                    <p class="s21" style="padding-left: 156pt;text-indent: 0pt;line-height: 11pt;text-align: left;">- - en calidad de propietario.</p>
+                    <p class="s21" style="padding-top: 1pt;padding-left: 10pt;text-indent: 0pt;line-height: 11pt;text-align: center;">De una parte, D.  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domicilio en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}} {{$purchase_management->stairs}} {{$purchase_management->floor}} {{$purchase_management->letter}}</b> &nbsp; en calidad de propietario.</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:33pt">
-                <td style="width:534pt" colspan="2">
+                <td style="width:534pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">Centro de tratamiento:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:53pt">
                 <td style="width:534pt" colspan="2">
-                    <p class="s21" style="padding-top: 1pt;padding-left: 10pt;padding-right: 51pt;text-indent: 0pt;text-align: left;"><span>De otra parte: motOstion, con NIF: B80804156 y dirección en C/ Matilde Hernandez nº10, 28019, Madrid. Tel.:<br/>914716248</span></p>
-                    <p class="s21" style="padding-left: 10pt;padding-right: 51pt;text-indent: 0pt;text-align: left;"><a href="mailto:info@motostion.com" class="s22" target="_blank">Con número de CAT: CATV/MD/12173 y e-mail: </a><span>info@motostion.com. En calidad de centro autorizado de<br/>tratamiento de vehículos al final de su vida útil.</span></p>
+                    <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">De otra parte: motOstion, con NIF: B80804156 y dirección en C/ Matilde Hernandez nº10, 28019, Madrid. Tel.:914716248</p>
+                    <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">Con número de CAT: CATV/MD/12173 y e-mail: info@motostion.com. En calidad de centro autorizado de tratamiento de vehículos al final de su vida útil.</p>
+
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">    
             <tr style="height:25pt">
                 <td style="width:534pt" colspan="2">
                     <p class="s1" style="padding-top: 5pt;padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;text-align: center;">Manifiestan:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">    
             <tr style="height:89pt">
                 <td style="width:534pt" colspan="2">
                     <ol id="l1">
                         <li>
-                            <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;"><span>El propietario, declara en este acto que dicho vehículo es de su absoluta y exclusiva propiedad y se halla libre<br/>de cargas o gravámenes,  se  responsabiliza  de  cualquier  concepto  que  pudiese  aparecer  contra  el referido<br/>vehículo y responda a actos anteriores a la fecha.</span></p>
+                            <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">El propietario, declara en este acto que dicho vehículo es de su absoluta y exclusiva propiedad y se halla libre de cargas o gravámenes,  se  responsabiliza  de  cualquier  concepto  que  pudiese  aparecer  contra  el referido vehículo y responda a actos anteriores a la fecha.</p>
                             <p style="text-indent: 0pt;text-align: left;"><br/></p>
                         </li>
                         <li>
-                            <p class="s21" style="padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;"><span>El propietario hace entrega del  vehiculo  para  que pueda ser  vendido  o descontaminado, segun convenga a<br/>motOstion desde la fecha de de firma de este documento.</span></p>
+                            <p class="s21" style="padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">El propietario hace entrega del  vehiculo  para  que pueda ser  vendido  o descontaminado, segun convenga a motOstion desde la fecha de de firma de este documento.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br/></p>
                         </li>
                     </ol>
                 </td>
@@ -1438,14 +1746,20 @@
                 <td style="width:534pt" colspan="2">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;text-align: center;">Datos del vehículo</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:123pt">
-                <td style="width:246pt">
-                    <p class="s21" style="padding-top: 7pt;padding-left: 33pt;padding-right: 177pt;text-indent: 0pt;line-height: 193%;text-align: left;"><span>Marca: {{ $purchase->brand }}<br/>Modelo: {{ $purchase->model }}<br/>Versión: {{ $purchase_management->version }}</span></p>
+                <td style="width:288pt">
+                    <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Marca: {{ $purchase->brand }}</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Modelo: {{ $purchase->model }}</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Versión: {{ $purchase_management->version }}</p>
                 </td>
                 <td style="width:288pt">
-                    <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de bastidor:</p>
+                    <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de bastidor: {{ $purchase_management->frame_no }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de motor: {{ $purchase_management->motor_no }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -1455,6 +1769,7 @@
             <tr style="height:97pt">
                 <td style="width:534pt" colspan="2">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s21" style="padding-top: 8pt;padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;line-height: 11pt;text-align: center;">Y para que conste, firman la presente en el lugar y fecha arriba indicados.</p>
                     <p class="s21" style="padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;line-height: 11pt;text-align: center;">El vendedor recibe copia de este contrato en el momento de la firma de este documento.</p>
                 </td>
@@ -1462,121 +1777,100 @@
             <tr style="height:55pt">
                 <td style="width:246pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 50pt;text-indent: 0pt;text-align: left;">Propietario del Vehículo</p>
+                    <p class="s21" style="padding-left: 50pt;text-indent: 0pt;text-align: left;">{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</p>
                 </td>
                 <td style="width:288pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s1" style="padding-left: 69pt;padding-right: 33pt;text-indent: 0pt;line-height: 14pt;text-align: center;">Centro Autorizado de Vehículos</p>
-                    <p class="s1" style="padding-left: 108pt;padding-right: 72pt;text-indent: 0pt;line-height: 13pt;text-align: center;"><span>al Final de su Vida Útil<br/>motOstion</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s1" style="padding-left: 69pt;padding-right: 33pt;text-indent: 0pt;line-height: 14pt;text-align: center;">Centro Autorizado de Vehículos al Final de su Vida Útil motOstion </p>
                 </td>
             </tr>
         </table>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">FRANCISCO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">RUBEN GAB</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">ALDON LUCENDO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">50310783P</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">C/MORTADELO Y FILEMON, 66</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">28521</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">Rivas-Vaciamadrid</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">(Madrid),</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">APRILIA</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">PEGASO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">650</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">ZD4ML0000VN102317</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">__________________</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">M3989VB</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h3 style="text-indent: 0pt;line-height: 13pt;text-align: left;">FRANCISCO R</h3>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h3 style="text-indent: 0pt;line-height: 13pt;text-align: left;">UBEN GABALDON</h3>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h3 style="text-indent: 0pt;line-height: 13pt;text-align: left;">LUCENDO</h3>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s24" style="text-indent: 0pt;line-height: 16pt;text-align: left;">R-0320-16</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s24" style="text-indent: 0pt;line-height: 16pt;text-align: left;">16.12.20</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <table style="border-collapse:collapse;margin-left:8.52pt" cellspacing="0">
+        
+        <div class="saltoDePagina"></div>
+    </div>
+    <div class="container-fluid">
+        {{-- Hoja 6 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:22pt">
-                <td style="width:246pt">
+                <td style="">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
-                <td style="width:288pt">
-                    <p class="s17" style="padding-left: 64pt;text-indent: 0pt;line-height: 16pt;text-align: left;">Número de expediente: <span class="s18">F0000000</span></p>
+                <td style="">
+                    <p class="s17" style="padding-left: 64pt;text-indent: 0pt;line-height: 16pt;text-align: left;"><a name="bookmark1">Número de expediente: </a><span class="s18">F {{ $purchase_management->file_no}}</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br></p>
                 </td>
             </tr>
+            
             <tr style="height:32pt">
-                <td style="width:534pt" colspan="2">
-                    <p class="s17" style="padding-top: 5pt;padding-left: 18pt;padding-right: 113pt;text-indent: 0pt;text-align: center;">En Madrid a:</p>
+                <td style="" colspan="2">
+                    <p class="s17" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">En Madrid a:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:53pt">
-                <td style="width:534pt" colspan="2">
-                    <p class="s19" style="padding-top: 9pt;padding-left: 140pt;padding-right: 51pt;text-indent: -75pt;text-align: left;">Entrega de motocicleta a centro autorizado de tratamiento<span class="s20"><br/></span>de vehículos al final de su vida útil.</p>
+                <td style="" colspan="2">
+                    <p class="s19" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">Entrega de motocicleta a centro autorizado de tratamiento de vehículos al final de su vida útil.</p>
                 </td>
             </tr>
             <tr style="height:28pt">
-                <td style="width:534pt" colspan="2">
+                <td style="" colspan="2">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">Propietario:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:42pt">
                 <td style="width:534pt" colspan="2">
-                    <p class="s21" style="padding-top: 1pt;padding-left: 10pt;text-indent: 0pt;line-height: 11pt;text-align: left;">De una parte, D. con D.N.I.: y domicilio en:</p>
-                    <p class="s21" style="padding-left: 156pt;text-indent: 0pt;line-height: 11pt;text-align: left;">- - en calidad de propietario.</p>
+                    <p class="s21" style="padding-top: 1pt;padding-left: 10pt;text-indent: 0pt;line-height: 11pt;text-align: center;">De una parte, D.  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domicilio en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}} {{$purchase_management->stairs}} {{$purchase_management->floor}} {{$purchase_management->letter}}</b> &nbsp; en calidad de propietario.</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:33pt">
-                <td style="width:534pt" colspan="2">
+                <td style="width:534pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">Centro de tratamiento:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:53pt">
                 <td style="width:534pt" colspan="2">
-                    <p class="s21" style="padding-top: 1pt;padding-left: 10pt;padding-right: 51pt;text-indent: 0pt;text-align: left;"><span>De otra parte: motOstion, con NIF: B80804156 y dirección en C/ Matilde Hernandez nº10, 28019, Madrid. Tel.:<br/>914716248</span></p>
-                    <p class="s21" style="padding-left: 10pt;padding-right: 51pt;text-indent: 0pt;text-align: left;"><a href="mailto:info@motostion.com" class="s22" target="_blank">Con número de CAT: CATV/MD/12173 y e-mail: </a><span>info@motostion.com. En calidad de centro autorizado de<br/>tratamiento de vehículos al final de su vida útil.</span></p>
+                    <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">De otra parte: motOstion, con NIF: B80804156 y dirección en C/ Matilde Hernandez nº10, 28019, Madrid. Tel.:914716248</p>
+                    <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">Con número de CAT: CATV/MD/12173 y e-mail: info@motostion.com. En calidad de centro autorizado de tratamiento de vehículos al final de su vida útil.</p>
+
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">    
             <tr style="height:25pt">
                 <td style="width:534pt" colspan="2">
                     <p class="s1" style="padding-top: 5pt;padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;text-align: center;">Manifiestan:</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">    
             <tr style="height:89pt">
                 <td style="width:534pt" colspan="2">
-                    <ol id="l2">
+                    <ol id="l1">
                         <li>
-                            <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;"><span>El propietario, declara en este acto que dicho vehículo es de su absoluta y exclusiva propiedad y se halla libre<br/>de cargas o gravámenes,  se  responsabiliza  de  cualquier  concepto  que  pudiese  aparecer  contra  el referido<br/>vehículo y responda a actos anteriores a la fecha.</span></p>
+                            <p class="s21" style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">El propietario, declara en este acto que dicho vehículo es de su absoluta y exclusiva propiedad y se halla libre de cargas o gravámenes,  se  responsabiliza  de  cualquier  concepto  que  pudiese  aparecer  contra  el referido vehículo y responda a actos anteriores a la fecha.</p>
                             <p style="text-indent: 0pt;text-align: left;"><br/></p>
                         </li>
                         <li>
-                            <p class="s21" style="padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;"><span>El propietario hace entrega del  vehiculo  para  que pueda ser  vendido  o descontaminado, segun convenga a<br/>motOstion desde la fecha de de firma de este documento.</span></p>
+                            <p class="s21" style="padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">El propietario hace entrega del  vehiculo  para  que pueda ser  vendido  o descontaminado, segun convenga a motOstion desde la fecha de de firma de este documento.</p>
+                            <p style="text-indent: 0pt;text-align: left;"><br/></p>
                         </li>
                     </ol>
                 </td>
@@ -1585,22 +1879,29 @@
                 <td style="width:534pt" colspan="2">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s1" style="padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;text-align: center;">Datos del vehículo</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
             <tr style="height:123pt">
-                <td style="width:246pt">
-                    <p class="s21" style="padding-top: 7pt;padding-left: 33pt;padding-right: 177pt;text-indent: 0pt;line-height: 193%;text-align: left;"><span>Marca:<br/>Modelo:<br/>Versión:</span></p>
+                <td style="width:288pt">
+                    <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Marca: {{ $purchase->brand }}</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Modelo: {{ $purchase->model }}</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Versión: {{ $purchase_management->version }}</p>
                 </td>
                 <td style="width:288pt">
-                    <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de bastidor:</p>
+                    <p class="s21" style="padding-top: 7pt;padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de bastidor: {{ $purchase_management->frame_no }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de motor: _ _</p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de motor: {{ $purchase_management->motor_no }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Matrícula:</p>
+                    <p class="s21" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Matrícula: {{ $purchase_management->registration_number }}</p>
                 </td>
             </tr>
             <tr style="height:97pt">
                 <td style="width:534pt" colspan="2">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s21" style="padding-top: 8pt;padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;line-height: 11pt;text-align: center;">Y para que conste, firman la presente en el lugar y fecha arriba indicados.</p>
                     <p class="s21" style="padding-left: 58pt;padding-right: 80pt;text-indent: 0pt;line-height: 11pt;text-align: center;">El vendedor recibe copia de este contrato en el momento de la firma de este documento.</p>
@@ -1609,65 +1910,21 @@
             <tr style="height:55pt">
                 <td style="width:246pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s1" style="padding-left: 50pt;text-indent: 0pt;text-align: left;">Propietario del Vehículo</p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s1" style="padding-left: 50pt;text-indent: 0pt;text-align: left;">Propietario del Vehículo <br>
+                    </p>
+                    <p class="s21" style="padding-left: 50pt;text-indent: 0pt;text-align: left;">{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</p>
                 </td>
                 <td style="width:288pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s1" style="padding-left: 69pt;padding-right: 33pt;text-indent: 0pt;line-height: 14pt;text-align: center;">Centro Autorizado de Vehículos</p>
-                    <p class="s1" style="padding-left: 108pt;padding-right: 72pt;text-indent: 0pt;line-height: 13pt;text-align: center;"><span>al Final de su Vida Útil<br/>motOstion</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s1" style="padding-left: 69pt;padding-right: 33pt;text-indent: 0pt;line-height: 14pt;text-align: center;">Centro Autorizado de Vehículos al Final de su Vida Útil motOstion </p>
                 </td>
             </tr>
         </table>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">FRANCISCO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">RUBEN GAB</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">ALDON LUCENDO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">50310783P</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">C/MORTADELO Y FILEMON, 66</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">28521</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">Rivas-Vaciamadrid</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">(Madrid),</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">APRILIA</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">PEGASO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">650</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">ZD4ML0000VN102317</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">__________________</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">M3989VB</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h3 style="text-indent: 0pt;line-height: 13pt;text-align: left;">FRANCISCO R</h3>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h3 style="text-indent: 0pt;line-height: 13pt;text-align: left;">UBEN GABALDON</h3>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h3 style="text-indent: 0pt;line-height: 13pt;text-align: left;">LUCENDO</h3>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s24" style="text-indent: 0pt;line-height: 16pt;text-align: left;">R-0320-16</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s24" style="text-indent: 0pt;line-height: 16pt;text-align: left;">16.12.2016</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        
+        <div class="saltoDePagina"></div>
+    </div>
         <p style="text-indent: 0pt;text-align: left;"><span><img width="87" height="88" alt="image" src="{{ asset('index_files/Image_006.png') }}"/></span></p>
         <p class="s25" style="padding-top: 4pt;padding-left: 103pt;text-indent: 0pt;text-align: left;"><a name="bookmark2"><span>MINISTERIO<br/>DEL INTERIOR</span></a></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -2704,6 +2961,7 @@
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p class="s26" style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span class="h4">Consentimiento. </span>En .......... ................................ a ..... ................... D n./a,<span class="s60"> </span>con DNI / NIE</p>
         <p class="s26" style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">................................ doy mi consentimiento expreso de acuerdo con lo expuesto en el presente documento.</p>
+    </div>
     </body>
 </html>
 

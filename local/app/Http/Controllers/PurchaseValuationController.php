@@ -763,7 +763,7 @@ class PurchaseValuationController extends Controller
         }
 
         $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-
+        
         $purchase_management = PurchaseManagement::find($purchaseM->id);
         $purchase_management->file_no = $request->file_no;
         $purchase_management->current_year = $request->current_year;
@@ -771,7 +771,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->documents_attached = $documents_attached;
         $purchase_management->non_existence_document = $non_existence_document;     
         $purchase_management->vehicle_delivers = $request->vehicle_delivers;
-        $purchase_management->name = $request->name;
+        $purchase_management->name = $request->firts_name;
         $purchase_management->firts_surname = $request->firts_surname;
         $purchase_management->second_surtname = $request->second_surtname;
         $purchase_management->dni = $request->dni;
