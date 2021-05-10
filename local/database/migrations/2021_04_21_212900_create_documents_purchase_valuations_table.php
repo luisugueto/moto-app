@@ -15,7 +15,7 @@ class CreateDocumentsPurchaseValuationsTable extends Migration
         Schema::create('documents_purchase_valuations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_valuation_id')->unsigned();
-            $table->foreign('purchase_valuation_id')->references('id')->on('states')->onDelete('Cascade');
+            $table->foreign('purchase_valuation_id')->references('id')->on('purchase_valuation')->onDelete('Cascade');
             $table->string('name');
             $table->timestamps();
         });

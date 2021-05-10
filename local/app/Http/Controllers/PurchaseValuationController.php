@@ -460,7 +460,7 @@ class PurchaseValuationController extends Controller
         $out['code'] = 204;
         $out['message'] = 'Hubo un error';
 
-        foreach($motos as &$purchase) {
+        foreach($motos as $purchase) {
              
             $purchase_model = PurchaseValuation::find($purchase);
             $purchase_model->states_id = $request->applyState;
@@ -471,12 +471,13 @@ class PurchaseValuationController extends Controller
             if($request->applyState == 3){ // CHECK IF IS INTERESTED
                 $linksRegister = new LinksRegister();
                 $linksRegister->token = $token;
-                $linksRegister->purchase_valuation_id = $purchase;
+                $linksRegister->purchase_valuation_id = $purchase_model->id;
+                $linksRegister->status = 0;
                 $linksRegister->save();
                
                 $purchase_management = new PurchaseManagement();
-                $purchase_management->purchase_valuation_id = $purchase;
-                $purchase_management->file_no = $purchase;
+                $purchase_management->purchase_valuation_id = $purchase_model->id;
+                $purchase_management->file_no = $purchase_model->id;
                 $purchase_management->current_year = date('d-m-Y');
                 $purchase_management->collection_contract_date = date('d-m-Y');
                 $purchase_management->documents_attached = '';
