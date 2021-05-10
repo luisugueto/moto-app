@@ -25,7 +25,127 @@ $(document).ready(function(){
             }
         } );
     });
-   //$('#tab-0').click(function () {
+    if ($.fn.DataTable.isDataTable("#tableTasacionMotos")) {
+        $('#tableTasacionMotos').DataTable().clear().destroy();
+    }
+    dataTable = $('#tableTasacionMotos').DataTable({
+        processing: true,
+        responsive: true,
+        orderCellsTop: true,
+        fixedHeader: true,
+        sDom: "Rlfrtip",
+        "ajax": {
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            url: "getPurchaseValuations", // json datasource            
+            type: "post", // method  , by default get
+            error: function () {  // error handling
+            }
+        },
+        "columns": [
+            { "data": null,
+                render:function(data){
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+        
+                },
+                "targets": -1
+            },  
+            { "data": "id" },
+            { "data": null,
+                render:function(data){
+                    var echo = '';
+                    if(data.states_id == 1)
+                        echo = "En Revisión";
+                    else if(data.states_id == 2)
+                        echo = "No Interesa";
+                    else if(data.states_id == 3)
+                        echo = "Interesa";
+
+                    return echo;
+                },
+                "targets": -1
+            },
+            { "data": "date" },
+            { "data": "brand" },
+            { "data": "model" },
+            { "data": "year" },
+            { "data": "km" },
+            { "data": "name" },
+            { "data": "province" },
+            { "data": null,
+                render:function(data){
+                    let echo = '';
+                    
+                    if(data.status_trafic == "Alta")
+                        echo = "Alta";
+                    else if(data.status_trafic == "Baja definitiva")
+                        echo = "Baja definitiva";
+
+                    return echo;
+                },
+                "targets": -1
+            },
+            { "data": null,
+                render:function(data){
+                    let echo = '';
+    
+                    if(data.motocycle_state  == "Golpe Delantero")
+                        echo = "Golpe Delantero";
+                    else if(data.motocycle_state  == "Golpe Trasero")
+                        echo = "Golpe Trasero";
+                    else if(data.motocycle_state  == "Avería Eléctrica")
+                        echo = "Avería Eléctrica";
+                    else if(data.motocycle_state  == "Avería Mecánica")
+                        echo = "Avería Mecánica";
+                    else if(data.motocycle_state  == "Vieja o Abandonada")
+                        echo = "Vieja o Abandonada";
+                    return echo;
+                },
+                "targets": -1
+            },                
+
+            { "data": "price_min" },
+            { "data": "observations" },
+
+            {"data": null,
+                render: function (data, type, row) {
+                    let echo = '';
+                    if (data.edit == true && data.delete == true) {
+                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
+                            + "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                                    
+                    }
+                    else if (data.delete == true) {
+                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                    } else {
+                        echo = "No tienes permiso";
+                    }
+                    return echo;
+                },
+                "targets": -1
+            },
+
+        ],
+        "columnDefs": [
+            {
+                "targets": [ 1 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 13 ],
+                "visible": false
+            }
+        ],
+        "order": [[0, "desc"]]
+    });
+    $('input.toggle-vis').on('change', function(e) {
+        e.preventDefault();
+        // Get the column API object
+        var column = dataTable.column($(this).attr('data-column'));
+        // Toggle the visibility
+        console.log(column);             
+        column.visible(!column.visible());
+    });
+    $('#tab-0').click(function () {
         if ($.fn.DataTable.isDataTable("#tableTasacionMotos")) {
             $('#tableTasacionMotos').DataTable().clear().destroy();
         }
@@ -146,7 +266,7 @@ $(document).ready(function(){
             console.log(column);             
             column.visible(!column.visible());
         });
-    // });
+    });
     
 
     //Tabla para el estado Interesa   
@@ -526,9 +646,6 @@ $(document).ready(function(){
      
 
     //Tabla para el estado Subasta 
-    if ($.fn.DataTable.isDataTable("#tableMotosParaSubasta")) {
-        $('#tableMotosParaSubasta').DataTable().clear().destroy();
-    }
     $('#tableMotosParaSubasta thead tr').clone(true).appendTo('#tableMotosParaSubasta thead');
 
     $('#tableMotosParaSubasta thead tr:eq(1) th').each( function (i) {
