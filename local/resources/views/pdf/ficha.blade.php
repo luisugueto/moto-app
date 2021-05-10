@@ -1925,20 +1925,42 @@
         
         <div class="saltoDePagina"></div>
     </div>
-        <p style="text-indent: 0pt;text-align: left;"><span><img width="87" height="88" alt="image" src="{{ asset('index_files/Image_006.png') }}"/></span></p>
-        <p class="s25" style="padding-top: 4pt;padding-left: 103pt;text-indent: 0pt;text-align: left;"><a name="bookmark2"><span>MINISTERIO<br/>DEL INTERIOR</span></a></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s26" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">DIRECCIÓN GENERAL DE TRÁFICO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s27" style="padding-left: 47pt;text-indent: 0pt;text-align: center;"><span>JEFATURA PROVINCIAL DE<br/>TRÁFICO</span></p>
-        <p class="s27" style="padding-left: 47pt;text-indent: 0pt;line-height: 8pt;text-align: center;">DE</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 389pt;text-indent: 0pt;line-height: 1pt;text-align: left;"/>
-        <p class="s28" style="padding-top: 6pt;padding-left: 102pt;text-indent: 0pt;text-align: center;">SOLICITUD DE BAJA DEFINITIVA POR CAT</p>
-        <p class="s29" style="padding-left: 102pt;text-indent: 0pt;text-align: center;">(Orden INT/ 624 /2008, de 26 de febrero)</p>
-        <p class="s30" style="text-indent: 0pt;text-align: right;">DATOS DEL VEHÍCULO</p>
-        <table style="border-collapse:collapse;margin-left:17.488pt" cellspacing="0">
+       
+    <div class="container-fluid">
+        {{-- Hoja 7 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:14pt">
+                <td style="width:50px;">
+                   <img width="87" height="88" alt="image" src="{{ asset('index_files/Image_006.png') }}"/>
+                </td>
+                <td>
+                     <p class="s25" style="padding-top: 20pt;padding-left: 40pt;text-indent: 0pt;text-align: left;"><a name="bookmark2"><span><b>MINISTERIO<br/>DEL INTERIOR</b></span></a></p>
+                </td>
+                <td style="width:260px;" colspan="2">
+                   <p class="s26" style="padding-left: 10pt;margin-top: 20pt;text-indent: 0pt;text-align: left; border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"><b>DIRECCIÓN GENERAL DE TRÁFICO</b></p>
+
+                   <p class="s27" style="margin-top: 10pt; padding-left: 47pt;text-indent: 0pt;text-align: center;"><span>JEFATURA PROVINCIAL DE<br/>TRÁFICO</span></p>
+                    <p class="s27" style="padding-left: 47pt;text-indent: 0pt;line-height: 8pt;text-align: center;">DE</p>
+                    <p style="padding-top: 3pt;padding-left: 80pt;text-indent: 0pt;line-height: 1pt;text-align: left;">_______________</p>
+                </td>                
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:53pt">
+                <td style="">
+                    <p class="s28" style="padding-top: 6pt;padding-left: 20pt;text-indent: 0pt;text-align: center;">SOLICITUD DE BAJA DEFINITIVA POR CAT</p>
+                    <p class="s29" style="padding-left: 20pt;text-indent: 0pt;text-align: center;">(Orden INT/ 624 /2008, de 26 de febrero)</p>
+                    <p class="s30" style="text-indent: 0pt;text-align: right;">DATOS DEL VEHÍCULO</p>
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+        
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0"> 
             <tr style="height:28pt">
                 <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-top: 6pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">Matrícula</p>
@@ -1951,34 +1973,70 @@
                     <p class="s18" style="padding-left: 38pt;padding-right: 66pt;text-indent: 0pt;line-height: 13pt;text-align: center;">(6 últimas cifras)</p>
                 </td>
             </tr>
-            <tr style="height:30pt">
+            <tr style="height:60pt">
                 <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/>
+                    {{ $purchase_management->registration_number }}
+                    </p>
                 </td>
                 <td style="width:158pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/>
+                    {{ $purchase_management->registration_date }}
+                    </p>
                 </td>
                 <td style="width:196pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                 </td>
             </tr>
         </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s30" style="padding-left: 24pt;text-indent: 0pt;text-align: left;">FECHA DE ENTREGA DEL VEHÍCULO TIPO DE BAJA</p>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">TRATAMIENTO RESIDUAL</p>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">DE OFICIO</p>
-        <p class="s23" style="text-indent: 0pt;line-height: 11pt;text-align: left;">ORDINARIA</p>
-        <p style="text-indent: 0pt;line-height: 6pt;text-align: left;"><span style=" color: black; font-family:&quot;MS UI Gothic&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 6pt;">■</span></p>
+
+        <p class="s30" style="padding-left: 24pt;text-indent: 0pt;text-align: left; margin-top: 10pt;">FECHA DE ENTREGA DEL VEHÍCULO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TIPO DE BAJA</p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0"> 
+            <tr style="height:28pt;">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 160pt">
+                    
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 0pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+                        <input type="checkbox" name="" id=""> ORDINARIA
+                        <input type="checkbox" name="" id=""> DE OFICIO
+                        <input type="checkbox" name="" id=""> TRATAMIENTO RESIDUAL
+                    </p>
+                </td>
+            </tr>
+        </table>
+
+        <p style="text-indent: 0pt;line-height: 6pt;text-align: left;"><span style=" color: black; font-family:&quot;MS UI Gothic&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 6pt;">&nbsp;</span></p>
         <p style="padding-left: 17pt;text-indent: 0pt;text-align: left;"/>
         <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="padding-top: 7pt;padding-left: 256pt;text-indent: 0pt;text-align: left;">CONCEPTO EN EL QUE SOLICITA LA BAJA</p>
-        <p class="s23" style="padding-top: 2pt;padding-left: 17pt;text-indent: 0pt;text-align: left;">PROPIETARIO <span class="s13">(APORTAR DOCUMENTACIÓN QUE LO ACREDITE)</span></p>
-        <p class="s23" style="padding-top: 2pt;padding-left: 53pt;text-indent: 0pt;text-align: left;">TITULAR</p>
-        <p style="padding-left: 17pt;text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="padding-top: 4pt;text-indent: 0pt;text-align: right;">DATOS DEL CENTRO DE TRATAMIENTO</p>
-        <table style="border-collapse:collapse;margin-left:17.488pt" cellspacing="0">
+
+        <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
+            <tr style="height:53pt">
+                <td style="">
+                     <p class="s30" style="padding-top: 7pt;padding-left: 256pt;text-indent: 0pt;text-align: right;">CONCEPTO EN EL QUE SOLICITA LA BAJA</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0"> 
+            <tr style="height:28pt;">
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 160pt">
+                    <p class="s23" style="padding-top: 2pt;padding-left: 53pt;text-indent: 0pt;text-align: left;">
+                        <input type="checkbox" name="" id=""> TITULAR
+                    </p>
+                    
+                </td>
+                <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s2" style="padding-top: 0pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">
+                        <input type="checkbox" name="" id=""> PROPIETARIO <span class="s13">(APORTAR DOCUMENTACIÓN QUE LO ACREDITE)</span>
+                        
+                    </p>
+                </td>
+            </tr>
+        </table>
+       
+        <p class="s30" style="padding-top: 2pt;text-indent: 0pt;text-align: right;">DATOS DEL CENTRO DE TRATAMIENTO</p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0"> 
             <tr style="height:23pt">
                 <td style="width:191pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-top: 4pt;padding-left: 59pt;text-indent: 0pt;text-align: left;">Nombre</p>
@@ -1998,72 +2056,73 @@
                     <p class="s31" style="padding-left: 19pt;text-indent: 0pt;line-height: 22pt;text-align: left;">B80804156</p>
                 </td>
                 <td style="width:163pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s32" style="padding-left: 12pt;text-indent: 0pt;line-height: 22pt;text-align: left;">C<span class="s31">C</span>A<span class="s31">A</span>T<span class="s31">T</span>/M<span class="s31">/M</span>D<span class="s31">D</span>/1<span class="s31">/1</span>2<span class="s31">2</span>1<span class="s31">1</span>7<span class="s31">7</span>3<span class="s31">3</span>6<span class="s31">6</span></p>
+                    <p class="s32" style="padding-left: 12pt;text-indent: 0pt;line-height: 22pt;text-align: left;"><span class="s31">CAT/MD/121736</span></p>
                 </td>
             </tr>
         </table>
+
         <p class="s30" style="padding-top: 9pt;text-indent: 0pt;text-align: right;">DATOS DEL TITULAR / TITULARES</p>
-        <table style="border-collapse:collapse;margin-left:17.488pt" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0"> 
             <tr style="height:23pt">
-                <td style="width:220pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
                     <p class="s18" style="padding-top: 4pt;padding-left: 64pt;text-indent: 0pt;text-align: left;">1er apellido</p>
                 </td>
-                <td style="width:269pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 89pt;padding-right: 117pt;text-indent: 0pt;text-align: center;">2 º apellido</p>
+                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s18" style="padding-top: 4pt;padding-left: 70pt;padding-right: 100pt;text-indent: 0pt;text-align: center;">2 º apellido</p>
                 </td>
             </tr>
             <tr style="height:28pt">
-                <td style="width:220pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
-                <td style="width:269pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
             </tr>
             <tr style="height:23pt">
-                <td style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:180pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-top: 4pt;padding-left: 40pt;text-indent: 0pt;text-align: left;">Nombre/ Razón social</p>
                 </td>
-                <td style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-top: 4pt;padding-left: 40pt;text-indent: 0pt;text-align: left;">DNI/NIE/CIF</p>
                 </td>
-                <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-top: 4pt;padding-left: 23pt;text-indent: 0pt;text-align: left;">Fecha nacimiento</p>
                 </td>
             </tr>
             <tr style="height:28pt">
-                <td style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
-                <td style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
-                <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
             </tr>
         </table>
         <p class="s13" style="text-indent: 0pt;text-align: right;">(A RELLENAR SOLO EN CASO DE SER DISTINTO DEL TITULAR) <span class="s30">DATOS DEL PROPIETARIO</span></p>
-        <table style="border-collapse:collapse;margin-left:17.488pt" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0"> 
             <tr style="height:23pt">
-                <td style="width:220pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 64pt;text-indent: 0pt;text-align: left;">1er apellido</p>
+                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p class="s18" style="padding-top: 4pt;padding-left: 40pt;text-indent: 0pt;text-align: left;">1er apellido</p>
                 </td>
-                <td style="width:269pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 89pt;padding-right: 117pt;text-indent: 0pt;text-align: center;">2 º apellido</p>
+                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s18" style="padding-top: 4pt;padding-left: 30pt;text-indent: 0pt;text-align: center;">2 º apellido</p>
                 </td>
             </tr>
             <tr style="height:23pt">
-                <td style="width:220pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
+                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
                 </td>
-                <td style="width:269pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
                 </td>
             </tr>
             <tr style="height:23pt">
@@ -2079,225 +2138,507 @@
             </tr>
             <tr style="height:23pt">
                 <td style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
                 </td>
                 <td style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
                 </td>
                 <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
                 </td>
             </tr>
         </table>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s13" style="padding-top: 4pt;padding-left: 91pt;text-indent: 1pt;text-align: left;"><span>(sello y número del Centro<br/>Autorizado de Tratamiento)</span></p>
-        <p class="s13" style="padding-top: 4pt;padding-left: 89pt;text-indent: 0pt;text-align: left;"><span>Por la presente declaro tener facultad de disposición sobre el<br/>vehículo arriba indicado y solicito su baja entregándolo en la<br/>fecha señalada en el Centro de Tratamiento referenciado.</span></p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s25" style="padding-top: 6pt;padding-left: 108pt;text-indent: 0pt;text-align: left;"><span>TITULAR PROPIETARIO<br/>REPRESENTANTE:</span></p>
-        <p class="s26" style="padding-left: 92pt;text-indent: 0pt;line-height: 10pt;text-align: left;">DNI…………………………………………………………</p>
-        <p class="s26" style="padding-left: 91pt;text-indent: 0pt;line-height: 10pt;text-align: left;">NOMBRE Y APELLIDOS…………………..……………</p>
-        <p class="s33" style="padding-top: 2pt;padding-left: 91pt;text-indent: 2pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="s30">, a</span> <span class="s30">de<br/>FIRMA</span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s34" style="padding-top: 11pt;padding-left: 29pt;text-indent: 0pt;text-align: left;">Sr. Jefe Provincial de Tráfico de <span class="s33">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
-        <h2 style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: center;"><a name="bookmark3">CONTRATO DE COMPRA-VENTA</a></h2>
-        <h2 style="padding-top: 11pt;padding-left: 41pt;text-indent: 0pt;text-align: left;">En Madrid a <span class="s13">202 </span>, a las 10:00 reunidos:</h2>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">DE UNA PARTE, , con</h2>
-        <h2 style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>DNI/NIF , domiciliado en de ,<br/>calle , código postal ,</span></h2>
-        <h2 style="padding-left: 5pt;text-indent: 0pt;line-height: 16pt;text-align: left;">tlf , mail en calidad de <u>VENDEDOR</u>.</h2>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <h2 style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en</h2>
-        <h2 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</h2>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
-        <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
-        <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
-        <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
-        <p class="s35" style="padding-left: 4pt;text-indent: 0pt;text-align: center;">Nº DE BASTIDOR</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <h2 style="padding-left: 7pt;text-indent: 0pt;text-align: left;">VALOR DE VENTA IVA INCL.</h2>
-        <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <h2 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">MARCA Y MODELO MATRICULA</h2>
-        <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <ul id="l3">
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">color:</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">kilómetros:</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
+
+         <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px;margin-top: 10pt" cellspacing="0"> 
+            <tr style="height:23pt">
+                <td style="width: 200pt">
+                    <p class="s13" style="padding-top: 4pt;padding-left: 91pt;text-indent: 1pt;text-align: left;"><span>(sello y número del Centro<br/>Autorizado de Tratamiento)</span></p>
+                </td>
+                <td>
+                    <p class="s13" style="padding-top: 4pt;padding-left: 89pt;text-indent: 0pt;text-align: left;"><span>Por la presente declaro tener facultad de disposición sobre el<br/>vehículo arriba indicado y solicito su baja entregándolo en la<br/>fecha señalada en el Centro de Tratamiento referenciado.</span></p>
+                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <p class="s25" style="padding-top: 6pt;padding-left: 89pt;text-indent: 0pt;text-align: left;"><span>
+                        <input type="checkbox" name="" id="">TITULAR 
+                        <input type="checkbox" name="" id="">PROPIETARIO<br/>
+                        <input type="checkbox" name="" id="">REPRESENTANTE:</span></p>
+                    <p class="s26" style="padding-left: 92pt;text-indent: 0pt;line-height: 10pt;text-align: left;">DNI…………………………………………………………</p>
+                    <p class="s26" style="padding-left: 91pt;text-indent: 0pt;line-height: 10pt;text-align: left;">NOMBRE Y APELLIDOS…………………..……………</p>
+                    <p class="s33" style="padding-top: 2pt;padding-left: 91pt;text-indent: 2pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="s30">, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="s30" style="text-decoration: none;">de<br/>FIRMA</span></p>
+                </td>
+            </tr>
+        </table>
+
+        <p class="s34" style="padding-top: 30pt;padding-left: 29pt;text-indent: 0pt;text-align: left;" >Sr. Jefe Provincial de Tráfico de <span class="s33">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+        <div class="saltoDePagina"></div>
+    </div>
+
+
+    <div class="container-fluid">
+        {{-- Hoja 8 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
+            <tr style="height:22pt">
+                <td colspan="4"> 
+                    <p class="s28" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;">CONTRATO DE COMPRA-VENTA</p>
+                </td>   
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;">En Madrid a <span class="s24">202 </span>, a las 10:00 reunidos:</h2>
+                </td>
+            </tr>
+            <tr style="height:42pt">
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></hp>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 class="s20" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
+                    <p class="s35" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">Nº DE BASTIDOR</p>
+                    <p class="s35">{{ $purchase_management->frame_no }}</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td colspan="1">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MARCA Y MODELO<h2>
+                    <p class="s35" style="text-decoration: none;">{{ $purchase->brand }} {{ $purchase->model }}</p>
+                    
+                </td>
+                <td colspan="1">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
+                    <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
+                </td>
+                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
+                    <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td>
+                    <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
+                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <ul id="l3" class="a">
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2> 
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Color: {{ $purchase_management->color }}</h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Kilómetros: {{ $purchase->km }}</h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
+                        </li>
+                    </ul>
+                    <br>
+                    <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda con (x)</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td colspan="3">
+                    <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
                 <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda con (x)</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL VENDEDOR</h2>
+                </td>
+                <td></td>
+                <td>
+                    <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL COMPRADOR</h2>
+                </td>
+            </tr>
+        </table>
+        <div class="saltoDePagina"></div>
+    </div>
+
+    <div class="container-fluid">
+        {{-- Hoja 8 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
+            <tr style="height:22pt">
+                <td colspan="4"> 
+                    <p class="s28" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;">CONTRATO DE COMPRA-VENTA</p>
+                </td>   
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;">En Madrid a <span class="s24">202 </span>, a las 10:00 reunidos:</h2>
+                </td>
+            </tr>
+            <tr style="height:42pt">
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></hp>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 class="s20" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
+                    <p class="s35" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">Nº DE BASTIDOR</p>
+                    <p class="s35">{{ $purchase_management->frame_no }}</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td colspan="1">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MARCA Y MODELO<h2>
+                    <p class="s35" style="text-decoration: none;">{{ $purchase->brand }} {{ $purchase->model }}</p>
+                    
+                </td>
+                <td colspan="1">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
+                    <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
+                </td>
+                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
+                    <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td>
+                    <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
+                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <ul id="l3" class="a">
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2> 
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Color: {{ $purchase_management->color }}</h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Kilómetros: {{ $purchase->km }}</h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
+                        </li>
+                    </ul>
+                    <br>
+                    <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda con (x)</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td colspan="3">
+                    <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
                 <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL VENDEDOR</h2>
+                </td>
+                <td></td>
+                <td>
+                    <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL COMPRADOR</h2>
+                </td>
+            </tr>
+        </table>
+        <div class="saltoDePagina"></div>
+    </div>
+
+    <div class="container-fluid">
+        {{-- Hoja 8 --}}
+        <p style="text-indent: 0pt;text-align: left;"><br></p>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
+            <tr style="height:22pt">
+                <td colspan="4"> 
+                    <p class="s28" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;">CONTRATO DE COMPRA-VENTA</p>
+                </td>   
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;">En Madrid a <span class="s24">202 </span>, a las 10:00 reunidos:</h2>
+                </td>
+            </tr>
+            <tr style="height:42pt">
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></hp>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 class="s20" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
+                    <p class="s35" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">Nº DE BASTIDOR</p>
+                    <p class="s35">{{ $purchase_management->frame_no }}</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td colspan="1">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MARCA Y MODELO<h2>
+                    <p class="s35" style="text-decoration: none;">{{ $purchase->brand }} {{ $purchase->model }}</p>
+                    
+                </td>
+                <td colspan="1">
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
+                    <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
+                </td>
+                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                    <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
+                    <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
+                </td>
+            </tr>
+            <tr>
+                
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td>
+                    <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
+                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <ul id="l3" class="a">
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2> 
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"/>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado&nbsp;
+                                <input type="checkbox" name="" id="">
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Color: {{ $purchase_management->color }}</h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Kilómetros: {{ $purchase->km }}</h2>
+                        </li>
+                        <li>
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
+                        </li>
+                    </ul>
+                    <br>
+                    <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda con (x)</p>
+                </td>
+            </tr>
+        </table>
+
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+            <tr>
+                <td colspan="3">
+                    <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
                 <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL VENDEDOR EL COMPRADOR</h2>
-                <h2 style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">CONTRATO DE COMPRA-VENTA</h2>
-                <h2 style="padding-top: 11pt;padding-left: 41pt;text-indent: 0pt;text-align: left;">En Madrid a <span class="s13">2021 </span>, a las 10:00 reunidos:</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">DE UNA PARTE, , con</h2>
-                <h2 style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>DNI/NIF , domiciliado en de ,<br/>calle , código postal ,</span></h2>
-                <h2 style="padding-left: 5pt;text-indent: 0pt;line-height: 16pt;text-align: left;">tlf , mail en calidad de <u>VENDEDOR</u>.</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en</h2>
-                <h2 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
-                <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
-                <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
-                <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
-                <p class="s35" style="padding-left: 4pt;text-indent: 0pt;text-align: center;">Nº DE BASTIDOR</p>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-top: 3pt;padding-left: 7pt;text-indent: 0pt;text-align: left;">VALOR DE VENTA IVA INCL.</h2>
-                <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
-                <p style="text-indent: 0pt;text-align: left;"/>
-                <h2 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">MARCA Y MODELO MATRICULA</h2>
-                <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">color:</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">kilómetros:</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda con (x).</p>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <p class="s36" style="padding-top: 9pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL VENDEDOR EL COMPRADOR</h2>
-                <h2 style="padding-top: 3pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">CONTRATO DE COMPRA-VENTA</h2>
-                <h2 style="padding-top: 11pt;padding-left: 41pt;text-indent: 0pt;text-align: left;">En Madrid a <span class="s13">2021 </span>, a las 10:00 reunidos:</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">DE UNA PARTE, , con</h2>
-                <h2 style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>DNI/NIF , domiciliado en de ,<br/>calle , código postal ,</span></h2>
-                <h2 style="padding-left: 5pt;text-indent: 0pt;line-height: 16pt;text-align: left;">tlf , mail en calidad de <u>VENDEDOR</u>.</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en</h2>
-                <h2 style="padding-left: 5pt;text-indent: 0pt;text-align: left;">MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</h2>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
-                <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
-                <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
-                <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
-                <p class="s35" style="padding-left: 4pt;text-indent: 0pt;text-align: center;">Nº DE BASTIDOR</p>
-                <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                <h2 style="padding-top: 3pt;padding-left: 7pt;text-indent: 0pt;text-align: left;">VALOR DE VENTA IVA INCL.</h2>
-                <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
-                <p style="text-indent: 0pt;text-align: left;"/>
-                <h2 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">MARCA Y MODELO MATRICULA</h2>
-                <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado</h2>
-                <p style="text-indent: 0pt;text-align: left;"/>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">color:</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">kilómetros:</h2>
-            </li>
-            <li>
-                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
-            </li>
-        </ul>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda con (x)</p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s36" style="padding-top: 9pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL VENDEDOR EL COMPRADOR</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL VENDEDOR</h2>
+                </td>
+                <td></td>
+                <td>
+                    <h2 style="padding-left: 41pt;text-indent: 0pt;text-align: left;">EL COMPRADOR</h2>
+                </td>
+            </tr>
+        </table>
+        <div class="saltoDePagina"></div>
+    </div>
+
         <p style="padding-left: 176pt;text-indent: 0pt;text-align: left;"><span><img width="222" height="60" alt="image" src="{{ asset('index_files/Image_007.jpg') }}"/></span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p style="padding-top: 4pt;padding-left: 12pt;text-indent: 0pt;text-align: left;">D.   <u>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></p>
