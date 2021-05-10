@@ -106,8 +106,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="year" class="">Año:</label>
-                                            <input name="year" id="year" type="date"
-                                                class="form-control" value="{{ old('year') }}" required>
+                                            <select name="year" id="year" class="form-control" value="{{ old('year') }}" required></select>
                                             @if ($errors->has('year'))
                                                 <span class="error text-danger">
                                                     <strong>{{ $errors->first('year') }}</strong>
@@ -236,28 +235,28 @@
                                         <div class="position-relative form-group">
                                             <label for="status_vehicle" class="">Estado de la Moto: </label>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="g_del" name="g_del"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="g_del" name="motocycle_state"
+                                                    class="custom-control-input" value="Golpe Delantero">
                                                 <label class="custom-control-label" for="g_del">Golpe Delantero</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="g_tras" name="g_tras"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="g_tras" name="motocycle_state"
+                                                    class="custom-control-input" value="Golpe Trasero">
                                                 <label class="custom-control-label" for="g_tras">Golpe Trasero</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="av_elec" name="av_elec"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="av_elec" name="motocycle_state"
+                                                    class="custom-control-input" value="Avería Eléctrica">
                                                 <label class="custom-control-label" for="av_elec">Avería Eléctrica</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="av_mec" name="av_mec"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="av_mec" name="motocycle_state"
+                                                    class="custom-control-input" value="Avería Mecánica">
                                                 <label class="custom-control-label" for="av_mec">Avería Mecánica</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="old" name="old"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="old" name="motocycle_state"
+                                                    class="custom-control-input" value="Vieja o Abandonada">
                                                 <label class="custom-control-label" for="old">Vieja o Abandonada</label>
                                             </div>
                                         </div>
@@ -301,6 +300,15 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        let startYear = 1800;
+        let endYear = new Date().getFullYear();
+        for (i = endYear; i > startYear; i--)
+        {
+          $('#year').append($('<option />').val(i).html(i));
+        }
+    </script>
 
     <script>
         $(function(){

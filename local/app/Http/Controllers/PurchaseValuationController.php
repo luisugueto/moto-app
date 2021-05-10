@@ -59,11 +59,7 @@ class PurchaseValuationController extends Controller
             $row['phone'] = $value['phone'];
             $row['province'] = $value['province'];
             $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
+            $row['motocycle_state'] = $value['motocycle_state'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
@@ -103,11 +99,7 @@ class PurchaseValuationController extends Controller
             $row['phone'] = $value['phone'];
             $row['province'] = $value['province'];
             $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
+            $row['motocycle_state'] = $value['motocycle_state'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
@@ -148,11 +140,7 @@ class PurchaseValuationController extends Controller
             $row['phone'] = $value['phone'];
             $row['province'] = $value['province'];
             $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
+            $row['motocycle_state'] = $value['motocycle_state'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
@@ -192,11 +180,7 @@ class PurchaseValuationController extends Controller
             $row['phone'] = $value['phone'];
             $row['province'] = $value['province'];
             $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
+            $row['motocycle_state'] = $value['motocycle_state'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
@@ -236,11 +220,7 @@ class PurchaseValuationController extends Controller
             $row['phone'] = $value['phone'];
             $row['province'] = $value['province'];
             $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
+            $row['motocycle_state'] = $value['motocycle_state'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
@@ -280,11 +260,7 @@ class PurchaseValuationController extends Controller
             $row['phone'] = $value['phone'];
             $row['province'] = $value['province'];
             $row['status_trafic'] = $value['status_trafic'];
-            $row['g_del'] = $value['g_del'];
-            $row['g_tras'] = $value['g_tras'];
-            $row['av_elec'] = $value['av_elec'];
-            $row['av_mec'] = $value['av_mec'];
-            $row['old'] = $value['old'];
+            $row['motocycle_state'] = $value['motocycle_state'];
             $row['price_min'] = $value['price_min'];
             $row['observations'] = $value['observations'];
             $row['states_id'] = $value['states_id'];
@@ -398,11 +374,7 @@ class PurchaseValuationController extends Controller
         $data['phone'] = $purchase_valuation['phone'];
         $data['province'] = $purchase_valuation['province'];
         $data['status_trafic'] = $purchase_valuation['status_trafic'];
-        $data['g_del'] = $purchase_valuation['g_del'];
-        $data['g_tras'] = $purchase_valuation['g_tras'];
-        $data['av_elec'] = $purchase_valuation['av_elec'];
-        $data['av_mec'] = $purchase_valuation['av_mec'];
-        $data['old'] = $purchase_valuation['old'];
+        $data['motocycle_state'] = $purchase_valuation['motocycle_state'];
         $data['price_min'] = $purchase_valuation['price_min'];
         $data['observations'] = $purchase_valuation['observations'];
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
@@ -436,7 +408,7 @@ class PurchaseValuationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
+        // dd($request->all());
         $validator = \Validator::make($request->all(),[
             'brand' => 'required',
             'model' => 'required',
@@ -501,12 +473,12 @@ class PurchaseValuationController extends Controller
                 $linksRegister->token = $token;
                 $linksRegister->purchase_valuation_id = $purchase;
                 $linksRegister->save();
-
+               
                 $purchase_management = new PurchaseManagement();
                 $purchase_management->purchase_valuation_id = $purchase;
                 $purchase_management->file_no = $purchase;
-                $purchase_management->current_year = '';
-                $purchase_management->collection_contract_date = '';
+                $purchase_management->current_year = date('d-m-Y');
+                $purchase_management->collection_contract_date = date('d-m-Y');
                 $purchase_management->documents_attached = '';
                 $purchase_management->non_existence_document = '';
                 $purchase_management->vehicle_delivers = '';
@@ -638,8 +610,8 @@ class PurchaseValuationController extends Controller
     {
         $states = States::all();
         $processes = Processes::all();
-        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
-   
+        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");   
+        
         return view('backend.purchase_valuation.ficha', compact('states', 'processes', 'marcas'));
 
     }
@@ -651,7 +623,7 @@ class PurchaseValuationController extends Controller
         $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $id)->get();
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();        
-
+  
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
         $data['brand'] = $purchase_valuation['brand'];
@@ -664,11 +636,7 @@ class PurchaseValuationController extends Controller
         $data['phone'] = $purchase_valuation['phone'];
         $data['province'] = $purchase_valuation['province'];
         $data['status_trafic'] = $purchase_valuation['status_trafic'];
-        $data['g_del'] = $purchase_valuation['g_del'];
-        $data['g_tras'] = $purchase_valuation['g_tras'];
-        $data['av_elec'] = $purchase_valuation['av_elec'];
-        $data['av_mec'] = $purchase_valuation['av_mec'];
-        $data['old'] = $purchase_valuation['old'];
+        $data['motocycle_state'] = $purchase_valuation['motocycle_state'];
         $data['price_min'] = $purchase_valuation['price_min'];
         $data['observations'] = $purchase_valuation['observations'];
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
@@ -687,8 +655,8 @@ class PurchaseValuationController extends Controller
         $data['second_surtname'] = $purchase_management['second_surtname'];
         $data['dni'] = $purchase_management['dni'];
         $data['birthdate'] = $purchase_management['birthdate'];
-        $data['phone'] = $purchase_management['phone'];
-        $data['email'] = $purchase_management['email'];
+        $data['phone_management'] = $purchase_management['phone'];
+        $data['email_management'] = $purchase_management['email'];
         $data['street'] = $purchase_management['street'];
         $data['nro_street'] = $purchase_management['nro_street'];
         $data['stairs'] = $purchase_management['stairs'];
@@ -745,11 +713,7 @@ class PurchaseValuationController extends Controller
         $purchase->phone = $request->phone;
         $purchase->province = $request->province;
         $purchase->status_trafic = $request->status_trafic;
-        $purchase->g_del = $request->g_del;
-        $purchase->g_tras = $request->g_tras;
-        $purchase->av_elec = $request->av_elec;
-        $purchase->av_mec = $request->av_mec;
-        $purchase->old = $request->old;
+        $purchase->motocycle_state = $request->motocycle_state;
         $purchase->price_min = $request->price_min;
         $purchase->observations = $request->observations;
         $purchase->data_serialize = $request->data_serialize;
@@ -776,8 +740,8 @@ class PurchaseValuationController extends Controller
         $purchase_management->second_surtname = $request->second_surtname;
         $purchase_management->dni = $request->dni;
         $purchase_management->birthdate = $request->birthdate;
-        $purchase_management->phone = $request->phone;
-        $purchase_management->email = $request->email;
+        $purchase_management->phone = $request->phone_management;
+        $purchase_management->email = $request->email_management;
         $purchase_management->street = $request->street;
         $purchase_management->nro_street = $request->nro_street;
         $purchase_management->stairs = $request->stairs;

@@ -126,25 +126,16 @@
                                         <input class="toggle-vis" id="column_10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_10">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Del." for="column_11">Golpe Del.</label>
+                                        <input class="toggle-vis" id="column_9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_9">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Golpe Tras" for="column_12">Golpe Tras</label>
+                                        <input class="toggle-vis" id="column_10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_10">Estado de la moto.</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Elec" for="column_13">Av. Elec</label>
+                                        <input class="toggle-vis" id="column_11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_11">Mínimo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Av. Mec" for="column_14">Av. Mec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_15" type="checkbox" data-column="15" checked><label class="inline-label tr" key="Aband. Viejo" for="column_15">Aband. Viejo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_16" type="checkbox" data-column="16"><label class="inline-label tr" key="Mínimo" for="column_16">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_17" type="checkbox" data-column="17"><label class="inline-label tr" key="Observaciones" for="column_17">Observaciones</label>
+                                        <input class="toggle-vis" id="column_12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_12">Observaciones</label>
                                     </button>
                                 </div>
                             </div>
@@ -164,11 +155,7 @@
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Golpe Del.</th>
-                                    <th class="text-center">Golpe Tras</th>
-                                    <th class="text-center">Av. Elec</th>
-                                    <th class="text-center">Av. Mec</th>
-                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
@@ -213,25 +200,13 @@
                                         <input class="toggle-vis-1" id="column_1-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_1-9">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_1-10">Golpe Del.</label>
+                                        <input class="toggle-vis-1" id="column_1-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_1-10">Estado de la moto</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_1-11">Golpe Tras</label>
+                                        <input class="toggle-vis-1" id="column_1-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_1-11">Mínimo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_1-12">Av. Elec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_1-13">Av. Mec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_1-14">Aband. Viejo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_1-15">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_1-16">Observaciones</label>
+                                        <input class="toggle-vis-1" id="column_1-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_1-12">Observaciones</label>
                                     </button>
                                 </div>
                             </div>                           
@@ -251,11 +226,7 @@
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Golpe Del.</th>
-                                    <th class="text-center">Golpe Tras</th>
-                                    <th class="text-center">Av. Elec</th>
-                                    <th class="text-center">Av. Mec</th>
-                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
@@ -296,29 +267,17 @@
                                     <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-2" id="column_2-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_2-8">Provincia</label>
                                     </button>
-                                     <button type="button" tabindex="0" class="dropdown-item">
+                                    <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-2" id="column_2-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_2-9">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_2-10">Golpe Del.</label>
+                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_2-10">Estado de la moto</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_2-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_2-11">Golpe Tras</label>
+                                        <input class="toggle-vis-2" id="column_2-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_2-11">Mínimo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_2-12">Av. Elec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_2-13">Av. Mec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_2-14">Aband. Viejo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_2-15">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_2-16">Observaciones</label>
+                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_2-12">Observaciones</label>
                                     </button>
                                 </div>
                             </div>      
@@ -337,11 +296,7 @@
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Golpe Del.</th>
-                                    <th class="text-center">Golpe Tras</th>
-                                    <th class="text-center">Av. Elec</th>
-                                    <th class="text-center">Av. Mec</th>
-                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
@@ -382,29 +337,17 @@
                                     <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-3" id="column_3-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_3-8">Provincia</label>
                                     </button>
-                                     <button type="button" tabindex="0" class="dropdown-item">
+                                    <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-3" id="column_3-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_3-9">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_3-10">Golpe Del.</label>
+                                        <input class="toggle-vis-3" id="column_3-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_3-10">Estado de la moto</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_3-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_3-11">Golpe Tras</label>
+                                        <input class="toggle-vis-3" id="column_3-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_3-11">Mínimo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_3-12">Av. Elec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_3-13">Av. Mec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_3-14">Aband. Viejo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_3-15">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_3-16">Observaciones</label>
+                                        <input class="toggle-vis-3" id="column_3-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_3-12">Observaciones</label>
                                     </button>
                                 </div>
                             </div>   
@@ -423,11 +366,7 @@
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Golpe Del.</th>
-                                    <th class="text-center">Golpe Tras</th>
-                                    <th class="text-center">Av. Elec</th>
-                                    <th class="text-center">Av. Mec</th>
-                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
@@ -472,25 +411,13 @@
                                         <input class="toggle-vis-4" id="column_4-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_4-9">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_4-10">Golpe Del.</label>
+                                        <input class="toggle-vis-4" id="column_4-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_4-10">Estado de la moto</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_4-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_4-11">Golpe Tras</label>
+                                        <input class="toggle-vis-4" id="column_4-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_4-11">Mínimo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_4-12">Av. Elec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_4-13">Av. Mec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_4-14">Aband. Viejo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_4-15">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_4-16">Observaciones</label>
+                                        <input class="toggle-vis-4" id="column_4-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_4-12">Observaciones</label>
                                     </button>
                                 </div>
                             </div>   
@@ -509,11 +436,7 @@
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Golpe Del.</th>
-                                    <th class="text-center">Golpe Tras</th>
-                                    <th class="text-center">Av. Elec</th>
-                                    <th class="text-center">Av. Mec</th>
-                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
@@ -554,29 +477,17 @@
                                     <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-5" id="column_5-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_5-8">Provincia</label>
                                     </button>
-                                     <button type="button" tabindex="0" class="dropdown-item">
+                                    <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-5" id="column_5-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_5-9">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Golpe Del." for="column_5-10">Golpe Del.</label>
+                                        <input class="toggle-vis-5" id="column_5-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_5-10">Estado de la moto</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_5-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Golpe Tras" for="column_5-11">Golpe Tras</label>
+                                        <input class="toggle-vis-5" id="column_5-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_5-11">Mínimo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Av. Elec" for="column_5-12">Av. Elec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Av. Mec" for="column_5-13">Av. Mec</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Aband. Viejo" for="column_5-14">Aband. Viejo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-15" type="checkbox" data-column="15"><label class="inline-label tr" key="Mínimo" for="column_5-15">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-16" type="checkbox" data-column="16"><label class="inline-label tr" key="Observaciones" for="column_5-16">Observaciones</label>
+                                        <input class="toggle-vis-5" id="column_5-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_5-12">Observaciones</label>
                                     </button>
                                 </div>
                             </div>   
@@ -595,11 +506,7 @@
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Golpe Del.</th>
-                                    <th class="text-center">Golpe Tras</th>
-                                    <th class="text-center">Av. Elec</th>
-                                    <th class="text-center">Av. Mec</th>
-                                    <th class="text-center">Aband. Viejo</th>
+                                    <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
@@ -716,8 +623,7 @@
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="year" class="">Año:</label>
-                                            <input name="year" id="year" type="date"
-                                                class="form-control" value="{{ old('year') }}" required>
+                                            <select name="year" id="year" class="form-control" value="{{ old('year') }}" required></select>
                                             @if ($errors->has('year'))
                                                 <span class="error text-danger">
                                                     <strong>{{ $errors->first('year') }}</strong>
@@ -837,28 +743,28 @@
                                         <div class="position-relative form-group">
                                             <label for="status_vehicle" class="">Estado de la Moto: </label>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="g_del" name="g_del"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="g_del" name="motocycle_state"
+                                                    class="custom-control-input" value="Golpe Delantero">
                                                 <label class="custom-control-label" for="g_del">Golpe Delantero</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="g_tras" name="g_tras"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="g_tras" name="motocycle_state"
+                                                    class="custom-control-input" value="Golpe Trasero">
                                                 <label class="custom-control-label" for="g_tras">Golpe Trasero</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="av_elec" name="av_elec"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="av_elec" name="motocycle_state"
+                                                    class="custom-control-input" value="Avería Eléctrica">
                                                 <label class="custom-control-label" for="av_elec">Avería Eléctrica</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="av_mec" name="av_mec"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="av_mec" name="motocycle_state"
+                                                    class="custom-control-input" value="Avería Mecánica">
                                                 <label class="custom-control-label" for="av_mec">Avería Mecánica</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="old" name="old"
-                                                    class="custom-control-input" value="1">
+                                                <input type="radio" id="old" name="motocycle_state"
+                                                    class="custom-control-input" value="Vieja o Abandonada">
                                                 <label class="custom-control-label" for="old">Vieja o Abandonada</label>
                                             </div>
                                         </div>
@@ -895,6 +801,14 @@
         </div>
     </div>
 
+<script type="text/javascript">
+    let startYear = 1800;
+    let endYear = new Date().getFullYear();
+    for (i = endYear; i > startYear; i--)
+    {
+        $('#year').append($('<option />').val(i).html(i));
+    }
+</script>
 
 <script>
         var setModel = () => {

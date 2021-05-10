@@ -14,6 +14,8 @@ class CreatePurchaseManagementTable extends Migration
     {
         Schema::create('purchase_management', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('purchase_valuation_id')->unsigned();
+            $table->foreign('purchase_valuation_id')->references('id')->on('purchase_valuation')->onDelete('Cascade');
             $table->string('file_no');
             $table->date('current_year');
             $table->date('collection_contract_date');
@@ -23,24 +25,24 @@ class CreatePurchaseManagementTable extends Migration
             $table->string('name');
             $table->string('firts_surname');
             $table->string('second_surtname');
-            $table->integer('dni');
+            $table->string('dni');
             $table->date('birthdate');
             $table->string('phone');
             $table->string('email');
             $table->string('street');
-            $table->integer('nro_street');
-            $table->integer('stairs');
-            $table->integer('floor');
+            $table->string('nro_street');
+            $table->string('stairs');
+            $table->string('floor');
             $table->string('letter');
             $table->string('municipality');
             $table->string('postal_code');
-            $table->integer('province');
+            $table->string('province');
             $table->string('iban');
             $table->double('sale_amount', 15, 8);
             $table->string('name_representantive');
             $table->string('firts_surname_representative');
             $table->string('second_surtname_representantive');
-            $table->integer('dni_representative');
+            $table->string('dni_representative');
             $table->date('birthdate_representative');
             $table->string('phone_representantive');
             $table->string('email_representative');
@@ -51,14 +53,14 @@ class CreatePurchaseManagementTable extends Migration
             $table->string('type');
             $table->string('kilometres');
             $table->string('color');
-            $table->integer('fuel');
-            $table->integer('registration_number');
+            $table->string('fuel');
+            $table->string('registration_number');
             $table->date('registration_date');
             $table->string('registration_country');
             $table->string('frame_no');
             $table->string('motor_no');
-            $table->boolean('vehicle_state_trafic');
-            $table->boolean('vehicle_state');
+            $table->string('vehicle_state_trafic');
+            $table->string('vehicle_state');
             $table->timestamps();
 
         });

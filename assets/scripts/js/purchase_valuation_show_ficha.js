@@ -14,7 +14,7 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-
+                console.log(data)
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -37,20 +37,16 @@ $(document).ready(function () {
                 else if (data.status_trafic == 'Baja definitiva')
                     $('#low').attr('checked', true)
 
-                // console.log(data);
-                if (data.g_del == 1)
+     
+                if(data.motocycle_state  == "Golpe Delantero")
                     $('#g_del').attr('checked', true)
-
-                if (data.g_tras == 1)
+                else if(data.motocycle_state  == "Golpe Trasero")
                     $('#g_tras').attr('checked', true)
-
-                if (data.av_elec == 1)
+                else if(data.motocycle_state  == "Avería Eléctrica")
                     $('#av_elec').attr('checked', true)
-
-                if (data.av_mec == 1)
+                else if(data.motocycle_state  == "Avería Mecánica")
                     $('#av_mec').attr('checked', true)
-
-                if (data.old == 1)
+                else if(data.motocycle_state  == "Vieja o Abandonada")
                     $('#old').attr('checked', true)
 
                 $('#price_min').val(data.price_min);
@@ -118,8 +114,8 @@ $(document).ready(function () {
                 $('#second_surtname').val(data.second_surtname);
                 $('#dni').val(data.dni);
                 $('#birthdate').val(data.birthdate);
-                $('#phone').val(data.phone);
-                $('#email').val(data.email);
+                $('#phone_management').val(data.phone_management);
+                $('#email_management').val(data.email_management);
                 $('#street').val(data.street);
                 $('#nro_street').val(data.nro_street);
                 $('#stairs').val(data.stairs);
@@ -255,12 +251,18 @@ $(document).ready(function () {
             status_trafic = 'Alta';
         else if ($('#low').is(':checked'))
             status_trafic = 'Baja definitiva';
-
-        var g_del = 0; if ($('#g_del').is(':checked')) g_del = 1;
-        var g_tras = 0; if ($('#g_tras').is(':checked')) g_tras = 1;
-        var av_elec = 0; if ($('#av_elec').is(':checked')) av_elec = 1;
-        var av_mec = 0; if ($('#av_mec').is(':checked')) av_mec = 1;
-        var old = 0; if ($('#old').is(':checked')) old = 1;
+        
+         var motocycle_state = '';
+        if ($('#g_del').is(':checked'))
+            motocycle_state = 'Golpe Delantero';
+        else if ($('#g_tras').is(':checked'))
+            motocycle_state = 'Golpe Trasero';
+        else if ($('#av_elec').is(':checked'))
+            motocycle_state = 'Avería Eléctrica';
+        else if ($('#av_mec').is(':checked'))
+            motocycle_state = 'Avería Mecánica';
+        else if ($('#old').is(':checked'))
+            motocycle_state = 'Vieja o Abandonada';
 
         var vehicle_delivers = '';
         if ($('#incumbent').is(':checked'))
@@ -313,11 +315,7 @@ $(document).ready(function () {
             price_min: $("#price_min").val(),
             observations: $("#observations").val(),
             status_trafic: status_trafic,
-            g_del: g_del,
-            g_tras: g_tras,
-            av_elec: av_elec,
-            av_mec: av_mec,
-            old: old,
+            motocycle_state:motocycle_state,
             data_serialize: dataSerialize.replace(/\s+/g, " "),
             file_no: $('#file_no').val(),
             current_year: $('#current_year').val(),
@@ -333,8 +331,8 @@ $(document).ready(function () {
             second_surtname: $('#second_surtname').val(),
             dni: $('#dni').val(),
             birthdate: $('#birthdate').val(),
-            phone: $('#phone').val(),
-            email: $('#email').val(),
+            phone_management: $('#phone_management').val(),
+            email_management: $('#email_management').val(),
             street: $('#street').val(),
             nro_street: $('#nro_street').val(),
             stairs: $('#stairs').val(),
@@ -497,63 +495,3 @@ Dropzone.options.imageDropzone = {
         );
     }
 };
-
-
-
-    // //This function disables buttons when needed
-    // function disableButtons(counter_max, counter_current){
-    //     $('#show-previous-image, #show-next-image').show();
-    //     if(counter_max == counter_current){
-    //         $('#show-next-image').hide();
-    //     } else if (counter_current == 1){
-    //         $('#show-previous-image').hide();
-    //     }
-    // }
-
-    // /**
-    //  *
-    //  * @param setIDs        Sets IDs when DOM is loaded. If using a PHP counter, set to false.
-    //  * @param setClickAttr  Sets the attribute for the click handler.
-    //  */
-
-    // function loadGallery(setIDs, setClickAttr) {
-
-    //     var current_image = '',
-    //         selector = '',
-    //         counter = 0;
-
-    //     $('#show-next-image, #show-previous-image').click(function(){
-    //         if($(this).attr('id') == 'show-previous-image'){
-    //             current_image--;
-    //         } else if ($(this).attr('id') == 'show-next-image') {
-    //             current_image++;
-    //         }
-
-    //         selector = $('[data-image-id="' + current_image + '"]');         
-    //         console.log($('[data-image-id="' + current_image + '"]'))
-    //         updateGallery(selector);
-    //     });
-
-    //     function updateGallery(selector) {
-    //         var $sel = selector;
-
-    //         current_image = $sel.dataset.imageId;
-    //        console.log($sel.dataset.image)
-    //         $('#image-gallery-caption').text($sel.dataset.caption);
-    //         $('#image-gallery-title').text($sel.dataset.title);
-    //         $('#image-gallery-image').attr('src', $sel.dataset.image);
-    //         disableButtons(counter, $sel.dataset.imageId);
-    //     }
-
-    //     if(setIDs == true){
-    //         $('[data-image-id]').each(function () {
-
-    //             counter++;
-    //             console.log(counter)
-    //             $(this).attr('data-image-id',counter);
-    //         });
-    //     }
-    //     $(setClickAttr).on('click',function(){
-    //         updateGallery($(this));
-    //     });
-    // }

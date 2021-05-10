@@ -9,7 +9,7 @@ $(document).ready(function(){
 
     $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
         
-        if (i != 18) {
+        if (i != 14) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -89,67 +89,20 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
      
-                        if(data.g_del == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-    
+                        if(data.motocycle_state  == "Golpe Delantero")
+                            echo = "Golpe Delantero";
+                        else if(data.motocycle_state  == "Golpe Trasero")
+                            echo = "Golpe Trasero";
+                        else if(data.motocycle_state  == "Avería Eléctrica")
+                            echo = "Avería Eléctrica";
+                        else if(data.motocycle_state  == "Avería Mecánica")
+                            echo = "Avería Mecánica";
+                        else if(data.motocycle_state  == "Vieja o Abandonada")
+                            echo = "Vieja o Abandonada";
                         return echo;
                     },
                     "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.g_tras == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-    
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_elec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-    
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_mec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-    
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.old == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-    
-                        return echo;
-                    },
-                    "targets": -1
-                },
+                },                
     
                 { "data": "price_min" },
                 { "data": "observations" },
@@ -175,23 +128,11 @@ $(document).ready(function(){
             ],
             "columnDefs": [
                 {
-                    "targets": [ 2 ],
+                    "targets": [ 1 ],
                     "visible": false,
                 },
                 {
-                    "targets": [ 9 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 15 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 16 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 17 ],
+                    "targets": [ 13 ],
                     "visible": false
                 }
             ],
@@ -213,7 +154,7 @@ $(document).ready(function(){
  
     $('#tableMotosQueInterensan thead tr:eq(1) th').each(function (i) {
     
-        if (i != 17) {
+        if (i != 13) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -278,69 +219,21 @@ $(document).ready(function(){
                 { "data": null,
                     render:function(data){
                         let echo = '';
-
-                        if(data.g_del == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
+     
+                        if(data.motocycle_state  == "Golpe Delantero")
+                            echo = "Golpe Delantero";
+                        else if(data.motocycle_state  == "Golpe Trasero")
+                            echo = "Golpe Trasero";
+                        else if(data.motocycle_state  == "Avería Eléctrica")
+                            echo = "Avería Eléctrica";
+                        else if(data.motocycle_state  == "Avería Mecánica")
+                            echo = "Avería Mecánica";
+                        else if(data.motocycle_state  == "Vieja o Abandonada")
+                            echo = "Vieja o Abandonada";
                         return echo;
                     },
                     "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.g_tras == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_elec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_mec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.old == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
+                },   
                 { "data": "price_min" },
                 { "data": "observations" },
 
@@ -363,13 +256,10 @@ $(document).ready(function(){
 
             ],
             "columnDefs": [{
-				"targets": [8],
+				"targets": [1],
 				"visible": false
 			}, {
-				"targets": [15],
-				"visible": false
-			}, {
-				"targets": [16],
+				"targets": [12],
 				"visible": false
 			}],
             "order": [[0, "desc"]]
@@ -389,7 +279,7 @@ $(document).ready(function(){
     $('#tableMotosParaDesguace thead tr').clone(true).appendTo('#tableMotosParaDesguace thead');
 
     $('#tableMotosParaDesguace thead tr:eq(1) th').each( function (i) {
-        if (i != 17) {
+        if (i != 13) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -454,68 +344,21 @@ $(document).ready(function(){
                 { "data": null,
                     render:function(data){
                         let echo = '';
-
-                        if(data.g_del == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
+     
+                        if(data.motocycle_state  == "Golpe Delantero")
+                            echo = "Golpe Delantero";
+                        else if(data.motocycle_state  == "Golpe Trasero")
+                            echo = "Golpe Trasero";
+                        else if(data.motocycle_state  == "Avería Eléctrica")
+                            echo = "Avería Eléctrica";
+                        else if(data.motocycle_state  == "Avería Mecánica")
+                            echo = "Avería Mecánica";
+                        else if(data.motocycle_state  == "Vieja o Abandonada")
+                            echo = "Vieja o Abandonada";
                         return echo;
                     },
                     "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.g_tras == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_elec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_mec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.old == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
+                },   
 
                 { "data": "price_min" },
                 { "data": "observations" },
@@ -538,13 +381,10 @@ $(document).ready(function(){
 
             ],
             "columnDefs": [{
-				"targets": [8],
+				"targets": [1],
 				"visible": false
 			}, {
-				"targets": [15],
-				"visible": false
-			}, {
-				"targets": [16],
+				"targets": [12],
 				"visible": false
 			}],
             "order": [[0, "desc"]]
@@ -564,7 +404,7 @@ $(document).ready(function(){
     $('#tableMotosParaVenta thead tr').clone(true).appendTo('#tableMotosParaVenta thead');
 
     $('#tableMotosParaVenta thead tr:eq(1) th').each( function (i) {
-        if (i != 17) {
+        if (i != 13) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -629,68 +469,21 @@ $(document).ready(function(){
                 { "data": null,
                     render:function(data){
                         let echo = '';
-
-                        if(data.g_del == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
+     
+                        if(data.motocycle_state  == "Golpe Delantero")
+                            echo = "Golpe Delantero";
+                        else if(data.motocycle_state  == "Golpe Trasero")
+                            echo = "Golpe Trasero";
+                        else if(data.motocycle_state  == "Avería Eléctrica")
+                            echo = "Avería Eléctrica";
+                        else if(data.motocycle_state  == "Avería Mecánica")
+                            echo = "Avería Mecánica";
+                        else if(data.motocycle_state  == "Vieja o Abandonada")
+                            echo = "Vieja o Abandonada";
                         return echo;
                     },
                     "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.g_tras == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_elec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_mec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.old == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
+                },   
 
                 { "data": "price_min" },
                 { "data": "observations" },
@@ -713,13 +506,10 @@ $(document).ready(function(){
 
             ],
             "columnDefs": [{
-				"targets": [8],
+				"targets": [1],
 				"visible": false
 			}, {
-				"targets": [15],
-				"visible": false
-			}, {
-				"targets": [16],
+				"targets": [12],
 				"visible": false
 			}],
             "order": [[0, "desc"]]
@@ -742,7 +532,7 @@ $(document).ready(function(){
     $('#tableMotosParaSubasta thead tr').clone(true).appendTo('#tableMotosParaSubasta thead');
 
     $('#tableMotosParaSubasta thead tr:eq(1) th').each( function (i) {
-        if (i != 17) {
+        if (i != 13) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -807,68 +597,21 @@ $(document).ready(function(){
                 { "data": null,
                     render:function(data){
                         let echo = '';
-
-                        if(data.g_del == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
+     
+                        if(data.motocycle_state  == "Golpe Delantero")
+                            echo = "Golpe Delantero";
+                        else if(data.motocycle_state  == "Golpe Trasero")
+                            echo = "Golpe Trasero";
+                        else if(data.motocycle_state  == "Avería Eléctrica")
+                            echo = "Avería Eléctrica";
+                        else if(data.motocycle_state  == "Avería Mecánica")
+                            echo = "Avería Mecánica";
+                        else if(data.motocycle_state  == "Vieja o Abandonada")
+                            echo = "Vieja o Abandonada";
                         return echo;
                     },
                     "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.g_tras == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_elec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_mec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.old == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
+                },   
 
                 { "data": "price_min" },
                 { "data": "observations" },
@@ -905,13 +648,10 @@ $(document).ready(function(){
 
             ],
             "columnDefs": [{
-				"targets": [8],
+				"targets": [1],
 				"visible": false
 			}, {
-				"targets": [15],
-				"visible": false
-			}, {
-				"targets": [16],
+				"targets": [12],
 				"visible": false
 			}],
             "order": [[0, "desc"]]
@@ -931,7 +671,7 @@ $(document).ready(function(){
     $('#tableMotosQueNoInteresan thead tr').clone(true).appendTo('#tableMotosQueNoInteresan thead');
 
     $('#tableMotosQueNoInteresan thead tr:eq(1) th').each( function (i) {
-        if (i != 17) {
+        if (i != 13) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -996,68 +736,21 @@ $(document).ready(function(){
                 { "data": null,
                     render:function(data){
                         let echo = '';
-
-                        if(data.g_del == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
+     
+                        if(data.motocycle_state  == "Golpe Delantero")
+                            echo = "Golpe Delantero";
+                        else if(data.motocycle_state  == "Golpe Trasero")
+                            echo = "Golpe Trasero";
+                        else if(data.motocycle_state  == "Avería Eléctrica")
+                            echo = "Avería Eléctrica";
+                        else if(data.motocycle_state  == "Avería Mecánica")
+                            echo = "Avería Mecánica";
+                        else if(data.motocycle_state  == "Vieja o Abandonada")
+                            echo = "Vieja o Abandonada";
                         return echo;
                     },
                     "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.g_tras == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_elec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.av_mec == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.old == 1)
-                            echo = "Si";
-                        else
-                            echo = "No";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
+                },   
 
                 { "data": "price_min" },
                 { "data": "observations" },
@@ -1081,13 +774,10 @@ $(document).ready(function(){
 
             ],
             "columnDefs": [{
-				"targets": [8],
+				"targets": [1],
 				"visible": false
 			}, {
-				"targets": [15],
-				"visible": false
-			}, {
-				"targets": [16],
+				"targets": [12],
 				"visible": false
 			}],
             "order": [[0, "desc"]]
@@ -1210,19 +900,15 @@ $(document).ready(function(){
                     $('#low').attr('checked', true)
 
                 // console.log(data);
-                if(data.g_del == 1)
+                if(data.motocycle_state  == "Golpe Delantero")
                     $('#g_del').attr('checked', true)
-
-                if(data.g_tras == 1)
+                else if(data.motocycle_state  == "Golpe Trasero")
                     $('#g_tras').attr('checked', true)
-
-                if(data.av_elec == 1)
+                else if(data.motocycle_state  == "Avería Eléctrica")
                     $('#av_elec').attr('checked', true)
-
-                if(data.av_mec == 1)
+                else if(data.motocycle_state  == "Avería Mecánica")
                     $('#av_mec').attr('checked', true)
-
-                if(data.old == 1)
+                else if(data.motocycle_state  == "Vieja o Abandonada")
                     $('#old').attr('checked', true)
 
                 $('#price_min').val(data.price_min);
@@ -1333,17 +1019,13 @@ $(document).ready(function(){
             email: $("#email").val(),
             phone: $("#phone").val(),
             province: $("#province").val(),
-            status_trafic: $("#status_trafic").val(),
-            g_del: $("#g_del").val(),
-            g_tras: $("#g_tras").val(),
-            av_elec: $("#av_elec").val(),
-            av_mec: $("#av_mec").val(),
-            old: $("#old").val(),
+            status_trafic: $("input[name='status_trafic']:checked").val(),
+            motocycle_state: $("input[name='motocycle_state']:checked").val(),
             price_min: $("#price_min").val(),
             observations: $("#observations").val(),
             data_serialize: dataSerialize.replace(/\s+/g, " ")
         }
-
+        console.log(formData)
         //used to determine the http verb to use [add=POST], [update=PUT]
         var button = $('#btn-save').val();       
         var type = "POST"; //for creating new resource
