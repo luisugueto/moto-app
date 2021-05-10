@@ -16,7 +16,7 @@ class CreateLinksRegistersTable extends Migration
             $table->increments('id');
             $table->string('token');
             $table->integer('purchase_valuation_id')->unsigned();
-            $table->foreign('purchase_valuation_id')->references('id')->on('states')->onDelete('Cascade');
+            $table->foreign('purchase_valuation_id')->references('id')->on('purchase_valuation')->onDelete('Cascade');
             $table->integer('status')->default(0);
             $table->timestamps();
         });
