@@ -353,7 +353,8 @@ class PurchaseValuationController extends Controller
             $images_purchase->save();
         }
 
-        return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Tasación creada exitosamente!');
+        return Redirect::to('https://motostion.com/');
+        // return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Tasación creada exitosamente!');
 
     }
 
