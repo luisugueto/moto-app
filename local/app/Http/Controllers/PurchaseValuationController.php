@@ -478,8 +478,8 @@ class PurchaseValuationController extends Controller
                 $purchase_management = new PurchaseManagement();
                 $purchase_management->purchase_valuation_id = $purchase_model->id;
                 $purchase_management->file_no = $purchase_model->id;
-                $purchase_management->current_year = date('d-m-Y');
-                $purchase_management->collection_contract_date = date('d-m-Y');
+                $purchase_management->current_year = $purchase_model->date;
+                $purchase_management->collection_contract_date = null;
                 $purchase_management->documents_attached = '';
                 $purchase_management->non_existence_document = '';
                 $purchase_management->vehicle_delivers = '';
@@ -508,11 +508,11 @@ class PurchaseValuationController extends Controller
                 $purchase_management->phone_representantive = '';
                 $purchase_management->email_representative = '';
                 $purchase_management->representation_concept = '';
-                $purchase_management->brand = '';
-                $purchase_management->model = '';
+                $purchase_management->brand = $purchase_model->brand;
+                $purchase_management->model = $purchase_model->model;
                 $purchase_management->version = '';
                 $purchase_management->type = '';
-                $purchase_management->kilometres = '';
+                $purchase_management->kilometres = $purchase_model->km;
                 $purchase_management->color = '';
                 $purchase_management->fuel = '';
                 $purchase_management->registration_number = '';
@@ -520,7 +520,7 @@ class PurchaseValuationController extends Controller
                 $purchase_management->registration_country = '';
                 $purchase_management->frame_no = '';
                 $purchase_management->motor_no = '';
-                $purchase_management->vehicle_state_trafic = '';
+                $purchase_management->vehicle_state_trafic = $purchase_model->status_trafic;
                 $purchase_management->vehicle_state = '';
                 $purchase_management->save();
             }

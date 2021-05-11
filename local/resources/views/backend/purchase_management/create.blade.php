@@ -24,14 +24,14 @@
                         <div class="divider"></div>
 
                         <input type="hidden" name="purchase_valuation_id" value="{{ $purchase_valuation_id }}">
-                        
+                        <input type="hidden" name="purchase_id" value="{{ $gestion->id }}">
                         <h6><strong>Datos a complementar por el centro CATv</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
                                     <label for="file_no" class="">Nº Expediente:</label>
                                     <input name="file_no" id="file_no" type="text" class="form-control"
-                                        value="{{ old('file_no') }}">
+                                        value="{{ $gestion->file_no }}">
                                     @if ($errors->has('file_no'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('file_no') }}</strong>
@@ -43,7 +43,7 @@
                                 <div class="position-relative form-group">
                                     <label for="current_year" class="">Año en curso:</label>
                                     <input name="current_year" id="current_year" type="date" class="form-control"
-                                        value="{{ old('current_year') }}">
+                                        value="{{$gestion->current_year }}">
                                     @if ($errors->has('current_year'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('current_year') }}</strong>
@@ -65,14 +65,20 @@
                             </div>
                         </div>
                         <div class="form-row row g-1">
-                            <div class="col-md-3">
+                            <div class="col-md-8">
                                 <div class="position-relative form-group">
                                     <div>
-                                        <div class="custom-checkbox custom-control custom-control-inline">
-                                            <input type="checkbox" name="documents_attached" id="documents_attached"
-                                                class="custom-control-input">
-                                            <label class="custom-control-label" for="documents_attached">Se adjunta
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" name="documents_attached" id="yes_documents_attached"
+                                                class="custom-control-input" value="1"  @if(old('documents_attached') == '1') checked @endif>
+                                            <label class="custom-control-label" for="yes_documents_attached">Se adjunta
                                                 documentos de matriculación:</label>
+                                        </div>
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" name="documents_attached" id="non_existence_document"
+                                                class="custom-control-input" value="2" @if(old('documents_attached') == '2') checked @endif>
+                                            <label class="custom-control-label" for="non_existence_document">Inexistencia
+                                                del documento de matriulación:</label>
                                         </div>
                                         @if ($errors->has('documents_attached'))
                                             <span class="error text-danger">
@@ -85,37 +91,20 @@
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
                                     <div>
-                                        <div class="custom-checkbox custom-control custom-control-inline">
-                                            <input type="checkbox" name="non_existence_document" id="non_existence_document"
-                                                class="custom-control-input">
-                                            <label class="custom-control-label" for="non_existence_document">Inexistencia
-                                                del documento de matriulación:</label>
-                                        </div>
-                                        @if ($errors->has('non_existence_document'))
-                                            <span class="error text-danger">
-                                                <strong>{{ $errors->first('non_existence_document') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="position-relative form-group">
-                                    <div>
                                         El Vehículo lo entrega:
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="incumbent" name="vehicle_delivers"
-                                                class="custom-control-input" value="Titular">
+                                                class="custom-control-input" value="Titular" @if(old('vehicle_delivers') == 'Titular') checked @endif>
                                             <label class="custom-control-label" for="incumbent">Titular</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="owner" name="vehicle_delivers"
-                                                class="custom-control-input" value="Propietario">
+                                                class="custom-control-input" value="Propietario" @if(old('vehicle_delivers') == 'Propietario') checked @endif>
                                             <label class="custom-control-label" for="owner">Propietario</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="representative" name="vehicle_delivers"
-                                                class="custom-control-input" value="Representante">
+                                                class="custom-control-input" value="Representante" @if(old('vehicle_delivers') == 'Representante') checked @endif>
                                             <label class="custom-control-label" for="representative">Representante</label>
                                         </div>
                                         @if ($errors->has('vehicle_delivers'))
@@ -455,7 +444,7 @@
                                 <div class="position-relative form-group">
                                     <label for="brand" class="">Marca:</label>
                                     <input name="brand" id="brand" type="text" class="form-control"
-                                        value="{{ old('brand') }}">
+                                        value="{{ $gestion->brand }}">
                                     @if ($errors->has('brand'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('brand') }}</strong>
@@ -467,7 +456,7 @@
                                 <div class="position-relative form-group">
                                     <label for="model" class="">Modelo:</label>
                                     <input name="model" id="model" type="text" class="form-control"
-                                        value="{{ old('model') }}">
+                                        value="{{ $gestion->model }}">
                                     @if ($errors->has('model'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('model') }}</strong>
@@ -505,7 +494,7 @@
                                 <div class="position-relative form-group">
                                     <label for="kilometres" class="">Kilómetros:</label>
                                     <input name="kilometres" id="kilometres" type="tex" class="form-control"
-                                        value="{{ old('kilometres') }}">
+                                        value="{{ $gestion->kilometres }}">
                                     @if ($errors->has('kilometres'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('kilometres') }}</strong>
@@ -531,17 +520,17 @@
                                         Combustible:
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="gasoline" name="fuel" class="custom-control-input"
-                                                value="Gasolina">
+                                                value="Gasolina" @if(old('fuel') == 'Gasolina') checked @endif>
                                             <label class="custom-control-label" for="gasoline">Gasolina</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="diesel_oil" name="fuel" class="custom-control-input"
-                                                value="Gasóleo">
+                                                value="Gasóleo" @if(old('fuel') == 'Gasóleo') checked @endif>
                                             <label class="custom-control-label" for="diesel_oil">Gasóleo</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="others" name="fuel" class="custom-control-input"
-                                                value="Otros">
+                                                value="Otros" @if(old('fuel') == 'Otros') checked @endif>
                                             <label class="custom-control-label" for="others">Otros</label>
                                         </div>
                                         @if ($errors->has('fuel'))
@@ -624,18 +613,18 @@
                                         Estado del vehículo en tráfico:
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="high" name="vehicle_state_trafic"
-                                                class="custom-control-input" value="Alta">
+                                                class="custom-control-input" value="Alta" @if( $gestion->vehicle_state_trafic == 'Alta') checked @endif>
                                             <label class="custom-control-label" for="high">Alta</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="final_discharge" name="vehicle_state_trafic"
-                                                class="custom-control-input" value="Baja definitiva">
+                                                class="custom-control-input" value="Baja definitiva" @if( $gestion->vehicle_state_trafic == 'Baja definitiva') checked @endif>
                                             <label class="custom-control-label" for="final_discharge">Baja
                                                 definitiva</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="temporary_leave" name="vehicle_state_trafic"
-                                                class="custom-control-input" value="Baja temporal">
+                                                class="custom-control-input" value="Baja temporal" @if( $gestion->vehicle_state_trafic == 'Baja temporal') checked @endif>
                                             <label class="custom-control-label" for="temporary_leave">Baja temporal</label>
                                         </div>
                                     </div>
@@ -652,27 +641,27 @@
                                         Estado del vehículo:
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="sinister" name="vehicle_state"
-                                                class="custom-control-input" value="Siniestrado">
+                                                class="custom-control-input" value="Siniestrado" @if(old('vehicle_state') == 'Siniestrado') checked @endif>
                                             <label class="custom-control-label" for="sinister">Siniestrado</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="damaged" name="vehicle_state"
-                                                class="custom-control-input" value="Averiado">
+                                                class="custom-control-input" value="Averiado" @if(old('vehicle_state') == 'Averiado') checked @endif>
                                             <label class="custom-control-label" for="damaged">Averiado</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="abandoned" name="vehicle_state"
-                                                class="custom-control-input" value="Abandonado">
+                                                class="custom-control-input" value="Abandonado" @if(old('vehicle_state') == 'Abandonado') checked @endif>
                                             <label class="custom-control-label" for="abandoned">Abandonado</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="full" name="vehicle_state" class="custom-control-input"
-                                                value="Completo ">
+                                                value="Completo" @if(old('vehicle_state') == 'Completo') checked @endif>
                                             <label class="custom-control-label" for="full">Completo</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="partially_disassembled" name="vehicle_state"
-                                                class="custom-control-input" value="Parcialmente desmontado">
+                                                class="custom-control-input" value="Parcialmente desmontado" @if(old('vehicle_state') == 'Parcialmente desmontado') checked @endif>
                                             <label class="custom-control-label" for="partially_disassembled">Parcialmente
                                                 desmontado</label>
                                         </div>

@@ -30,10 +30,11 @@ class PurchaseManagementController extends Controller
     public function create($token)
     {
         $linksRegister = LinksRegister::where('token', $token)->first();
-       
+        
         if(!empty($linksRegister)){
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
-            return view('backend.purchase_management.create', compact('purchase_valuation_id'));
+            $gestion = PurchaseManagement::where('purchase_valuation_id', $purchase_valuation_id)->first();
+            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion'));
         }
         else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
@@ -51,14 +52,13 @@ class PurchaseManagementController extends Controller
         $this->validate($request, [
             'file_no' => 'required',
             'current_year' => 'required|date',
-            'collection_contract_date' => 'required|date',
+            // 'collection_contract_date' => 'required|date',
             'documents_attached' => 'required',
-            'non_existence_document' => 'required',
             'vehicle_delivers' => 'required',
             'name' => 'required',
             'firts_surname' => 'required',
             // 'second_surtname' => 'required',
-            'dni' => 'required|numeric',
+            'dni' => 'required',
             // 'birthdate' => 'required|date',
             'phone' => 'required',
             'email' => 'required|email',
@@ -70,7 +70,7 @@ class PurchaseManagementController extends Controller
             'municipality' => 'required',
             'postal_code' => 'required',
             'province' => 'required',
-            'iban' => 'required',
+            // 'iban' => 'required',
             'sale_amount' => 'required',
             // 'name_representantive' => 'required',
             // 'firts_surname_representative' => 'required',
@@ -96,19 +96,62 @@ class PurchaseManagementController extends Controller
             'vehicle_state' => 'required'
         ]);
 
-        if($request->documents_attached == 'on'){
+        if($request->documents_attached == 1){
             $documents_attached = 1;
+            $non_existence_document = 0;
         }
-        if($request->non_existence_document == 'on'){
+        elseif($request->documents_attached == 2){
             $non_existence_document = 1;
+            $documents_attached = 0;
         }
-            
-        $gestion = new PurchaseManagement($request->all());
+         
+        $gestion = PurchaseManagement::find($request->purchase_id);
+        $gestion->collection_contract_date = $request->purchase_id;
         $gestion->documents_attached = $documents_attached;
-        $gestion->non_existence_document = $non_existence_document;       
-        $gestion->save();
+        $gestion->non_existence_document = $non_existence_document;
+        $gestion->vehicle_delivers = $request->vehicle_delivers;
+        $gestion->name = $request->name;
+        $gestion->firts_surname = $request->firts_surname;
+        $gestion->second_surtname = $request->second_surtname;
+        $gestion->dni = $request->dni;
+        $gestion->birthdate = $request->birthdate;
+        $gestion->phone = $request->phone;
+        $gestion->email = $request->email;
+        $gestion->street = $request->street;
+        $gestion->nro_street = $request->nro_street;
+        $gestion->stairs = $request->stairs;
+        $gestion->floor = $request->floor;
+        $gestion->letter = $request->letter;
+        $gestion->municipality = $request->municipality;
+        $gestion->postal_code = $request->postal_code;
+        $gestion->province = $request->province;
+        $gestion->iban = $request->iban;
+        $gestion->sale_amount = $request->sale_amount;
+        $gestion->name_representantive = $request->name_representantive;
+        $gestion->firts_surname_representative = $request->firts_surname_representative;
+        $gestion->second_surtname_representantive = $request->second_surtname_representantive;
+        $gestion->dni_representative = $request->dni_representative;
+        $gestion->birthdate_representative = $request->birthdate_representative;
+        $gestion->phone_representantive = $request->phone_representantive;
+        $gestion->email_representative = $request->email_representative;
+        $gestion->representation_concept = $request->representation_concept;
+        $gestion->brand = $request->brand;
+        $gestion->model = $request->model;
+        $gestion->version = $request->version;
+        $gestion->type = $request->type;
+        $gestion->kilometres = $request->kilometres;
+        $gestion->color = $request->color;
+        $gestion->fuel = $request->fuel;
+        $gestion->registration_number = $request->registration_number;
+        $gestion->registration_date = $request->registration_date;
+        $gestion->registration_country = $request->registration_country;
+        $gestion->frame_no = $request->frame_no;
+        $gestion->motor_no = $request->motor_no;
+        $gestion->vehicle_state_trafic = $request->vehicle_state_trafic;
+        $gestion->vehicle_state = $request->vehicle_state;    
+        $gestion->update();
 
-        return Redirect::to('/')->with('notification', 'Gestion de compra creada exitosamente!');
+        return Redirect::to('https://motostion.com/');
     }
 
     /**
