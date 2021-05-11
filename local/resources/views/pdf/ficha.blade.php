@@ -128,8 +128,15 @@
             #l14 {padding-left: 0pt; }
             #l14> li>*:first-child:before {content: "- "; color: black; font-family:Arial, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt; }
             table, tbody {vertical-align: top; overflow: visible; }
-            /* .x-option{margin-top:0.79px;margin-left: 5.60px;} */
         </style>
+        <?php
+        $fieldsArray = (json_decode(utf8_encode($purchase->data_serialize)));
+        foreach ($fieldsArray as $key => $value) {
+            
+            if ($value->name == 'dLQrpaV2'){
+                $precio = $value->value;
+            }
+        }?>
 </head>
 <body>
 	<div class="container-fluid">
@@ -2189,26 +2196,34 @@
                     <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;">En Madrid a <span class="s24">202 </span>, a las 10:00 reunidos:</h2>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:42pt">
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></hp>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr>
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr>
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <h2 class="s20" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al comprador.</span></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
             <tr>
                 <td colspan="4">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
@@ -2216,9 +2231,7 @@
                     <p class="s35">{{ $purchase_management->frame_no }}</p>
                 </td>
             </tr>
-        </table>
-
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        
             <tr>
                 <td colspan="1">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -2233,9 +2246,10 @@
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
                     <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
                 </td>
-                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                <td colspan="2" style="margin-top: 5pt;border: 1px solid #000; width: 250px">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
-                    <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
+                    <h1 style="padding-top: 9pt;text-indent: 0pt;text-align: center;">€</h1>
+                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($purchase_management->sale_amount,2) }}</p>
                 </td>
             </tr>
             <tr>
@@ -2243,56 +2257,117 @@
             </tr>
         </table>
 
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 10pt;" cellspacing="0">
             <tr>
                 <td>
                     <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
-                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <p style="text-indent: 0pt;text-align: left;">
                     <ul id="l3" class="a">
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Alta')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2> 
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2> 
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Baja definitiva')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Baja temporal')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Siniestrado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Averiado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Abandonado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Completo')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
-                            </h2>
+                            </h2> 
+                            @endif
+                            
                         </li>
                         <li>
-                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado&nbsp;
+                            @if ($purchase_management->vehicle_state == 'Parcialmente desmontado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>  
+                            @else
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado
                                 <input type="checkbox" name="" id="">
-                            </h2>
+                            </h2> 
+                            @endif
+                            
                         </li>
                         <li>
                             <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Color: {{ $purchase_management->color }}</h2>
@@ -2310,7 +2385,7 @@
             </tr>
         </table>
 
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 10pt;" cellspacing="0">
             <tr>
                 <td colspan="3">
                     <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
@@ -2344,26 +2419,34 @@
                     <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;">En Madrid a <span class="s24">202 </span>, a las 10:00 reunidos:</h2>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:42pt">
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></hp>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr>
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr>
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <h2 class="s20" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al comprador.</span></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
             <tr>
                 <td colspan="4">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
@@ -2371,9 +2454,7 @@
                     <p class="s35">{{ $purchase_management->frame_no }}</p>
                 </td>
             </tr>
-        </table>
-
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        
             <tr>
                 <td colspan="1">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -2388,9 +2469,10 @@
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
                     <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
                 </td>
-                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                <td colspan="2" style="margin-top: 5pt;border: 1px solid #000; width: 250px">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
-                    <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
+                    <h1 style="padding-top: 9pt;text-indent: 0pt;text-align: center;">€</h1>
+                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($purchase_management->sale_amount,2) }}</p>
                 </td>
             </tr>
             <tr>
@@ -2398,56 +2480,117 @@
             </tr>
         </table>
 
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 10pt;" cellspacing="0">
             <tr>
                 <td>
                     <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
-                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <p style="text-indent: 0pt;text-align: left;">
                     <ul id="l3" class="a">
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Alta')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2> 
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2> 
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Baja definitiva')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Baja temporal')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Siniestrado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Averiado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Abandonado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Completo')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
-                            </h2>
+                            </h2> 
+                            @endif
+                            
                         </li>
                         <li>
-                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado&nbsp;
+                            @if ($purchase_management->vehicle_state == 'Parcialmente desmontado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>  
+                            @else
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado
                                 <input type="checkbox" name="" id="">
-                            </h2>
+                            </h2> 
+                            @endif
+                            
                         </li>
                         <li>
                             <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Color: {{ $purchase_management->color }}</h2>
@@ -2465,7 +2608,7 @@
             </tr>
         </table>
 
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 10pt;" cellspacing="0">
             <tr>
                 <td colspan="3">
                     <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
@@ -2499,26 +2642,34 @@
                     <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;">En Madrid a <span class="s24">202 </span>, a las 10:00 reunidos:</h2>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:42pt">
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> <br> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></hp>
+                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">De una parte,  <b>{{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}}</b> con D.N.I.: <b>{{$purchase_management->dni}}</b> y domiciliado en: <b>{{$purchase_management->street}} {{$purchase_management->nro_street}}, {{ $purchase_management->postal_code }}, {{ $purchase_management->phone }}, {{ $purchase_management->email }}</b> &nbsp; en calidad de <u>VENDEDOR.</u></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr>
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;">DE OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández nº10, en calidad de <u>COMPRADOR</u>.</p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr>
-                <td colspan="4">
+                <td>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <h2 class="s20" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">MANIFIESTAN</h2>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de<br/>extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario<br/>vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al<br/>comprador.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna pendiente de liquidación a la fecha de extensión de este contrato, obligándose a estar de entera indemnidad a favor del comprador de cualquier  reclamación.</span></p>
+                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han convenido, como por el presente documento lo llevan a efecto, formalizar contrato de compra-venta con ello el propietario vendedorda su conformidad para que a su vez pueda ser vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al comprador.</span></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
             <tr>
                 <td colspan="4">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS DEL VEHICULO</h2>
@@ -2526,9 +2677,7 @@
                     <p class="s35">{{ $purchase_management->frame_no }}</p>
                 </td>
             </tr>
-        </table>
-
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        
             <tr>
                 <td colspan="1">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -2543,9 +2692,10 @@
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
                     <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
                 </td>
-                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                <td colspan="2" style="margin-top: 5pt;border: 1px solid #000; width: 250px">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
-                    <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
+                    <h1 style="padding-top: 9pt;text-indent: 0pt;text-align: center;">€</h1>
+                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($purchase_management->sale_amount,2) }}</p>
                 </td>
             </tr>
             <tr>
@@ -2553,56 +2703,117 @@
             </tr>
         </table>
 
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 10pt;" cellspacing="0">
             <tr>
                 <td>
                     <p class="s35" style="padding-top: 11pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Especificaciones del vehículo:</p>
-                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <p style="text-indent: 0pt;text-align: left;">
                     <ul id="l3" class="a">
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Alta')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2> 
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de alta en DGT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2> 
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Baja definitiva')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja temporal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state_trafic == 'Baja temporal')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">Dado de baja en DGT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Siniestrado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Siniestrado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;">
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Averiado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Averiado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Abandonado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Abandonado&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
                             </h2>
-                            <p style="text-indent: 0pt;text-align: left;"/>
+                            <p style="text-indent: 0pt;text-align: left;"> 
+                            @endif
+                            
                         </li>
                         <li>
+                            @if ($purchase_management->vehicle_state == 'Completo')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="checkbox" name="" id="" checked>
+                            </h2> 
+                            @else
                             <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Completo&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="checkbox" name="" id="">
-                            </h2>
+                            </h2> 
+                            @endif
+                            
                         </li>
                         <li>
-                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado&nbsp;
+                            @if ($purchase_management->vehicle_state == 'Parcialmente desmontado')
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado
+                                <input type="checkbox" name="" id="" checked>
+                            </h2>  
+                            @else
+                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">Parcialmente desmontado
                                 <input type="checkbox" name="" id="">
-                            </h2>
+                            </h2> 
+                            @endif
+                            
                         </li>
                         <li>
                             <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Color: {{ $purchase_management->color }}</h2>
@@ -2620,7 +2831,7 @@
             </tr>
         </table>
 
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 10pt;" cellspacing="0">
             <tr>
                 <td colspan="3">
                     <p class="s36" style="padding-top: 8pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><span>Y para que conste, firman la presente en el lugar y fecha arriba indicados. El vendedor recibe copia de este contrato en el momento de la firma de este<br/>documento, así como el dinero acordado por ambas partes.</span></p>
@@ -2639,121 +2850,159 @@
         </table>
         <div class="saltoDePagina"></div>
     </div>
-
-        <p style="padding-left: 176pt;text-indent: 0pt;text-align: left;"><span><img width="222" height="60" alt="image" src="{{ asset('index_files/Image_007.jpg') }}"/></span></p>
+    <div class="container-fluid">
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-top: 4pt;padding-left: 12pt;text-indent: 0pt;text-align: left;">D.   <u>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></p>
-        <p style="padding-top: 4pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">con DNI   <u>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></p>
-        <p style="padding-top: 4pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">y D.</p>
-        <p class="s38" style="padding-left: 12pt;text-indent: 0pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="p">con DNI</span> <span class="p">, que declara/declaran<br/>tener poder suficiente para actuar en su propio nombre y/o en representación de la entidad</span></p>
-        <p class="s38" style="padding-left: 12pt;text-indent: 0pt;line-height: 11pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="p"> con CIF nº y domicilio a</span></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;line-height: 11pt;text-align: left;">efectos de notificaciones en<u> </u>, calle         <u>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;line-height: 11pt;text-align: left;"><u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u>nº<u> </u>C.P.<u> </u>, en concepto de <b>MANDANTE, </b>dice y otorga<b>:</b></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Que por el presente documento confiere, con <b>carácter específico</b>, <b>MANDATO CON REPRESENTACIÓN </b><span>a favor de<br/>D.</span><u> </u>, con DNI<u> </u>, Gestor Administrativo en ejercicio, colegiado número</p>
-        <p class="s38" style="padding-left: 12pt;text-indent: 0pt;line-height: 11pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span class="p">           , perteneciente al Colegio Oficial de Gestores Administrativos de</span></p>
-        <p class="s38" style="padding-left: 12pt;text-indent: 0pt;line-height: 11pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span class="p">, con domicilio en _ , calle</span></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> nº C.P.<u> </u>,en concepto de <b>MANDATARIO,</b><span>para su actuación ante todos los órganos y entidades de la Administración del Estado, Autonómica, Provincial y Local que resulten<br/>competentes, y específicamente ante la Dirección General de Tráfico del Ministerio del Interior del Gobierno de España, para que<br/>promueva, solicite y realice todos los trámites necesarios en relación con el siguiente </span><b>ASUNTO:</b></p>
+        <p style="text-indent: 0pt;text-align: center;">
+            <span><img width="222" height="60" alt="image" src="{{ asset('index_files/Image_007.jpg') }}"/></span>
+        </p>
+        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <p style="padding-top: 4pt;padding-left: 12pt;text-indent: 0pt;text-align: justify;">D.   <u> {{$purchase_management->name}}
+            {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}} </u> con DNI   <u>{{$purchase_management->dni}}</u> y D. <u>{{$purchase_management->name_representantive}}
+            {{$purchase_management->firts_surname_representative}} {{$purchase_management->second_surtname_representantive}}</u><span class="p">con DNI</span> <span class="p">{{ $purchase_management->dni_representative}}, que declara/declaran tener poder suficiente para actuar en su propio nombre y/o en representación de la entidad</span> {{ $purchase_management->province}} <span class="p"> con CIF nº y domicilio a</span> efectos de notificaciones en<u> {{ $purchase_management->municipality}} </u>, calle  <u>{{ $purchase_management->street}} </u> nº <u>{{ $purchase_management->nro_street}} </u>C.P. <u>{{ $purchase_management->postal_code}} </u>, en concepto de <b>MANDANTE, </b>dice y otorga<b>:</b></p>
+        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;">Que por el presente documento confiere, con <b>carácter específico</b>, <b>MANDATO CON REPRESENTACIÓN </b><span>a favor de<br/>D.</span><u>{{$purchase_management->name_representantive}} {{$purchase_management->firts_surname_representative}} {{$purchase_management->second_surtname_representantive}} </u>, con DNI<u>{{ $purchase_management->dni_representative}} </u>, Gestor Administrativo en ejercicio, colegiado número  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span class="p">, perteneciente al Colegio Oficial de Gestores Administrativos de</span> <span class="p">, con domicilio en {{ $purchase_management->municipality}} , calle</span><u> {{ $purchase_management->street}}</u> nº <u> {{ $purchase_management->nro_street}} </u> C.P.<u>{{ $purchase_management->postal_code}} </u>,en concepto de <b>MANDATARIO,</b><span>para su actuación ante todos los órganos y entidades de la Administración del Estado, Autonómica, Provincial y Local que resulten competentes, y específicamente ante la Dirección General de Tráfico del Ministerio del Interior del Gobierno de España, para que promueva, solicite y realice todos los trámites necesarios en relación con el siguiente </span><b>ASUNTO:</b></p>
         <ul id="l4">
             <li>
-                <p class="s40" style="padding-left: 17pt;text-indent: -5pt;line-height: 11pt;text-align: justify;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
+                <p style="margin-left:40px;text-indent: 0pt;text-align: center;"><br/></p>
+                <p class="s40" style="text-indent: -5pt;line-height: 11pt;text-align: left;border-bottom: 1px solid currentColor; display: inline-block;width: 650px"> </p>
             </li>
             <li>
-                <p class="s40" style="padding-left: 17pt;text-indent: -5pt;line-height: 11pt;text-align: justify;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
+                <p style="margin-left:40px;text-indent: 0pt;text-align: center;"><br/></p>
+                <p class="s40" style="text-indent: -5pt;line-height: 11pt;text-align: left;border-bottom: 1px solid currentColor; display: inline-block;width: 650px"> </p>
             </li>
         </ul>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-top: 4pt;padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El presente mandato, que se regirá por los artículos 1709 a 1739 del Código Civil, se confiere al amparo del artículo 5 de la Ley 39/2015,<br/>de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, y del artículo 1 del Estatuto Orgánico de la<br/>Profesión de Gestor Administrativo, aprobado por Decreto 424/1963.</span></p>
+        <p style="padding-top: 4pt;padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El presente mandato, que se regirá por los artículos 1709 a 1739 del Código Civil, se confiere al amparo del artículo 5 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, y del artículo 1 del Estatuto Orgánico de la Profesión de Gestor Administrativo, aprobado por Decreto 424/1963.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandante autoriza al mandatario para que nombre sustituto, en caso de necesidad justificada, a favor de un Gestor Administrativo<br/>colegiado ejerciente. El presente mandato mantendrá su vigencia, como máximo, hasta la finalización del encargo aquí encomendado,<br/>siempre y cuando no sea expresamente revocado por el mandante con anterioridad, y comunicada fehacientemente su revocación al<br/>mandatario.</span></p>
+        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandante autoriza al mandatario para que nombre sustituto, en caso de necesidad justificada, a favor de un Gestor Administrativo colegiado ejerciente. El presente mandato mantendrá su vigencia, como máximo, hasta la finalización del encargo aquí encomendado, siempre y cuando no sea expresamente revocado por el mandante con anterioridad, y comunicada fehacientemente su revocación al mandatario.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandante declara bajo su responsabilidad de conformidad con el artículo 69 de la Ley 39/2015, de 1 de octubre, del Procedimiento<br/>Administrativo Común de las Administraciones Públicas, que cumple con los requisitos establecidos en la normativa vigente para obtener<br/>el reconocimiento de un derecho o facultad o para su ejercicio, que dispone de la documentación que así lo acredita, que es auténtica y<br/>su contenido enteramente correcto, y que entrega al gestor Administrativo, el cual se responsabiliza de su custodia, se compromete a<br/>ponerla a disposición de la Administración cuando le sea requerida, y a mantener el cumplimiento de las anteriores obligaciones durante<br/>el período de tiempo inherente al trámite conferido.</span></p>
+        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandante declara bajo su responsabilidad de conformidad con el artículo 69 de la Ley 39/2015, de 1 de octubre, del Procedimiento Administrativo Común de las Administraciones Públicas, que cumple con los requisitos establecidos en la normativa vigente para obtener el reconocimiento de un derecho o facultad o para su ejercicio, que dispone de la documentación que así lo acredita, que es auténtica y su contenido enteramente correcto, y que entrega al gestor Administrativo, el cual se responsabiliza de su custodia, se compromete a ponerla a disposición de la Administración cuando le sea requerida, y a mantener el cumplimiento de las anteriores obligaciones durante el período de tiempo inherente al trámite conferido.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandante declara, que conoce y consiente que los datos que suministra pueden incorporarse a ficheros automatizados de los que<br/>serán responsables el Gestor Administrativo al que se le otorga el mandato, el Colegio Oficial de Gestores Administrativos citado, y el<br/>Consejo General de Colegios de Gestores Administrativos de España, con el único objeto y plazo de posibilitar la prestación de los<br/>servicios profesionales objeto del presente mandato y el cumplimiento por estos de las obligaciones derivadas del trámite encomendado.<br/>No obstante lo anterior, el mandatario se reserva el derecho de custodia y conservación de los datos personales recabados con fines de<br/>cumplimiento de obligaciones legales exigidas por la normativa tributaria, laboral, civil o mercantil, así como para la atención o<br/>emprendimiento de reclamaciones y/o acciones judiciales. El mandante tendrá derecho a la portabilidad de sus datos, a su acceso,<br/>rectificación, supresión, limitación, y oposición, así como a interponer las reclamaciones que estime oportunas ante la Agencia Española<br/>de Protección de Datos, o su equivalente en su país de residencia como Autoridad de Control, en los términos previstos en la Ley de<br/>Protección de Datos de Carácter personal, y el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016.</span></p>
+        <p style="padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandante declara, que conoce y consiente que los datos que suministra pueden incorporarse a ficheros automatizados de los que serán responsables el Gestor Administrativo al que se le otorga el mandato, el Colegio Oficial de Gestores Administrativos citado, y el Consejo General de Colegios de Gestores Administrativos de España, con el único objeto y plazo de posibilitar la prestación de los servicios profesionales objeto del presente mandato y el cumplimiento por estos de las obligaciones derivadas del trámite encomendado. No obstante lo anterior, el mandatario se reserva el derecho de custodia y conservación de los datos personales recabados con fines de cumplimiento de obligaciones legales exigidas por la normativa tributaria, laboral, civil o mercantil, así como para la atención o emprendimiento de reclamaciones y/o acciones judiciales. El mandante tendrá derecho a la portabilidad de sus datos, a su acceso, rectificación, supresión, limitación, y oposición, así como a interponer las reclamaciones que estime oportunas ante la Agencia Española de Protección de Datos, o su equivalente en su país de residencia como Autoridad de Control, en los términos previstos en la Ley de Protección de Datos de Carácter personal, y el Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 144pt;text-indent: 0pt;text-align: left;">En<u> </u>a _<u> </u>de<u> </u>2021</p>
+        <p style="text-indent: 0pt;text-align: center;">En<u> </u>a _<u> </u>de<u> </u>2021</p>
+        <p style="text-indent: 0pt;text-align: center;"><b>EL MANDANTE</b></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 4pt;text-indent: 0pt;text-align: center;">EL MANDANTE</p>
+        <p style="padding-top: 9pt;padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandatario acepta el mandato conferido y se obliga a cumplirlo de conformidad con las instrucciones del mandante, y declara bajo su responsabilidad que los documentos recibidos del mandante han sido verificados en cuanto a la corrección formal de los datos contenidos en los mismos.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-top: 9pt;padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandatario acepta el mandato conferido y se obliga a cumplirlo de conformidad con las instrucciones del mandante, y declara bajo su<br/>responsabilidad que los documentos recibidos del mandante han sido verificados en cuanto a la corrección formal de los datos contenidos<br/>en los mismos.</span></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-left: 144pt;text-indent: 0pt;text-align: left;">En<u> </u>a _<u> </u>de<u> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u></p>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">EL MANDATARIO</p>
-        <table style="border-collapse:collapse;margin-left:8.04pt" cellspacing="0">
+        <p style="text-indent: 0pt;text-align: center;">En<u> </u>a _<u> </u>de<u> </u></p>
+        <p style="padding-top: 4pt;text-indent: 0pt;text-align: center;"><b>EL MANDATARIO</b></p>
+        <div class="saltoDePagina"></div>
+    </div>
+    <div class="container-fluid"></div>
+    <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
             <tr style="height:35pt">
                 <td style="width:489pt">
-                    <p class="s41" style="padding-left: 185pt;padding-right: 185pt;text-indent: 0pt;line-height: 18pt;text-align: center;"><a name="bookmark4">DECLARACIÓN</a></p>
+                    <p class="s28" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;">DECLARACIÓN</p>
                 </td>
             </tr>
             <tr style="height:97pt">
                 <td style="width:489pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">D./Dª. con D.N.I. núm.</p>
-                    <p class="s18" style="padding-left: 10pt;text-indent: 0pt;text-align: left;"><span>domicilio                                                   de                                 provincia  de<br/>declara haber extraviado la documentación del vehículo matrícula , marca</span></p>
-                    <p class="s18" style="padding-left: 58pt;text-indent: 0pt;line-height: 13pt;text-align: left;">y se compromete a entregarla a motOstion en caso de que aparezca.</p>
-                </td>
-            </tr>
-            <tr style="height:45pt">
-                <td style="width:489pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s18" style="padding-top: 11pt;padding-right: 16pt;text-indent: 0pt;text-align: right;">A de de <span class="s42">2021</span></p>
-                </td>
-            </tr>
-            <tr style="height:18pt">
-                <td style="width:489pt">
-                    <p class="s18" style="padding-top: 3pt;padding-left: 10pt;text-indent: 0pt;line-height: 13pt;text-align: left;">Firma del titular:</p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">D./Dª. {{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}} con D.N.I. núm. {{$purchase_management->dni}} <span>domicilio  de provincia  de {{$purchase_management->street}} {{$purchase_management->nro_street}} {{$purchase_management->stairs}} {{$purchase_management->floor}} {{$purchase_management->letter}} declara haber extraviado la documentación del vehículo matrícula {{$purchase_management->registration_number}}, marca {{$purchase_management->brand}}</span> y se compromete a entregarla a motOstion en caso de que aparezca.</p>
                 </td>
             </tr>
         </table>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">FRANCISCO RUBEN GABALDON LUCENDO</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">50310783P y</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">C/MORTADELO Y FILEMON, 66</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">Rivas-Vaciamadrid</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">Madrid</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">M3989VB</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">APRILIA</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">diciembre</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">2016</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p class="s30" style="text-indent: 0pt;line-height: 13pt;text-align: left;">19</p>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"/>
-        <p style="text-indent: 0pt;text-align: left;"><br/></p>
+        <table style="border-collapse:collapse;margin-left:8.04pt;margin-top:40px;width: 755px;" cellspacing="0">
+            <tr style="height:45pt">
+                <td style="">
+                    <p class="s18" style="padding-top: 3pt;padding-left: 10pt;text-indent: 0pt;line-height: 13pt;text-align: left;">Firma del titular:</p>
+                </td>
+                <td style="">
+                    <p class="s18" style="padding-top: 3pt;padding-left: 10pt;text-indent: 0pt;line-height: 13pt;text-align: right;">A de de <span class="s42">2021</span></p>
+                </td>
+            </tr>
+        </table>         
             
         <div class="saltoDePagina"></div>
     </div>
     <div class="container-fluid">
-        <p style="text-indent: 0pt;text-align: left;">
-        <span><img width="719" height="565" alt="image" src="{{ asset('index_files/Image_008.jpg') }}"/>
-        <span><img width="85" height="22" alt="image" src="{{ asset('index_files/Image_009.jpg') }}"/></span>
-        <span><img width="39" height="23" alt="image" src="{{ asset('index_files/Image_010.jpg') }}"/></span>
-        <span><img width="63" height="20" alt="image" src="{{ asset('index_files/Image_011.jpg') }}"/></span>
-        <span><img width="82" height="22" alt="image" src="{{ asset('index_files/Image_012.jpg') }}"/></span>
-        <span><img width="203" height="19" alt="image" src="{{ asset('index_files/Image_013.jpg') }}"/></span>
-        <span><img width="76" height="20" alt="image" src="{{ asset('index_files/Image_014.jpg') }}"/></span>
-        <span><img width="207" height="22" alt="image" src="{{ asset('index_files/Image_015.jpg') }}"/></span>
-        <span><img width="37" height="14" alt="image" src="{{ asset('index_files/Image_016.jpg') }}"/></span>
-        <span><img width="41" height="20" alt="image" src="{{ asset('index_files/Image_017.jpg') }}"/></span>
-        <span><img width="101" height="25" alt="image" src="{{ asset('index_files/Image_018.jpg') }}"/></span>
-        <span><img width="77" height="24" alt="image" src="{{ asset('index_files/Image_019.jpg') }}"/></span>
-        </p>
-        <p class="s24" style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"><a name="bookmark5">ES</a></p>
+        <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
+            <tr style="height:35pt">
+                <td style="width:489pt">
+                    <p class="s28" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;"><u>Recibo de Compra</u></p>
+                </td>
+            </tr>
+            <tr style="height:97pt">
+                <td style="width:489pt">
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">D. {{$purchase_management->name}} {{$purchase_management->firts_surname}} {{$purchase_management->second_surtname}} con D.N.I. núm. {{$purchase_management->dni}} <span> y domicilio en: {{$purchase_management->street}} {{$purchase_management->nro_street}} {{$purchase_management->stairs}} {{$purchase_management->floor}} {{$purchase_management->letter}}, {{$purchase_management->postal_code}}, vendo a motOstion, con NIF: B80804156</span> y dirección en C/Matilde Hernandez n°10, 28019, Madrid. Un despiece completo del vehiculo de mi propriedad marca {{$purchase->brand}}, modelo {{$purchase->model}}, matrícula {{$purchase_management->registration_number}}</p>
 
+                    <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">Por un total de {{$precio}} Euros, por los siguientes repuestos:</p>
+
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
+            <tr style="height:35pt">
+                <td style="width:489pt">
+                    <p class="s28" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;">Forma de pago</p>
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.04pt;margin-top:30px;width: 755px" cellspacing="0">
+            <tr style="height:35pt">
+                <td style="border: 1px solid currentColor;border-right:none;">
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">Al contado:</p>
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">El vendedor recibe en este acto la cantidad acordada por parte de motOstion y para que conste firma en el lugar y la fecha indicada.</p>
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">en Madrid a :</p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                </td>
+                <td style="width: 200px; border: 1px solid currentColor; border-left:none;">
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <table style="width: 200px;">
+                        <tr>
+                            <td style="background:#D9D9D9;border: 1px solid #D9D9D9">
+                                <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: center;"><b>Firma</b></p>
+                                <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                                <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                            </td>
+                        </tr>
+                    </table>
+                   
+                </td>
+            </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.04pt;margin-top:30px;width: 755px" cellspacing="0">
+            <tr style="height:35pt">
+                <td style="border: 1px solid solid #000;border-right:none;">
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">Transferencia Bancaria:</p>
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">El vendedor recibirá el importe acordado a través de transferencia bancaria en el plazo de 5 días hábiles desde el momento en que el vehículo y la documentación llegue a las instalaciones de motOstion.</p>
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">Número de Cuenta :</p>
+                    <p class="s24" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;"><a name="bookmark5">ES</a> {{$purchase_management->iban}} </p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                </td>
+                <td style="width: 200px; border: 1px solid #000; border-left:none;">
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                    <table style="width: 200px;">
+                        <tr>
+                            <td style="background:#D9D9D9;border: 1px solid #D9D9D9">
+                                <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: center;"><b>Firma</b></p>
+                                <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                                <p style="text-indent: 0pt;text-align: justify;"><br/></p>
+                            </td>
+                        </tr>
+                    </table>
+                   
+                </td>
+            </tr>
+        </table>
+        
+        <div class="saltoDePagina"></div>
+    </div>
+    <div class="container-fluid">
         <h4 style="padding-top: 3pt;padding-left: 22pt;text-indent: 33pt;text-align: left;">
             <a name="bookmark6"><span>CAMBIO DE TITULARIDAD Y NOTIFICACIÓN DE VENTA DE VEHÍCULOS</span></a>
         </h4>

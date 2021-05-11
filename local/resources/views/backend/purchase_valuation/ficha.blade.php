@@ -992,7 +992,7 @@
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="full" name="vehicle_state" class="custom-control-input"
-                                                    value="Completo ">
+                                                    value="Completo">
                                                 <label class="custom-control-label" for="full">Completo</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
