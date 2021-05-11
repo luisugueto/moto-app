@@ -2233,7 +2233,7 @@
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
                     <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
                 </td>
-                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                <td colspan="2" rowspan="2" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt;">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
                     <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
                 </td>
@@ -2331,7 +2331,7 @@
     </div>
 
     <div class="container-fluid">
-        {{-- Hoja 8 --}}
+        {{-- Hoja 9 --}}
         <p style="text-indent: 0pt;text-align: left;"><br></p>
         <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:22pt">
@@ -2388,7 +2388,7 @@
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
                     <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
                 </td>
-                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                <td colspan="2" rowspan="2" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt;">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
                     <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
                 </td>
@@ -2486,7 +2486,7 @@
     </div>
 
     <div class="container-fluid">
-        {{-- Hoja 8 --}}
+        {{-- Hoja 10 --}}
         <p style="text-indent: 0pt;text-align: left;"><br></p>
         <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:22pt">
@@ -2543,7 +2543,7 @@
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: left;">MATRICULA</h2>
                     <p class="s35" style="text-decoration: none;">{{ $purchase_management->registration_number }}</p>
                 </td>
-                <td colspan="2" rowspan="3" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt; width: 300px">
+                <td colspan="2" rowspan="2" style="margin-top: 5pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt;">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
                     <h1 style="padding-top: 12pt;text-indent: 0pt;text-align: center;">€</h1>
                 </td>
