@@ -12,10 +12,10 @@ Route::resource('purchase_management', 'PurchaseManagementController');
 
 Route::resource('purchase_management', 'PurchaseManagementController');
 Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
+Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('dashboard');
-    Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
     Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');    
     Route::post('uploadImage', 'PurchaseValuationController@uploadImage');    
 
