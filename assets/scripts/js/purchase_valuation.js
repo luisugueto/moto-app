@@ -128,7 +128,7 @@ $(document).ready(function(){
         "columnDefs": [
             {
                 "targets": [ 1 ],
-                "visible": false,
+                "visible": true,
             },
             {
                 "targets": [ 13 ],
@@ -249,7 +249,7 @@ $(document).ready(function(){
             "columnDefs": [
                 {
                     "targets": [ 1 ],
-                    "visible": false,
+                    "visible": true,
                 },
                 {
                     "targets": [ 13 ],
@@ -377,7 +377,7 @@ $(document).ready(function(){
             ],
             "columnDefs": [{
 				"targets": [1],
-				"visible": false
+				"visible": true
 			}, {
 				"targets": [12],
 				"visible": false
@@ -502,7 +502,7 @@ $(document).ready(function(){
             ],
             "columnDefs": [{
 				"targets": [1],
-				"visible": false
+				"visible": true
 			}, {
 				"targets": [12],
 				"visible": false
@@ -627,7 +627,7 @@ $(document).ready(function(){
             ],
             "columnDefs": [{
 				"targets": [1],
-				"visible": false
+				"visible": true
 			}, {
 				"targets": [12],
 				"visible": false
@@ -766,7 +766,7 @@ $(document).ready(function(){
             ],
             "columnDefs": [{
 				"targets": [1],
-				"visible": false
+				"visible": true
 			}, {
 				"targets": [12],
 				"visible": false
@@ -892,7 +892,7 @@ $(document).ready(function(){
             ],
             "columnDefs": [{
 				"targets": [1],
-				"visible": false
+				"visible": true
 			}, {
 				"targets": [12],
 				"visible": false

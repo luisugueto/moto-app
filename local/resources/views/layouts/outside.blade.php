@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="utf-8">
@@ -18,7 +18,11 @@
     <!-- JS -->
     <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
     <script src="{{ asset('assets/scripts/base/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script>    
+    <script src="{{ asset('assets/scripts/base/bootstrap.min.js') }}"></script> 
+      
+
+    <!-- remove this if you use Modernizr -->
+    <script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
 </head>
 
 <body>
@@ -38,12 +42,15 @@
             </div>
         </div>
     </div>
+    <script src="{{ asset('assets/scripts/functions.js') }}"></script> 
+    <script src="{{ asset('assets/scripts/jquery.custom-file-input.js') }}"></script> 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function(){
             $("select").select2();
         });
     </script>
+    
     
 </body>
 

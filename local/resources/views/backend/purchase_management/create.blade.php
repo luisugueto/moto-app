@@ -161,7 +161,7 @@
                                 <div class="position-relative form-group">
                                     <label for="dni" class="">Dni/nif:</label>
                                     <input name="dni" id="dni" type="text" class="form-control"
-                                        value="{{ old('dni') }}">
+                                        value="{{ old('dni') }}" onblur="ValidateSpanishID(this.value)">
                                     @if ($errors->has('dni'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('dni') }}</strong>
@@ -310,8 +310,8 @@
                             <div class="col-md-6">
                                 <div class="position-relative form-group">
                                     <label for="iban" class="">IBAN: ES</label>
-                                    <input name="iban" id="iban" type="text" class="form-control"
-                                        value="{{ old('iban') }}">
+                                    <input name="iban" id="iban" type="text" class="form-control input-iban"
+                                        value="{{ old('iban') }}" max="28">
                                     @if ($errors->has('iban'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('iban') }}</strong>
@@ -674,10 +674,66 @@
                                 </div>
                             </div>
                         </div>
-                        <button type='submit' class="mt-2 btn btn-primary btn-lg">Enviar</button>
-                    {{-- </form> --}}
+                        <div class="row">
+                            <div class="col-3 text-center">
+                                <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple required/>
+                                <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar&hellip;</span></label>
+                                <small id="file-1Help" class="form-text text-muted text-center">DNI obligatorio * <br>(Dos archivos, cara A del DNI y Cara B del DNI)</small>
+                            </div>
+                            <div class="col-3 text-center">
+                                <input type="file" name="file-2[]" id="file-2" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple />
+                                <label for="file-2"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar&hellip;</span></label>
+                                <small id="file-2Help" class="form-text text-muted text-center">Permiso de Circulación <br>(Dos archivos, cara A del Permiso Circulación y Cara B del Permiso Circulación)</small>
+                            </div>
+                            <div class="col-3 text-center">
+                                <input type="file" name="file-3[]" id="file-3" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple />
+                                <label for="file-3"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar&hellip;</span></label>
+                                <small id="file-3Help" class="form-text text-muted text-center">Ficha Técnica <br>(Dos archivos, cara A de la Ficha Técnica y Cara B de la Ficha Técnica)</small>
+                            </div>
+                            <div class="col-3 text-center">
+                                <input type="file" name="file-4[]" id="file-4" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple />
+                                <label for="file-4"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar&hellip;</span></label>
+                                <small id="file-4Help" class="form-text text-muted text-center">Otros documentos</small>
+                            </div>
+                        </div>
+                        <div class="float-right">
+                            <button type='submit' class="mt-2 btn btn-primary btn-lg ">Enviar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(".input-iban").keyup(function () { //Keylistener HTML: <input type="text" class="input-iban">
+            val = jQuery(this).val()
+                .replace(new RegExp(" ", 'g'), ''); //remove spaces
+                
+            val_chars = val.split(""); //split chars 
+            val = ""; //new value
+            
+            count = 1;
+            for(index in val_chars) {
+                if(count <= 2) { //first 2 alphabetical chars
+                    val_chars[index] = val_chars[index].toUpperCase(); //uppercase, example: dE => DE
+                    if (val_chars[index].search(/^[A-Z]+$/) == -1) { //search für A-Z
+                        break; //if not found (error)
+                    }
+                }else {
+                    if (val_chars[index].search(/^[0-9]+$/) == -1) { //search for 0-9
+                        continue; //if not found (error)
+                    }
+                }
+                if(val.length < 24){
+                    val += val_chars[index]; // add char to return Value
+                }
+                if(count%4 == 0 && val.length < 24) { //Avery 4 chars an space
+                    val += " "; 
+                }
+                
+                count++;
+            }
+            jQuery(this).val(val); //set to Textfield value
+        });          
+    </script>
 @endsection
