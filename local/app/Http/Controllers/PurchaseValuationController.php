@@ -762,7 +762,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->email_representative = $request->email_representative;
         $purchase_management->representation_concept = $request->representation_concept;
         $purchase_management->brand = $request->brand;
-        $purchase_management->model = $request->model;
+        $purchase_management->model = $request->model_management;
         $purchase_management->version = $request->version;
         $purchase_management->type = $request->type;
         $purchase_management->kilometres = $request->kilometres;
