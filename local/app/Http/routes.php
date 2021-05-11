@@ -13,6 +13,8 @@ Route::resource('purchase_management', 'PurchaseManagementController');
 Route::resource('purchase_management', 'PurchaseManagementController');
 Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
 Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
+Route::post('getModel', 'HomeController@getModel');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'HomeController@index')->name('dashboard');
@@ -56,7 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('motos-que-nos-ofrecen/subasta', 'PurchaseValuationController@PublishMotocycle');
 
     // AJAX
-	Route::post('getModel', 'HomeController@getModel');
     Route::post('getStates', 'StatesController@getStates');
     Route::post('getProcesses', 'ProcessesController@getProcesses');
     Route::post('getEmails', 'EmailsController@getEmails');
