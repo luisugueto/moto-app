@@ -22,7 +22,7 @@ class PurchaseValuationController extends Controller
 {
     public function __construct() {
         $this->middleware('auth', ['except' => [
-            'create'
+            'create', 'store'
         ]]);
     }
 
