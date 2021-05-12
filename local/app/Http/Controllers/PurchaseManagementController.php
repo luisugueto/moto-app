@@ -95,7 +95,11 @@ class PurchaseManagementController extends Controller
             'motor_no' => 'required',
             'vehicle_state_trafic' => 'required',
             'vehicle_state' => 'required',
+<<<<<<< HEAD
             'file-1' => 'required'
+=======
+            'file-1' => 'required',
+>>>>>>> c56e64191c37f9aefbb9916c12be2e1ef6a8e6dd
         ]);
 
         if($request->documents_attached == 1){
@@ -151,6 +155,92 @@ class PurchaseManagementController extends Controller
         $gestion->motor_no = $request->motor_no;
         $gestion->vehicle_state_trafic = $request->vehicle_state_trafic;
         $gestion->vehicle_state = $request->vehicle_state;    
+
+        $path_dni = public_path().'/dni/';
+        $files1 = $request->file('file-1');
+        $doc_dni = '';
+
+        if(!empty($files1[0])){
+            foreach($files1 as $key => $file){
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                $file->move($path_dni, $fileNameToStore);
+                
+                if($key == 0)
+                    $doc_dni = $fileNameToStore;
+                else
+                    $doc_dni .= ','.$fileNameToStore;
+            }
+        }
+
+        $gestion->dni_doc = $doc_dni;
+
+        $path_circulacion = public_path().'/per_circulacion/';
+        $files2 = $request->file('file-2');
+        $per_circulacion = '';
+
+        if(!empty($files2[0])){
+            foreach($files2 as $key => $file){
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                $file->move($path_circulacion, $fileNameToStore);
+
+               if($key == 0)
+                    $per_circulacion = $fileNameToStore;
+                else
+                    $per_circulacion .= ','.$fileNameToStore;
+            }
+        }
+
+        $gestion->per_circulacion = $per_circulacion;
+
+        $path_ficha_tecnica = public_path().'/ficha_tecnica/';
+        $files3 = $request->file('file-3');
+        $ficha_tecnica = '';
+
+        if(!empty($files3[0])){
+            foreach($files3 as $key => $file){
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                $file->move($path_ficha_tecnica, $fileNameToStore);
+
+                if($key == 0)
+                    $ficha_tecnica = $fileNameToStore;
+                else
+                    $ficha_tecnica .= ','.$fileNameToStore;
+            }
+        }
+
+        $gestion->ficha_tecnica = $ficha_tecnica;
+
+        $path_docs = public_path().'/other_docs/';
+        $files4 = $request->file('file-4');
+        $other_docs = '';
+
+        if(!empty($files4[0])){
+            foreach($files4 as $key => $file){
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                $file->move($path_docs, $fileNameToStore);
+
+                if($key == 0)
+                    $other_docs = $fileNameToStore;
+                else
+                    $other_docs .= ','.$fileNameToStore;
+            }
+        }
+
+        $gestion->other_docs = $other_docs;
+        $gestion->status = 1;
+
         $gestion->update();
 
         return Redirect::to('https://motostion.com/');

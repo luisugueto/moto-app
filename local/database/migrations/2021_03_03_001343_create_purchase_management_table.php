@@ -61,6 +61,11 @@ class CreatePurchaseManagementTable extends Migration
             $table->string('motor_no');
             $table->string('vehicle_state_trafic');
             $table->string('vehicle_state');
+            $table->string('dni_doc');
+            $table->string('per_circulacion');
+            $table->string('ficha_tecnica');
+            $table->string('other_docs');
+            $table->integer('status')->default(0);
             $table->timestamps();
 
         });

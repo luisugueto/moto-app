@@ -19,7 +19,7 @@
                             </div>
                         </strong>
                     </h4>
-                    <form class="" role="form" method="POST" action="{{ route('purchase_management.store') }}">
+                    {!! Form::open(['route' => 'purchase_management.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
                         {{ csrf_field() }}
                         <div class="divider"></div>
 
@@ -706,7 +706,7 @@
                         <div class="float-right">
                             <button type='submit' class="mt-2 btn btn-primary btn-lg ">Enviar</button>
                         </div>
-                    </form>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
