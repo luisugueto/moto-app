@@ -772,7 +772,7 @@
             }
             jQuery(this).val(val); //set to Textfield value
         });    
-        
+
         $(function() {
           $("#frame_no").on("keyup blur", function() {
             let vin = $("#frame_no").val().toUpperCase();
@@ -789,6 +789,5 @@
           var re = new RegExp("^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$");
           return vin.match(re);
         }
-
     </script>
 @endsection
