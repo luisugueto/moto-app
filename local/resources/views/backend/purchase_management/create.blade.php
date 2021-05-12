@@ -584,8 +584,8 @@
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
                                     <label for="frame_no" class="">Nº Bastidor:  <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a></label>
-                                    <input name="frame_no" id="frame_no" type="text" class="form-control"
-                                        value="{{ old('frame_no') }}">
+                                    <input name="frame_no" id="frame_no" type="text" class="form-control" value="{{ old('frame_no') }}">
+                                    <span id="result"></span>
                                     @if ($errors->has('frame_no'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('frame_no') }}</strong>
@@ -772,5 +772,23 @@
             }
             jQuery(this).val(val); //set to Textfield value
         });    
+        
+        $(function() {
+          $("#frame_no").on("keyup blur", function() {
+            let vin = $("#frame_no").val().toUpperCase();
+            $("#frame_no").val(vin);
+
+            if (validateVin(vin))
+                $("#result").html("VIN válido");
+            else
+                $("#result").html("VIN no válido");
+          }).trigger("blur");
+        });
+          
+        function validateVin(vin) {
+          var re = new RegExp("^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$");
+          return vin.match(re);
+        }
+
     </script>
 @endsection
