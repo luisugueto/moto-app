@@ -158,6 +158,7 @@
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -229,6 +230,7 @@
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -299,6 +301,7 @@
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -369,6 +372,7 @@
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -439,6 +443,7 @@
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -509,6 +514,7 @@
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
                                     <th class="text-center">Observaciones</th>
+                                    <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
