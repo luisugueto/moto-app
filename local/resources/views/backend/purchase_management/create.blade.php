@@ -584,7 +584,7 @@
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
                                     <label for="frame_no" class="">Nº Bastidor:  <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a></label>
-                                    <input name="frame_no" id="frame_no" type="text" class="form-control" value="{{ old('frame_no') }}">
+                                    <input name="frame_no" id="frame_no" type="text" maxlength="17" class="form-control" value="{{ old('frame_no') }}">
                                     <span id="result"></span>
                                     @if ($errors->has('frame_no'))
                                         <span class="error text-danger">
