@@ -117,13 +117,15 @@
                             </div>
                         </div>
                         <div class="divider"></div>
-                        <h6><strong>Datos del Propietario del Vehículo</strong> </h6>
+                        <h6><strong>Datos del Propietario del Vehículo</strong> </h6><br>
+                        
                         <div class="form-row row g-1">
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
-                                    <label for="name" class="">Nombre:</label>
+                                    <label for="name" class="">Nombre: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target="#modalAyuda1" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a>
+                                    </label>
                                     <input name="name" id="name" type="text" class="form-control"
-                                        value="{{ old('name') }}">
+                                        value="{{ $gestion->name }}">
                                     @if ($errors->has('name'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -135,7 +137,7 @@
                                 <div class="position-relative form-group">
                                     <label for="firts_surname" class="">1º Apellido:</label>
                                     <input name="firts_surname" id="firts_surname" type="text" class="form-control"
-                                        value="{{ old('firts_surname') }}">
+                                        value="{{ $gestion->firts_surname }}">
                                     @if ($errors->has('firts_surname'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('firts_surname') }}</strong>
@@ -185,7 +187,7 @@
                                 <div class="position-relative form-group">
                                     <label for="phone" class="">Teléfono:</label>
                                     <input name="phone" id="phone" type="text" class="form-control"
-                                        value="{{ old('phone') }}">
+                                        value="{{ $gestion->phone }}">
                                     @if ($errors->has('phone'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('phone') }}</strong>
@@ -197,7 +199,7 @@
                                 <div class="position-relative form-group">
                                     <label for="email" class="">Email:</label>
                                     <input name="email" id="email" type="email" class="form-control"
-                                        value="{{ old('email') }}">
+                                        value="{{ $gestion->email }}">
                                     @if ($errors->has('email'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -438,7 +440,7 @@
                             </div>
                         </div>
                         <div class="divider"></div>
-                        <h6><strong>Datos del vehículo</strong> </h6>
+                        <h6><strong>Datos del vehículo</strong></h6>
                         <div class="form-row row g-1">
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
@@ -543,7 +545,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
-                                    <label for="registration_number" class="">Matricula:</label>
+                                    <label for="registration_number" class="">Matricula:   <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a></label>
                                     <input name="registration_number" id="registration_number" type="text"
                                         class="form-control" value="{{ old('registration_number') }}">
                                     @if ($errors->has('registration_number'))
@@ -581,7 +583,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
-                                    <label for="frame_no" class="">Nº Bastidor:</label>
+                                    <label for="frame_no" class="">Nº Bastidor:  <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a></label>
                                     <input name="frame_no" id="frame_no" type="text" class="form-control"
                                         value="{{ old('frame_no') }}">
                                     @if ($errors->has('frame_no'))
@@ -593,7 +595,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
-                                    <label for="motor_no" class="">Nº Motor:</label>
+                                    <label for="motor_no" class="">Nº Motor: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a></label>
                                     <input name="motor_no" id="motor_no" type="text" class="form-control"
                                         value="{{ old('motor_no') }}">
                                     @if ($errors->has('motor_no'))
@@ -676,9 +678,14 @@
                         </div>
                         <div class="row">
                             <div class="col-3 text-center">
-                                <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple required/>
+                                <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple />
                                 <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar&hellip;</span></label>
                                 <small id="file-1Help" class="form-text text-muted text-center">DNI obligatorio * <br>(Dos archivos, cara A del DNI y Cara B del DNI)</small>
+                                @if ($errors->has('file-1'))
+                                    <span class="error text-danger">
+                                        <strong>{{ $errors->first('file-1') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="col-3 text-center">
                                 <input type="file" name="file-2[]" id="file-2" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple />
@@ -704,6 +711,36 @@
             </div>
         </div>
     </div>
+
+    {{-- Modals --}}
+    <div class="modal fade" id="modalAyuda1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">                 
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="{{ asset('assets/images/ayuda1.jpeg')}}" alt="" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modalAyuda2" id="" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">                 
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <img src="{{ asset('assets/images/ayuda2.jpeg')}}" alt="" class="img-fluid w-100">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(".input-iban").keyup(function () { //Keylistener HTML: <input type="text" class="input-iban">
             val = jQuery(this).val()
@@ -734,6 +771,6 @@
                 count++;
             }
             jQuery(this).val(val); //set to Textfield value
-        });          
+        });    
     </script>
 @endsection

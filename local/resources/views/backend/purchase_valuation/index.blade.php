@@ -145,7 +145,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>#</th>
+                                    <th>Id Moto</th>
                                     <th class="text-center">Estatus</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Marca</th>
@@ -217,7 +217,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>#</th>
+                                    <th>Id Moto</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
@@ -287,7 +287,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>#</th>
+                                    <th>Id Moto</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
@@ -357,7 +357,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>#</th>
+                                    <th>Id Moto</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
@@ -427,7 +427,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>#</th>
+                                    <th>Id Moto</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
@@ -497,7 +497,7 @@
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>#</th>
+                                    <th>Id Moto</th>
                                     <th class="text-center">Fecha</th>
                                     <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>

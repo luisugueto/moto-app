@@ -490,13 +490,13 @@ class PurchaseValuationController extends Controller
                 $purchase_management->documents_attached = '';
                 $purchase_management->non_existence_document = '';
                 $purchase_management->vehicle_delivers = '';
-                $purchase_management->name = '';
-                $purchase_management->firts_surname = '';
+                $purchase_management->name = $purchase_model->name;
+                $purchase_management->firts_surname = $purchase_model->lastname;
                 $purchase_management->second_surtname = '';
                 $purchase_management->dni = '';
                 $purchase_management->birthdate = '';
-                $purchase_management->phone = '';
-                $purchase_management->email = '';
+                $purchase_management->phone = $purchase_model->phone;
+                $purchase_management->email = $purchase_model->email;
                 $purchase_management->street = '';
                 $purchase_management->nro_street = '';
                 $purchase_management->stairs = '';

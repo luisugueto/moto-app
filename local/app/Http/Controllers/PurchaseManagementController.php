@@ -30,11 +30,12 @@ class PurchaseManagementController extends Controller
     public function create($token)
     {
         $linksRegister = LinksRegister::where('token', $token)->first();
+        $purchase_management = new PurchaseManagement();
         
         if(!empty($linksRegister)){
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
             $gestion = PurchaseManagement::where('purchase_valuation_id', $purchase_valuation_id)->first();
-            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion'));
+            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion','purchase_management'));
         }
         else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
@@ -93,7 +94,8 @@ class PurchaseManagementController extends Controller
             'frame_no' => 'required',
             'motor_no' => 'required',
             'vehicle_state_trafic' => 'required',
-            'vehicle_state' => 'required'
+            'vehicle_state' => 'required',
+            'file-1' => 'required'
         ]);
 
         if($request->documents_attached == 1){
