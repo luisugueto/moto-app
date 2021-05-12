@@ -105,6 +105,19 @@ $(document).ready(function(){
 
             { "data": "price_min" },
             { "data": "observations" },
+            { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
 
             {"data": null,
                 render: function (data, type, row) {
@@ -226,6 +239,19 @@ $(document).ready(function(){
     
                 { "data": "price_min" },
                 { "data": "observations" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
     
                 {"data": null,
                     render: function (data, type, row) {
@@ -356,6 +382,19 @@ $(document).ready(function(){
                 },   
                 { "data": "price_min" },
                 { "data": "observations" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
 
                 {"data": null,
                     render: function (data, type, row) {
@@ -482,6 +521,19 @@ $(document).ready(function(){
 
                 { "data": "price_min" },
                 { "data": "observations" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
 
                 {"data": null,
                     render: function (data, type, row) {
@@ -607,6 +659,19 @@ $(document).ready(function(){
 
                 { "data": "price_min" },
                 { "data": "observations" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
 
                 {"data": null,
                     render: function (data, type, row) {
@@ -732,6 +797,19 @@ $(document).ready(function(){
 
                 { "data": "price_min" },
                 { "data": "observations" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
 
                 {"data": null,
                     render: function (data, type, row) {
@@ -871,6 +949,19 @@ $(document).ready(function(){
 
                 { "data": "price_min" },
                 { "data": "observations" },
+                { "data": null,
+                    render:function(data){
+                        let echo = '';
+                        
+                        if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        else if(data.status_ficha == 0)
+                            echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
+
+                        return echo;
+                    },
+                    "targets": -1
+                },
 
                 {"data": null,
                     render: function (data, type, row) {

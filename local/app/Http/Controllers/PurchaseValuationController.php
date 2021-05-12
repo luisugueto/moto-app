@@ -43,7 +43,11 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuations()
     {
-        $purchases = PurchaseValuation::where('states_id', 1)->get();
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 1)
+        ->get();
 
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
@@ -53,23 +57,24 @@ class PurchaseValuationController extends Controller
         foreach($purchases as $value){ 
             $row = array();        
 
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['motocycle_state'] = $value['motocycle_state'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
+            $row['id'] = $value->id;
+            $row['date'] = $value->date;
+            $row['brand'] = $value->brand;
+            $row['model'] = $value->model;
+            $row['year'] = $value->year;
+            $row['km'] = $value->km;
+            $row['email'] = $value->email;
+            $row['name'] = $value->name;
+            $row['lastname'] = $value->lastname;
+            $row['phone'] = $value->phone;
+            $row['province'] = $value->province;
+            $row['status_trafic'] = $value->status_trafic;
+            $row['motocycle_state'] = $value->motocycle_state;
+            $row['price_min'] = $value->price_min;
+            $row['observations'] = $value->observations;
+            $row['states_id'] = $value->states_id;
+            $row['processes_id'] = $value->processes_id;
+            $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -84,32 +89,39 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsInterested()
     {
-        $purchases = PurchaseValuation::where('states_id', 3)->get();
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 3)
+        ->get();
+        
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 
+ 
 
             $row = array();      
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['motocycle_state'] = $value['motocycle_state'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
+            $row['id'] = $value->id;
+            $row['date'] = $value->date;
+            $row['brand'] = $value->brand;
+            $row['model'] = $value->model;
+            $row['year'] = $value->year;
+            $row['km'] = $value->km;
+            $row['email'] = $value->email;
+            $row['name'] = $value->name;
+            $row['lastname'] = $value->lastname;
+            $row['phone'] = $value->phone;
+            $row['province'] = $value->province;
+            $row['status_trafic'] = $value->status_trafic;
+            $row['motocycle_state'] = $value->motocycle_state;
+            $row['price_min'] = $value->price_min;
+            $row['observations'] = $value->observations;
+            $row['states_id'] = $value->states_id;
+            $row['processes_id'] = $value->processes_id;
+            $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -124,7 +136,11 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsNoInterested()
     {
-        $purchases = PurchaseValuation::where('states_id', 2)->get();
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 2)
+        ->get();
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
@@ -134,23 +150,24 @@ class PurchaseValuationController extends Controller
 
             $row = array();  
                  
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['motocycle_state'] = $value['motocycle_state'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
+            $row['id'] = $value->id;
+            $row['date'] = $value->date;
+            $row['brand'] = $value->brand;
+            $row['model'] = $value->model;
+            $row['year'] = $value->year;
+            $row['km'] = $value->km;
+            $row['email'] = $value->email;
+            $row['name'] = $value->name;
+            $row['lastname'] = $value->lastname;
+            $row['phone'] = $value->phone;
+            $row['province'] = $value->province;
+            $row['status_trafic'] = $value->status_trafic;
+            $row['motocycle_state'] = $value->motocycle_state;
+            $row['price_min'] = $value->price_min;
+            $row['observations'] = $value->observations;
+            $row['states_id'] = $value->states_id;
+            $row['processes_id'] = $value->processes_id;
+            $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -164,7 +181,11 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsScrapping()
     {
-        $purchases = PurchaseValuation::where('states_id', 4)->get();
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 4)
+        ->get();
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
@@ -174,23 +195,24 @@ class PurchaseValuationController extends Controller
 
             $row = array();  
                  
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['motocycle_state'] = $value['motocycle_state'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
+            $row['id'] = $value->id;
+            $row['date'] = $value->date;
+            $row['brand'] = $value->brand;
+            $row['model'] = $value->model;
+            $row['year'] = $value->year;
+            $row['km'] = $value->km;
+            $row['email'] = $value->email;
+            $row['name'] = $value->name;
+            $row['lastname'] = $value->lastname;
+            $row['phone'] = $value->phone;
+            $row['province'] = $value->province;
+            $row['status_trafic'] = $value->status_trafic;
+            $row['motocycle_state'] = $value->motocycle_state;
+            $row['price_min'] = $value->price_min;
+            $row['observations'] = $value->observations;
+            $row['states_id'] = $value->states_id;
+            $row['processes_id'] = $value->processes_id;
+            $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -204,7 +226,11 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsSale()
     {
-        $purchases = PurchaseValuation::where('states_id', 5)->get();
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 5)
+        ->get();
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
@@ -214,23 +240,24 @@ class PurchaseValuationController extends Controller
 
             $row = array();  
                  
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['motocycle_state'] = $value['motocycle_state'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
+            $row['id'] = $value->id;
+            $row['date'] = $value->date;
+            $row['brand'] = $value->brand;
+            $row['model'] = $value->model;
+            $row['year'] = $value->year;
+            $row['km'] = $value->km;
+            $row['email'] = $value->email;
+            $row['name'] = $value->name;
+            $row['lastname'] = $value->lastname;
+            $row['phone'] = $value->phone;
+            $row['province'] = $value->province;
+            $row['status_trafic'] = $value->status_trafic;
+            $row['motocycle_state'] = $value->motocycle_state;
+            $row['price_min'] = $value->price_min;
+            $row['observations'] = $value->observations;
+            $row['states_id'] = $value->states_id;
+            $row['processes_id'] = $value->processes_id;
+            $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -244,7 +271,11 @@ class PurchaseValuationController extends Controller
 
     public function getPurchaseValuationsAuction()
     {
-        $purchases = PurchaseValuation::where('states_id', 6)->get();
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 6)
+        ->get();
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
@@ -253,25 +284,26 @@ class PurchaseValuationController extends Controller
         foreach($purchases as $value){ 
 
             $row = array();  
-                 
-            $row['id'] = $value['id'];
-            $row['date'] = $value['date'];
-            $row['brand'] = $value['brand'];
-            $row['model'] = $value['model'];
-            $row['year'] = $value['year'];
-            $row['km'] = $value['km'];
-            $row['email'] = $value['email'];
-            $row['name'] = $value['name'];
-            $row['lastname'] = $value['lastname'];
-            $row['phone'] = $value['phone'];
-            $row['province'] = $value['province'];
-            $row['status_trafic'] = $value['status_trafic'];
-            $row['motocycle_state'] = $value['motocycle_state'];
-            $row['price_min'] = $value['price_min'];
-            $row['observations'] = $value['observations'];
-            $row['states_id'] = $value['states_id'];
-            $row['processes_id'] = $value['processes_id'];
-            $row['publish'] = $value['publish'];
+            
+            $row['id'] = $value->id;
+            $row['date'] = $value->date;
+            $row['brand'] = $value->brand;
+            $row['model'] = $value->model;
+            $row['year'] = $value->year;
+            $row['km'] = $value->km;
+            $row['email'] = $value->email;
+            $row['name'] = $value->name;
+            $row['lastname'] = $value->lastname;
+            $row['phone'] = $value->phone;
+            $row['province'] = $value->province;
+            $row['status_trafic'] = $value->status_trafic;
+            $row['motocycle_state'] = $value->motocycle_state;
+            $row['price_min'] = $value->price_min;
+            $row['observations'] = $value->observations;
+            $row['states_id'] = $value->states_id;
+            $row['processes_id'] = $value->processes_id;
+            $row['status_ficha'] = $value->status;
+            $row['publish'] = $value->publish;
             $row['view'] = $view;
             $row['edit'] = $edit;
             $row['delete'] = $delete;

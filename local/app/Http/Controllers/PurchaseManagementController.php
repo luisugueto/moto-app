@@ -95,11 +95,7 @@ class PurchaseManagementController extends Controller
             'motor_no' => 'required',
             'vehicle_state_trafic' => 'required',
             'vehicle_state' => 'required',
-<<<<<<< HEAD
-            'file-1' => 'required'
-=======
             'file-1' => 'required',
->>>>>>> c56e64191c37f9aefbb9916c12be2e1ef6a8e6dd
         ]);
 
         if($request->documents_attached == 1){
