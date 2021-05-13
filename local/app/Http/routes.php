@@ -76,7 +76,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getServices', 'ServicesController@getServices');
 
     // GET FILES
-    Route::get('document/{rut}/{filename}', 'PurchaseValuationController@document');
+    Route::get('document/{filename}', 'PurchaseValuationController@document');
     Route::get('image/{filename}', 'PurchaseValuationController@image');
 });
 
