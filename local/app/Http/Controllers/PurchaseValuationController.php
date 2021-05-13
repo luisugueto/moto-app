@@ -518,7 +518,7 @@ class PurchaseValuationController extends Controller
                 $purchase_management->purchase_valuation_id = $purchase_model->id;
                 $purchase_management->file_no = $purchase_model->id;
                 $purchase_management->current_year = $purchase_model->date;
-                $purchase_management->collection_contract_date = null;
+                $purchase_management->collection_contract_date = date('Y-m-d');
                 $purchase_management->documents_attached = '';
                 $purchase_management->non_existence_document = '';
                 $purchase_management->vehicle_delivers = '';
@@ -858,6 +858,19 @@ class PurchaseValuationController extends Controller
 
         return response()->json($data);
     }
+
+    public function verifyFicha(Request $request)
+    {
+        $purchase = PurchaseManagement::where('purchase_valuation_id', $request->id)->first();
+        $purchase->status = 2;
+        $purchase->update();
+
+        $data['code']    = 200;
+        $data['message'] = "Ficha de la Moto VERIFICADA!";
+
+        return response()->json($data);
+    }
+    
 
     public function document($fileName){
         $path = public_path().'/documents_purchase/'.$fileName;

@@ -109,8 +109,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -243,8 +245,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                         if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -386,8 +390,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -400,8 +406,14 @@ $(document).ready(function(){
                     render: function (data, type, row) {
                         let echo = '';
                         if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
+                            if(data.status_ficha == 1)
+                                echo = "<a class='mb-2 mr-2 btn btn-primary text-white button_verificar' title='Verificar Moto'>Verificar</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
                                     +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                            else
+                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
+                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+
                         }
                         else if (data.delete == true) {
                             echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
@@ -525,8 +537,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -663,8 +677,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -801,8 +817,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -953,8 +971,10 @@ $(document).ready(function(){
                     render:function(data){
                         let echo = '';
                         
-                        if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-success'>Ficha <br> Registrada</span>";
+                        if(data.status_ficha == 2)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                        else if(data.status_ficha == 1)
+                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -1321,6 +1341,38 @@ $(document).ready(function(){
         window.location.href = 'purchase_valuation_interested/ficha_de_la_moto';       
          
     });
+
+    //***************************
+    $(document).on('click', '.button_verificar', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable.row($(this).parents($tr)).data();
+        var id_purchase = data.id;
+
+        var formData = {
+            id: data.id,
+        };
+        console.log(formData);
+        preloader('show');
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: "POST",
+            url: url + '/verificar',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    preloader('hide', data.message, 'success');                
+                    dataTable.ajax.reload(); 
+                }
+                
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });    
+    });
+
+    
 
      //***************************
      $(document).on('click', '.button_publish', function () {

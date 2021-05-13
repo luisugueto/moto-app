@@ -21,7 +21,7 @@
         <div class="row">
             <div class="input-group col-md-3">
                 <select name="applyState" class="custom-select" id="applyState" onChange="setApply();">
-                    <option value="" disabled selected>Elegir Estado</option>
+                    <option value="" disabled selected>Elegir Destino de la Moto</option>
                     @foreach($states as $state)
                         <option value="{{ $state->id }}">{{ $state->name }}</option>
                     @endforeach

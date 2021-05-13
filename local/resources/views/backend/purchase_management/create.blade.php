@@ -31,7 +31,7 @@
                                 <div class="position-relative form-group">
                                     <label for="file_no" class="">Nº Expediente:</label>
                                     <input name="file_no" id="file_no" type="text" class="form-control"
-                                        value="{{ $gestion->file_no }}">
+                                        value="{{ $gestion->file_no }}" readonly>
                                     @if ($errors->has('file_no'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('file_no') }}</strong>
@@ -55,7 +55,7 @@
                                 <div class="position-relative form-group">
                                     <label for="collection_contract_date" class="">Fecha de contrato de recogida:</label>
                                     <input name="collection_contract_date" id="collection_contract_date" type="date"
-                                        class="form-control" value="{{ old('collection_contract_date') }}">
+                                        class="form-control" value="{{ old('collection_contract_date') }}" readonly>
                                     @if ($errors->has('collection_contract_date'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('collection_contract_date') }}</strong>
@@ -585,7 +585,9 @@
                                 <div class="position-relative form-group">
                                     <label for="frame_no" class="">Nº Bastidor:  <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false"><i class="pe-7s-help1"></i></a></label>
                                     <input name="frame_no" id="frame_no" type="text" maxlength="17" class="form-control" value="{{ old('frame_no') }}">
-                                    <span id="result"></span>
+                                    <input name="frame_no" id="frame_no_7" type="text" maxlength="7" class="form-control" style="display:none;" disabled>
+                                    <label for="frame_no" class="">Si tú Nº Bastidor es 7 dígitos (click aquí): <input type="checkbox" id="vin7Digitos" name="vin7Digitos" value="{{ old('vin7Digitos') }}"></label>
+                                    <!-- <span id="result"></span> -->
                                     @if ($errors->has('frame_no'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('frame_no') }}</strong>
@@ -778,16 +780,45 @@
             let vin = $("#frame_no").val().toUpperCase();
             $("#frame_no").val(vin);
 
-            if (validateVin(vin))
-                $("#result").html("VIN válido");
-            else
-                $("#result").html("VIN no válido");
+            if (validateVin(vin)){
+                console.log('VIN válido')
+                // $("#result").html("VIN válido");
+            }
+            else{
+                console.log('VIN no válido');
+                // $("#result").html("VIN no válido");
+            }
+          }).trigger("blur");
+        });
+
+        $(function() {
+          $("#vin7Digitos").on("click", function() {
+
+           vin7Digitos();
           }).trigger("blur");
         });
           
         function validateVin(vin) {
           var re = new RegExp("^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$");
           return vin.match(re);
+        }
+
+        function vin7Digitos(){
+            if($('#vin7Digitos').is(':checked')){
+                $("#frame_no").css('display', 'none'); 
+                $("#frame_no").attr('disabled', 'disabled'); 
+
+                $("#frame_no_7").removeAttr('disabled');  
+                $("#frame_no_7").show();  
+
+            }else{
+                $("#frame_no_7").css('display', 'none'); 
+                $("#frame_no_7").attr('disabled', 'disabled'); 
+
+                $("#frame_no").removeAttr('disabled'); 
+                $("#frame_no").show();    
+            }
+
         }
     </script>
 @endsection

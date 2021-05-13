@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //getData from prestashop
     Route::post('motos-que-nos-ofrecen/subasta', 'PurchaseValuationController@PublishMotocycle');
+    Route::post('motos-que-nos-ofrecen/verificar', 'PurchaseValuationController@verifyFicha');
 
     // AJAX
     Route::post('getStates', 'StatesController@getStates');
