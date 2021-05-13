@@ -76,9 +76,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getServices', 'ServicesController@getServices');
 
     // GET FILES
-    Route::get('document/{filename}', 'PurchaseValuationController@document');
+    Route::get('document/{rut}/{filename}', 'PurchaseValuationController@document');
     Route::get('image/{filename}', 'PurchaseValuationController@image');
-    Route::get('pdf/{filename}', 'PurchaseValuationController@pdf');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

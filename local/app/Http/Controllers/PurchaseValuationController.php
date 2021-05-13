@@ -733,6 +733,13 @@ class PurchaseValuationController extends Controller
         //
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
         $data['images_purchase_valuation'] = $images_purchase_valuation;
+
+        // GET DOCS FORM MAIL INTERESTED
+        $data['dni_doc'] = $purchase_management['dni_doc'];
+        $data['per_circulacion'] = $purchase_management['per_circulacion'];
+        $data['ficha_tecnica'] = $purchase_management['ficha_tecnica'];
+        $data['other_docs'] = $purchase_management['other_docs'];        
+        
         $data['link'] = url('/');
  
         return response()->json($data);
@@ -879,11 +886,6 @@ class PurchaseValuationController extends Controller
 
     public function image($fileName){
         $path = public_path().'/images_purchase/'.$fileName;
-        return \Response::download($path);        
-    }
-
-    public function pdf($fileName){
-        $path = public_path().'/pdfs/'.$fileName;
         return \Response::download($path);        
     }
 }

@@ -190,9 +190,25 @@ $(document).ready(function () {
                 $('#lightbox').carousel();
 
                 data.documents_purchase_valuation.forEach(function (element) {
-                    $("#documents").append('<a href="' + data.link + '/local/public/img_app/documents_purchase/' + element.name + '" target="_blank" style="margin: 15px">' + element.name + '</a>');
+                    $("#documents").append('<a href="' + data.link + '/local/public/documents_purchase/' + element.name + '" target="_blank" style="margin: 15px">' + element.name + '</a>');
                 });
-                // console.log(data);
+
+                data.dni_doc.split(',').forEach(function(element){
+                    $("#documents").append('<a href="' + data.link + '/local/public/dni/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                });
+
+                data.per_circulacion.split(',').forEach(function(element){
+                    $("#documents").append('<a href="' + data.link + '/local/public/per_circulacion/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                });
+
+                data.ficha_tecnica.split(',').forEach(function(element){
+                    $("#documents").append('<a href="' + data.link + '/local/public/ficha_tecnica/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                });
+
+                data.other_docs.split(',').forEach(function(element){
+                    $("#documents").append('<a href="' + data.link + '/local/public/other_docs/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                });
+
                 $('#btn-save').val("update");
             },
             error: function (data) {
