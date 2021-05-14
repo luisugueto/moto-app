@@ -110,9 +110,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                         if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -246,9 +246,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                          if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -391,9 +391,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                         if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -538,9 +538,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                         if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -678,9 +678,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                         if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -818,9 +818,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                         if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -972,9 +972,9 @@ $(document).ready(function(){
                         let echo = '';
                         
                         if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Verificada</span>";
+                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
                         else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-danger'>Ficha <br> Registrada</span>";
+                            echo = "<span class='badge badge-info'>Ficha <br> Registrada</span>";
                         else if(data.status_ficha == 0)
                             echo = "<span class='badge badge-warning'>Ficha No <br> Registrada</span>";
 
@@ -1114,7 +1114,7 @@ $(document).ready(function(){
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
-                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4000);
+                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 5000);
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
@@ -1185,6 +1185,12 @@ $(document).ready(function(){
                 $('#form_display_complement').html(data.form_display);
 
                 $('.hide').prop('hidden', true);
+
+                //images
+                data.images_purchase_valuation.forEach(function (element) {
+                    $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 "><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail my-3"></a>
+                    </div>`);
+                });
                 
                 $('#btn-save').val("update");
                 $('#modalPurchase').modal('show');
@@ -1235,7 +1241,7 @@ $(document).ready(function(){
                 });
             }
         }
-        // console.log(dataArray)
+
         var dataSerialize = JSON.stringify(dataArray, null, 2);
         var formData = {
             brand: $("#brand").val(),
@@ -1253,7 +1259,7 @@ $(document).ready(function(){
             observations: $("#observations").val(),
             data_serialize: dataSerialize.replace(/\s+/g, " ")
         }
-        console.log(formData)
+    
         //used to determine the http verb to use [add=POST], [update=PUT]
         var button = $('#btn-save').val();       
         var type = "POST"; //for creating new resource
@@ -1265,35 +1271,47 @@ $(document).ready(function(){
             my_url += '/' + purchase_id;
         }
         preloader('show');
-        $.ajax({
+        if (dataArray[0].value != '' && dataArray[1].value != '') {
+            $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             type: type,
             url: my_url,
             data: formData,
             dataType: 'json',
             success: function (data) {
-                dataTable.ajax.reload();
-                preloader('hide', data.message, 'success'); 
-                $('#frmPurchase').trigger("reset");
-                $('#errors').html('');
-                $('.alert').prop('hidden', true);
-                $('#modalPurchase').modal('hide');
+                console.log(data)
+                if (data.code == 422) {
+                    preloader('hide', data.message, 'warning');
+                    $('#errors').html('');
+                    var list = '';
+                    $.each(data.response, function (i, value) {
+                        list = '<li>' + value + '</li>';
+                        $('.alert').css('display', 'block');
+                        $('#errors').append(list);
+                    });
+                }
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#frmPurchase').trigger("reset");
+                    $('#errors').html('');
+                    $('.alert').css('display', 'none');
+                    $('#modalPurchase').modal('hide');
+                }
                 
             },
             error: function (data) {
-                //console.log('Error:', data);
+                console.log('Error:', data);
                 if (data.status == 422) {
-                    $('#errors').html('');
-                    var list = '';
-                    $.each(data.responseJSON, function (i, value) {
-                        list = '<li>' + value + '</li>';
-                        $('.alert').prop('hidden', false);
-                        $('#errors').append(list);
-                    });
+                    
                  
                 }
             }
          });
+        } else {
+            preloader('hide', 'Campos complementarios requeridos', 'warning');
+        }
+        
     });
 
 

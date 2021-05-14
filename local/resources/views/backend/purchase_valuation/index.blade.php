@@ -587,7 +587,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="alert alert-danger" hidden>
+                    <div class="alert alert-danger" style="display: none">
                         <ul id="errors"></ul>
                     </div>
                     <form id="frmPurchase" name="frmPurchase" enctype="multipart/form-data" >
@@ -775,17 +775,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="position-relative form-group">
-                                            <label for="status_vehicle" class="">Observaciones: </label>
-                                            <textarea class="form-control" id="observations" name="observations"></textarea>
-                                        </div>
-                                    </div>
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
                                             <label for="status_vehicle" class="">¿Cual es el precio mínimo que aceptas?: </label>
                                             <input type="number" step="any" class="form-control" id="price_min" name="price_min" required>
                                         </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="position-relative form-group">
+                                            <label for="status_vehicle" class="">Observaciones: </label>
+                                            <textarea class="form-control" id="observations" name="observations"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 row" id="images">
+                                        
                                     </div>
                                 </div>
                             </div>

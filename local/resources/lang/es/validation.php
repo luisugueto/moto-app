@@ -230,6 +230,10 @@ return [
         'frame_no' => 'Nº Bastidor',
         'motor_no' => 'Nº Motor',
         'vehicle_state_trafic' => ' Estado del vehículo en tráfico',
-        'vehicle_state' => 'Estado del vehículo'
+        'vehicle_state' => 'Estado del vehículo',
+
+        //Formulario Dinamico
+        'dLQrpaV2' => 'El precio final acordado',
+        'g8azSzCE' => 'Las Observaciones finales'
     ],
 ];

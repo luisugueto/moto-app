@@ -400,6 +400,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase_valuation = PurchaseValuation::find($id);
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
+        $images = ImagesPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();  
 
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
@@ -418,6 +419,7 @@ class PurchaseValuationController extends Controller
         $data['observations'] = $purchase_valuation['observations'];
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
         $data['data_serialize'] = utf8_encode($purchase_valuation['data_serialize']);
+        $data['images_purchase_valuation'] = $images;
         // dd(htmlspecialchars_decode($forms->form_display));
 
         return response()->json($data);
@@ -459,23 +461,26 @@ class PurchaseValuationController extends Controller
             'phone' => 'required', 
             'province' => 'required', 
             'price_min' => 'required', 
-            'observations' => 'required'
+            'observations' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            $out['code'] = 422;
+            $out['response'] = $validator->errors();
+            $out['message'] = 'Errores de validacion';            
             
-        } else {
+        }
+        if (!$validator->fails()) {
             $purchase = PurchaseValuation::find($id);
             $input = $request->all();
             $purchase->update($input);
 
             $out['code'] = 200;
-            $out['data'] = $purchase;
+            $out['response'] = $purchase;
             $out['message'] = 'Registro Actualizado Exitosamente';
-
-            return response()->json($out);
+            
         }
+        return response()->json($out);
     }
 
     /**
