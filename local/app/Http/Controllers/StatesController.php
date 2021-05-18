@@ -156,8 +156,12 @@ class StatesController extends Controller
      */
     public function destroy($id)
     {
-        $state = States::destroy($id);
-        return response()->json($state);
+        if($id > 6){
+            $state = States::destroy($id);
+            return response()->json($state);
+        }
+
+            return response()->json($data[]);
         // return Redirect::to('/states')->with('notification', 'Registro eliminado exitosamente!');
     }
  
