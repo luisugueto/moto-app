@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('estados-gc', 'StatesController');
     Route::resource('mensajes-gc', 'EmailsController');
     Route::resource('procesos', 'ProcessesController');
+    Route::resource('sub-procesos', 'SubProcessesController');
     Route::resource('formularios', 'FormsController');
     Route::resource('documentos-gc', 'DocumentsPurchaseValuationController');
     Route::resource('empresas', 'BusinessController');
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
     // AJAX
     Route::post('getStates', 'StatesController@getStates');
     Route::post('getProcesses', 'ProcessesController@getProcesses');
+    Route::post('getSubProcesses', 'SubProcessesController@getSubProcesses');
     Route::post('getEmails', 'EmailsController@getEmails');
     Route::post('getRoles', 'RoleController@getRoles');
     Route::post('getUsers', 'UserController@getUsers');
