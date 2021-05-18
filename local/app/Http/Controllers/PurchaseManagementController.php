@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PurchaseManagement;
+use App\PurchaseValuation;
 use App\Http\Requests;
 use Redirect;
 use App\LinksRegister;
@@ -35,7 +36,9 @@ class PurchaseManagementController extends Controller
         if(!empty($linksRegister)){
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
             $gestion = PurchaseManagement::where('purchase_valuation_id', $purchase_valuation_id)->first();
-            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion','purchase_management'));
+            $purchase = PurchaseValuation::find($linksRegister->purchase_valuation_id);
+
+            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion','purchase_management', 'purchase'));
         }
         else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
@@ -72,7 +75,7 @@ class PurchaseManagementController extends Controller
                 'postal_code' => 'required',
                 'province' => 'required',
                 // 'iban' => 'required',
-                'sale_amount' => 'required',
+                // 'sale_amount' => 'required',
                 // 'name_representantive' => 'required',
                 // 'firts_surname_representative' => 'required',
                 // 'second_surtname_representantive' => 'required',
@@ -120,7 +123,7 @@ class PurchaseManagementController extends Controller
                 'postal_code' => 'required',
                 'province' => 'required',
                 // 'iban' => 'required',
-                'sale_amount' => 'required',
+                // 'sale_amount' => 'required',
                 // 'name_representantive' => 'required',
                 // 'firts_surname_representative' => 'required',
                 // 'second_surtname_representantive' => 'required',
@@ -178,7 +181,7 @@ class PurchaseManagementController extends Controller
         $gestion->postal_code = $request->postal_code;
         $gestion->province = $request->province;
         $gestion->iban = $request->iban;
-        $gestion->sale_amount = $request->sale_amount;
+        // $gestion->sale_amount = $request->sale_amount;
         $gestion->name_representantive = $request->name_representantive;
         $gestion->firts_surname_representative = $request->firts_surname_representative;
         $gestion->second_surtname_representantive = $request->second_surtname_representantive;
@@ -205,8 +208,8 @@ class PurchaseManagementController extends Controller
         $path_dni = public_path().'/dni/';
         $files1 = $request->file('file-1');
         $doc_dni = '';
+        if(!empty($files1[0]) && count($files1) >= 2){
 
-        if(!empty($files1[0])){
             foreach($files1 as $key => $file){
                 $filenameWithExt = $file->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
@@ -219,7 +222,9 @@ class PurchaseManagementController extends Controller
                 else
                     $doc_dni .= ','.$fileNameToStore;
             }
-        }
+        }else
+            return Redirect::back()->with('error_file-1', 'Por favor ingrese: (Dos archivos, cara A del DNI y Cara B del DNI)!');
+
 
         $gestion->dni_doc = $doc_dni;
 
@@ -227,7 +232,7 @@ class PurchaseManagementController extends Controller
         $files2 = $request->file('file-2');
         $per_circulacion = '';
 
-        if(!empty($files2[0])){
+        if(!empty($files2[0]) ){
             foreach($files2 as $key => $file){
                 $filenameWithExt = $file->getClientOriginalName();
                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);

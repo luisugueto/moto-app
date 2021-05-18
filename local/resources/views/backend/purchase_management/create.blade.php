@@ -306,7 +306,7 @@
                                 <div class="position-relative form-group">
                                     <label for="sale_amount" class="">Importe de Venta( Iva Incl):</label>
                                     <input name="sale_amount" id="sale_amount" type='number' step="0.1" class="form-control"
-                                        value="{{ old('sale_amount') }}">
+                                        value="{{ $purchase->price_min }}" readonly>
                                     @if ($errors->has('sale_amount'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('sale_amount') }}</strong>
@@ -506,7 +506,7 @@
                                         Combustible:
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="gasoline" name="fuel" class="custom-control-input"
-                                                value="Gasolina" @if(old('fuel') == 'Gasolina') checked @endif>
+                                                value="Gasolina" checked @if(old('fuel') == 'Gasolina') checked @endif>
                                             <label class="custom-control-label" for="gasoline">Gasolina</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
@@ -628,31 +628,30 @@
                                     <div class="mt-3">
                                         Estado del vehículo:
                                         <div class="custom-radio custom-control custom-control-inline">
-                                            <input type="radio" id="sinister" name="vehicle_state"
-                                                class="custom-control-input" value="Siniestrado" @if(old('vehicle_state') == 'Siniestrado') checked @endif>
-                                            <label class="custom-control-label" for="sinister">Siniestrado</label>
-                                        </div>
-                                        <div class="custom-radio custom-control custom-control-inline">
-                                            <input type="radio" id="damaged" name="vehicle_state"
-                                                class="custom-control-input" value="Averiado" @if(old('vehicle_state') == 'Averiado') checked @endif>
-                                            <label class="custom-control-label" for="damaged">Averiado</label>
-                                        </div>
-                                        <div class="custom-radio custom-control custom-control-inline">
-                                            <input type="radio" id="abandoned" name="vehicle_state"
-                                                class="custom-control-input" value="Abandonado" @if(old('vehicle_state') == 'Abandonado') checked @endif>
-                                            <label class="custom-control-label" for="abandoned">Abandonado</label>
-                                        </div>
-                                        <div class="custom-radio custom-control custom-control-inline">
-                                            <input type="radio" id="full" name="vehicle_state" class="custom-control-input"
-                                                value="Completo" @if(old('vehicle_state') == 'Completo') checked @endif>
-                                            <label class="custom-control-label" for="full">Completo</label>
-                                        </div>
-                                        <div class="custom-radio custom-control custom-control-inline">
-                                            <input type="radio" id="partially_disassembled" name="vehicle_state"
-                                                class="custom-control-input" value="Parcialmente desmontado" @if(old('vehicle_state') == 'Parcialmente desmontado') checked @endif>
-                                            <label class="custom-control-label" for="partially_disassembled">Parcialmente
-                                                desmontado</label>
-                                        </div>
+                                                <input type="radio" id="g_del" name="vehicle_state"
+                                                    class="custom-control-input" value="Golpe Delantero" @if(old('vehicle_state') == 'Golpe Delantero' || $purchase->motocycle_state == 'Golpe Delantero') checked @endif>
+                                                <label class="custom-control-label" for="g_del">Golpe Delantero</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="g_tras" name="vehicle_state"
+                                                    class="custom-control-input" value="Golpe Trasero" @if(old('vehicle_state') == 'Golpe Trasero' || $purchase->motocycle_state == 'Golpe Trasero') checked @endif>
+                                                <label class="custom-control-label" for="g_tras">Golpe Trasero</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="av_elec" name="vehicle_state"
+                                                    class="custom-control-input" value="Avería Eléctrica" @if(old('vehicle_state') == 'Avería Eléctrica' || $purchase->motocycle_state == 'Avería Eléctrica') checked @endif>
+                                                <label class="custom-control-label" for="av_elec">Avería Eléctrica</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="av_mec" name="vehicle_state"
+                                                    class="custom-control-input" value="Avería Mecánica" @if(old('vehicle_state') == 'Avería Mecánica' || $purchase->motocycle_state == 'Avería Mecánica') checked @endif>
+                                                <label class="custom-control-label" for="av_mec">Avería Mecánica</label>
+                                            </div>
+                                            <div class="custom-radio custom-control custom-control-inline">
+                                                <input type="radio" id="old" name="vehicle_state"
+                                                    class="custom-control-input" value="Vieja o Abandonada" @if(old('vehicle_state') == 'Vieja o Abandonada' || $purchase->motocycle_state == 'Vieja o Abandonada') checked @endif>
+                                                <label class="custom-control-label" for="old">Vieja o Abandonada</label>
+                                            </div>
                                     </div>
                                     @if ($errors->has('vehicle_state'))
                                         <span class="error text-danger">
@@ -693,6 +692,11 @@
                                 @if ($errors->has('file-1'))
                                     <span class="error text-danger">
                                         <strong>{{ $errors->first('file-1') }}</strong>
+                                    </span>
+                                @endif
+                                @if (\Session::has('error_file-1'))
+                                    <span class="error text-danger">
+                                        <strong>{{ \Session::get('error_file-1') }}</strong>
                                     </span>
                                 @endif
                             </div>

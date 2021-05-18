@@ -173,13 +173,15 @@
                                                 <div style="line-height: 1.5; font-size: 12px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; color: #555555; mso-line-height-alt: 18px;">
                                                     <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">Hola, {{ $purchase->name }}  {{ $purchase->lastName }}.</span></p>
 
-                                                    <?php 
-                                                        $subject = str_replace('{first_name}', $purchase->name, $state->email->subject);
-                                                        $subject = str_replace('{last_name}', $purchase->lastName, $subject);
-                                                        $subject = str_replace('{marca_moto}', $purchase->brand, $subject);
-                                                        $subject = str_replace('{modelo_moto}', $purchase->model, $subject);
-                                                    ?>
-                                                    <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">{{ $subject }}</span></p>
+                                                    @if($state->name == 'Interesa')
+                                                        <?php 
+                                                            $subject = str_replace('{first_name}', $purchase->name, $state->email->subject);
+                                                            $subject = str_replace('{last_name}', $purchase->lastName, $subject);
+                                                            $subject = str_replace('{marca_moto}', $purchase->brand, $subject);
+                                                            $subject = str_replace('{modelo_moto}', $purchase->model, $subject);
+                                                        ?>
+                                                        <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">{{ $subject }}</span></p>
+                                                    @endif
                                                 </div>
                                             </div>
                                            
