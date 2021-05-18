@@ -420,6 +420,7 @@ class PurchaseValuationController extends Controller
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
         $data['data_serialize'] = utf8_encode($purchase_valuation['data_serialize']);
         $data['images_purchase_valuation'] = $images;
+        $data['link'] = url('/');
         // dd(htmlspecialchars_decode($forms->form_display));
 
         return response()->json($data);
