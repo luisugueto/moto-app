@@ -543,7 +543,7 @@ class PurchaseValuationController extends Controller
                 $purchase_management->postal_code = '';
                 $purchase_management->province = '';
                 $purchase_management->iban = '';
-                $purchase_management->sale_amount = '';
+                $purchase_management->sale_amount = $purchase_model->price_min;
                 $purchase_management->name_representantive = '';
                 $purchase_management->firts_surname_representative = '';
                 $purchase_management->second_surtname_representantive = '';
