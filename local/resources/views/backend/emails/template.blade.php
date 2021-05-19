@@ -173,9 +173,19 @@
                                                 <div style="line-height: 1.5; font-size: 12px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; color: #555555; mso-line-height-alt: 18px;">
                                                     <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">Hola, {{ $purchase->name }}  {{ $purchase->lastName }}.</span></p>
 
-                                                    @if($state->name == 'Interesa')
+                                                    @if(!empty($state) && $state->name == 'Interesa')
                                                         <?php 
                                                             $subject = str_replace('{first_name}', $purchase->name, $state->email->subject);
+                                                            $subject = str_replace('{last_name}', $purchase->lastName, $subject);
+                                                            $subject = str_replace('{marca_moto}', $purchase->brand, $subject);
+                                                            $subject = str_replace('{modelo_moto}', $purchase->model, $subject);
+                                                        ?>
+                                                        <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">{{ $subject }}</span></p>
+                                                    @endif
+
+                                                    @if(!empty($subprocesses))
+                                                        <?php 
+                                                            $subject = str_replace('{first_name}', $purchase->name, $subprocesses->email->subject);
                                                             $subject = str_replace('{last_name}', $purchase->lastName, $subject);
                                                             $subject = str_replace('{marca_moto}', $purchase->brand, $subject);
                                                             $subject = str_replace('{modelo_moto}', $purchase->model, $subject);
@@ -201,13 +211,23 @@
                                                     </tr>
                                                 </tbody>
                                             </table>
+                                            @if(!empty($state))
+                                                <?php 
+                                                    $content = str_replace('{first_name}', $purchase->name, $state->email->content);
+                                                    $content = str_replace('{last_name}', $purchase->lastName, $content);
+                                                    $content = str_replace('{marca_moto}', $purchase->brand, $content);
+                                                    $content = str_replace('{modelo_moto}', $purchase->model, $content);
+                                                ?>
+                                            @endif
 
-                                            <?php 
-                                                $content = str_replace('{first_name}', $purchase->name, $state->email->content);
-                                                $content = str_replace('{last_name}', $purchase->lastName, $content);
-                                                $content = str_replace('{marca_moto}', $purchase->brand, $content);
-                                                $content = str_replace('{modelo_moto}', $purchase->model, $content);
-                                            ?>
+                                            @if(!empty($subprocesses))
+                                                <?php 
+                                                    $content = str_replace('{first_name}', $purchase->name, $subprocesses->email->content);
+                                                    $content = str_replace('{last_name}', $purchase->lastName, $content);
+                                                    $content = str_replace('{marca_moto}', $purchase->brand, $content);
+                                                    $content = str_replace('{modelo_moto}', $purchase->model, $content);
+                                                ?>
+                                            @endif
                 
 
                                             <div style="color:#555555;font-family:Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;line-height:1.2;padding-top:20px;padding-right:40px;padding-bottom:10px;padding-left:40px;">
@@ -217,7 +237,7 @@
                                             </div>
 
                                             <!-- LINK FOR CONTINUE REGISTER  -->
-                                            @if($state->name == 'Interesa')
+                                            @if(!empty($state) && $state->name == 'Interesa')
                                                 <div align="center" class="button-container" style="padding-top:15px;padding-right:10px;padding-bottom:15px;padding-left:10px;"> <a href="{{ url('/purchase_management/create/'.$token) }}" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #fb5f3d; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #fb5f3d; border-right: 1px solid #fb5f3d; border-bottom: 1px solid #fb5f3d; border-left: 1px solid #fb5f3d; padding-top: 15px; padding-bottom: 15px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>CONTINUAR REGISTRO</strong></span></span></a> </div>
                                             @endif
                                         </div>

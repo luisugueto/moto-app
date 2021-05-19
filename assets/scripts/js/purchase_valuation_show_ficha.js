@@ -1,5 +1,7 @@
 $(document).ready(function () {
     var url = $('#url').val();
+    var url_process = $('#url_process').val();
+    var url_index = $('#url_index').val();
 
     var action = sessionStorage.getItem('action');
 
@@ -462,6 +464,52 @@ $(document).ready(function () {
             if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
         });
     });
+
+    $("#process").change(function (e){
+        $.ajax({
+            type: "GET",
+            url: url_process + '/' + $("#process").val(),
+            success: function (data) {
+                
+                $('#subprocess').empty().append('<option disabled selected>Seleccione</option>');
+                data.data.forEach(function (element){
+                    
+                    $('#subprocess').append($('<option>', {
+                        value: element.id,
+                        text: element.name
+                    }));
+                });
+                                    },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+
+    $("#btn-applySubProcess").click(function (e) {
+        var formData = {
+            purchase_id: $('#purchase_id').val(),
+            subprocesses_id: $('#subprocess').val() 
+        };
+        preloader('show');
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            type: 'POST',
+            data: formData,
+            dataType: 'json',
+            url: url_index + '/applyProcesses',
+            success: function (data) {
+                if (data.code == 200) {
+                    preloader('hide', data.message, 'success');
+                }
+               
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+    });
+
 
 
 

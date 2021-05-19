@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getStates', 'StatesController@getStates');
     Route::post('getProcesses', 'ProcessesController@getProcesses');
     Route::post('getSubProcesses', 'SubProcessesController@getSubProcesses');
+    Route::get('getSubProcesses/{id}', 'SubProcessesController@getSubProcessesAjax');
     Route::post('getEmails', 'EmailsController@getEmails');
     Route::post('getRoles', 'RoleController@getRoles');
     Route::post('getUsers', 'UserController@getUsers');

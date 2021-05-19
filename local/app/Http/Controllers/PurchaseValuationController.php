@@ -12,6 +12,7 @@ use DB;
 use Mail;
 use App\States;
 use App\Processes;
+use App\SubProcesses;
 use App\Emails;
 use App\DocumentsPurchaseValuation;
 use App\LinksRegister;
@@ -73,7 +74,7 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['processes_id'] = $value->processes_id;
+            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -120,7 +121,7 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['processes_id'] = $value->processes_id;
+            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -166,7 +167,7 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['processes_id'] = $value->processes_id;
+            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -211,7 +212,7 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['processes_id'] = $value->processes_id;
+            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -256,7 +257,7 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['processes_id'] = $value->processes_id;
+            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -301,7 +302,7 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['processes_id'] = $value->processes_id;
+            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['publish'] = $value->publish;
             $row['view'] = $view;
@@ -359,7 +360,7 @@ class PurchaseValuationController extends Controller
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
         $purchase->states_id = 1; // En Revisión
-        $purchase->processes_id = 1; // Default
+        $purchase->subprocesses_id = 0; // Default
         $purchase->save();
 
         foreach($request->images as $file){
@@ -570,8 +571,9 @@ class PurchaseValuationController extends Controller
                 $purchase_management->save();
             }
 
+            $subprocesses = [];
             // ENVIAR CORREO
-            Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token], function ($message) use ($state, $purchase_model)
+            Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token, 'subprocesses' => $subprocesses], function ($message) use ($state, $purchase_model)
             {
                 $message->from('ugueto.luis19@gmail.com', 'MotOstion');
 
@@ -588,23 +590,43 @@ class PurchaseValuationController extends Controller
 
     public function applyProcesses(Request $request)
     {
-        $processes = Processes::find($request->applyProcess);
-        $motos = explode(",", $request->apply);
+        // $processes = Processes::find($request->applyProcess);
+        // $motos = explode(",", $request->apply);
 
-        $out['code'] = 204;
-        $out['message'] = 'Hubo un error';
+        // $out['code'] = 204;
+        // $out['message'] = 'Hubo un error';
         
-        foreach($motos as &$purchase) {
+        // foreach($motos as &$purchase) {
 
-            $purchase_model = PurchaseValuation::find($purchase);
-            $purchase_model->processes_id = $request->applyProcess;
-            $purchase_model->update();
+        //     $purchase_model = PurchaseValuation::find($purchase);
+        //     // $purchase_model->processes_id = $request->applyProcess;
+        //     $purchase_model->update();
 
-            $out['code'] = 200;
-            $out['data'] = $purchase;
-            $out['message'] = 'Estado Actualizado Exitosamente';
-        }
-        
+        //     $out['code'] = 200;
+        //     $out['data'] = $purchase;
+        //     $out['message'] = 'Estado Actualizado Exitosamente';
+        // }
+        $subprocesses = SubProcesses::find($request->subprocesses_id);
+        $purchase = PurchaseValuation::find($request->purchase_id);
+        $purchase->subprocesses_id = $request->subprocesses_id;
+        $purchase->update();
+
+        $state = [];
+        $token = '';
+
+
+        Mail::send('backend.emails.template', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token], function ($message) use ($subprocesses, $purchase)
+            {
+                $message->from('ugueto.luis19@gmail.com', 'MotOstion');
+
+                // SE ENVIARA A
+                $message->to($purchase->email)->subject($subprocesses->name);
+            });
+
+        $out['code'] = 200;
+        $out['data'] = $purchase;
+        $out['message'] = 'Se ha aplicado el proceso Exitosamente';
+
         return response()->json($out);
     }
 
@@ -657,7 +679,7 @@ class PurchaseValuationController extends Controller
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");   
-        
+
         return view('backend.purchase_valuation.ficha', compact('states', 'processes', 'marcas'));
 
     }

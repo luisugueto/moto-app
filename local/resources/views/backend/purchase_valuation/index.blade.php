@@ -20,7 +20,7 @@
         {{-- {!! Form::open(['url' => '', 'method' => 'post', 'id' => 'formTasacion']) !!} --}}
         <div class="row">
             <div class="input-group col-md-3">
-                <select name="applyState" class="custom-select" id="applyState" onChange="setApply();">
+                <select name="applyState" class="custom-select" id="applyState">
                     <option value="" disabled selected>Elegir Destino de la Moto</option>
                     @foreach($states as $state)
                         <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -28,17 +28,6 @@
                 </select>
                 <div class="input-group-append">
                     <button type="button" class="btn btn-primary" id="btnApplyState">Aplicar</button>
-                </div>
-            </div>
-            <div class="input-group col-md-3">
-                <select name="applyProcess" class="custom-select" id="applyProcess" onChange="setApply();">
-                    <option value="" disabled selected>Elegir Proceso</option>
-                    @foreach($processes as $process)
-                        <option value="{{ $process->id }}">{{ $process->name }}</option>
-                    @endforeach
-                </select>
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary" id="btnApplyProcess">Aplicar</button>
                 </div>
             </div>
         </div>
@@ -852,7 +841,7 @@
 
  <script src="{{ asset('assets/scripts/js/purchase_valuation.js') }}"></script>
 
-    <script>
+   <!--  <script>
         var setApply = () => {
             if($("#applyState").val() != null && $('#applyProcess').val() != null)
             {
@@ -868,6 +857,6 @@
                 $("#formTasacion").val('applyProcesses');
 
         };
-    </script>
+    </script> -->
  
 @endsection

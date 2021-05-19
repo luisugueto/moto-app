@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     //get base URL *********************
@@ -18,7 +17,6 @@ $(document).ready(function () {
             { "data": "id" },
             { "data": "name" },
             { "data": "description" },
-            { "data": "processes" },
             {"data": null,
                 render:function(data)
                     {
@@ -29,6 +27,8 @@ $(document).ready(function () {
                     },
                     "targets": -1
                 },
+            { "data": "processes" },
+            { "data": "email" },
             {"data": null,
                 render: function (data, type, row) {
                     var echo = '';
@@ -79,6 +79,8 @@ $(document).ready(function () {
                 $('#name').val(data.name);
                 $('#description').val(data.description);
                 $('#status').val(data.status);
+                $('#processes_id').val(data.processes_id);
+                $('#email_id').val(data.email_id);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -104,6 +106,7 @@ $(document).ready(function () {
             description: $('#description').val(),
             status: $('#status').val(),
             processes_id: $('#processes_id').val(),
+            email_id: $('#email_id').val(),
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]

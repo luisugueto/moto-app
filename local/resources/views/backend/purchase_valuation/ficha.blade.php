@@ -1015,13 +1015,43 @@
                     <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
                     
                 </form>
+
             </div>
         </div>
 
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-8 col-md-pull-3">
+        <div class="mb-3 card">
+            <div class="card-body">
+                <div class="input-group col-md-3" style="display: inline">
+                    <label>Elegir Proceso: </label>
+                    <select  class="custom-select custom-control custom-control-inline" id="process" style="width: 100px">
+                        <option value="" disabled selected>Seleccione</option>
+                        @foreach($processes as $process)
+                            <option value="{{ $process->id }}">{{ $process->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="input-group col-md-3" style="display: inline">
+                    <label>Elegir Sub-Proceso para aplicar al vehículo: </label>
+                    <select  class="custom-select custom-control custom-control-inline" id="subprocess" style="width: 200px">
+                        <option value="" disabled selected>Seleccione</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary" id="btn-applySubProcess" value="add">Aplicar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 <input id="url" type="hidden" value="{{ url('/purchase_valuation_interested/update_ficha') }}">
+<input id="url_process" type="hidden" value="{{ url('/getSubProcesses') }}">
+<input id="url_index" type="hidden" value="{{ url('/') }}">
 
 @section('modals')
 <script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>

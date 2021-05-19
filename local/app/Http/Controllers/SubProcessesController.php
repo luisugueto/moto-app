@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Processes;
 use App\SubProcesses;
+use App\Email;
 use Redirect;
 use App\Http\Requests;
 
@@ -20,13 +21,48 @@ class SubProcessesController extends Controller
     {
         $haspermision = getPermission('SubProcesos', 'record-create');
         $processes = Processes::select(['id','name','description','status'])->get();
+        $emails = Email::all();
 
-        return view('backend.subprocesses.index', compact('haspermision', 'processes'));
+        return view('backend.subprocesses.index', compact('haspermision', 'processes', 'emails'));
     }
 
     public function getSubProcesses()
     {
-        $subprocesses = SubProcesses::select(['id','name','description','processes_id','status'])->get();
+        $subprocesses = SubProcesses::select(['id','name','description','processes_id','email_id','status'])->get();
+
+        $view = getPermission('SubProcesos', 'record-view');
+        $edit = getPermission('SubProcesos', 'record-edit');
+        $delete = getPermission('SubProcesos', 'record-delete');
+
+        $data = array(); 
+        foreach($subprocesses as $key => $value){  
+
+            $row = array();      
+            $row['id'] = $value->id;
+            $row['name'] = $value->name;
+            $row['description'] = $value->description;
+            $row['status'] = $value->status;
+
+            $processes = Processes::find($value->processes_id);
+            $row['processes'] = $processes->name;
+
+            $email = Email::find($value->email_id);
+            $row['email'] = $email->name;
+
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data); 
+        $json_data= collect($json_data);        
+        return response()->json($json_data);
+    }
+
+    public function getSubProcessesAjax($id)
+    {
+        $subprocesses = SubProcesses::where('processes_id', $id)->get();
  
         $view = getPermission('SubProcesos', 'record-view');
         $edit = getPermission('SubProcesos', 'record-edit');
@@ -73,7 +109,7 @@ class SubProcessesController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->all(), ['name' => 'required', 'description' => 'required', 'processes_id' => 'required']);
+        $validator = \Validator::make($request->all(), ['name' => 'required', 'description' => 'required', 'processes_id' => 'required', 'email_id' => 'required']);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -121,6 +157,7 @@ class SubProcessesController extends Controller
         $subprocess->description = $request->description;
         $subprocess->status = $request->status;
         $subprocess->processes_id = $request->processes_id;
+        $subprocess->email_id = $request->email_id;
         $subprocess->update();
 
         return response()->json($subprocess);

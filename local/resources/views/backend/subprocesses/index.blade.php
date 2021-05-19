@@ -47,6 +47,7 @@
                                 <th>Descripción</th>
                                 <th>Status</th>
                                 <th>Proceso</th>
+                                <th>Plantilla Email</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead> 
@@ -92,6 +93,15 @@
                                 <option selected disabled>Seleccione</option>
                                 @foreach($processes as $process)
                                     <option value="{{ $process->id }}">{{ $process->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label>Plantilla Email</label>
+                            <select class="form-control" id="email_id" name="email_id" required>
+                                <option selected disabled>Seleccione</option>
+                                @foreach($emails as $email)
+                                    <option value="{{ $email->id }}">{{ $email->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -9,6 +9,10 @@ class SubProcesses extends Model
 	protected $table = 'subprocesses';
 	
     protected $fillable = [
-        'name', 'description', 'status', 'id_processes'
+        'name', 'description', 'status', 'processes_id', 'email_id'
     ];
+
+    public function email(){
+        return $this->belongsTo('App\Email', 'email_id');
+    }
 }
