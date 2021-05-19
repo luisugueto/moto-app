@@ -15,4 +15,8 @@ class SubProcesses extends Model
     public function email(){
         return $this->belongsTo('App\Email', 'email_id');
     }
+
+    public function processes(){
+        return $this->belongsTo('App\Processes', 'processes_id');
+    }
 }
