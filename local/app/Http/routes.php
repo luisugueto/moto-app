@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('documentos-gc', 'DocumentsPurchaseValuationController');
     Route::resource('empresas', 'BusinessController');
     Route::resource('servicios', 'ServicesController');
+    
 
     Route::post('show-images', 'PurchaseValuationController@showImages');
 
@@ -47,6 +48,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('purchase_valuation_interested/ficha_de_la_moto', 'PurchaseValuationController@showFicha');
     Route::get('purchase_valuation_interested/ficha_de_la_moto/{id}', 'PurchaseValuationController@getDataFicha');
     Route::post('purchase_valuation_interested/update_ficha', 'PurchaseValuationController@updateFicha')->name('updateFicha');
+
+    //Residuos
+    Route::get('envios-quincenales', 'ResiduosController@enviosQuincenales');
+    Route::get('exportar-envios-quincenales', 'ResiduosController@exportEnviosQuincenales');
+    Route::get('envios-semestrales', 'ResiduosController@enviosSemestrales');
+    Route::get('exportar-envios-semestrales', 'ResiduosController@exportEnviosSemestrales');
+    Route::get('envios-anuales', 'ResiduosController@enviosAnuales');
+    Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
 
     //Change Status Views
     Route::post('empleados/change_status_user', 'UserController@changeStatus');
@@ -70,6 +79,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getPurchaseValuationsScrapping', 'PurchaseValuationController@getPurchaseValuationsScrapping');
     Route::post('getPurchaseValuationsSale', 'PurchaseValuationController@getPurchaseValuationsSale');
     Route::post('getPurchaseValuationsAuction', 'PurchaseValuationController@getPurchaseValuationsAuction');
+    Route::post('getEnviosQuincenalesSinGestionar', 'ResiduosController@getEnviosQuincenalesSinGestionar');
+    Route::post('getEnviosQuincenalesGestionadas', 'ResiduosController@getEnviosQuincenalesGestionadas');
+    Route::post('getEnviosSemestrales', 'ResiduosController@getEnviosSemestrales');
+    Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
 
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');
