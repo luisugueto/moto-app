@@ -195,23 +195,55 @@ $(document).ready(function () {
                     $("#documents").append('<a href="' + data.link + '/local/public/documents_purchase/' + element.name + '" target="_blank" style="margin: 15px">' + element.name + '</a>');
                 });
 
-                data.dni_doc.split(',').forEach(function(element){
-                    $("#documents").append('<a href="' + data.link + '/local/public/dni/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
-                });
+                if(data.dni_doc !== null)
+                    data.dni_doc.split(',').forEach(function(element){
+                        $("#documents").append('<a href="' + data.link + '/local/public/dni/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                    });
 
-                data.per_circulacion.split(',').forEach(function(element){
-                    $("#documents").append('<a href="' + data.link + '/local/public/per_circulacion/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
-                });
-
-                data.ficha_tecnica.split(',').forEach(function(element){
-                    $("#documents").append('<a href="' + data.link + '/local/public/ficha_tecnica/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
-                });
-
-                data.other_docs.split(',').forEach(function(element){
-                    $("#documents").append('<a href="' + data.link + '/local/public/other_docs/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
-                });
+                if(data.per_circulacion !== null)
+                    data.per_circulacion.split(',').forEach(function(element){
+                        $("#documents").append('<a href="' + data.link + '/local/public/per_circulacion/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                    });
+                
+                if(data.ficha_tecnica !== null)
+                    data.ficha_tecnica.split(',').forEach(function(element){
+                        $("#documents").append('<a href="' + data.link + '/local/public/ficha_tecnica/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                    });
+                
+                if(data.other_docs !== null)
+                    data.other_docs.split(',').forEach(function(element){
+                        $("#documents").append('<a href="' + data.link + '/local/public/other_docs/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                    });
 
                 $('#btn-save').val("update");
+
+                //Desguace
+                if (data.states_id == 4) {
+                    $('#divProcesosDesguace').css('display', 'block');
+                    var sb = '';
+                    data.processes.forEach(function (element) {
+
+                        $("#ulProcesses").append(
+                            '<li class="list-group-item">' +
+                            '<div class="todo-indicator bg-warning"></div>' +
+                            '<div class="widget-content p-0">' +
+                            '<div class="widget-content-wrapper">' +
+                            '<div class="widget-content-left mr-1"></div>' +
+                            '<div class="widget-content-left">' +
+                            '<div class="widget-heading">' + element.name + '</div>' +
+                            '</div>' +
+                            '<div class="widget-content-right widget-content-actions"></div>' +
+                            '<div class="widget-content-right ml-3" id="divSubProceso"></div>'+
+                            '</div>'+
+                            '</div>'+
+                            '</li>'
+                        );
+                        element.subproceso.split(',').forEach(function (subproceso) {
+                            $("#divSubProceso").append('<div class="badge badge-pill badge-primary">' + subproceso + '</div><br>');
+                        });
+                    });
+                    
+                }
             },
             error: function (data) {
                 console.log('Error:', data);

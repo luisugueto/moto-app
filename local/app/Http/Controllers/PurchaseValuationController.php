@@ -690,8 +690,18 @@ class PurchaseValuationController extends Controller
         $documents_purchase_valuation = DocumentsPurchaseValuation::where('purchase_valuation_id', $id)->get();
         $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $id)->get();
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
-        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();        
-  
+        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first(); 
+        $processes_id = $purchase_valuation['subprocesses_id'];
+
+        $processes = DB::table('processes')
+        ->join('subprocesses', 'processes.id', '=', 'subprocesses.processes_id')
+        ->select('processes.name', DB::raw('GROUP_CONCAT(subprocesses.name) as subproceso'))
+        ->where(function ($query) use ($processes_id) {
+                $query->where('processes.id', '=' , $processes_id);
+        })
+        ->groupBy(DB::raw('processes.id'))
+        ->get();
+        
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
         $data['brand'] = $purchase_valuation['brand'];
@@ -709,7 +719,8 @@ class PurchaseValuationController extends Controller
         $data['observations'] = $purchase_valuation['observations'];
         $data['form_display'] = htmlspecialchars_decode($forms->form_display);
         $data['data_serialize'] = ($purchase_valuation['data_serialize']);
-
+        $data['states_id'] = $purchase_valuation['states_id'];
+        $data['processes'] = $processes;
 
         //Datos Purchase Management
         $data['file_no'] = $purchase_management['file_no'];

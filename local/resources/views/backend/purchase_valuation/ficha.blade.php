@@ -65,7 +65,7 @@
                             <div class="dropzone-previews"></div>
                         {!! Form::close() !!}
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
@@ -1015,7 +1015,16 @@
                     <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
                     
                 </form>
-
+                <br>
+                <div class="scroll-area-lg" id="divProcesosDesguace" style="display: none">
+                    <div class="scrollbar-container">
+                        <div class="p-2">
+                            <ul class="todo-list-wrapper list-group list-group-flush" id="ulProcesses">
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -1023,7 +1032,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 col-md-pull-3">
+    <div class="col-md-8 offset-4">
         <div class="mb-3 card">
             <div class="card-body">
                 <div class="input-group col-md-3" style="display: inline">

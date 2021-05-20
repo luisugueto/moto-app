@@ -1,6 +1,15 @@
 @extends('layouts.outside')
 
 @section('content')
+    <style>
+        .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+        }
+
+        .carousel-control-next-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+        }
+    </style>
     <div class="row">
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
@@ -557,7 +566,7 @@
                                 <div class="position-relative form-group">
                                     <label for="registration_country" class="">País de Matriculación:</label>
                                     <input name="registration_country" id="registration_country" type="text"
-                                        class="form-control" value="{{ old('registration_country') }}">
+                                        class="form-control" value="España">
                                     @if ($errors->has('registration_country'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('registration_country') }}</strong>
@@ -734,7 +743,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <img src="{{ asset('assets/images/ayuda1.jpg')}}" alt="" class="img-fluid w-100">
+                    <img src="{{ asset('assets/images/ayuda1.jpeg')}}" alt="" class="img-fluid w-100">
                 </div>
             </div>
         </div>
@@ -748,7 +757,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <img src="{{ asset('assets/images/ayuda2.jpg')}}" alt="" class="img-fluid w-100">
+                    <img src="{{ asset('assets/images/ayuda2.jpeg')}}" alt="" class="img-fluid w-100">
                 </div>
             </div>
         </div>
@@ -771,13 +780,13 @@
                         </ol>
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="{{ asset('assets/images/ayuda1.jpg')}}" alt="" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/ayuda1.jpeg')}}" alt="" class="img-fluid w-100">
                           </div>
                           <div class="carousel-item">
-                            <img src="{{ asset('assets/images/ayuda2.jpg')}}" alt="" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/ayuda2.jpeg')}}" alt="" class="img-fluid w-100">
                           </div>
                           <div class="carousel-item">
-                            <img src="{{ asset('assets/images/ayuda3.jpg')}}" alt="" class="img-fluid w-100">
+                            <img src="{{ asset('assets/images/ayuda3.jpeg')}}" alt="" class="img-fluid w-100">
                           </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
