@@ -614,14 +614,15 @@ class PurchaseValuationController extends Controller
         $state = [];
         $token = '';
 
+        if($subprocesses->email->id != 7){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
+            Mail::send('backend.emails.template', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token], function ($message) use ($subprocesses, $purchase)
+                {
+                    $message->from('ugueto.luis19@gmail.com', 'MotOstion');
 
-        Mail::send('backend.emails.template', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token], function ($message) use ($subprocesses, $purchase)
-            {
-                $message->from('ugueto.luis19@gmail.com', 'MotOstion');
-
-                // SE ENVIARA A
-                $message->to($purchase->email)->subject($subprocesses->name);
-            });
+                    // SE ENVIARA A
+                    $message->to($purchase->email)->subject($subprocesses->name);
+                });
+        }
 
         $out['code'] = 200;
         $out['data'] = $purchase;
@@ -691,13 +692,13 @@ class PurchaseValuationController extends Controller
         $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $id)->get();
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first(); 
-        $processes_id = $purchase_valuation['subprocesses_id'];
-
+        $subprocesses_id = $purchase_valuation['subprocesses_id'];
+        
         $processes = DB::table('processes')
         ->join('subprocesses', 'processes.id', '=', 'subprocesses.processes_id')
-        ->select('processes.name', DB::raw('GROUP_CONCAT(subprocesses.name) as subproceso'))
-        ->where(function ($query) use ($processes_id) {
-                $query->where('processes.id', '=' , $processes_id);
+        ->select('processes.name', 'subprocesses.name as subproceso')
+        ->where(function ($query) use ($subprocesses_id) {
+                $query->where('subprocesses.id', '=' , $subprocesses_id);
         })
         ->groupBy(DB::raw('processes.id'))
         ->get();
