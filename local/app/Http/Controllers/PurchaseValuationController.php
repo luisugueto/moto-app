@@ -565,15 +565,18 @@ class PurchaseValuationController extends Controller
                 $purchase_management->save();
             }
 
-            $subprocesses = [];
-            // ENVIAR CORREO
-            Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token, 'subprocesses' => $subprocesses], function ($message) use ($state, $purchase_model)
-            {
-                $message->from('ugueto.luis19@gmail.com', 'MotOstion');
+            if($state->email->id != 7){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
+                $subprocesses = [];
+                // ENVIAR CORREO
+                Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token, 'subprocesses' => $subprocesses], function ($message) use ($state, $purchase_model)
+                {
+                    $message->from('ugueto.luis19@gmail.com', 'MotOstion');
 
-                // SE ENVIARA A
-                $message->to($purchase_model->email)->subject($state->name);
-            });
+                    // SE ENVIARA A
+                    $message->to($purchase_model->email)->subject($state->name);
+                });
+            }
+            
             $out['code'] = 200;
             $out['data'] = $purchase;
             $out['message'] = 'Estado Actualizado Exitosamente';
@@ -601,10 +604,9 @@ class PurchaseValuationController extends Controller
         $apply->purchase_valuation_id = $purchase->id;
         $apply->save();
 
-        $state = [];
-        $token = '';
-
         if($subprocesses->email->id != 7){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
+            $state = [];
+            $token = '';
             Mail::send('backend.emails.template', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token], function ($message) use ($subprocesses, $purchase)
                 {
                     $message->from('ugueto.luis19@gmail.com', 'MotOstion');
