@@ -233,16 +233,14 @@ $(document).ready(function () {
                             '<div class="widget-heading">' + element.name + '</div>' +
                             '</div>' +
                             '<div class="widget-content-right widget-content-actions"></div>' +
-                            '<div class="widget-content-right ml-3" id="divSubProceso"></div>'+
+                            '<div class="widget-content-right ml-3" id="divSubProceso">'+
+                            '<div class="badge badge-pill badge-primary">' + element.subproceso + '</div>'+
+                            '</div>'+
                             '</div>'+
                             '</div>'+
                             '</li>'
                         );
-                        element.subproceso.split(',').forEach(function (subproceso) {
-                            $("#divSubProceso").append('<div class="badge badge-pill badge-primary">' + subproceso + '</div><br>');
-                        });
                     });
-                    
                 }
             },
             error: function (data) {
@@ -521,6 +519,7 @@ $(document).ready(function () {
     $("#btn-applySubProcess").click(function (e) {
         var formData = {
             purchase_id: $('#purchase_id').val(),
+            processes_id: $('#process').val(),
             subprocesses_id: $('#subprocess').val() 
         };
         preloader('show');

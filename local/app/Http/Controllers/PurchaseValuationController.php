@@ -18,6 +18,7 @@ use App\DocumentsPurchaseValuation;
 use App\LinksRegister;
 use App\Forms;
 use Yajra\Datatables\Datatables;
+use App\ApplySubProcessAndProcess;
 
 class PurchaseValuationController extends Controller
 {
@@ -74,7 +75,6 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -121,7 +121,6 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -167,7 +166,6 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -212,7 +210,6 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -257,7 +254,6 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -302,7 +298,6 @@ class PurchaseValuationController extends Controller
             $row['price_min'] = $value->price_min;
             $row['observations'] = $value->observations;
             $row['states_id'] = $value->states_id;
-            $row['subprocesses_id'] = $value->subprocesses_id;
             $row['status_ficha'] = $value->status;
             $row['publish'] = $value->publish;
             $row['view'] = $view;
@@ -360,7 +355,6 @@ class PurchaseValuationController extends Controller
         $purchase = new PurchaseValuation($request->all());
         $purchase->date = date('Y-m-d');
         $purchase->states_id = 1; // En Revisión
-        $purchase->subprocesses_id = 0; // Default
         $purchase->save();
 
         foreach($request->images as $file){
@@ -590,26 +584,22 @@ class PurchaseValuationController extends Controller
 
     public function applyProcesses(Request $request)
     {
-        // $processes = Processes::find($request->applyProcess);
-        // $motos = explode(",", $request->apply);
-
-        // $out['code'] = 204;
-        // $out['message'] = 'Hubo un error';
-        
-        // foreach($motos as &$purchase) {
-
-        //     $purchase_model = PurchaseValuation::find($purchase);
-        //     // $purchase_model->processes_id = $request->applyProcess;
-        //     $purchase_model->update();
-
-        //     $out['code'] = 200;
-        //     $out['data'] = $purchase;
-        //     $out['message'] = 'Estado Actualizado Exitosamente';
-        // }
+        $processes = Processes::find($request->processes_id);
         $subprocesses = SubProcesses::find($request->subprocesses_id);
         $purchase = PurchaseValuation::find($request->purchase_id);
-        $purchase->subprocesses_id = $request->subprocesses_id;
-        $purchase->update();
+
+        // check last process and delete
+        $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->first();
+        $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->count();
+
+        if($countLastProcessApply > 0)
+            ApplySubProcessAndProcess::destroy($lastProcessApply->id);
+
+        $apply = new ApplySubProcessAndProcess();
+        $apply->processes_id = $processes->id;
+        $apply->subprocesses_id = $subprocesses->id;
+        $apply->purchase_valuation_id = $purchase->id;
+        $apply->save();
 
         $state = [];
         $token = '';
@@ -694,14 +684,13 @@ class PurchaseValuationController extends Controller
         $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first(); 
         $subprocesses_id = $purchase_valuation['subprocesses_id'];
         
-        $processes = DB::table('processes')
-        ->join('subprocesses', 'processes.id', '=', 'subprocesses.processes_id')
-        ->select('processes.name', 'subprocesses.name as subproceso')
-        ->where(function ($query) use ($subprocesses_id) {
-                $query->where('subprocesses.id', '=' , $subprocesses_id);
-        })
-        ->groupBy(DB::raw('processes.id'))
-        ->get();
+        $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $id)->get();
+        $processes = array();
+        foreach ($apply as $key => $value) {
+            $process = Processes::find($value->processes_id);
+            $subprocesses = SubProcesses::find($value->subprocesses_id);
+            array_push($processes, ['name' => $process->name, 'subproceso' => $subprocesses->name]);
+        }
         
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
