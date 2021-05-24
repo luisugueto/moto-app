@@ -91,6 +91,7 @@ class PurchaseManagementController extends Controller
                 'kilometres' => 'required',
                 // 'color' => 'required',
                 'fuel' => 'required',
+                'weight' => 'required',
                 'registration_number' => 'required',
                 'registration_date' => 'required|date',
                 'registration_country' => 'required',
@@ -139,6 +140,7 @@ class PurchaseManagementController extends Controller
                 'kilometres' => 'required',
                 // 'color' => 'required',
                 'fuel' => 'required',
+                'weight' => 'required',
                 'registration_number' => 'required',
                 'registration_date' => 'required|date',
                 'registration_country' => 'required',
@@ -197,6 +199,7 @@ class PurchaseManagementController extends Controller
         $gestion->kilometres = $request->kilometres;
         $gestion->color = $request->color;
         $gestion->fuel = $request->fuel;
+        $gestion->weight = $request->weight;
         $gestion->registration_number = $request->registration_number;
         $gestion->registration_date = $request->registration_date;
         $gestion->registration_country = $request->registration_country;

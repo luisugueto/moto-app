@@ -54,6 +54,7 @@ class CreatePurchaseManagementTable extends Migration
             $table->string('kilometres');
             $table->string('color');
             $table->string('fuel');
+            $table->double('weight', 15, 8);
             $table->string('registration_number');
             $table->date('registration_date');
             $table->string('registration_country');

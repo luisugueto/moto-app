@@ -497,7 +497,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="color" class="">Color:</label>
                                     <input name="color" id="color" type="text" class="form-control"
@@ -536,7 +536,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                                <div class="position-relative form-group">
+                                    <label for="weight" class="">Peso: </label>
+                                    <input name="weight" id="weight" type="number" step="0.1" class="form-control" value="{{ old('weight') }}">
+                                    @if ($errors->has('weight'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('weight') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="registration_number" class="">Matricula:   <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="registration_number" id="registration_number" type="text"

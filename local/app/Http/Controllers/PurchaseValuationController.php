@@ -555,6 +555,7 @@ class PurchaseValuationController extends Controller
                 $purchase_management->kilometres = $purchase_model->km;
                 $purchase_management->color = '';
                 $purchase_management->fuel = '';
+                $purchase_management->weight = 0;
                 $purchase_management->registration_number = '';
                 $purchase_management->registration_date = '';
                 $purchase_management->registration_country = '';
