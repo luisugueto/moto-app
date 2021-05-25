@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Role;
 use App\Permission;
 use App\PermissionsMenu;
+use App\Menu;
 use DB;
 use Redirect;
 
@@ -95,10 +96,12 @@ class RoleController extends Controller
             $role->save();
 
             // add relations rol and permissions menu
-            for($i = 1; $i <= 38; $i++){
+            $menus = Menu::all();
+
+            foreach($menus as $key => $me){
                 $add = new PermissionsMenu();
                 $add->roles_id = $role->id;
-                $add->menus_id = $i;
+                $add->menus_id = $me->id;
                 $add->permissions = '';
                 $add->save();
             }
@@ -202,7 +205,9 @@ class RoleController extends Controller
 
     public function destroy($id)
     {
+        $permissions_menus = DB::table("permissions_menus")->where('roles_id',$id)->delete();
         $role = DB::table("roles")->where('id',$id)->delete();
+
         return response()->json($role);
         // return Redirect::to('/roles')->with('notification', 'Rol eliminado exitosamente!');
     }

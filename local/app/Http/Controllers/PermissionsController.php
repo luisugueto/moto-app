@@ -47,24 +47,29 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
-        $roles = Role::count();
-        $menus = DB::table('menus')->count();
-       
-        for($i = 1; $i <= $roles; $i++){ 
-            for($j = 1; $j <= $menus; $j++){
-                $menu = PermissionsMenu::where('roles_id', $i)->where('menus_id', $j)->first();
+        $roles = Role::all();
+        $menus = Menu::all();
         
-                $menuPermission = '';
-                foreach($request['permissionRol'.$i.'_'.$j] as $key => $value){
-                    if($key == 0)
-                        $menuPermission.=$value;
-                    else
-                        $menuPermission.=','.$value;
-                }
-                $menu = PermissionsMenu::find($menu->id);
+        foreach($roles as $key => $rol){
+            foreach($menus as $key => $me){
+                
+                if(isset($request['permissionRol'.$rol->id.'_'.$me->id])){
+                    $menu = PermissionsMenu::where('roles_id', $rol->id)->where('menus_id', $me->id)->first();
+                    $menuPermission = '';
+                    
+                    foreach($request['permissionRol'.$rol->id.'_'.$me->id] as $key => $value){
+                        if($key == 0)
+                            $menuPermission.=$value;
+                        else
+                            $menuPermission.=','.$value;
+                    }
 
-                $menu->permissions = $menuPermission;
-                $menu->update();
+                    $menu = PermissionsMenu::find($menu->id);
+
+                    $menu->permissions = $menuPermission;
+                    $menu->update();
+                }
+                
             }
         }
             
