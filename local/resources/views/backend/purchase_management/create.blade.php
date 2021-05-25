@@ -538,7 +538,7 @@
                             </div>
                             <div class="col-md-2">
                                 <div class="position-relative form-group">
-                                    <label for="weight" class="">Peso: </label>
+                                    <label for="weight" class="">Peso: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda4" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="weight" id="weight" type="number" step="0.1" class="form-control" value="{{ old('weight') }}">
                                     @if ($errors->has('weight'))
                                         <span class="error text-danger">
@@ -805,6 +805,43 @@
                           <span class="sr-only">Anterior</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Siguiente</span>
+                        </a>
+                      </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modalAyuda4" id="" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">                 
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <br>
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{{ asset('assets/images/ayuda_peso.jpeg')}}" alt="" class="img-fluid w-100">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{{ asset('assets/images/ayuda_peso2.jpeg')}}" alt="" class="img-fluid w-100">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators2" role="button" data-slide="next">
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="sr-only">Siguiente</span>
                         </a>
