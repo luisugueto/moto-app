@@ -206,7 +206,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         $permissions_menus = DB::table("permissions_menus")->where('roles_id',$id)->delete();
-        $role = DB::table("roles")->where('id',$id)->delete();
+        $role = DB::table("roles")->where('id',$id)->delete(); 
 
         return response()->json($role);
         // return Redirect::to('/roles')->with('notification', 'Rol eliminado exitosamente!');

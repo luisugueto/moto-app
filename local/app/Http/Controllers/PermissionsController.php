@@ -69,7 +69,6 @@ class PermissionsController extends Controller
                     $menu->permissions = $menuPermission;
                     $menu->update();
                 }
-                
             }
         }
             
