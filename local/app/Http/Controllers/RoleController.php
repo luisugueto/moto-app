@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Role;
 use App\Permission;
+use App\PermissionsMenu;
 use DB;
 use Redirect;
 
@@ -92,6 +93,15 @@ class RoleController extends Controller
             $role->display_name = $request->input('display_name');
             $role->description = $request->input('description');
             $role->save();
+
+            // add relations rol and permissions menu
+            for($i = 1; $i <= 38; $i++){
+                $add = new PermissionsMenu();
+                $add->roles_id = $role->id;
+                $add->menus_id = $i;
+                $add->permissions = '';
+                $add->save();
+            }
 
             return response()->json($role);
         }
