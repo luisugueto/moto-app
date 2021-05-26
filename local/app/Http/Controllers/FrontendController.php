@@ -65,4 +65,6 @@ class FrontendController extends Controller
         return new LengthAwarePaginator(array_slice($array, $offset, $perPage, true), count($array), $perPage, $page,
             ['path' => $request->url(), 'query' => $request->query()]);
     }
+
+    
 }

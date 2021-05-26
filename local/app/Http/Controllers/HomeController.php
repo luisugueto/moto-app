@@ -42,4 +42,9 @@ class HomeController extends Controller
             ]);
         }
     }
+
+    public function proximamente()
+    {
+        return view('backend.proximamente.index');
+    }
 }

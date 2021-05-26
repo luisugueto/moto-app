@@ -35,7 +35,24 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('documentos-gc', 'DocumentsPurchaseValuationController');
     Route::resource('empresas', 'BusinessController');
     Route::resource('servicios', 'ServicesController');
-    
+
+    //Vistas Proximanente
+    Route::get('/calendarios', 'HomeController@proximamente');
+    Route::get('/mensajes', 'HomeController@proximamente');
+    Route::get('/estados-gt', 'HomeController@proximamente');
+    Route::get('/mensajes-gt', 'HomeController@proximamente');
+    Route::get('/documentos-gt', 'HomeController@proximamente');
+    Route::get('/calendario-gt', 'HomeController@proximamente');
+    Route::get('/estados-gs', 'HomeController@proximamente');
+    Route::get('/mensajes-gs', 'HomeController@proximamente');
+    Route::get('/documentos-gs', 'HomeController@proximamente');
+    Route::get('/estados-gd', 'HomeController@proximamente');
+    Route::get('/mensajes-gd', 'HomeController@proximamente');
+    Route::get('/grupos', 'HomeController@proximamente');
+    Route::get('/clientes-lt', 'HomeController@proximamente');
+    Route::get('/envios-anuales', 'HomeController@proximamente');
+    Route::get('/cargar-cvs-formulario', 'HomeController@proximamente');
+    Route::get('/estadisticas', 'HomeController@proximamente');
 
     Route::post('show-images', 'PurchaseValuationController@showImages');
 
@@ -55,7 +72,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('exportar-envios-quincenales', 'ResiduosController@exportEnviosQuincenales');
     Route::get('envios-semestrales', 'ResiduosController@enviosSemestrales');
     Route::get('exportar-envios-semestrales', 'ResiduosController@exportEnviosSemestrales');
-    Route::get('envios-anuales', 'ResiduosController@enviosAnuales');
+    // Route::get('envios-anuales', 'ResiduosController@enviosAnuales');
     Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
 
     //Change Status Views
