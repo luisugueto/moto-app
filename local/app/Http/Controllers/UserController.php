@@ -378,9 +378,9 @@ class UserController extends Controller
             }
         }
 
-        $configuration = Configuration::find(1);
+        /*$configuration = Configuration::find(1);
         $configuration->last_email_employed = $last_email;
-        $configuration->update();
+        $configuration->update(); */
 
         // INSERT NEW USERS
         DB::table('users')->insert($inserts);

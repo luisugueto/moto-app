@@ -285,10 +285,11 @@ $(document).ready(function(){
         preloader('show');
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: "POST",
-            url: url + '/get_employees_prestashop',         
+            type: "GET",
+            url: '/get_employees_prestashop',         
             dataType: 'json',
              success: function (data) {
+                 console.log(data);
                  if (data.code == 200) {
                     preloader('hide', data.message, 'success');  
                     dataTable.ajax.reload();

@@ -17,7 +17,7 @@ Route::post('getModel', 'HomeController@getModel');
 
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('/home', 'HomeController@index')->name('dashboard');
+    Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');    
     Route::post('uploadImage', 'PurchaseValuationController@uploadImage');    
 
@@ -80,6 +80,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Publish Moto to frontend
     Route::post('empleados/change_status_user', 'UserController@changeStatus');
+    
+    // GET EMPLOYEES PRESTASHOP
+    Route::get('get_employees_prestashop', 'UserController@getEmployeesPrestashop');
 
     //getData from prestashop
     Route::post('motos-que-nos-ofrecen/subasta', 'PurchaseValuationController@PublishMotocycle');
