@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\PurchaseManagement;
 use App\PurchaseValuation;
+use App\ImagesPurchase;
 use App\Http\Requests;
 use Redirect;
 use App\LinksRegister;
+use Mail;
 
 
 class PurchaseManagementController extends Controller
@@ -296,6 +298,21 @@ class PurchaseManagementController extends Controller
         $gestion->status = 1;
 
         $gestion->update();
+
+        $purchase = PurchaseValuation::find($request->purchase_id);
+        $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $request->purchase_id)->get();
+
+        Mail::send('backend.emails.copy-form', ['gestion' => $gestion, 'purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
+
+                    foreach($imagesPurchase as $image){
+                        $message->attach(public_path('img_app/images_purchase/'.$image->name));
+                    }
+                });
 
         return Redirect::to('https://motostion.com/');
     }
