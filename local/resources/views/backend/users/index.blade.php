@@ -116,12 +116,12 @@
                             <input class='form-control' id='phone' name='phone' type='text' value="{{ old('phone') }}" required>
                         </div>
 
-                        <div class='position-relative form-group hide'>
+                        <div class='position-relative form-group'>
                             <label for='password'>Contraseña</label>
                             <input class='form-control' id='password' name='password' type='password' value="{{ old('password') }}" required>
                         </div>
 
-                        <div class='position-relative form-group hide'>
+                        <div class='position-relative form-group'>
                             <label for='password'>Confirmar Contraseña</label>
                             <input class='form-control' id='confirm-password' name='confirm-password' type='password' value="{{ old('confirm-password') }}" required>
                         </div>

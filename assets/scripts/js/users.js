@@ -113,7 +113,6 @@ $(document).ready(function(){
                 $('#phone').val(data.phone);
                 $('#rol_id').val(data.role);
                 $('.previsualizar').attr('src', 'local/public/img_app/profile_images/' + data.ruta);            
-                $('.hide').prop('hidden', true);
                 
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');

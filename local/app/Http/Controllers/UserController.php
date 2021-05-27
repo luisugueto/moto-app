@@ -37,6 +37,7 @@ class UserController extends Controller
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('roles', 'role_user.role_id', '=', 'roles.id')
             ->select('users.*', 'roles.display_name as role')
+            ->where('roles.id', '!=', 1)
             ->get();
 
             $view = getPermission('Empleados', 'record-view');
@@ -195,14 +196,23 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->file('image'));
-        $validator = \Validator::make($request->all(),[
-            'name' => 'required',
-            'last_name' => 'required',
-            'phone' => 'required',
-            'roles' => 'required'
+        if(empty($request->password))
+            $validator = \Validator::make($request->all(),[
+                'name' => 'required',
+                'last_name' => 'required',
+                'phone' => 'required',
+                'roles' => 'required',
+            ]);
+        else
+            $validator = \Validator::make($request->all(),[
+                'name' => 'required',
+                'last_name' => 'required',
+                'phone' => 'required',
+                'roles' => 'required',
+                'password' => 'required|same:confirm_password',
+            ]);
 
-        ]);
+
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
