@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Redirect;
 use Storage;
 use DB;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -355,6 +356,9 @@ class UserController extends Controller
     public function getEmployeesPrestashop()
     {          
         $inserts = [];
+        $users_rol = [];
+
+        $now = Carbon::now('utc')->toDateTimeString();
 
         $select = DB::connection('recambio_ps')
         ->table('recambio_ps.ps_employee')
@@ -362,7 +366,6 @@ class UserController extends Controller
         ->where('active', 1)
         ->get();         
 
-        $last_email = '';
         foreach($select as $bid) {
             // CHECK IF EXIST
             $user = User::where('email', $bid->email)->count();
@@ -372,18 +375,33 @@ class UserController extends Controller
                         'name'=> $bid->firstname,
                         'last_name' => $bid->lastname,
                         'email' => $bid->email,
-                        'password' => $bid->passwd
-                    ]; 
-                $last_email = $bid->email;
+                        'password' => $bid->passwd,
+                        'created_at' => $now,
+                        'updated_at' => $now
+                    ];  
+
+                // $last_email = $bid->email;
             }
         }
 
-        /*$configuration = Configuration::find(1);
-        $configuration->last_email_employed = $last_email;
-        $configuration->update(); */
-
         // INSERT NEW USERS
-        DB::table('users')->insert($inserts);
+        foreach ($inserts as $key => $value) {
+            $user = new User();
+            $user->name = $value['name'];
+            $user->last_name = $value['last_name'];
+            $user->email = $value['email'];
+            $user->password = $value['password'];
+            $user->created_at = $value['created_at'];
+            $user->updated_at = $value['updated_at'];
+            $user->save();
+
+            $role_user = [
+                'user_id' => $user->id,
+                'role_id' => 2
+            ];
+
+            DB::table('role_user')->insert($role_user);
+        }
   
         $data['code'] =  200;
         $data['message'] = 'Refresh';

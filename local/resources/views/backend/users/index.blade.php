@@ -60,6 +60,7 @@
     @section('modals')
     <!-- Passing BASE URL to AJAX -->
     <input id="url" type="hidden" value="{{ \Request::url() }}">
+    <input id="url_base" type="hidden" value="{{ url('/') }}">
 
     <div class="modal fade" id="myModal" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">

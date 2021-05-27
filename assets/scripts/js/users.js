@@ -3,6 +3,8 @@ $(document).ready(function(){
 
     //get base URL *********************
     var url = $('#url').val();
+    var url_base = $('#url_base').val();
+    
     var fileInput2 = '';
 
     $('#tableUsers thead tr').clone(true).appendTo('#tableUsers thead');
@@ -285,11 +287,10 @@ $(document).ready(function(){
         preloader('show');
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: "GET",
-            url: '/get_employees_prestashop',         
+            type: "POST",
+            url: url_base + '/get_employees_prestashop',         
             dataType: 'json',
              success: function (data) {
-                 console.log(data);
                  if (data.code == 200) {
                     preloader('hide', data.message, 'success');  
                     dataTable.ajax.reload();

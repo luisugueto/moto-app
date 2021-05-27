@@ -82,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('empleados/change_status_user', 'UserController@changeStatus');
     
     // GET EMPLOYEES PRESTASHOP
-    Route::get('get_employees_prestashop', 'UserController@getEmployeesPrestashop');
+    Route::post('get_employees_prestashop', 'UserController@getEmployeesPrestashop');
 
     //getData from prestashop
     Route::post('motos-que-nos-ofrecen/subasta', 'PurchaseValuationController@PublishMotocycle');
