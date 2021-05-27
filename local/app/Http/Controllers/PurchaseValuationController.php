@@ -571,7 +571,7 @@ class PurchaseValuationController extends Controller
                 // ENVIAR CORREO
                 Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token, 'subprocesses' => $subprocesses], function ($message) use ($state, $purchase_model)
                 {
-                    $message->from('ugueto.luis19@gmail.com', 'MotOstion');
+                    $message->from('info@motostion.com', 'MotOstion');
 
                     // SE ENVIARA A
                     $message->to($purchase_model->email)->subject($state->name);
@@ -610,7 +610,7 @@ class PurchaseValuationController extends Controller
             $token = '';
             Mail::send('backend.emails.template', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token], function ($message) use ($subprocesses, $purchase)
                 {
-                    $message->from('ugueto.luis19@gmail.com', 'MotOstion');
+                    $message->from('info@motostion.com', 'MotOstion');
 
                     // SE ENVIARA A
                     $message->to($purchase->email)->subject($subprocesses->name);

@@ -55,7 +55,7 @@
                                 Registrarse
                             </a>                      
                         @else                            
-                            <a class="btn btn-light btn-sm ml-3" href="{{ url('/home') }}">{{ Auth::user()->name }}</a>
+                            <a class="btn btn-light btn-sm ml-3" href="{{ url('/motos-que-nos-ofrecen') }}">{{ Auth::user()->name }}</a>
                         
                             <a class="btn btn-secondary btn-sm ml-3" href="{{ url('/logout') }}">Cerrar Sesión</a>
                             
