@@ -37,7 +37,7 @@ class UserController extends Controller
             ->join('role_user', 'users.id', '=', 'role_user.user_id')
             ->join('roles', 'role_user.role_id', '=', 'roles.id')
             ->select('users.*', 'roles.display_name as role')
-            ->where('roles.id', '!=', 1)
+            ->where('users.id', '!=', 1)
             ->get();
 
             $view = getPermission('Empleados', 'record-view');
