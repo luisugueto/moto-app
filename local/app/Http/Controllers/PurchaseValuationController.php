@@ -380,6 +380,20 @@ class PurchaseValuationController extends Controller
             $images_purchase->save();
         }
 
+        $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $purchase->id)->get();
+
+        Mail::send('backend.emails.copy-form', ['purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
+
+                    foreach($imagesPurchase as $image){
+                        $message->attach(public_path('img_app/images_purchase/'.$image->name));
+                    }
+                });
+
         return Redirect::to('https://motostion.com/');
         // return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Tasación creada exitosamente!');
 
