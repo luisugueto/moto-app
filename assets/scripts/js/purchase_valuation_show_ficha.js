@@ -217,8 +217,7 @@ $(document).ready(function () {
 
                 $('#btn-save').val("update");
 
-                //Desguace
-                if (data.states_id == 4) {
+                if (data.states_id != 1) {
                     $('#divProcesosDesguace').css('display', 'block');
                     var sb = '';
                     data.processes.forEach(function (element) {
