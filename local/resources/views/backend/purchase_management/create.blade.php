@@ -176,7 +176,7 @@
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
                                     <label for="phone" class="">Teléfono:</label>
-                                    <input name="phone" id="phone" type="text" class="form-control"
+                                    <input name="phone" id="phone" type="text" class="form-control input-phone"
                                         value="{{ $gestion->phone }}">
                                     @if ($errors->has('phone'))
                                         <span class="error text-danger">
@@ -394,7 +394,7 @@
                                 <div class="position-relative form-group">
                                     <label for="phone_representantive" class="">Teléfono:</label>
                                     <input name="phone_representantive" id="phone_representantive" type="text"
-                                        class="form-control" value="{{ old('phone_representantive') }}">
+                                        class="form-control input-phone" value="{{ old('phone_representantive') }}">
                                     @if ($errors->has('phone_representantive'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('phone_representantive') }}</strong>
@@ -929,5 +929,31 @@
             }
 
         }
+
+        $(".input-phone").keyup(function () { //Keylistener HTML: <input type="text" class="input-iban">
+            val = jQuery(this).val()
+                .replace(new RegExp(" ", 'g'), ''); //remove spaces
+                
+            val_chars = val.split(""); //split chars 
+            val = ""; //new value
+            
+            count = 1;
+            for(index in val_chars) {                
+                if (val_chars[index].search(/^[0-9]+$/) == -1) { //search for 0-9
+                    continue; //if not found (error)
+                }
+               
+                if(val.length < 9){
+                    val += val_chars[index]; // add char to return Value
+                }
+                // if(count%4 == 0 && val.length < 24) { //Avery 4 chars an space
+                //     val += " "; 
+                // }
+                
+                count++;
+            }
+            jQuery(this).val(val); //set to Textfield value
+        });   
+ 
     </script>
 @endsection
