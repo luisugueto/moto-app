@@ -70,7 +70,7 @@ $(document).ready(function(){
                 "targets": -1
             } 
         ],
-        "order": [[0, "desc"]]
+        "order": [[0, "asc"]]
     });
 
     //display modal form for creating new product *********************

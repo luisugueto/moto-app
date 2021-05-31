@@ -217,8 +217,7 @@ $(document).ready(function () {
 
                 $('#btn-save').val("update");
 
-                //Desguace
-                // if (data.states_id == 4) {
+                if (data.states_id != 1) {
                     $('#divProcesosDesguace').css('display', 'block');
                     var sb = '';
                     data.processes.forEach(function (element) {
@@ -241,7 +240,7 @@ $(document).ready(function () {
                             '</li>'
                         );
                     });
-                // }
+                }
                 $('#form_display_datos_mecanico').html(data.form_display_datos_mecanico);
                 $('#form_display_datos_internos').html(data.form_display_datos_internos);
             },

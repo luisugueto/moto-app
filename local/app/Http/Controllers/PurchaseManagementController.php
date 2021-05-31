@@ -300,21 +300,6 @@ class PurchaseManagementController extends Controller
 
         $gestion->update();
 
-        $purchase = PurchaseValuation::find($request->purchase_id);
-        $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $request->purchase_id)->get();
-
-        Mail::send('backend.emails.copy-form', ['gestion' => $gestion, 'purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
-                {
-                    $message->from('info@motostion.com', 'MotOstion');
-
-                    // SE ENVIARA A
-                    $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
-
-                    foreach($imagesPurchase as $image){
-                        $message->attach(public_path('img_app/images_purchase/'.$image->name));
-                    }
-                });
-
         return Redirect::to('https://motostion.com/');
     }
 
