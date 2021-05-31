@@ -218,7 +218,7 @@ $(document).ready(function () {
                 $('#btn-save').val("update");
 
                 //Desguace
-                if (data.states_id == 4) {
+                // if (data.states_id == 4) {
                     $('#divProcesosDesguace').css('display', 'block');
                     var sb = '';
                     data.processes.forEach(function (element) {
@@ -241,7 +241,9 @@ $(document).ready(function () {
                             '</li>'
                         );
                     });
-                }
+                // }
+                $('#form_display_datos_mecanico').html(data.form_display_datos_mecanico);
+                $('#form_display_datos_internos').html(data.form_display_datos_internos);
             },
             error: function (data) {
                 console.log('Error:', data);
@@ -256,25 +258,13 @@ $(document).ready(function () {
     $("#btn-save").click(function (e) {
 
         e.preventDefault();
-        var data = $('#form_display_complement').find('select, textarea, input').serializeArray();
-        var dataArray = [];
+        var data = $('#form_display_complement').find('select, textarea, input').serializeArray(),
+            data3 = $(' #form_display_datos_internos').find('select, textarea, input').serializeArray(),
+            data2 = $(' #form_display_datos_mecanico').find('select, textarea, input').serializeArray();
+        var dataArray = [], dataMecanicArray = [], dataInternArray = []; ;
 
         for (i = 0; i < data.length; i++) {
-            if ($('#' + data[i].name + '.tagss').length) {
-                var find = false;
-                $.each(dataArray, function (key, val) {
-                    if (val.name == data[i].name) {
-                        dataArray[key].value = data[i].value + ',' + val.value;
-                        find = true;
-                    }
-                });
-                if (!find) {
-                    dataArray.push({
-                        name: data[i].name,
-                        value: data[i].value
-                    });
-                }
-            } else if ($('#' + data[i].name + '.date').length) {
+            if ($('#' + data[i].name + '.date').length) {
                 var today = new Date(data[i].value);
                 var dd = String(today.getDate()).padStart(2, '0');
                 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -289,6 +279,46 @@ $(document).ready(function () {
                 dataArray.push({
                     name: data[i].name,
                     value: data[i].value
+                });
+            }
+        }
+
+        for (i = 0; i < data2.length; i++) {
+            if ($('#' + data2[i].name + '.date').length) {
+                var today = new Date(data2[i].value);
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = yyyy + '-' + mm + '-' + dd;
+
+                dataMecanicArray.push({
+                    name: data2[i].name,
+                    value: today
+                });
+            } else {
+                dataMecanicArray.push({
+                    name: data2[i].name,
+                    value: data2[i].value
+                });
+            }
+        }
+
+        for (i = 0; i < data3.length; i++) {
+            if ($('#' + data3[i].name + '.date').length) {
+                var today = new Date(data3[i].value);
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                today = yyyy + '-' + mm + '-' + dd;
+
+                dataInternArray.push({
+                    name: data3[i].name,
+                    value: today
+                });
+            } else {
+                dataInternArray.push({
+                    name: data3[i].name,
+                    value: data3[i].value
                 });
             }
         }
@@ -348,7 +378,7 @@ $(document).ready(function () {
         else if ($('#partially_disassembled').is(':checked'))
             vehicle_state = 'Parcialmente desmontado';
 
-        var dataSerialize = JSON.stringify(dataArray, null, 2);
+        var dataSerialize = JSON.stringify(dataArray, null, 2), dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2), dataSerialize3 = JSON.stringify(dataInternArray, null, 2) ;
         var formData = {
             purchase_id: $('#purchase_id').val(),
             brand: $("#brand").val(),
@@ -409,7 +439,9 @@ $(document).ready(function () {
             registration_date: $('#registration_date').val(),
             registration_country: $('#registration_country').val(),
             frame_no: $('#frame_no').val(),
-            motor_no: $('#motor_no').val()
+            motor_no: $('#motor_no').val(),
+            datos_del_mecanico: dataSerialize2.replace(/\s+/g, " "),
+            datos_internos: dataSerialize3.replace(/\s+/g, " ")
         }
         preloader('show');
         $.ajax({

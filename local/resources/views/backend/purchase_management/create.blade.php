@@ -563,7 +563,7 @@
                         <div class="form-row row g-1">
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
-                                    <label for="registration_date" class="">Fecha de Matriculación:</label>
+                                    <label for="registration_date" class="">Fecha de Matriculación: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda1" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="registration_date" id="registration_date" type="date" class="form-control"
                                         value="{{ old('registration_date') }}">
                                     @if ($errors->has('registration_date'))

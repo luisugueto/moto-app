@@ -118,6 +118,16 @@
                             <span>Datos momento de entrega</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-9">
+                            <span>Datos del motor (Mécanico)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-ficha-10">
+                            <span>Datos Internos</span>
+                        </a>
+                    </li>
                 </ul>
                 <form role="form">
                        {{ csrf_field() }}
@@ -1010,6 +1020,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="tab-pane" id="tab-ficha-9" role="tabpanel">
+                            <div class="card-body" id="form_display_datos_mecanico"></div>
+                        </div>
+                        <div class="tab-pane" id="tab-ficha-10" role="tabpanel">
+                            <div class="card-body" id="form_display_datos_internos"></div>
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
