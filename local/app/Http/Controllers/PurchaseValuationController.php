@@ -876,36 +876,51 @@ class PurchaseValuationController extends Controller
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
         $purchase_management->datos_internos = $request->datos_internos;
         $purchase_management->update();
-        
-        //CREATE PDF
-        $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
-        $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($view);
 
-        $output = $pdf->output();
-        $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
-        file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+            // CREATE PDF
+            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
 
-        //SendMail Mecanico
+            $output = $pdf->output();
+            $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
+            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to($purchase->email)->subject('Documento a Firmar');
+
+                    $message->attach(public_path().'/pdfs/'.$nameFile);
+                });
+
+            $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar.';
+        }else{
+            $out['message'] = 'Registro Actualizado Exitosamente.';
+        }
+
         if($request->sendMailMecanico == 1){
             $mecanico = $request->datos_del_mecanico;
             $subject = 'Datos para el mécanico de la moto #'. $request->file_no;
 
             Mail::send('backend.emails.mecanico', ['dataSerialize' => $mecanico, 'subject' => $subject], function ($message) use ($mecanico, $subject)
                 {
-                    $message->from('info@motostion.com', 'MotOstion');
+                $message->from('info@motostion.com', 'MotOstion');
 
-                    // SE ENVIARA A
-                    $message->to($request->mailMecanico)->subject($subject);
-                });
+                // SE ENVIARA A
+
+                $message->to($request->mailMecanico)->subject($subject);
+            });
         }
 
         $json_data = array('data'=> $purchase_management);
-        $json_data= collect($json_data);  
+        $json_data = collect($json_data);  
 
         $out['code'] = 200;
         $out['data'] = $json_data;
-        $out['message'] = 'Registro Actualizado Exitosamente. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
 
         return response()->json($out);
     }
