@@ -816,7 +816,7 @@ class PurchaseValuationController extends Controller
         $purchase->price_min = $request->price_min;
         $purchase->observations = $request->observations;
         $purchase->data_serialize = $request->data_serialize;
-        $purchase->update();
+       // $purchase->update();
 
         if($request->documents_attached == 'on'){
             $documents_attached = 1;
@@ -875,7 +875,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->vehicle_state = $request->vehicle_state;
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
         $purchase_management->datos_internos = $request->datos_internos;
-        $purchase_management->update();
+        //$purchase_management->update();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
             // CREATE PDF
@@ -902,9 +902,12 @@ class PurchaseValuationController extends Controller
             $out['message'] = 'Registro Actualizado Exitosamente.';
         }
 
+        //dd($request->mailMecanico);
         if($request->sendMailMecanico == 1){
             $mecanico = $request->datos_del_mecanico;
             $subject = 'Datos para el mécanico de la moto #'. $request->file_no;
+
+            dd($request->mailMecanico);
 
             Mail::send('backend.emails.mecanico', ['dataSerialize' => $mecanico, 'subject' => $subject], function ($message) use ($mecanico, $subject)
                 {
