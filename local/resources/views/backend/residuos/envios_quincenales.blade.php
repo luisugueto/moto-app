@@ -18,6 +18,20 @@
 
 <div class="row">
     <div class="col-md-12">
+        <div class="row">
+            <div class="input-group col-md-3">
+                <select name="applySubProcesses" class="custom-select" id="applySubProcesses">
+                    <option value="" disabled selected>Elegir Destino de la Moto</option>
+                    @foreach($subprocesses as $subprocesse)
+                        <option value="{{ $subprocesse->id }}">{{ $subprocesse->name }}</option>
+                    @endforeach
+                </select>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-primary" id="btnApplySubProcesses">Aplicar</button>
+                </div>
+            </div>
+        </div>
+
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
@@ -96,12 +110,13 @@
                                     </button>
                                 </div>
                             </div>
-                            <a href="{{ url('exportar-envios-quincenales')}}" class="btn btn-info mr-2 float-right">Exportar</a>
+                            <a href="{{ url('exportar-envios-quicenales-sin-gestionar')}}" class="btn btn-info mr-2 float-right">Exportar</a>
                         </h5>     
         
                             <table style="width: 100%" id="tableEnviosQuincenalesSinGestionar" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Modelo</th>
                                         <th class="text-center">Matricula</th>
                                         <th class="text-center">Fecha Matriculación</th>
@@ -192,12 +207,14 @@
                                     </button>
                                 </div>
                             </div>
-                            <a href="{{ url('exportar-envios-quincenales')}}" class="btn btn-info mr-2 float-right">Exportar</a>
+                            
+                            <a href="{{ url('exportar-envios-quicenales-gestionados')}}" class="btn btn-info mr-2 float-right">Exportar</a>
                         </h5>     
         
                             <table style="width: 100%" id="tableEnviosQuincenalesGestionados" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th></th>
                                         <th>Modelo</th>
                                         <th class="text-center">Matricula</th>
                                         <th class="text-center">Fecha Matriculación</th>

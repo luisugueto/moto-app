@@ -39,6 +39,13 @@ $(document).ready(function(){
             }
         },
         "columns": [
+            { "data": null,
+                render:function(data){
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+        
+                },
+                "targets": -1
+            },  
             { "data": "model" },
             { "data": "registration_number" },
             { "data": "registration_date" },
@@ -147,6 +154,13 @@ $(document).ready(function(){
                 }
             },
             "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
                 { "data": "model" },
                 { "data": "registration_number" },
                 { "data": "registration_date" },
@@ -277,6 +291,13 @@ $(document).ready(function(){
                 }
             },
             "columns": [
+                { "data": null,
+                    render:function(data){
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+            
+                    },
+                    "targets": -1
+                },  
                 { "data": "model" },
                 { "data": "registration_number" },
                 { "data": "registration_date" },
@@ -365,6 +386,45 @@ $(document).ready(function(){
             // Toggle the visibility            
             column.visible(!column.visible());
         });
+    });
+
+    ////////////////////////////////////////////////////////////////////////////
+    $('#btnApplySubProcesses').click(function() {
+
+        var motos = '';
+        preloader('show');
+       
+        $("input[name=apply]").each(function(index) {
+            if ($(this).is(':checked')) {
+                motos += $(this).val() + ',';
+            }
+        });
+        var formData = {
+            applySubProcesses: $('#applySubProcesses').val(),
+            apply: motos.slice(0, -1)  
+        };
+
+        $.ajax({
+            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+            type: 'POST',
+            url: 'envios-quincenales/applySubProcesses',
+            data: formData,
+            dataType: 'json',
+            success: function (response) {
+                console.log(response)
+                if (response.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', response.message, 'success');
+                }
+                if (response.code == 204) {
+                    preloader('hide', response.message, 'error');
+                }
+            },
+            error: function (data) {
+               console.log('Error:', data);                
+            }
+        });
+        
     });
 
 });

@@ -5,7 +5,11 @@ use Illuminate\Http\Request;
 use App\Exports\EnviosQuincenalesExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests;
-use PurchaseManagement;
+use App\PurchaseManagement;
+use App\PurchaseValuation;
+use App\Processes;
+use App\SubProcesses;
+use App\ApplySubProcessAndProcess;
 use DB;
 
 class ResiduosController extends Controller
@@ -13,23 +17,22 @@ class ResiduosController extends Controller
     
     public function enviosQuincenales()
     {
-       return view ('backend.residuos.envios_quincenales');
+        $subprocesses = SubProcesses::where('processes_id' , '=', 5)->get();
+        return view ('backend.residuos.envios_quincenales', compact('subprocesses'));
        
     }
 
     public function getEnviosQuincenalesSinGestionar()
     {
-        $purchases = DB::table('purchase_management')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'purchase_management.purchase_valuation_id')
-        ->select('purchase_management.*', 'apply.processes_id', 'apply.subprocesses_id')
-        ->where('apply.processes_id', '=', 5)
-        ->orWhere(function($query)
-        {
-            $query->where('apply.subprocesses_id', '=', 5);
-        })
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5) 
+        ->where('apply.subprocesses_id', '=', 6) 
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
-      
+        // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
@@ -38,21 +41,21 @@ class ResiduosController extends Controller
         foreach($purchases as $value){  
 
             $row = array();      
-            $row['id'] = $value->id;
-            $row['model'] = $value->model;
+            $row['id'] = $value->id_pv;
+            $row['model'] = $value->model1;
             $row['registration_number'] = $value->registration_number;
             $row['registration_date'] = $value->registration_date;
             $row['frame_no'] = $value->frame_no;
             $row['vehicle_state_trafic'] = $value->vehicle_state_trafic;
             $row['weight'] = round($value->weight, 2);
-            $row['titular'] = $value->name. ' '. $value->firts_surname . ' '. $value->second_surtname;
+            $row['titular'] = $value->pvname. ' '. $value->lastname;
             $row['dni'] = $value->dni;
             $row['birthdate'] = $value->birthdate;
             $row['direction'] = $value->street.' '. $value->nro_street;
             $row['postal_code'] = $value->postal_code;
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
-            $row['vehicle_state'] = $value->vehicle_state;
+            $row['vehicle_state'] = $value->status_trafic;
             $row['current_year'] = $value->current_year;
             $row['certificate_destruction_date'] = $value->current_year;
             $row['collection_contract_date'] = $value->collection_contract_date;
@@ -69,41 +72,38 @@ class ResiduosController extends Controller
 
     public function getEnviosQuincenalesGestionadas()
     {
-        $purchases = DB::table('purchase_management')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'purchase_management.purchase_valuation_id')
-        ->select('purchase_management.*', 'apply.processes_id', 'apply.subprocesses_id')
-        ->where('apply.processes_id', '=', 5)
-        ->orWhere(function($query)
-        {
-            $query->where('apply.subprocesses_id', '=', 5);
-        })
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5) 
+        ->where('apply.subprocesses_id', '=', 5) 
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
-        
+        // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
- 
+        foreach($purchases as $value){  
 
             $row = array();      
-            $row['id'] = $value->id;
-            $row['model'] = $value->model;
+            $row['id'] = $value->id_pv;
+            $row['model'] = $value->model1;
             $row['registration_number'] = $value->registration_number;
             $row['registration_date'] = $value->registration_date;
             $row['frame_no'] = $value->frame_no;
             $row['vehicle_state_trafic'] = $value->vehicle_state_trafic;
-            $row['weight'] = '';
-            $row['titular'] = $value->name. ' '. $value->firts_surname . ' '. $value->second_surtname;
+            $row['weight'] = round($value->weight, 2);
+            $row['titular'] = $value->pvname. ' '. $value->lastname;
             $row['dni'] = $value->dni;
             $row['birthdate'] = $value->birthdate;
             $row['direction'] = $value->street.' '. $value->nro_street;
             $row['postal_code'] = $value->postal_code;
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
-            $row['vehicle_state'] = $value->vehicle_state;
+            $row['vehicle_state'] = $value->status_trafic;
             $row['current_year'] = $value->current_year;
             $row['certificate_destruction_date'] = $value->current_year;
             $row['collection_contract_date'] = $value->collection_contract_date;
@@ -118,32 +118,86 @@ class ResiduosController extends Controller
         return response()->json($json_data);
     }
 
-    public function exportEnviosQuincenales(){
+    public function exportEnviosQuincenalesSinGestionar(){
 
-        $purchases = DB::table('purchase_management')
-        ->select('purchase_management.*')
-        ->groupBy(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
-        // ->toSql();
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5) 
+        ->where('apply.subprocesses_id', '=', 6) 
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
         
         $data = array();
         foreach($purchases as $value){  
 
             $row = array();      
-            $row['Modelo'] = $value->model;
+            $row['id'] = $value->id_pv;
+            $row['Modelo'] = $value->model1;
             $row['Matricula'] = $value->registration_number;
             $row['Fecha Matriculación'] = $value->registration_date;
             $row['Bastidor'] = $value->frame_no;
             $row['Estado en tráfico'] = $value->vehicle_state_trafic;
             $row['Peso (kg)'] = '';
-            $row['Titular'] = $value->name. ' '. $value->firts_surname . ' '. $value->second_surtname;
+            $row['Titular'] = $value->pvname. ' '. $value->lastname;
             $row['Dni'] = $value->dni;
             $row['Fecha de Nacimiento'] = $value->birthdate;
             $row['Dirección'] = $value->street.' '. $value->nro_street;
             $row['Codigo Postal'] = $value->postal_code;
             $row['Población'] = $value->municipality;
             $row['Provincia'] = $value->province;
-            $row['Estado Moto'] = $value->vehicle_state;
+            $row['Estado Moto'] = $value->status_trafic;
+            $row['Fecha de Baja'] = $value->current_year;
+            $row['N° Certificado de Destrucción'] = $value->purchase_valuation_id;
+            $row['Fecha Certificado de Destrucció'] = $value->current_year;
+            $row['Fecha de Descontaminacion'] = $value->collection_contract_date;
+            $data[] = $row;
+        }
+        // $json_data = array('data'=> $row);
+        
+        Excel::create('envios_quincenales', function($excel) use($data) {
+        
+            $excel->sheet('Hoja1', function($sheet) use($data) {
+        
+                $sheet->fromArray($data);
+        
+            });
+        
+        })->export('xls');
+    }
+
+
+    public function exportEnviosQuincenalesGestionadas(){
+
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5) 
+        ->where('apply.subprocesses_id', '=', 5) 
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
+        ->get();
+        
+        $data = array();
+        foreach($purchases as $value){  
+
+            $row = array();      
+            $row['id'] = $value->id_pv;
+            $row['Modelo'] = $value->model1;
+            $row['Matricula'] = $value->registration_number;
+            $row['Fecha Matriculación'] = $value->registration_date;
+            $row['Bastidor'] = $value->frame_no;
+            $row['Estado en tráfico'] = $value->vehicle_state_trafic;
+            $row['Peso (kg)'] = '';
+            $row['Titular'] = $value->pvname. ' '. $value->lastname;
+            $row['Dni'] = $value->dni;
+            $row['Fecha de Nacimiento'] = $value->birthdate;
+            $row['Dirección'] = $value->street.' '. $value->nro_street;
+            $row['Codigo Postal'] = $value->postal_code;
+            $row['Población'] = $value->municipality;
+            $row['Provincia'] = $value->province;
+            $row['Estado Moto'] = $value->status_trafic;
             $row['Fecha de Baja'] = $value->current_year;
             $row['N° Certificado de Destrucción'] = $value->purchase_valuation_id;
             $row['Fecha Certificado de Destrucció'] = $value->current_year;
@@ -259,5 +313,42 @@ class ResiduosController extends Controller
             });
         
         })->export('xls');
+    }
+
+    public function applySubProcesses(Request $request)
+    {
+        
+        $motos = explode(",", $request->apply);
+       
+        $out['code'] = 204;
+        $out['message'] = 'Hubo un error';
+
+        foreach($motos as $purchase) {
+            $subprocesses = SubProcesses::find($request->applySubProcesses);
+            $purchase = PurchaseValuation::find($purchase);
+            // check last process and delete
+            $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->first();
+            $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->count();
+
+            if($countLastProcessApply > 0)
+                $lastProcessApply->subprocesses_id = $subprocesses->id;
+                $lastProcessApply->update();
+
+        } 
+
+        // if($countLastProcessApply > 0)
+            // ApplySubProcessAndProcess::destroy($lastProcessApply->id);
+
+        // $apply = new ApplySubProcessAndProcess();
+        // $apply->processes_id = $processes->id;
+        // $apply->subprocesses_id = $subprocesses->id;
+        // $apply->purchase_valuation_id = $purchase->id;
+        // $apply->save();
+         
+        $out['code'] = 200;
+        $out['data'] = $purchase;
+        $out['message'] = 'Se ha aplicado el proceso Exitosamente';
+
+        return response()->json($out);
     }
 }

@@ -69,11 +69,16 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Residuos
     Route::get('envios-quincenales', 'ResiduosController@enviosQuincenales');
-    Route::get('exportar-envios-quincenales', 'ResiduosController@exportEnviosQuincenales');
+    Route::get('exportar-envios-quicenales-sin-gestionar', 'ResiduosController@exportEnviosQuincenalesSinGestionar');
+    Route::get('exportar-envios-quicenales-gestionados', 'ResiduosController@exportEnviosQuincenalesGestionadas');
     Route::get('envios-semestrales', 'ResiduosController@enviosSemestrales');
     Route::get('exportar-envios-semestrales', 'ResiduosController@exportEnviosSemestrales');
     // Route::get('envios-anuales', 'ResiduosController@enviosAnuales');
-    Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
+    // Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
+
+    //Apply Subprocesse Residuos
+    Route::post('envios-quincenales/applySubProcesses', 'ResiduosController@applySubProcesses');
+    
 
     //Change Status Views
     Route::post('empleados/change_status_user', 'UserController@changeStatus');
