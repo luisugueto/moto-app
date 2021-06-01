@@ -20,18 +20,22 @@ class ResiduosController extends Controller
     public function getEnviosQuincenalesSinGestionar()
     {
         $purchases = DB::table('purchase_management')
-        ->select('purchase_management.*')
-        ->groupBy(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
-        ->where('status', 1)
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'purchase_management.purchase_valuation_id')
+        ->select('purchase_management.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->orWhere(function($query)
+        {
+            $query->where('apply.subprocesses_id', '=', 5);
+        })
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         ->get();
-        
+      
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
- 
+        foreach($purchases as $value){  
 
             $row = array();      
             $row['id'] = $value->id;
@@ -40,7 +44,7 @@ class ResiduosController extends Controller
             $row['registration_date'] = $value->registration_date;
             $row['frame_no'] = $value->frame_no;
             $row['vehicle_state_trafic'] = $value->vehicle_state_trafic;
-            $row['weight'] = '';
+            $row['weight'] = round($value->weight, 2);
             $row['titular'] = $value->name. ' '. $value->firts_surname . ' '. $value->second_surtname;
             $row['dni'] = $value->dni;
             $row['birthdate'] = $value->birthdate;
@@ -66,9 +70,14 @@ class ResiduosController extends Controller
     public function getEnviosQuincenalesGestionadas()
     {
         $purchases = DB::table('purchase_management')
-        ->select('purchase_management.*')
-        ->groupBy(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
-        ->where('status', 1)
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'purchase_management.purchase_valuation_id')
+        ->select('purchase_management.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->orWhere(function($query)
+        {
+            $query->where('apply.subprocesses_id', '=', 5);
+        })
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         ->get();
         
         $view = getPermission('Envíos Quincenales', 'record-view');
