@@ -1022,9 +1022,15 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="tab-ficha-9" role="tabpanel">
+                            <div class="col-md-12">
+                                <button class="btn btn-warning float-right" id="editTabFicha9" type="button"><i class="fa fa-edit"></i> Editar</button>
+                            </div>
                             <div class="card-body" id="form_display_datos_mecanico"></div>
                         </div>
                         <div class="tab-pane" id="tab-ficha-10" role="tabpanel">
+                            <div class="col-md-12">
+                                <button class="btn btn-warning float-right" id="editTabFicha10" type="button"><i class="fa fa-edit"></i> Editar</button>
+                            </div>
                             <div class="card-body" id="form_display_datos_internos"></div>
                         </div>
                     </div>

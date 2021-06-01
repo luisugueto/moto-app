@@ -876,8 +876,8 @@ class PurchaseValuationController extends Controller
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
         $purchase_management->datos_internos = $request->datos_internos;
         $purchase_management->update();
-
-        // CREATE PDF
+        
+        //CREATE PDF
         $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
@@ -886,6 +886,19 @@ class PurchaseValuationController extends Controller
         $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
         file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
+        //SendMail Mecanico
+        if($request->sendMailMecanico == 1){
+            $mecanico = $request->datos_del_mecanico;
+            $subject = 'Datos para el mécanico de la moto #'. $request->file_no;
+
+            Mail::send('backend.emails.mecanico', ['dataSerialize' => $mecanico, 'subject' => $subject], function ($message) use ($mecanico, $subject)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to($request->mailMecanico)->subject($subject);
+                });
+        }
 
         $json_data = array('data'=> $purchase_management);
         $json_data= collect($json_data);  

@@ -2,6 +2,7 @@ $(document).ready(function () {
     var url = $('#url').val();
     var url_process = $('#url_process').val();
     var url_index = $('#url_index').val();
+    var mailMecanico = '';
 
     var action = sessionStorage.getItem('action');
 
@@ -40,15 +41,15 @@ $(document).ready(function () {
                     $('#low').attr('checked', true)
 
      
-                if(data.motocycle_state  == "Golpe Delantero")
+                if (data.motocycle_state == "Golpe Delantero")
                     $('#g_del').attr('checked', true)
-                else if(data.motocycle_state  == "Golpe Trasero")
+                else if (data.motocycle_state == "Golpe Trasero")
                     $('#g_tras').attr('checked', true)
-                else if(data.motocycle_state  == "Avería Eléctrica")
+                else if (data.motocycle_state == "Avería Eléctrica")
                     $('#av_elec').attr('checked', true)
-                else if(data.motocycle_state  == "Avería Mecánica")
+                else if (data.motocycle_state == "Avería Mecánica")
                     $('#av_mec').attr('checked', true)
-                else if(data.motocycle_state  == "Vieja o Abandonada")
+                else if (data.motocycle_state == "Vieja o Abandonada")
                     $('#old').attr('checked', true)
 
                 $('#price_min').val(data.price_min);
@@ -195,23 +196,23 @@ $(document).ready(function () {
                     $("#documents").append('<a href="' + data.link + '/local/public/documents_purchase/' + element.name + '" target="_blank" style="margin: 15px">' + element.name + '</a>');
                 });
 
-                if(data.dni_doc !== null)
-                    data.dni_doc.split(',').forEach(function(element){
+                if (data.dni_doc !== null)
+                    data.dni_doc.split(',').forEach(function (element) {
                         $("#documents").append('<a href="' + data.link + '/local/public/dni/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
                     });
 
-                if(data.per_circulacion !== null)
-                    data.per_circulacion.split(',').forEach(function(element){
+                if (data.per_circulacion !== null)
+                    data.per_circulacion.split(',').forEach(function (element) {
                         $("#documents").append('<a href="' + data.link + '/local/public/per_circulacion/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
                     });
                 
-                if(data.ficha_tecnica !== null)
-                    data.ficha_tecnica.split(',').forEach(function(element){
+                if (data.ficha_tecnica !== null)
+                    data.ficha_tecnica.split(',').forEach(function (element) {
                         $("#documents").append('<a href="' + data.link + '/local/public/ficha_tecnica/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
                     });
                 
-                if(data.other_docs !== null)
-                    data.other_docs.split(',').forEach(function(element){
+                if (data.other_docs !== null)
+                    data.other_docs.split(',').forEach(function (element) {
                         $("#documents").append('<a href="' + data.link + '/local/public/other_docs/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
                     });
 
@@ -232,16 +233,27 @@ $(document).ready(function () {
                             '<div class="widget-heading">' + element.name + '</div>' +
                             '</div>' +
                             '<div class="widget-content-right widget-content-actions"></div>' +
-                            '<div class="widget-content-right ml-3" id="divSubProceso">'+
-                            '<div class="badge badge-pill badge-primary">' + element.subproceso + '</div>'+
-                            '</div>'+
-                            '</div>'+
-                            '</div>'+
+                            '<div class="widget-content-right ml-3" id="divSubProceso">' +
+                            '<div class="badge badge-pill badge-primary">' + element.subproceso + '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
                             '</li>'
                         );
                     });
                 }
                 $('#form_display_datos_mecanico').html(data.form_display_datos_mecanico);
+ 
+                $('#form_display_datos_mecanico').find('select, textarea, input').each(function (index, detalle) {
+                    if (index === 0) $(this).val(data.brand);
+                    if (index === 1) $(this).val(data.model);
+                    if (index === 2) $(this).val(data.id);
+                    if (index === 3) $(this).val(data.motor_no);
+                    if (index === 7) $(this).val(data.km);
+                    if( index === 10) mailMecanico = $(this).val();
+                  
+                    $(this).prop('disabled', true);
+                });
                 $('#form_display_datos_internos').html(data.form_display_datos_internos);
             },
             error: function (data) {
@@ -257,6 +269,7 @@ $(document).ready(function () {
     $("#btn-save").click(function (e) {
 
         e.preventDefault();
+        
         var data = $('#form_display_complement').find('select, textarea, input').serializeArray(),
             data3 = $(' #form_display_datos_internos').find('select, textarea, input').serializeArray(),
             data2 = $(' #form_display_datos_mecanico').find('select, textarea, input').serializeArray();
@@ -301,7 +314,22 @@ $(document).ready(function () {
                 });
             }
         }
-
+        // esto es para verificar si los datos del formulario estan llenos, para que se pueda enviar el correo al mecanico
+        var inputLenght = 0;
+        $.each(dataMecanicArray, function (i, v) {
+            
+            if (i === 4 && v.value != '')
+                inputLenght++;
+            if (i === 5 && v.value != '')
+                inputLenght++;
+            if (i === 6 && v.value != '')
+                inputLenght++;
+            if (i === 8 && v.value != '')
+                inputLenght++;
+            if (i === 9 && v.value != '')
+                inputLenght++;           
+        });
+        
         for (i = 0; i < data3.length; i++) {
             if ($('#' + data3[i].name + '.date').length) {
                 var today = new Date(data3[i].value);
@@ -321,8 +349,7 @@ $(document).ready(function () {
                 });
             }
         }
-        // console.log(dataArray)
-
+        
         var status_trafic = '';
         if ($('#high').is(':checked'))
             status_trafic = 'Alta';
@@ -440,7 +467,9 @@ $(document).ready(function () {
             frame_no: $('#frame_no').val(),
             motor_no: $('#motor_no').val(),
             datos_del_mecanico: dataSerialize2.replace(/\s+/g, " "),
-            datos_internos: dataSerialize3.replace(/\s+/g, " ")
+            datos_internos: dataSerialize3.replace(/\s+/g, " "),
+            sendMailMecanico: inputLenght == '5' ? 1 : 0,
+            mailMecanico: mailMecanico
         }
         preloader('show');
         $.ajax({
@@ -522,6 +551,21 @@ $(document).ready(function () {
     $('#editTabFicha8').click(function (e) {
         e.preventDefault();
         $('#tab-ficha-8').find('select, textarea, input').each(function () {
+            if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+        });
+    });
+    ///////////////////////////////////////////////
+    $('#editTabFicha9').click(function (e) {
+        e.preventDefault();
+        $('#tab-ficha-9').find('select, textarea, input').each(function () {
+            if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+        });
+    });
+
+    ///////////////////////////////////////////////
+    $('#editTabFicha10').click(function (e) {
+        e.preventDefault();
+        $('#tab-ficha-10').find('select, textarea, input').each(function () {
             if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
         });
     });
