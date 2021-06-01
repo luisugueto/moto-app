@@ -1104,7 +1104,6 @@ $(document).ready(function(){
      $('#ver').click(function(){
 
         if(verify_model_brand == 1){
-        // if ($(".ocultar").is(":visible")) {
             $(this).html("Elegir marca y modelo de la lista");
             
             $('#model').attr('disabled', 'disabled');
@@ -1123,8 +1122,6 @@ $(document).ready(function(){
 
             $(".ocultar").show();
             $(".mostrar").hide();
-            
-
         } else {
 
             $(this).html("No encuentro Modelo/marca");
@@ -1133,8 +1130,6 @@ $(document).ready(function(){
             $('#model_text').removeAttr('required');
             $('#brand_text').attr('disabled', 'disabled');
             $('#model_text').attr('disabled', 'disabled');
-            $('#brand_text').val('');
-            $('#model_text').val('');
             $('#brand_text').val('');
             $('#model_text').val('');
 
