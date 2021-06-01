@@ -9,7 +9,7 @@ class PurchaseValuation extends Model
     protected $table = 'purchase_valuation';
 
     protected $fillable = [
-    	'date', 'brand', 'model', 'year', 'km', 'email', 'name', 'lastname', 'phone', 'province', 'status_trafic', 'motocycle_state', 'price_min', 'observations', 'states_id', 'data_serialize'
+    	'date', 'brand', 'model', 'year', 'km', 'email', 'name', 'lastname', 'phone', 'province', 'status_trafic', 'motocycle_state', 'price_min', 'observations', 'states_id', 'data_serialize', 'exist_model_brand'
     ];
 
     public function state(){

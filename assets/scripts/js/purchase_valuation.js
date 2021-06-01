@@ -1098,6 +1098,57 @@ $(document).ready(function(){
          });
         
     });
+
+    var verify_model_brand = null;
+
+     $('#ver').click(function(){
+
+        if(verify_model_brand == 1){
+        // if ($(".ocultar").is(":visible")) {
+            $(this).html("Elegir marca y modelo de la lista");
+            
+            $('#model').attr('disabled', 'disabled');
+            $('#brand').attr('disabled', 'disabled');
+            $('#brand_text').removeAttr('disabled');
+            $('#model_text').removeAttr('disabled');
+
+            $('#brand_text').attr('required', 'required');
+            $('#model_text').attr('required', 'required');
+            $('#brand_text').val('');
+            $('#model_text').val('');
+    
+            $("#exist_model_brand").val(0);
+
+            verify_model_brand = 0;
+
+            $(".ocultar").show();
+            $(".mostrar").hide();
+            
+
+        } else {
+
+            $(this).html("No encuentro Modelo/marca");
+             
+            $('#brand_text').removeAttr('required');
+            $('#model_text').removeAttr('required');
+            $('#brand_text').attr('disabled', 'disabled');
+            $('#model_text').attr('disabled', 'disabled');
+            $('#brand_text').val('');
+            $('#model_text').val('');
+            $('#brand_text').val('');
+            $('#model_text').val('');
+
+            $('#brand').removeAttr('disabled');
+            $('#model').removeAttr('disabled');
+            
+            $("#exist_model_brand").val(1);
+
+            verify_model_brand = 1;
+
+            $(".ocultar").hide();
+            $(".mostrar").show();
+        }
+    });
      
 
     //display modal form for product EDIT ***************************
@@ -1111,11 +1162,24 @@ $(document).ready(function(){
             type: "GET",
             url: url + '/' + id,
             success: function (data) {
-       
+                $("#exist_model_brand").val(data.exist_model_brand);
+
+                if(data.exist_model_brand == 0){  // 0 IS TEXT, 1 IS SELECT
+                    verify_model_brand = 1;
+                    $("#ver").click();
+                    $('#brand_text').val(data.brand);
+                    $('#model_text').val(data.model);
+                }else{
+                    verify_model_brand = 0;
+                    $("#ver").click();
+                }
+
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 5000);
+                
+
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
@@ -1123,12 +1187,12 @@ $(document).ready(function(){
                 $('#phone').val(data.phone);
                 $('#province').val(data.province);
                 
+
                 if(data.status_trafic == 'Alta')
                     $('#high').attr('checked', true)
                 else if(data.status_trafic == 'Baja definitiva')
                     $('#low').attr('checked', true)
 
-                // console.log(data);
                 if(data.motocycle_state  == "Golpe Delantero")
                     $('#g_del').attr('checked', true)
                 else if(data.motocycle_state  == "Golpe Trasero")
@@ -1142,6 +1206,8 @@ $(document).ready(function(){
 
                 $('#price_min').val(data.price_min);
                 $('#observations').val(data.observations);
+
+
 
                 if (data.data_serialize !== '') {
                     var response = JSON.parse(data.data_serialize);
@@ -1188,10 +1254,13 @@ $(document).ready(function(){
                 $('.hide').prop('hidden', true);
 
                 //images
+                var div = '';
                 data.images_purchase_valuation.forEach(function (element) {
-                    $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 "><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail my-3"></a>
-                    </div>`);
+                    div+=`<div class="col-lg-4 col-md-4 col-sm-6 "><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail my-3"></a>
+                    </div>`;
                 });
+                
+                $("#images").html(div);
                 
                 $('#btn-save').val("update");
                 $('#modalPurchase').modal('show');
@@ -1243,10 +1312,22 @@ $(document).ready(function(){
             }
         }
 
+        let brandform = '';
+        let modelform = '';
+
+        if(verify_model_brand == 0){
+            brandform = $("#brand_text").val();
+            modelform = $("#model_text").val();
+        }else{
+            brandform = $("#brand").val();
+            modelform = $("#model").val();
+        }
+
         var dataSerialize = JSON.stringify(dataArray, null, 2);
         var formData = {
-            brand: $("#brand").val(),
-            model: $("#model").val(),
+            brand: brandform,
+            model: modelform,
+            exist_model_brand: $("#exist_model_brand").val(),
             year: $("#year").val(),
             km: $("#km").val(),
             name: $("#name").val(),
