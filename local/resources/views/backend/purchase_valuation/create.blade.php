@@ -102,7 +102,7 @@
                                             <button type="button" id="ver" class="btn btn-danger form-control pull-left">No encuentro Modelo/marca</button>
                                         </div>
                                     </div>
-                                    
+                                    <input type="hidden" name="exist_model_brand" id="exist_model_brand" value="1">
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
                                             <label for="year" class="">Año:</label>
@@ -362,9 +362,13 @@
                 $('#modelotxt').removeAttr('required');
                 $('#marcatxt').attr('disabled', 'disabled');
                 $('#modelotxt').attr('disabled', 'disabled');
+                $('#brand_text').val('');
+                $('#model_text').val('');
                
                 $('#model').removeAttr('disabled');
                 $('#brand').removeAttr('disabled');
+
+                $('#exist_model_brand').val(1);
             
                 $i = 1;
             } else {
@@ -378,6 +382,9 @@
                 $('#modelotxt').attr('required', 'required');
                 $('#marcatxt').val('');
                 $('#modelotxt').val('');
+
+                $('#exist_model_brand').val(0);
+
                 $i = 0;
             }
         });

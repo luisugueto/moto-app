@@ -1,6 +1,23 @@
 @extends('layouts.backend')
 
 @section('content')
+<style>
+    .ocultar{
+  display:none;
+}
+.disable {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.disable div,
+.disable textarea {
+  overflow: hidden;
+}
+.disable input{
+    
+}
+</style>
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -572,7 +589,7 @@
                             <h5 class="card-header text-white bg-secondary mb-3">Datos de la moto</h5>
                             <div class="card-body">
                                 <div class="form-row row g-1">
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mostrar">
                                         <div class="position-relative form-group">
                                             <label for="brand" class="">Marca:</label>
                                             <select class="form-control select" name="brand" id="brand" onChange="setModel()" style="width: 100%">
@@ -588,11 +605,11 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 mostrar">
                                         <div class="position-relative form-group">
                                             <label for="model" class="">Modelo:</label>
                                             <select class="form-control select" name="model" id="model" disabled  style="width: 100%">
-                                                <option value="" disabled selected="">Seleccione</option>
+                                                <option disabled selected="">Seleccione</option>
                                             </select>
                                             @if ($errors->has('model'))
                                                 <span class="error text-danger">
@@ -601,6 +618,34 @@
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class="col-md-3 ocultar">
+                                        <div class="position-relative form-group">
+                                            <label for="brand" class="">Marca:</label>
+                                            <input type="text" name="brand" id="brand_text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 ocultar">
+                                        <div class="position-relative form-group">
+                                            <label for="model" class="">Modelo:</label>
+                                            <input type="text" name="model" id="model_text" class="form-control">
+
+                                            @if ($errors->has('model'))
+                                                <span class="error text-danger">
+                                                    <strong>{{ $errors->first('model') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <br>
+                                            <button type="button" id="ver" class="btn btn-danger form-control pull-left">No encuentro Modelo/marca</button>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="exist_model_brand" id="exist_model_brand" value="0">
                                     
                                     <div class="col-md-3">
                                         <div class="position-relative form-group">
@@ -826,7 +871,7 @@
     </script>
  @endsection
 
- <script src="{{ asset('assets/scripts/js/purchase_valuation.js') }}"></script>
+ <script type="text/javascript" src="{{ asset('assets/scripts/js/purchase_valuation.js') }}"></script>
 
    <!--  <script>
         var setApply = () => {
