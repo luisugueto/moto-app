@@ -88,247 +88,646 @@ class PurchaseValuationController extends Controller
         return response()->json($json_data);
     }
 
-    public function getPurchaseValuationsInterested()
+    public function getPurchaseValuationsInterested(Request $request)
     {
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 3)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
         ->select('purchase_valuation.*', 'purchase_management.status')
         ->where('purchase_valuation.states_id', '=', 3)
         ->get();
+
+        $totalFiltered = $sqlTotalData;
         
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
- 
+        foreach($purchases as $value){
+            $nestedData = array();   
 
-            $row = array();      
-            $row['id'] = $value->id;
-            $row['date'] = $value->date;
-            $row['brand'] = $value->brand;
-            $row['model'] = $value->model;
-            $row['year'] = $value->year;
-            $row['km'] = $value->km;
-            $row['email'] = $value->email;
-            $row['name'] = $value->name;
-            $row['lastname'] = $value->lastname;
-            $row['phone'] = $value->phone;
-            $row['province'] = $value->province;
-            $row['status_trafic'] = $value->status_trafic;
-            $row['motocycle_state'] = $value->motocycle_state;
-            $row['price_min'] = $value->price_min;
-            $row['observations'] = $value->observations;
-            $row['states_id'] = $value->states_id;
-            $row['status_ficha'] = $value->status;
-            $row['view'] = $view;
-            $row['edit'] = $edit;
-            $row['delete'] = $delete;
-            $data[] = $row;
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){
+                if($value->status == 1){
+                    $botones = "<a class='mb-2 mr-2 btn btn-primary text-white button_verificar' title='Verificar Moto'>Verificar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                }else{
+                    $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                }
+                
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
         }
-
-        $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
-
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
         return response()->json($json_data);
     }
 
-    public function getPurchaseValuationsNoInterested()
+    public function getPurchaseValuationsNoInterested(Request $request)
     {
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 2)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
         ->select('purchase_valuation.*', 'purchase_management.status')
         ->where('purchase_valuation.states_id', '=', 2)
         ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
+        foreach($purchases as $value){
+            $nestedData = array();   
 
-            $row = array();  
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){               
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
                  
-            $row['id'] = $value->id;
-            $row['date'] = $value->date;
-            $row['brand'] = $value->brand;
-            $row['model'] = $value->model;
-            $row['year'] = $value->year;
-            $row['km'] = $value->km;
-            $row['email'] = $value->email;
-            $row['name'] = $value->name;
-            $row['lastname'] = $value->lastname;
-            $row['phone'] = $value->phone;
-            $row['province'] = $value->province;
-            $row['status_trafic'] = $value->status_trafic;
-            $row['motocycle_state'] = $value->motocycle_state;
-            $row['price_min'] = $value->price_min;
-            $row['observations'] = $value->observations;
-            $row['states_id'] = $value->states_id;
-            $row['status_ficha'] = $value->status;
-            $row['view'] = $view;
-            $row['edit'] = $edit;
-            $row['delete'] = $delete;
-            $data[] = $row;
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
         }
-
-        $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
         return response()->json($json_data);
     }
 
-    public function getPurchaseValuationsScrapping()
+    public function getPurchaseValuationsScrapping(Request $request)
     {
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 4)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
         ->select('purchase_valuation.*', 'purchase_management.status')
         ->where('purchase_valuation.states_id', '=', 4)
         ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
+        foreach($purchases as $value){
+            $nestedData = array();   
 
-            $row = array();  
-                 
-            $row['id'] = $value->id;
-            $row['date'] = $value->date;
-            $row['brand'] = $value->brand;
-            $row['model'] = $value->model;
-            $row['year'] = $value->year;
-            $row['km'] = $value->km;
-            $row['email'] = $value->email;
-            $row['name'] = $value->name;
-            $row['lastname'] = $value->lastname;
-            $row['phone'] = $value->phone;
-            $row['province'] = $value->province;
-            $row['status_trafic'] = $value->status_trafic;
-            $row['motocycle_state'] = $value->motocycle_state;
-            $row['price_min'] = $value->price_min;
-            $row['observations'] = $value->observations;
-            $row['states_id'] = $value->states_id;
-            $row['status_ficha'] = $value->status;
-            $row['view'] = $view;
-            $row['edit'] = $edit;
-            $row['delete'] = $delete;
-            $data[] = $row;
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){                
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
         }
-
-        $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
         return response()->json($json_data);
     }
 
-    public function getPurchaseValuationsSale()
+    public function getPurchaseValuationsSale(Request $request)
     {
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 5)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
         ->select('purchase_valuation.*', 'purchase_management.status')
         ->where('purchase_valuation.states_id', '=', 5)
         ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
+        foreach($purchases as $value){
+            $nestedData = array();   
 
-            $row = array();  
-                 
-            $row['id'] = $value->id;
-            $row['date'] = $value->date;
-            $row['brand'] = $value->brand;
-            $row['model'] = $value->model;
-            $row['year'] = $value->year;
-            $row['km'] = $value->km;
-            $row['email'] = $value->email;
-            $row['name'] = $value->name;
-            $row['lastname'] = $value->lastname;
-            $row['phone'] = $value->phone;
-            $row['province'] = $value->province;
-            $row['status_trafic'] = $value->status_trafic;
-            $row['motocycle_state'] = $value->motocycle_state;
-            $row['price_min'] = $value->price_min;
-            $row['observations'] = $value->observations;
-            $row['states_id'] = $value->states_id;
-            $row['status_ficha'] = $value->status;
-            $row['view'] = $view;
-            $row['edit'] = $edit;
-            $row['delete'] = $delete;
-            $data[] = $row;
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){                
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
         }
-
-        $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
-        return response()->json($json_data);
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
+        return response()->json($json_data);         
     }
 
-    public function getPurchaseValuationsAuction()
+    public function getPurchaseValuationsAuction(Request $request)
     {
+
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 6)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
         ->select('purchase_valuation.*', 'purchase_management.status')
         ->where('purchase_valuation.states_id', '=', 6)
         ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
-        foreach($purchases as $value){ 
+        foreach($purchases as $value){
+            $nestedData = array();   
 
-            $row = array();  
-            
-            $row['id'] = $value->id;
-            $row['date'] = $value->date;
-            $row['brand'] = $value->brand;
-            $row['model'] = $value->model;
-            $row['year'] = $value->year;
-            $row['km'] = $value->km;
-            $row['email'] = $value->email;
-            $row['name'] = $value->name;
-            $row['lastname'] = $value->lastname;
-            $row['phone'] = $value->phone;
-            $row['province'] = $value->province;
-            $row['status_trafic'] = $value->status_trafic;
-            $row['motocycle_state'] = $value->motocycle_state;
-            $row['price_min'] = $value->price_min;
-            $row['observations'] = $value->observations;
-            $row['states_id'] = $value->states_id;
-            $row['status_ficha'] = $value->status;
-            $row['publish'] = $value->publish;
-            $row['view'] = $view;
-            $row['edit'] = $edit;
-            $row['delete'] = $delete;
-            $data[] = $row;
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){
+                if($value->publish == 1){
+                    $botones = "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                }else{
+                    $botones = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                }
+                
+            }elseif ($delete == true) {
+                if($value->publish == 1){
+                    $botones = "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                }else{
+                    $botones = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+                }
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+
+            $value->publish;
+
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
         }
-
-        $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
-        return response()->json($json_data);
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
+        return response()->json($json_data); 
     }
 
-    public function noInterested()
+    public function getPurchaseValuationsScrapped(Request $request)
     {
-        $purchase_valuation =  PurchaseValuation::where('states_id', 2)->get();
-        $states = States::all();
-        $processes = Processes::all();
-        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
-   
-        return view('backend.purchase_valuation.no_interested', compact('purchase_valuation', 'states', 'processes', 'marcas'));
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 7)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 7)
+        ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
+        
+        $data = array();
+        foreach($purchases as $value){
+            $nestedData = array();   
+
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){                
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
+        }
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
+        return response()->json($json_data);         
     }
 
-    public function interested()
+    public function getPurchaseValuationsSold(Request $request)
     {
-        $purchase_valuation = PurchaseValuation::where('states_id', 3)->get();
-        $states = States::all();
-        $processes = Processes::all();
-        $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");
-   
-        return view('backend.purchase_valuation.interested', compact('purchase_valuation', 'states', 'processes', 'marcas'));
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 8)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 8)
+        ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
+        
+        $data = array();
+        foreach($purchases as $value){
+            $nestedData = array();   
+
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){                
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
+        }
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
+        return response()->json($json_data);         
+    }
+
+    public function getPurchaseValuationsAuctioned(Request $request)
+    {
+        $requestData = $request;
+
+        $columns = array(
+            // datatable column index  => database column name
+            1 => 'id',
+            2 => 'model'
+        );
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 9)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 9)
+        ->get();
+
+        $totalFiltered = $sqlTotalData;
+        
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
+        
+        $data = array();
+        foreach($purchases as $value){
+            $nestedData = array();   
+
+            if($value->status == 2){
+                $status_ficha = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
+            }
+            elseif($value->status == 1){
+                $status_ficha = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
+            }
+            elseif($value->status == 0){
+                $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
+            }
+
+            if($edit == true && $delete == true){                
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }elseif ($delete == true) {
+                $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            else {
+                $botones = "No tienes permiso";
+            }
+            $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
+            $nestedData[] = $value->id;
+            $nestedData[] = $value->model;
+            $proceso = Processes::all();
+            foreach($proceso as $pro){
+                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
+                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
+                $nestedData[]= $subproceso['name'];
+            }
+            $nestedData[] = $status_ficha;
+            $nestedData[] = '<center>' . $botones . '</center>';
+            $data[] = $nestedData;
+        }
+        
+        $json_data = array(
+            "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
+            "recordsTotal" => intval($totalData), // total number of records
+            "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
+            "data" => $data, // total data array
+        ); 
+       
+        return response()->json($json_data);         
     }
 
     /**
@@ -790,7 +1189,9 @@ class PurchaseValuationController extends Controller
         
         //nuevos formularios
         $data['form_display_datos_mecanico'] = htmlspecialchars_decode($datos_del_mecanico->form_display);
+        $data['datos_del_mecanico'] = ($purchase_management['datos_del_mecanico']);
         $data['form_display_datos_internos'] = htmlspecialchars_decode($datos_interno->form_display);
+        $data['datos_internos'] = ($purchase_management['datos_internos']);
         
         $data['link'] = url('/');
  
@@ -816,7 +1217,7 @@ class PurchaseValuationController extends Controller
         $purchase->price_min = $request->price_min;
         $purchase->observations = $request->observations;
         $purchase->data_serialize = $request->data_serialize;
-       // $purchase->update();
+        $purchase->update();
 
         if($request->documents_attached == 'on'){
             $documents_attached = 1;
@@ -875,7 +1276,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->vehicle_state = $request->vehicle_state;
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
         $purchase_management->datos_internos = $request->datos_internos;
-        //$purchase_management->update();
+        $purchase_management->update();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
             // CREATE PDF
@@ -902,20 +1303,24 @@ class PurchaseValuationController extends Controller
             $out['message'] = 'Registro Actualizado Exitosamente.';
         }
 
-        //dd($request->mailMecanico);
+        // dd($request->all());
         if($request->sendMailMecanico == 1){
             $mecanico = $request->datos_del_mecanico;
-            $subject = 'Datos para el mécanico de la moto #'. $request->file_no;
-
-            dd($request->mailMecanico);
-
-            Mail::send('backend.emails.mecanico', ['dataSerialize' => $mecanico, 'subject' => $subject], function ($message) use ($mecanico, $subject)
+            $subject = 'Datos para el mécanico de la moto #'. $request->file_no;   
+              
+            $fieldsArray = (json_decode(utf8_encode($request->datos_del_mecanico)));
+            foreach ($fieldsArray as $key => $value) {
+                if ($value->name == 'ctBGrVLw'){
+                    $mailMecanico = $value->value;
+                }
+            }   
+            
+            Mail::send('backend.emails.mecanico', ['dataSerialize' => $mecanico, 'subject' => $subject], function ($message) use ($mailMecanico, $subject)
                 {
                 $message->from('info@motostion.com', 'MotOstion');
 
                 // SE ENVIARA A
-
-                $message->to($request->mailMecanico)->subject($subject);
+                $message->to($mailMecanico)->subject($subject);
             });
         }
 

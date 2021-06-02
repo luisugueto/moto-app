@@ -75,7 +75,21 @@
                     <span>No Interesan</span>
                 </a>
             </li>
-
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-6" data-toggle="tab" href="#tab-content-6">
+                    <span>Desguazadas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-7" data-toggle="tab" href="#tab-content-7">
+                    <span>Vendidas</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-8" data-toggle="tab" href="#tab-content-8">
+                    <span>Subastadas</span>
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
@@ -166,38 +180,15 @@
                                 </button>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_1-2">Fecha</label>
+                                        <input class="toggle-vis-1" id="column_1-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_1-2">Modelo</label>
                                     </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_1-3">Marca</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_1-4">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_1-5">Año</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_1-6">KM</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_1-7">Nombre</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_1-8">Provincia</label>
-                                    </button>
-                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_1-9">Estado en Tráfico</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_1-10">Estado de la moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_1-11">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_1-12">Observaciones</label>
-                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-1" id="column_1-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_1-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach
                                 </div>
                             </div>                           
                         </h5>  
@@ -208,17 +199,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Id Moto</th>
-                                    <th class="text-center">Fecha</th>
-                                    <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
-                                    <th class="text-center">Año</th>
-                                    <th class="text-center">KM</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Provincia</th>
-                                    <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Estado de la moto</th>
-                                    <th class="text-center">Mínimo</th>
-                                    <th class="text-center">Observaciones</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -238,38 +222,15 @@
                                 </button>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_2-2">Fecha</label>
+                                        <input class="toggle-vis-2" id="column_2-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_2-2">Modelo</label>
                                     </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_2-3">Marca</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_2-4">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_2-5">Año</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_2-6">KM</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_2-7">Nombre</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_2-8">Provincia</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_2-9">Estado en Tráfico</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_2-10">Estado de la moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_2-11">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_2-12">Observaciones</label>
-                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-2" id="column_2-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_2-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach                                    
                                 </div>
                             </div>      
                         </h5>                       
@@ -279,17 +240,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Id Moto</th>
-                                    <th class="text-center">Fecha</th>
-                                    <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
-                                    <th class="text-center">Año</th>
-                                    <th class="text-center">KM</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Provincia</th>
-                                    <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Estado de la moto</th>
-                                    <th class="text-center">Mínimo</th>
-                                    <th class="text-center">Observaciones</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -309,38 +263,15 @@
                                 </button>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_3-2">Fecha</label>
+                                        <input class="toggle-vis-3" id="column_3-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_3-2">Modelo</label>
                                     </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_3-3">Marca</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_3-4">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_3-5">Año</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_3-6">KM</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_3-7">Nombre</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_3-8">Provincia</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_3-9">Estado en Tráfico</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_3-10">Estado de la moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_3-11">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-3" id="column_3-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_3-12">Observaciones</label>
-                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-3" id="column_3-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_3-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach  
                                 </div>
                             </div>   
                         </h5>                       
@@ -350,17 +281,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Id Moto</th>
-                                    <th class="text-center">Fecha</th>
-                                    <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
-                                    <th class="text-center">Año</th>
-                                    <th class="text-center">KM</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Provincia</th>
-                                    <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Estado de la moto</th>
-                                    <th class="text-center">Mínimo</th>
-                                    <th class="text-center">Observaciones</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -380,38 +304,15 @@
                                 </button>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_4-2">Fecha</label>
+                                        <input class="toggle-vis-4" id="column_4-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_4-2">Modelo</label>
                                     </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_4-3">Marca</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_4-4">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_4-5">Año</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_4-6">KM</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_4-7">Nombre</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_4-8">Provincia</label>
-                                    </button>
-                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_4-9">Estado en Tráfico</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_4-10">Estado de la moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_4-11">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-4" id="column_4-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_4-12">Observaciones</label>
-                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-4" id="column_4-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_4-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach                                    
                                 </div>
                             </div>   
                         </h5>                       
@@ -421,17 +322,10 @@
                                 <tr>
                                     <th></th>
                                     <th>Id Moto</th>
-                                    <th class="text-center">Fecha</th>
-                                    <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
-                                    <th class="text-center">Año</th>
-                                    <th class="text-center">KM</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Provincia</th>
-                                    <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Estado de la moto</th>
-                                    <th class="text-center">Mínimo</th>
-                                    <th class="text-center">Observaciones</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
@@ -451,38 +345,15 @@
                                 </button>
                                 <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_5-2">Fecha</label>
+                                        <input class="toggle-vis-5" id="column_5-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_5-2">Modelo</label>
                                     </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Marca" for="column_5-3">Marca</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Modelo" for="column_5-4">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Año" for="column_5-5">Año</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="KM" for="column_5-6">KM</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Nombre" for="column_5-7">Nombre</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_5-8">Provincia</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Estado en Tráfico" for="column_5-9">Estado en Tráfico</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Estado de la moto." for="column_5-10">Estado de la moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-11" type="checkbox" data-column="11"><label class="inline-label tr" key="Mínimo" for="column_5-11">Mínimo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-5" id="column_5-12" type="checkbox" data-column="12"><label class="inline-label tr" key="Observaciones" for="column_5-12">Observaciones</label>
-                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-5" id="column_5-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_5-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach                                     
                                 </div>
                             </div>   
                         </h5>                       
@@ -492,17 +363,133 @@
                                 <tr>
                                     <th></th>
                                     <th>Id Moto</th>
-                                    <th class="text-center">Fecha</th>
-                                    <th class="text-center">Marca</th>
                                     <th class="text-center">Modelo</th>
-                                    <th class="text-center">Año</th>
-                                    <th class="text-center">KM</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Provincia</th>
-                                    <th class="text-center">Estado en Tráfico</th>
-                                    <th class="text-center">Estado de la moto</th>
-                                    <th class="text-center">Mínimo</th>
-                                    <th class="text-center">Observaciones</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
+                                    <th class="text-center">Estado Ficha</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div> 
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-6" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que has sido Desguazadas
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-6" id="column_6-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_6-2">Modelo</label>
+                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-6" id="column_6-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_6-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach                                     
+                                </div>
+                            </div>   
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosDesguazadas" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Moto</th>
+                                    <th class="text-center">Modelo</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
+                                    <th class="text-center">Estado Ficha</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div> 
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-7" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que has sido Vendidas
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-7" id="column_7-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_7-2">Modelo</label>
+                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-7" id="column_7-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_7-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach                                     
+                                </div>
+                            </div>   
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosVendidas" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Moto</th>
+                                    <th class="text-center">Modelo</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
+                                    <th class="text-center">Estado Ficha</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        
+                    </div>
+                </div> 
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-8" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Motos que has sido Subastadas
+                            <div class="mb-2 mr-2 btn-group float-right">
+                                <button type="button" aria-haspopup="true" aria-expanded="false"
+                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
+                                </button>
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-8" id="column_8-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_8-2">Modelo</label>
+                                    </button>
+                                    @php $i = 3; @endphp
+                                    @foreach ($processes as $item)
+                                        <button type="button" tabindex="0" class="dropdown-item">
+                                            <input class="toggle-vis-8" id="column_8-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_8-{{$i}}">{{$item->name}}</label>
+                                        </button>
+                                        @php  $i++; @endphp
+                                     @endforeach                                     
+                                </div>
+                            </div>   
+                        </h5>                       
+                        <br><br>
+                        <table width="100%" id="tableMotosSubastadas" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Id Moto</th>
+                                    <th class="text-center">Modelo</th>
+                                    @foreach ($processes as $process)
+                                    <th class="text-center">{{ $process->name }}</th>
+                                    @endforeach
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>

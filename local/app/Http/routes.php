@@ -77,8 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
 
     //Apply Subprocesse Residuos
-    Route::post('envios-quincenales/applySubProcesses', 'ResiduosController@applySubProcesses');
-    
+    Route::post('envios-quincenales/applySubProcesses', 'ResiduosController@applySubProcesses');   
 
     //Change Status Views
     Route::post('empleados/change_status_user', 'UserController@changeStatus');
@@ -106,6 +105,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getPurchaseValuationsNoInterested', 'PurchaseValuationController@getPurchaseValuationsNoInterested');
     Route::post('getPurchaseValuationsScrapping', 'PurchaseValuationController@getPurchaseValuationsScrapping');
     Route::post('getPurchaseValuationsSale', 'PurchaseValuationController@getPurchaseValuationsSale');
+    Route::post('getPurchaseValuationsScrapped', 'PurchaseValuationController@getPurchaseValuationsScrapped');
+    Route::post('getPurchaseValuationsSold', 'PurchaseValuationController@getPurchaseValuationsSold');
+    Route::post('getPurchaseValuationsAuctioned', 'PurchaseValuationController@getPurchaseValuationsAuctioned');
     Route::post('getPurchaseValuationsAuction', 'PurchaseValuationController@getPurchaseValuationsAuction');
     Route::post('getEnviosQuincenalesSinGestionar', 'ResiduosController@getEnviosQuincenalesSinGestionar');
     Route::post('getEnviosQuincenalesGestionadas', 'ResiduosController@getEnviosQuincenalesGestionadas');

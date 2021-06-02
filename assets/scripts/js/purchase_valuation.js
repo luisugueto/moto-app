@@ -304,7 +304,7 @@ $(document).ready(function(){
  
     $('#tableMotosQueInterensan thead tr:eq(1) th').each(function (i) {
     
-        if (i != 13) {
+        if (i != 12) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -321,6 +321,7 @@ $(document).ready(function(){
         } );
     });
     $('#tab-1').click(function () {
+       
         if ($.fn.DataTable.isDataTable("#tableMotosQueInterensan")) {
             $('#tableMotosQueInterensan').DataTable().clear().destroy();
         }
@@ -334,105 +335,13 @@ $(document).ready(function(){
                 headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
                 url: "getPurchaseValuationsInterested", // json datasource            
                 type: "post", // method  , by default get
+                 
                 error: function () {  // error handling
                 }
             },
-            "columns": [
-                { "data": null,
-                    render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'+data.id+'"></label></div>';
-            
-                    },
-                    "targets": -1
-                },  
-                { "data": "id" },
-                { "data": "date" },
-                { "data": "brand" },
-                { "data": "model" },
-                { "data": "year" },
-                { "data": "km" },
-                { "data": "name" },
-                { "data": "province" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_trafic == "Alta")
-                            echo = "Alta";
-                        else if(data.status_trafic == "Baja definitiva")
-                            echo = "Baja definitiva";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-     
-                        if(data.motocycle_state  == "Golpe Delantero")
-                            echo = "Golpe Delantero";
-                        else if(data.motocycle_state  == "Golpe Trasero")
-                            echo = "Golpe Trasero";
-                        else if(data.motocycle_state  == "Avería Eléctrica")
-                            echo = "Avería Eléctrica";
-                        else if(data.motocycle_state  == "Avería Mecánica")
-                            echo = "Avería Mecánica";
-                        else if(data.motocycle_state  == "Vieja o Abandonada")
-                            echo = "Vieja o Abandonada";
-                        return echo;
-                    },
-                    "targets": -1
-                },   
-                { "data": "price_min" },
-                { "data": "observations" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-                {"data": null,
-                    render: function (data, type, row) {
-                        let echo = '';
-                        if (data.edit == true && data.delete == true) {
-                            if(data.status_ficha == 1)
-                                echo = "<a class='mb-2 mr-2 btn btn-primary text-white button_verificar' title='Verificar Moto'>Verificar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                            else
-                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
-                                    +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-
-                        }
-                        else if (data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                        } else {
-                            echo = "No tienes permiso";
-                        }
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-            ],
             "columnDefs": [{
 				"targets": [1],
 				"visible": true
-			}, {
-				"targets": [12],
-				"visible": false
 			}],
             "order": [[0, "desc"]]
         });
@@ -451,7 +360,7 @@ $(document).ready(function(){
     $('#tableMotosParaDesguace thead tr').clone(true).appendTo('#tableMotosParaDesguace thead');
 
     $('#tableMotosParaDesguace thead tr:eq(1) th').each( function (i) {
-        if (i != 13) {
+        if (i != 12) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -484,95 +393,9 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columns": [
-                { "data": null,
-                    render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-2_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-2_'+data.id+'"></label></div>';
-            
-                    },
-                    "targets": -1
-                },  
-                { "data": "id" },
-                { "data": "date" },
-                { "data": "brand" },
-                { "data": "model" },
-                { "data": "year" },
-                { "data": "km" },
-                { "data": "name" },
-                { "data": "province" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_trafic == "Alta")
-                            echo = "Alta";
-                        else if(data.status_trafic == "Baja definitiva")
-                            echo = "Baja definitiva";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-     
-                        if(data.motocycle_state  == "Golpe Delantero")
-                            echo = "Golpe Delantero";
-                        else if(data.motocycle_state  == "Golpe Trasero")
-                            echo = "Golpe Trasero";
-                        else if(data.motocycle_state  == "Avería Eléctrica")
-                            echo = "Avería Eléctrica";
-                        else if(data.motocycle_state  == "Avería Mecánica")
-                            echo = "Avería Mecánica";
-                        else if(data.motocycle_state  == "Vieja o Abandonada")
-                            echo = "Vieja o Abandonada";
-                        return echo;
-                    },
-                    "targets": -1
-                },   
-
-                { "data": "price_min" },
-                { "data": "observations" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-                {"data": null,
-                    render: function (data, type, row) {
-                        let echo = '';
-                        if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
-                        }
-                        else if (data.delete == true) {
-                            echo = "";
-                        } else {
-                            echo = "No tienes permiso";
-                        }
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-            ],
             "columnDefs": [{
 				"targets": [1],
 				"visible": true
-			}, {
-				"targets": [12],
-				"visible": false
 			}],
             "order": [[0, "desc"]]
         });
@@ -591,7 +414,7 @@ $(document).ready(function(){
     $('#tableMotosParaVenta thead tr').clone(true).appendTo('#tableMotosParaVenta thead');
 
     $('#tableMotosParaVenta thead tr:eq(1) th').each( function (i) {
-        if (i != 13) {
+        if (i != 12) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -624,95 +447,9 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columns": [
-                { "data": null,
-                    render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-3_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-3_'+data.id+'"></label></div>';
-            
-                    },
-                    "targets": -1
-                },  
-                { "data": "id" },
-                { "data": "date" },
-                { "data": "brand" },
-                { "data": "model" },
-                { "data": "year" },
-                { "data": "km" },
-                { "data": "name" },
-                { "data": "province" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_trafic == "Alta")
-                            echo = "Alta";
-                        else if(data.status_trafic == "Baja definitiva")
-                            echo = "Baja definitiva";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-     
-                        if(data.motocycle_state  == "Golpe Delantero")
-                            echo = "Golpe Delantero";
-                        else if(data.motocycle_state  == "Golpe Trasero")
-                            echo = "Golpe Trasero";
-                        else if(data.motocycle_state  == "Avería Eléctrica")
-                            echo = "Avería Eléctrica";
-                        else if(data.motocycle_state  == "Avería Mecánica")
-                            echo = "Avería Mecánica";
-                        else if(data.motocycle_state  == "Vieja o Abandonada")
-                            echo = "Vieja o Abandonada";
-                        return echo;
-                    },
-                    "targets": -1
-                },   
-
-                { "data": "price_min" },
-                { "data": "observations" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-                {"data": null,
-                    render: function (data, type, row) {
-                        let echo = '';
-                        if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
-                        }
-                        else if (data.delete == true) {
-                            echo = "";
-                        } else {
-                            echo = "No tienes permiso";
-                        }
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-            ],
             "columnDefs": [{
 				"targets": [1],
 				"visible": true
-			}, {
-				"targets": [12],
-				"visible": false
 			}],
             "order": [[0, "desc"]]
         });
@@ -731,7 +468,7 @@ $(document).ready(function(){
     $('#tableMotosParaSubasta thead tr').clone(true).appendTo('#tableMotosParaSubasta thead');
 
     $('#tableMotosParaSubasta thead tr:eq(1) th').each( function (i) {
-        if (i != 13) {
+        if (i != 12) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -764,109 +501,9 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columns": [
-                { "data": null,
-                    render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-4_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-4_'+data.id+'"></label></div>';
-            
-                    },
-                    "targets": -1
-                },  
-                { "data": "id" },
-                { "data": "date" },
-                { "data": "brand" },
-                { "data": "model" },
-                { "data": "year" },
-                { "data": "km" },
-                { "data": "name" },
-                { "data": "province" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_trafic == "Alta")
-                            echo = "Alta";
-                        else if(data.status_trafic == "Baja definitiva")
-                            echo = "Baja definitiva";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-     
-                        if(data.motocycle_state  == "Golpe Delantero")
-                            echo = "Golpe Delantero";
-                        else if(data.motocycle_state  == "Golpe Trasero")
-                            echo = "Golpe Trasero";
-                        else if(data.motocycle_state  == "Avería Eléctrica")
-                            echo = "Avería Eléctrica";
-                        else if(data.motocycle_state  == "Avería Mecánica")
-                            echo = "Avería Mecánica";
-                        else if(data.motocycle_state  == "Vieja o Abandonada")
-                            echo = "Vieja o Abandonada";
-                        return echo;
-                    },
-                    "targets": -1
-                },   
-
-                { "data": "price_min" },
-                { "data": "observations" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-                {"data": null,
-                    render: function (data, type, row) {
-                        let echo = '';
-                        if (data.publish == 1) {
-                            if (data.edit == true && data.delete == true) {
-                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
-                                        + "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>"
-                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                            }
-                            else if (data.delete == true) {
-                                echo = "<a class='mb-2 mr-2 btn btn-success text-white button_publish' name='no_publicado' value='0'>Publicado</a>"
-                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                            }
-                        }
-                        else if (data.publish == 0) {
-                            if (data.edit == true && data.delete == true) {
-                                echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
-                                        + "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>"
-                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                            }
-                            else if (data.delete == true) {
-                                echo = "<a class='mb-2 mr-2 btn btn-info text-white button_publish' name='no_publicado' value='1'>Publicar</a>"
-                                        +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                            }
-                        }
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-            ],
             "columnDefs": [{
 				"targets": [1],
 				"visible": true
-			}, {
-				"targets": [12],
-				"visible": false
 			}],
             "order": [[0, "desc"]]
         });
@@ -885,7 +522,7 @@ $(document).ready(function(){
     $('#tableMotosQueNoInteresan thead tr').clone(true).appendTo('#tableMotosQueNoInteresan thead');
 
     $('#tableMotosQueNoInteresan thead tr:eq(1) th').each( function (i) {
-        if (i != 13) {
+        if (i != 12) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -918,101 +555,14 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columns": [
-                { "data": null,
-                    render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-5_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply-5_'+data.id+'"></label></div>';
-            
-                    },
-                    "targets": -1
-                },  
-                { "data": "id" },
-                { "data": "date" },
-                { "data": "brand" },
-                { "data": "model" },
-                { "data": "year" },
-                { "data": "km" },
-                { "data": "name" },
-                { "data": "province" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_trafic == "Alta")
-                            echo = "Alta";
-                        else if(data.status_trafic == "Baja definitiva")
-                            echo = "Baja definitiva";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-     
-                        if(data.motocycle_state  == "Golpe Delantero")
-                            echo = "Golpe Delantero";
-                        else if(data.motocycle_state  == "Golpe Trasero")
-                            echo = "Golpe Trasero";
-                        else if(data.motocycle_state  == "Avería Eléctrica")
-                            echo = "Avería Eléctrica";
-                        else if(data.motocycle_state  == "Avería Mecánica")
-                            echo = "Avería Mecánica";
-                        else if(data.motocycle_state  == "Vieja o Abandonada")
-                            echo = "Vieja o Abandonada";
-                        return echo;
-                    },
-                    "targets": -1
-                },   
-
-                { "data": "price_min" },
-                { "data": "observations" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-                {"data": null,
-                    render: function (data, type, row) {
-                        let echo = '';
-                        if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>"
-                            +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                        }
-                        else if (data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                        } else {
-                            echo = "No tienes permiso";
-                        }
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-            ],
             "columnDefs": [{
 				"targets": [1],
 				"visible": true
-			}, {
-				"targets": [12],
-				"visible": false
 			}],
             "order": [[0, "desc"]]
         });
 
-        $('input.toggle-vis-4').on('change', function(e) {
+        $('input.toggle-vis-5').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
             var column = dataTable.column($(this).attr('data-column'));
@@ -1021,6 +571,168 @@ $(document).ready(function(){
         });
     });
 
+    //Tabla para el estado Desguazadas
+    $('#tableMotosDesguazadas thead tr').clone(true).appendTo('#tableMotosDesguazadas thead');
+
+    $('#tableMotosDesguazadas thead tr:eq(1) th').each( function (i) {
+        if (i != 12) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+
+    $('#tab-6').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosDesguazadas")) {
+            $('#tableMotosDesguazadas').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableMotosDesguazadas').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsScrapped", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columnDefs": [{
+				"targets": [1],
+				"visible": true
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-6').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column.visible(!column.visible());
+        });
+    });
+
+
+    //Tabla para el estado Vendidas
+    $('#tableMotosVendidas thead tr').clone(true).appendTo('#tableMotosVendidas thead');
+
+    $('#tableMotosVendidas thead tr:eq(1) th').each( function (i) {
+        if (i != 12) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+
+    $('#tab-7').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosVendidas")) {
+            $('#tableMotosVendidas').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableMotosVendidas').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsSold", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columnDefs": [{
+				"targets": [1],
+				"visible": true
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-7').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column.visible(!column.visible());
+        });
+    });
+
+    //Tabla para el estado Subastadas
+    $('#tableMotosSubastadas thead tr').clone(true).appendTo('#tableMotosSubastadas thead');
+
+    $('#tableMotosSubastadas thead tr:eq(1) th').each( function (i) {
+        if (i != 12) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+
+    $('#tab-8').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosSubastadas")) {
+            $('#tableMotosSubastadas').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableMotosSubastadas').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsAuctioned", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columnDefs": [{
+				"targets": [1],
+				"visible": true
+			}],
+            "order": [[0, "desc"]]
+        });
+
+        $('input.toggle-vis-7').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column.visible(!column.visible());
+        });
+    });
 
     ////////////////////////////////////////////////////////////////////////////
     $('#btnApplyState').click(function() {
@@ -1104,7 +816,7 @@ $(document).ready(function(){
     $(document).on('click', '.button_edit', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id = data.id;
+        var id =  data[1];
 
         // Populate Data in Edit Modal Form
         $.ajax({
@@ -1149,17 +861,6 @@ $(document).ready(function(){
                         for (i = 0; i < response.length; i++) {
 
                             if ($('#' + response[i].name + '.date').length) {
-
-                                if (response[i].value != '') {
-                                    var dateValue = response[i].value;
-                                    var date2 = new Date(dateValue);
-                                    if (dateValue.search('-') != -1) {
-                                        date2.setDate(date2.getDate() + 1);
-                                    }
-                                    //console.log('response[i].value: ' + response[i].value + ' ;date2:' + date2);
-                                    $('#' + response[i].name).datepicker('setDate', date2);
-                                }
-                            } else if ($('#' + response[i].name + '.date_us').length) {
 
                                 if (response[i].value != '') {
                                     var dateValue = response[i].value;
@@ -1320,7 +1021,7 @@ $(document).ready(function(){
     $(document).on('click', '.button_delete', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var purchase_id = data.id;
+        var purchase_id =  data[1];
         $.ajax({
             headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
             type: "DELETE",
@@ -1343,7 +1044,7 @@ $(document).ready(function(){
     $(document).on('click', '.button_document', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id = data.id;
+        var id =  data[1];
 
         $('#purchase_id').val(id);
         $('#modalDocument').modal('show');
@@ -1353,7 +1054,7 @@ $(document).ready(function(){
     $(document).on('click', '.button_ficha', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id_purchase = data.id;
+        var id_purchase = data[1];
 
         sessionStorage.setItem('id_purchase', id_purchase);
         sessionStorage.setItem('action', 2);
@@ -1365,10 +1066,10 @@ $(document).ready(function(){
     $(document).on('click', '.button_verificar', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id_purchase = data.id;
+        var id_purchase = data[1];
 
         var formData = {
-            id: data.id,
+            id: id_purchase,
         };
         console.log(formData);
         preloader('show');
@@ -1410,7 +1111,7 @@ $(document).ready(function(){
             $(this).val('1'); 
         }     
         var formData = {
-            id: data.id,
+            id:  data[1],
             status: status
         };
         preloader('show');

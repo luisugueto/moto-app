@@ -2,7 +2,6 @@ $(document).ready(function () {
     var url = $('#url').val();
     var url_process = $('#url_process').val();
     var url_index = $('#url_index').val();
-    var mailMecanico = '';
 
     var action = sessionStorage.getItem('action');
 
@@ -17,7 +16,7 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -55,11 +54,13 @@ $(document).ready(function () {
                 $('#price_min').val(data.price_min);
                 $('#observations').val(data.observations);
 
+                
                 if (data.data_serialize !== '') {
                     var response = JSON.parse(data.data_serialize);
+                    
                     setTimeout(function () {
                         for (i = 0; i < response.length; i++) {
-
+                            
                             if ($('#' + response[i].name + '.date').length) {
 
                                 if (response[i].value != '') {
@@ -71,18 +72,7 @@ $(document).ready(function () {
                                     //console.log('response[i].value: ' + response[i].value + ' ;date2:' + date2);
                                     $('#' + response[i].name).datepicker('setDate', date2);
                                 }
-                            } else if ($('#' + response[i].name + '.date_us').length) {
-
-                                if (response[i].value != '') {
-                                    var dateValue = response[i].value;
-                                    var date2 = new Date(dateValue);
-                                    if (dateValue.search('-') != -1) {
-                                        date2.setDate(date2.getDate() + 1);
-                                    }
-                                    //console.log('response[i].value: ' + response[i].value + ' ;date2:' + date2);
-                                    $('#' + response[i].name).datepicker('setDate', date2);
-                                }
-                            } else if (response[i].name.indexOf('radio_') > -1) {
+                            }  else if (response[i].name.indexOf('radio_') > -1) {
 
                                 $("input[name=" + response[i].name + "][value='" + response[i].value + "']").prop("checked", true);
 
@@ -242,6 +232,36 @@ $(document).ready(function () {
                         );
                     });
                 }
+                
+                if (!!data.datos_del_mecanico) {
+                    var response2 = JSON.parse(data.datos_del_mecanico);
+                    setTimeout(function () {
+                        for (i = 0; i < response2.length; i++) {
+
+                            if ($('#' + response2[i].name + '.date').length) {
+
+                                if (response2[i].value != '') {
+                                    var dateValue = response2[i].value;
+                                    var date2 = new Date(dateValue);
+                                    if (dateValue.search('-') != -1) {
+                                        date2.setDate(date2.getDate() + 1);
+                                    }
+                                    //console.log('response2[i].value: ' + response2[i].value + ' ;date2:' + date2);
+                                    $('#' + response2[i].name).datepicker('setDate', date2);
+                                }
+                            }  else if (response2[i].name.indexOf('radio_') > -1) {
+
+                                $("input[name=" + response2[i].name + "][value='" + response2[i].value + "']").prop("checked", true);
+
+                            } else {
+
+                                $('#' + response2[i].name).val(response2[i].value);
+                                $('.' + response2[i].name + '').text(response2[i].value);
+                            }
+                        }
+                    }, 3000);
+                }
+
                 $('#form_display_datos_mecanico').html(data.form_display_datos_mecanico);
  
                 $('#form_display_datos_mecanico').find('select, textarea, input').each(function (index, detalle) {
@@ -250,10 +270,38 @@ $(document).ready(function () {
                     if (index === 2) $(this).val(data.id);
                     if (index === 3) $(this).val(data.motor_no);
                     if (index === 7) $(this).val(data.km);
-                    if( index === 10) mailMecanico = $(this).val();
                   
                     $(this).prop('disabled', true);
                 });
+
+                if (!!data.datos_internos) {
+                    var response3 = JSON.parse(data.datos_internos);
+                    setTimeout(function () {
+                        for (i = 0; i < response3.length; i++) {
+
+                            if ($('#' + response3[i].name + '.date').length) {
+
+                                if (response3[i].value != '') {
+                                    var dateValue = response3[i].value;
+                                    var date2 = new Date(dateValue);
+                                    if (dateValue.search('-') != -1) {
+                                        date2.setDate(date2.getDate() + 1);
+                                    }
+                                    //console.log('response3[i].value: ' + response3[i].value + ' ;date2:' + date2);
+                                    $('#' + response3[i].name).datepicker('setDate', date2);
+                                }
+                            }  else if (response3[i].name.indexOf('radio_') > -1) {
+
+                                $("input[name=" + response3[i].name + "][value='" + response3[i].value + "']").prop("checked", true);
+
+                            } else {
+
+                                $('#' + response3[i].name).val(response3[i].value);
+                                $('.' + response3[i].name + '').text(response3[i].value);
+                            }
+                        }
+                    }, 3000);
+                }
                 $('#form_display_datos_internos').html(data.form_display_datos_internos);
             },
             error: function (data) {
@@ -465,11 +513,11 @@ $(document).ready(function () {
             registration_date: $('#registration_date').val(),
             registration_country: $('#registration_country').val(),
             frame_no: $('#frame_no').val(),
-            motor_no: $('#motor_no').val(),
+            motor_no: $('#motor_no').val(),            
             datos_del_mecanico: dataSerialize2.replace(/\s+/g, " "),
             datos_internos: dataSerialize3.replace(/\s+/g, " "),
-            sendMailMecanico: inputLenght == '5' ? 1 : 0,
-            mailMecanico: mailMecanico
+            sendMailMecanico: inputLenght == '5' ? 1 : 0
+            
         }
         preloader('show');
         $.ajax({
@@ -516,7 +564,11 @@ $(document).ready(function () {
     $('#editTabFicha3').click(function (e) {
         e.preventDefault();
         $('#tab-ficha-3').find('select, textarea, input').each(function () {
-            if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+            if ($(this).attr('id') == 'file_no') {
+                $(this).prop('disabled', true);
+            } else {
+                if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+            }
         });
     });
     ///////////////////////////////////////////////
@@ -557,8 +609,12 @@ $(document).ready(function () {
     ///////////////////////////////////////////////
     $('#editTabFicha9').click(function (e) {
         e.preventDefault();
-        $('#tab-ficha-9').find('select, textarea, input').each(function () {
-            if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+        $('#tab-ficha-9').find('select, textarea, input').each(function () {        
+            if ($(this).attr('id') == 'V6RrZFvV') {
+                $(this).prop('disabled', true);
+            } else {
+                if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+            }
         });
     });
 
