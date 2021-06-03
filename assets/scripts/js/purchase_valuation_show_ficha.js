@@ -26,7 +26,7 @@ $(document).ready(function () {
                 $('#image_purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
-                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4000);
+                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);

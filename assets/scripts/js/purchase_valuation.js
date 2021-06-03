@@ -862,7 +862,7 @@ $(document).ready(function(){
     $(document).on('click', '.button_edit', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id =  data[1];
+        var id =  data.id;
 
         // Populate Data in Edit Modal Form
         $.ajax({
@@ -880,11 +880,11 @@ $(document).ready(function(){
                     verify_model_brand = 0;
                     $("#ver").click();
                 }
-
+                
                 $('#purchase_id').val(data.id);
                 $('#year').val(data.year);
                 $('#brand').val(data.brand).trigger("change");
-                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 5000);
+                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
                 
 
                 $('#km').val(data.km);
