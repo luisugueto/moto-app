@@ -928,56 +928,62 @@ class PurchaseValuationController extends Controller
                 $linksRegister->purchase_valuation_id = $purchase_model->id;
                 $linksRegister->status = 0;
                 $linksRegister->save();
-               
-                $purchase_management = new PurchaseManagement();
-                $purchase_management->purchase_valuation_id = $purchase_model->id;
-                $purchase_management->file_no = $purchase_model->id;
-                $purchase_management->current_year = $purchase_model->date;
-                $purchase_management->collection_contract_date = date('Y-m-d');
-                $purchase_management->documents_attached = '';
-                $purchase_management->non_existence_document = '';
-                $purchase_management->vehicle_delivers = '';
-                $purchase_management->name = $purchase_model->name;
-                $purchase_management->firts_surname = $purchase_model->lastname;
-                $purchase_management->second_surtname = '';
-                $purchase_management->dni = '';
-                $purchase_management->birthdate = '';
-                $purchase_management->phone = $purchase_model->phone;
-                $purchase_management->email = $purchase_model->email;
-                $purchase_management->street = '';
-                $purchase_management->nro_street = '';
-                $purchase_management->stairs = '';
-                $purchase_management->floor = '';
-                $purchase_management->letter = '';
-                $purchase_management->municipality = '';
-                $purchase_management->postal_code = '';
-                $purchase_management->province = '';
-                $purchase_management->iban = '';
-                $purchase_management->sale_amount = $purchase_model->price_min;
-                $purchase_management->name_representantive = '';
-                $purchase_management->firts_surname_representative = '';
-                $purchase_management->second_surtname_representantive = '';
-                $purchase_management->dni_representative = '';
-                $purchase_management->birthdate_representative = '';
-                $purchase_management->phone_representantive = '';
-                $purchase_management->email_representative = '';
-                $purchase_management->representation_concept = '';
-                $purchase_management->brand = $purchase_model->brand;
-                $purchase_management->model = $purchase_model->model;
-                $purchase_management->version = '';
-                $purchase_management->type = '';
-                $purchase_management->kilometres = $purchase_model->km;
-                $purchase_management->color = '';
-                $purchase_management->fuel = '';
-                $purchase_management->weight = 0;
-                $purchase_management->registration_number = '';
-                $purchase_management->registration_date = '';
-                $purchase_management->registration_country = '';
-                $purchase_management->frame_no = '';
-                $purchase_management->motor_no = '';
-                $purchase_management->vehicle_state_trafic = $purchase_model->status_trafic;
-                $purchase_management->vehicle_state = '';
-                $purchase_management->save();
+
+                $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
+                
+                if($purchaseCount == 0){
+                    $purchase_management = new PurchaseManagement();
+                    $purchase_management->purchase_valuation_id = $purchase_model->id;
+                    $purchase_management->file_no = $purchase_model->id;
+                    $purchase_management->current_year = $purchase_model->date;
+                    $purchase_management->collection_contract_date = date('Y-m-d');
+                    $purchase_management->documents_attached = '';
+                    $purchase_management->non_existence_document = '';
+                    $purchase_management->vehicle_delivers = '';
+                    $purchase_management->name = $purchase_model->name;
+                    $purchase_management->firts_surname = $purchase_model->lastname;
+                    $purchase_management->second_surtname = '';
+                    $purchase_management->dni = '';
+                    $purchase_management->birthdate = '';
+                    $purchase_management->phone = $purchase_model->phone;
+                    $purchase_management->email = $purchase_model->email;
+                    $purchase_management->street = '';
+                    $purchase_management->nro_street = '';
+                    $purchase_management->stairs = '';
+                    $purchase_management->floor = '';
+                    $purchase_management->letter = '';
+                    $purchase_management->municipality = '';
+                    $purchase_management->postal_code = '';
+                    $purchase_management->province = '';
+                    $purchase_management->iban = '';
+                    $purchase_management->sale_amount = $purchase_model->price_min;
+                    $purchase_management->name_representantive = '';
+                    $purchase_management->firts_surname_representative = '';
+                    $purchase_management->second_surtname_representantive = '';
+                    $purchase_management->dni_representative = '';
+                    $purchase_management->birthdate_representative = '';
+                    $purchase_management->phone_representantive = '';
+                    $purchase_management->email_representative = '';
+                    $purchase_management->representation_concept = '';
+                    $purchase_management->brand = $purchase_model->brand;
+                    $purchase_management->model = $purchase_model->model;
+                    $purchase_management->version = '';
+                    $purchase_management->type = '';
+                    $purchase_management->kilometres = $purchase_model->km;
+                    $purchase_management->color = '';
+                    $purchase_management->fuel = '';
+                    $purchase_management->weight = 0;
+                    $purchase_management->registration_number = '';
+                    $purchase_management->registration_date = '';
+                    $purchase_management->registration_country = '';
+                    $purchase_management->frame_no = '';
+                    $purchase_management->motor_no = '';
+                    $purchase_management->vehicle_state_trafic = $purchase_model->status_trafic;
+                    $purchase_management->vehicle_state = '';
+                    $purchase_management->save();
+                }
+                
+                
             }
 
             if($state->email->id != 7){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
@@ -1202,6 +1208,7 @@ class PurchaseValuationController extends Controller
 
     public function updateFicha(Request $request)
     {
+        
         $purchase = PurchaseValuation::find($request->purchase_id);
         $purchase->date = $request->date;
         $purchase->brand = $request->brand;
@@ -1230,6 +1237,7 @@ class PurchaseValuationController extends Controller
         $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
         
         $purchase_management = PurchaseManagement::find($purchaseM->id);
+         
         $purchase_management->file_no = $request->file_no;
         $purchase_management->current_year = $request->current_year;
         $purchase_management->collection_contract_date = $request->collection_contract_date;
@@ -1304,7 +1312,7 @@ class PurchaseValuationController extends Controller
             $out['message'] = 'Registro Actualizado Exitosamente.';
         }
 
-        // dd($request->all());
+    
         if($request->sendMailMecanico == 1){
             $mecanico = $request->datos_del_mecanico;
             $subject = 'Datos para el mécanico de la moto #'. $request->file_no;   

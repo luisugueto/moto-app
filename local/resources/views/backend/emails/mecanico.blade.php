@@ -174,7 +174,7 @@
                                                     <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">Hola, {{ $subject }} .</span></p>
 
                                                     <?php 
-                                                        $fieldsArray = (json_decode(utf8_encode($dataSerialize)));
+                                                        $fieldsArray = json_decode($dataSerialize);
                                                         foreach ($fieldsArray as $key => $value) {
                                                             if ($value->name == 'mgSvfXlx'){
                                                                 $marca = $value->value;
