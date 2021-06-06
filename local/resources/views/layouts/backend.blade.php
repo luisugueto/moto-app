@@ -11,13 +11,13 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description" content="Web MotOstion.">
     <meta name="msapplication-tap-highlight" content="no">
-    <link rel="stylesheet" href="{{ asset('assets/web_component/jquery-ui-1.12.1/jquery-ui.min.css') }}" />
+    
     <link rel="stylesheet" href="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.min.css') }}" />
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-     <link rel="stylesheet" href="{{ asset('assets/css/dropzone.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />    
+    <link rel="stylesheet" href="{{ asset('assets/css/dropzone.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/web_component/jquery-ui-1.12.1/jquery-ui.min.css') }}" />
     
     <!-- JS -->
     <script src="{{ asset('assets/scripts/base/jquery-3.1.0.min.js') }}"></script>
@@ -203,25 +203,14 @@
     </div>
 
     <!-- Web Components -->
-    <script src="{{ asset('assets/web_component/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/libs/papaparse.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/jquery.dataTables.js') }}"></script>
+    
     <script src="{{ asset('assets/web_component/datatables.net/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/dataTables.responsive.min.js') }}">
     </script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.js') }}">
-    <script src="{{ asset('assets/web_component/datatables.net/dataTables.fixedHeader.min.js') }}"></script>    
-    <script src="{{ asset('assets/web_component/datatables.net/dataTables.editor.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/dataTables.dateTime.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/dataTables.select.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/buttons/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/libs/jszip.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/libs/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/libs/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/buttons/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('assets/web_component/datatables.net/buttons/buttons.print.min.js') }}"></script>
-    </script>
+    <script src="{{ asset('assets/web_component/datatables.net/dataTables.fixedHeader.min.js') }}"></script>  
+    <script src="{{ asset('assets/web_component/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>
     <script src="{{ asset('assets/scripts/base/sweetalert2@10.js') }}"></script>

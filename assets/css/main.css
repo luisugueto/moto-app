@@ -1023,7 +1023,8 @@ table.fancytree-ext-table.fancytree-treefocus tbody tr.fancytree-selected {
     color: black;
   }
 }
-.dataTables_filter, .dataTables_info { display: none; }
+/* .dataTables_info, */
+.dataTables_filter { display: none; } 
 /*Swicth*/
 .switch {
   position: relative;

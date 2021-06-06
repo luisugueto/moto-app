@@ -5,14 +5,15 @@ $(document).ready(function(){
     let dataTable = '';
 
     //Tabla para el estado en revision
+    
     $('#tableTasacionMotos thead tr').clone(true).appendTo('#tableTasacionMotos thead');
 
     $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
         
-        if (i != 14) {
+        if (i !== 0 && i !== 13) {
             $(this).html('<input type="text" class="form-control" />');
         }
-        else{
+        else {            
             $(this).css('display', 'none');
         }
     
@@ -30,10 +31,9 @@ $(document).ready(function(){
     }
     dataTable = $('#tableTasacionMotos').DataTable({
         processing: true,
+        serverSide: true,
         responsive: true,
-        orderCellsTop: true,
-        fixedHeader: true,
-        sDom: "Rlfrtip",
+        bPaginate: true,
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             url: "getPurchaseValuations", // json datasource            
@@ -41,116 +41,49 @@ $(document).ready(function(){
             error: function () {  // error handling
             }
         },
-        "columns": [
-            { "data": null,
-                render:function(data){
-                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
-        
-                },
-                "targets": -1
-            },  
-            { "data": "id" },
-            { "data": null,
-                render:function(data){
-                    var echo = '';
-                    if(data.states_id == 1)
-                        echo = "En Revisión";
-                    else if(data.states_id == 2)
-                        echo = "No Interesa";
-                    else if(data.states_id == 3)
-                        echo = "Interesa";
-
-                    return echo;
-                },
-                "targets": -1
-            },
-            { "data": "date" },
-            { "data": "brand" },
-            { "data": "model" },
-            { "data": "year" },
-            { "data": "km" },
-            { "data": "name" },
-            { "data": "province" },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.status_trafic == "Alta")
-                        echo = "Alta";
-                    else if(data.status_trafic == "Baja definitiva")
-                        echo = "Baja definitiva";
-
-                    return echo;
-                },
-                "targets": -1
-            },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-    
-                    if(data.motocycle_state  == "Golpe Delantero")
-                        echo = "Golpe Delantero";
-                    else if(data.motocycle_state  == "Golpe Trasero")
-                        echo = "Golpe Trasero";
-                    else if(data.motocycle_state  == "Avería Eléctrica")
-                        echo = "Avería Eléctrica";
-                    else if(data.motocycle_state  == "Avería Mecánica")
-                        echo = "Avería Mecánica";
-                    else if(data.motocycle_state  == "Vieja o Abandonada")
-                        echo = "Vieja o Abandonada";
-                    return echo;
-                },
-                "targets": -1
-            },                
-
-            { "data": "price_min" },
-            { "data": "observations" },
-            { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-
-            {"data": null,
-                render: function (data, type, row) {
-                    let echo = '';
-                    if (data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                            + "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                                    
-                    }
-                    else if (data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                    } else {
-                        echo = "No tienes permiso";
-                    }
-                    return echo;
-                },
-                "targets": -1
-            },
-
-        ],
         "columnDefs": [
             {
                 "targets": [ 1 ],
                 "visible": true,
             },
             {
-                "targets": [ 13 ],
+                "targets": [ 2 ],
+                "visible": false
+            },
+            {
+                "targets": [ 3 ],
+                "visible": false
+            },
+            {
+                "targets": [ 6 ],
+                "visible": false
+            },
+            {
+                "targets": [ 7 ],
+                "visible": false
+            },
+            {
+                "targets": [ 8 ],
+                "visible": false
+            },
+            {
+                "targets": [ 9 ],
+                "visible": false
+            },
+            {
+                "targets": [ 10 ],
+                "visible": false
+            },
+            {
+                "targets": [ 11 ],
+                "visible": false
+            },
+            {
+                "targets": [ 12 ],
                 "visible": false
             }
         ],
-        "order": [[0, "desc"]]
+        "order": [[1, "desc"]]
     });
     $('input.toggle-vis').on('change', function(e) {
         e.preventDefault();
@@ -166,10 +99,9 @@ $(document).ready(function(){
         }
         dataTable = $('#tableTasacionMotos').DataTable({
             processing: true,
+            serverSide: true,
             responsive: true,
-            orderCellsTop: true,
-            fixedHeader: true,
-            sDom: "Rlfrtip",
+            bPaginate: true,
             "ajax": {
                 headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
                 url: "getPurchaseValuations", // json datasource            
@@ -177,116 +109,49 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columns": [
-                { "data": null,
-                    render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
-            
-                    },
-                    "targets": -1
-                },  
-                { "data": "id" },
-                { "data": null,
-                    render:function(data){
-                        var echo = '';
-                        if(data.states_id == 1)
-                            echo = "En Revisión";
-                        else if(data.states_id == 2)
-                            echo = "No Interesa";
-                        else if(data.states_id == 3)
-                            echo = "Interesa";
-    
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": "date" },
-                { "data": "brand" },
-                { "data": "model" },
-                { "data": "year" },
-                { "data": "km" },
-                { "data": "name" },
-                { "data": "province" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_trafic == "Alta")
-                            echo = "Alta";
-                        else if(data.status_trafic == "Baja definitiva")
-                            echo = "Baja definitiva";
-    
-                        return echo;
-                    },
-                    "targets": -1
-                },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-     
-                        if(data.motocycle_state  == "Golpe Delantero")
-                            echo = "Golpe Delantero";
-                        else if(data.motocycle_state  == "Golpe Trasero")
-                            echo = "Golpe Trasero";
-                        else if(data.motocycle_state  == "Avería Eléctrica")
-                            echo = "Avería Eléctrica";
-                        else if(data.motocycle_state  == "Avería Mecánica")
-                            echo = "Avería Mecánica";
-                        else if(data.motocycle_state  == "Vieja o Abandonada")
-                            echo = "Vieja o Abandonada";
-                        return echo;
-                    },
-                    "targets": -1
-                },                
-    
-                { "data": "price_min" },
-                { "data": "observations" },
-                { "data": null,
-                    render:function(data){
-                        let echo = '';
-                        
-                        if(data.status_ficha == 2)
-                            echo = "<span class='badge badge-success'>Ficha <br> Verificada</span>";
-                        else if(data.status_ficha == 1)
-                            echo = "<span class='badge badge-warning'>Ficha <br> Registrada</span>";
-                        else if(data.status_ficha == 0)
-                            echo = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
-
-                        return echo;
-                    },
-                    "targets": -1
-                },
-    
-                {"data": null,
-                    render: function (data, type, row) {
-                        let echo = '';
-                        if (data.edit == true && data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Estado'>Editar</a>"
-                                + "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                                     
-                        }
-                        else if (data.delete == true) {
-                            echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-                        } else {
-                            echo = "No tienes permiso";
-                        }
-                        return echo;
-                    },
-                    "targets": -1
-                },
-    
-            ],
             "columnDefs": [
                 {
                     "targets": [ 1 ],
                     "visible": true,
                 },
                 {
-                    "targets": [ 13 ],
+                    "targets": [ 2 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 3 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 6 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 7 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 8 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 12 ],
                     "visible": false
                 }
             ],
-            "order": [[0, "desc"]]
+            "order": [[1, "desc"]]
         });
         $('input.toggle-vis').on('change', function(e) {
             e.preventDefault();
@@ -304,7 +169,7 @@ $(document).ready(function(){
  
     $('#tableMotosQueInterensan thead tr:eq(1) th').each(function (i) {
     
-        if (i != 12) {
+        if (i !== 14) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -339,11 +204,49 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
-            "order": [[0, "desc"]]
+            "columnDefs": [
+                {
+                    "targets": [ 4 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 5 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 6 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 7 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 8 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 12 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 13 ],
+                    "visible": false
+                }
+            ],
+            "order": [[1, "desc"]]
         });
 
         $('input.toggle-vis-1').on('change', function(e) {
@@ -360,7 +263,7 @@ $(document).ready(function(){
     $('#tableMotosParaDesguace thead tr').clone(true).appendTo('#tableMotosParaDesguace thead');
 
     $('#tableMotosParaDesguace thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
+        if (i != 14) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -393,11 +296,25 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
-            "order": [[0, "desc"]]
+            "columnDefs": [
+                {
+                    "targets": [ 4 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 5 ],
+                    "visible": false
+                },                 
+                {
+                    "targets": [ 8 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false
+                }
+            ],
+            "order": [[1, "desc"]]
         });
 
         $('input.toggle-vis-2').on('change', function(e) {
@@ -447,10 +364,44 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
+            "columnDefs": [
+                {
+                    "targets": [ 4 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 5 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 6 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 7 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 8 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 12 ],
+                    "visible": false
+                }
+            ],
             "order": [[0, "desc"]]
         });
 
@@ -501,10 +452,48 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
+            "columnDefs": [
+                {
+                    "targets": [ 4 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 5 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 6 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 7 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 8 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 12 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 13 ],
+                    "visible": false
+                }
+            ],
             "order": [[0, "desc"]]
         });
 
@@ -522,7 +511,7 @@ $(document).ready(function(){
     $('#tableMotosQueNoInteresan thead tr').clone(true).appendTo('#tableMotosQueNoInteresan thead');
 
     $('#tableMotosQueNoInteresan thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
+        if (i != 10) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -559,7 +548,7 @@ $(document).ready(function(){
 				"targets": [1],
 				"visible": true
 			}],
-            "order": [[0, "desc"]]
+            "order": [[1, "desc"]]
         });
 
         $('input.toggle-vis-5').on('change', function(e) {
@@ -609,10 +598,36 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
+            "columnDefs": [
+                {
+                    "targets": [ 4 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 5 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 7 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 8 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false
+                },
+                {
+                    "targets": [ 12 ],
+                    "visible": false
+                }
+            ],
             "order": [[0, "desc"]]
         });
 
@@ -665,9 +680,45 @@ $(document).ready(function(){
                 }
             },
             "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
+                "targets": [ 4 ],
+                "visible": false
+            },
+            {
+                "targets": [ 5 ],
+                "visible": false
+            },
+            {
+                "targets": [ 6 ],
+                "visible": false
+            },
+            {
+                "targets": [ 7 ],
+                "visible": false
+            },
+            {
+                "targets": [ 8 ],
+                "visible": false
+            },
+            {
+                "targets": [ 9 ],
+                "visible": false
+            },
+            {
+                "targets": [ 10 ],
+                "visible": false
+            },
+            {
+                "targets": [ 11 ],
+                "visible": false
+            },
+            {
+                "targets": [ 12 ],
+                "visible": false
+            },
+            {
+                "targets": [ 13 ],
+                "visible": false
+            }],
             "order": [[0, "desc"]]
         });
 
@@ -719,13 +770,99 @@ $(document).ready(function(){
                 }
             },
             "columnDefs": [{
-				"targets": [1],
-				"visible": true
-			}],
+                "targets": [ 4 ],
+                "visible": false
+            },
+            {
+                "targets": [ 5 ],
+                "visible": false
+            },
+            {
+                "targets": [ 6 ],
+                "visible": false
+            },
+            {
+                "targets": [ 7 ],
+                "visible": false
+            },
+            {
+                "targets": [ 8 ],
+                "visible": false
+            },
+            {
+                "targets": [ 9 ],
+                "visible": false
+            },
+            {
+                "targets": [ 10 ],
+                "visible": false
+            },
+            {
+                "targets": [ 11 ],
+                "visible": false
+            },
+            {
+                "targets": [ 12 ],
+                "visible": false
+            },
+            {
+                "targets": [ 13 ],
+                "visible": false
+            }],
             "order": [[0, "desc"]]
         });
 
         $('input.toggle-vis-7').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column.visible(!column.visible());
+        });
+    });
+
+   
+    //Motos Sin Acuerdo
+    $('#tableMotosSinAcuerdo thead tr').clone(true).appendTo('#tableMotosSinAcuerdo thead');
+
+    $('#tableMotosSinAcuerdo thead tr:eq(1) th').each( function (i) {
+        if (i != 10) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-9').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableMotosSinAcuerdo")) {
+            $('#tableMotosSinAcuerdo').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableMotosSinAcuerdo').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getPurchaseValuationsWhitoutDeal", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "order": [[1, "desc"]]
+        });
+
+        $('input.toggle-vis-8').on('change', function(e) {
             e.preventDefault();
             // Get the column API object
             var column = dataTable.column($(this).attr('data-column'));
@@ -862,7 +999,7 @@ $(document).ready(function(){
     $(document).on('click', '.button_edit', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var id =  data.id;
+        var id =  data[1];
 
         // Populate Data in Edit Modal Form
         $.ajax({
@@ -1094,26 +1231,50 @@ $(document).ready(function(){
 
 
     //delete product and remove it from TABLE list DT 0 ***************************
-    $(document).on('click', '.button_delete', function () {
+    $(document).on('click', '.button_delete', function (e) {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
-        var purchase_id =  data[1];
-        $.ajax({
-            headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
-            type: "DELETE",
-            url: url + '/' + purchase_id,
-            success: function (data) {                 
-                var message = `
-                <div class="notification alert alert-success" role="alert">
-                    Registro eliminado exitosamente!
-                </div>`;
-                $('.main-card').before(message);
-                dataTable.ajax.reload();
-            },
-            error: function (data) {
-                console.log('Error:', data);
+        var purchase_id = data[1];
+
+        e.preventDefault();
+        Swal.fire({
+            title:  "Estas seguro?",
+            text: "Quieres volver?!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, hazlo!",
+            cancelButtonText: "No, cancelar!",
+            }).then(result => {
+            if (result.dismiss) {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: 'Operación cancelada :)',
+                    showConfirmButton: !1,
+                    timer: 1500
+                });
+                //swal("Cancelled", "Data is safe :)", "error");
+            }
+            if (result.value) {
+                $.ajax({
+                    headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+                    type: "DELETE",
+                    url: url + '/' + purchase_id,
+                    success: function (data) {                 
+                        if (data.code == 200) {
+                            preloader('hide', data.message, 'success');                
+                            dataTable.ajax.reload(); 
+                        }
+                    },
+                    error: function (data) {
+                        console.log('Error:', data);
+                    }
+                });
             }
         });
+        
     });
 
     //display modal form for add document ***************************
