@@ -1428,7 +1428,7 @@ class PurchaseValuationController extends Controller
                     $message->attach(public_path().'/pdfs/'.$nameFile);
                 });
 
-            $out['message'] = 'Registro Actualizado Exitosamente. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
+            $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
         }else{
             $out['message'] = 'Registro Actualizado Exitosamente.';
         }
