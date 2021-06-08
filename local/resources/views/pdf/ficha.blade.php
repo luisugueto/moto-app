@@ -2082,11 +2082,11 @@
             <tr style="height:28pt">
                 <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->firts_surname }}</p>
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
                 <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->second_surtname }}</p>
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
             </tr>
             <tr style="height:23pt">
@@ -2103,15 +2103,15 @@
             <tr style="height:28pt">
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->name  }}</p>
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
+                   <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->dni  }}</p>
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
+                   <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->birthdate  }}</p>
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
+                   <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
@@ -2128,9 +2128,11 @@
             <tr style="height:23pt">
                 <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->firts_surname_representative  }}</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
                 <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->second_surtname_representantive  }}</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
             </tr>
             <tr style="height:23pt">
@@ -2147,12 +2149,15 @@
             <tr style="height:23pt">
                 <td style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->name_representantive  }}</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
                 <td style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->dni_representantive  }}</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
                 <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->birthdate_representative  }}</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
