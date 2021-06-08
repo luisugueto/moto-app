@@ -139,15 +139,15 @@
                                         <input class="toggle-vis" id="column_6" type="checkbox" data-column="6"><label class="inline-label tr" key="KM" for="column_6">KM</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_7" type="checkbox" data-column="7"><label class="inline-label tr" key="Nombre" for="column_7">Nombre</label>
+                                        <input class="toggle-vis" id="column_7" type="checkbox" data-column="7"><label class="inline-label tr" key="Email/Teléfono" for="column_7">Email/Teléfono</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_8" type="checkbox" data-column="8"><label class="inline-label tr" key="Provincia" for="column_8">Provincia</label>
+                                        <input class="toggle-vis" id="column_8" type="checkbox" data-column="8"><label class="inline-label tr" key="Nombre" for="column_8">Nombre</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis" id="column_9" type="checkbox" data-column="9"><label class="inline-label tr" key="Provincia" for="column_9">Provincia</label>
                                     </button>
                                      <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_9" type="checkbox" data-column="9"><label class="inline-label tr" key="Estado en Tráfico" for="column_9">Estado en Tráfico</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis" id="column_10" type="checkbox" data-column="10"><label class="inline-label tr" key="Estado en Tráfico" for="column_10">Estado en Tráfico</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
@@ -170,12 +170,12 @@
                                     <th class="text-center">Modelo</th>
                                     <th class="text-center">Año</th>
                                     <th class="text-center">KM</th>
+                                    <th class="text-center">Email/Teléfono</th>
                                     <th class="text-center">Nombre</th>
                                     <th class="text-center">Provincia</th>
                                     <th class="text-center">Estado en Tráfico</th>
                                     <th class="text-center">Estado de la moto</th>
                                     <th class="text-center">Mínimo</th>
-                                    <th class="text-center">Observaciones</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
