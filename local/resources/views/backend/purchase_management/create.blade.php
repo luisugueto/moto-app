@@ -34,6 +34,15 @@
 
                         <input type="hidden" name="purchase_valuation_id" value="{{ $purchase_valuation_id }}">
                         <input type="hidden" name="purchase_id" value="{{ $gestion->id }}">
+                        <?php 
+                            $fieldsArray = json_decode($purchase->data_serialize);
+                        
+                            foreach ($fieldsArray as $key => $value) {
+                                if ($value->name == 'dLQrpaV2') {
+                                    $precio_final = $value->value;
+                                }
+                            }
+                        ?>
                         <h6><strong>Datos a complementar por el centro CATv</strong> </h6>
                         <div class="form-row row g-1">
                             <div class="col-md-4">
@@ -315,7 +324,7 @@
                                 <div class="position-relative form-group">
                                     <label for="sale_amount" class="">Importe de Venta( Iva Incl):</label>
                                     <input name="sale_amount" id="sale_amount" type='number' step="0.1" class="form-control"
-                                        value="{{ $purchase->price_min }}" readonly>
+                                        value="{{  $precio_final }}" readonly>
                                     @if ($errors->has('sale_amount'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('sale_amount') }}</strong>

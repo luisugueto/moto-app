@@ -80,6 +80,10 @@ $(document).ready(function () {
 
                                 $('#' + response[i].name).val(response[i].value);
                                 $('.' + response[i].name + '').text(response[i].value);
+
+                                if (response[i].name == 'dLQrpaV2') {
+                                    $('#sale_amount').val(response[i].value);
+                                }
                             }
                         }
                     }, 3000);
@@ -118,7 +122,7 @@ $(document).ready(function () {
                 $('#postal_code').val(data.postal_code);
                 $('#province_management').val(data.province_management);
                 $('#iban').val(data.iban);
-                $('#sale_amount').val(data.sale_amount);
+                
                 $('#name_representantive').val(data.name_representantive);
                 $('#firts_surname_representative').val(data.firts_surname_representative);
                 $('#second_surtname_representantive').val(data.second_surtname_representantive);

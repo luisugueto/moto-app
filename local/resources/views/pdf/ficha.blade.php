@@ -351,7 +351,7 @@
             </tr>
             <tr style="height:19pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -359,28 +359,28 @@
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br></p>
                 </td>
             </tr>
             <tr style="height:25pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
@@ -732,7 +732,7 @@
             </tr>
             <tr style="height:19pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -740,28 +740,28 @@
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br></p>
                 </td>
             </tr>
             <tr style="height:25pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
@@ -1115,7 +1115,7 @@
             </tr>
             <tr style="height:19pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -1123,28 +1123,28 @@
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br></p>
                 </td>
             </tr>
             <tr style="height:25pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
@@ -1498,7 +1498,7 @@
             </tr>
             <tr style="height:19pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="3">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.1 Nombre o Razón social <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:2pt" rowspan="4">
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -1506,28 +1506,28 @@
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
                     <p class="s2" style="padding-left: 12pt;text-indent: 0pt;text-align: left;">Instalación de recepción (sello y firma)</p>
                     <p style="text-indent: 0pt;text-align: left;"><br/></p>
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> {{ $purchase_management->collection_contract_date }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 8pt;text-align: left;">3.8 Fecha<span class="s5">:</span> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br>{{ $purchase_management->dni }}</p>
+                    <p class="s2" style="padding-top: 1pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">3.2 CIF <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> {{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.3 Dirección <br> </p>
                 </td>
             </tr>
             <tr style="height:22pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br>{{ $purchase_management->municipality }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.4 Municipio <br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br>{{ $purchase_management->postal_code }}</p>
+                    <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 9pt;text-align: left;">3.5 Codigo postal <br></p>
                 </td>
             </tr>
             <tr style="height:25pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> {{ $purchase_management->province }}</p>
+                    <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">3.6 Província <br> </p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:2pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;text-align: left;">3.7 País <br> ESPAÑA</p>
@@ -2055,7 +2055,7 @@
                 <td style="width:163pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18" style="padding-top: 4pt;padding-left: 18pt;text-indent: 0pt;text-align: left;">Nº de autorización</p>
                 </td>
-            </tr>
+            </tr>_
             <tr style="height:23pt">
                 <td style="width:191pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s31" style="padding-left: 36pt;text-indent: 0pt;line-height: 20pt;text-align: left;">motOstion S.L.</p>
@@ -2081,11 +2081,11 @@
             </tr>
             <tr style="height:28pt">
                 <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->firts_surname }}</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
                 <td style="width:120pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->second_surtname }}</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
             </tr>
@@ -2102,15 +2102,15 @@
             </tr>
             <tr style="height:28pt">
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->name  }}</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->dni  }}</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">1</p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->birthdate  }}</p>
                     <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 13pt;text-align: left;">2</p>
                 </td>
             </tr>
@@ -2127,10 +2127,10 @@
             </tr>
             <tr style="height:23pt">
                 <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
-                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->firts_surname_representative  }}</p>
                 </td>
                 <td style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->second_surtname_representantive  }}</p>
                 </td>
             </tr>
             <tr style="height:23pt">
@@ -2146,13 +2146,13 @@
             </tr>
             <tr style="height:23pt">
                 <td style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->name_representantive  }}</p>
                 </td>
                 <td style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->dni_representantive  }}</p>
                 </td>
                 <td style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p style="text-indent: 0pt;text-align: left;"><br/><br></p>
+                    <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->birthdate_representative  }}</p>
                 </td>
             </tr>
         </table>
@@ -2164,14 +2164,14 @@
                 </td>
                 <td>
                     <p class="s13" style="padding-top: 4pt;padding-left: 89pt;text-indent: 0pt;text-align: left;"><span>Por la presente declaro tener facultad de disposición sobre el<br/>vehículo arriba indicado y solicito su baja entregándolo en la<br/>fecha señalada en el Centro de Tratamiento referenciado.</span></p>
-                    <p style="text-indent: 0pt;text-align: left;"/>
+                    <p style="text-indent: 0pt;text-align: left;">
                     <p style="text-indent: 0pt;text-align: left;"/>
                     <p class="s25" style="padding-top: 6pt;padding-left: 89pt;text-indent: 0pt;text-align: left;"><span>
                         <input type="checkbox" name="" id="">TITULAR 
                         <input type="checkbox" name="" id="">PROPIETARIO<br/>
                         <input type="checkbox" name="" id="">REPRESENTANTE:</span></p>
-                    <p class="s26" style="padding-left: 92pt;text-indent: 0pt;line-height: 10pt;text-align: left;">DNI…………………………………………………………</p>
-                    <p class="s26" style="padding-left: 91pt;text-indent: 0pt;line-height: 10pt;text-align: left;">NOMBRE Y APELLIDOS…………………..……………</p>
+                    <p class="s26" style="padding-left: 92pt;text-indent: 0pt;line-height: 10pt;text-align: left;">DNI <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->dni  }}</p></p>
+                    <p class="s26" style="padding-left: 91pt;text-indent: 0pt;line-height: 10pt;text-align: left;">NOMBRE Y APELLIDOS  <p class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;"> {{ $purchase_management->name  }} {{ $purchase_management->firts_surname  }} {{ $purchase_management->second_surtname  }}</p></p>
                     <p class="s33" style="padding-top: 2pt;padding-left: 91pt;text-indent: 2pt;text-align: left;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class="s30">, a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span class="s30" style="text-decoration: none;">de<br/>FIRMA</span></p>
                 </td>
             </tr>
@@ -2250,7 +2250,7 @@
                 <td colspan="2" style="margin-top: 5pt;border: 1px solid #000; width: 250px">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
                     <h1 style="padding-top: 9pt;text-indent: 0pt;text-align: center;">€</h1>
-                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($purchase_management->sale_amount,2) }}</p>
+                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($precio,2) }}</p>
                 </td>
             </tr>
         </table>
@@ -2471,7 +2471,7 @@
                 <td colspan="2" style="margin-top: 5pt;border: 1px solid #000; width: 250px">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
                     <h1 style="padding-top: 9pt;text-indent: 0pt;text-align: center;">€</h1>
-                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($purchase_management->sale_amount,2) }}</p>
+                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($precio,2) }}</p>
                 </td>
             </tr>
         </table>
@@ -2692,7 +2692,7 @@
                 <td colspan="2" style="margin-top: 5pt;border: 1px solid #000; width: 250px">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">VALOR DE VENTA IVA INCL.</h2>
                     <h1 style="padding-top: 9pt;text-indent: 0pt;text-align: center;">€</h1>
-                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($purchase_management->sale_amount,2) }}</p>
+                    <p class="s35" style="padding-top: 5pt;text-indent: 0pt;text-align: center;text-decoration: none">{{ round($precio,2) }}</p>
                 </td>
             </tr>
         </table>
@@ -2997,7 +2997,7 @@
         <div class="saltoDePagina"></div>
     </div>
     <div class="container-fluid">
-        
+        {{-- Hoja 14 --}}
         <p style="text-indent: 0pt;text-align: left;"><br></p>        
         <p style="text-indent: 0pt;text-align: left;"><br></p>    
         <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
@@ -3078,11 +3078,11 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" >
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Nombre de la vía:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->street}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Número:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->nro_street}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
@@ -3098,11 +3098,11 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Escalera:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->stairs}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 4pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Planta:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->floor}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 5pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Puerta:</p>
@@ -3110,7 +3110,7 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">KM:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->kilometres}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
@@ -3118,15 +3118,15 @@
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Código postal:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->postal_code}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Provincia:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->municipality}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 4pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Municipio:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->province}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Localidad:</p>
@@ -3160,11 +3160,11 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Fecha nacimiento (dd/mm/aaaa):</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->birthdate}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Nombre/Razón social:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->name}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
             </tr>
         </table>
@@ -3172,11 +3172,11 @@
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Apellido 1:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->firts_surname}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Apellido 2:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->second_surtname}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
             </tr>
             <tr style="height:30pt">
@@ -3304,7 +3304,7 @@
         <div class="saltoDePagina"></div>
     </div>
     <div class="container-fluid">
-        
+        {{-- Hoja 15 --}}
         <p style="text-indent: 0pt;text-align: left;"><br></p>        
         <p style="text-indent: 0pt;text-align: left;"><br></p>    
         <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
@@ -3385,11 +3385,11 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" >
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Nombre de la vía:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->street}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Número:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->nro_street}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
@@ -3405,11 +3405,11 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Escalera:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->stairs}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 4pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Planta:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->floor}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 5pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Puerta:</p>
@@ -3417,7 +3417,7 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">KM:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->kilometres}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
@@ -3425,15 +3425,15 @@
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Código postal:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->postal_code}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Provincia:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->municipality}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 4pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Municipio:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->province}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Localidad:</p>
@@ -3467,11 +3467,11 @@
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Fecha nacimiento (dd/mm/aaaa):</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->birthdate}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Nombre/Razón social:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->name}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
         </table>
@@ -3479,11 +3479,11 @@
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="2">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Apellido 1:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->firts_surname}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Apellido 2:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">{{$purchase_management->second_surtname}}</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
             <tr style="height:30pt">
@@ -3611,6 +3611,7 @@
         <div class="saltoDePagina"></div>
     </div>
     <div class="container-fluid">
+        {{-- Hoja 16 --}}
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p class="s54" style="text-align: center;">INSTRUCCIONES</p>
@@ -3758,6 +3759,7 @@
     </div>
 
     <div class="container-fluid">
+        {{-- Hoja 17 --}}
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
@@ -3828,8 +3830,8 @@
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
         <p class="s26" style="padding-left: 6pt;text-indent: 0pt;line-height: 114%;text-align: justify;"><span>Para ejercer sus derechos, debe dirigirse al responsable, solicitando el correspondiente formulario para el ejercicio del derecho elegido. Opcionalmente, puede redirigir al interesado a la Autoridad de Control competente para obtener información adicional acerca de sus derechos.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br/></p>
-        <p class="s26" style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span class="h4">Consentimiento. </span>En .......... ................................ a ..... ................... D n./a,<span class="s60"> </span>con DNI / NIE</p>
-        <p class="s26" style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">................................ doy mi consentimiento expreso de acuerdo con lo expuesto en el presente documento.</p>
+        <p class="s26" style="padding-left: 5pt;text-indent: 0pt;text-align: left;"><span class="h4">Consentimiento. </span>En {{ $purchase_management->name }} {{ $purchase_management->firts_surname }} {{ $purchase_management->second_surtname }} D n./a,<span class="s60"> </span>con DNI / NIE</p>
+        <p class="s26" style="padding-top: 1pt;padding-left: 5pt;text-indent: 0pt;text-align: left;"> {{ $purchase_management->dni }} doy mi consentimiento expreso de acuerdo con lo expuesto en el presente documento.</p>
     </div>
     </body>
 </html>

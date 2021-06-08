@@ -39,7 +39,7 @@ class PurchaseManagementController extends Controller
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
             $gestion = PurchaseManagement::where('purchase_valuation_id', $purchase_valuation_id)->first();
             $purchase = PurchaseValuation::find($linksRegister->purchase_valuation_id);
-
+         
             return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion','purchase_management', 'purchase'));
         }
         else

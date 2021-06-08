@@ -27,7 +27,7 @@ class ResiduosController extends Controller
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 6) 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
@@ -39,6 +39,11 @@ class ResiduosController extends Controller
         
         $data = array();
         foreach($purchases as $value){  
+
+            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
+            ->where('processes_id', '=', 11) 
+            ->where('subprocesses_id', '=', 32) 
+            ->get();
 
             $row = array();      
             $row['id'] = $value->id_pv;
@@ -56,9 +61,12 @@ class ResiduosController extends Controller
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
             $row['vehicle_state'] = $value->status_trafic;
-            $row['current_year'] = $value->current_year;
-            $row['certificate_destruction_date'] = $value->current_year;
-            $row['collection_contract_date'] = $value->collection_contract_date;
+            $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
+            $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
+            $row['collection_contract_date'] = '';
+            foreach($apply as $key){          
+                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));                      
+            }
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -75,19 +83,26 @@ class ResiduosController extends Controller
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
-        ->where('apply.processes_id', '=', 5) 
-        ->where('apply.subprocesses_id', '=', 5) 
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)         
+         
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
-        // dd($purchases);
+        //dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){  
-
+            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
+            ->where('processes_id', '=', 11) 
+            ->where('subprocesses_id', '=', 32) 
+            ->get();
+            
+            //dd($apply);
+            
             $row = array();      
             $row['id'] = $value->id_pv;
             $row['model'] = $value->model1;
@@ -104,9 +119,13 @@ class ResiduosController extends Controller
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
             $row['vehicle_state'] = $value->status_trafic;
-            $row['current_year'] = $value->current_year;
-            $row['certificate_destruction_date'] = $value->current_year;
-            $row['collection_contract_date'] = $value->collection_contract_date;
+            $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
+            $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
+            $row['collection_contract_date'] = '';
+            foreach($apply as $key){          
+                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));                      
+            }
+           
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -123,7 +142,7 @@ class ResiduosController extends Controller
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id','apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 6) 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
@@ -132,6 +151,11 @@ class ResiduosController extends Controller
         $data = array();
         foreach($purchases as $value){  
 
+            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
+            ->where('processes_id', '=', 11) 
+            ->where('subprocesses_id', '=', 32) 
+            ->get();
+
             $row = array();      
             $row['id'] = $value->id_pv;
             $row['Modelo'] = $value->model1;
@@ -139,7 +163,7 @@ class ResiduosController extends Controller
             $row['Fecha Matriculación'] = $value->registration_date;
             $row['Bastidor'] = $value->frame_no;
             $row['Estado en tráfico'] = $value->vehicle_state_trafic;
-            $row['Peso (kg)'] = '';
+            $row['Peso (kg)'] = round($value->weight, 2);
             $row['Titular'] = $value->pvname. ' '. $value->lastname;
             $row['Dni'] = $value->dni;
             $row['Fecha de Nacimiento'] = $value->birthdate;
@@ -148,10 +172,13 @@ class ResiduosController extends Controller
             $row['Población'] = $value->municipality;
             $row['Provincia'] = $value->province;
             $row['Estado Moto'] = $value->status_trafic;
-            $row['Fecha de Baja'] = $value->current_year;
-            $row['N° Certificado de Destrucción'] = $value->purchase_valuation_id;
-            $row['Fecha Certificado de Destrucció'] = $value->current_year;
-            $row['Fecha de Descontaminacion'] = $value->collection_contract_date;
+            $row['Fecha de Baja'] = date('d-m-Y', strtotime($value->current_year));
+            $row['N° Certificado de Destrucción'] = 'CATV/MD/12173/'.$value->purchase_valuation_id;
+            $row['Fecha Certificado de Destrucción'] = date('d-m-Y', strtotime($value->destruction_date));
+            $row['Fecha de Descontaminacion'] = '';
+            foreach($apply as $key){          
+                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));                      
+            }
             $data[] = $row;
         }
         // $json_data = array('data'=> $row);
@@ -173,7 +200,7 @@ class ResiduosController extends Controller
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 5) 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
@@ -182,6 +209,11 @@ class ResiduosController extends Controller
         $data = array();
         foreach($purchases as $value){  
 
+            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
+            ->where('processes_id', '=', 11) 
+            ->where('subprocesses_id', '=', 32) 
+            ->get();
+
             $row = array();      
             $row['id'] = $value->id_pv;
             $row['Modelo'] = $value->model1;
@@ -189,7 +221,7 @@ class ResiduosController extends Controller
             $row['Fecha Matriculación'] = $value->registration_date;
             $row['Bastidor'] = $value->frame_no;
             $row['Estado en tráfico'] = $value->vehicle_state_trafic;
-            $row['Peso (kg)'] = '';
+            $row['Peso (kg)'] = round($value->weight, 2);
             $row['Titular'] = $value->pvname. ' '. $value->lastname;
             $row['Dni'] = $value->dni;
             $row['Fecha de Nacimiento'] = $value->birthdate;
@@ -198,10 +230,13 @@ class ResiduosController extends Controller
             $row['Población'] = $value->municipality;
             $row['Provincia'] = $value->province;
             $row['Estado Moto'] = $value->status_trafic;
-            $row['Fecha de Baja'] = $value->current_year;
-            $row['N° Certificado de Destrucción'] = $value->purchase_valuation_id;
-            $row['Fecha Certificado de Destrucció'] = $value->current_year;
-            $row['Fecha de Descontaminacion'] = $value->collection_contract_date;
+            $row['Fecha de Baja'] = date('d-m-Y', strtotime($value->current_year));
+            $row['N° Certificado de Destrucción'] = 'CATV/MD/12173/'.$value->purchase_valuation_id;
+            $row['Fecha Certificado de Destrucción'] = date('d-m-Y', strtotime($value->destruction_date));
+            $row['Fecha de Descontaminacion'] = '';
+            foreach($apply as $key){          
+                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));                      
+            }
             $data[] = $row;
         }
         // $json_data = array('data'=> $row);
