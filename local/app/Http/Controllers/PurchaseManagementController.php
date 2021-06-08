@@ -32,15 +32,16 @@ class PurchaseManagementController extends Controller
      */
     public function create($token)
     {
-        $linksRegister = LinksRegister::where('token', $token)->first();
+        $linksRegister = LinksRegister::where('token', $token)->where('status', 0)->first();
         $purchase_management = new PurchaseManagement();
         
         if(!empty($linksRegister)){
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
             $gestion = PurchaseManagement::where('purchase_valuation_id', $purchase_valuation_id)->first();
             $purchase = PurchaseValuation::find($linksRegister->purchase_valuation_id);
+            $token_purchase = $linksRegister->token;
          
-            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion','purchase_management', 'purchase'));
+            return view('backend.purchase_management.create', compact('purchase_valuation_id','gestion','purchase_management', 'purchase', 'token_purchase'));
         }
         else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
@@ -56,6 +57,7 @@ class PurchaseManagementController extends Controller
     {
         if(isset($request->vin7Digitos)){
             $this->validate($request, [
+                'token_purchase' => 'required',
                 // 'file_no' => 'required',
                 'current_year' => 'required|date',
                 // 'collection_contract_date' => 'required|date',
@@ -105,6 +107,7 @@ class PurchaseManagementController extends Controller
             ]);
         }else{
             $this->validate($request, [
+                'token_purchase' => 'required',
                 // 'file_no' => 'required',
                 'current_year' => 'required|date',
                 // 'collection_contract_date' => 'required|date',
@@ -298,6 +301,11 @@ class PurchaseManagementController extends Controller
         $gestion->status = 1;
 
         $gestion->update();
+
+        $link = LinksRegister::where('token', $request->token_purchase)->where('status', 0)->first();
+        $link->status = 1;
+        $link->update();
+
 
         return Redirect::to('https://motostion.com/');
     }
