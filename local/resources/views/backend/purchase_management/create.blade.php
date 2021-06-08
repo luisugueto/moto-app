@@ -36,10 +36,14 @@
                         <input type="hidden" name="purchase_id" value="{{ $gestion->id }}">
                         <?php 
                             $fieldsArray = json_decode($purchase->data_serialize);
-                        
-                            foreach ($fieldsArray as $key => $value) {
-                                if ($value->name == 'dLQrpaV2') {
-                                    $precio_final = $value->value;
+                            $precio_final = 0;
+                            
+                            if(!empty($fieldsArray)){
+
+                                foreach ($fieldsArray as $key => $value) {
+                                    if ($value->name == 'dLQrpaV2') {
+                                        $precio_final = $value->value;
+                                    }
                                 }
                             }
                         ?>
