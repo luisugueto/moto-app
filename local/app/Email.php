@@ -9,7 +9,7 @@ class Email extends Model
     protected $table = 'emails';
 
     protected $fillable = [
-    	'name', 'subject', 'content'
+    	'name', 'subject', 'content', 'type'
     ];
 
     public function states()

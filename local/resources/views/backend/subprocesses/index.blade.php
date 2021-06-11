@@ -75,7 +75,7 @@
                         <ul id="errors"></ul>
                     </div>
                     <form id="frmSubProcess" name="frmSubProcess" novalidate="">
-                        {{ csrf_field() }}
+                        {{ csrf_field() }}                        
                         <div class="divider"></div>
                         <div class="position-relative form-group">
                             <label>Nombre</label>
@@ -92,7 +92,22 @@
                             <select class="form-control" id="processes_id" name="processes_id" required>
                                 <option selected disabled>Seleccione</option>
                                 @foreach($processes as $process)
-                                    <option value="{{ $process->id }}">{{ $process->name }}</option>
+                                    <option value="{{ $process->id }}" data-name="{{ $process->name }}">{{ $process->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="position-relative form-group" style="display: none" id="check_business">
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="is_business" id="is_business">
+                              <label class="form-check-label">El subproceso es para una empresa ? </label>
+                            </div>
+                        </div>
+                        <div class="position-relative form-group" id="business_select" style="display: none">
+                            <label>Nombre de la Empresa</label>
+                            <select class="form-control" id="business_id" name="business_id" required>
+                                <option selected disabled>Seleccione</option>
+                                @foreach($business as $busines)
+                                    <option value="{{ $busines->id }}">{{ $busines->name }} | {{ $busines->email }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -122,5 +137,50 @@
         </div>
     </div>
     <script src="{{ asset('assets/scripts/js/subprocesses.js') }}"></script>
+    <script>
+        $(function(){
+            $('#processes_id').change(function(){
+                var $proceso = $(this).find('option:selected').text();
+                if($proceso == 'Grua')
+                    $('#check_business').css('display', 'block'),
+                    $('#email_id').prop('disabled',true);
+                else
+                    $('#check_business').css('display', 'none'),
+                    $('#email_id').prop('disabled',false);
+                
+            });
+
+            $('input[name="is_business"]').click(function(){
+                if($(this).prop("checked") == true){
+                    $('#business_select').css('display', 'block');
+                }
+                else if($(this).prop("checked") == false){
+                    $('#business_select').css('display', 'none');
+                }
+            });
+
+            $('#business_id').change(function(){
+                var empresa = $(this).val();
+
+                $.ajax({
+                    url: '{{ url("getMailBusiness") }}',
+                    headers: {'X-CSRF-TOKEN': $('input[name=_token]').val()},
+                    data: {
+                        id:empresa
+                    },
+                    type: 'POST',
+                    datatype: 'JSON',
+                    success: function (resp) {
+                        let select = $("#email_id");                        
+                         
+                        select.val(resp.email.id).trigger('change');
+
+                        select.prop('disabled', true);
+
+                    }
+                });
+            });
+        });
+    </script>
     @endsection
 @endsection

@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('update_profile', 'UserController@updateProfile')->name('updateProfile');
     Route::post('update_password', 'UserController@updatePassword')->name('updatePassword');
     Route::resource('estados-gc', 'StatesController');
+    Route::resource('/mensajes', 'EmailsController');
     Route::resource('mensajes-gc', 'EmailsController');
     Route::resource('procesos', 'ProcessesController');
     Route::resource('sub-procesos', 'SubProcessesController');
@@ -38,7 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Vistas Proximanente
     Route::get('/calendarios', 'HomeController@proximamente');
-    Route::get('/mensajes', 'HomeController@proximamente');
     Route::get('/estados-gt', 'HomeController@proximamente');
     Route::get('/mensajes-gt', 'HomeController@proximamente');
     Route::get('/documentos-gt', 'HomeController@proximamente');
@@ -97,7 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getProcesses', 'ProcessesController@getProcesses');
     Route::post('getSubProcesses', 'SubProcessesController@getSubProcesses');
     Route::get('getSubProcesses/{id}', 'SubProcessesController@getSubProcessesAjax');
-    Route::post('getEmails', 'EmailsController@getEmails');
+    Route::post('getEmailsMotos', 'EmailsController@getEmailsMotos');
+    Route::post('getEmailsBusiness', 'EmailsController@getEmailsBusiness');    
     Route::post('getRoles', 'RoleController@getRoles');
     Route::post('getUsers', 'UserController@getUsers');
     Route::post('getPurchaseValuations', 'PurchaseValuationController@getPurchaseValuations');
@@ -114,10 +115,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getEnviosQuincenalesGestionadas', 'ResiduosController@getEnviosQuincenalesGestionadas');
     Route::post('getEnviosSemestrales', 'ResiduosController@getEnviosSemestrales');
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
+    Route::post('getMailBusiness', 'SubProcessesController@getMailBusiness');
 
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');
     Route::post('getServices', 'ServicesController@getServices');
+    Route::post('getBusiness', 'BusinessController@getBusiness');
 
     // GET FILES
     Route::get('document/{filename}', 'PurchaseValuationController@document');

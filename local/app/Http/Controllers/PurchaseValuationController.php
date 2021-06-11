@@ -13,10 +13,11 @@ use Mail;
 use App\States;
 use App\Processes;
 use App\SubProcesses;
-use App\Emails;
+use App\Email;
 use App\DocumentsPurchaseValuation;
 use App\LinksRegister;
 use App\Forms;
+use App\Business;
 use Yajra\Datatables\Datatables;
 use App\ApplySubProcessAndProcess;
 
@@ -1110,7 +1111,7 @@ class PurchaseValuationController extends Controller
                     $subject = $state->name;
                 }
                 // ENVIAR CORREO
-                Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token, 'subprocesses' => $subprocesses], function ($message) use ($subject, $purchase_model)
+                Mail::send('backend.emails.template', ['purchase' => $purchase_model, 'state' => $state, 'token' => $token, 'subprocesses' => $subprocesses, 'purchaseCount' => $purchaseCount], function ($message) use ($subject, $purchase_model)
                 {
                     $message->from('info@motostion.com', 'MotOstion');
 
@@ -1135,17 +1136,31 @@ class PurchaseValuationController extends Controller
 
         // check last process and delete
         $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->first();
-        $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->count();
-
-        if($countLastProcessApply > 0)
+        $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->count();         
+        
+        if($countLastProcessApply > 0){            
             ApplySubProcessAndProcess::destroy($lastProcessApply->id);
+        }
 
         $apply = new ApplySubProcessAndProcess();
         $apply->processes_id = $processes->id;
         $apply->subprocesses_id = $subprocesses->id;
         $apply->purchase_valuation_id = $purchase->id;
         $apply->save();
+    
+        if($subprocesses->business_id !== ''){
+            $state = [];
+            $token = '';
+            $business = Business::find($subprocesses->business_id);
 
+            Mail::send('backend.emails.business', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token, 'business' => $business], function ($message) use ($subprocesses, $business)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to($business->email)->subject($subprocesses->name);
+                });
+        }
         if($subprocesses->email->id != 7){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
             $state = [];
             $token = '';

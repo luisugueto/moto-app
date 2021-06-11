@@ -54,6 +54,9 @@ $(document).ready(function () {
     $('#btn_add').click(function () {
         $('#btn-save').val("add");
         $('#frmSubProcess').trigger("reset");
+        $('#check_business').css('display', 'none');
+        $('#business_select').css('display', 'none');
+        $('#email_id').prop('disabled',false);
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -74,13 +77,26 @@ $(document).ready(function () {
             type: "GET",
             url: url + '/' + subprocess_id,
             success: function (data) {
-                // console.log(data);
+                //console.log(data);
                 $('#subprocess_id').val(data.id);
                 $('#name').val(data.name);
                 $('#description').val(data.description);
                 $('#status').val(data.status);
                 $('#processes_id').val(data.processes_id);
                 $('#email_id').val(data.email_id);
+                if ($("#processes_id option:selected").text() == 'Grua') {
+                    $('input[name="is_business"]').prop('checked', true);
+                    $('#check_business').css('display', 'block');
+                    $('#business_select').css('display', 'block');
+                    $('#business_id').val(data.business_id);
+                }
+                else {
+                    $('input[name="is_business"]').prop('checked', false);
+                    $('#check_business').css('display', 'none');
+                    $('#business_select').css('display', 'none');
+                    $('#business_id').val('');
+                }
+
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -94,12 +110,10 @@ $(document).ready(function () {
 
     //create new product / update existing product ***************************
     $("#btn-save").click(function (e) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('input[name=_token]').val()
-            }
-        })
-
+        var business_id = '';
+        if ($("#processes_id option:selected").text() == 'Grua') {
+            business_id = $('#business_id').val()
+        }
         e.preventDefault();
         var formData = {
             name: $('#name').val(),
@@ -107,6 +121,7 @@ $(document).ready(function () {
             status: $('#status').val(),
             processes_id: $('#processes_id').val(),
             email_id: $('#email_id').val(),
+            business_id: business_id,
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
@@ -127,11 +142,24 @@ $(document).ready(function () {
             dataType: 'json',
             success: function (data) {
                 
-                dataTable.ajax.reload();
-                $('#frmpSubPocess').trigger("reset");
-                $('#errors').html('');
-                $('.alert').prop('hidden', true);
-                $('#myModal').modal('hide')
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#frmpSubPocess').trigger("reset");
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                    $('#myModal').modal('hide')
+                }
+                else if (data.code == 422) {
+                    $('#errors').html('');
+                    preloader('hide', data.message, 'error');
+                    var list = '';
+                    $.each(data.response, function (i, value) {
+                        list += '<li>' + value + '</li>';
+                    });
+                    $('.alert').prop('hidden', false);
+                    $('#errors').html(list);
+                }
             },
             error: function (data) {
                 if (data.status == 422) {
@@ -161,12 +189,13 @@ $(document).ready(function () {
             type: "DELETE",
             url: url + '/' + subprocess_id,
             success: function (data) {
-                var message = `
-                <div class="alert alert-success" role="alert">
-                    Registro eliminado exitosamente!
-                </div>`;
-                $('.main-card').before(message);
-                dataTable.ajax.reload();
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                }
+                else if (data.code == 422) {
+                    preloader('hide', data.message, 'error');
+                }
             },
             error: function (data) {
                 console.log('Error:', data);

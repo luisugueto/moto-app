@@ -179,6 +179,8 @@
                                                             $subject = str_replace('{last_name}', $purchase->lastName, $subject);
                                                             $subject = str_replace('{marca_moto}', $purchase->brand, $subject);
                                                             $subject = str_replace('{modelo_moto}', $purchase->model, $subject);
+                                                            $subject = str_replace('{direccion}', $business->address, $subject);
+                                                            $subject = str_replace('{telefono}', $business->phone, $subject);
                                                         ?>
                                                         <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">{{ $subject }}</span></p>
                                                     @endif
@@ -189,6 +191,8 @@
                                                             $subject = str_replace('{last_name}', $purchase->lastName, $subject);
                                                             $subject = str_replace('{marca_moto}', $purchase->brand, $subject);
                                                             $subject = str_replace('{modelo_moto}', $purchase->model, $subject);
+                                                            $subject = str_replace('{direccion}', $business->address, $subject);
+                                                            $subject = str_replace('{telefono}', $business->phone, $subject);
                                                         ?>
                                                         <p style="text-align: justify; line-height: 1.5; word-break: break-word; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; mso-line-height-alt: 24px; margin: 0;"><span style="font-size: 16px; color: #6d89bc;">{{ $subject }}</span></p>
                                                     @endif
@@ -217,6 +221,8 @@
                                                     $content = str_replace('{last_name}', $purchase->lastName, $content);
                                                     $content = str_replace('{marca_moto}', $purchase->brand, $content);
                                                     $content = str_replace('{modelo_moto}', $purchase->model, $content);
+                                                    $content = str_replace('{direccion}', $business->address, $content);
+                                                    $content = str_replace('{telefono}', $business->phone, $content);
                                                 ?>
                                             @endif
 
@@ -226,6 +232,8 @@
                                                     $content = str_replace('{last_name}', $purchase->lastName, $content);
                                                     $content = str_replace('{marca_moto}', $purchase->brand, $content);
                                                     $content = str_replace('{modelo_moto}', $purchase->model, $content);
+                                                    $content = str_replace('{direccion}', $business->address, $content);
+                                                    $content = str_replace('{telefono}', $business->phone, $content);
                                                 ?>
                                             @endif
                 
@@ -234,17 +242,7 @@
                                                 <div style="line-height: 1.2; font-size: 12px; color: #555555; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 14px;">
                                                     <p style="font-size: 18px; line-height: 1.2; text-align: justify; word-break: break-word; mso-line-height-alt: 29px; margin: 0;"><span style="font-size: 18px; color: #003188;"><strong>{!! $content !!}</strong></span></p>
                                                 </div>
-                                            </div>
-
-                                            <!-- LINK FOR CONTINUE REGISTER  -->
-                                            @if(!empty($state) && $state->name == 'Interesa')
-                                                @if ($purchaseCount == 0)
-                                                    <div align="center" class="button-container" style="padding-top:15px;padding-right:10px;padding-bottom:15px;padding-left:10px;"> <a href="{{ url('/purchase_management/create/'.$token) }}" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #fb5f3d; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #fb5f3d; border-right: 1px solid #fb5f3d; border-bottom: 1px solid #fb5f3d; border-left: 1px solid #fb5f3d; padding-top: 15px; padding-bottom: 15px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>CONTINUAR REGISTRO</strong></span></span></a> </div>
-                                                @else
-                                                    <div align="center" class="button-container" style="padding-top:15px;padding-right:10px;padding-bottom:15px;padding-left:10px;"> <a href="https://motostion.com" style="-webkit-text-size-adjust: none; text-decoration: none; display: inline-block; color: #ffffff; background-color: #fb5f3d; border-radius: 60px; -webkit-border-radius: 60px; -moz-border-radius: 60px; width: auto; width: auto; border-top: 1px solid #fb5f3d; border-right: 1px solid #fb5f3d; border-bottom: 1px solid #fb5f3d; border-left: 1px solid #fb5f3d; padding-top: 15px; padding-bottom: 15px; font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; text-align: center; mso-border-alt: none; word-break: keep-all;" target="_blank"><span style="padding-left:30px;padding-right:30px;font-size:16px;display:inline-block;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>IR A MOTOSTION</strong></span></span></a> </div>
-                                                @endif
-
-                                            @endif
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -287,4 +285,4 @@
         </tbody>
     </table>
 </body>
-</html>
+</html> 

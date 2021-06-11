@@ -4,9 +4,9 @@ $(document).ready(function(){
     //get base URL *********************
     var url = $('#url').val();
 
-    $('#tableBusiness thead tr').clone(true).appendTo('#tableBusiness thead');
+    $('#tableEmails thead tr').clone(true).appendTo('#tableEmails thead');
 
-    $('#tableBusiness thead tr:eq(1) th').each( function (i) {
+    $('#tableEmails thead tr:eq(1) th').each( function (i) {
         if (i != 4) {
             $(this).html('<input type="text" class="form-control" />');
         }
@@ -25,36 +25,37 @@ $(document).ready(function(){
     } );
 
     
-    var dataTable = $('#tableBusiness').DataTable({
+    var dataTable = $('#tableEmails').DataTable({
         processing: true,
         responsive: true,
         orderCellsTop: true,
         fixedHeader: true, 
         ajax: {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-            url: "getBusiness", // json datasource            
+            url: "getEmailsBusiness", // json datasource            
             type: "post", // method  , by default get           
             error: function () {  // error handling
             }
         },
         "columns": [
             { "data": "id" },
-            { "data": "service_id" },
-            { "data": "email_id" },
             { "data": "name" },
-            { "data": "cif" },
-            { "data": "email" },
-            { "data": "city" },
-            { "data": "province" },
+            { "data": "subject" },
+            { "data": "content" },
             {"data": null,
                 render: function (data, type, row) {
                     var echo = '';
+                    // if (data.view == true && data.edit == true && data.delete == true) {
+                    //     echo = "<a class='mb-2 mr-2 btn btn-info text-white button_view' title='Ver Email'>Ver</a>"
+                    //         + "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Email'>Editar</a>"
+                    //         +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Email'>Eliminar</a>";
+                    // }
                     if (data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Empresa'>Editar</a>"
-                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Empresa'>Eliminar</a>";
+                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Email'>Editar</a>"
+                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Email'>Eliminar</a>";
                     }
                     else if (data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Empresa'>Eliminar</a>";
+                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Email'>Eliminar</a>";
                     } else {
                         echo = "No tienes permiso";
                     }
@@ -69,7 +70,7 @@ $(document).ready(function(){
     //display modal form for creating new product *********************
     $('#btn_add').click(function () {
         $('#btn-save').val("add");
-        $('#frmBusiness').trigger("reset");
+        $('#frmEmails').trigger("reset");
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -91,17 +92,12 @@ $(document).ready(function(){
             url: url + '/' + id,
             success: function (data) {
                 // console.log(data);
-                $('#business_id').val(data.id);
-                $('#service_id').val(data.service_id);
-                $('#email_id').val(data.email_id);
+                $('#email_id').val(data.id);
                 $('#name').val(data.name);
-                $('#cif').val(data.cif);
-                $('#phone').val(data.phone);
-                $('#email').val(data.email);
-                $('#postal_code').val(data.postal_code);
-                $('#city').val(data.city);
-                $('#province').val(data.province);
-                $('#address').val(data.address);
+                $('#subject').val(data.subject);
+                $('#content').summernote("editor.pasteHTML", data.content);
+                $('#content').val(data.content);
+                $('#type').val(data.type);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -113,31 +109,25 @@ $(document).ready(function(){
     
     //create new product / update existing product ***************************
     $("#btn-save").click(function (e) {
-
+        
         e.preventDefault();
         var formData = {
-            service_id: $('#service_id').val(),
-            email_id: $('#email_id').val(),
             name: $('#name').val(),
-            cif: $('#cif').val(),
-            phone: $('#phone').val(),
-            email: $('#email').val(),
-            postal_code: $('#postal_code').val(),
-            city: $('#city').val(),
-            province: $('#province').val(),
-            address: $('#address').val()
+            subject: $('#subject').val(),
+            content: $('#content').val(),
+            type: $('#type').val()
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
         var state = $('#btn-save').val();
         var type = "POST"; //for creating new resource
-        var business_id = $('#business_id').val();
+        var email_id = $('#email_id').val();;
         var my_url = url;
         if (state == "update") {
             type = "PUT"; //for updating existing resource
-            my_url += '/' + business_id;
+            my_url += '/' + email_id;
         }
-        preloader('show');
+     
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             type: type,
@@ -146,11 +136,10 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
 
-                //console.log(data)
                 if (data.code == 200) {
                     dataTable.ajax.reload();
                     preloader('hide', data.message, 'success');
-                    $('#frmBusiness').trigger("reset");
+                    $('#frmpEmails').trigger("reset");
                     $('#errors').html('');
                     $('.alert').prop('hidden', true);
                     $('#myModal').modal('hide')
@@ -164,22 +153,10 @@ $(document).ready(function(){
                     });
                     $('.alert').prop('hidden', false);
                     $('#errors').html(list);
-                }              
-                                
+                }       
             },
             error: function (data) {
-                console.log(data)
-                $('#errors').html('');
-                if (data.code == 422) {
-                    preloader('hide', data.message, 'error');
-                    var list = '';
-                    $.each(data.response, function (i, value) {
-                        list += '<li>' + value + '</li>';
-                    });
-                    $('.alert').prop('hidden', false);
-                    $('#errors').html(list);
-
-                }
+                console.log('Error:', data);       
             }
         });
     });
@@ -206,11 +183,7 @@ $(document).ready(function(){
                 }
             },
             error: function (data) {
-                if (data.status == 422) {
-                    $('.main-card').before('Correo no encontrado! No se pudo eliminar');
-                    dataTable.ajax.reload();
-                    console.log('Error:', data);
-                }
+                console.log('Error:', data);                 
             }
         });
     });

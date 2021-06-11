@@ -32,7 +32,7 @@ $(document).ready(function(){
         fixedHeader: true, 
         ajax: {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-            url: "getEmails", // json datasource            
+            url: "getEmailsMotos", // json datasource            
             type: "post", // method  , by default get           
             error: function () {  // error handling
             }
@@ -97,6 +97,7 @@ $(document).ready(function(){
                 $('#subject').val(data.subject);
                 $('#content').summernote("editor.pasteHTML", data.content);
                 $('#content').val(data.content);
+                $('#type').val(data.type);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -108,17 +109,13 @@ $(document).ready(function(){
     
     //create new product / update existing product ***************************
     $("#btn-save").click(function (e) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('input[name=_token]').val()
-            }
-        })
-
+        
         e.preventDefault();
         var formData = {
             name: $('#name').val(),
             subject: $('#subject').val(),
             content: $('#content').val(),
+            type: $('#type').val()
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
@@ -138,24 +135,28 @@ $(document).ready(function(){
             data: formData,
             dataType: 'json',
             success: function (data) {
-                
-                dataTable.ajax.reload();
-                $('#frmpEmails').trigger("reset");
-                $('#errors').html('');
-                $('.alert').prop('hidden', true);
-                $('#myModal').modal('hide')
-            },
-            error: function (data) {
-                $('#errors').html('');
-                if (data.status == 422) {                    
+
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#frmpEmails').trigger("reset");
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                    $('#myModal').modal('hide')
+                }
+                if (data.code == 422) {
+                    $('#errors').html('');
+                    preloader('hide', data.message, 'error');
                     var list = '';
-                    $.each(data.responseJSON, function (i, value) {
+                    $.each(data.response, function (i, value) {
                         list += '<li>' + value + '</li>';
                     });
                     $('.alert').prop('hidden', false);
                     $('#errors').html(list);
-
-                }
+                }       
+            },
+            error: function (data) {
+                console.log('Error:', data);       
             }
         });
     });
@@ -173,19 +174,16 @@ $(document).ready(function(){
             type: "DELETE",
             url: url + '/' + email_id,
             success: function (data) {
-                var message = `
-                <div class="alert alert-success" role="alert">
-                    Registro eliminado exitosamente!
-                </div>`;
-                $('.main-card').before(message);
-                dataTable.ajax.reload();
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                }
+                else if (data.code == 422) {
+                    preloader('hide', data.message, 'error');
+                }
             },
             error: function (data) {
-                if (data.status == 422) {
-                    $('.main-card').before('Correo no encontrado! No se pudo eliminar');
-                    dataTable.ajax.reload();
-                    console.log('Error:', data);
-                }
+                console.log('Error:', data);                 
             }
         });
     });

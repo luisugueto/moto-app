@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Business;
+use App\Service; 
+use App\Email;
+use DB;
 
 class BusinessController extends Controller
 {
@@ -16,7 +19,46 @@ class BusinessController extends Controller
     public function index()
     {
         $haspermision = getPermission('Empresas', 'record-create');
-        return view('backend.business.index', compact('haspermision'));
+        $services = Service::all();
+        $emails = Email::where('type', 2)->get();
+        return view('backend.business.index', compact('haspermision', 'services', 'emails'));
+    }
+
+    public function getBusiness()
+    {
+       
+        $business = DB::table('business')
+        ->join('services', 'services.id', '=', 'business.service_id')
+        ->leftjoin('emails', 'emails.id', '=', 'business.email_id')
+        ->select('business.*', 'services.name AS servicio', 'emails.name AS plantilla')
+        ->where('services.status', '=', 1)    
+        ->get();
+
+ 
+        $view = getPermission('Empresas', 'record-view');
+        $edit = getPermission('Empresas', 'record-edit');
+        $delete = getPermission('Empresas', 'record-delete');
+
+        $data = array(); 
+        foreach($business as $key => $value){  
+
+            $row = array();      
+            $row['id'] = $value->id;
+            $row['service_id'] = $value->servicio;
+            $row['email_id'] = $value->plantilla;
+            $row['name'] = $value->name;
+            $row['cif'] = $value->cif;
+            $row['email'] = $value->email;
+            $row['city'] = $value->city;
+            $row['province'] = $value->province;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+        
+        $json_data = array('data'=> $data); 
+        $json_data= collect($json_data);        
+        return response()->json($json_data);
     }
 
     /**
@@ -37,7 +79,24 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $validator = \Validator::make($request->all(), ['service_id' => 'required', 'name' => 'required|min:5', 'phone' => 'required', 'email' => 'required|email', 'city' => 'required|string', 'postal_code' => 'required', 'cif' => 'required']);
+
+        if ($validator->fails()) {
+            $out['code'] = 422;
+            $out['message'] = 'Campos requeridos';
+            $out['response'] = $validator->errors();
+      
+        } else {
+            $bussiness = Business::create($request->all());
+            $out['code'] = 200;
+            $out['message'] = 'Datos registrados exitosamente.';
+            $out['response'] = $bussiness;
+      
+            
+        } 
+
+        return response()->json($out);
     }
 
     /**
@@ -48,7 +107,8 @@ class BusinessController extends Controller
      */
     public function show($id)
     {
-        //
+        $bussiness = Business::find($id);
+        return response()->json($bussiness);
     }
 
     /**
@@ -71,7 +131,24 @@ class BusinessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $bussiness = Business::find($id);
+
+        $validator = \Validator::make($request->all(), ['service_id' => 'required', 'name' => 'required|min:5', 'phone' => 'required', 'email' => 'required|email', 'city' => 'required|string', 'postal_code' => 'required', 'cif' => 'required']);
+
+        if ($validator->fails()) {
+            $out['code'] = 422;
+            $out['message'] = 'Campos requeridos';
+            $out['response'] = $validator->errors();
+      
+        } else {
+            $bussiness->update($request->all());
+            $out['code'] = 200;
+            $out['message'] = 'Registro actualizado exitosamente.';
+            $out['response'] = $bussiness;
+      
+            
+        } 
+        return response()->json($out);
     }
 
     /**
@@ -82,6 +159,16 @@ class BusinessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bussiness = Business::findOrFail($id);
+        if(isset($bussiness)){
+            Business::destroy($id);
+            $out['code'] = 200;
+            $out['message'] = 'Registro eliminado exitosamente';
+        }
+        else{
+            $out['code'] = 422;
+            $out['message'] = 'Empresa no encontrada! No se pudo eliminar.';
+        }
+        return response()->json($out);
     }
 }

@@ -7,6 +7,7 @@ use Yajra\Datatables\Datatables;
 use App\Processes;
 use App\SubProcesses;
 use App\Email;
+use App\Business;
 use Redirect;
 use App\Http\Requests;
 
@@ -21,9 +22,10 @@ class SubProcessesController extends Controller
     {
         $haspermision = getPermission('SubProcesos', 'record-create');
         $processes = Processes::select(['id','name','description','status'])->get();
+        $business = Business::select(['id','name','email'])->where('service_id', 1)->get();
         $emails = Email::all();
 
-        return view('backend.subprocesses.index', compact('haspermision', 'processes', 'emails'));
+        return view('backend.subprocesses.index', compact('haspermision', 'processes', 'emails', 'business'));
     }
 
     public function getSubProcesses()
@@ -112,12 +114,20 @@ class SubProcessesController extends Controller
         $validator = \Validator::make($request->all(), ['name' => 'required', 'description' => 'required', 'processes_id' => 'required', 'email_id' => 'required']);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            $out['code'] = 422;
+            $out['message'] = 'Campos requeridos';
+            $out['response'] = $validator->errors();
+      
         } else {
             $subprocess = SubProcesses::create($request->all());
-             
-            return response()->json($subprocess);
-        }
+            $out['code'] = 200;
+            $out['message'] = 'Datos registrados exitosamente.';
+            $out['response'] = $subprocess;
+      
+            
+        } 
+
+        return response()->json($out);
     }
 
     /**
@@ -152,15 +162,25 @@ class SubProcessesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->business_id != ''){
+            $business = $request->business_id;
+        }
+        $business = '';
+
         $subprocess = SubProcesses::find($id);
         $subprocess->name = $request->name;
         $subprocess->description = $request->description;
         $subprocess->status = $request->status;
         $subprocess->processes_id = $request->processes_id;
         $subprocess->email_id = $request->email_id;
+        $subprocess->business_id = $business;
         $subprocess->update();
-
-        return response()->json($subprocess);
+ 
+        $out['code'] = 200;
+        $out['message'] = 'Registro actualizado exitosamente.';
+        $out['response'] = $subprocess;    
+       
+        return response()->json($out);
     }
 
     /**
@@ -171,7 +191,30 @@ class SubProcessesController extends Controller
      */
     public function destroy($id)
     {
-        $subprocess = SubProcesses::destroy($id);
-        return response()->json($subprocess);
+
+        $subprocess = Business::findOrFail($id);
+        if(isset($subprocess)){
+            SubProcesses::destroy($id);
+            $out['code'] = 200;
+            $out['message'] = 'Registro eliminado exitosamente';
+        }
+        else{
+            $out['code'] = 422;
+            $out['message'] = 'Subproceso no encontrada! No se pudo eliminar.';
+        }
+
+        return response()->json($out);
+    }
+
+    public function getMailBusiness(Request $request)
+    {
+        $business = Business::find($request->id);
+        $email = Email::select(['id', 'name'])->where('id', $business->email_id)->first();       
+        
+        if( $request->ajax() ) {
+            return response()->json([
+                'email' => $email
+            ]);
+        }
     }
 }

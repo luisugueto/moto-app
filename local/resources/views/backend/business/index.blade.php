@@ -39,13 +39,17 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title lang" key="heading">Mantenimiento de Empresas</h5>
-                    <table style="width: 100%;" class="table table-hover table-striped table-bordered" id="tableProcesses">
+                    <table style="width: 100%;" class="table table-hover table-striped table-bordered" id="tableBusiness">
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Servicio</th>
+                                <th>Plantilla de Email</th>
                                 <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Status</th>
+                                <th>CIF</th>
+                                <th>Email</th>                                
+                                <th>City</th>
+                                <th>Province</th>                                
                                 <th>Opciones</th>
                             </tr>
                         </thead> 
@@ -76,21 +80,62 @@
                         {{ csrf_field() }}
                         <div class="divider"></div>
                         <div class="position-relative form-group">
+                            <label>Servicio</label>
+                            <select class="form-control" name="service_id" id="service_id" >
+                                <option value="">Seleccione</option>
+                                @foreach($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label>Plantilla de Email</label>
+                            <select class="form-control" name="email_id" id="email_id" >
+                                <option value="">Seleccione</option>
+                                @foreach($emails as $email)
+                                    <option value="{{ $email->id }}">{{ $email->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="position-relative form-group">
                             <label>Nombre</label>
                             <input class='form-control' id='name' name='name' type='text' value="{{ old('name') }}"
                                 required>
+                        </div>       
+                        <div class="position-relative form-group">
+                            <label>CIF</label>
+                            <input class='form-control' id='cif' name='cif' type='text'
+                                value="{{ old('cif') }}" required>
+                        </div>                 
+                        <div class="position-relative form-group">
+                            <label>Teléfono</label>
+                            <input class='form-control' id='phone' name='phone' type='text' value="{{ old('phone') }}"
+                                required>
                         </div>
                         <div class="position-relative form-group">
-                            <label>Descripción</label>
-                            <input class='form-control' id='description' name='description' type='text'
-                                value="{{ old('description') }}" required>
+                            <label>Correo Electrónico</label>
+                            <input class='form-control' id='email' name='email' type='text' value="{{ old('email') }}"
+                                required>
                         </div>
                         <div class="position-relative form-group">
-                            <label for="status" class="">Estado</label>
-                            <select name="status" id="status" class="custom-select" required>
-                                <option value="1" {{ old('status') == '1' ? 'selected' : '' }}>Activo</option>
-                                <option value="0" {{ old('status') == '0' ? 'selected' : '' }}>Inactivo</option>
-                            </select>
+                            <label>Postal Code</label>
+                            <input class='form-control' id='postal_code' name='postal_code' type='text' value="{{ old('postal_code') }}"
+                                required>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label>Ciudad</label>
+                            <input class='form-control' id='city' name='city' type='text' value="{{ old('city') }}"
+                                required>
+                        </div>
+
+                        <div class="position-relative form-group">
+                            <label>Provincia</label>
+                            <input class='form-control' id='province' name='province' type='text' value="{{ old('province') }}"
+                                required>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label>Dirección</label>
+                            <textarea name="address" id="address" class="form-control"></textarea>
                         </div>
                     </form>
                 </div>

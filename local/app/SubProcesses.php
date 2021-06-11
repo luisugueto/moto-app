@@ -9,7 +9,7 @@ class SubProcesses extends Model
 	protected $table = 'subprocesses';
 	
     protected $fillable = [
-        'name', 'description', 'status', 'processes_id', 'email_id'
+        'name', 'description', 'status', 'processes_id', 'email_id', 'business_id'
     ];
 
     public function email(){

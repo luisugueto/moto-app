@@ -16,15 +16,51 @@ class EmailsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {       
+        //dd(\Request::getRequestUri());
         $haspermision = getPermission('Mensajes', 'record-create');
-        return view('backend.emails.index', compact('haspermision'));
+        if(\Request::getRequestUri() == '/mensajes-gc')           
+            return view('backend.emails.index', compact('haspermision'));
+        
+        if(\Request::getRequestUri() == '/mensajes')
+            return view('backend.emails.index_business', compact('haspermision'));
+
+
     }
     
-    public function getEmails()
+    public function getEmailsMotos()
     {
-        $emails = Email::select(['id','name','subject','content'])->get();
+        $emails = Email::select(['id','name','subject','content'])->where('type', 1)->get();
+        $view = getPermission('Mensajes', 'record-view');
+        $edit = getPermission('Mensajes', 'record-edit');
+        $delete = getPermission('Mensajes', 'record-delete');   
+                           
+        $data = array();  
+        foreach($emails as $value){  
+
+            $row = array();   
+                 
+            $row['id'] = $value['id'];
+            $row['name'] = $value['name'];
+            $row['subject'] = $value['subject'];
+            $row['content'] = $value['content'];
+            $row['view'] = $view;
+            $row['edit'] = $edit;
+            $row['delete'] = $delete;
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        $json_data= collect($json_data);  
+        return response()->json($json_data);
+      
+       
+    }
+
+    public function getEmailsBusiness()
+    {
+        $emails = Email::select(['id','name','subject','content'])->where('type', 2)->get();
         $view = getPermission('Mensajes', 'record-view');
         $edit = getPermission('Mensajes', 'record-edit');
         $delete = getPermission('Mensajes', 'record-delete');   
@@ -72,12 +108,18 @@ class EmailsController extends Controller
         $validator = \Validator::make($request->all(), ['name' => 'required|string|min:5|max:100', 'subject' => 'required|string','content' => 'required|string|min:5']);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+            $out['code'] = 422;
+            $out['message'] = 'Campos requeridos';
+            $out['response'] = $validator->errors();
+      
         } else {
             $email = Email::create($request->all());
-            
-            return response()->json($email);
-        }       
+            $out['code'] = 200;
+            $out['message'] = 'Datos registrados exitosamente.';
+            $out['response'] = $email;
+        } 
+
+        return response()->json($out);
     }
 
     /**
@@ -113,9 +155,23 @@ class EmailsController extends Controller
     public function update(Request $request, $id)
     {
         $email = Email::find($id);
-        $email->update($request->all());
-        return response()->json($email);
-        // return Redirect::to('/emails')->with('notification', 'Correo editado exitosamente!');
+
+        $validator = \Validator::make($request->all(), ['name' => 'required|string|min:5|max:100', 'subject' => 'required|string','content' => 'required|string|min:5']);
+
+        if ($validator->fails()) {
+            $out['code'] = 422;
+            $out['message'] = 'Campos requeridos';
+            $out['response'] = $validator->errors();
+      
+        } else {
+            $email->update($request->all());
+            $out['code'] = 200;
+            $out['message'] = 'Registro actualizado exitosamente.';
+            $out['response'] = $email;
+      
+            
+        } 
+        return response()->json($out);
     }
 
     /**
@@ -129,13 +185,14 @@ class EmailsController extends Controller
         $email = Email::findOrFail($id);
         if(isset($email)){
             Email::destroy($id);
-            return response()->json($email);
-            // return Redirect::to('/emails')->with('notification', 'Correo eliminado exitosamente!');
+            $out['code'] = 200;
+            $out['message'] = 'Registro eliminado exitosamente';
         }
         else{
-            return response()->json('Correo no encontrado! No se pudo eliminar', 422);
-            // return Redirect::to('/emails')->with('notification', 'Correo no encontrado! No se pudo eliminar');
+            $out['code'] = 422;
+            $out['message'] = 'Correo no encontrado! No se pudo eliminar.';
         }
+        return response()->json($out);
     }
 
     public function view($id)

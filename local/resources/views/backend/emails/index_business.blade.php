@@ -90,19 +90,19 @@
                             <label>Contenido</label>
                             <textarea class='form-control' id='content' name='content' type='text'
                                 value="{{ old('content') }}" required></textarea>
-                            {first_name} {last_name} {marca_moto} {modelo_moto}
+                            {first_name} {last_name} {marca_moto} {modelo_moto} {direccion} {telefono}
                         </div> 
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
-                    <input type="hidden" id="type" name="type" value="1">
+                    <input type="hidden" id="type" name="type" value="2">
                     <input type="hidden" id="email_id" name="email_id" value="0">
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ asset('assets/scripts/js/emails.js') }}"></script>
+    <script src="{{ asset('assets/scripts/js/emails_business.js') }}"></script>
     @endsection
 
 @endsection
