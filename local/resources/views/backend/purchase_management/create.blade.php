@@ -33,6 +33,7 @@
                         <div class="divider"></div>
 
                         <input type="hidden" name="purchase_valuation_id" value="{{ $purchase_valuation_id }}">
+                        <input type="hidden" name="token_purchase" value="{{ $token_purchase }}">
                         <input type="hidden" name="purchase_id" value="{{ $gestion->id }}">
                         <?php 
                             $fieldsArray = json_decode($purchase->data_serialize);
