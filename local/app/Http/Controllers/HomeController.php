@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 use DB;
 use App;
 
+require_once public_path(). '/oauth-php/library/OAuthRequestSigner.php';
+
+define("DOCUMENTS_API_URL", "https://sandbox.viafirma.com/documents/api/v3");
+define("DOCUMENTS_CONSUMER_KEY", "com.viafirma.documents.XXXXXXX");
+define("DOCUMENTS_CONSUMER_SECRET", "XXXXXXXXXXXX");
+
 class HomeController extends Controller
 {
     /**
