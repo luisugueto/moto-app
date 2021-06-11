@@ -1148,11 +1148,12 @@ class PurchaseValuationController extends Controller
         $apply->purchase_valuation_id = $purchase->id;
         $apply->save();
     
-        if($subprocesses->business_id !== ''){
+        if(!empty($subprocesses->business_id) && $processes->id = 12){
             $state = [];
             $token = '';
             $business = Business::find($subprocesses->business_id);
 
+            
             Mail::send('backend.emails.business', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token, 'business' => $business], function ($message) use ($subprocesses, $business)
                 {
                     $message->from('info@motostion.com', 'MotOstion');
