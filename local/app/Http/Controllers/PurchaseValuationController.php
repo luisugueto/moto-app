@@ -1162,7 +1162,7 @@ class PurchaseValuationController extends Controller
                     $message->to($business->email)->subject($subprocesses->name);
                 });
         }
-        if($subprocesses->email->id != 7){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
+        if($subprocesses->email->id != 7 && $processes->id != 12){ // SINO ES PLANTILLA DEFAULT ENVIA CORREO
             $state = [];
             $token = '';
             Mail::send('backend.emails.template', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token], function ($message) use ($subprocesses, $purchase)

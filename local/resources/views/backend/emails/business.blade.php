@@ -151,7 +151,7 @@
                                         <div style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
                                             <!--<![endif]-->
                                             <div style="font-size:16px;text-align:center;font-family:Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif">
-                                                <div style="padding:15px;background:#fce007"> <img src="{{ asset('assets/images/logo-inverse.png') }}" width="250" /> </div>
+                                                <div style="padding:15px;background:#fce007"> <img src="https://gestion-motos.motostion.com/assets/images/logo-inverse.png" width="250" /> </div>
                                             </div>
                                         </div>
                                     </div>
