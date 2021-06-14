@@ -149,7 +149,8 @@ class PurchaseManagementController extends Controller
                 'registration_number' => 'required',
                 'registration_date' => 'required|date',
                 'registration_country' => 'required',
-                'frame_no' => ['required', "regex:/^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$/"],
+                'frame_no' => 'required|max:17',
+                // 'frame_no' => ['required', "regex:/^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$/"],
                 'motor_no' => 'required',
                 'vehicle_state_trafic' => 'required',
                 'vehicle_state' => 'required',
@@ -306,8 +307,9 @@ class PurchaseManagementController extends Controller
         $link->status = 1;
         $link->update();
 
+        return Redirect::back()->with('notification', '<b>Formulario registrado exitosamente. Para dirigirse a motOstion darle click al siguiente enlace <a class="class="alert-link"" href="'. url('https://motostion.com/') . '"> enlace </a></b>');
 
-        return Redirect::to('https://motostion.com/');
+        // return Redirect::to('https://motostion.com/');
     }
 
     /**

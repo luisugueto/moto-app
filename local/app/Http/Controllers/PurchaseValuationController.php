@@ -915,7 +915,7 @@ class PurchaseValuationController extends Controller
     public function show($id)
     {
         $purchase_valuation = PurchaseValuation::find($id);
-        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first();
+        $forms = Forms::select(['form_display'])->where('id', 1)->first();
         $images = ImagesPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();  
 
         $data['id'] = $purchase_valuation['id'];
@@ -1241,9 +1241,9 @@ class PurchaseValuationController extends Controller
         $documents_purchase_valuation = DocumentsPurchaseValuation::where('purchase_valuation_id', $id)->get();
         $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $id)->get();
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
-        $forms = Forms::select(['form_display'])->where('name', 'Complemento motos que nos ofrecen')->first(); 
-        $datos_del_mecanico = Forms::select(['form_display'])->where('name', 'Datos de motor (Mécanico)')->first(); 
-        $datos_interno = Forms::select(['form_display'])->where('name', 'Datos Internos')->first(); 
+        $forms = Forms::select(['form_display'])->where('id', 1)->first(); 
+        $datos_del_mecanico = Forms::select(['form_display'])->where('id', 2)->first(); 
+        $datos_interno = Forms::select(['form_display'])->where('id', 3)->first(); 
         $subprocesses_id = $purchase_valuation['subprocesses_id'];
         
         $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $id)->get();

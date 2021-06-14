@@ -33,7 +33,7 @@
                 <div class="d-flex">
                     <div class="mx-auto col-md-8">
                         <div class="app-logo-inverse mx-auto mb-3"></div>
-                        <div class="container">
+                        <div class="container">                            
                             @yield('content')
                         </div>
                         <div class="text-center text-white opacity-8 mt-3">Copyright © MotOstion 2019</div>
