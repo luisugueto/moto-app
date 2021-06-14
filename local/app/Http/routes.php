@@ -125,6 +125,10 @@ Route::group(['middleware' => 'auth'], function () {
     // GET FILES
     Route::get('document/{filename}', 'PurchaseValuationController@document');
     Route::get('image/{filename}', 'PurchaseValuationController@image');
+
+    // DELETE IMAGES AND DOCUMENTS
+    Route::post('purchase_valuation_interested/deleteImages', 'PurchaseValuationController@deleteImages');
+    Route::post('purchase_valuation_interested/deleteDocuments', 'PurchaseValuationController@deleteDocuments');
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

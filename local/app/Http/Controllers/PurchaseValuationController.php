@@ -1524,4 +1524,48 @@ class PurchaseValuationController extends Controller
         $path = public_path().'/images_purchase/'.$fileName;
         return \Response::download($path);        
     }
+
+    public function deleteImages(Request $request){
+        //dd($request->all());
+        $purchase = ImagesPurchase::where('name', $request->name)->where('purchase_valuation_id', $request->id)->first();
+        if(isset($purchase)){
+            $imagePath = public_path().'/path/'. $request->name; // For dynamic value  
+            ImagesPurchase::destroy($purchase->id);
+            \File::delete($imagePath); //delete image from server
+            $images = ImagesPurchase::where('purchase_valuation_id', $request->id)->get();       
+            $out['code'] = 200;
+            $out['message'] = 'Imagen eliminado exitosamente';
+            $out['images_purchase_valuation'] = $images;
+            $out['link'] = url('/');
+        }
+        else{
+            $out['code'] = 422;
+            $out['message'] = 'Imagen no encontrada! No se pudo eliminar.';
+            $out['images_purchase_valuation'] = '';
+            $out['link'] = url('/');
+        }
+        return response()->json($out);
+    }
+
+    public function deleteDocuments(Request $request){
+        //dd($request->all());
+        $purchase = DocumentsPurchaseValuation::where('name', $request->name)->where('purchase_valuation_id', $request->id)->first();
+        if(isset($purchase)){
+            $documentPath = public_path().'/path/'. $request->name; // For dynamic value  
+            DocumentsPurchaseValuation::destroy($purchase->id);
+            \File::delete($documentPath); //delete image from server
+            $documents = DocumentsPurchaseValuation::where('purchase_valuation_id', $request->id)->get();       
+            $out['code'] = 200;
+            $out['message'] = 'Documento eliminado exitosamente';
+            $out['documents_purchase_valuation'] = $documents;
+            $out['link'] = url('/');
+        }
+        else{
+            $out['code'] = 422;
+            $out['message'] = 'Documento no encontrado! No se pudo eliminar.';
+            $out['documents_purchase_valuation'] = '';
+            $out['link'] = url('/');
+        }
+        return response()->json($out);
+    } 
 }

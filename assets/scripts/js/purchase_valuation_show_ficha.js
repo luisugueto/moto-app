@@ -170,8 +170,8 @@ $(document).ready(function () {
                 var i = 0;
                 $('#titleModalImage').text('');
                 data.images_purchase_valuation.forEach(function (element) {
-                    $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 " data-toggle="modal" data-target="#modal">
-                        <a href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail my-3"></a>
+                    $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 "><span class="fa fa-times text-danger float-right" onclick="deleteImages(${data.id},'${element.name}')"></span>
+                        <a data-toggle="modal" data-target="#modal" href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
                     </div>`);
 
                     $(`<div class="carousel-item">
@@ -187,27 +187,28 @@ $(document).ready(function () {
                 $('#lightbox').carousel();
 
                 data.documents_purchase_valuation.forEach(function (element) {
-                    $("#documents").append('<a href="' + data.link + '/local/public/documents_purchase/' + element.name + '" target="_blank" style="margin: 15px">' + element.name + '</a>');
+                    console.log(element)
+                    $("#documents").append(` <a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${data.id}, '${element.name}')"></span>`);
                 });
 
                 if (data.dni_doc !== null)
                     data.dni_doc.split(',').forEach(function (element) {
-                        $("#documents").append('<a href="' + data.link + '/local/public/dni/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                        $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                     });
 
                 if (data.per_circulacion !== null)
                     data.per_circulacion.split(',').forEach(function (element) {
-                        $("#documents").append('<a href="' + data.link + '/local/public/per_circulacion/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                        $("#documents").append(`<a href="${data.link}/local/public/per_circulacion/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                     });
                 
                 if (data.ficha_tecnica !== null)
                     data.ficha_tecnica.split(',').forEach(function (element) {
-                        $("#documents").append('<a href="' + data.link + '/local/public/ficha_tecnica/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                        $("#documents").append(`<a href="${data.link}/local/public/ficha_tecnica/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                     });
                 
                 if (data.other_docs !== null)
                     data.other_docs.split(',').forEach(function (element) {
-                        $("#documents").append('<a href="' + data.link + '/local/public/other_docs/' + element + '" target="_blank" style="margin: 15px">' + element + '</a>');
+                        $("#documents").append(`<a href="${data.link}/local/public/other_docs/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                     });
 
                 $('#btn-save').val("update");
@@ -696,6 +697,7 @@ Dropzone.options.myDropzone = {
 
         this.on("complete", function (file) {
             $("#documents").append(file);
+            location.reload();
         });
 
         this.on("success",
@@ -716,8 +718,10 @@ Dropzone.options.imageDropzone = {
         this.on("addedfile", function (file) {
         });
 
-        this.on("complete", function (file) {
+        this.on("complete", function (file) {           
             $("#images").append(file);
+            location.reload();
+           
         });
 
         this.on("success",
@@ -725,3 +729,123 @@ Dropzone.options.imageDropzone = {
         );
     }
 };
+
+function deleteImages(id, $img) {     
+
+    Swal.fire({
+        title:  "Estas seguro?",
+        text: "Quieres volver?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, hazlo!",
+        cancelButtonText: "No, cancelar!",
+        }).then(result => {
+        if (result.dismiss) {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: 'Operación cancelada :)',
+                showConfirmButton: !1,
+                timer: 1500
+            });
+            //swal("Cancelled", "Data is safe :)", "error");
+        }
+        if (result.value) {
+            var formData = {
+                id: id,
+                name: $img
+            };
+            preloader('show');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                url: 'deleteImages',
+                success: function (data) {
+                    if (data.code == 200) {
+                        preloader('hide', data.message, 'success');
+                        // $('#images').load(' #images');
+                        var i = 0;
+                        $('#titleModalImage').text('');
+                        data.images_purchase_valuation.forEach(function (element) {
+                            $('#images').html(`<div class="col-lg-4 col-md-4 col-sm-6 "><span class="fa fa-times text-danger float-right" onclick="deleteImages(${id},'${element.name}')"></span>
+                                <a data-toggle="modal" data-target="#modal" href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
+                            </div>`);
+        
+                            $(`<div class="carousel-item">
+                                <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" height="200">
+                            </div>`).appendTo('.carousel-inner');
+                            $(`<li data-target="#lightbox" data-slide-to="${i}"></li>`).appendTo('.carousel-indicators');
+        
+                            i++;
+                        });
+                        $('#titleModalImage').text('Imagenes de la moto ' + data.model);
+                        $('.carousel-item').first().addClass('active');
+                        $('.carousel-indicators > li').first().addClass('active');
+                        $('#lightbox').carousel();
+                    }
+                   
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        }
+    });
+
+}
+
+function deleteDocuments(id, $document) {     
+
+    Swal.fire({
+        title:  "Estas seguro?",
+        text: "Quieres volver?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, hazlo!",
+        cancelButtonText: "No, cancelar!",
+        }).then(result => {
+        if (result.dismiss) {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: 'Operación cancelada :)',
+                showConfirmButton: !1,
+                timer: 1500
+            });
+            //swal("Cancelled", "Data is safe :)", "error");
+        }
+        if (result.value) {
+            var formData = {
+                id: id,
+                name: $document
+            };
+            preloader('show');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                url: 'deleteDocuments',
+                success: function (data) {
+                    if (data.code == 200) {
+                        preloader('hide', data.message, 'success');
+                        data.documents_purchase_valuation.forEach(function (element) {
+                            $("#documents").html(` <a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${data.id},'${element.name}')"></span>`);
+                        });
+                    }
+                   
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        }
+    });
+
+}
