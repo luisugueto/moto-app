@@ -126,6 +126,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('document/{filename}', 'PurchaseValuationController@document');
     Route::get('image/{filename}', 'PurchaseValuationController@image');
 
+    //FIND IMAGES AND DOCUMENTS
+    Route::post('purchase_valuation_interested/findImages', 'PurchaseValuationController@findImages');
+    Route::post('purchase_valuation_interested/findDocuments', 'PurchaseValuationController@findDocuments');
+
     // DELETE IMAGES AND DOCUMENTS
     Route::post('purchase_valuation_interested/deleteImages', 'PurchaseValuationController@deleteImages');
     Route::post('purchase_valuation_interested/deleteDocuments', 'PurchaseValuationController@deleteDocuments');

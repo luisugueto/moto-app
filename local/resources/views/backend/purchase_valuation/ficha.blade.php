@@ -40,9 +40,8 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
-                        <div class="row" id="images">
-                            
-                        </div>
+                            <div id="images" class="row"></div>
+                        
                         <hr>
                         {!! Form::open(['url'=> 'uploadImage', 'method' => 'POST', 'files'=>'true', 'id' => 'image-dropzone' , 'class' => 'dropzone']) !!}
                             <input type="hidden" id="image_purchase_id" name="id" value="0">
@@ -958,9 +957,9 @@
                                         <div class="mt-3">
                                             Estado del vehículo en tráfico:
                                             <div class="custom-radio custom-control custom-control-inline">
-                                                <input type="radio" id="high" name="vehicle_state_trafic"
+                                                <input type="radio" id="high_state" name="vehicle_state_trafic"
                                                     class="custom-control-input" value="Alta">
-                                                <label class="custom-control-label" for="high">Alta</label>
+                                                <label class="custom-control-label" for="high_state">Alta</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="final_discharge" name="vehicle_state_trafic"

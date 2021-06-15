@@ -8,7 +8,7 @@
             <h2>What We Do</h2>
             @if (session('notification'))
             <div class="alert alert-success notification">
-                {{ session('notification') }}
+                {!! session('notification') !!}
             </div>
             @endif
             @if (session('error'))

@@ -15,16 +15,6 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h4>
-                        @if (session('notification'))
-                        <div class="alert alert-success notification">
-                            {!! session('notification') !!}
-                        </div>
-                        @endif
-                        @if (session('error'))
-                        <div class="alert alert-danger alert-block">
-                            {{ session('error') }}
-                        </div>
-                        @endif
                         <strong>
                             <div class="row">
                                 <div class="col-lg-12">

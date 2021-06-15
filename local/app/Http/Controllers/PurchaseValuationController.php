@@ -1222,6 +1222,7 @@ class PurchaseValuationController extends Controller
             $images_purchase->purchase_valuation_id = $request->id;
             $images_purchase->name = $fileNameToStore;
             $images_purchase->save();
+            
         }
     }
 
@@ -1527,14 +1528,14 @@ class PurchaseValuationController extends Controller
 
     public function deleteImages(Request $request){
         //dd($request->all());
-        $purchase = ImagesPurchase::where('name', $request->name)->where('purchase_valuation_id', $request->id)->first();
+        $purchase = ImagesPurchase::find($request->id);
         if(isset($purchase)){
-            $imagePath = public_path().'/path/'. $request->name; // For dynamic value  
+            $imagePath = public_path().'/path/'. $purchase->name; // For dynamic value  
             ImagesPurchase::destroy($purchase->id);
             \File::delete($imagePath); //delete image from server
-            $images = ImagesPurchase::where('purchase_valuation_id', $request->id)->get();       
+            $images = ImagesPurchase::where('purchase_valuation_id', $purchase->purchase_valuation_id)->get();       
             $out['code'] = 200;
-            $out['message'] = 'Imagen eliminado exitosamente';
+            $out['message'] = 'Imagen eliminada exitosamente';
             $out['images_purchase_valuation'] = $images;
             $out['link'] = url('/');
         }
@@ -1549,15 +1550,21 @@ class PurchaseValuationController extends Controller
 
     public function deleteDocuments(Request $request){
         //dd($request->all());
-        $purchase = DocumentsPurchaseValuation::where('name', $request->name)->where('purchase_valuation_id', $request->id)->first();
+        $purchase = DocumentsPurchaseValuation::find($request->id);
         if(isset($purchase)){
-            $documentPath = public_path().'/path/'. $request->name; // For dynamic value  
+            $documentPath = public_path().'/path/'. $purchase->name; // For dynamic value  
             DocumentsPurchaseValuation::destroy($purchase->id);
             \File::delete($documentPath); //delete image from server
-            $documents = DocumentsPurchaseValuation::where('purchase_valuation_id', $request->id)->get();       
+            $documents = DocumentsPurchaseValuation::where('purchase_valuation_id', $purchase->purchase_valuation_id)->get(); 
+            $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->purchase_valuation_id)->first();
+      
             $out['code'] = 200;
             $out['message'] = 'Documento eliminado exitosamente';
             $out['documents_purchase_valuation'] = $documents;
+            $out['dni_doc'] = $purchase_management['dni_doc'];
+            $out['per_circulacion'] = $purchase_management['per_circulacion'];
+            $out['ficha_tecnica'] = $purchase_management['ficha_tecnica'];
+            $out['other_docs'] = $purchase_management['other_docs'];  
             $out['link'] = url('/');
         }
         else{
@@ -1568,4 +1575,31 @@ class PurchaseValuationController extends Controller
         }
         return response()->json($out);
     } 
+
+    public function findImages(Request $request)
+    {
+        $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $request->id)->get();
+        $out['code'] = 200;
+        $out['message'] = 'Imagen(es) agregada(s) exitosamente';
+        $out['images_purchase_valuation'] = $images_purchase_valuation;
+        $out['link'] = url('/');
+
+        return response()->json($out);
+    }
+
+    public function findDocuments(Request $request)
+    {
+        $documents = DocumentsPurchaseValuation::where('purchase_valuation_id', $request->id)->get();
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $request->id)->first();
+        $out['code'] = 200;
+        $out['message'] = 'Documento(s) agregado(s) exitosamente';
+        $out['documents_purchase_valuation'] = $documents;
+        $out['dni_doc'] = $purchase_management['dni_doc'];
+        $out['per_circulacion'] = $purchase_management['per_circulacion'];
+        $out['ficha_tecnica'] = $purchase_management['ficha_tecnica'];
+        $out['other_docs'] = $purchase_management['other_docs']; 
+        $out['link'] = url('/');
+
+        return response()->json($out);
+    }
 }

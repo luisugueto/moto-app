@@ -307,7 +307,7 @@ class PurchaseManagementController extends Controller
         $link->status = 1;
         $link->update();
 
-        return Redirect::back()->with('notification', '<b>Formulario registrado exitosamente. Para dirigirse a motOstion darle click al siguiente enlace <a class="class="alert-link"" href="'. url('https://motostion.com/') . '"> enlace </a></b>');
+        return Redirect::to('/')->with('notification', '<b>Formulario registrado exitosamente. Para dirigirse a motOstion darle click al siguiente enlace <a class="class="alert-link"" href="'. url('https://motostion.com/') . '"> enlace </a></b>');
 
         // return Redirect::to('https://motostion.com/');
     }
