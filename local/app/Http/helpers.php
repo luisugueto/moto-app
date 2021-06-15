@@ -89,3 +89,172 @@ use App\PermissionsMenu;
         // Si todavía no se ha verificado devuelve error
         return false;
     }
+
+
+    function system_alive ()
+    {
+        error_reporting(E_ALL);
+
+        header('Content-Type: text/plain; charset=utf-8');
+
+        $url=DOCUMENTS_API_URL."/system/alive";
+
+        //  Initiate curl
+        $ch = curl_init();
+
+        // Disable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        // Will return the response, if false it print the response
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Set the url
+        curl_setopt($ch, CURLOPT_URL,$url);
+
+        // Execute
+        $result=curl_exec($ch);
+        echo prettyPrint($result);
+
+        // Closing
+        curl_close($ch);
+    }
+
+    function send_message ($purchaseM, $url_pdf)
+    {
+        error_reporting(E_ALL);
+
+        $url=DOCUMENTS_API_URL."/messages/dispatch";
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'POST');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $email = $purchaseM->email;
+
+        // POST
+        $string_json = '{
+                          "groupCode": "motostion",
+                          "workflow": {
+                            "type": "PRESENTIAL"
+                          },
+                          "notification": {
+                            "text": "Documento Generado App",
+                            "detail": "Documento a firmar.",
+                            "sharedLink" : {
+                                "email" : "'.$email.'",
+                                "subject" : "ViaFirma PHP"
+                            },
+                            "retryTime" : 7
+                          },
+                          "document": {
+                            "templateType" : "url",
+                            "templateReference" : "'.$url_pdf.'",
+                            "templateCode": "motostion_documents_generados",
+                            "readRequired" : true,
+                            "watermarkText" : "Previsualización",
+                            "formRequired": true,
+                            "items" : [ {
+                              "key" : "customer_name",
+                              "value" : "'.$purchaseM->name.'"
+                            }, {
+                              "key" : "otpmail_phoneNumber",
+                              "value" : "+584121382321"
+                            } ]
+                          },
+                          "callbackMails": "'.$email.'",
+                          "callbackURL" : "https://www.viafirma.com/download/documents/callbackURL/callbackURL.php"
+                        }';
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $string_json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // OAuth Header
+        $headr = array();
+        $headr[] = 'Content-Length: ' . strlen($string_json);
+        $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result = curl_exec($ch);
+        $array = json_decode($result);
+        $link=$array->notification->sharedLink->link;
+
+        // return $link;
+
+        // echo '<script>NombreiFrame.location.href = "'.$link.'";</script>'; 
+        // echo "Url para redirección o montar iframe: ";
+        // echo prettyPrint($result); 
+
+        // Closing
+        curl_close($ch);
+    }
+
+    function prettyPrint( $json )
+    {
+        $result = '';
+        $level = 0;
+        $in_quotes = false;
+        $in_escape = false;
+        $ends_line_level = NULL;
+        $json_length = strlen( $json );
+
+        for( $i = 0; $i < $json_length; $i++ ) {
+            $char = $json[$i];
+            $new_line_level = NULL;
+            $post = "";
+            if( $ends_line_level !== NULL ) {
+                $new_line_level = $ends_line_level;
+                $ends_line_level = NULL;
+            }
+            if ( $in_escape ) {
+                $in_escape = false;
+            } else if( $char === '"' ) {
+                $in_quotes = !$in_quotes;
+            } else if( ! $in_quotes ) {
+                switch( $char ) {
+                    case '}': case ']':
+                        $level--;
+                        $ends_line_level = NULL;
+                        $new_line_level = $level;
+                        break;
+
+                    case '{': case '[':
+                        $level++;
+                    case ',':
+                        $ends_line_level = $level;
+                        break;
+
+                    case ':':
+                        $post = " ";
+                        break;
+
+                    case " ": case "\t": case "\n": case "\r":
+                        $char = "";
+                        $ends_line_level = $new_line_level;
+                        $new_line_level = NULL;
+                        break;
+                }
+            } else if ( $char === '\\' ) {
+                $in_escape = true;
+            }
+            if( $new_line_level !== NULL ) {
+                $result .= "\n".str_repeat( "\t", $new_line_level );
+            }
+            $result .= $char.$post;
+        }
+
+        return $result;
+    }
