@@ -3,7 +3,7 @@
 /**
  * Server layer over the OAuthRequest handler
  * 
- * @version $Id: OAuthServer.php 137 2010-07-15 15:25:18Z brunobg@corollarium.com $
+ * @version $Id: OAuthServer.php 154 2010-08-31 18:04:41Z brunobg@corollarium.com $
  * @author Marc Worrell <marcw@pobox.com>
  * @date  Nov 27, 2007 12:36:38 PM
  * 
@@ -125,7 +125,7 @@ class OAuthServer extends OAuthRequestVerifier
 			// Create a request token
 			$store  = OAuthStore::instance();
 			$token  = $store->addConsumerRequestToken($this->getParam('oauth_consumer_key', true), $options);
-			$result = 'oauth_callback_accepted=1&oauth_token='.$this->urlencode($token['token'])
+			$result = 'oauth_callback_confirmed=1&oauth_token='.$this->urlencode($token['token'])
 					.'&oauth_token_secret='.$this->urlencode($token['token_secret']);
 
 			if (!empty($token['token_ttl']))
@@ -184,8 +184,11 @@ class OAuthServer extends OAuthRequestVerifier
 		{
 			$this->session->set('verify_oauth_token', $rs['token']);
 			$this->session->set('verify_oauth_consumer_key', $rs['consumer_key']);
-			$this->session->set('verify_oauth_callback', (($rs['callback_url'] && $rs['callback_url'] != 'oob') ? 
-				$rs['callback_url'] : $this->getParam('oauth_callback', true)));
+			$cb = $this->getParam('oauth_callback', true); 
+			if ($cb)
+				$this->session->set('verify_oauth_callback', $cb);
+			else
+				$this->session->set('verify_oauth_callback', $rs['callback_url']);
 		}
 		OAuthRequestLogger::flush();
 		return $rs;
@@ -206,7 +209,7 @@ class OAuthServer extends OAuthRequestVerifier
 		OAuthRequestLogger::start($this);
 
 		$token = $this->getParam('oauth_token', true);
-		$verififer = null;
+		$verifier = null;
 		if ($this->session->get('verify_oauth_token') == $token)
 		{
 			// Flag the token as authorized, or remove the token when not authorized

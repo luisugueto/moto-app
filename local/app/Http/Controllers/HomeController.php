@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\PurchaseValuation;
+use App\PurchaseManagement;
 use DB;
 use App;
 
-require_once public_path(). '/oauth-php/library/OAuthRequestSigner.php';
+require_once public_path(). '/lib/OAuthRequestSigner.php';
 
-define("DOCUMENTS_API_URL", "https://sandbox.viafirma.com/documents/api/v3");
-define("DOCUMENTS_CONSUMER_KEY", "com.viafirma.documents.XXXXXXX");
-define("DOCUMENTS_CONSUMER_SECRET", "XXXXXXXXXXXX");
+define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
+define("DOCUMENTS_CONSUMER_KEY", "motostion");
+define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
 class HomeController extends Controller
 {
