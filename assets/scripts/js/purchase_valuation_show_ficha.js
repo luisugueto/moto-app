@@ -171,21 +171,21 @@ $(document).ready(function () {
                 $('#titleModalImage').text('');
                 data.images_purchase_valuation.forEach(function (element) {
                     $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 "><span class="fa fa-times text-danger float-right" onclick="deleteImages(${element.id})"></span>
-                        <a data-toggle="modal" data-target="#modal" href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
+                        <a data-toggle="modal" data-target="#modal" href="#lightbox" id="imgModal" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
                     </div>`);
+                    
 
                     $(`<div class="carousel-item">
-                        <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" height="200">
+                        <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" data-slide-to="${i}" height="200">
                     </div>`).appendTo('.carousel-inner');
                     $(`<li data-target="#lightbox" data-slide-to="${i}"></li>`).appendTo('.carousel-indicators');
-
                     i++;
                 });
                 $('#titleModalImage').text('Imagenes de la moto ' + data.model);
                 $('.carousel-item').first().addClass('active');
                 $('.carousel-indicators > li').first().addClass('active');
-                $('#lightbox').carousel();
-
+               
+               
                 data.documents_purchase_valuation.forEach(function (element) {
                     console.log(element)
                     $("#documents").append(` <a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`);
