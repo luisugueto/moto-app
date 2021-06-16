@@ -688,7 +688,7 @@ Dropzone.options.myDropzone = {
     uploadMultiple: true,
     maxFilezise: 10,
     // maxFiles: 1,
-    acceptedFiles: "application/pdf,.doc,.docx,.xls,.xlsx,.csv,.tsv,.ppt,.pptx",
+    acceptedFiles: "application/pdf,.doc,.docx,.xls,.xlsx,.csv,.tsv,.ppt,.pptx,image/jpeg,image/png,image/gif",
 
     init: function () {
         myDropzone = this;
