@@ -1627,4 +1627,51 @@ class PurchaseValuationController extends Controller
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
+
+    public function callback_document_viafirma(Request $request)
+    {
+        // if current status is RESPONSED, download the signed document
+        if ($json->workflow->current === 'RESPONSED') {
+            // Download URL 
+            $url=DOCUMENTS_API_URL."/documents/download/signed/".$messageCode;
+
+            OAuthStore::instance('MySQL', array('conn'=>false));
+            $req = new OAuthRequestSigner($url, 'GET');
+            $fecha = new DateTime();
+            $secrets = array(
+                'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                'token'             => '',
+                'token_secret'      => '',
+                'signature_methods' => array('HMAC-SHA1'),
+                'nonce'             => '3jd834jd9',
+                'timestamp'         => $fecha->getTimestamp(),
+                );
+            $req->sign(0, $secrets);
+
+            //  Initiate curl
+            $ch = curl_init();
+            // Disable SSL verification
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            // Will return the response, if false it print the response
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // Set the url
+            curl_setopt($ch, CURLOPT_URL,$url);
+
+            // OAuth Header
+            $headr = array();
+            $headr[] = 'Content-length: 0';
+            //$headr[] = 'Content-Type: application/json';
+            $headr[] = ''.$req->getAuthorizationHeader();
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+            // Execute
+            $result=curl_exec($ch);
+            $jsonRes = json_decode($result);
+
+            // Put the file on the same folder
+            file_put_contents($jsonRes->fileName, fopen($jsonRes->link, 'r'));
+        }
+
+    }
 }

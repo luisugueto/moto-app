@@ -148,7 +148,6 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
         $email = $purchase->email;
 
-
         // POST
         $string_json = '{
                           "groupCode": "motostion",
@@ -166,7 +165,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                           },
                           "document": {
                             "templateType" : "url",
-                            "templateReference" : "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf",
+                            "templateReference" : "'.$url_pdf.'",
                             "templateCode": "motostion_documents_generados",
                             "readRequired" : true,
                             "watermarkText" : "Previsualización",
@@ -177,11 +176,11 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
                             }, {
                               "key" : "otpmail_phoneNumber",
-                              "value" : "+584121382321"
+                              "value" : "+584121234567"
                             } ]
                           },
                           "callbackMails": "'.$email.'",
-                          "callbackURL" : "https://www.viafirma.com/download/documents/callbackURL/callbackURL.php"
+                          "callbackURL" : '. url('/purchase_valuation_interested/callback_document_viafirma').'
                         }'; 
 
         $ch = curl_init($url);
