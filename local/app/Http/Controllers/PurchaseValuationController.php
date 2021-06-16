@@ -1615,7 +1615,7 @@ class PurchaseValuationController extends Controller
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
             // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
-            $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/".$purchase->document_generate;
+            $url_pdf = $purchase->document_generate;
 
             send_document($purchase_management, $url_pdf);
             
