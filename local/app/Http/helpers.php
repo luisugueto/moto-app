@@ -3,6 +3,14 @@
 use App\Menu;
 use App\PermissionsMenu;
 
+require_once dirname(__FILE__). '/oauth-php/OAuthRequestSigner.php';
+
+define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
+define("DOCUMENTS_CONSUMER_KEY", "motostion");
+define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
+ini_set('max_execution_time ', 500);
+set_time_limit(500);
+
  	function getPermission($menu, $permission){
 
         switch ($permission) { // TIPO DE PERMISOS
@@ -119,8 +127,8 @@ use App\PermissionsMenu;
         curl_close($ch);
     }
 
-    function send_message ($purchaseM, $url_pdf)
-    {
+    function send_document ()
+    {   
         error_reporting(E_ALL);
 
         $url=DOCUMENTS_API_URL."/messages/dispatch";
@@ -137,9 +145,9 @@ use App\PermissionsMenu;
                     'nonce'             => '3jd834jd9',
                     'timestamp'         => $fecha->getTimestamp(),
                     );
-        $req->sign(0, $secrets);
+        $req->sign(0, $secrets); 
 
-        $email = $purchaseM->email;
+        $email = "ugueto.luis19@gmail.com";
 
         // POST
         $string_json = '{
@@ -158,14 +166,14 @@ use App\PermissionsMenu;
                           },
                           "document": {
                             "templateType" : "url",
-                            "templateReference" : "'.$url_pdf.'",
+                            "templateReference" : "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf",
                             "templateCode": "motostion_documents_generados",
                             "readRequired" : true,
                             "watermarkText" : "Previsualización",
                             "formRequired": true,
                             "items" : [ {
                               "key" : "customer_name",
-                              "value" : "'.$purchaseM->name.'"
+                              "value" : "Luis"
                             }, {
                               "key" : "otpmail_phoneNumber",
                               "value" : "+584121382321"
@@ -173,13 +181,15 @@ use App\PermissionsMenu;
                           },
                           "callbackMails": "'.$email.'",
                           "callbackURL" : "https://www.viafirma.com/download/documents/callbackURL/callbackURL.php"
-                        }';
+                        }'; 
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $string_json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
+        curl_setopt($ch, CURLOPT_TIMEOUT, 1000); //timeout in seconds
 
         // OAuth Header
         $headr = array();
@@ -187,19 +197,14 @@ use App\PermissionsMenu;
         $headr[] = 'Content-type: application/json';
         $headr[] = ''.$req->getAuthorizationHeader();
         curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+        
 
         $result = curl_exec($ch);
         $array = json_decode($result);
-        $link=$array->notification->sharedLink->link;
-
-        // return $link;
-
-        // echo '<script>NombreiFrame.location.href = "'.$link.'";</script>'; 
-        // echo "Url para redirección o montar iframe: ";
-        // echo prettyPrint($result); 
-
+        $link=$array->notification->sharedLink->link; 
+        // echo $statusCode;
         // Closing
-        curl_close($ch);
+        curl_close($ch); 
     }
 
     function prettyPrint( $json )
