@@ -659,13 +659,14 @@ $(document).ready(function () {
             processes_id: $('#process').val(),
             subprocesses_id: $('#subprocess').val() 
         };
+        console.log(formData);
         preloader('show');
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             type: 'POST',
+            url: url_index + '/applyProcesses',
             data: formData,
             dataType: 'json',
-            url: url_index + '/applyProcesses',
             success: function (data) {
                 if (data.code == 200) {
                     preloader('hide', data.message, 'success');

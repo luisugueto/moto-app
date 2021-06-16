@@ -1300,6 +1300,16 @@ $(document).ready(function(){
     });
 
     //***************************
+    $(document).on('click', '.button_send_document', function () {
+        var $tr = $(this).closest('tr');
+        var data = dataTable.row($(this).parents($tr)).data();
+        var id_purchase = data[1];
+
+        window.location.href = 'purchase_valuation_interested/send_document_viafirma/'+id_purchase;       
+         
+    });
+
+    //***************************
     $(document).on('click', '.button_verificar', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();

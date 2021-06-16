@@ -3,6 +3,12 @@
 use App\Menu;
 use App\PermissionsMenu;
 
+require_once dirname(__FILE__). '/oauth-php/OAuthRequestSigner.php';
+
+define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
+define("DOCUMENTS_CONSUMER_KEY", "motostion");
+define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
+
  	function getPermission($menu, $permission){
 
         switch ($permission) { // TIPO DE PERMISOS
@@ -113,14 +119,14 @@ use App\PermissionsMenu;
 
         // Execute
         $result=curl_exec($ch);
-        echo prettyPrint($result);
+        return prettyPrint($result);
 
         // Closing
         curl_close($ch);
     }
 
-    function send_message ($purchaseM, $url_pdf)
-    {
+    function send_document ($purchase, $url_pdf)
+    {   
         error_reporting(E_ALL);
 
         $url=DOCUMENTS_API_URL."/messages/dispatch";
@@ -137,9 +143,9 @@ use App\PermissionsMenu;
                     'nonce'             => '3jd834jd9',
                     'timestamp'         => $fecha->getTimestamp(),
                     );
-        $req->sign(0, $secrets);
+        $req->sign(0, $secrets); 
 
-        $email = $purchaseM->email;
+        $email = $purchase->email;
 
         // POST
         $string_json = '{
@@ -165,7 +171,7 @@ use App\PermissionsMenu;
                             "formRequired": true,
                             "items" : [ {
                               "key" : "customer_name",
-                              "value" : "'.$purchaseM->name.'"
+                              "value" : "'.$purchase->name.'"
                             }, {
                               "key" : "otpmail_phoneNumber",
                               "value" : "+584121382321"
@@ -173,7 +179,7 @@ use App\PermissionsMenu;
                           },
                           "callbackMails": "'.$email.'",
                           "callbackURL" : "https://www.viafirma.com/download/documents/callbackURL/callbackURL.php"
-                        }';
+                        }'; 
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -187,19 +193,15 @@ use App\PermissionsMenu;
         $headr[] = 'Content-type: application/json';
         $headr[] = ''.$req->getAuthorizationHeader();
         curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+        
 
         $result = curl_exec($ch);
         $array = json_decode($result);
-        $link=$array->notification->sharedLink->link;
+        $link=$array->notification->sharedLink->link; 
 
-        // return $link;
-
-        // echo '<script>NombreiFrame.location.href = "'.$link.'";</script>'; 
-        // echo "Url para redirección o montar iframe: ";
-        // echo prettyPrint($result); 
-
+        // echo $statusCode;
         // Closing
-        curl_close($ch);
+        curl_close($ch); 
     }
 
     function prettyPrint( $json )

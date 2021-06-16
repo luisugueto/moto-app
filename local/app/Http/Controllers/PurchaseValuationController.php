@@ -21,13 +21,6 @@ use App\Business;
 use Yajra\Datatables\Datatables;
 use App\ApplySubProcessAndProcess;
 
-require_once public_path(). '/oauth-php/OAuthRequestSigner.php';
-
-define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
-define("DOCUMENTS_CONSUMER_KEY", "motostion");
-define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
-
-
 class PurchaseValuationController extends Controller
 {
     public function __construct() {
@@ -174,7 +167,12 @@ class PurchaseValuationController extends Controller
                 if($value->status == 1){
                     $botones = "<a class='mb-2 mr-2 btn btn-primary text-white button_verificar' title='Verificar Moto'>Verificar</a>";
                     $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
-                }else{
+                }
+                elseif($value->status == 2 && ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $value->id)->count() > 0){
+                    $botones = "<a class='mb-2 mr-2 btn btn-primary text-white button_send_document' title='Enviar Documentos Viafirma'>Enviar Documentos Viafirma</a>";
+                    $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                }
+                else{
                     $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
                 }                
             }
@@ -1033,7 +1031,6 @@ class PurchaseValuationController extends Controller
             $purchase_model->update();
 
             $token = create_token();
-            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
 
             if($request->applyState == 3){ // CHECK IF IS INTERESTED
                 $linksRegister = new LinksRegister();
@@ -1041,6 +1038,8 @@ class PurchaseValuationController extends Controller
                 $linksRegister->purchase_valuation_id = $purchase_model->id;
                 $linksRegister->status = 0;
                 $linksRegister->save();
+
+                $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
                 
                 if($purchaseCount == 0){
                     $purchase_management = new PurchaseManagement();
@@ -1435,12 +1434,7 @@ class PurchaseValuationController extends Controller
             $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
-            // $url_pdf = url('/local/public/pdfs/').'/'.$nameFile;
-            // $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-
-            // send_message($purchaseM, $url_pdf);
-
-            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+            /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
                 {
                     $message->from('info@motostion.com', 'MotOstion');
 
@@ -1448,7 +1442,7 @@ class PurchaseValuationController extends Controller
                     $message->to($purchase->email)->subject('Documento a Firmar');
 
                     $message->attach(public_path().'/pdfs/'.$nameFile);
-                });
+                }); */
 
             $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
         }else{
@@ -1606,5 +1600,30 @@ class PurchaseValuationController extends Controller
         $out['link'] = url('/');
 
         return response()->json($out);
+    }
+
+    public function send_document_viafirma($id)
+    {
+        $purchase = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+       
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+
+            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+
+            $output = $pdf->output();
+            $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
+            // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
+            $url_pdf = url('/local/public/pdfs/').'/'.$nameFile;
+
+            send_document($purchase_management, $url_pdf);
+            
+            return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Se ha enviado los documentos al Id Moto: '.$id.' exitosamente!');
+        }else
+            return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
 }
