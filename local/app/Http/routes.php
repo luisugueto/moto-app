@@ -15,6 +15,8 @@ Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManage
 Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
 Route::post('getModel', 'HomeController@getModel');
 
+Route::post('purchase_valuation_interested/callback_document_viafirma', 'PurchaseValuationController@callback_document_viafirma');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard');

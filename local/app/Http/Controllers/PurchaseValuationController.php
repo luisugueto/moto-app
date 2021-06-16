@@ -25,7 +25,7 @@ class PurchaseValuationController extends Controller
 {
     public function __construct() {
         $this->middleware('auth', ['except' => [
-            'create', 'store'
+            'create', 'store', 'callback_document_viafirma'
         ]]);
     }
 
@@ -60,7 +60,7 @@ class PurchaseValuationController extends Controller
             $sql .= " AND (model LIKE '%" . $requestData['search']['value'] . "%'";
             $sql .= " OR year LIKE '%" . $requestData['search']['value'] . "%' )";
         }
-	    
+        
         $query = DB::connection('mysql')->select(DB::raw($sql));
         $totalData = count($query);
         $totalFiltered = count($query);
@@ -1434,6 +1434,10 @@ class PurchaseValuationController extends Controller
             $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
+            $purchaseU = PurchaseValuation::find($purchase->id);
+            $purchaseU->document_generate = $nameFile;
+            $purchaseU->update();
+
             /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
 
                 {
@@ -1610,16 +1614,8 @@ class PurchaseValuationController extends Controller
        
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
-            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
-            $pdf = \App::make('dompdf.wrapper');
-            $pdf->loadHTML($view);
-
-            $output = $pdf->output();
-            $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
-            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
-
             // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
-            $url_pdf = url('/local/public/pdfs/').'/'.$nameFile;
+            $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/".$purchase->document_generate;
 
             send_document($purchase_management, $url_pdf);
             
@@ -1628,12 +1624,24 @@ class PurchaseValuationController extends Controller
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
 
-    public function callback_document_viafirma(Request $request)
+    public function callback_document_viafirma()
     {
+        // Proccessing the POST
+        $raw = urldecode((file_get_contents('php://input')));
+        $res = str_replace("message=", '', $raw);
+        $json = json_decode($res);
+        $messageCode = $json->code;
+
+        $purchase = PurchaseValuation::find(18);
+        $purchase->document_code = $raw;
+        $purchase->update();
+
         // if current status is RESPONSED, download the signed document
         if ($json->workflow->current === 'RESPONSED') {
             // Download URL 
             $url=DOCUMENTS_API_URL."/documents/download/signed/".$messageCode;
+
+
 
             OAuthStore::instance('MySQL', array('conn'=>false));
             $req = new OAuthRequestSigner($url, 'GET');

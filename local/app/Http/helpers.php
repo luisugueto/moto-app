@@ -9,7 +9,7 @@ define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
 define("DOCUMENTS_CONSUMER_KEY", "motostion");
 define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
- 	function getPermission($menu, $permission){
+    function getPermission($menu, $permission){
 
         switch ($permission) { // TIPO DE PERMISOS
             case 'record-view': $id_permission = 1; break;
@@ -144,10 +144,9 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                     'nonce'             => '3jd834jd9',
                     'timestamp'         => $fecha->getTimestamp(),
                     );
-        $req->sign(0, $secrets); 
+        $req->sign(0, $secrets);
 
         $email = $purchase->email;
-
         // POST
         $string_json = '{
                           "groupCode": "motostion",
@@ -173,23 +172,20 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                             "items" : [ {
                               "key" : "customer_name",
                               "value" : "'.$purchase->name.'"
-
                             }, {
                               "key" : "otpmail_phoneNumber",
                               "value" : "+584121234567"
                             } ]
                           },
                           "callbackMails": "'.$email.'",
-                          "callbackURL" : '. url('/purchase_valuation_interested/callback_document_viafirma').'
-                        }'; 
+                          "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                        }';
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $string_json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
-        curl_setopt($ch, CURLOPT_TIMEOUT, 1000); //timeout in seconds
 
         // OAuth Header
         $headr = array();
@@ -197,14 +193,19 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
         $headr[] = 'Content-type: application/json';
         $headr[] = ''.$req->getAuthorizationHeader();
         curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
-        
 
         $result = curl_exec($ch);
         $array = json_decode($result);
-        $link=$array->notification->sharedLink->link; 
-        // echo $statusCode;
+        $link=$array->notification->sharedLink->link;
+
+        // return $link;
+
+        // echo '<script>NombreiFrame.location.href = "'.$link.'";</script>'; 
+        // echo "Url para redirección o montar iframe: ";
+        // echo prettyPrint($result); 
+
         // Closing
-        curl_close($ch); 
+        curl_close($ch);
     }
 
     function prettyPrint( $json )
