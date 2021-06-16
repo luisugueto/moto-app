@@ -1026,6 +1026,7 @@ class PurchaseValuationController extends Controller
             $purchase_model->update();
 
             $token = create_token();
+            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
 
             if($request->applyState == 3){ // CHECK IF IS INTERESTED
                 $linksRegister = new LinksRegister();
@@ -1033,8 +1034,6 @@ class PurchaseValuationController extends Controller
                 $linksRegister->purchase_valuation_id = $purchase_model->id;
                 $linksRegister->status = 0;
                 $linksRegister->save();
-
-                $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
                 
                 if($purchaseCount == 0){
                     $purchase_management = new PurchaseManagement();
