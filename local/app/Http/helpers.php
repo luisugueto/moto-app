@@ -126,6 +126,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
     }
 
     function send_document ($purchase, $url_pdf)
+
     {   
         error_reporting(E_ALL);
 
@@ -147,6 +148,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
         $email = $purchase->email;
 
+
         // POST
         $string_json = '{
                           "groupCode": "motostion",
@@ -164,7 +166,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                           },
                           "document": {
                             "templateType" : "url",
-                            "templateReference" : "'.$url_pdf.'",
+                            "templateReference" : "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf",
                             "templateCode": "motostion_documents_generados",
                             "readRequired" : true,
                             "watermarkText" : "Previsualización",
@@ -172,6 +174,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                             "items" : [ {
                               "key" : "customer_name",
                               "value" : "'.$purchase->name.'"
+
                             }, {
                               "key" : "otpmail_phoneNumber",
                               "value" : "+584121382321"
@@ -186,6 +189,8 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $string_json);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 0); 
+        curl_setopt($ch, CURLOPT_TIMEOUT, 1000); //timeout in seconds
 
         // OAuth Header
         $headr = array();
@@ -198,7 +203,6 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
         $result = curl_exec($ch);
         $array = json_decode($result);
         $link=$array->notification->sharedLink->link; 
-
         // echo $statusCode;
         // Closing
         curl_close($ch); 

@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {  
         getPermission('Administración', 'record-view');
-
+        
         $invoices = DB::connection('recambio_ps')->table('ps_category_lang')->offset(0)->limit(10)->get();        
         return view('welcome', compact('invoices'));
     }

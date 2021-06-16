@@ -1435,6 +1435,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
             /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+
                 {
                     $message->from('info@motostion.com', 'MotOstion');
 

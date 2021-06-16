@@ -659,7 +659,6 @@ $(document).ready(function () {
             processes_id: $('#process').val(),
             subprocesses_id: $('#subprocess').val() 
         };
-        console.log(formData);
         preloader('show');
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
@@ -668,6 +667,7 @@ $(document).ready(function () {
             data: formData,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 if (data.code == 200) {
                     preloader('hide', data.message, 'success');
                 }
