@@ -1435,7 +1435,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
             $purchaseU = PurchaseValuation::find($purchase->id);
-            $purchaseU->document_generate = $nameFile;
+            $purchaseU->document_generate = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
             $purchaseU->update();
 
             /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
@@ -1632,8 +1632,9 @@ class PurchaseValuationController extends Controller
         $json = json_decode($res);
         $messageCode = $json->code;
 
-        $purchase = PurchaseValuation::find(18);
-        $purchase->document_code = $raw;
+
+        $purchase = PurchaseValuation::where('document_generate', $json->document->templateReference)->first();
+        $purchase->document_code = $messageCode;
         $purchase->update();
 
         // if current status is RESPONSED, download the signed document

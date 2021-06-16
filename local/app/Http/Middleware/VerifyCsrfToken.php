@@ -12,6 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        //
+        'purchase_valuation_interested/callback_document_viafirma'
     ];
 }
