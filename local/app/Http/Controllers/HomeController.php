@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 use DB;
 use App;
 
+use App\PurchaseValuation;
+use App\PurchaseManagement;
+
+require_once public_path(). '/oauth-php/OAuthRequestSigner.php';
+
+define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
+define("DOCUMENTS_CONSUMER_KEY", "motostion");
+define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
+
 class HomeController extends Controller
 {
     /**
@@ -26,10 +35,17 @@ class HomeController extends Controller
      */
     public function index()
     {  
-        getPermission('Administración', 'record-view');
+        $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";
 
-        $invoices = DB::connection('recambio_ps')->table('ps_category_lang')->offset(0)->limit(10)->get();        
-        return view('welcome', compact('invoices'));
+            $purchase = PurchaseValuation::find(4);
+            $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+
+            send_message($purchaseM, $url_pdf);
+
+        // getPermission('Administración', 'record-view');
+
+        // $invoices = DB::connection('recambio_ps')->table('ps_category_lang')->offset(0)->limit(10)->get();        
+        // return view('welcome', compact('invoices'));
 
     }
 

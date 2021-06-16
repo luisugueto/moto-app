@@ -27,6 +27,7 @@ define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
 define("DOCUMENTS_CONSUMER_KEY", "motostion");
 define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
+
 class PurchaseValuationController extends Controller
 {
     public function __construct() {
@@ -1435,20 +1436,20 @@ class PurchaseValuationController extends Controller
             $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
+            // $url_pdf = url('/local/public/pdfs/').'/'.$nameFile;
+            // $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
 
-            $url_pdf = public_path().'/pdfs/'.$nameFile;
+            // send_message($purchaseM, $url_pdf);
 
-            send_message($purchase_management, $url_pdf);
+            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
 
-            // Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
-            //     {
-            //         $message->from('info@motostion.com', 'MotOstion');
+                    // SE ENVIARA A
+                    $message->to($purchase->email)->subject('Documento a Firmar');
 
-            //         // SE ENVIARA A
-            //         $message->to($purchase->email)->subject('Documento a Firmar');
-
-            //         $message->attach(public_path().'/pdfs/'.$nameFile);
-            //     });
+                    $message->attach(public_path().'/pdfs/'.$nameFile);
+                });
 
             $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
         }else{
