@@ -1046,6 +1046,20 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="divDocumentsViafirma" style="display: none">
+                    <div class="p-2">
+                        <h3>Documento Viafirma</h3>
+                        <table width="100%" id="tableDocumentsViafirma" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 

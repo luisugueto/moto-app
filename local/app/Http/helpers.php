@@ -244,9 +244,10 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
         $result=curl_exec($ch);
         $json = json_decode($result);
-        return $json;
 
         curl_close($ch);
+
+        return $json;
     }
 
     function download_signed($messageCode = '')
@@ -286,10 +287,11 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
         $result=curl_exec($ch);
         $json = json_decode($result);
 
-        return $json;
 
         // Closing
         curl_close($ch);
+
+        return $json;
     }
 
     function prettyPrint( $json )

@@ -1253,6 +1253,15 @@ class PurchaseValuationController extends Controller
             $subprocesses = SubProcesses::find($value->subprocesses_id);
             array_push($processes, ['name' => $process->name, 'subproceso' => $subprocesses->name]);
         }
+
+        $data['documents_send'] = false;
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
+            if($purchase_valuation['document_code'] != NULL){
+                $data['documents_send'] = true;
+                $data['get_status_document'] = get_status_document($purchase_valuation['document_code']);
+                $data['download_signed'] = download_signed($purchase_valuation['document_code']);
+            }
+        }
         
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
