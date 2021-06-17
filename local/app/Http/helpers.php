@@ -177,7 +177,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                               "value" : "+584121234567"
                             } ]
                           },
-                          "callbackMails": "'.$email.'",
+                          "callbackMails": "webmaster@motostion.com",
                           "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
                         }';
 
