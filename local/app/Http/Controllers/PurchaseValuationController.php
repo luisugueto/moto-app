@@ -1146,7 +1146,7 @@ class PurchaseValuationController extends Controller
         $apply->purchase_valuation_id = $purchase->id;
         $apply->save();
     
-        if(!empty($subprocesses->business_id) && $processes->id = 12){
+        if(!empty($subprocesses->business_id) && $processes->id == 12){
             $state = [];
             $token = '';
             $business = Business::find($subprocesses->business_id);
