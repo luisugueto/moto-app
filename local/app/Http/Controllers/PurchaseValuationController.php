@@ -1624,7 +1624,7 @@ class PurchaseValuationController extends Controller
 
             send_document($purchase_management, $url_pdf);
             
-            return Redirect::back()->with('notification', 'Se ha enviado los documentos al Id Moto: '.$id.' exitosamente!');
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos mediante Viafirma exitosamente!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }

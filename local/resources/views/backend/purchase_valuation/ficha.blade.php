@@ -22,6 +22,18 @@
         </div>
     </div>
 </div>
+<br>
+@if (session('notification'))
+    <div class="alert alert-success notification">
+        {{ session('notification') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-block notification">
+        {{ session('error') }}
+    </div>
+@endif
+<br>
 <div class="row" id="ficha">
     <div class="col-md-4">
         <div class="mb-3 card">
