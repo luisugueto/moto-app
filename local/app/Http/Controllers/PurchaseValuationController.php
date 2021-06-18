@@ -1134,11 +1134,10 @@ class PurchaseValuationController extends Controller
         $purchase = PurchaseValuation::find($request->purchase_id);
 
         // check last process and delete
-        $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->first();
-        $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->count();         
-        
-        if($countLastProcessApply > 0){            
-            ApplySubProcessAndProcess::destroy($lastProcessApply->id);
+        $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->get();
+
+        if($lastProcessApply->count() > 0){            
+            ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->delete();
         }
 
         $apply = new ApplySubProcessAndProcess();
