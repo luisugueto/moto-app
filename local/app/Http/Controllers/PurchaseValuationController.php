@@ -168,10 +168,6 @@ class PurchaseValuationController extends Controller
                     $botones = "<a class='mb-2 mr-2 btn btn-primary text-white button_verificar' title='Verificar Moto'>Verificar</a>";
                     $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
                 }
-                elseif($value->status == 2 && ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $value->id)->count() > 0){
-                    $botones = "<a class='mb-2 mr-2 btn btn-primary text-white button_send_document' title='Enviar Documentos Viafirma'>Enviar Documentos Viafirma</a>";
-                    $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
-                }
                 else{
                     $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
                 }                
@@ -1255,6 +1251,7 @@ class PurchaseValuationController extends Controller
 
         $data['documents_send'] = false;
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
+                $data['document_generate'] = $purchase_valuation['document_generate'];
             if($purchase_valuation['document_code'] != NULL){
                 $data['documents_send'] = true;
                 $data['get_status_document'] = get_status_document($purchase_valuation['document_code']);
@@ -1627,7 +1624,7 @@ class PurchaseValuationController extends Controller
 
             send_document($purchase_management, $url_pdf);
             
-            return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Se ha enviado los documentos al Id Moto: '.$id.' exitosamente!');
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos al Id Moto: '.$id.' exitosamente!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }

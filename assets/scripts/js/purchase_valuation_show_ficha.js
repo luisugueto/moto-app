@@ -16,7 +16,6 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -309,6 +308,11 @@ $(document).ready(function () {
                     }, 3000);
                 }
                 $('#form_display_datos_internos').html(data.form_display_datos_internos);
+
+                if(!!data.document_generate){
+                    $('#divSendDocument').css('display', 'block');
+                    $("#button_send_document").attr("href", "send_document_viafirma/"+data.id);
+                }
 
                 if (data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');

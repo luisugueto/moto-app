@@ -1047,6 +1047,12 @@
                     </div>
                 </div>
 
+                <div id="divSendDocument" style="display: none">
+                    <div class="p-2">
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_send_document" title='Enviar Documentos Viafirma'>Enviar Documentos Viafirma</a>
+                    </div>
+                </div>
+
                 <div id="divDocumentsViafirma" style="display: none">
                     <div class="p-2">
                         <h3>Documento Viafirma</h3>
