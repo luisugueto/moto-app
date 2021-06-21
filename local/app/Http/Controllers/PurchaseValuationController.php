@@ -853,52 +853,68 @@ class PurchaseValuationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $purchase = new PurchaseValuation($request->all());
-        $purchase->date = date('Y-m-d');
-        $purchase->states_id = 1; // En Revisión
-        $purchase->save();
+        $validator = \Validator::make($request->all(),[
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required', 
+            'km' => 'required', 
+            'email' => 'required', 
+            'name' => 'required', 
+            'lastname' => 'required', 
+            'phone' => 'required', 
+            'province' => 'required', 
+            'price_min' => 'required', 
+            'observations' => 'required',
+        ]);
 
-        foreach($request->images as $file){
-            $filenameWithExt = $file->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            
+        $purchaseExist = PurchaseValuation::where('brand', $request->brand)->where('model', $request->model)->where('year', $request->year)->where('km', $request->km)->where('name', $request->name)->where('lastname', $request->lastname)->where('email', $request->email)->where('phone', $request->phone)->where('status_trafic', $request->status_trafic)->where('observations', $request->observations)->where('price_min', $request->price_min)->count();
 
-            $image_resize = \Image::make($file->getRealPath());
-            $img = \Image::make($file->getRealPath())->widen(250, function ($constraint) {
-                $constraint->upsize();
-            });
+        if($purchaseExist == 0){
+            $purchase = new PurchaseValuation($request->all());
+            $purchase->date = date('Y-m-d');
+            $purchase->states_id = 1; // En Revisión
+            $purchase->save();
 
-            $img->stream();
+            foreach($request->images as $file){
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                
 
-            Storage::disk('images_purchase')->put($fileNameToStore, $img);
-            // Storage::disk('images_purchase')->put($fileNameToStore,  \File::get($file));
-
-            $images_purchase = new ImagesPurchase();
-            $images_purchase->purchase_valuation_id = $purchase->id;
-            $images_purchase->name = $fileNameToStore;
-            $images_purchase->save();
-        }
-
-        $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $purchase->id)->get();
-
-        Mail::send('backend.emails.copy-form', ['purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
-                {
-                    $message->from('info@motostion.com', 'MotOstion');
-
-                    // SE ENVIARA A
-                    $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
-
-                    foreach($imagesPurchase as $image){
-                        $message->attach(public_path('img_app/images_purchase/'.$image->name));
-                    }
+                $image_resize = \Image::make($file->getRealPath());
+                $img = \Image::make($file->getRealPath())->widen(250, function ($constraint) {
+                    $constraint->upsize();
                 });
 
-        return Redirect::to('https://motostion.com/');
-        // return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Tasación creada exitosamente!');
+                $img->stream();
 
+                Storage::disk('images_purchase')->put($fileNameToStore, $img);
+
+                $images_purchase = new ImagesPurchase();
+                $images_purchase->purchase_valuation_id = $purchase->id;
+                $images_purchase->name = $fileNameToStore;
+                $images_purchase->save();
+            }
+
+            $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $purchase->id)->get();
+
+            Mail::send('backend.emails.copy-form', ['purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
+                    {
+                        $message->from('info@motostion.com', 'MotOstion');
+
+                        // SE ENVIARA A
+                        $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
+
+                        foreach($imagesPurchase as $image){
+                            $message->attach(public_path('img_app/images_purchase/'.$image->name));
+                        }
+                    });
+
+            return Redirect::to('https://motostion.com/');
+
+        }else
+            return Redirect::back()->with('error', 'Existe una Tasación con los mismos datos ingresados!')->withInput();
     }
 
     /**
