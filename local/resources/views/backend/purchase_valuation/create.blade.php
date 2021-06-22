@@ -17,6 +17,17 @@
     
 }
 </style>
+@if (session('notification'))
+            <div class="alert alert-success notification">
+                {{ session('notification') }}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-block notification">
+                {{ session('error') }}
+            </div>
+        @endif
+        <br>
     <div class="row">
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
@@ -216,12 +227,12 @@
                                             <label for="status_trafic" class="">Estado en tráfico: </label>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="high" name="status_trafic"
-                                                    class="custom-control-input" value="Alta">
+                                                    class="custom-control-input" value="Alta"  @if(old('status_trafic') && old('status_trafic') == 'Alta') checked @endif>
                                                 <label class="custom-control-label" for="high">Alta</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="final_discharge" name="status_trafic"
-                                                    class="custom-control-input" value="Baja definitiva">
+                                                    class="custom-control-input" value="Baja definitiva"  @if(old('status_trafic') && old('status_trafic') == 'Baja') checked @endif>
                                                 <label class="custom-control-label" for="final_discharge">Baja</label>
                                             </div>
                                             @if ($errors->has('status_trafic'))
@@ -236,27 +247,31 @@
                                             <label for="status_vehicle" class="">Estado de la Moto: </label>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="g_del" name="motocycle_state"
-                                                    class="custom-control-input" value="Golpe Delantero">
+                                                    class="custom-control-input" value="Golpe Delantero" @if(old('motocycle_state') && old('motocycle_state') == 'Golpe Delantero') checked @endif>
                                                 <label class="custom-control-label" for="g_del">Golpe Delantero</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="g_tras" name="motocycle_state"
-                                                    class="custom-control-input" value="Golpe Trasero">
+                                                    class="custom-control-input" value="Golpe Trasero" 
+                                                    class="custom-control-input" value="Golpe Delantero" @if(old('motocycle_state') && old('motocycle_state') == 'Golpe Trasero') checked @endif>
                                                 <label class="custom-control-label" for="g_tras">Golpe Trasero</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="av_elec" name="motocycle_state"
-                                                    class="custom-control-input" value="Avería Eléctrica">
+                                                    class="custom-control-input" value="Avería Eléctrica" 
+                                                    class="custom-control-input" value="Golpe Delantero" @if(old('motocycle_state') && old('motocycle_state') == 'Avería Eléctrica') checked @endif>
                                                 <label class="custom-control-label" for="av_elec">Avería Eléctrica</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="av_mec" name="motocycle_state"
-                                                    class="custom-control-input" value="Avería Mecánica">
+                                                    class="custom-control-input" value="Avería Mecánica" 
+                                                    class="custom-control-input" value="Golpe Delantero" @if(old('motocycle_state') && old('motocycle_state') == 'Avería Mecánica') checked @endif>
                                                 <label class="custom-control-label" for="av_mec">Avería Mecánica</label>
                                             </div>
                                             <div class="custom-radio custom-control custom-control-inline">
                                                 <input type="radio" id="old" name="motocycle_state"
-                                                    class="custom-control-input" value="Vieja o Abandonada">
+                                                    class="custom-control-input" value="Vieja o Abandonada" 
+                                                    class="custom-control-input" value="Golpe Delantero" @if(old('motocycle_state') && old('motocycle_state') == 'Vieja o Abandonada') checked @endif>
                                                 <label class="custom-control-label" for="old">Vieja o Abandonada</label>
                                             </div>
                                         </div>
@@ -264,13 +279,13 @@
                                     <div class="col-md-12">
                                         <div class="position-relative form-group">
                                             <label for="status_vehicle" class="">Observaciones: </label>
-                                            <textarea class="form-control" name="observations"></textarea>
+                                            <textarea class="form-control" name="observations">{{ old('observations') }}</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
                                             <label for="status_vehicle" class="">¿Cual es el precio mínimo que aceptas?: </label>
-                                            <input type="number" step="any" class="form-control" id="price_min" name="price_min" required>
+                                            <input type="number" step="any" class="form-control" id="price_min" name="price_min" value="{{ old('price_min') }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-2"></div>

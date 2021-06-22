@@ -22,6 +22,18 @@
         </div>
     </div>
 </div>
+<br>
+@if (session('notification'))
+    <div class="alert alert-success notification">
+        {{ session('notification') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-block notification">
+        {{ session('error') }}
+    </div>
+@endif
+<br>
 <div class="row" id="ficha">
     <div class="col-md-4">
         <div class="mb-3 card">
@@ -1044,6 +1056,26 @@
                                 
                             </ul>
                         </div>
+                    </div>
+                </div>
+
+                <div id="divSendDocument" style="display: none">
+                    <div class="p-2">
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_send_document" title='Enviar Documentos Viafirma'>Enviar Documentos Viafirma</a>
+                    </div>
+                </div>
+
+                <div id="divDocumentsViafirma" style="display: none">
+                    <div class="p-2">
+                        <h3>Documento Viafirma</h3>
+                        <table width="100%" id="tableDocumentsViafirma" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,8 @@ Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManage
 Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
 Route::post('getModel', 'HomeController@getModel');
 
+Route::post('purchase_valuation_interested/callback_document_viafirma', 'PurchaseValuationController@callback_document_viafirma');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard');
@@ -65,6 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Views Purchase Valuation
     Route::get('purchase_valuation_no_interested', 'PurchaseValuationController@noInterested');
     Route::get('purchase_valuation_interested', 'PurchaseValuationController@interested');
+    Route::get('purchase_valuation_interested/send_document_viafirma/{id}', 'PurchaseValuationController@send_document_viafirma');
+    Route::get('purchase_valuation_interested/callback_document_viafirma', 'PurchaseValuationController@callback_document_viafirma');
     Route::get('purchase_valuation_interested/ficha_de_la_moto', 'PurchaseValuationController@showFicha');
     Route::get('purchase_valuation_interested/ficha_de_la_moto/{id}', 'PurchaseValuationController@getDataFicha');
     Route::post('purchase_valuation_interested/update_ficha', 'PurchaseValuationController@updateFicha')->name('updateFicha');

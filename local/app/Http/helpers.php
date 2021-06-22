@@ -3,7 +3,13 @@
 use App\Menu;
 use App\PermissionsMenu;
 
- 	function getPermission($menu, $permission){
+require_once dirname(__FILE__). '/oauth-php/OAuthRequestSigner.php';
+
+define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
+define("DOCUMENTS_CONSUMER_KEY", "motostion");
+define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
+
+    function getPermission($menu, $permission){
 
         switch ($permission) { // TIPO DE PERMISOS
             case 'record-view': $id_permission = 1; break;
@@ -113,14 +119,15 @@ use App\PermissionsMenu;
 
         // Execute
         $result=curl_exec($ch);
-        echo prettyPrint($result);
+        return prettyPrint($result);
 
         // Closing
         curl_close($ch);
     }
 
-    function send_message ($purchaseM, $url_pdf)
-    {
+    function send_document ($purchase, $url_pdf)
+
+    {   
         error_reporting(E_ALL);
 
         $url=DOCUMENTS_API_URL."/messages/dispatch";
@@ -139,8 +146,7 @@ use App\PermissionsMenu;
                     );
         $req->sign(0, $secrets);
 
-        $email = $purchaseM->email;
-
+        $email = $purchase->email;
         // POST
         $string_json = '{
                           "groupCode": "motostion",
@@ -165,14 +171,14 @@ use App\PermissionsMenu;
                             "formRequired": true,
                             "items" : [ {
                               "key" : "customer_name",
-                              "value" : "'.$purchaseM->name.'"
+                              "value" : "'.$purchase->name.'"
                             }, {
                               "key" : "otpmail_phoneNumber",
-                              "value" : "+584121382321"
+                              "value" : "+584121234567"
                             } ]
                           },
-                          "callbackMails": "'.$email.'",
-                          "callbackURL" : "https://www.viafirma.com/download/documents/callbackURL/callbackURL.php"
+                          "callbackMails": "webmaster@motostion.com",
+                          "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
                         }';
 
         $ch = curl_init($url);
@@ -200,6 +206,92 @@ use App\PermissionsMenu;
 
         // Closing
         curl_close($ch);
+    }
+
+    function get_status_document($messageCode = '')
+    {
+        error_reporting(E_ALL);
+
+        // header('Content-Type: text/plain; charset=utf-8');
+
+        $url=DOCUMENTS_API_URL."/messages/status/".$messageCode;
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'GET');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL,$url);
+
+        // OAuth Header
+        $headr = array();
+        // $headr[] = 'Content-length: 0';
+        // $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result=curl_exec($ch);
+        $json = json_decode($result);
+
+        curl_close($ch);
+
+        return $json;
+    }
+
+    function download_signed($messageCode = '')
+    {
+        error_reporting(E_ALL);
+
+        // header('Content-Type: text/plain; charset=utf-8');
+
+        $url=DOCUMENTS_API_URL."/documents/download/signed/".$messageCode;
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'GET');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL,$url);
+
+        // OAuth Header
+        $headr = array();
+        // $headr[] = 'Content-length: 0';
+        // $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result=curl_exec($ch);
+        $json = json_decode($result);
+
+
+        // Closing
+        curl_close($ch);
+
+        return $json;
     }
 
     function prettyPrint( $json )

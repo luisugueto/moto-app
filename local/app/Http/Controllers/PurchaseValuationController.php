@@ -21,17 +21,11 @@ use App\Business;
 use Yajra\Datatables\Datatables;
 use App\ApplySubProcessAndProcess;
 
-require_once public_path(). '/oauth-php/OAuthRequestSigner.php';
-
-define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
-define("DOCUMENTS_CONSUMER_KEY", "motostion");
-define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
-
 class PurchaseValuationController extends Controller
 {
     public function __construct() {
         $this->middleware('auth', ['except' => [
-            'create', 'store'
+            'create', 'store', 'callback_document_viafirma'
         ]]);
     }
 
@@ -66,7 +60,7 @@ class PurchaseValuationController extends Controller
             $sql .= " AND (model LIKE '%" . $requestData['search']['value'] . "%'";
             $sql .= " OR year LIKE '%" . $requestData['search']['value'] . "%' )";
         }
-	    
+        
         $query = DB::connection('mysql')->select(DB::raw($sql));
         $totalData = count($query);
         $totalFiltered = count($query);
@@ -173,7 +167,8 @@ class PurchaseValuationController extends Controller
                 if($value->status == 1){
                     $botones = "<a class='mb-2 mr-2 btn btn-primary text-white button_verificar' title='Verificar Moto'>Verificar</a>";
                     $botones .= "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
-                }else{
+                }
+                else{
                     $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
                 }                
             }
@@ -858,52 +853,68 @@ class PurchaseValuationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $purchase = new PurchaseValuation($request->all());
-        $purchase->date = date('Y-m-d');
-        $purchase->states_id = 1; // En Revisión
-        $purchase->save();
+        $validator = \Validator::make($request->all(),[
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required', 
+            'km' => 'required', 
+            'email' => 'required', 
+            'name' => 'required', 
+            'lastname' => 'required', 
+            'phone' => 'required', 
+            'province' => 'required', 
+            'price_min' => 'required', 
+            'observations' => 'required',
+        ]);
 
-        foreach($request->images as $file){
-            $filenameWithExt = $file->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $file->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-            
+        $purchaseExist = PurchaseValuation::where('brand', $request->brand)->where('model', $request->model)->where('year', $request->year)->where('km', $request->km)->where('name', $request->name)->where('lastname', $request->lastname)->where('email', $request->email)->where('phone', $request->phone)->where('status_trafic', $request->status_trafic)->where('observations', $request->observations)->where('price_min', $request->price_min)->count();
 
-            $image_resize = \Image::make($file->getRealPath());
-            $img = \Image::make($file->getRealPath())->widen(250, function ($constraint) {
-                $constraint->upsize();
-            });
+        if($purchaseExist == 0){
+            $purchase = new PurchaseValuation($request->all());
+            $purchase->date = date('Y-m-d');
+            $purchase->states_id = 1; // En Revisión
+            $purchase->save();
 
-            $img->stream();
+            foreach($request->images as $file){
+                $filenameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                
 
-            Storage::disk('images_purchase')->put($fileNameToStore, $img);
-            // Storage::disk('images_purchase')->put($fileNameToStore,  \File::get($file));
-
-            $images_purchase = new ImagesPurchase();
-            $images_purchase->purchase_valuation_id = $purchase->id;
-            $images_purchase->name = $fileNameToStore;
-            $images_purchase->save();
-        }
-
-        $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $purchase->id)->get();
-
-        Mail::send('backend.emails.copy-form', ['purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
-                {
-                    $message->from('info@motostion.com', 'MotOstion');
-
-                    // SE ENVIARA A
-                    $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
-
-                    foreach($imagesPurchase as $image){
-                        $message->attach(public_path('img_app/images_purchase/'.$image->name));
-                    }
+                $image_resize = \Image::make($file->getRealPath());
+                $img = \Image::make($file->getRealPath())->widen(250, function ($constraint) {
+                    $constraint->upsize();
                 });
 
-        return Redirect::to('https://motostion.com/');
-        // return Redirect::to('/motos-que-nos-ofrecen')->with('notification', 'Tasación creada exitosamente!');
+                $img->stream();
 
+                Storage::disk('images_purchase')->put($fileNameToStore, $img);
+
+                $images_purchase = new ImagesPurchase();
+                $images_purchase->purchase_valuation_id = $purchase->id;
+                $images_purchase->name = $fileNameToStore;
+                $images_purchase->save();
+            }
+
+            $imagesPurchase = ImagesPurchase::where('purchase_valuation_id', $purchase->id)->get();
+
+            Mail::send('backend.emails.copy-form', ['purchase' => $purchase], function ($message) use ($purchase, $imagesPurchase)
+                    {
+                        $message->from('info@motostion.com', 'MotOstion');
+
+                        // SE ENVIARA A
+                        $message->to('tasacion@motostion.com')->subject($purchase->brand.', '.$purchase->model.', '.$purchase->province);
+
+                        foreach($imagesPurchase as $image){
+                            $message->attach(public_path('img_app/images_purchase/'.$image->name));
+                        }
+                    });
+
+            return Redirect::to('https://motostion.com/');
+
+        }else
+            return Redirect::back()->with('error', 'Existe una Tasación con los mismos datos ingresados!')->withInput();
     }
 
     /**
@@ -1032,7 +1043,6 @@ class PurchaseValuationController extends Controller
             $purchase_model->update();
 
             $token = create_token();
-            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
 
             if($request->applyState == 3){ // CHECK IF IS INTERESTED
                 $linksRegister = new LinksRegister();
@@ -1040,6 +1050,8 @@ class PurchaseValuationController extends Controller
                 $linksRegister->purchase_valuation_id = $purchase_model->id;
                 $linksRegister->status = 0;
                 $linksRegister->save();
+
+                $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
                 
                 if($purchaseCount == 0){
                     $purchase_management = new PurchaseManagement();
@@ -1134,11 +1146,10 @@ class PurchaseValuationController extends Controller
         $purchase = PurchaseValuation::find($request->purchase_id);
 
         // check last process and delete
-        $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->first();
-        $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->count();         
-        
-        if($countLastProcessApply > 0){            
-            ApplySubProcessAndProcess::destroy($lastProcessApply->id);
+        $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->get();
+
+        if($lastProcessApply->count() > 0){            
+            ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->delete();
         }
 
         $apply = new ApplySubProcessAndProcess();
@@ -1147,7 +1158,7 @@ class PurchaseValuationController extends Controller
         $apply->purchase_valuation_id = $purchase->id;
         $apply->save();
     
-        if(!empty($subprocesses->business_id) && $processes->id = 12){
+        if(!empty($subprocesses->business_id) && $processes->id == 12){
             $state = [];
             $token = '';
             $business = Business::find($subprocesses->business_id);
@@ -1252,6 +1263,16 @@ class PurchaseValuationController extends Controller
             $process = Processes::find($value->processes_id);
             $subprocesses = SubProcesses::find($value->subprocesses_id);
             array_push($processes, ['name' => $process->name, 'subproceso' => $subprocesses->name]);
+        }
+
+        $data['documents_send'] = false;
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
+                $data['document_generate'] = $purchase_valuation['document_generate'];
+            if($purchase_valuation['document_code'] != NULL){
+                $data['documents_send'] = true;
+                $data['get_status_document'] = get_status_document($purchase_valuation['document_code']);
+                $data['download_signed'] = download_signed($purchase_valuation['document_code']);
+            }
         }
         
         $data['id'] = $purchase_valuation['id'];
@@ -1435,20 +1456,20 @@ class PurchaseValuationController extends Controller
             $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
+            $purchaseU = PurchaseValuation::find($purchase->id);
+            $purchaseU->document_generate = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+            $purchaseU->update();
 
-            $url_pdf = public_path().'/pdfs/'.$nameFile;
+            /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
 
-            send_message($purchase_management, $url_pdf);
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
 
-            // Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
-            //     {
-            //         $message->from('info@motostion.com', 'MotOstion');
+                    // SE ENVIARA A
+                    $message->to($purchase->email)->subject('Documento a Firmar');
 
-            //         // SE ENVIARA A
-            //         $message->to($purchase->email)->subject('Documento a Firmar');
-
-            //         $message->attach(public_path().'/pdfs/'.$nameFile);
-            //     });
+                    $message->attach(public_path().'/pdfs/'.$nameFile);
+                }); */
 
             $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
         }else{
@@ -1621,5 +1642,82 @@ class PurchaseValuationController extends Controller
         $nameFile = 'Etiquetas-'.date('y-m-d-h-i-s').'.pdf';
 
         return $pdf->download($nameFile);
+    }
+    
+    public function send_document_viafirma($id)
+    {
+        $purchase = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+       
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+
+            // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
+            $url_pdf = $purchase->document_generate;
+
+            send_document($purchase_management, $url_pdf);
+            
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos mediante Viafirma exitosamente!');
+        }else
+            return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
+    }
+
+    public function callback_document_viafirma()
+    {
+        // Proccessing the POST
+        $raw = urldecode((file_get_contents('php://input')));
+        $res = str_replace("message=", '', $raw);
+        $json = json_decode($res);
+        $messageCode = $json->code;
+
+
+        $purchase = PurchaseValuation::where('document_generate', $json->document->templateReference)->first();
+        $purchase->document_code = $messageCode;
+        $purchase->update();
+
+        // if current status is RESPONSED, download the signed document
+        if ($json->workflow->current === 'RESPONSED') {
+            // Download URL 
+            $url=DOCUMENTS_API_URL."/documents/download/signed/".$messageCode;
+
+
+
+            OAuthStore::instance('MySQL', array('conn'=>false));
+            $req = new OAuthRequestSigner($url, 'GET');
+            $fecha = new DateTime();
+            $secrets = array(
+                'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                'token'             => '',
+                'token_secret'      => '',
+                'signature_methods' => array('HMAC-SHA1'),
+                'nonce'             => '3jd834jd9',
+                'timestamp'         => $fecha->getTimestamp(),
+                );
+            $req->sign(0, $secrets);
+
+            //  Initiate curl
+            $ch = curl_init();
+            // Disable SSL verification
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            // Will return the response, if false it print the response
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            // Set the url
+            curl_setopt($ch, CURLOPT_URL,$url);
+
+            // OAuth Header
+            $headr = array();
+            $headr[] = 'Content-length: 0';
+            //$headr[] = 'Content-Type: application/json';
+            $headr[] = ''.$req->getAuthorizationHeader();
+            curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+            // Execute
+            $result=curl_exec($ch);
+            $jsonRes = json_decode($result);
+
+            // Put the file on the same folder
+            file_put_contents($jsonRes->fileName, fopen($jsonRes->link, 'r'));
+        }
+
     }
 }
