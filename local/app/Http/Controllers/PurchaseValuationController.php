@@ -1338,6 +1338,7 @@ class PurchaseValuationController extends Controller
         $data['datos_internos'] = ($purchase_management['datos_internos']);
         
         $data['link'] = url('/');
+        $data['url_label'] = url('labels/'. $purchase_valuation['id']);
  
         return response()->json($data);
 
@@ -1605,5 +1606,20 @@ class PurchaseValuationController extends Controller
         $out['link'] = url('/');
 
         return response()->json($out);
+    }
+
+    public function labelsPdf($id)
+    {
+        $purchase = PurchaseValuation::find($id);
+        $purchaseM = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+        $purchase_management = PurchaseManagement::find($purchaseM->id);
+         // CREATE PDF
+        $view =  \View::make('pdf.etiqueta', compact('purchase', 'purchase_management'))->render(); // send data to view
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        $nameFile = 'Etiquetas-'.date('y-m-d-h-i-s').'.pdf';
+
+        return $pdf->download($nameFile);
     }
 }

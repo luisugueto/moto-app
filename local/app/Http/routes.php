@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('documentos-gc', 'DocumentsPurchaseValuationController');
     Route::resource('empresas', 'BusinessController');
     Route::resource('servicios', 'ServicesController');
+    Route::resource('empresas-de-residuos', 'WasteCompaniesController');
 
     //Vistas Proximanente
     Route::get('/calendarios', 'HomeController@proximamente');
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/envios-anuales', 'HomeController@proximamente');
     Route::get('/cargar-cvs-formulario', 'HomeController@proximamente');
     Route::get('/estadisticas', 'HomeController@proximamente');
+    Route::get('/retiro-de-residuos', 'HomeController@proximamente');
 
     Route::post('show-images', 'PurchaseValuationController@showImages');
 
@@ -116,15 +118,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getEnviosSemestrales', 'ResiduosController@getEnviosSemestrales');
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
     Route::post('getMailBusiness', 'SubProcessesController@getMailBusiness');
+    Route::post('getWasteCompanies', 'WasteCompaniesController@getWasteCompanies');
 
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');
     Route::post('getServices', 'ServicesController@getServices');
     Route::post('getBusiness', 'BusinessController@getBusiness');
 
-    // GET FILES
+    // GET FILES AND LABELS
     Route::get('document/{filename}', 'PurchaseValuationController@document');
     Route::get('image/{filename}', 'PurchaseValuationController@image');
+    Route::get('labels/{id}', 'PurchaseValuationController@labelsPdf');
 
     //FIND IMAGES AND DOCUMENTS
     Route::post('purchase_valuation_interested/findImages', 'PurchaseValuationController@findImages');
@@ -133,6 +137,8 @@ Route::group(['middleware' => 'auth'], function () {
     // DELETE IMAGES AND DOCUMENTS
     Route::post('purchase_valuation_interested/deleteImages', 'PurchaseValuationController@deleteImages');
     Route::post('purchase_valuation_interested/deleteDocuments', 'PurchaseValuationController@deleteDocuments');
+
+
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

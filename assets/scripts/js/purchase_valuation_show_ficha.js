@@ -217,8 +217,10 @@ $(document).ready(function () {
                 if (data.states_id != 1) {
                     $('#divProcesosDesguace').css('display', 'block');
                     var sb = '';
-                    data.processes.forEach(function (element) {
-
+                    data.processes.forEach(function (element) {                  
+                        if (element.subproceso === 'Envío documentos para firma') {
+                            sb = '<a class="btn btn-info btn-sm mt-1" href="'+ data.url_label +'" target="_blank">Descargar etiquetas</a>';
+                        }
                         $("#ulProcesses").append(
                             '<li class="list-group-item">' +
                             '<div class="todo-indicator bg-warning"></div>' +
@@ -230,7 +232,11 @@ $(document).ready(function () {
                             '</div>' +
                             '<div class="widget-content-right widget-content-actions"></div>' +
                             '<div class="widget-content-right ml-3" id="divSubProceso">' +
+                            
+                            
                             '<div class="badge badge-pill badge-primary">' + element.subproceso + '</div>' +
+                            '<br>' +
+                            sb +
                             '</div>' +
                             '</div>' +
                             '</div>' +
