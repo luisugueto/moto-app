@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
     if (action == 2) {
         var id = sessionStorage.getItem('id_purchase');
-        console.log(action, id)
+        // console.log(action, id)
         $.ajax({
             type: "GET",
             url: 'ficha_de_la_moto/' + id,
@@ -186,13 +186,11 @@ $(document).ready(function () {
                
                
                 data.documents_purchase_valuation.forEach(function (element) {
-                    console.log(element)
                     $("#documents").append(` <a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`);
                 });
 
                 if (!!data.dni_doc) { 
                     data.dni_doc.split(',').forEach(function (element) {
-                        console.log(element)
                         $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                     });
                 }
@@ -314,19 +312,22 @@ $(document).ready(function () {
                     $('#divSendDocument').css('display', 'block');
                     $("#button_send_document").attr("href", "send_document_viafirma/"+data.id);
                 }
+               
+                if (data.status_ficha == 2) {
+                    let sb2 = '';
+                    sb2 = '<a class="btn btn-info" href="' + data.url_label + '" target="_blank">Descargar etiquetas</a>';
+                    $('#buttonLabelss').html(sb2);
+                }
 
                 if (data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
-                    let sb = '<tbody><tr><th>' + data.get_status_document.status + '</th>';
-                    let sb2 = '';
-                    if (data.get_status_document.status != 'ERROR') {
-                        sb2 = '<a class="btn btn-info" href="' + data.url_label + '" target="_blank">Descargar etiquetas</a>';                    
+                    let sb = '<tbody><tr><th>' + data.get_status_document.status + '</th>';                   
+                    if (data.get_status_document.status != 'ERROR') {                                         
                         sb += '<th><a href="' + data.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
                     }
                     else {
                     sb += '<th>ERROR</th></tr></tbody>';
                 }
-                    $('#buttonLabelss').html(sb2);
                     $("#tableDocumentsViafirma").append(sb);
                 }
             },
@@ -687,7 +688,7 @@ $(document).ready(function () {
             data: formData,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 if (data.code == 200) {
                     preloader('hide', data.message, 'success');
                 }
@@ -738,7 +739,6 @@ Dropzone.options.myDropzone = {
 
                         if (!!data.dni_doc) { 
                             data.dni_doc.split(',').forEach(function (element) {
-                                console.log(element)
                                 $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                             });
                         }
@@ -931,13 +931,11 @@ function deleteDocuments(id) {
                         $("#documents").html('');
                         var response = '';
                         data.documents_purchase_valuation.forEach(function (element) {
-                            console.log(element)
                             response +=  `<a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`;
                         });
                         $("#documents").append(response);
                         if (!!data.dni_doc) { 
                             data.dni_doc.split(',').forEach(function (element) {
-                                console.log(element)
                                 $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                             });
                         }

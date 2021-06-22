@@ -1334,7 +1334,7 @@ class PurchaseValuationController extends Controller
         $data['motor_no'] = $purchase_management['motor_no'];
         $data['vehicle_state_trafic'] = $purchase_management['vehicle_state_trafic'];
         $data['vehicle_state'] = $purchase_management['vehicle_state'];
-
+        $data['status_ficha'] = $purchase_management['status'];
         //
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
         $data['images_purchase_valuation'] = $images_purchase_valuation;
