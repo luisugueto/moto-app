@@ -51,37 +51,31 @@ class PurchaseValuationController extends Controller
         $columns = array(
             // datatable column index  => database column name
             1 => 'id',
-            2 => 'model',
-            3 => 'year'
+            4 => 'model'
         );
-        $sql = "SELECT * FROM purchase_valuation WHERE states_id = 1";
-        if (!empty($requestData['search']['value'])) {
-            // if there is a search parameter, $requestData['search']['value'] contains search parameter
-            $sql .= " AND (model LIKE '%" . $requestData['search']['value'] . "%'";
-            $sql .= " OR year LIKE '%" . $requestData['search']['value'] . "%' )";
-        }
+
+        $sqlTotalData = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 1)
+        ->count();
+
+        $totalData = $sqlTotalData;
+
+        $purchases = DB::table('purchase_valuation')
+        ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
+        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->where('purchase_valuation.states_id', '=', 1)
+        ->get();
+
+        $totalFiltered = $sqlTotalData;
         
-        $query = DB::connection('mysql')->select(DB::raw($sql));
-        $totalData = count($query);
-        $totalFiltered = count($query);
-
-        $sql = "SELECT * FROM purchase_valuation WHERE states_id = 1";
-        if (!empty($requestData['search']['value'])) {
-            // if there is a search parameter, $requestData['search']['value'] contains search parameter
-            $sql .= " AND (model LIKE '%" . $requestData['search']['value'] . "%'";
-            $sql .= " OR year LIKE '%" . $requestData['search']['value'] . "%' )";
-        }
-
-        $sql .= " ORDER BY " . $columns[$requestData['order'][0]['column']] . "   " . $requestData['order'][0]['dir'] . "  LIMIT " . $requestData['start'] . " ," . $requestData['length'] . "   ";
-
-        $query = DB::connection('mysql')->select(DB::raw($sql));          
-
         $view = getPermission('Motos que nos ofrecen', 'record-view');
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
         
         $data = array();
-        foreach($query as $value){ 
+        foreach($purchases as $value){
             $nestedData = array();       
 
             if($edit == true){             
@@ -113,9 +107,8 @@ class PurchaseValuationController extends Controller
             "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
             "data" => $data, // total data array
         ); 
-       
+ 
         return response()->json($json_data);
-
         
     }
 

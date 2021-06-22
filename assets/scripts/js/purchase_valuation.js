@@ -9,12 +9,15 @@ $(document).ready(function(){
     $('#tableTasacionMotos thead tr').clone(true).appendTo('#tableTasacionMotos thead');
 
     $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
-        
-        if (i !== 0 && i !== 13) {
-            $(this).html('<input type="text" class="form-control" />');
+
+        if (i == 0 || i == 13) {
+            console.log(i)
+            $(this).css('color', 'transparent');
+            
+            // $(this).html('<input type="text" class="form-control" />');
         }
         else {            
-            $(this).css('display', 'none');
+            $(this).html('<input type="text" class="form-control" />');
         }
     
         $( 'input', this ).on( 'keyup change', function () {
@@ -31,9 +34,10 @@ $(document).ready(function(){
     }
     dataTable = $('#tableTasacionMotos').DataTable({
         processing: true,
-        serverSide: true,
         responsive: true,
-        bPaginate: true,
+        orderCellsTop: true,
+        fixedHeader: true,
+        sDom: "Rlfrtip",
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             url: "getPurchaseValuations", // json datasource            
@@ -99,9 +103,10 @@ $(document).ready(function(){
         }
         dataTable = $('#tableTasacionMotos').DataTable({
             processing: true,
-            serverSide: true,
             responsive: true,
-            bPaginate: true,
+            orderCellsTop: true,
+            fixedHeader: true,
+            sDom: "Rlfrtip",
             "ajax": {
                 headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
                 url: "getPurchaseValuations", // json datasource            

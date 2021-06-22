@@ -215,11 +215,8 @@ $(document).ready(function () {
 
                 if (data.states_id != 1) {
                     $('#divProcesosDesguace').css('display', 'block');
-                    var sb = '';
-                    data.processes.forEach(function (element) {                  
-                        if (element.subproceso === 'Envío documentos para firma') {
-                            sb = '<a class="btn btn-info btn-sm mt-1" href="'+ data.url_label +'" target="_blank">Descargar etiquetas</a>';
-                        }
+                    var sb2 = '';
+                    data.processes.forEach(function (element) {      
                         $("#ulProcesses").append(
                             '<li class="list-group-item">' +
                             '<div class="todo-indicator bg-warning"></div>' +
@@ -234,8 +231,6 @@ $(document).ready(function () {
                             
                             
                             '<div class="badge badge-pill badge-primary">' + element.subproceso + '</div>' +
-                            '<br>' +
-                            sb +
                             '</div>' +
                             '</div>' +
                             '</div>' +
@@ -322,13 +317,16 @@ $(document).ready(function () {
 
                 if (data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
-                    let sb = '<tbody><tr><th>'+data.get_status_document.status+'</th>';
-
-                    if(data.get_status_document.status != 'ERROR')
-                        sb += '<th><a href="'+data.download_signed.link+'" target="_blank">Descargar Documento</a></th></tr></tbody>';
-                    else
-                        sb += '<th>ERROR</th></tr></tbody>';
-
+                    let sb = '<tbody><tr><th>' + data.get_status_document.status + '</th>';
+                    let sb2 = '';
+                    if (data.get_status_document.status != 'ERROR') {
+                        sb2 = '<a class="btn btn-info" href="' + data.url_label + '" target="_blank">Descargar etiquetas</a>';                    
+                        sb += '<th><a href="' + data.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
+                    }
+                    else {
+                    sb += '<th>ERROR</th></tr></tbody>';
+                }
+                    $('#buttonLabelss').html(sb2);
                     $("#tableDocumentsViafirma").append(sb);
                 }
             },

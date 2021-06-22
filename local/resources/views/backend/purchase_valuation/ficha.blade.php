@@ -1045,7 +1045,11 @@
                             <div class="card-body" id="form_display_datos_internos"></div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button>
+                    <div class="row">
+                        <div class="col-md-3"><button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button></div>
+                        <div class="col-md-3" id="buttonLabelss"></div>
+                    </div>
+                    
                     
                 </form>
                 <br>
