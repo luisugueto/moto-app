@@ -1633,8 +1633,8 @@ class PurchaseValuationController extends Controller
         $pdf->loadHTML($view);
 
         $nameFile = 'Etiquetas-'.date('y-m-d-h-i-s').'.pdf';
-
-        return $pdf->download($nameFile);
+        return $pdf->stream($nameFile);
+        // return $pdf->download($nameFile);
     }
     
     public function send_document_viafirma($id)

@@ -20,8 +20,9 @@
         }
         .saltoDePagina{page-break-after: always;}
 
-        .s1 { color: black; font-family: "Avantgarde, TeX Gyre Adventor, URW Gothic L", sans-serif; font-style: bold; font-weight: normal; text-decoration: none; font-size: 12pt; }
-        .s2 { color: black; font-family: "Avantgarde, TeX Gyre Adventor, URW Gothic L", sans-serif; font-style: bold; font-weight: bold; text-decoration: none; font-size: 18pt; }
+        .s1 { color: black; font-family:Arial, sans-serif; font-style: bold; font-weight: normal; text-decoration: none; font-size: 12px; }
+        .s2 { color: black; font-family:Arial, sans-serif; font-style: bold; font-weight: bold; text-decoration: none; font-size: 24px; }
+        .s3 { color: black; font-family:Arial, sans-serif; font-style: bold; font-weight: bold; text-decoration: none; font-size: 24px; word-break: break-all;}
         
       </style>
 </head>
@@ -29,30 +30,30 @@
     <div class="container-fluid">
             <table style="width: 100%;">
                 <tr>
-                    <td>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">N° de Expediente: {{ $purchase->id }}</p>   
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Marca: {{ $purchase->brand }}</p>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Modelo: {{ $purchase_management->model }}</p>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Matrícula: {{ $purchase_management->registration_number }}</p>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
+                    <td style=" height: 100px;">
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">N° de Expediente: {{ $purchase->id }}</p>   
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Marca: {{ $purchase->brand }}</p>
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Modelo: {{ $purchase_management->model }}</p>
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Matrícula: {{ $purchase_management->registration_number }}</p>
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
                     </td>
-                    <td>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">N° de Expediente: {{ $purchase->id }}</p>   
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Marca: {{ $purchase->brand }}</p>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Modelo: {{ $purchase_management->model }}</p>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Matrícula: {{ $purchase_management->registration_number }}</p>
-                        <p class="s1" style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
+                    <td style=" height: 100px;">
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">N° de Expediente: {{ $purchase->id }}</p>   
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Marca: {{ $purchase->brand }}</p>
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Modelo: {{ $purchase_management->model }}</p>
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Matrícula: {{ $purchase_management->registration_number }}</p>
+                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
                     </td>
                 </tr>
                @for ($i = 0; $i < 10; $i++)
                 <tr>               
-                    <td>
-                        <p class="s2" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">{{ $purchase->id }}  {{ $purchase->brand }}</p>
-                        <p class="s2" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">{{ $purchase_management->model }}</p>
+                    <td style=" height: 100px;">
+                        <p class="s2" style="text-align: center;">{{ $purchase->id }}  {{ $purchase->brand }}</p>
+                        <p class="s3" style="text-align: center;">{{ $purchase_management->model }}</p>
                     </td>
-                    <td>
-                        <p class="s2" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">{{ $purchase->id }}  {{ $purchase->brand }}</p>
-                        <p class="s2" style="padding-top: 8pt;padding-left: 4pt;text-indent: 0pt;text-align: center;">{{ $purchase_management->model }}</p>
+                    <td style=" height: 100px;">
+                        <p class="s2" style="text-align: center;">{{ $purchase->id }}  {{ $purchase->brand }}</p>
+                        <p class="s3" style="text-align: center;">{{ $purchase_management->model }}</p>
                     </td>                
                 </tr>
                @endfor
