@@ -37,7 +37,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
                 <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
@@ -47,7 +47,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
                 <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
@@ -57,7 +57,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
                 <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
@@ -67,7 +67,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
                 <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
@@ -77,7 +77,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
                 <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
@@ -87,7 +87,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
             <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
@@ -97,7 +97,7 @@
                     </td>
                 </tr>
             </table>
-            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 6pt;width:700px " cellspacing="0">
+            <table style="border-collapse:collapse;margin-left:40.624pt;margin-top: 3pt;width:700px " cellspacing="0">
                 <tr style="height:35mm;">
                     <td style="width:251pt">
                         <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
