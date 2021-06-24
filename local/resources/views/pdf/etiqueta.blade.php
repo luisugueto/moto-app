@@ -1,65 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style type="text/css">
-        @page {size: portrait;}
-        * {margin:0; padding:0; text-indent:0; }
-        html,
-        body,
-        .container-fluid {			 
-            width: 100%;
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-top: 5px;
-            margin-right: auto;
-            margin-left: auto;
-        }
-        .saltoDePagina{page-break-after: always;}
 
-        .s1 { color: black; font-family:Arial, sans-serif; font-style: bold; font-weight: normal; text-decoration: none; font-size: 12px; }
-        .s2 { color: black; font-family:Arial, sans-serif; font-style: bold; font-weight: bold; text-decoration: none; font-size: 24px; }
-        .s3 { color: black; font-family:Arial, sans-serif; font-style: bold; font-weight: bold; text-decoration: none; font-size: 24px; word-break: break-all;}
-        
-      </style>
-</head>
-<body>
-    <div class="container-fluid">
-            <table style="width: 100%;">
-                <tr>
-                    <td style=" height: 100px;">
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">N° de Expediente: {{ $purchase->id }}</p>   
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Marca: {{ $purchase->brand }}</p>
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Modelo: {{ $purchase_management->model }}</p>
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Matrícula: {{ $purchase_management->registration_number }}</p>
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
-                    </td>
-                    <td style=" height: 100px;">
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">N° de Expediente: {{ $purchase->id }}</p>   
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Marca: {{ $purchase->brand }}</p>
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Modelo: {{ $purchase_management->model }}</p>
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Matrícula: {{ $purchase_management->registration_number }}</p>
-                        <p class="s1" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
-                    </td>
-                </tr>
-               @for ($i = 0; $i < 10; $i++)
-                <tr>               
-                    <td style=" height: 100px;">
-                        <p class="s2" style="text-align: center;">{{ $purchase->id }}  {{ $purchase->brand }}</p>
-                        <p class="s3" style="text-align: center;">{{ $purchase_management->model }}</p>
-                    </td>
-                    <td style=" height: 100px;">
-                        <p class="s2" style="text-align: center;">{{ $purchase->id }}  {{ $purchase->brand }}</p>
-                        <p class="s3" style="text-align: center;">{{ $purchase_management->model }}</p>
-                    </td>                
-                </tr>
-               @endfor
-            </table>
-            
-        
-    </div>
-</body>
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>index</title>
+        <style type="text/css"> * {margin:0; padding:0; text-indent:0; }
+            .s1 { color: black; font-family: "Comic Sans MS", cursive, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 11pt; }
+            .s2 { color: black; font-family: "Comic Sans MS", cursive, sans-serif; font-style: normal; font-weight: bold; text-decoration: none; font-size: 24pt; }
+            table, tbody {vertical-align: top; overflow: visible; }
+        </style>
+    </head>
+    <body>
+        <table style="border-collapse:collapse;margin-left:60.624pt;margin-top: 15pt" cellspacing="0">
+            <tr style="height:81pt">
+                <td style="width:251pt">
+                    <p class="s1" style="padding-left: 19pt;padding-right: 76pt;text-indent: 0pt;text-align: center;"><span>NºExpediente: {{ $purchase->id }}<br/>Marca: {{ strtoupper($purchase->brand) }}</span></p>
+                    <p class="s1" style="padding-left: 19pt;padding-right: 76pt;text-indent: 0pt;text-align: center;"><span>Modelo:  {{ $purchase_management->model }}<br/>Matricula: {{ $purchase_management->registration_number }}</span></p>
+                    <p class="s1" style="padding-left: 9pt;padding-right: 66pt;text-indent: 0pt;line-height: 15pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s1" style="padding-left: 19pt;padding-right: 76pt;text-indent: 0pt;text-align: center;"><span>NºExpediente: {{ $purchase->id }}<br/>Marca: {{ strtoupper($purchase->brand) }}</span></p>
+                    <p class="s1" style="padding-left: 19pt;padding-right: 76pt;text-indent: 0pt;text-align: center;"><span>Modelo:  {{ $purchase_management->model }}<br/>Matricula: {{ $purchase_management->registration_number }}</span></p>
+                    <p class="s1" style="padding-left: 9pt;padding-right: 66pt;text-indent: 0pt;line-height: 15pt;text-align: center;">Bastidor: {{ $purchase_management->frame_no }}</p>
+                </td>
+            </tr>
+            <tr style="height:106pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:104pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:103pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:106pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:107pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                   <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:105pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+            <tr style="height:103pt">
+                <td style="width:251pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+                <td style="width:252pt">
+                    <p class="s2" style="padding-top: 3pt;padding-left: 1pt;padding-right: 38pt;text-indent: 0pt;text-align: center;"><span>{{ $purchase->id }} {{ strtoupper($purchase->brand) }}<br/>{{ strtoupper(nl2br($purchase_management->model)) }}</span></p>
+                </td>
+            </tr>
+        </table>
+    </body>
 </html>
