@@ -337,15 +337,16 @@ $(document).ready(function () {
                     sb += '</tbody>';
                     $("#tableDocumentsViafirma").append(sb);
 
+                    if(data.deceased_document_status.status != undefined){
+                        let dd = '<tbody><tr><th>'+data.deceased_document_status.status+'</th>';
 
-                    let dd = '<tbody><tr><th>'+data.deceased_document_status.status+'</th>';
-
-                    if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'ERROR')
-                        dd += '<th></th></tr></tbody>';
-                    else
-                        dd += '<th><a href="'+data.download_deceased_document.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
-                    
-                    $("#tableDeceasedDocumentsViafirma").append(dd);
+                        if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'ERROR')
+                            dd += '<th></th></tr></tbody>';
+                        else
+                            dd += '<th><a href="'+data.download_deceased_document.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
+                        
+                        $("#tableDeceasedDocumentsViafirma").append(dd);
+                    }
                 }
             },
             error: function (data) {

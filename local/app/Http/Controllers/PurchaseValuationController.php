@@ -1680,12 +1680,16 @@ class PurchaseValuationController extends Controller
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
        
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
-
+            $explodeUrl = explode(",", $purchase->document_generate);
+        
+            if(count($explodeUrl) == 2 && $purchase->deceased_document != NULL){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
                 $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DECEASED DOCUMENT HERE
 
                 send_deceased_document($purchase_management, $url_pdf);
 
                 return Redirect::back()->with('notification', 'Se ha enviado el documento de fallecido mediante Viafirma exitosamente!');
+            }else
+                return Redirect::back()->with('error', 'Por favor actualice ficha para generar nuevos documentos!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }

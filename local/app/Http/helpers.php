@@ -313,9 +313,15 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
         $result = curl_exec($ch);
         $array = json_decode($result);
         // $link=$array->notification->sharedLink->link;
-        echo json_encode($array);
+        
+        $purchase = PurchaseValuation::find($purchase->purchase_valuation_id);
+        $purchase->deceased_code = $array->code;
+        $purchase->update();
+
         // Closing
         curl_close($ch);
+
+        return json_encode($array);
     }
 
     function get_status_document($messageCode = '')
