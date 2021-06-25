@@ -1655,14 +1655,17 @@ class PurchaseValuationController extends Controller
             // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
 
             $explodeUrl = explode(",", $purchase->document_generate);
+            if(count($explodeUrl) == 2){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
+                foreach ($explodeUrl as $key => $value) {
+                    define("url_pdf".$key, $value);
+                }
 
-            foreach ($explodeUrl as $key => $value) {
-                define("url_pdf".$key, $value);
+                send_document($purchase_management, url_pdf0, url_pdf1);
+
+                return Redirect::back()->with('notification', 'Se ha enviado los documentos mediante Viafirma exitosamente!');
+            }else{
+                return Redirect::back()->with('error', 'Por favor actualice ficha para generar nuevos documentos!');
             }
-            
-            send_document($purchase_management, url_pdf0, url_pdf1);
-            
-            return Redirect::back()->with('notification', 'Se ha enviado los documentos mediante Viafirma exitosamente!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
