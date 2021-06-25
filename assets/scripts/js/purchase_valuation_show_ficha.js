@@ -321,13 +321,19 @@ $(document).ready(function () {
 
                 if (data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
-                    let sb = '<tbody><tr><th>' + data.get_status_document.status + '</th>';                   
-                    if (data.get_status_document.status != 'ERROR') {                                         
-                        sb += '<th><a href="' + data.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
-                    }
-                    else {
-                    sb += '<th>ERROR</th></tr></tbody>';
-                }
+                    let sb = '<tbody>';                   
+
+                    data.documentsViafirma.forEach(function (element) { 
+                        if(element.get_status_document.status == 'WAITING' || element.get_status_document.status == 'ERROR'){
+                            sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
+                            sb += '<th></th></tr>';
+                        }
+                        else{
+                            sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
+                            sb += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
+                        }
+                    });
+                    sb += '</tbody>';
                     $("#tableDocumentsViafirma").append(sb);
                 }
             },

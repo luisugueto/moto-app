@@ -1259,12 +1259,17 @@ class PurchaseValuationController extends Controller
         }
 
         $data['documents_send'] = false;
+        $documentsViafirma = array();
+
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
                 $data['document_generate'] = $purchase_valuation['document_generate'];
             if($purchase_valuation['document_code'] != NULL){
                 $data['documents_send'] = true;
-                $data['get_status_document'] = get_status_document($purchase_valuation['document_code']);
-                $data['download_signed'] = download_signed($purchase_valuation['document_code']);
+
+                $explodeCode = explode(",", $purchase_valuation->document_code);
+
+                foreach($explodeCode as $code)
+                    array_push($documentsViafirma, ['get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code) ]);
             }
         }
         
@@ -1353,6 +1358,7 @@ class PurchaseValuationController extends Controller
         
         $data['link'] = url('/');
         $data['url_label'] = url('labels/'. $purchase_valuation['id']);
+        $data['documentsViafirma'] = $documentsViafirma;
  
         return response()->json($data);
 
@@ -1449,8 +1455,10 @@ class PurchaseValuationController extends Controller
             $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
+            $documents_send_viafirma = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+
             $purchaseU = PurchaseValuation::find($purchase->id);
-            $purchaseU->document_generate = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+            $purchaseU->document_generate = $documents_send_viafirma;
             $purchaseU->update();
 
             /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
@@ -1645,9 +1653,14 @@ class PurchaseValuationController extends Controller
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
             // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
-            $url_pdf = $purchase->document_generate;
 
-            send_document($purchase_management, $url_pdf);
+            $explodeUrl = explode(",", $purchase->document_generate);
+
+            foreach ($explodeUrl as $key => $value) {
+                define("url_pdf".$key, $value);
+            }
+            
+            send_document($purchase_management, url_pdf0, url_pdf1);
             
             return Redirect::back()->with('notification', 'Se ha enviado los documentos mediante Viafirma exitosamente!');
         }else
@@ -1662,8 +1675,7 @@ class PurchaseValuationController extends Controller
         $json = json_decode($res);
         $messageCode = $json->code;
 
-
-        $purchase = PurchaseValuation::where('document_generate', $json->document->templateReference)->first();
+        $purchase = PurchaseValuation::where('document_generate','like', "%". $json->document->templateReference . "%")->first();
         $purchase->document_code = $messageCode;
         $purchase->update();
 
