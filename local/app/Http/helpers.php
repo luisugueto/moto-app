@@ -233,6 +233,91 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
         curl_close($ch);
     }
 
+    function send_deceased_document ($purchase, $url_pdf)
+
+    {   
+        error_reporting(E_ALL);
+
+        $url=DOCUMENTS_API_URL."/messages/dispatch";
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'POST');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $email = $purchase->email;
+        // POST
+        $string_json = '{
+                          "groupCode": "motostion",
+                          "workflow": {
+                            "type": "PRESENTIAL"
+                          },
+                          "notification": {
+                            "text": "Documento Generado App",
+                            "detail": "Documento a firmar.",
+                            "sharedLink" : {
+                                "email" : "'.$email.'",
+                                "subject" : "ViaFirma PHP"
+                            },
+                            "retryTime" : 7
+                          },
+                          "metadataList" :[{
+                                    "key" : "FIRMANTE_01_NAME",
+                                    "value" : "'.$purchase->name.'"
+                                },{
+                                    "key" : "telefono",
+                                    "value" : "'.$purchase->phone.'"
+                                }
+                                
+                                ],
+                          "document": {
+                            "templateType" : "url",
+                            "templateReference" : "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf",
+                            "templateCode": "motostion_SEPA",
+                            "readRequired" : true,
+                            "watermarkText" : "Previsualización",
+                            "items" : [ {
+                              "key" : "customer_name",
+                              "value" : "'.$purchase->name.'"
+                            }, {
+                              "key" : "otpmail_phoneNumber",
+                              "value" : "'.$purchase->phone.'"
+                            } ]
+                          },
+                          "callbackMails": "webmaster@motostion.com",
+                          "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                        }';
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $string_json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // OAuth Header
+        $headr = array();
+        $headr[] = 'Content-Length: ' . strlen($string_json);
+        $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result = curl_exec($ch);
+        $array = json_decode($result);
+        // $link=$array->notification->sharedLink->link;
+        echo json_encode($array);
+        // Closing
+        curl_close($ch);
+    }
+
     function get_status_document($messageCode = '')
     {
         error_reporting(E_ALL);

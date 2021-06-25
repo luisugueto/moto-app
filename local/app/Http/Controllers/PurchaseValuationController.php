@@ -1359,6 +1359,9 @@ class PurchaseValuationController extends Controller
         $data['link'] = url('/');
         $data['url_label'] = url('labels/'. $purchase_valuation['id']);
         $data['documentsViafirma'] = $documentsViafirma;
+
+        $data['deceased_document_status'] = get_status_document($purchase_valuation["deceased_code"]);
+        $data['download_deceased_document'] = download_signed($purchase_valuation["deceased_code"]); 
  
         return response()->json($data);
 
@@ -1459,6 +1462,7 @@ class PurchaseValuationController extends Controller
 
             $purchaseU = PurchaseValuation::find($purchase->id);
             $purchaseU->document_generate = $documents_send_viafirma;
+            $purchaseU->deceased_document = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DOCUMENT DECEASED HERE
             $purchaseU->update();
 
             /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
@@ -1655,7 +1659,7 @@ class PurchaseValuationController extends Controller
             // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
 
             $explodeUrl = explode(",", $purchase->document_generate);
-            if(count($explodeUrl) == 2){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
+            if(count($explodeUrl) == 2 && $purchase->deceased_document != NULL){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
                 foreach ($explodeUrl as $key => $value) {
                     define("url_pdf".$key, $value);
                 }
@@ -1670,6 +1674,22 @@ class PurchaseValuationController extends Controller
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
 
+    public function send_deceased_document($id)
+    {
+        $purchase = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+       
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+
+                $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DECEASED DOCUMENT HERE
+
+                send_deceased_document($purchase_management, $url_pdf);
+
+                return Redirect::back()->with('notification', 'Se ha enviado el documento de fallecido mediante Viafirma exitosamente!');
+        }else
+            return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
+    }
+
     public function callback_document_viafirma()
     {
         // Proccessing the POST
@@ -1678,8 +1698,8 @@ class PurchaseValuationController extends Controller
         $json = json_decode($res);
         $messageCode = $json->code;
 
-        $purchase = PurchaseValuation::where('document_generate','like', "%". $json->document->templateReference . "%")->first();
-        $purchase->document_code = $messageCode;
+        $purchase = PurchaseValuation::where('deceased_document',$json->document->templateReference)->first();
+        $purchase->deceased_code = $messageCode;
         $purchase->update();
 
         // if current status is RESPONSED, download the signed document

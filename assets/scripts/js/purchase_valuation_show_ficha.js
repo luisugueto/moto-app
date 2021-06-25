@@ -311,6 +311,7 @@ $(document).ready(function () {
                 if(!!data.document_generate){
                     $('#divSendDocument').css('display', 'block');
                     $("#button_send_document").attr("href", "send_document_viafirma/"+data.id);
+                    $("#button_send_deceased_document").attr("href", "send_deceased_document/"+data.id);
                 }
                
                 if (data.status_ficha == 2) {
@@ -335,6 +336,16 @@ $(document).ready(function () {
                     });
                     sb += '</tbody>';
                     $("#tableDocumentsViafirma").append(sb);
+
+
+                    let dd = '<tbody><tr><th>'+data.deceased_document_status.status+'</th>';
+
+                    if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'ERROR')
+                        dd += '<th></th></tr></tbody>';
+                    else
+                        dd += '<th><a href="'+data.download_deceased_document.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
+                    
+                    $("#tableDeceasedDocumentsViafirma").append(dd);
                 }
             },
             error: function (data) {
