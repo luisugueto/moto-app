@@ -168,7 +168,7 @@ class PurchaseManagementController extends Controller
             $documents_attached = 0;
         }
 
-        $purchaseValuation = PurchaseValuation::find($request->purchase_id);
+        $purchaseValuation = PurchaseValuation::find($request->purchase_valuation_id);
         $purchaseValuation->phone = $request->phone;
         $purchaseValuation->email = $request->email;
         $purchaseValuation->update();
