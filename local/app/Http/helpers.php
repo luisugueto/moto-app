@@ -2,12 +2,13 @@
 
 use App\Menu;
 use App\PermissionsMenu;
+use App\PurchaseValuation;
 
 require_once dirname(__FILE__). '/oauth-php/OAuthRequestSigner.php';
 
-define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
+define("DOCUMENTS_API_URL", "https://sandbox.viafirma.com/documents/api/v3");
 define("DOCUMENTS_CONSUMER_KEY", "motostion");
-define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
+define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
 
     function getPermission($menu, $permission){
 
@@ -125,7 +126,114 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
         curl_close($ch);
     }
 
-    function send_document ($purchase, $url_pdf)
+    function send_document ($purchase, $url_pdf1, $url_pdf2)
+
+    {   
+        error_reporting(E_ALL);
+
+        $url=DOCUMENTS_API_URL."/set";
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'POST');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $email = $purchase->email;
+        // POST
+        $string_json = '{
+                            "groupCode" : "motostion",
+                            "workflow": {
+                                "type": "PRESENTIAL"
+                              },
+                            "title" :     "motostion",
+                            "description" : "Documentos a Firmar",
+                            "recipients": [
+                                {
+                                  "key": "FIRMANTE_01_KEY",
+                                  "mail": "'.$email.'",
+                                  "name": "'.$purchase->name.'",
+                                  "id": "'.$purchase->dni.'"
+                                }
+                            ],
+                            "metadataList" :[{
+                                "key" : "FIRMANTE_01_NAME",
+                                "value" : "'.$purchase->name.'"
+                            },{
+                                "key" : "telefono",
+                                "value" : "'.$purchase->phone.'"
+                            }
+                            
+                            ],
+                            "customization": {
+                                "requestMailSubject": "Contrato listo para firmar",
+                                "requestMailBody": "Hola. <br /><br />Ya puedes revisar y firmar el documento. Haz click en el siguiente enlace y sigue las instrucciones.",
+                                "requestSmsBody": "En el siguiente link puedes revisar y firmar el document"
+                            },
+                            "messages" : [
+                                {
+                                "document" : {
+                                    "templateType" : "url",
+                                    "templateReference" : "'.$url_pdf1.'",
+                                    "templateCode": "motostion_SEPA",
+                                    "readRequired" : true
+                                    }
+                                },
+                                {
+                                "document" : {
+                                    "templateType" : "url",
+                                    "templateReference" : "'.$url_pdf2.'",
+                                    "templateCode": "motostion_SEPA",
+                                    "readRequired" : true
+                                    }
+                                }
+                            ],
+                            "callbackMails": "webmaster@motostion.com",
+                            "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                        }';
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $string_json);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // OAuth Header
+        $headr = array();
+        $headr[] = 'Content-Length: ' . strlen($string_json);
+        $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result = curl_exec($ch);
+        $array = json_decode($result);
+        // $link=$array->notification->sharedLink->link;
+
+
+        $code = '';
+        foreach($array->messages as $key => $message){
+            if($key != 0)
+                $code .= ','.$message->code;
+            else $code = $message->code;
+        }
+        
+        $purchase = PurchaseValuation::find($purchase->purchase_valuation_id);
+        $purchase->document_code = $code;
+        $purchase->update();
+
+        // Closing
+        curl_close($ch);
+    }
+
+    function send_deceased_document ($purchase, $url_pdf)
 
     {   
         error_reporting(E_ALL);
@@ -162,19 +270,27 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                             },
                             "retryTime" : 7
                           },
+                          "metadataList" :[{
+                                    "key" : "FIRMANTE_01_NAME",
+                                    "value" : "'.$purchase->name.'"
+                                },{
+                                    "key" : "telefono",
+                                    "value" : "'.$purchase->phone.'"
+                                }
+                                
+                                ],
                           "document": {
                             "templateType" : "url",
-                            "templateReference" : "'.$url_pdf.'",
-                            "templateCode": "motostion_documents_generados",
+                            "templateReference" : "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf",
+                            "templateCode": "motostion_SEPA",
                             "readRequired" : true,
                             "watermarkText" : "Previsualización",
-                            "formRequired": true,
                             "items" : [ {
                               "key" : "customer_name",
                               "value" : "'.$purchase->name.'"
                             }, {
                               "key" : "otpmail_phoneNumber",
-                              "value" : "+584121234567"
+                              "value" : "'.$purchase->phone.'"
                             } ]
                           },
                           "callbackMails": "webmaster@motostion.com",
@@ -196,16 +312,16 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
         $result = curl_exec($ch);
         $array = json_decode($result);
-        $link=$array->notification->sharedLink->link;
-
-        // return $link;
-
-        // echo '<script>NombreiFrame.location.href = "'.$link.'";</script>'; 
-        // echo "Url para redirección o montar iframe: ";
-        // echo prettyPrint($result); 
+        // $link=$array->notification->sharedLink->link;
+        
+        $purchase = PurchaseValuation::find($purchase->purchase_valuation_id);
+        $purchase->deceased_code = $array->code;
+        $purchase->update();
 
         // Closing
         curl_close($ch);
+
+        return json_encode($array);
     }
 
     function get_status_document($messageCode = '')

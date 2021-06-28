@@ -311,6 +311,7 @@ $(document).ready(function () {
                 if(!!data.document_generate){
                     $('#divSendDocument').css('display', 'block');
                     $("#button_send_document").attr("href", "send_document_viafirma/"+data.id);
+                    $("#button_send_deceased_document").attr("href", "send_deceased_document/"+data.id);
                 }
                
                 if (data.status_ficha == 2) {
@@ -321,14 +322,31 @@ $(document).ready(function () {
 
                 if (data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
-                    let sb = '<tbody><tr><th>' + data.get_status_document.status + '</th>';                   
-                    if (data.get_status_document.status != 'ERROR') {                                         
-                        sb += '<th><a href="' + data.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
-                    }
-                    else {
-                    sb += '<th>ERROR</th></tr></tbody>';
-                }
+                    let sb = '<tbody>';                   
+
+                    data.documentsViafirma.forEach(function (element) { 
+                        if(element.get_status_document.status == 'WAITING' || element.get_status_document.status == 'ERROR'){
+                            sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
+                            sb += '<th></th></tr>';
+                        }
+                        else{
+                            sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
+                            sb += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
+                        }
+                    });
+                    sb += '</tbody>';
                     $("#tableDocumentsViafirma").append(sb);
+
+                    if(data.deceased_document_status.status != undefined){
+                        let dd = '<tbody><tr><th>'+data.deceased_document_status.status+'</th>';
+
+                        if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'ERROR')
+                            dd += '<th></th></tr></tbody>';
+                        else
+                            dd += '<th><a href="'+data.download_deceased_document.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
+                        
+                        $("#tableDeceasedDocumentsViafirma").append(dd);
+                    }
                 }
             },
             error: function (data) {

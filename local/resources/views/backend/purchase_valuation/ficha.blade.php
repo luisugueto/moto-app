@@ -1066,13 +1066,25 @@
                 <div id="divSendDocument" style="display: none">
                     <div class="p-2">
                         <a class='mb-2 mr-2 btn btn-primary text-white' id="button_send_document" title='Enviar Documentos Viafirma'>Enviar Documentos Viafirma</a>
+
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_send_deceased_document" title='Enviar Documento de Fallecido Viafirma'>Enviar Documento Fallecido Viafirma</a>
                     </div>
                 </div>
 
                 <div id="divDocumentsViafirma" style="display: none">
                     <div class="p-2">
-                        <h3>Documento Viafirma</h3>
+                        <h3>Documentos Viafirma</h3>
                         <table width="100%" id="tableDocumentsViafirma" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <h3>Documento Fallecido Viafirma</h3>
+                        <table width="100%" id="tableDeceasedDocumentsViafirma" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Estado</th>
