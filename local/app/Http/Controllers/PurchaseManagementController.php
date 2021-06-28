@@ -33,7 +33,7 @@ class PurchaseManagementController extends Controller
     public function create($token)
     {
         $linksRegister = LinksRegister::where('token', $token)->where('status', 0)->first();
-        $purchase_management = new PurchaseManagement();
+        $purchase_management = PurchaseManagement::find($linksRegister->purchase_valuation_id);
         
         if(!empty($linksRegister)){
             $purchase_valuation_id = $linksRegister->purchase_valuation_id;
@@ -167,6 +167,11 @@ class PurchaseManagementController extends Controller
             $non_existence_document = 1;
             $documents_attached = 0;
         }
+
+        $purchaseValuation = PurchaseValuation::find($request->purchase_id);
+        $purchaseValuation->phone = $request->phone;
+        $purchaseValuation->email = $request->email;
+        $purchaseValuation->update();
          
         $gestion = PurchaseManagement::find($request->purchase_id);
         $gestion->collection_contract_date = $request->purchase_id;

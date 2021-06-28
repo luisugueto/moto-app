@@ -1410,8 +1410,8 @@ class PurchaseValuationController extends Controller
         $purchase_management->second_surtname = $request->second_surtname;
         $purchase_management->dni = $request->dni;
         $purchase_management->birthdate = $request->birthdate;
-        $purchase_management->phone = $request->phone_management;
-        $purchase_management->email = $request->email_management;
+        $purchase_management->phone = $request->phone;
+        $purchase_management->email = $request->email;
         $purchase_management->street = $request->street;
         $purchase_management->nro_street = $request->nro_street;
         $purchase_management->stairs = $request->stairs;
