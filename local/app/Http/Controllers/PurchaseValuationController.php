@@ -997,6 +997,22 @@ class PurchaseValuationController extends Controller
             $input = $request->all();
             $purchase->update($input);
 
+            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->count();
+                
+            if($purchaseCount == 1){
+                $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+                $purchase_management->name = $purchase->name;
+                $purchase_management->firts_surname = $purchase->lastname;
+                $purchase_management->second_surtname = '';
+                $purchase_management->email = $purchase->email;
+                $purchase_management->phone = $purchase->phone;
+                $purchase_management->province = $purchase->province;
+                $purchase_management->brand = $purchase->brand;
+                $purchase_management->model = $purchase->model;
+                $purchase_management->kilometres = $purchase->km;
+                $purchase_management->update();
+            }
+
             $out['code'] = 200;
             $out['response'] = $purchase;
             $out['message'] = 'Registro Actualizado Exitosamente';
@@ -1465,7 +1481,7 @@ class PurchaseValuationController extends Controller
             $purchaseU->deceased_document = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DOCUMENT DECEASED HERE
             $purchaseU->update();
 
-            /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
 
                 {
                     $message->from('info@motostion.com', 'MotOstion');
@@ -1474,7 +1490,7 @@ class PurchaseValuationController extends Controller
                     $message->to($purchase->email)->subject('Documento a Firmar');
 
                     $message->attach(public_path().'/pdfs/'.$nameFile);
-                }); */
+                }); 
 
             $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
         }else{
