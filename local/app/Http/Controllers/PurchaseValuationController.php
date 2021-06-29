@@ -997,19 +997,19 @@ class PurchaseValuationController extends Controller
             $input = $request->all();
             $purchase->update($input);
 
-            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $id)->count();
+            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->count();
                 
-            if($purchaseCount == 0){
-                $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
-                $purchase_management->name = $request->name;
-                $purchase_management->firts_surname = $request->lastname;
+            if($purchaseCount == 1){
+                $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+                $purchase_management->name = $purchase->name;
+                $purchase_management->firts_surname = $purchase->lastname;
                 $purchase_management->second_surtname = '';
-                $purchase_management->email = $request->email;
-                $purchase_management->phone = $request->phone;
-                $purchase_management->province = $request->province;
-                $purchase_management->brand = $request->brand;
-                $purchase_management->model = $request->model;
-                $purchase_management->km = $request->kilometres;
+                $purchase_management->email = $purchase->email;
+                $purchase_management->phone = $purchase->phone;
+                $purchase_management->province = $purchase->province;
+                $purchase_management->brand = $purchase->brand;
+                $purchase_management->model = $purchase->model;
+                $purchase_management->kilometres = $purchase->km;
                 $purchase_management->update();
             }
 
