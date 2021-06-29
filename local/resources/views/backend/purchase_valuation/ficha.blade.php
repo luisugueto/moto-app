@@ -250,7 +250,7 @@
                                 <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <label for="phone" class="">Teléfono:</label>
-                                        <input name="phone" id="phone" pattern="^\+[1-9]{1}[0-9]{3,14}$" type="text" class="form-control"
+                                        <input name="phone" id="phone" title="Ejemplo: +34620515223" pattern="^\+[1-9]{1}[0-9]{3,14}$" type="text" class="form-control"
                                             value="{{ old('phone') }}" required>
                                         @if ($errors->has('phone'))
                                             <span class="error text-danger">
@@ -525,7 +525,7 @@
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="phone_management" class="">Teléfono:</label>
-                                        <input name="phone_management" pattern="^\+[1-9]{1}[0-9]{3,14}$" id="phone_management" type="text" class="form-control"
+                                        <input name="phone_management" title="Ejemplo: +34620515223" pattern="^\+[1-9]{1}[0-9]{3,14}$" id="phone_management" type="text" class="form-control"
                                             value="{{ old('phone_management') }}">
                                         @if ($errors->has('phone_management'))
                                             <span class="error text-danger">
@@ -750,7 +750,7 @@
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="phone_representantive" class="">Teléfono:</label>
-                                        <input name="phone_representantive" pattern="^\+[1-9]{1}[0-9]{3,14}$" id="phone_representantive" type="text"
+                                        <input name="phone_representantive" title="Ejemplo: +34620515223" pattern="^\+[1-9]{1}[0-9]{3,14}$" id="phone_representantive" type="text"
                                             class="form-control" value="{{ old('phone_representantive') }}">
                                         @if ($errors->has('phone_representantive'))
                                             <span class="error text-danger">
