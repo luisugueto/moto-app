@@ -997,6 +997,22 @@ class PurchaseValuationController extends Controller
             $input = $request->all();
             $purchase->update($input);
 
+            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $id)->count();
+                
+            if($purchaseCount == 0){
+                $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
+                $purchase_management->name = $request->name;
+                $purchase_management->firts_surname = $request->lastname;
+                $purchase_management->second_surtname = '';
+                $purchase_management->email = $request->email;
+                $purchase_management->phone = $request->phone;
+                $purchase_management->province = $request->province;
+                $purchase_management->brand = $request->brand;
+                $purchase_management->model = $request->model;
+                $purchase_management->km = $request->kilometres;
+                $purchase_management->update();
+            }
+
             $out['code'] = 200;
             $out['response'] = $purchase;
             $out['message'] = 'Registro Actualizado Exitosamente';
