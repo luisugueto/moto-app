@@ -169,7 +169,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
                                 "value" : "'.$purchase->name.'"
                             },{
                                 "key" : "telefono",
-                                "value" : "'.$purchase->phone.'"
+                                "value" : "+34'.$purchase->phone.'"
                             }
                             
                             ],
@@ -290,7 +290,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
                               "value" : "'.$purchase->name.'"
                             }, {
                               "key" : "otpmail_phoneNumber",
-                              "value" : "'.$purchase->phone.'"
+                              "value" : "+34'.$purchase->phone.'"
                             } ]
                           },
                           "callbackMails": "webmaster@motostion.com",

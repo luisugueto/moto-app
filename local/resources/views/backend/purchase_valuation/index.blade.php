@@ -817,7 +817,7 @@
                                     <div class="col-md-4">
                                         <div class="position-relative form-group">
                                             <label for="phone" class="">Teléfono:</label>
-                                            <input name="phone" id="phone" title="Ejemplo: +34620515223" pattern="^\+[1-9]{1}[0-9]{3,14}$" type="text" class="form-control"
+                                            <input name="phone" id="phone" type="text" class="form-control"
                                                 value="{{ old('phone') }}" required>
                                             @if ($errors->has('phone'))
                                                 <span class="error text-danger">
