@@ -1481,7 +1481,7 @@ class PurchaseValuationController extends Controller
             $purchaseU->deceased_document = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DOCUMENT DECEASED HERE
             $purchaseU->update();
 
-            /*Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
 
                 {
                     $message->from('info@motostion.com', 'MotOstion');
@@ -1490,7 +1490,7 @@ class PurchaseValuationController extends Controller
                     $message->to($purchase->email)->subject('Documento a Firmar');
 
                     $message->attach(public_path().'/pdfs/'.$nameFile);
-                }); */
+                }); 
 
             $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
         }else{
