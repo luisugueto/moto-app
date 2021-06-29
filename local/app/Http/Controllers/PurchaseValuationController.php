@@ -854,7 +854,7 @@ class PurchaseValuationController extends Controller
             'email' => 'required', 
             'name' => 'required', 
             'lastname' => 'required', 
-            'phone' => 'required', 
+            'phone' => ['required', "regex:^\+[1-9]{1}[0-9]{3,14}$/"],
             'province' => 'required', 
             'price_min' => 'required', 
             'observations' => 'required',
@@ -1385,7 +1385,32 @@ class PurchaseValuationController extends Controller
 
     public function updateFicha(Request $request)
     {
-        
+        $validator = \Validator::make($request->all(),[
+            'brand' => 'required',
+            'model' => 'required',
+            'year' => 'required', 
+            'km' => 'required', 
+            'email' => 'required', 
+            'name' => 'required', 
+            'lastname' => 'required', 
+            'phone' => ['required', "regex:^\+[1-9]{1}[0-9]{3,14}$/"],
+            'phone_representantive' => ["regex:^\+[1-9]{1}[0-9]{3,14}$/"],
+            'province' => 'required', 
+            'price_min' => 'required', 
+            'observations' => 'required',
+            'type' => 'required',
+            'kilometres' => 'required',
+            'fuel' => 'required',
+            'weight' => 'required',
+            'registration_number' => 'required',
+            'registration_date' => 'required|date',
+            'registration_country' => 'required',
+            'frame_no' => ['required'],
+            'motor_no' => 'required',
+            'vehicle_state_trafic' => 'required',
+            'vehicle_state' => 'required'
+        ]);
+
         $purchase = PurchaseValuation::find($request->purchase_id);
         $purchase->date = $request->date;
         $purchase->brand = $request->brand;
