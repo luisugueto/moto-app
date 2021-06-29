@@ -282,7 +282,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
                           "document": {
                             "templateType" : "url",
                             "templateReference" : "'.$url_pdf.'",
-                            "templateCode": "motostion_SEPA",
+                            "templateCode": "motostion_documento_fallecido",
                             "readRequired" : true,
                             "watermarkText" : "Previsualización",
                             "items" : [ {
