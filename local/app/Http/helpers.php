@@ -275,7 +275,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
                                     "value" : "'.$purchase->name.'"
                                 },{
                                     "key" : "telefono",
-                                    "value" : "'.$purchase->phone.'"
+                                    "value" : "+34'.$purchase->phone.'"
                                 }
                                 
                                 ],
