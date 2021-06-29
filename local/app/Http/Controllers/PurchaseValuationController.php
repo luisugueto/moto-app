@@ -1696,10 +1696,24 @@ class PurchaseValuationController extends Controller
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
        
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+
+             // CREATE DOCUMENT FALL
+            $viewFallecido =  \View::make('pdf.declaracion-fallecido', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdfFallecido = \App::make('dompdf.wrapper');
+            $pdfFallecido->loadHTML($viewFallecido);
+
+            $outputFallecido = $pdfFallecido->output();
+            $nameFileFallecido ='Declaracion-fallecido-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFileFallecido, $outputFallecido);
+
+            $purchase = PurchaseValuation::find($purchase->id);
+            $purchase->deceased_document = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFileFallecido;  // DOCUMENT DECEASED HERE
+            $purchase->update();
+
             $explodeUrl = explode(",", $purchase->document_generate);
         
             if(count($explodeUrl) == 2 && $purchase->deceased_document != NULL){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
-                $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DECEASED DOCUMENT HERE
+                $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFileFallecido;  // DECEASED DOCUMENT HERE
 
                 send_deceased_document($purchase_management, $url_pdf);
 

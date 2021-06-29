@@ -325,7 +325,7 @@ $(document).ready(function () {
                     let sb = '<tbody>';                   
 
                     data.documentsViafirma.forEach(function (element) { 
-                        if(element.get_status_document.status == 'WAITING' || element.get_status_document.status == 'ERROR'){
+                        if(element.get_status_document.status == 'WAITING' || element.get_status_document.status == 'WAITING_CHECK' || element.get_status_document.status == 'ERROR'){
                             sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
                             sb += '<th></th></tr>';
                         }
@@ -340,7 +340,7 @@ $(document).ready(function () {
                     if(data.deceased_document_status.status != undefined){
                         let dd = '<tbody><tr><th>'+data.deceased_document_status.status+'</th>';
 
-                        if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'ERROR')
+                        if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'WAITING_CHECK' || data.deceased_document_status.status == 'ERROR')
                             dd += '<th></th></tr></tbody>';
                         else
                             dd += '<th><a href="'+data.download_deceased_document.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';

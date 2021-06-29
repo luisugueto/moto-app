@@ -281,7 +281,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
                                 ],
                           "document": {
                             "templateType" : "url",
-                            "templateReference" : "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf",
+                            "templateReference" : "'.$url_pdf.'",
                             "templateCode": "motostion_SEPA",
                             "readRequired" : true,
                             "watermarkText" : "Previsualización",
