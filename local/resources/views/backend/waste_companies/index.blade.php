@@ -227,6 +227,37 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModalMaterials" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Agregar Materiales</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" hidden>
+                        <ul id="errors"></ul>
+                    </div>
+                    <form id="frmAddMaterials" name="frmAddMaterials" novalidate="">
+                        {{ csrf_field() }}
+                        <div class="divider"></div>
+                        <select name="add_materials" id="add_materials" class="form-control">
+                            @foreach ($materials as $material)
+                            <option value="{{ $material->id }}">{{ $material->name }}</option>
+                            @endforeach
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-save-materials" value="add">Guardar Cambios</button>
+                    <input type="hidden" id="waste_companies_2_id" name="waste_companies_2_id" >
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="{{ asset('assets/scripts/js/waste_companies.js') }}"></script>
     @endsection
 @endsection

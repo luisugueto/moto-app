@@ -4,6 +4,15 @@ $(document).ready(function(){
     //get base URL *********************
     var url = $('#url').val();
 
+    $("#myModalMaterials").on("shown.bs.modal", function() {
+        $("#add_materials").select2({
+            placeholder: "Agregar Material",
+            tags: true,
+            multiple: true
+        });
+
+    });
+
     $('#tableBusiness thead tr').clone(true).appendTo('#tableBusiness thead');
 
     $('#tableBusiness thead tr:eq(1) th').each( function (i) {
@@ -51,11 +60,13 @@ $(document).ready(function(){
                 render: function (data, type, row) {
                     var echo = '';
                     if (data.edit == true && data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title='Editar Empresa'>Editar</a>"
-                                +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Empresa'>Eliminar</a>";
+                        echo = "<a class='mb-2 mr-2 btn btn-info text-white button_add_meterials' title='Agregar Materiales'>Agregar Materiales</a>"
+                            +"<a class='mb-2 mr-2 btn btn-warning text-white button_edit' title = 'Editar Empresa' > Editar</a >"
+                            +"<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Empresa'>Eliminar</a>";
                     }
                     else if (data.delete == true) {
-                        echo = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Empresa'>Eliminar</a>";
+                        echo = "<a class='mb-2 mr-2 btn btn-info text-white button_add_meterials' title='Agregar Materiales'>Agregar Materiales</a>" +
+                            "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Empresa'>Eliminar</a>";
                     } else {
                         echo = "No tienes permiso";
                     }
@@ -187,6 +198,26 @@ $(document).ready(function(){
     
     //////////////////////////////////////////////////////////////////
     //delete product and remove it from TABLE list ***************************
+    $(document).on('click', '.button_add_meterials', function (e) {
+        var $tr = $(this).closest('tr');
+        var data = dataTable.row($(this).parents($tr)).data();
+        var waste_companies_id = data.id;
+
+        $.ajax({
+            type: "GET",
+            url: url + '/agregar-materiales/' + waste_companies_id,
+            success: function (data) {
+                // console.log(data);
+                $('#waste_companies_2_id').val(data.id);
+                $('#myModalMaterials').modal('show');
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });      
+    });
+
+    // /////////////////////////////////////////////////////////////////
     $(document).on('click', '.button_delete', function (e) {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();

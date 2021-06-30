@@ -145,6 +145,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('purchase_valuation_interested/deleteImages', 'PurchaseValuationController@deleteImages');
     Route::post('purchase_valuation_interested/deleteDocuments', 'PurchaseValuationController@deleteDocuments');
 
+    //ADD MATERIALS TO WASTE COMPANIES
+    Route::get('empresas-de-residuos/agregar-materiales/{id}', 'WasteCompaniesController@addMaterials');
+
 
 });
 

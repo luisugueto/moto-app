@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\WasteCompanies;
 use App\Waste;
 use App\Email;
+use App\Materials;
 use DB;
 use Redirect;
 
@@ -25,7 +26,8 @@ class WasteCompaniesController extends Controller
 
         $haspermision = getPermission('Empresas', 'record-create');
         $emails = Email::where('type', 2)->get();
-        return view('backend.waste_companies.index', compact('haspermision', 'emails'));
+        $materials = Materials::get();
+        return view('backend.waste_companies.index', compact('haspermision', 'emails', 'materials'));
     }
 
     public function getWasteCompanies()
@@ -171,5 +173,11 @@ class WasteCompaniesController extends Controller
             $out['message'] = 'Empresa no encontrada! No se pudo eliminar.';
         }
         return response()->json($out);
+    }
+
+    public function addMaterials($id)
+    {
+        $waste = WasteCompanies::findOrFail($id);
+        return response()->json($waste);
     }
 }
