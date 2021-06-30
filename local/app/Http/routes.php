@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('empresas', 'BusinessController');
     Route::resource('servicios', 'ServicesController');
     Route::resource('empresas-de-residuos', 'WasteCompaniesController');
+    Route::resource('materiales', 'MaterialsController');
 
     //Vistas Proximanente
     Route::get('/calendarios', 'HomeController@proximamente');
@@ -124,6 +125,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
     Route::post('getMailBusiness', 'SubProcessesController@getMailBusiness');
     Route::post('getWasteCompanies', 'WasteCompaniesController@getWasteCompanies');
+    Route::post('getMaterials', 'MaterialsController@getMaterials');
 
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');

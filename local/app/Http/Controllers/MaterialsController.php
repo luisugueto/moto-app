@@ -1,16 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Materials;
 use App\Http\Requests;
-use App\WasteCompanies;
-use App\Waste;
-use App\Email;
-use DB;
-use Redirect;
 
-class WasteCompaniesController extends Controller
+class MaterialsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,41 +14,30 @@ class WasteCompaniesController extends Controller
      */
     public function index()
     {
-        $view = getPermission('Empresas', 'record-view');
+        $view = getPermission('Materiales', 'record-view');
 
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
-        $haspermision = getPermission('Empresas', 'record-create');
-        $emails = Email::where('type', 2)->get();
-        return view('backend.waste_companies.index', compact('haspermision', 'emails'));
+        $haspermision = getPermission('Materiales', 'record-create');
+        return view('backend.materials.index', compact('haspermision'));
     }
 
-    public function getWasteCompanies()
+    public function getMaterials()
     {
        
-        $business = DB::table('waste_companies')
-        ->leftjoin('emails', 'emails.id', '=', 'waste_companies.email_id')
-        ->select('waste_companies.*', 'emails.name AS plantilla')  
-        ->get();
-
+        $materials = Materials::select(['id','name','type', 'stock'])->get();
  
-        $view = getPermission('Empresas', 'record-view');
-        $edit = getPermission('Empresas', 'record-edit');
-        $delete = getPermission('Empresas', 'record-delete');
+        $edit = getPermission('Materiales', 'record-edit');
+        $delete = getPermission('Materiales', 'record-delete');
 
         $data = array(); 
-        foreach($business as $key => $value){  
+        foreach($materials as $key => $value){  
 
             $row = array();      
             $row['id'] = $value->id;
             $row['name'] = $value->name;
-            $row['nif_inst_destination'] = $value->nif_inst_destination;
-            $row['email_id'] = $value->plantilla;           
-            $row['reason_social_inst_destination'] = $value->reason_social_inst_destination;
-            $row['nima_inst_destination'] = $value->nima_inst_destination;
-            $row['location'] = $value->location;
-            $row['province'] = $value->province;
-            $row['authorization_no'] = $value->authorization_no;
+            $row['type'] = $value->type;
+            $row['stock'] = $value->stock;           
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -81,8 +65,8 @@ class WasteCompaniesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'nif_inst_destination' => 'required', 'reason_social_inst_destination' => 'required', 'nima_inst_destination' => 'required', 'postal_code' => 'required', 'location' => 'required', 'province' => 'required', 'country' => 'required', 'authorization_no' => 'required']);
+    {       
+        $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'type' => 'required', 'stock' => 'required']);
 
         if ($validator->fails()) {
             $out['code'] = 422;
@@ -90,13 +74,12 @@ class WasteCompaniesController extends Controller
             $out['response'] = $validator->errors();
       
         } else {
-            $bussiness = WasteCompanies::create($request->all());
+            $materials = Materials::create($request->all());
             $out['code'] = 200;
             $out['message'] = 'Datos registrados exitosamente.';
-            $out['response'] = $bussiness;     
-            
+            $out['response'] = $materials;
+                 
         } 
-
         return response()->json($out);
     }
 
@@ -108,8 +91,8 @@ class WasteCompaniesController extends Controller
      */
     public function show($id)
     {
-        $waste = WasteCompanies::find($id);
-        return response()->json($waste);
+        $material = Materials::find($id);
+        return response()->json($material);
     }
 
     /**
@@ -132,9 +115,10 @@ class WasteCompaniesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $waste = WasteCompanies::find($id);
+        $material = Materials::find($id);
 
-        $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'nif_inst_destination' => 'required', 'reason_social_inst_destination' => 'required', 'nima_inst_destination' => 'required', 'postal_code' => 'required', 'location' => 'required', 'province' => 'required', 'country' => 'required', 'authorization_no' => 'required']);
+        $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'type' => 'required', 'stock' => 'required']);
+
 
         if ($validator->fails()) {
             $out['code'] = 422;
@@ -142,10 +126,10 @@ class WasteCompaniesController extends Controller
             $out['response'] = $validator->errors();
       
         } else {
-            $waste->update($request->all());
+            $material->update($request->all());
             $out['code'] = 200;
             $out['message'] = 'Registro actualizado exitosamente.';
-            $out['response'] = $waste;
+            $out['response'] = $material;
       
             
         } 
@@ -160,9 +144,9 @@ class WasteCompaniesController extends Controller
      */
     public function destroy($id)
     {
-        $waste = WasteCompanies::findOrFail($id);
-        if(isset($waste)){
-            WasteCompanies::destroy($id);
+        $material = Materials::findOrFail($id);
+        if(isset($material)){
+            Materials::destroy($id);
             $out['code'] = 200;
             $out['message'] = 'Registro eliminado exitosamente';
         }
