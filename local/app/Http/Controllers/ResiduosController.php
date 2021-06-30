@@ -11,12 +11,17 @@ use App\Processes;
 use App\SubProcesses;
 use App\ApplySubProcessAndProcess;
 use DB;
+use Redirect;
 
 class ResiduosController extends Controller
 {
     
     public function enviosQuincenales()
     {
+        $view = getPermission('Envíos Quincenales', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $subprocesses = SubProcesses::where('processes_id' , '=', 5)->get();
         return view ('backend.residuos.envios_quincenales', compact('subprocesses'));
        
@@ -261,6 +266,10 @@ class ResiduosController extends Controller
 
     public function getEnviosSemestrales()
     {
+        $view = getPermission('Envíos Semestrales', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $purchases = DB::table('purchase_management')
         ->select('purchase_management.*')
         ->groupBy('purchase_management.id',DB::raw('MONTH(purchase_management.current_year)>6'))

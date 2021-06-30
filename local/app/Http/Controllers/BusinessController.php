@@ -8,6 +8,7 @@ use App\Business;
 use App\Service; 
 use App\Email;
 use DB;
+use Redirect;
 
 class BusinessController extends Controller
 {
@@ -18,6 +19,10 @@ class BusinessController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Empresas', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $haspermision = getPermission('Empresas', 'record-create');
         $services = Service::all();
         $emails = Email::where('type', 2)->get();

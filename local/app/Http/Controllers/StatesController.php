@@ -18,6 +18,9 @@ class StatesController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Estados', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
         
         $emails = Email::all();    
         $haspermision = getPermission('Estados', 'record-create');  

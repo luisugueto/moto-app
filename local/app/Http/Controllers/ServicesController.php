@@ -15,6 +15,10 @@ class ServicesController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Servicios', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $haspermision = getPermission('Servicios', 'record-create');
         return view('backend.services.index', compact('haspermision'));
     }

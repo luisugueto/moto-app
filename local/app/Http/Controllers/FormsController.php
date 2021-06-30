@@ -17,6 +17,10 @@ class FormsController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Formularios', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $haspermision = getPermission('Formularios', 'record-create');
         return view('backend.forms.index', compact('haspermision'));
     }

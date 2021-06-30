@@ -17,6 +17,10 @@ class ProcessesController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Procesos', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $haspermision = getPermission('Procesos', 'record-create');
         return view('backend.processes.index', compact('haspermision'));
     }

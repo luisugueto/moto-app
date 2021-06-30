@@ -18,7 +18,10 @@ class EmailsController extends Controller
      */
     public function index(Request $request)
     {       
-        //dd(\Request::getRequestUri());
+        $view = getPermission('Mensajes', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $haspermision = getPermission('Mensajes', 'record-create');
         if(\Request::getRequestUri() == '/mensajes-gc')           
             return view('backend.emails.index', compact('haspermision'));

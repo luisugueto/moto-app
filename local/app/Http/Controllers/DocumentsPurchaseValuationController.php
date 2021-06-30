@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DocumentsPurchaseValuation;
 use App\Http\Requests;
+use Redirect;
 
 class DocumentsPurchaseValuationController extends Controller
 {
@@ -15,8 +16,14 @@ class DocumentsPurchaseValuationController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Documentos', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!'); 
+
+
         $purchases = DocumentsPurchaseValuation::all();
         $haspermision = getPermission('Empleados', 'record-create');
+
         return view('backend.documents_purchase_valuation.index', compact('haspermision'));
     }
 
@@ -24,9 +31,9 @@ class DocumentsPurchaseValuationController extends Controller
     {
         $purchases = DocumentsPurchaseValuation::all();
 
-        $view = getPermission('Empleados', 'record-view');
-        $edit = getPermission('Empleados', 'record-edit');
-        $delete = getPermission('Empleados', 'record-delete');
+        $view = getPermission('Documentos', 'record-view');
+        $edit = getPermission('Documentos', 'record-edit');
+        $delete = getPermission('Documentos', 'record-delete');
         
         $data = array();
         foreach($purchases as $value){ 

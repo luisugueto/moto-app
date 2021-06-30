@@ -23,6 +23,10 @@ class UserController extends Controller
      */
     public function index()
     {    
+        $view = getPermission('Empleados', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $haspermision = getPermission('Empleados', 'record-create');
         $roles = Role::lists('display_name','id');
         $lang = DB::table('lang')

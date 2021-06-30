@@ -20,7 +20,10 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        //$haspermision = auth()->user()->can('record-create');   
+        $view = getPermission('Permisos', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $permission = Permission::get()->take(4);    
         $menus = DB::table('menus')->get();
         $roles = Role::get();
@@ -47,9 +50,16 @@ class PermissionsController extends Controller
      */
     public function store(Request $request)
     {
+        $edit = getPermission('Permisos', 'record-edit');
+        $create = getPermission('Permisos', 'record-create');
+
+        if(!$edit || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $roles = Role::all();
         $menus = Menu::all();
-        
+
+        DB::table('permissions_menus')->update(array('permissions' => ''));
+
         foreach($roles as $key => $rol){
             foreach($menus as $key => $me){
                 

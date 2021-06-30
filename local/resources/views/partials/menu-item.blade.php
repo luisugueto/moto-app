@@ -43,9 +43,15 @@
                         </ul>
                     </li>   
                     @else --}}
-                    <li class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}">
-                        <a class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}" href="{{ url($submenu['slug']) }}">{{ $submenu['name'] }} </a>
-                    </li>
+                    
+                    
+                    @if (getPermission($submenu['name'], 'record-view')) 
+                        <li class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}">
+                            <a class="{{ request()->is($submenu['slug']) ? 'mm-active' : '' }}" href="{{ url($submenu['slug']) }}">{{ $submenu['name'] }} </a>
+                        </li>
+                    @endif
+
+
                     {{-- @endif --}}
                 @endif
             @endforeach                

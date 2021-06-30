@@ -36,6 +36,10 @@ class PurchaseValuationController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $haspermision = getPermission('Motos que nos ofrecen', 'record-create');
         $states = States::all();
         $processes = Processes::all();
@@ -1029,6 +1033,10 @@ class PurchaseValuationController extends Controller
      */
     public function destroy($id)
     {
+        $delete = getPermission('Motos que nos ofrecen', 'record-delete');
+
+        if(!$delete) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $purchase = PurchaseValuation::destroy($id);
         $out['code'] = 200;
         $out['message'] = 'Moto eliminada exitosamente!';
@@ -1247,6 +1255,10 @@ class PurchaseValuationController extends Controller
 
     public function showFicha()
     {
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        
         $states = States::all();
         $processes = Processes::all();
         $marcas = DB::connection('recambio_ps')->select("SELECT recambio_ps.ps_category.*,recambio_ps.ps_category_lang.name marca FROM recambio_ps.ps_category LEFT JOIN recambio_ps.ps_category_lang ON recambio_ps.ps_category.id_category=recambio_ps.ps_category_lang.id_category AND recambio_ps.ps_category_lang.id_lang='4' WHERE recambio_ps.ps_category.id_parent='13042' GROUP BY recambio_ps.ps_category_lang.name ORDER BY recambio_ps.ps_category_lang.name ASC");   
@@ -1257,6 +1269,10 @@ class PurchaseValuationController extends Controller
 
     public function getDataFicha($id)
     {
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchase_valuation = PurchaseValuation::find($id);
         $documents_purchase_valuation = DocumentsPurchaseValuation::where('purchase_valuation_id', $id)->get();
         $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $id)->get();
@@ -1385,6 +1401,10 @@ class PurchaseValuationController extends Controller
 
     public function updateFicha(Request $request)
     {
+        $edit = getPermission('Motos que nos ofrecen', 'record-edit');
+
+        if(!$edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $validator = \Validator::make($request->all(),[
             'brand' => 'required',
             'model' => 'required',

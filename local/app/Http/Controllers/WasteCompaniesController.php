@@ -8,6 +8,7 @@ use App\WasteCompanies;
 use App\Waste;
 use App\Email;
 use DB;
+use Redirect;
 
 class WasteCompaniesController extends Controller
 {
@@ -18,6 +19,10 @@ class WasteCompaniesController extends Controller
      */
     public function index()
     {
+        $view = getPermission('Empresas', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $haspermision = getPermission('Empresas', 'record-create');
         $emails = Email::where('type', 2)->get();
         return view('backend.waste_companies.index', compact('haspermision', 'emails'));

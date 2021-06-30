@@ -20,12 +20,16 @@ class SubProcessesController extends Controller
      */
     public function index()
     {
-        $haspermision = getPermission('SubProcesos', 'record-create');
-        $processes = Processes::select(['id','name','description','status'])->get();
-        $business = Business::select(['id','name','email'])->where('service_id', 1)->get();
-        $emails = Email::all();
+        $view = getPermission('SubProcesos', 'record-view');
 
-        return view('backend.subprocesses.index', compact('haspermision', 'processes', 'emails', 'business'));
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
+            $haspermision = getPermission('SubProcesos', 'record-create');
+            $processes = Processes::select(['id','name','description','status'])->get();
+            $business = Business::select(['id','name','email'])->where('service_id', 1)->get();
+            $emails = Email::all();
+
+            return view('backend.subprocesses.index', compact('haspermision', 'processes', 'emails', 'business'));
     }
 
     public function getSubProcesses()
