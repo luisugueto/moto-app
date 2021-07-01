@@ -3568,7 +3568,7 @@
                     <img width="87" height="88" alt="image" src="{{ asset('index_files/Image_006.png') }}" />
                 </td>
                 <td>
-                    <p class="s25" style="padding-top: 20pt;padding-left: 40pt;text-indent: 0pt;text-align: left;"><a
+                    <p class="s25" style="padding-top: 20pt;padding-left: 30pt;text-indent: 0pt;text-align: left;"><a
                             name="bookmark2"><span><b>MINISTERIO<br />DEL INTERIOR</b></span></a></p>
                 </td>
                 <td style="width:260px;" colspan="2">
@@ -3589,10 +3589,10 @@
         <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:53pt">
                 <td style="">
-                    <p class="s28" style="padding-top: 6pt;padding-left: 20pt;text-indent: 0pt;text-align: center;">
+                    <p class="s1" style="padding-top: 6pt;padding-left: 20pt;text-indent: 0pt;text-align: center;font-size: 14pt">
                         SOLICITUD DE BAJA DEFINITIVA POR CAT</p>
-                    <p class="s29" style="padding-left: 20pt;text-indent: 0pt;text-align: center;">(Orden INT/ 624
-                        /2008, de 26 de febrero)</p>
+                    <p class="s29" style="padding-left: 20pt;text-indent: 0pt;text-align: center;"><b>(Orden INT/ 624
+                        /2008, de 26 de febrero)</b></p>
                     <p class="s30" style="text-indent: 0pt;text-align: right;">DATOS DEL VEHÍCULO</p>
                 </td>
             </tr>
@@ -4800,7 +4800,7 @@
         <div class="saltoDePagina"></div>
     </div>
     {{-- Hoja 12 --}}
-    <div class="container-fluid"></div>
+    <div class="container-fluid">
         <p style="text-indent: 0pt;text-align: left;"><br /></p>
         <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
             <tr style="height:35pt">
