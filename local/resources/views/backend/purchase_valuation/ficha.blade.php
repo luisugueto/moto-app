@@ -1077,6 +1077,7 @@
                         <table width="100%" id="tableDocumentsViafirma" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>Nombre</th>
                                     <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>

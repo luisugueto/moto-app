@@ -1300,8 +1300,16 @@ class PurchaseValuationController extends Controller
 
                 $explodeCode = explode(",", $purchase_valuation->document_code);
 
-                foreach($explodeCode as $code)
-                    array_push($documentsViafirma, ['get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code) ]);
+                foreach($explodeCode as $key => $code){
+                    $nameDocument = '';
+                    if($key == 0)
+                        $nameDocument = 'Certificado de destrucción';
+                    elseif($key == 1)
+                        $nameDocument = 'Documentos para Destrucción';
+
+
+                    array_push($documentsViafirma, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info("C4CQ1625041430091R370")->auditTrailPage) ]);
+                }
             }
         }
         
