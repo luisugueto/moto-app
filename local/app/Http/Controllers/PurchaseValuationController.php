@@ -1291,14 +1291,18 @@ class PurchaseValuationController extends Controller
         }
 
         $data['documents_send'] = false;
-        $documentsViafirma = array();
+        $documentsDestruction = array();
+        $documentsDestructionDeceased = array();
+        $documentsPossibleSale = array();
+        $documentsPossibleSaleDeceased = array();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
-                $data['document_generate'] = $purchase_valuation['document_generate'];
-            if($purchase_valuation['document_code'] != NULL){
-                $data['documents_send'] = true;
+            
+            $data['send_documents'] = true;
 
-                $explodeCode = explode(",", $purchase_valuation->document_code);
+            if($purchase_valuation['documents_destruction'] != NULL){
+
+                $explodeCode = explode(",", $purchase_valuation->destruction_code);
 
                 foreach($explodeCode as $key => $code){
                     $nameDocument = '';
@@ -1308,7 +1312,63 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Documentos para Destrucción';
 
 
-                    array_push($documentsViafirma, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info("C4CQ1625041430091R370")->auditTrailPage) ]);
+                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info("C4CQ1625041430091R370")->auditTrailPage) ]);
+                }
+            }
+
+            if($purchase_valuation['destruction_deceased'] != NULL){
+
+                $explodeCode = explode(",", $purchase_valuation->destruction_deceased_code);
+
+                foreach($explodeCode as $key => $code){
+                    $nameDocument = '';
+                    if($key == 0)
+                        $nameDocument = 'Certificado de destrucción';
+                    elseif($key == 1)
+                        $nameDocument = 'Documentos para Destrucción';
+                    elseif($key == 2)
+                        $nameDocument = 'Declaracion Responsable Fallecidos';
+
+
+                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info("C4CQ1625041430091R370")->auditTrailPage) ]);
+                }
+            }
+
+            if($purchase_valuation['possible_sale'] != NULL){
+
+                $explodeCode = explode(",", $purchase_valuation->possible_sale_code);
+
+                foreach($explodeCode as $key => $code){
+                    $nameDocument = '';
+                    if($key == 0)
+                        $nameDocument = 'Certificado de destrucción';
+                    elseif($key == 1)
+                        $nameDocument = 'Documentos para Destrucción';
+                    elseif($key == 2)
+                        $nameDocument = 'Documentos para venta';
+
+
+                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info("C4CQ1625041430091R370")->auditTrailPage) ]);
+                }
+            }
+
+            if($purchase_valuation['possible_sale_deceased'] != NULL){
+
+                $explodeCode = explode(",", $purchase_valuation->possible_sale_code);
+
+                foreach($explodeCode as $key => $code){
+                    $nameDocument = '';
+                    if($key == 0)
+                        $nameDocument = 'Certificado de destrucción';
+                    elseif($key == 1)
+                        $nameDocument = 'Documentos para Destrucción';
+                    elseif($key == 2)
+                        $nameDocument = 'Documentos para venta';
+                    elseif($key == 3)
+                        $nameDocument = 'Declaracion Responsable Fallecidos';
+
+
+                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info("C4CQ1625041430091R370")->auditTrailPage) ]);
                 }
             }
         }
@@ -1398,10 +1458,16 @@ class PurchaseValuationController extends Controller
         
         $data['link'] = url('/');
         $data['url_label'] = url('labels/'. $purchase_valuation['id']);
-        $data['documentsViafirma'] = $documentsViafirma;
 
-        $data['deceased_document_status'] = get_status_document($purchase_valuation["deceased_code"]);
-        $data['download_deceased_document'] = download_signed($purchase_valuation["deceased_code"]); 
+        // DOCUMENTS VIAFIRMA
+        $data['documentsDestruction'] = $documentsDestruction;
+        $data['documentsDestructionDeceased'] = $documentsDestructionDeceased;
+        $data['documentsPossibleSale'] = $documentsPossibleSale;
+        $data['documentsPossibleSaleDeceased'] = $documentsPossibleSaleDeceased;
+
+
+        // $data['deceased_document_status'] = get_status_document($purchase_valuation["deceased_code"]);
+        // $data['download_deceased_document'] = download_signed($purchase_valuation["deceased_code"]); 
  
         return response()->json($data);
 
@@ -1717,62 +1783,213 @@ class PurchaseValuationController extends Controller
         return $pdf->stream($nameFile);
         // return $pdf->download($nameFile);
     }
-    
-    public function send_document_viafirma($id)
+
+    // DESTRUCTION
+    public function send_document_destruction($id)
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
        
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
-            // $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // EXAMPLE
+            // CREATE CERTIFICATE DESTRUCTION
+            $view =  \View::make('pdf.certificado-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
 
-            $explodeUrl = explode(",", $purchase->document_generate);
-            if(count($explodeUrl) == 2 && $purchase->deceased_document != NULL){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
-                foreach ($explodeUrl as $key => $value) {
-                    define("url_pdf".$key, $value);
-                }
+            $output = $pdf->output();
+            $nameFile ='Certificado-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
-                send_document($purchase_management, url_pdf0, url_pdf1);
+            // CREATE DOCUMENT DESTRUCTION
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf2 = \App::make('dompdf.wrapper');
+            $pdf2->loadHTML($view2);
 
-                return Redirect::back()->with('notification', 'Se ha enviado los documentos mediante Viafirma exitosamente!');
-            }else{
-                return Redirect::back()->with('error', 'Por favor actualice ficha para generar nuevos documentos!');
-            }
+            $output2 = $pdf2->output();
+            $nameFile2 ='Documento-para-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile2, $output2);
+
+            //////////////////////////////////////////////////// 
+            $url_pdf1 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+            $url_pdf2 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2;
+
+            $purchase = PurchaseValuation::find($purchase->id);
+            $purchase->documents_destruction = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2;  // DOCUMENT DECEASED HERE
+            $purchase->update();
+
+            send_document_desctruction($purchase_management, $url_pdf1, $url_pdf2);
+
+            unlink(public_path().'/pdfs/'.$nameFile);
+            unlink(public_path().'/pdfs/'.$nameFile2);
+
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos para destrucción mediante Viafirma exitosamente!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }
 
-    public function send_deceased_document($id)
+    // DESTRUCTION DECEASED
+    public function send_destruction_deceased($id)
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
        
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
-             // CREATE DOCUMENT FALL
-            $viewFallecido =  \View::make('pdf.declaracion-fallecido', compact('purchase', 'purchase_management'))->render(); // send data to view
-            $pdfFallecido = \App::make('dompdf.wrapper');
-            $pdfFallecido->loadHTML($viewFallecido);
+            // CREATE CERTIFICATE DESTRUCTION
+            $view =  \View::make('pdf.certificado-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
 
-            $outputFallecido = $pdfFallecido->output();
-            $nameFileFallecido ='Declaracion-fallecido-'.date('y-m-d-h-i-s').'.pdf';
-            file_put_contents( public_path().'/pdfs/'.$nameFileFallecido, $outputFallecido);
+            $output = $pdf->output();
+            $nameFile ='Certificado-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
+            // CREATE DOCUMENT DESTRUCTION
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf2 = \App::make('dompdf.wrapper');
+            $pdf2->loadHTML($view2);
+
+            $output2 = $pdf2->output();
+            $nameFile2 ='Documento-para-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile2, $output2);
+
+            // CREATE DECLARATION DECEASED
+            $view3 =  \View::make('pdf.declaracion-fallecido', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf3 = \App::make('dompdf.wrapper');
+            $pdf3->loadHTML($view3);
+
+            $output3 = $pdf3->output();
+            $nameFile3 ='Declaracion-responsable-fallecidos-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile3, $output3);
+
+            //////////////////////////////////////////////////// 
+            $url_pdf1 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+            $url_pdf2 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2;
+            $url_pdf3 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3;
 
             $purchase = PurchaseValuation::find($purchase->id);
-            $purchase->deceased_document = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFileFallecido;  // DOCUMENT DECEASED HERE
+            $purchase->destruction_deceased = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3;  // DOCUMENT DECEASED HERE
             $purchase->update();
 
-            $explodeUrl = explode(",", $purchase->document_generate);
-        
-            if(count($explodeUrl) == 2 && $purchase->deceased_document != NULL){ // VERIFICO CANTIDAD DE DOCUMENTOS GENERADOS
-                $url_pdf = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFileFallecido;  // DECEASED DOCUMENT HERE
 
-                send_deceased_document($purchase_management, $url_pdf);
+            send_destruction_deceased($purchase_management, $url_pdf1, $url_pdf2, $url_pdf3);
 
-                return Redirect::back()->with('notification', 'Se ha enviado el documento de fallecido mediante Viafirma exitosamente!');
-            }else
-                return Redirect::back()->with('error', 'Por favor actualice ficha para generar nuevos documentos!');
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos para destrucción con fallecido mediante Viafirma exitosamente!');
+        }else
+            return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
+    }
+
+    // POSSIBLE SALE
+    public function send_possible_sale($id)
+    {
+        $purchase = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+       
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+
+            // CREATE CERTIFICATE DESTRUCTION
+            $view =  \View::make('pdf.certificado-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+
+            $output = $pdf->output();
+            $nameFile ='Certificado-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
+            // CREATE DOCUMENT DESTRUCTION
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf2 = \App::make('dompdf.wrapper');
+            $pdf2->loadHTML($view2);
+
+            $output2 = $pdf2->output();
+            $nameFile2 ='Documento-para-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile2, $output2);
+
+            // CREATE DOCUMENT SALE
+            $view3 =  \View::make('pdf.documentos-para-venta', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf3 = \App::make('dompdf.wrapper');
+            $pdf3->loadHTML($view3);
+
+            $output3 = $pdf3->output();
+            $nameFile3 ='Documentos-venta-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile3, $output3);
+
+            //////////////////////////////////////////////////// 
+            $url_pdf1 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+            $url_pdf2 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2;
+            $url_pdf3 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3;
+
+            $purchase = PurchaseValuation::find($purchase->id);
+            $purchase->possible_sale = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3;  // DOCUMENT DECEASED HERE
+            $purchase->update();
+
+
+            send_possible_sale($purchase_management, $url_pdf1, $url_pdf2, $url_pdf3);
+
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos para posible venta mediante Viafirma exitosamente!');
+        }else
+            return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
+    }
+
+    // POSSIBLE SALE DECEASED
+    public function send_sale_deceased($id)
+    {
+        $purchase = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+       
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+
+            // CREATE CERTIFICATE DESTRUCTION
+            $view =  \View::make('pdf.certificado-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+
+            $output = $pdf->output();
+            $nameFile ='Certificado-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
+            // CREATE DOCUMENT DESTRUCTION
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf2 = \App::make('dompdf.wrapper');
+            $pdf2->loadHTML($view2);
+
+            $output2 = $pdf2->output();
+            $nameFile2 ='Documento-para-destruccion-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile2, $output2);
+
+            // CREATE DOCUMENT SALE
+            $view3 =  \View::make('pdf.documentos-para-venta', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf3 = \App::make('dompdf.wrapper');
+            $pdf3->loadHTML($view3);
+
+            $output3 = $pdf3->output();
+            $nameFile3 ='Documentos-venta-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile3, $output3);
+
+            // CREATE DECLARATION DECEASED
+            $view4 =  \View::make('pdf.declaracion-fallecido', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf4 = \App::make('dompdf.wrapper');
+            $pdf4->loadHTML($view4);
+
+            $output4 = $pdf4->output();
+            $nameFile4 ='Declaracion-responsable-fallecidos-'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile4, $output4);
+
+
+            //////////////////////////////////////////////////// 
+            $url_pdf1 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
+            $url_pdf2 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2;
+            $url_pdf3 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3;
+            $url_pdf4 = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile4;
+
+            $purchase = PurchaseValuation::find($purchase->id);
+            $purchase->possible_sale_deceased = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile4;  // DOCUMENT DECEASED HERE
+            $purchase->update();
+
+            send_sale_deceased($purchase_management, $url_pdf1, $url_pdf2, $url_pdf3, $url_pdf4);
+
+            return Redirect::back()->with('notification', 'Se ha enviado los documentos para posible venta fallecido mediante Viafirma exitosamente!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
     }

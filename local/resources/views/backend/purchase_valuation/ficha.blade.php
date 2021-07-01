@@ -1065,16 +1065,17 @@
 
                 <div id="divSendDocument" style="display: none">
                     <div class="p-2">
-                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_send_document" title='Enviar Documentos Viafirma'>Enviar Documentos Viafirma</a>
-
-                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_send_deceased_document" title='Enviar Documento de Fallecido Viafirma'>Enviar Documento Fallecido Viafirma</a>
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_document_destruction" title='Enviar Documentos Viafirma'>Enviar Documentos para Destrucción</a>
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_destruction_deceased" title='Enviar Documentos Viafirma'>Enviar Documentos para Destrucción Fallecido</a>
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_possible_sale" title='Enviar Documentos Viafirma'>Enviar Documentos para Posible Venta</a>
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_sale_deceased" title='Enviar Documentos Viafirma'>Enviar Documentos para Posible Venta Fallecido</a>
                     </div>
                 </div>
 
                 <div id="divDocumentsViafirma" style="display: none">
                     <div class="p-2">
-                        <h3>Documentos Viafirma</h3>
-                        <table width="100%" id="tableDocumentsViafirma" class="table table-hover table-striped table-bordered">
+                        <h3>Documentos Destrucción</h3>
+                        <table width="100%" id="tableDocumentsDestruction" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -1083,11 +1084,34 @@
                                 </tr>
                             </thead>
                         </table>
-
-                        <h3>Documento Fallecido Viafirma</h3>
-                        <table width="100%" id="tableDeceasedDocumentsViafirma" class="table table-hover table-striped table-bordered">
+                        <hr>
+                        <h3>Documentos Destrucción Fallecido</h3>
+                        <table width="100%" id="tableDestructionDeceased" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
+                                    <th>Nombre</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <hr>
+                        <h3>Documentos Posible Venta</h3>
+                        <table width="100%" id="tablePossibleSale" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Estado</th>
+                                    <th>Acción</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <hr>
+                        <h3>Documentos Posible Venta Fallecido</h3>
+                        <table width="100%" id="tableSaleDeceased" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
                                     <th>Estado</th>
                                     <th>Acción</th>
                                 </tr>
