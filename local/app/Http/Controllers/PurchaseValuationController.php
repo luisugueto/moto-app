@@ -1464,10 +1464,6 @@ class PurchaseValuationController extends Controller
         $data['documentsDestructionDeceased'] = $documentsDestructionDeceased;
         $data['documentsPossibleSale'] = $documentsPossibleSale;
         $data['documentsPossibleSaleDeceased'] = $documentsPossibleSaleDeceased;
-
-
-        // $data['deceased_document_status'] = get_status_document($purchase_valuation["deceased_code"]);
-        // $data['download_deceased_document'] = download_signed($purchase_valuation["deceased_code"]); 
  
         return response()->json($data);
 
@@ -1592,13 +1588,6 @@ class PurchaseValuationController extends Controller
             $output = $pdf->output();
             $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
-
-            $documents_send_viafirma = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile;
-
-            $purchaseU = PurchaseValuation::find($purchase->id);
-            $purchaseU->document_generate = $documents_send_viafirma;
-            $purchaseU->deceased_document = "https://gestion-motos.motostion.com/local/public/pdfs/Ficha21-06-15-11-17-21.pdf";  // DOCUMENT DECEASED HERE
-            $purchaseU->update();
 
             Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
 
