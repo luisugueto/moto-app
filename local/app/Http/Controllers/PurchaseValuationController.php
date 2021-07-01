@@ -1298,7 +1298,7 @@ class PurchaseValuationController extends Controller
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
             
-            $data['send_documents'] = true;
+            $data['documents_send'] = true;
 
             if($purchase_valuation['documents_destruction'] != NULL){
 
@@ -1809,9 +1809,6 @@ class PurchaseValuationController extends Controller
 
             send_document_desctruction($purchase_management, $url_pdf1, $url_pdf2);
 
-            unlink(public_path().'/pdfs/'.$nameFile);
-            unlink(public_path().'/pdfs/'.$nameFile2);
-
             return Redirect::back()->with('notification', 'Se ha enviado los documentos para destrucción mediante Viafirma exitosamente!');
         }else
             return Redirect::to('/')->with('error', 'Ha ocurrido un error!');
@@ -1860,7 +1857,6 @@ class PurchaseValuationController extends Controller
             $purchase = PurchaseValuation::find($purchase->id);
             $purchase->destruction_deceased = "https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile2.","."https://gestion-motos.motostion.com/local/public/pdfs/".$nameFile3;  // DOCUMENT DECEASED HERE
             $purchase->update();
-
 
             send_destruction_deceased($purchase_management, $url_pdf1, $url_pdf2, $url_pdf3);
 

@@ -308,7 +308,7 @@ $(document).ready(function () {
                 }
                 $('#form_display_datos_internos').html(data.form_display_datos_internos);
 
-                if(!!data.send_documents){
+                if(!!data.documents_send){
                     $('#divSendDocument').css('display', 'block');
                     $("#button_document_destruction").attr("href", "send_document_destruction/"+data.id);
                     $("#button_destruction_deceased").attr("href", "send_destruction_deceased/"+data.id);
@@ -332,15 +332,15 @@ $(document).ready(function () {
                             dd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
                             dd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'ERROR'){
+                        else if(element.get_status_document.status == 'ERROR'){
                             dd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
                             dd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'WAITING_CHECK'){
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
                             dd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             dd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
-                        else{
+                        else if(element.get_status_document.status == 'RESPONSED'){
                             dd += '<tr><th>Aprobado</th>'; 
                             dd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
@@ -355,15 +355,15 @@ $(document).ready(function () {
                             ddd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
                             ddd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'ERROR'){
+                        else if(element.get_status_document.status == 'ERROR'){
                             ddd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
                             ddd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'WAITING_CHECK'){
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
                             ddd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             ddd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
-                        else{
+                        else if(element.get_status_document.status == 'RESPONSED'){
                             ddd += '<tr><th>Aprobado</th>'; 
                             ddd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
@@ -378,15 +378,15 @@ $(document).ready(function () {
                             ps += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
                             ps += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'ERROR'){
+                        else if(element.get_status_document.status == 'ERROR'){
                             ps += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
                             ps += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'WAITING_CHECK'){
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
                             ps += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             ps += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
-                        else{
+                        else if(element.get_status_document.status == 'RESPONSED'){
                             ps += '<tr><th>Aprobado</th>'; 
                             ps += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
@@ -401,15 +401,15 @@ $(document).ready(function () {
                             psd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
                             psd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'ERROR'){
+                        else if(element.get_status_document.status == 'ERROR'){
                             psd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
                             psd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'WAITING_CHECK'){
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
                             psd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             psd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
-                        else{
+                        else if(element.get_status_document.status == 'RESPONSED'){
                             psd += '<tr><th>Aprobado</th>'; 
                             psd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
