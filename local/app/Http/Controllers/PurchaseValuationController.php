@@ -1354,7 +1354,7 @@ class PurchaseValuationController extends Controller
 
             if($purchase_valuation['possible_sale_deceased'] != NULL){
 
-                $explodeCode = explode(",", $purchase_valuation->possible_sale_code);
+                $explodeCode = explode(",", $purchase_valuation->sale_deceased_code);
 
                 foreach($explodeCode as $key => $code){
                     $nameDocument = '';
