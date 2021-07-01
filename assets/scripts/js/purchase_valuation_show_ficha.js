@@ -320,17 +320,25 @@ $(document).ready(function () {
                     $('#buttonLabelss').html(sb2);
                 }
 
-                if (data.documents_send) {
+                if (!!data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
                     let sb = '<tbody>';                   
 
                     data.documentsViafirma.forEach(function (element) { 
-                        if(element.get_status_document.status == 'WAITING' || element.get_status_document.status == 'WAITING_CHECK' || element.get_status_document.status == 'ERROR'){
-                            sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
+                        if(element.get_status_document.status == 'WAITING'){
+                            sb += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
                             sb += '<th></th></tr>';
                         }
+                        if(element.get_status_document.status == 'ERROR'){
+                            sb += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            sb += '<th></th></tr>';
+                        }
+                        if(element.get_status_document.status == 'WAITING_CHECK'){
+                            sb += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            sb += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
+                        }
                         else{
-                            sb += '<tr><th>' + element.get_status_document.status + '</th>'; 
+                            sb += '<tr><th>Aprobado</th>'; 
                             sb += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });

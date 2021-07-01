@@ -410,6 +410,91 @@ define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
         return $json;
     }
 
+    
+    function get_document_info($messageCode = '')
+    {
+        error_reporting(E_ALL);
+
+        // header('Content-Type: text/plain; charset=utf-8');
+
+        $url=DOCUMENTS_API_URL."/messages/".$messageCode;
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'GET');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL,$url);
+
+        // OAuth Header
+        $headr = array();
+        // $headr[] = 'Content-length: 0';
+        // $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result=curl_exec($ch);
+        $json = json_decode($result);
+
+        curl_close($ch);
+
+        return $json;
+    }
+
+    function get_status_set($messageCode = '')
+    {
+        error_reporting(E_ALL);
+
+        // header('Content-Type: text/plain; charset=utf-8');
+
+        $url=DOCUMENTS_API_URL."/set/summary/".$messageCode;
+
+        OAuthStore::instance('MySQL', array('conn'=>false));
+        $req = new OAuthRequestSigner($url, 'GET');
+        $fecha = new DateTime();
+        $secrets = array(
+                    'consumer_key'      => DOCUMENTS_CONSUMER_KEY,
+                    'consumer_secret'   => DOCUMENTS_CONSUMER_SECRET,
+                    'token'             => '',
+                    'token_secret'      => '',
+                    'signature_methods' => array('HMAC-SHA1'),
+                    'nonce'             => '3jd834jd9',
+                    'timestamp'         => $fecha->getTimestamp(),
+                    );
+        $req->sign(0, $secrets);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL,$url);
+
+        // OAuth Header
+        $headr = array();
+        // $headr[] = 'Content-length: 0';
+        // $headr[] = 'Content-type: application/json';
+        $headr[] = ''.$req->getAuthorizationHeader();
+        curl_setopt($ch, CURLOPT_HTTPHEADER,$headr);
+
+        $result=curl_exec($ch);
+        $json = json_decode($result);
+
+        curl_close($ch);
+
+        return $json;
+    }
+
     function prettyPrint( $json )
     {
         $result = '';
