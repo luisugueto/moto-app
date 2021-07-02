@@ -11,7 +11,6 @@ $(document).ready(function(){
     $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
 
         if (i == 0 || i == 13) {
-            console.log(i)
             $(this).css('color', 'transparent');
             
             // $(this).html('<input type="text" class="form-control" />');
@@ -1293,6 +1292,17 @@ $(document).ready(function(){
     });
 
     //***************************
+    $(document).on('click', '.button_ver_ficha', function () {
+        var $tr = $(this).data("moto");         
+        var id_purchase = $tr;
+
+        sessionStorage.setItem('id_purchase', id_purchase);
+        sessionStorage.setItem('action', 2);
+        window.location.href = 'purchase_valuation_interested/ficha_de_la_moto';       
+         
+    });
+
+    //***************************
     $(document).on('click', '.button_ficha', function () {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
@@ -1407,3 +1417,14 @@ Dropzone.options.myDropzone = {
         );
     }
 };
+document.getElementById("resultados").innerHTML = ""
+window.addEventListener('load',function(){
+    document.getElementById("texto").addEventListener("keyup", () => {
+        if((document.getElementById("texto").value.length)>=1)
+            fetch(`/motos/buscador?texto=${document.getElementById("texto").value}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("resultados").innerHTML = html  })
+        else
+            document.getElementById("resultados").innerHTML = ""
+    })
+});  

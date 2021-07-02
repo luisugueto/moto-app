@@ -112,6 +112,11 @@
                     <span>Sin Acuerdo</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-10" data-toggle="tab" href="#tab-content-10">
+                    <span>Busqueda de Motos</span>
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
@@ -615,6 +620,23 @@
                         
                     </div>
                 </div> 
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-10" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Busqueda de motos
+                        </h5>
+                        <br>
+                        <!-- html agregado-->
+                        <div class="col-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
+                                <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
+                            </div>
+                            <div id="resultados" class="pb-2 border"></div>
+                        </div>                     
+                    </div>
+                </div>
             </div>
         </div>
         
