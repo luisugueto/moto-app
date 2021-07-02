@@ -68,8 +68,14 @@ Route::group(['middleware' => 'auth'], function () {
     // Views Purchase Valuation
     Route::get('purchase_valuation_no_interested', 'PurchaseValuationController@noInterested');
     Route::get('purchase_valuation_interested', 'PurchaseValuationController@interested');
-    Route::get('purchase_valuation_interested/send_document_viafirma/{id}', 'PurchaseValuationController@send_document_viafirma');
-    Route::get('purchase_valuation_interested/send_deceased_document/{id}', 'PurchaseValuationController@send_deceased_document');
+   
+    // DOCUMENTS VIAFIRMA
+    Route::get('purchase_valuation_interested/send_document_destruction/{id}', 'PurchaseValuationController@send_document_destruction');
+    Route::get('purchase_valuation_interested/send_destruction_deceased/{id}', 'PurchaseValuationController@send_destruction_deceased');
+    Route::get('purchase_valuation_interested/send_possible_sale/{id}', 'PurchaseValuationController@send_possible_sale');
+    Route::get('purchase_valuation_interested/send_sale_deceased/{id}', 'PurchaseValuationController@send_sale_deceased');
+
+
     Route::get('purchase_valuation_interested/callback_document_viafirma', 'PurchaseValuationController@callback_document_viafirma');
     Route::get('purchase_valuation_interested/ficha_de_la_moto', 'PurchaseValuationController@showFicha');
     Route::get('purchase_valuation_interested/ficha_de_la_moto/{id}', 'PurchaseValuationController@getDataFicha');

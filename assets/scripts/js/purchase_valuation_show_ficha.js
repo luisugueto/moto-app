@@ -308,10 +308,12 @@ $(document).ready(function () {
                 }
                 $('#form_display_datos_internos').html(data.form_display_datos_internos);
 
-                if(!!data.document_generate){
+                if(!!data.documents_send){
                     $('#divSendDocument').css('display', 'block');
-                    $("#button_send_document").attr("href", "send_document_viafirma/"+data.id);
-                    $("#button_send_deceased_document").attr("href", "send_deceased_document/"+data.id);
+                    $("#button_document_destruction").attr("href", "send_document_destruction/"+data.id);
+                    $("#button_destruction_deceased").attr("href", "send_destruction_deceased/"+data.id);
+                    $("#button_possible_sale").attr("href", "send_possible_sale/"+data.id);
+                    $("#button_sale_deceased").attr("href", "send_sale_deceased/"+data.id);
                 }
                
                 if (data.status_ficha == 2) {
@@ -322,39 +324,99 @@ $(document).ready(function () {
 
                 if (!!data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
-                    let sb = '<tbody>';                   
 
-                    data.documentsViafirma.forEach(function (element) { 
+                    // DOCUMENTS DESTRUCTION
+                    let dd = '<tbody>';                   
+                    data.documentsDestruction.forEach(function (element) { 
                         if(element.get_status_document.status == 'WAITING'){
-                            sb += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
-                            sb += '<th></th></tr>';
+                            dd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            dd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'ERROR'){
-                            sb += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
-                            sb += '<th></th></tr>';
+                        else if(element.get_status_document.status == 'ERROR'){
+                            dd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            dd += '<th></th></tr>';
                         }
-                        if(element.get_status_document.status == 'WAITING_CHECK'){
-                            sb += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
-                            sb += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
+                            dd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            dd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
-                        else{
-                            sb += '<tr><th>Aprobado</th>'; 
-                            sb += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
+                        else if(element.get_status_document.status == 'RESPONSED'){
+                            dd += '<tr><th>Aprobado</th>'; 
+                            dd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
-                    sb += '</tbody>';
-                    $("#tableDocumentsViafirma").append(sb);
+                    dd += '</tbody>';
+                    $("#tableDocumentsDestruction").append(dd);
 
-                    if(data.deceased_document_status.status != undefined){
-                        let dd = '<tbody><tr><th>'+data.deceased_document_status.status+'</th>';
+                    // DOCUMENTS DESTRUCTION DECEASED
+                    let ddd = '<tbody>';  
+                    data.documentsDestructionDeceased.forEach(function (element) { 
+                        if(element.get_status_document.status == 'WAITING'){
+                            ddd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            ddd += '<th></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'ERROR'){
+                            ddd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            ddd += '<th></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
+                            ddd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            ddd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'RESPONSED'){
+                            ddd += '<tr><th>Aprobado</th>'; 
+                            ddd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
+                        }
+                    });
+                    ddd += '</tbody>';
+                    $("#tableDestructionDeceased").append(ddd);
 
-                        if(data.deceased_document_status.status == 'WAITING' || data.deceased_document_status.status == 'WAITING_CHECK' || data.deceased_document_status.status == 'ERROR')
-                            dd += '<th></th></tr></tbody>';
-                        else
-                            dd += '<th><a href="'+data.download_deceased_document.link + '" target="_blank">Descargar Documento</a></th></tr></tbody>';
-                        
-                        $("#tableDeceasedDocumentsViafirma").append(dd);
-                    }
+                    // DOCUMENTS POSSIBLE SALE
+                    let ps = '<tbody>';  
+                    data.documentsPossibleSale.forEach(function (element) { 
+                        if(element.get_status_document.status == 'WAITING'){
+                            ps += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            ps += '<th></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'ERROR'){
+                            ps += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            ps += '<th></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
+                            ps += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            ps += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'RESPONSED'){
+                            ps += '<tr><th>Aprobado</th>'; 
+                            ps += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
+                        }
+                    });
+                    ps += '</tbody>';
+                    $("#tablePossibleSale").append(ps);
+
+                    // DOCUMENTS POSSIBLE SALE DECEASED
+                    let psd = '<tbody>';  
+                    data.documentsPossibleSaleDeceased.forEach(function (element) { 
+                        if(element.get_status_document.status == 'WAITING'){
+                            psd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            psd += '<th></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'ERROR'){
+                            psd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            psd += '<th></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'WAITING_CHECK'){
+                            psd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            psd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
+                        }
+                        else if(element.get_status_document.status == 'RESPONSED'){
+                            psd += '<tr><th>Aprobado</th>'; 
+                            psd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
+                        }
+                    });
+                    psd += '</tbody>';
+                    $("#tableSaleDeceased").append(psd);
+                    
                 }
             },
             error: function (data) {

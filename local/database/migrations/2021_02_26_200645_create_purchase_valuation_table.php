@@ -35,10 +35,14 @@ class CreatePurchaseValuationTable extends Migration
             $table->integer('states_id')->unsigned();
             $table->foreign('states_id')->references('id')->on('states')->onDelete('Cascade');
             $table->text('data_serialize');
-            $table->text('document_generate');
-            $table->text('document_code');
-            $table->text('deceased_document');
-            $table->text('deceased_code');
+            $table->text('documents_destruction');
+            $table->text('destruction_code');
+            $table->text('destruction_deceased');
+            $table->text('destruction_deceased_code');
+            $table->text('possible_sale');
+            $table->text('possible_sale_code');
+            $table->text('possible_sale_deceased');
+            $table->text('sale_deceased_code');
             $table->timestamps();
         });
     }
