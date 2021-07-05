@@ -391,38 +391,25 @@
                                 </div>
                             </div>
                             <div class="form-row row g-1">
-                                <div class="col-md-3">
-                                    <div class="position-relative form-group">
-                                        <div>
-                                            <div class="custom-checkbox custom-control custom-control-inline">
-                                                <input type="checkbox" name="documents_attached" id="documents_attached"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="documents_attached">Se adjunta
-                                                    documentos de matriculación:</label>
-                                            </div>
-                                            @if ($errors->has('documents_attached'))
-                                                <span class="error text-danger">
-                                                    <strong>{{ $errors->first('documents_attached') }}</strong>
-                                                </span>
-                                            @endif
+                                <div class="col-md-7">
+                                    <div>
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" name="documents_attached" id="yes_documents_attached"
+                                                class="custom-control-input" value="1"  @if(old('documents_attached') == '1') checked @endif>
+                                            <label class="custom-control-label" for="yes_documents_attached">Se adjunta
+                                                documentos de matriculación</label>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="position-relative form-group">
-                                        <div>
-                                            <div class="custom-checkbox custom-control custom-control-inline">
-                                                <input type="checkbox" name="non_existence_document" id="non_existence_document"
-                                                    class="custom-control-input">
-                                                <label class="custom-control-label" for="non_existence_document">Inexistencia
-                                                    del documento de matriulación:</label>
-                                            </div>
-                                            @if ($errors->has('non_existence_document'))
-                                                <span class="error text-danger">
-                                                    <strong>{{ $errors->first('non_existence_document') }}</strong>
-                                                </span>
-                                            @endif
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" name="documents_attached" id="non_existence_document"
+                                                class="custom-control-input" value="2" @if(old('documents_attached') == '2') checked @endif>
+                                            <label class="custom-control-label" for="non_existence_document">Inexistencia
+                                                del documento de matriulación</label>
                                         </div>
+                                        @if ($errors->has('documents_attached'))
+                                            <span class="error text-danger">
+                                                <strong>{{ $errors->first('documents_attached') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-5">

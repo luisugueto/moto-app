@@ -96,7 +96,7 @@ $(document).ready(function () {
                 $('#current_year').val(data.current_year);
                 $('#collection_contract_date').val(data.collection_contract_date);
                 if (data.documents_attached == 1)
-                    $('#documents_attached').attr('checked', true)
+                    $('#yes_documents_attached').attr('checked', true)
                 if (data.non_existence_document == 1)
                     $('#non_existence_document').attr('checked', true)
                 if (data.vehicle_delivers == 'Titular')
@@ -515,6 +515,17 @@ $(document).ready(function () {
                 });
             }
         }
+
+        var documents_attached = '', non_existence_document = '';
+        var radioValue = $("input[name='documents_attached']:checked").val();
+        if(radioValue == 1){
+            documents_attached = 1;
+            non_existence_document = 0;
+        }
+        if(radioValue == 2){
+            non_existence_document = 1;
+            documents_attached = 0;
+        }
         
         var status_trafic = '';
         if ($('#high').is(':checked'))
@@ -590,8 +601,8 @@ $(document).ready(function () {
             file_no: $('#file_no').val(),
             current_year: $('#current_year').val(),
             collection_contract_date: $('#collection_contract_date').val(),
-            documents_attached: $('#documents_attached').val(),
-            non_existence_document: $('#non_existence_document').val(),
+            documents_attached: documents_attached,
+            non_existence_document: non_existence_document,
             vehicle_delivers: vehicle_delivers,
             fuel: fuel,
             vehicle_state_trafic: vehicle_state_trafic,
