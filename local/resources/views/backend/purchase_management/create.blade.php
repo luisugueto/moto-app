@@ -615,12 +615,12 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
-                                    <label for="motor_no" class="">Nº Motor: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
-                                    <input name="motor_no" id="motor_no" type="text" class="form-control"
-                                        value="{{ old('motor_no') }}">
-                                    @if ($errors->has('motor_no'))
+                                    <label for="type_motor" class="">Tipo de Motor: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
+                                    <input name="type_motor" id="type_motor" type="text" class="form-control"
+                                        value="{{ old('type_motor') }}">
+                                    @if ($errors->has('type_motor'))
                                         <span class="error text-danger">
-                                            <strong>{{ $errors->first('motor_no') }}</strong>
+                                            <strong>{{ $errors->first('type_motor') }}</strong>
                                         </span>
                                     @endif
                                 </div>

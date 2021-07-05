@@ -147,6 +147,7 @@ $(document).ready(function () {
                 $('#registration_country').val(data.registration_country);
                 $('#frame_no').val(data.frame_no);
                 $('#motor_no').val(data.motor_no);
+                $('#type_motor').val(data.type_motor);
                 if (data.vehicle_state_trafic == 'Alta')
                     $('#high_state').attr('checked', true)
                 else if (data.vehicle_state_trafic == 'Baja definitiva')
@@ -272,7 +273,7 @@ $(document).ready(function () {
                     if (index === 0) $(this).val(data.brand);
                     if (index === 1) $(this).val(data.model);
                     if (index === 2) $(this).val(data.id);
-                    if (index === 3) $(this).val(data.motor_no);
+                    if (index === 3) $(this).val(data.type_motor);
                     if (index === 7) $(this).val(data.km);
                   
                     $(this).prop('disabled', true);
@@ -490,7 +491,9 @@ $(document).ready(function () {
             if (i === 8 && v.value != '')
                 inputLenght++;
             if (i === 9 && v.value != '')
-                inputLenght++;           
+                inputLenght++;
+            if (i === 10 && v.value != '')
+                inputLenght++; 
         });
         
         for (i = 0; i < data3.length; i++) {
@@ -628,10 +631,11 @@ $(document).ready(function () {
             registration_date: $('#registration_date').val(),
             registration_country: $('#registration_country').val(),
             frame_no: $('#frame_no').val(),
-            motor_no: $('#motor_no').val(),            
+            motor_no: $('#motor_no').val(),
+            type_motor: $('#type_motor').val(),
             datos_del_mecanico: dataSerialize2.replace(/\s+/g, " "),
             datos_internos: dataSerialize3.replace(/\s+/g, " "),
-            sendMailMecanico: inputLenght == '5' ? 1 : 0
+            sendMailMecanico: inputLenght == '6' ? 1 : 0
             
         }
         preloader('show');

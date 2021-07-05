@@ -1122,6 +1122,7 @@ class PurchaseValuationController extends Controller
                     $purchase_management->registration_country = '';
                     $purchase_management->frame_no = '';
                     $purchase_management->motor_no = '';
+                    $purchase_management->type_motor = '';
                     $purchase_management->vehicle_state_trafic = $purchase_model->status_trafic;
                     $purchase_management->vehicle_state = '';
                     $purchase_management->save();
@@ -1442,6 +1443,7 @@ class PurchaseValuationController extends Controller
         $data['registration_country'] = $purchase_management['registration_country'];
         $data['frame_no'] = $purchase_management['frame_no'];
         $data['motor_no'] = $purchase_management['motor_no'];
+        $data['type_motor'] = $purchase_management['type_motor'];
         $data['vehicle_state_trafic'] = $purchase_management['vehicle_state_trafic'];
         $data['vehicle_state'] = $purchase_management['vehicle_state'];
         $data['status_ficha'] = $purchase_management['status'];
@@ -1476,6 +1478,7 @@ class PurchaseValuationController extends Controller
 
     public function updateFicha(Request $request)
     {
+        //dd($request->all());
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
 
         if(!$edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
@@ -1501,7 +1504,7 @@ class PurchaseValuationController extends Controller
             'registration_date' => 'required|date',
             'registration_country' => 'required',
             'frame_no' => ['required'],
-            'motor_no' => 'required',
+            'type_motor' => 'required',
             'vehicle_state_trafic' => 'required',
             'vehicle_state' => 'required'
         ]);
@@ -1578,6 +1581,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->registration_country = $request->registration_country;
         $purchase_management->frame_no = $request->frame_no;
         $purchase_management->motor_no = $request->motor_no;
+        $purchase_management->type_motor = $request->type_motor;
         $purchase_management->vehicle_state_trafic = $request->vehicle_state_trafic;
         $purchase_management->vehicle_state = $request->vehicle_state;
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
