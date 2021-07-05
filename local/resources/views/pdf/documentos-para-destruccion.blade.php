@@ -962,7 +962,8 @@
             <tr style="height:32pt">
                 <td style="" colspan="2">
                     <p class="s17" style="padding-left: 58pt;padding-right: 79pt;text-indent: 0pt;text-align: center;">
-                        En Madrid a: {{ $purchase_management->current_year }}</p>
+                        <?php $current_year = date_create($purchase_management->current_year);?>
+                        En Madrid a: {{ date_format($current_year,"d/m/Y") }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                 </td>
             </tr>
