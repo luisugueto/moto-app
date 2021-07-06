@@ -1085,7 +1085,7 @@
                     <td
                         style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt">
                         <p class="s2" style="padding-top: 2pt;padding-left: 60pt;text-indent: 0pt;text-align: left;">
-                            <b>1.9. 1 Entero</b> <input type="checkbox" name="" id="" checked=""></p>
+                            <b>1.9. 1 Entero</b> X</p>
                     </td>
                 @else
                     <td
@@ -1098,7 +1098,7 @@
                     <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt"
                         colspan="2">
                         <p class="s2" style="padding-top: 2pt;padding-left: 88pt;text-indent: 0pt;text-align: left;">
-                            <b>1.9.2 Parcialmente desmontado</b> <input type="checkbox" name="" id="" checked=""></p>
+                            <b>1.9.2 Parcialmente desmontado</b> X</p>
                     </td>
                 @else
                     <td style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt"
@@ -1111,7 +1111,7 @@
                     <td
                         style="border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                         <p class="s2" style="padding-top: 2pt;padding-left: 32pt;text-indent: 0pt;text-align: left;">
-                            <b>1.9.3 Siniestrado</b> <input type="checkbox" name="" id="" checked=""></p>
+                            <b>1.9.3 Siniestrado</b> X</p>
                     </td>
                 @else
                     <td

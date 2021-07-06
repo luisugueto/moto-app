@@ -171,7 +171,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:14pt">
                 <td style="" colspan="3">
                     <p style="padding-top: 4pt;text-align: justify;"><span>DECLARA BAJO SU
-                        RESPONSABILIDAD, ante el Centro Autorizado de Tratamiento Medio ambiental</span> <span class="underline2" style="padding-left: 35px"></span><span style="padding-left: 0"> a
+                        RESPONSABILIDAD, ante el Centro Autorizado de Tratamiento Medio ambiental MOTOSTION a
                         los efectos de la solicitud de baja definitiva del vehículo con matrícula , cuyo titular ha fallecido, que cumple con los requisitos establecidos en la normativa vigente, y en particular que:</span>
                     </p>
                 </td>
@@ -216,7 +216,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             surta los efectos oportunos</span>
         </p>
         <p style="text-indent: 0pt;text-align: left;"><br></p>
-        <p style="padding-top: 8pt;padding-left: 26pt;text-indent: 0pt;text-align: left;"><span>En</span><span class="underline-a"></span> a,<span class="underline-b"></span> de<span class="underline-c"></span> de 20<span class="underline-d"></span>
+        <?php
+            $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            $fecha = date_create($purchase_management->current_year);
+            $mes = date_format($fecha ,"n");
+            //Salida: Miercoles 05 de Septiembre del 2016
+        
+        ?>
+
+        <p style="padding-top: 8pt;padding-left: 26pt;text-indent: 0pt;text-align: left;"><span>En {{ $purchase_management->province }}</span> a, {{ date_format($fecha ,"d") }} de {{ $meses[date($mes)-1] }} de {{ date_format($fecha ,"Y") }}
         </p>
         <p style="padding-top: 12pt;padding-left: 26pt;text-indent: 0pt;text-align: left;">Firmado: <span class="underline"></span>
         </p>
