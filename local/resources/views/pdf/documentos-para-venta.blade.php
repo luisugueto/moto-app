@@ -28,7 +28,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s1 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -37,7 +37,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s2 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -46,7 +46,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s3 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -55,7 +55,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s4 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -65,7 +65,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s5 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -74,7 +74,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s6 {
             color: #F00;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -83,7 +83,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s7 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -92,7 +92,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s8 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -101,7 +101,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s9 {
             color: #00F;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -110,7 +110,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s10 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -120,7 +120,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s11 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -129,7 +129,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s12 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -138,7 +138,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s13 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -147,7 +147,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s14 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -156,7 +156,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s15 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -166,7 +166,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s16 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -175,7 +175,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s17 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -184,7 +184,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s18 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -193,7 +193,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s19 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: underline;
@@ -202,7 +202,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s20 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -211,7 +211,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s21 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -220,16 +220,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s21-1 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
-            font-size: 13pt;
+            font-size: 11pt;
         }
 
         .s22 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -238,7 +238,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s23 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -247,7 +247,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         h3 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -256,7 +256,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s24 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -265,7 +265,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s25 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -274,7 +274,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s26 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -283,7 +283,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s27 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -292,7 +292,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s28 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -301,7 +301,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s29 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: italic;
             font-weight: normal;
             text-decoration: none;
@@ -310,7 +310,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s30 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -319,7 +319,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s31 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -328,7 +328,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s32 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -338,7 +338,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s33 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: underline;
@@ -347,7 +347,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s34 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: italic;
             font-weight: normal;
             text-decoration: none;
@@ -356,7 +356,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         h2 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -365,7 +365,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s35 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: underline;
@@ -374,16 +374,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s36 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
-            font-weight: bold;
+            font-weight: normal;
             text-decoration: none;
-            font-size: 8.3pt;
+            font-size: 9pt;
         }
 
         h1 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -392,7 +392,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s37 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -421,7 +421,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s40 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: underline;
@@ -430,7 +430,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s41 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -439,7 +439,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s42 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -450,7 +450,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         .h4,
         h4 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -459,16 +459,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s43 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
-            font-size: 6pt;
+            font-size: 8pt;
         }
 
         .s44 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -477,7 +477,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s45 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -486,7 +486,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s46 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -495,7 +495,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s47 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -504,7 +504,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s48 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -513,7 +513,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s49 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -522,7 +522,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s50 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -532,7 +532,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s51 {
             color: black;
-            font-family: "Times New Roman", serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -542,7 +542,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s52 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -551,7 +551,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s54 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -560,7 +560,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s55 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -569,7 +569,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s56 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -578,7 +578,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s57 {
             color: #00F;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: underline;
@@ -587,7 +587,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s58 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -596,7 +596,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s59 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -606,7 +606,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         .a,
         a {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -615,8 +615,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s60 {
             color: black;
-            font-family: "Times New Roman", serif;
-            font-style: normal;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";            font-style: normal;
             font-weight: normal;
             text-decoration: none;
             font-size: 9pt;
@@ -624,7 +623,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
 
         .s61 {
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -724,7 +723,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l5>li>*:first-child:before {
             content: " ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -742,7 +741,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l6>li>*:first-child:before {
             content: " ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -760,7 +759,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l7>li>*:first-child:before {
             content: "■ ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -778,7 +777,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l8>li>*:first-child:before {
             content: " ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -796,7 +795,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l9>li>*:first-child:before {
             content: " ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -814,7 +813,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l10>li>*:first-child:before {
             content: " ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -832,7 +831,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l11>li>*:first-child:before {
             content: "■ ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -850,7 +849,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         #l12>li>*:first-child:before {
             content: " ";
             color: black;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
@@ -923,6 +922,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                 visibility: hidden;
             }
         }
+        .underline-a { 
+            border-bottom: 1px solid currentColor;
+            width:150px;
+            display: inline-block;
+            line-height: 1.3;
+            margin-top: 2px;
+            margin-left: 10px;
+        }
     </style>
     <?php
         $fieldsArray = json_decode(utf8_encode($purchase->data_serialize));
@@ -946,8 +953,9 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             </tr>
             <tr>
                 <td colspan="4">
-                    <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;"><b>  En
-                        Madrid a</b> <span class="s24">202 </span><b>, a las 10:00 reunidos:</b></h2>
+                    <p class="s28" style="padding-top: 11pt;text-indent: 0pt; padding-left: 10pt; text-align: left;"><b>  
+                        <?php $current_year = date_create($purchase_management->current_year);?>
+                        En Madrid a {{ date_format($current_year,"d/m/Y") }} , a las 10:00 reunidos:</b></p>
                 </td>
             </tr>
         </table>
@@ -955,12 +963,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:42pt">
                 <td>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
-                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;"> <b>DE UNA PARTE,</b> <span class="s24">{{ $purchase_management->name }} {{ $purchase_management->firts_surname }}
+                    <p class="s21" style="text-indent: 10pt;line-height: 16pt;text-align: justify;"> <b>DE UNA PARTE,</b> <span class="s24">{{ $purchase_management->name }} {{ $purchase_management->firts_surname }}
                             {{ $purchase_management->second_surtname }}</span> <b>con D.N.I.:</b>
                             <span class="s24">{{ $purchase_management->dni }}</span> <b>y domiciliado en:</b>
                             <span class="s24">{{ $purchase_management->municipality}}</span> de <span class="s24">{{ $purchase_management->province}}</span>, calle  <span class="s24">{{ $purchase_management->street }} {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }} {{ $purchase_management->floor }} {{ $purchase_management->letter }}</span>, de código postal
                             <span class="s24">{{ $purchase_management->postal_code }}</span>, tlf <span class="s24">{{ $purchase_management->phone }}</span>, mail
-                            <span class="s24">{{ $purchase_management->email }}</span> &nbsp; <b>en calidad de <u>VENDEDOR.</u></b></p>
+                            <span class="s24">{{ $purchase_management->email }}</span> <b> en calidad de <u>VENDEDOR.</u></b></p>
                 </td>
             </tr>
         </table>
@@ -968,7 +976,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr>
                 <td>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
-                    <p class="s21" style="padding-left: 41pt;text-indent: 0pt;line-height: 16pt;text-align: left;"><b>DE
+                    <p class="s21" style="text-indent: 10pt;line-height: 16pt;text-align: justify;"><b>DE
                         OTRA PARTE MOTOSTION S.L. con C.I.F. B-80804156 domiciliado en MADRID calle Matilde Hernández
                         nº10, en calidad de <u>COMPRADOR</u>.</b></p>
                 </td>
@@ -980,11 +988,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <h2 class="s21" style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">
                         MANIFIESTAN</h2>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>1º- Que no
+                    <p class="s36" style="text-indent: 10pt;line-height: 13pt;text-align: justify;"><span>1º- Que no
                             pesa sobre el vehículo ningún gravamen, arbitrio, impuesto ni débito de clase alguna
                             pendiente de liquidación a la fecha de extensión de este contrato, obligándose a estar de
                             entera indemnidad a favor del comprador de cualquier reclamación.</span></p>
-                    <p class="s36" style="padding-left: 5pt;text-indent: 35pt;text-align: justify;"><span>2º- Que han
+                    <p class="s36" style="text-indent: 10pt;line-height: 13pt;text-align: justify;"><span>2º- Que han
                             convenido, como por el presente documento lo llevan a efecto, formalizar contrato de
                             compra-venta con ello el propietario vendedorda su conformidad para que a su vez pueda ser
                             vendido o desguazado por el comprador desde la fecha de dicho contrato, según convenga al
@@ -992,7 +1000,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                 </td>
             </tr>
         </table>
-        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 20pt;" cellspacing="0">
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px; margin-top: 15pt;" cellspacing="0">
             <tr>
                 <td colspan="4">
                     <h2 style="padding-left: 4pt;text-indent: 0pt;line-height: 16pt;text-align: center;">CARACTERÍSTICAS
@@ -1034,141 +1042,172 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                     <p class="s35" style="padding-top: 0pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">
                         Especificaciones del vehículo:</p>
                     <p style="text-indent: 0pt;text-align: left;">
-                    <ul class="li2" style="padding-left: 15px">
-                        <li>
+                   <table>
+                       <tr>
                             @if ($purchase_management->vehicle_state_trafic == 'Alta')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
-                                    Dado de alta en DGT 
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 25pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                                @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
-                                    Dado de alta en DGT 
-                                    <input type="checkbox" name="" id="" style="margin-left: 25pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                            @endif
-
-                        </li>
-                        <li>
-                            @if ($purchase_management->vehicle_state_trafic == 'Baja definitiva')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
-                                    Dado de baja temporal
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 15pt">
-                                </h2>
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Dado de alta en DGT </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" checked>
+                            
+                             </td>
                             @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
-                                    Dado de baja temporal
-                                    <input type="checkbox" name="" id="" style="margin-left: 15pt">
-                                </h2>
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Dado de alta en DGT </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" >
+                            
+                             </td>
                             @endif
-
-                        </li>
-                        <li>
+                       </tr>
+                       <tr>
                             @if ($purchase_management->vehicle_state_trafic == 'Baja temporal')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
-                                    Dado de baja en DGT
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 22pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                                @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
-                                    Dado de baja en DGT
-                                    <input type="checkbox" name="" id="" style="margin-left: 22pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Dado de baja en DGT </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" checked>
+                            
+                            </td>
+                            @else
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Dado de baja en DGT </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" >
+                            
+                            </td>
                             @endif
-
-                        </li>
-                        <li>
+                        </tr>
+                        <tr>
                             @if ($purchase_management->vehicle_state == 'Siniestrado')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Siniestrado
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 85pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                                @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Siniestrado
-                                    <input type="checkbox" name="" id="" style="margin-left: 85pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                            @endif
-
-                        </li>
-                        <li>
-                            @if ($purchase_management->vehicle_state == 'Averiado')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Averiado
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 98pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                                @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Averiado
-                                    <input type="checkbox" name="" id="" style="margin-left: 98pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                            @endif
-
-                        </li>
-                        <li>
-                            @if ($purchase_management->vehicle_state == 'Abandonado')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">
-                                    Abandonado
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 76pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                                @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">
-                                    Abandonado
-                                    <input type="checkbox" name="" id="" style="margin-left: 76pt">
-                                </h2>
-                                <p style="text-indent: 0pt;text-align: left;">
-                            @endif
-
-                        </li>
-                        <li>
-                            @if ($purchase_management->vehicle_state == 'Completo')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Completo
-                                    <input type="checkbox" name="" id="" checked style="margin-left: 95pt">
-                                </h2>
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Siniestrado </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" checked>
+                            
+                            </td>
                             @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Completo
-                                    <input type="checkbox" name="" id="" style="margin-left: 95pt">
-                                </h2>
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                    Siniestrado </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" >
+                            
+                            </td>
                             @endif
-
-                        </li>
-                        <li>
-                            @if ($purchase_management->vehicle_state == 'Parcialmente desmontado')
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Parcialmente desmontado
-                                    <input type="checkbox" name="" id="" checked style="margin-left: -2pt">
-                                </h2>
+                        </tr>
+                        <tr>
+                            @if ($purchase_management->vehicle_state == 'Averiado' || $purchase_management->vehicle_state == 'Avería Mecánica')
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Averiado </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" checked>
+                            
+                            </td>
                             @else
-                                <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                    Parcialmente desmontado
-                                    <input type="checkbox" name="" id="" style="margin-left: -2pt">
-                                </h2>
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                    Averiado </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" >
+                            
+                            </td>
                             @endif
-
-                        </li>
-                        <li>
-                            <h2 style="padding-left: 22pt;text-indent: -18pt;text-align: left;">Color:
-                                {{ $purchase_management->color }}</h2>
-                        </li>
-                        <li>
-                            <h2 style="padding-left: 23pt;text-indent: -18pt;line-height: 16pt;text-align: left;">
-                                Kilómetros: {{ $purchase->km }}</h2>
-                        </li>
-                        <li>
-                            <h2 style="padding-left: 23pt;text-indent: -18pt;text-align: left;">Más datos:</h2>
-                        </li>
-                    </ul>
+                        </tr>
+                        <tr>
+                            @if ($purchase_management->vehicle_state == 'Abandonado' || $purchase_management->vehicle_state == 'Vieja o Abandonada')
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Abandonado </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" checked>
+                            
+                            </td>
+                            @else
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                    Abandonado </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" >
+                            
+                            </td>
+                            @endif
+                        </tr>
+                        <tr>
+                             @if ($purchase_management->vehicle_state == 'Completo')
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Completo </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" checked>
+                            
+                            </td>
+                            @else
+                            <td>
+                                <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                    Completo </h3>
+                            </td>
+                            <td>   
+                                <input type="checkbox" name="" id="" >
+                            
+                            </td>
+                            @endif
+                        </tr>
+                        <tr>
+                           @if ($purchase_management->vehicle_state == 'Parcialmente desmontado')
+                           <td>
+                               <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                               Parcialmente desmontado </h3>
+                           </td>
+                           <td>   
+                               <input type="checkbox" name="" id="" checked>
+                           
+                           </td>
+                           @else
+                           <td>
+                               <h3 style="padding-left: 23pt;text-indent: -18pt;line-height: 17pt;text-align: left;">
+                                Parcialmente desmontado </h3>
+                           </td>
+                           <td>   
+                               <input type="checkbox" name="" id="" >
+                           
+                           </td>
+                           @endif
+                       </tr>
+                       <tr>
+                           <td><h3 style="padding-left: 22pt;text-indent: -18pt;text-align: left;">Color:
+                            </h3></td>
+                           <td><span class="s24">{{ $purchase_management->color }}</span></td>
+                       </tr>
+                       <tr>
+                            <td>
+                                <h3 style="padding-left: 22pt;text-indent: -18pt;text-align: left;">Kilómetros:</h3>
+                            </td>
+                            <td><span class="s24">{{ $purchase->km }}</span></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3 style="padding-left: 22pt;text-indent: -18pt;text-align: left;">Más datos:</h3>
+                            </td>
+                            <td></td>
+                        </tr>
+                   </table>
                     <br>
                     <p class="s37" style="padding-left: 5pt;text-indent: 0pt;text-align: left;">Táchese lo que proceda
                         con (x)</p>
@@ -1249,17 +1288,19 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     rowspan="3">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Matrícula: </p>
                     <p style="padding-left: 5px; text-indent: 0pt;line-height: 20px; text-align: left;">
-                        {{ $purchase_management->frame_no }}</p>
+                       
+                        {{ $purchase_management->registration_number }}</p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     rowspan="3">
-                    <p class="s43" style="padding-left: 1pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Fecha
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Fecha
                         matriculación (dd/mm/aaaa):</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;">
-                        {{ $purchase_management->registration_number }}</p>
+                        <?php $registration_date = date_create($purchase_management->registration_date);?>
+                        {{ date_format($registration_date,"d/m/Y") }}</p>
                 </td>
             </tr>
         </table>
@@ -1267,19 +1308,18 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     rowspan="3">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Servicio al que destina
-                        el vehículo:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;text-align: left;">Servicio al que destina el vehículo:</p>
+                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 0px; text-align: left;"></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     rowspan="3">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Código CET (Código
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;text-align: left;">Código CET (Código
                         Electrónico de Transferencia): </p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="width:195pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     rowspan="3">
-                    <p class="s43" style="padding-left: 1pt;text-indent: 0pt;text-align: left;">Código CEMA (Código
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;text-align: left;">Código CEMA (Código
                         Electrónico de Maquinaria Agrícola):</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
@@ -1298,19 +1338,17 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Tipo
-                        vía:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Tipo vía:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Nombre
-                        de la vía:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Nombre de la vía:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Número:
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Número:
                     </p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
@@ -1320,37 +1358,37 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Bloque:
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Bloque:
                     </p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Portal:
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Portal:
                     </p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Escalera:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 4pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Planta:
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Planta:
                     </p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 5pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Puerta:
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Puerta:
                     </p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">KM:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">KM:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
@@ -1359,25 +1397,24 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Código
-                        postal:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Código postal:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Provincia:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 4pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Municipio:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Localidad:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
@@ -1411,18 +1448,18 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">NIF/NIE/CIF:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;text-align: left;">NIF/NIE/CIF:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Fecha nacimiento
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;text-align: left;">Fecha nacimiento
                         (dd/mm/aaaa):</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;text-align: left;">Nombre/Razón social:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;text-align: left;">Nombre/Razón social:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
             </tr>
@@ -1431,13 +1468,13 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Apellido 1:</p>
-                    <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
+                        <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Apellido 2:</p>
                     <p style="padding-left: 5px;text-indent: 0pt;line-height: 20px; text-align: left;"></p>
                 </td>
@@ -1445,34 +1482,34 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:30pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Tutela:
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Tutela:
                     </p>
-                    <p style="text-indent: 0pt;text-align: left;"><br /></p>
-                    <ul id="l10">
+                     
+                    <ul >
                         <li>
-                            <p class="s46" style="padding-left: 102pt;text-indent: -8pt;text-align: left;"><span
-                                    class="s26"><input type="radio" name="" id=""></span> Menor de edad <span
-                                    class="s26"><input type="radio" name="" id=""></span>Otras causas</p>
+                            <p class="s46" style="padding-left: 102pt;text-indent: -8pt;text-align: left;">
+                                <span class="s26"><input type="radio" name="" id=""></span> Menor de edad 
+                                &nbsp;&nbsp;&nbsp;
+                                <span class="s26"><input type="radio" name="" id=""></span>Otras causas</p>
                         </li>
                     </ul>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">NIF/NIE
-                        del tutor:</p>
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">NIF/NIE del tutor:</p>
                     <p style="text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
             </tr>
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Código
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">Código
                         IAE (Impuesto de Actividades Económicas):</p>
                     <p style="text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     colspan="2">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Descripción IAE:</p>
                     <p style="text-indent: 0pt;line-height: 20px; text-align: left;"><br></p>
                 </td>
@@ -1491,7 +1528,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         <table style="border-collapse:collapse;margin-left:7.03pt;width: 755px" cellspacing="0">
             <tr style="height:14pt">
                 <td
-                    style="padding-right: 50px border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:2pt;border-bottom-style:solid;border-bottom-width:1pt;">
+                    style="padding-right: 50px border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;">
                     <p class="s16" style="padding-left: 7pt;text-indent: 0pt;line-height: 16pt;text-align: left;"><span
                             class="s26"><input type="radio" name="" id="" checked></span> Titular </p>
                 </td>
@@ -1506,14 +1543,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         NIF/NIE/CIF:</p>
+                    <p style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->dni }}
+                        </p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Nombre/Razón social:</p>
-                    <p style="text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->name }}
+                    <p style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 20px; text-align: left;">{{ $purchase_management->name }}
                     </p>
 
                 </td>
@@ -1521,17 +1560,17 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:28pt">
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Apellido 1:</p>
-                    <p style="text-indent: 0pt;line-height: 20px; text-align: left;">
+                    <p style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 20px; text-align: left;">
                         {{ $purchase_management->firts_surname }}</p>
 
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s43" style="padding-left: 3pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
+                    <p class="s43" style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 7pt;text-align: left;">
                         Apellido 2:</p>
-                    <p style="text-indent: 0pt;line-height: 20px; text-align: left;">
+                    <p style="padding-left: 3pt;padding-top: 2pt;text-indent: 0pt;line-height: 20px; text-align: left;">
                         {{ $purchase_management->second_surtname }}</p>
 
                 </td>
@@ -1650,8 +1689,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             DNI<u>{{ $purchase_management->dni_representative }} </u>, Gestor Administrativo en ejercicio, colegiado
             número &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span class="p">, perteneciente al
                 Colegio Oficial de Gestores Administrativos de</span> <span class="p">, con domicilio en
-                {{ $purchase_management->municipality }} , calle</span><u> {{ $purchase_management->street }}</u>
-            nº <u> {{ $purchase_management->nro_street }} </u> C.P.<u>{{ $purchase_management->postal_code }}
+                 , calle</span><u> &nbsp;&nbsp;  </u>
+            nº <u>&nbsp; &nbsp;   </u> C.P.<u> &nbsp; &nbsp; 
             </u>,en concepto de <b>MANDATARIO,</b><span>para su actuación ante todos los órganos y entidades de la
                 Administración del Estado, Autonómica, Provincial y Local que resulten competentes, y específicamente
                 ante la Dirección General de Tráfico del Ministerio del Interior del Gobierno de España, para que
@@ -1708,7 +1747,15 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                 Control, en los términos previstos en la Ley de Protección de Datos de Carácter personal, y el
                 Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo de 27 de abril de 2016.</span></p>
         <p style="text-indent: 0pt;text-align: left;"><br /></p>
-        <p style="text-indent: 0pt;text-align: center;">En<u> </u>a _<u> </u>de<u> </u>2021</p>
+        <?php 
+            $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+            $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            $fecha = date_create($purchase_management->current_year);
+            $mes = date_format($fecha ,"n");
+            //Salida: Miercoles 05 de Septiembre del 2016
+        
+        ?>
+        <p style="text-indent: 0pt;text-align: center;">En Madrid {{ date_format($fecha ,"d") }} {{ $meses[date($mes)-1] }} de {{ date_format($fecha ,"Y") }}</p>
         <p style="text-indent: 0pt;text-align: center;"><b>EL MANDANTE</b></p>
         <p style="text-indent: 0pt;text-align: left;"><br /></p>
         <p style="padding-top: 9pt;padding-left: 12pt;text-indent: 0pt;text-align: justify;"><span>El mandatario acepta
@@ -1737,9 +1784,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                     <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">D./Dª.
                         {{ $purchase_management->name }} {{ $purchase_management->firts_surname }}
                         {{ $purchase_management->second_surtname }} con D.N.I. núm. {{ $purchase_management->dni }}
-                        <span>domicilio de provincia de {{ $purchase_management->street }}
-                            {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }}
-                            {{ $purchase_management->floor }} {{ $purchase_management->letter }} declara haber
+                        <span>domicilio de provincia de {{ $purchase_management->province }} con dirección {{ $purchase_management->street }},  nro
+                            {{ $purchase_management->nro_street }},  
+                            @if(!!$purchase_management->stairs) escalera, {{ $purchase_management->stairs }} @endif
+                            @if(!!$purchase_management->floor) piso {{ $purchase_management->floor }}, @endif   
+                             @if(!!$purchase_management->letter) letra {{ $purchase_management->letter }} @endif  declara haber
                             extraviado la documentación del vehículo matrícula
                             {{ $purchase_management->registration_number }}, marca
                             {{ $purchase_management->brand }}</span> y se compromete a entregarla a motOstion en caso de
@@ -1755,9 +1804,17 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                         Firma del titular:</p>
                 </td>
                 <td style="">
-                    <p class="s18"
-                        style="padding-top: 3pt;padding-left: 10pt;text-indent: 0pt;line-height: 13pt;text-align: right;">A
-                        de de <span class="s42">2021</span></p>
+                    <?php
+ 
+                        $diassemana = array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sábado");
+                        $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+                        $fecha = date_create($purchase_management->current_year);
+                        $mes = date_format($fecha ,"n");
+                        //Salida: Miercoles 05 de Septiembre del 2016
+                    
+                    ?>
+                    <p class="s18" style="padding-top: 3pt;padding-left: 10pt;text-indent: 0pt;line-height: 13pt;text-align: right;">
+                        <span class="s30"> A {{ date_format($fecha ,"d") }} {{ $meses[date($mes)-1] }}</span><span class="s30" style="text-decoration: none;" > de {{ date_format($fecha ,"Y") }}</span></p>
                 </td>
             </tr>
         </table>
@@ -1806,12 +1863,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:35pt">
                 <td style="border: 1px solid currentColor;border-right:none;">
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">Al
+                    <p class="s16" style="padding-left: 10pt;text-indent: 2pt;line-height: 12pt;text-align: left;">Al
                         contado:</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">El
+                    <p class="s16" style="padding-left: 10pt;text-indent: 2pt;line-height: 12pt;text-align: left;">El
                         vendedor recibe en este acto la cantidad acordada por parte de motOstion y para que conste firma
                         en el lugar y la fecha indicada.</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">en
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;">en
                         Madrid a :</p>
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
@@ -1839,16 +1896,15 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             <tr style="height:35pt">
                 <td style="border: 1px solid solid #000;border-right:none;">
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
                         Transferencia Bancaria:</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">El
+                    <p class="s16" style="padding-left: 10pt;text-indent: 2pt;line-height: 12pt;text-align: left;">El
                         vendedor recibirá el importe acordado a través de transferencia bancaria en el plazo de 5 días
                         hábiles desde el momento en que el vehículo y la documentación llegue a las instalaciones de
                         motOstion.</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
                         Número de Cuenta :</p>
-                    <p class="s24" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;"><a
-                            name="bookmark5">ES</a> {{ $purchase_management->iban }} </p>
+                    <p class="s24" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;"> {{ $purchase_management->iban }} </p>
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
                 </td>
                 <td style="width: 200px; border: 1px solid #000; border-left:none;">
@@ -1871,8 +1927,6 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                 </td>
             </tr>
         </table>
-
-        <div class="saltoDePagina"></div>
     </div>
 </body>
 </html>

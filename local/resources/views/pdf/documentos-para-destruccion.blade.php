@@ -224,7 +224,7 @@
             font-style: normal;
             font-weight: normal;
             text-decoration: none;
-            font-size: 13pt;
+            font-size: 11pt;
         }
 
         .s22 {
@@ -986,7 +986,7 @@
             <tr style="height:42pt">
                 <td style="width:534pt" colspan="2">
                     <p class="s21-1"
-                        style="padding-top: 1pt;padding-left: 10pt;text-indent: 0pt;line-height: 11pt;text-align: center;">
+                        style="padding-top: 1pt;text-indent: 0pt;line-height: 11pt;text-align: center;">
                         De una parte, D. <b>{{ $purchase_management->name }}
                             {{ $purchase_management->firts_surname }}
                             {{ $purchase_management->second_surtname }}</b> con D.N.I.:
@@ -1050,7 +1050,7 @@
                         </li>
                         <li>
                             <p class="s21-1"
-                                style="padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">El
+                                style="padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;"> El
                                 propietario hace entrega del vehiculo para que pueda ser vendido o descontaminado, segun
                                 convenga a motOstion desde la fecha de de firma de este documento.</p>
                             <p style="text-indent: 0pt;text-align: left;"><br /></p>
@@ -1083,7 +1083,7 @@
                         de bastidor: {{ $purchase_management->frame_no }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s21-1" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Número de motor:
-                        {{ $purchase_management->motor_no }}</p>
+                        {{ $purchase_management->type_motor }}</p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s21-1" style="padding-left: 34pt;text-indent: 0pt;text-align: left;">Matrícula:
                         {{ $purchase_management->registration_number }}</p>
@@ -1340,25 +1340,25 @@
             <tr style="height:23pt">
                 <td style="width:370px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     >
-                    <p class="s18" style="padding-top: 4pt;padding-left: 64pt;text-indent: 0pt;text-align: center;">1er
+                    <p class="s18" style="padding-top: 4pt;text-indent: 0pt;text-align: center;">1er
                         apellido</p>
                 </td>
                 <td
                     style="width:370px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s18"
-                        style="padding-top: 4pt;padding-left: 70pt;padding-right: 100pt;text-indent: 0pt;text-align: center;">
+                        style="padding-top: 4pt;text-indent: 0pt;text-align: center;">
                         2 º apellido</p>
                 </td>
             </tr>
             <tr style="height:28pt">
                 <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
                     >
-                    <p class="s32" style="padding-left: 3pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
                         {{ $purchase_management->firts_surname }}</p>
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s32" style="padding-left: 3pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
                         {{ $purchase_management->second_surtname }}</p>
                 </td>
             </tr>
@@ -1384,17 +1384,17 @@
             <tr style="height:28pt">
                 <td
                     style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s32" style="padding-left: 3pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
                         {{ $purchase_management->name }}</p>
                 </td>
                 <td
                     style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s32" style="padding-left: 3pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
                         {{ $purchase_management->dni }}</p>
                 </td>
                 <td
                     style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s32" style="padding-left: 3pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 6pt;padding-bottom: 4pt;text-indent: 0pt;line-height: 14pt;text-align: left;">
                         <?php $birthdate = date_create($purchase_management->birthdate);?>
    
                         {{ date_format($birthdate,"d/m/Y") }}</p>
@@ -1412,60 +1412,62 @@
         </table>
         <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:23pt">
-                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
-                    colspan="2">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 40pt;text-indent: 0pt;text-align: center;">1er
+                <td style="width:370px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    >
+                    <p class="s18" style="padding-top: 4pt;text-indent: 0pt;text-align: center;">1er
                         apellido</p>
                 </td>
                 <td
-                    style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 30pt;text-indent: 0pt;text-align: center;">2 º
+                    style=width:370px;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s18" style="padding-top: 4pt;text-indent: 0pt;text-align: center;">2 º
                         apellido</p>
                 </td>
             </tr>
             <tr style="height:23pt">
-                <td style="width:170pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
-                    colspan="2">
-                    <p class="s18" style="padding-left: 3pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
+                <td style=";border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt"
+                    >
+                    <p class="s32" style="padding-left: 6pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
                         {{ $purchase_management->firts_surname_representative }} <br></p>
                 </td>
                 <td
-                    style="width:200pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
+                    style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
                         {{ $purchase_management->second_surtname_representantive }} <br></p>
                 </td>
             </tr>
+        </table>
+        <table style="border-collapse:collapse;margin-left:8.52pt;width: 755px" cellspacing="0">
             <tr style="height:23pt">
                 <td
                     style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 40pt;text-indent: 0pt;text-align: center;">
+                    <p class="s18" style="padding-top: 4pt;text-indent: 0pt;text-align: center;">
                         Nombre/ Razón social</p>
                 </td>
                 <td
                     style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 40pt;text-indent: 0pt;text-align: center;">
+                    <p class="s18" style="padding-top: 4pt;text-indent: 0pt;text-align: center;">
                         DNI/NIE/CIF</p>
                 </td>
                 <td
                     style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-top: 4pt;padding-left: 23pt;text-indent: 0pt;text-align: center;">Fecha
+                    <p class="s18" style="padding-top: 4pt;ptext-indent: 0pt;text-align: center;">Fecha
                         nacimiento</p>
                 </td>
             </tr>
             <tr style="height:23pt">
                 <td
                     style="width:199pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
                         {{ $purchase_management->name_representantive }}<br></p>
                 </td>
                 <td
                     style="width:148pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
                         {{ $purchase_management->dni_representantive }}<br></p>
                 </td>
                 <td
                     style="width:142pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s18" style="padding-left: 3pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
+                    <p class="s32" style="padding-left: 6pt;padding-top: 4pt;text-indent: 0pt;line-height: 14pt;text-align: center;">
                         <?php $birthdate_representative = date_create($purchase_management->birthdate_representative);?>
                        @if($purchase_management->birthdate_representative != '0000-00-00')
                          {{ date_format($birthdate_representative,"d/m/Y") }} <br> 
@@ -1506,10 +1508,10 @@
                             
                         </span>
                     </p>
-                    <p class="s26" style="padding-left: 92pt;text-indent: 0pt;line-height: 10pt;text-align: left;">DNI: <span class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->dni }}</span>
+                    <p class="s18" style="padding-left: 92pt;text-indent: 0pt;line-height: 10pt;text-align: left;">DNI: <span class="s26" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->dni }}</span>
                     </p>
-                    <p class="s26" style="padding-left: 91pt;text-indent: 0pt;line-height: 10pt;text-align: left;">
-                        NOMBRE Y APELLIDOS: <span class="s18" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->name }} {{ $purchase_management->firts_surname }}
+                    <p class="s18" style="padding-left: 91pt;text-indent: 0pt;line-height: 10pt;text-align: left;">
+                        NOMBRE Y APELLIDOS: <span class="s26" style="padding-left: 3pt;text-indent: 0pt;line-height: 14pt;text-align: left;">{{ $purchase_management->name }} {{ $purchase_management->firts_surname }}
                             {{ $purchase_management->second_surtname }}</span>
                     </p>
                     <?php
@@ -1533,7 +1535,7 @@
             </span></p>
         <div class="saltoDePagina"></div>
     </div>
-     {{-- Hoja 12 --}}
+    {{-- Hoja 12 --}}
      <div class="container-fluid">
         <p style="text-indent: 0pt;text-align: left;"><br /></p>
         <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
@@ -1550,9 +1552,11 @@
                     <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">D./Dª.
                         {{ $purchase_management->name }} {{ $purchase_management->firts_surname }}
                         {{ $purchase_management->second_surtname }} con D.N.I. núm. {{ $purchase_management->dni }}
-                        <span>domicilio de provincia de {{ $purchase_management->province }} con dirección {{ $purchase_management->street }}
-                            {{ $purchase_management->nro_street }} {{ $purchase_management->stairs }}
-                            {{ $purchase_management->floor }} {{ $purchase_management->letter }} declara haber
+                        <span>domicilio de provincia de {{ $purchase_management->province }} con dirección {{ $purchase_management->street }},  nro
+                            {{ $purchase_management->nro_street }},  
+                            @if(!!$purchase_management->stairs) escalera, {{ $purchase_management->stairs }} @endif
+                            @if(!!$purchase_management->floor) piso {{ $purchase_management->floor }}, @endif   
+                             @if(!!$purchase_management->letter) letra {{ $purchase_management->letter }} @endif  declara haber
                             extraviado la documentación del vehículo matrícula
                             {{ $purchase_management->registration_number }}, marca
                             {{ $purchase_management->brand }}</span> y se compromete a entregarla a motOstion en caso de
@@ -1627,12 +1631,12 @@
             <tr style="height:35pt">
                 <td style="border: 1px solid currentColor;border-right:none;">
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">Al
+                    <p class="s16" style="padding-left: 10pt;text-indent: 2pt;line-height: 12pt;text-align: left;">Al
                         contado:</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">El
+                    <p class="s16" style="padding-left: 10pt;text-indent: 2pt;line-height: 12pt;text-align: left;">El
                         vendedor recibe en este acto la cantidad acordada por parte de motOstion y para que conste firma
                         en el lugar y la fecha indicada.</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">en
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;">en
                         Madrid a :</p>
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
@@ -1660,16 +1664,15 @@
             <tr style="height:35pt">
                 <td style="border: 1px solid solid #000;border-right:none;">
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
                         Transferencia Bancaria:</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">El
+                    <p class="s16" style="padding-left: 10pt;text-indent: 2pt;line-height: 12pt;text-align: left;">El
                         vendedor recibirá el importe acordado a través de transferencia bancaria en el plazo de 5 días
                         hábiles desde el momento en que el vehículo y la documentación llegue a las instalaciones de
                         motOstion.</p>
-                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;">
+                    <p class="s16" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;">
                         Número de Cuenta :</p>
-                    <p class="s24" style="padding-left: 10pt;text-indent: 0pt;line-height: 10pt;text-align: left;"><a
-                            name="bookmark5">ES</a> {{ $purchase_management->iban }} </p>
+                    <p class="s24" style="padding-left: 10pt;text-indent: 0pt;line-height: 12pt;text-align: left;"> {{ $purchase_management->iban }} </p>
                     <p style="text-indent: 0pt;text-align: justify;"><br /></p>
                 </td>
                 <td style="width: 200px; border: 1px solid #000; border-left:none;">
@@ -1692,8 +1695,6 @@
                 </td>
             </tr>
         </table>
-
-        <div class="saltoDePagina"></div>
     </div>
 </body>
 </html>
