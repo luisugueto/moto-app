@@ -1478,7 +1478,6 @@ class PurchaseValuationController extends Controller
 
     public function updateFicha(Request $request)
     {
-        //dd($request->all());
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
 
         if(!$edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
@@ -1527,10 +1526,13 @@ class PurchaseValuationController extends Controller
         $purchase->data_serialize = $request->data_serialize;
         $purchase->update();
 
-        if($request->documents_attached == 'on'){
+        $documents_attached = 0;
+        $non_existence_document = 0;
+
+        if($request->documents_attached){
             $documents_attached = 1;
         }
-        if($request->non_existence_document == 'on'){
+        if($request->non_existence_document){
             $non_existence_document = 1;
         }
 
