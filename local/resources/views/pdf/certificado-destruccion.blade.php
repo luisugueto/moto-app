@@ -1194,7 +1194,7 @@
                         <b>Firma del titular o representante</b></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;"><b>2.12
-                            Fecha </b><span class="s5">:</span> {{ $purchase_management->collection_contract_date }}
+                            Fecha </b><span class="s5">:</span>  {{ date('d-m-Y') }}
                     </p>
                 </td>
             </tr>

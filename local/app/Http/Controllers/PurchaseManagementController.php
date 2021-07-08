@@ -174,7 +174,7 @@ class PurchaseManagementController extends Controller
         $purchaseValuation->update();
          
         $gestion = PurchaseManagement::find($request->purchase_id);
-        $gestion->collection_contract_date = $request->purchase_id;
+        $gestion->collection_contract_date =  date('Y-m-d');
         $gestion->documents_attached = $documents_attached;
         $gestion->non_existence_document = $non_existence_document;
         $gestion->vehicle_delivers = $request->vehicle_delivers;

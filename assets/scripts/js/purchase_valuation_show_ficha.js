@@ -341,8 +341,14 @@ $(document).ready(function () {
                             dd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             dd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
+                        else if(element.get_status_document.status == 'REJECTED'){
+                            dd += '<tr><th>'+element.name_document+'</th>';
+                            dd += '<th>Rechazado</th>'; 
+                            dd += '<th></th></tr>';
+                        }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            dd += '<tr><th>Aprobado</th>'; 
+                            dd += '<tr><th>'+element.name_document+'</th>'; 
+                            dd += '<th>Aprobado</th>'; 
                             dd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
@@ -364,8 +370,14 @@ $(document).ready(function () {
                             ddd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             ddd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
+                        else if(element.get_status_document.status == 'REJECTED'){
+                            ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>Rechazado</th>'; 
+                            ddd += '<th></th></tr>';
+                        }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            ddd += '<tr><th>Aprobado</th>'; 
+                            ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>Aprobado</th>'; 
                             ddd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
@@ -387,8 +399,14 @@ $(document).ready(function () {
                             ps += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             ps += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
+                        else if(element.get_status_document.status == 'REJECTED'){
+                            ps += '<tr><th>'+element.name_document+'</th>';
+                            ps += '<th>Rechazado</th>'; 
+                            ps += '<th></th></tr>';
+                        }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            ps += '<tr><th>Aprobado</th>'; 
+                            ps += '<tr><th>'+element.name_document+'</th><th>';
+                            ps += '<th>Aprobado</th>'; 
                             ps += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
@@ -410,8 +428,14 @@ $(document).ready(function () {
                             psd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
                             psd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
+                        else if(element.get_status_document.status == 'REJECTED'){
+                            psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>Rechazado</th>'; 
+                            psd += '<th></th></tr>';
+                        }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            psd += '<tr><th>Aprobado</th>'; 
+                            psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>Aprobado</th>'; 
                             psd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
