@@ -965,8 +965,13 @@
                 </td>
                 <td
                     style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <?php 
+                        $cadena="0000000";
+
+                        $cadena = substr($cadena,0,-(strlen($purchase->id))).$purchase->id;
+                    ?>
                     <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
-                        CTV/MD/12173/</p>
+                        CTV/MD/12173/{{ $cadena }}</p>
                 </td>
             </tr>
         </table>
