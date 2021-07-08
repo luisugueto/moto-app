@@ -328,7 +328,9 @@
                 <td
                     style="width:158pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p style="text-indent: 0pt;text-align: center;"></p>
-                    <p class="s2" style="padding-top: 10pt;padding-bottom: 4pt ;text-indent: 0pt;line-height: 10pt;text-align: center;">    {{ $purchase_management->registration_date }}
+                    <p class="s2" style="padding-top: 10pt;padding-bottom: 4pt ;text-indent: 0pt;line-height: 10pt;text-align: center;">    
+                        <?php $registration_date = date_create($purchase_management->registration_date);?>
+                        {{ date_format($registration_date,"d-m-Y") }}
                     </p>
                 </td>
                 <td
