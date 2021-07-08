@@ -183,7 +183,7 @@
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="year" class="">Año:</label>
-                                        <select name="year" id="year" class="form-control select" value="{{ old('year') }}" required></select>
+                                        <select name="year" id="year" class="form-control select" required></select>
                                         @if ($errors->has('year'))
                                             <span class="error text-danger">
                                                 <strong>{{ $errors->first('year') }}</strong>

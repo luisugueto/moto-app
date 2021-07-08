@@ -1417,14 +1417,22 @@ Dropzone.options.myDropzone = {
         );
     }
 };
-document.getElementById("resultados").innerHTML = ""
+document.getElementById("resultados").innerHTML = "";
 window.addEventListener('load',function(){
     document.getElementById("texto").addEventListener("keyup", () => {
         if((document.getElementById("texto").value.length)>=1)
             fetch(`/motos/buscador?texto=${document.getElementById("texto").value}`,{ method:'get' })
             .then(response  =>  response.text() )
-            .then(html      =>  {   document.getElementById("resultados").innerHTML = html  })
+            .then(html      =>  {   document.getElementById("resultados").innerHTML = html  });
         else
-            document.getElementById("resultados").innerHTML = ""
-    })
+            document.getElementById("resultados").innerHTML = "";
+    });
+
+    document.getElementById("texto").addEventListener("paste", (e) => {
+        let paste = (event.clipboardData || window.clipboardData).getData('text');
+        
+        fetch(`/motos/buscador?texto=${paste}`,{ method:'get' })
+            .then(response  =>  response.text() )
+            .then(html      =>  {   document.getElementById("resultados").innerHTML = html  });
+    });
 });  

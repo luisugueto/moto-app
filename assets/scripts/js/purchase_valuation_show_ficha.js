@@ -10,7 +10,7 @@ $(document).ready(function () {
     }
     if (action == 2) {
         var id = sessionStorage.getItem('id_purchase');
-        // console.log(action, id)
+
         $.ajax({
             type: "GET",
             url: 'ficha_de_la_moto/' + id,
@@ -23,7 +23,7 @@ $(document).ready(function () {
                 $('#purchase_id').val(data.id);
                 $('#document_purchase_id').val(data.id);
                 $('#image_purchase_id').val(data.id);
-                $('#year').val(data.year);
+                $("#year").val(data.year).trigger('change');
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
                 $('#km').val(data.km);
