@@ -1492,7 +1492,7 @@
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s8"
                         style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">
-                        5.3 Fecha: {{ $purchase_management->collection_contract_date }} <span class="s8"
+                        5.3 Fecha: {{ date('d-m-Y') }} <span class="s8"
                             style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor
                             (Sello y firma)</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>

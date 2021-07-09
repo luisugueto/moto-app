@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('purchase_valuation_interested/ficha_de_la_moto', 'PurchaseValuationController@showFicha');
     Route::get('purchase_valuation_interested/ficha_de_la_moto/{id}', 'PurchaseValuationController@getDataFicha');
     Route::post('purchase_valuation_interested/update_ficha', 'PurchaseValuationController@updateFicha')->name('updateFicha');
+    Route::get('purchase_valuation_interested/send_mail_document/{id}', 'PurchaseValuationController@send_mail_document');
 
     //Residuos
     Route::get('envios-quincenales', 'ResiduosController@enviosQuincenales');

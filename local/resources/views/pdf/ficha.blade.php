@@ -1194,7 +1194,7 @@
                         <b>Firma del titular o representante</b></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;"><b>2.12
-                            Fecha </b><span class="s5">:</span> {{ $purchase_management->collection_contract_date }}
+                            Fecha </b><span class="s5">:</span> {{ date('d-m-Y') }}
                     </p>
                 </td>
             </tr>
@@ -1350,10 +1350,15 @@
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;"><b>4.3 Codigo de
                             autorización de gestor de residus peligrosos</b></p>
                 </td>
-                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt"
-                    colspan="3">
-                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">
-                        <b>CATv/MD/12173</b></p>
+                <td
+                    style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <?php 
+                        $cadena="0000000";
+
+                        $cadena = substr($cadena,0,-(strlen($purchase->id))).$purchase->id;
+                    ?>
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
+                        CTV/MD/12173/{{ $cadena }}</p>
                 </td>
                 <td
                     style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
@@ -1487,7 +1492,7 @@
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s8"
                         style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">
-                        5.3 Fecha: {{ $purchase_management->collection_contract_date }} <span class="s8"
+                        5.3 Fecha: {{ date('d-m-Y') }}  <span class="s8"
                             style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor
                             (Sello y firma)</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
@@ -1760,7 +1765,7 @@
                         <b>Firma del titular o representante</b></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;"><b>2.12
-                            Fecha </b><span class="s5">:</span> {{ $purchase_management->collection_contract_date }}
+                            Fecha </b><span class="s5">:</span> {{ date('d-m-Y') }}
                     </p>
                 </td>
             </tr>
@@ -1916,10 +1921,15 @@
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;"><b>4.3 Codigo de
                             autorización de gestor de residus peligrosos</b></p>
                 </td>
-                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt"
-                    colspan="3">
-                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">
-                        <b>CATv/MD/12173</b></p>
+                <td
+                    style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <?php 
+                        $cadena="0000000";
+
+                        $cadena = substr($cadena,0,-(strlen($purchase->id))).$purchase->id;
+                    ?>
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
+                        CTV/MD/12173/{{ $cadena }}</p>
                 </td>
                 <td
                     style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
@@ -2053,7 +2063,7 @@
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s8"
                         style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">
-                        5.3 Fecha: {{ $purchase_management->collection_contract_date }} <span class="s8"
+                        5.3 Fecha: {{ date('d-m-Y') }}  <span class="s8"
                             style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor
                             (Sello y firma)</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
@@ -2326,7 +2336,7 @@
                         <b>Firma del titular o representante</b></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;"><b>2.12
-                            Fecha </b><span class="s5">:</span> {{ $purchase_management->collection_contract_date }}
+                            Fecha </b><span class="s5">:</span> {{ date('d-m-Y') }}
                     </p>
                 </td>
             </tr>
@@ -2482,10 +2492,15 @@
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;"><b>4.3 Codigo de
                             autorización de gestor de residus peligrosos</b></p>
                 </td>
-                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt"
-                    colspan="3">
-                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">
-                        <b>CATv/MD/12173</b></p>
+                <td
+                    style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <?php 
+                        $cadena="0000000";
+
+                        $cadena = substr($cadena,0,-(strlen($purchase->id))).$purchase->id;
+                    ?>
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
+                        CTV/MD/12173/{{ $cadena }}</p>
                 </td>
                 <td
                     style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
@@ -2619,7 +2634,7 @@
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s8"
                         style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">
-                        5.3 Fecha: {{ $purchase_management->collection_contract_date }} <span class="s8"
+                        5.3 Fecha: {{ date('d-m-Y') }}  <span class="s8"
                             style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor
                             (Sello y firma)</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
@@ -2892,7 +2907,7 @@
                         <b>Firma del titular o representante</b></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s2" style="padding-left: 4pt;text-indent: 0pt;line-height: 6pt;text-align: left;"><b>2.12
-                            Fecha </b><span class="s5">:</span> {{ $purchase_management->collection_contract_date }}
+                            Fecha </b><span class="s5">:</span> {{ date('d-m-Y') }}
                     </p>
                 </td>
             </tr>
@@ -3048,10 +3063,15 @@
                     <p class="s2" style="padding-left: 3pt;text-indent: 0pt;text-align: left;"><b>4.3 Codigo de
                             autorización de gestor de residus peligrosos</b></p>
                 </td>
-                <td style="width:65pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt"
-                    colspan="3">
-                    <p class="s2" style="padding-top: 4pt;padding-left: 6pt;text-indent: 0pt;text-align: left;">
-                        <b>CATv/MD/12173</b></p>
+                <td
+                    style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <?php 
+                        $cadena="0000000";
+
+                        $cadena = substr($cadena,0,-(strlen($purchase->id))).$purchase->id;
+                    ?>
+                    <p class="s30" style="padding-top: 2pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">
+                        CTV/MD/12173/{{ $cadena }}</p>
                 </td>
                 <td
                     style="width:41pt;border-top-style:solid;border-top-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
@@ -3185,7 +3205,7 @@
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
                     <p class="s8"
                         style="padding-top: 4pt;padding-left: 4pt;text-indent: 0pt;line-height: 8pt;text-align: left;">
-                        5.3 Fecha: {{ $purchase_management->collection_contract_date }} <span class="s8"
+                        5.3 Fecha: {{ date('d-m-Y') }}  <span class="s8"
                             style="padding-top: 3pt;padding-left: 25pt;text-indent: 0pt;line-height: 8pt;text-align: left;">Gestor
                             (Sello y firma)</span></p>
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
