@@ -79,6 +79,34 @@
                 </div>                
             </div>
         </div>
+   
+        <div class="mb-3 card">
+            <div class="card-header">
+                <div class="card-title">
+                    Aplicar Procesos y Subprocesos
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="position-relative form-group">
+                    <label>Elegir Proceso: </label>
+                    <select  class="custom-select custom-control" id="process">
+                        <option value="" disabled selected>Seleccione</option>
+                        @foreach($processes as $process)
+                            <option value="{{ $process->id }}">{{ $process->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="position-relative form-group">
+                    <label>Elegir Sub-Proceso para aplicar al vehículo: </label>
+                    <select  class="custom-select custom-control custom-control-inline" id="subprocess"  >
+                        <option value="" disabled selected>Seleccione</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="btn-applySubProcess" value="add">Aplicar</button>
+            </div>
+        </div>
+             
     </div>
     <div class="col-md-8">
         <div class="mb-3 card">
@@ -151,7 +179,7 @@
                                 <div class="col-md-12">
                                     <button class="btn btn-warning float-right" id="editTabFicha0" type="button"><i class="fa fa-edit"></i> Editar</button>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mostrar">
                                     <div class="position-relative form-group">
                                         <label for="brand" class="">Marca:</label>
                                         <select class="form-control select" name="brand" id="brand" onChange="setModel()" style="width: 100%">
@@ -166,12 +194,13 @@
                                             </span>
                                         @endif
                                     </div>
+                                    <button type="button" id="ver" class="btn btn-danger btn-sm mb-3">No encuentro Modelo/marca</button>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 mostrar">
                                     <div class="position-relative form-group">
                                         <label for="model" class="">Modelo:</label>
                                         <select class="form-control select" name="model" id="model" disabled  style="width: 100%">
-                                            <option value="" disabled selected="">Seleccione</option>
+                                            <option disabled selected="">Seleccione</option>
                                         </select>
                                         @if ($errors->has('model'))
                                             <span class="error text-danger">
@@ -180,6 +209,28 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="col-md-3 ocultar">
+                                    <div class="position-relative form-group">
+                                        <label for="brand" class="">Marca:</label>
+                                        <input type="text" name="brand" id="brand_text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 ocultar">
+                                    <div class="position-relative form-group">
+                                        <label for="model" class="">Modelo:</label>
+                                        <input type="text" name="model" id="model_text" class="form-control">
+
+                                        @if ($errors->has('model'))
+                                            <span class="error text-danger">
+                                                <strong>{{ $errors->first('model') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="exist_model_brand" id="exist_model_brand" value="0">
+
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="year" class="">Año:</label>
@@ -782,30 +833,6 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
-                                        <label for="brand_management" class="">Marca:</label>
-                                        <input name="brand_management" id="brand_management" type="text" class="form-control"
-                                            value="{{ old('brand_management') }}">
-                                        @if ($errors->has('brand_management'))
-                                            <span class="error text-danger">
-                                                <strong>{{ $errors->first('brand_management') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="position-relative form-group">
-                                        <label for="model_management" class="">Modelo:</label>
-                                        <input name="model_management" id="model_management" type="text" class="form-control"
-                                            value="{{ old('model_management') }}">
-                                        @if ($errors->has('model_management'))
-                                            <span class="error text-danger">
-                                                <strong>{{ $errors->first('model_management') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="position-relative form-group">
                                         <label for="version" class="">Versión:</label>
                                         <input name="version" id="version" type="text" class="form-control"
                                             value="{{ old('version') }}">
@@ -828,8 +855,6 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row row g-1">
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="kilometres" class="">Kilómetros:</label>
@@ -854,7 +879,10 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="form-row row g-1">
+                                
+                                <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <div class="mt-3">
                                             Combustible:
@@ -893,8 +921,6 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row row g-1">
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="registration_date" class="">Fecha de Matriculación:</label>
@@ -907,6 +933,9 @@
                                         @endif
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row row g-1">
+                                
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="registration_country" class="">País de Matriculación:</label>
@@ -1039,29 +1068,40 @@
                     
                     
                 </form>
-                <br>
-                <div class="scroll-area-lg" id="divProcesosDesguace" style="display: none">
-                    <div class="scrollbar-container">
-                        <div class="p-2">
-                            <ul class="todo-list-wrapper list-group list-group-flush" id="ulProcesses">
-                                
-                            </ul>
-                        </div>
+            </div>
+        </div>
+        
+        <div class="card-hover-shadow-2x mb-3 card">
+            <div class="card-header-tab card-header">
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                    <i class="header-icon lnr-database icon-gradient bg-malibu-beach"> </i>Lista de procesos aplicados
+                </div>
+            </div>
+            <div class="scroll-area-lg" id="divProcesosDesguace" style="display: none">
+                <div class="scrollbar-container">
+                    <div class="p-2">
+                        <ul class="todo-list-wrapper list-group list-group-flush" id="ulProcesses">
+                            
+                        </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
 
-                <div id="divSendDocument" style="display: none">
-                    <div class="p-2">
+        <div id="divDocumentsViafirma" style="display: none">
+            <div class="mb-3 card">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        Documentos Destrucción
+                    </div>
+                    <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
                         <a class='mb-2 mr-2 btn btn-primary text-white' id="button_document_destruction" title='Enviar Documentos Viafirma'>Enviar Documentos para Destrucción</a>
-                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_destruction_deceased" title='Enviar Documentos Viafirma'>Enviar Documentos para Destrucción Fallecido</a>
-                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_possible_sale" title='Enviar Documentos Viafirma'>Enviar Documentos para Posible Venta</a>
-                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_sale_deceased" title='Enviar Documentos Viafirma'>Enviar Documentos para Posible Venta Fallecido</a>
                     </div>
                 </div>
-
-                <div id="divDocumentsViafirma" style="display: none">
+                <div class="card-body">
                     <div class="p-2">
-                        <h3>Documentos Destrucción</h3>
                         <table width="100%" id="tableDocumentsDestruction" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -1071,8 +1111,20 @@
                                 </tr>
                             </thead>
                         </table>
-                        <hr>
-                        <h3>Documentos Destrucción Fallecido</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 card">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        Documentos Destrucción Fallecido
+                    </div>
+                    <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_destruction_deceased" title='Enviar Documentos Viafirma'>Enviar Documentos para Destrucción Fallecido</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="p-2">
                         <table width="100%" id="tableDestructionDeceased" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -1082,8 +1134,20 @@
                                 </tr>
                             </thead>
                         </table>
-                        <hr>
-                        <h3>Documentos Posible Venta</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 card">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        Documentos Posible Venta
+                    </div>
+                    <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_possible_sale" title='Enviar Documentos Viafirma'>Enviar Documentos para Posible Venta</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="p-2">
                         <table width="100%" id="tablePossibleSale" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -1093,8 +1157,20 @@
                                 </tr>
                             </thead>
                         </table>
-                        <hr>
-                        <h3>Documentos Posible Venta Fallecido</h3>
+                    </div>
+                </div>
+            </div> 
+            <div class="mb-3 card">
+                <div class="card-header-tab card-header">
+                    <div class="card-header-title font-size-lg text-capitalize font-weight-normal">
+                        Documentos Posible Venta Fallecido
+                    </div>
+                    <div class="btn-actions-pane-right text-capitalize actions-icon-btn">
+                        <a class='mb-2 mr-2 btn btn-primary text-white' id="button_sale_deceased" title='Enviar Documentos Viafirma'>Enviar Documentos para Posible Venta Fallecido</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="p-2">
                         <table width="100%" id="tableSaleDeceased" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -1106,82 +1182,57 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-8 offset-4">
-        <div class="mb-3 card">
-            <div class="card-body">
-                <div class="input-group col-md-3" style="display: inline">
-                    <label>Elegir Proceso: </label>
-                    <select  class="custom-select custom-control custom-control-inline" id="process" style="width: 100px">
-                        <option value="" disabled selected>Seleccione</option>
-                        @foreach($processes as $process)
-                            <option value="{{ $process->id }}">{{ $process->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="input-group col-md-3" style="display: inline">
-                    <label>Elegir Sub-Proceso para aplicar al vehículo: </label>
-                    <select  class="custom-select custom-control custom-control-inline" id="subprocess" style="width: 200px">
-                        <option value="" disabled selected>Seleccione</option>
-                    </select>
-                </div>
-                <button type="button" class="btn btn-primary" id="btn-applySubProcess" value="add">Aplicar</button>
-            </div>
+            </div>    
         </div>
     </div>
 
+
 </div>
+
 
 <input id="url" type="hidden" value="{{ url('/purchase_valuation_interested/update_ficha') }}">
 <input id="url_process" type="hidden" value="{{ url('/getSubProcesses') }}">
 <input id="url_index" type="hidden" value="{{ url('/') }}">
 
 @section('modals')
-<script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>
  
 <div class="modal fade" id="modal" role="dialog" aria-labelledby="titleModalImage"
 aria-hidden="true">
-<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="titleModalImage"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="notification alert alert-danger" hidden>
-                <ul id="errors"></ul>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="titleModalImage"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <div class="modal-body">
+                <div class="notification alert alert-danger" hidden>
+                    <ul id="errors"></ul>
+                </div>
 
-            <div class="main-card mb-3 card">
-                <div class="card-body">
-                    <div id="lightbox" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner" id="imagesCarrousel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <div id="lightbox" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner" id="imagesCarrousel">
+                            </div>
+                            <a class="carousel-control-prev" href="#lightbox"  role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#lightbox"  role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#lightbox"  role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#lightbox"  role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
                     </div>
                 </div>
+                
             </div>
-             
         </div>
     </div>
-</div>
 </div> 
+@endsection
 <script type="text/javascript">
     let startYear = 1800;
     let endYear = new Date().getFullYear();
@@ -1190,9 +1241,7 @@ aria-hidden="true">
         $('#year').append($('<option />').val(i).html(i));
     }
 </script>
-
-@endsection
-
+<script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>
 <script>
     var setModel = () => {
     let id = $("#brand").find(':selected').data('id');
@@ -1206,17 +1255,21 @@ aria-hidden="true">
         type: 'POST',
         datatype: 'JSON',
         success: function (resp) {
-            let select = $("#model").empty().append("<option disabled='disabled' selected>Seleccione</option>");
+            let select = $("#model").prop('disabled', 'disabled').empty().append("<option disabled='disabled' selected>Seleccione</option>");
+            
             resp.model.forEach(function(model, index){
-    
+         
                 select.append($('<option>', {
                     value: model.marca,
                     text: model.marca
                 }));
             });
 
+            select.prop('disabled', false);
+
         }
     });
 };
 </script>
+
 @endsection

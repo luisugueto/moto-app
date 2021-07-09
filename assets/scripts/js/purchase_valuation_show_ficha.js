@@ -19,6 +19,18 @@ $(document).ready(function () {
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
+                
+                $("#exist_model_brand").val(data.exist_model_brand);
+
+                if(data.exist_model_brand == 0){  // 0 IS TEXT, 1 IS SELECT
+                    verify_model_brand = 1;
+                    $("#ver").click();
+                    $('#brand_text').val(data.brand);
+                    $('#model_text').val(data.model);
+                }else{
+                    verify_model_brand = 0;
+                    $("#ver").click();
+                }
 
                 $('#purchase_id').val(data.id);
                 $('#document_purchase_id').val(data.id);
@@ -656,8 +668,8 @@ $(document).ready(function () {
             phone_representantive: $('#phone_representantive').val(),
             email_representative: $('#email_representative').val(),
             representation_concept: $('#representation_concept').val(),
-            brand_management: $('#brand_management').val(),
-            model_management: $('#model_management').val(),
+            brand_management: $("#brand").val(),
+            model_management: $("#model").val(),
             version: $('#version').val(),
             type: $('#type').val(),
             kilometres: $('#kilometres').val(),
@@ -825,6 +837,53 @@ $(document).ready(function () {
                 console.log('Error:', data);
             }
         });
+    });
+
+    /////////////////////////////////////////////////
+    var verify_model_brand = null;
+
+     $('#ver').click(function(){
+
+        if(verify_model_brand == 1){
+            $(this).html("Elegir marca y modelo de la lista");
+            
+            $('#model').attr('disabled', 'disabled');
+            $('#brand').attr('disabled', 'disabled');
+            $('#brand_text').removeAttr('disabled');
+            $('#model_text').removeAttr('disabled');
+
+            $('#brand_text').attr('required', 'required');
+            $('#model_text').attr('required', 'required');
+            $('#brand_text').val('');
+            $('#model_text').val('');
+    
+            $("#exist_model_brand").val(0);
+
+            verify_model_brand = 0;
+
+            $(".ocultar").show();
+            $(".mostrar").hide();
+        } else {
+
+            $(this).html("No encuentro Modelo/marca");
+             
+            $('#brand_text').removeAttr('required');
+            $('#model_text').removeAttr('required');
+            $('#brand_text').attr('disabled', 'disabled');
+            $('#model_text').attr('disabled', 'disabled');
+            $('#brand_text').val('');
+            $('#model_text').val('');
+
+            $('#brand').removeAttr('disabled');
+            $('#model').removeAttr('disabled');
+            
+            $("#exist_model_brand").val(1);
+
+            verify_model_brand = 1;
+
+            $(".ocultar").hide();
+            $(".mostrar").show();
+        }
     });
 
 
