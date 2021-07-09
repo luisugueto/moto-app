@@ -248,21 +248,38 @@
                                         <input class="toggle-vis-2" id="column_2-2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Fecha" for="column_2-2">Modelo</label>
                                     </button>
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Fecha" for="column_2-3">Año</label>
+                                        <input class="toggle-vis-2" id="column_2-3" type="checkbox" data-column="3" checked><label class="inline-label tr" key="Fecha" for="column_2-3">Grúa</label>
+                                    </button> 
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Fecha" for="column_2-4">Alta Motor</label>
+                                    </button> 
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-5" type="checkbox" data-column="5" checked><label class="inline-label tr" key="Fecha" for="column_2-5">Recepción Moto</label>
+                                    </button>   
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-6" type="checkbox" data-column="6" checked><label class="inline-label tr" key="Fecha" for="column_2-6">Preparación Microfichas</label>
                                     </button>
-                                    @php $i = 4; @endphp
-                                    @foreach ($processes as $item)
-                                        @if ($item->name == 'Recepción Moto' || $item->name == 'Arranque' || $item->name == 'Inventario' || $item->name == 'Recogida de la moto' || $item->name == 'Prioridad' || $item->name == 'Bastidor'  )   
-                                            <button type="button" tabindex="0" class="dropdown-item">
-                                                <input class="toggle-vis-2" id="column_2-{{$i}}" type="checkbox" data-column="{{$i}}" checked><label class="inline-label tr" key="{{$item->name}}" for="column_2-{{$i}}">{{$item->name}}</label>
-                                            </button>
-                                        @else
-                                            <button type="button" tabindex="0" class="dropdown-item">
-                                                <input class="toggle-vis-2" id="column_2-{{$i}}" type="checkbox" data-column="{{$i}}" ><label class="inline-label tr" key="{{$item->name}}" for="column_2-{{$i}}">{{$item->name}}</label>
-                                            </button>
-                                        @endif
-                                        @php  $i++; @endphp
-                                     @endforeach                                    
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-7" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Fecha" for="column_2-7">Arranque</label>
+                                    </button>  
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-8" type="checkbox" data-column="8" checked><label class="inline-label tr" key="Fecha" for="column_2-8">Descontaminación</label>
+                                    </button>  
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Fecha" for="column_2-9">Inventario</label>
+                                    </button>  
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Fecha" for="column_2-10">Inventariada</label>
+                                    </button>        
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Fecha" for="column_2-11">Recogida de moto</label>
+                                    </button>  
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Fecha" for="column_2-12">Prioridad</label>
+                                    </button>   
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Fecha" for="column_2-13">Bastidor</label>
+                                    </button>   
                                 </div>
                             </div>      
                         </h5>                       
@@ -270,19 +287,25 @@
                         <table width="100%" id="tableMotosParaDesguace" class="table table-hover table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Id Moto</th>
+                                    <th style="width: 50px"></th>
+                                    <th style="width: 50px">Id Moto</th>
                                     <th class="text-center">Modelo</th>
-                                    <th class="text-center">Año</th>
-                                    @foreach ($processes as $process)
-                                    <th class="text-center">{{ $process->name }}</th>
-                                    @endforeach
+                                    <th class="text-center">Grúa</th>
+                                    <th class="text-center">Alta Motor</th>
+                                    <th class="text-center">Recepción Moto</th>
+                                    <th class="text-center">Preparación Microfichas</th>
+                                    <th class="text-center">Arranque</th>
+                                    <th class="text-center">Descontaminación</th>
+                                    <th class="text-center">Inventario</th>
+                                    <th class="text-center">Inventariada</th>
+                                    <th class="text-center">Recogida de moto</th>
+                                    <th class="text-center">Prioridad</th>
+                                    <th class="text-center">Bastidor</th>                                  
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
                         </table>
-                        
                     </div>
                 </div>    
             </div>

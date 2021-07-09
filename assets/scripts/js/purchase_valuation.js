@@ -267,7 +267,7 @@ $(document).ready(function(){
     $('#tableMotosParaDesguace thead tr').clone(true).appendTo('#tableMotosParaDesguace thead');
 
     $('#tableMotosParaDesguace thead tr:eq(1) th').each( function (i) {
-        if (i != 14) {
+        if (i != 15) {
             $(this).html('<input type="text" class="form-control" />');
         }
         else{
@@ -300,24 +300,6 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [
-                {
-                    "targets": [ 4 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 5 ],
-                    "visible": false
-                },                 
-                {
-                    "targets": [ 8 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 10 ],
-                    "visible": false
-                }
-            ],
             "order": [[1, "desc"]]
         });
 
@@ -325,6 +307,7 @@ $(document).ready(function(){
             e.preventDefault();
             // Get the column API object
             var column = dataTable.column($(this).attr('data-column'));
+      
             // Toggle the visibility            
             column.visible(!column.visible());
         });
