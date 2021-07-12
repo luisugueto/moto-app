@@ -1565,6 +1565,7 @@ class PurchaseValuationController extends Controller
         $data['date'] = $purchase_valuation['date'];
         $data['brand'] = $purchase_valuation['brand'];
         $data['model'] = $purchase_valuation['model'];
+        $data['exist_model_brand'] = $purchase_valuation['exist_model_brand'];
         $data['year'] = $purchase_valuation['year'];
         $data['km'] = $purchase_valuation['km'];
         $data['email'] = $purchase_valuation['email'];
@@ -1706,6 +1707,7 @@ class PurchaseValuationController extends Controller
         $purchase->price_min = $request->price_min;
         $purchase->observations = $request->observations;
         $purchase->data_serialize = $request->data_serialize;
+        $purchase->exist_model_brand = $request->exist_model_brand;
         $purchase->update();
 
         $documents_attached = 0;
@@ -1754,7 +1756,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->email_representative = $request->email_representative;
         $purchase_management->representation_concept = $request->representation_concept;
         $purchase_management->brand = $request->brand;
-        $purchase_management->model = $request->model_management;
+        $purchase_management->model = $request->model;
         $purchase_management->version = $request->version;
         $purchase_management->type = $request->type;
         $purchase_management->kilometres = $request->kilometres;
@@ -1772,32 +1774,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->datos_internos = $request->datos_internos;
         $purchase_management->update();
 
-        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
-            // CREATE PDF
-            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
-            $pdf = \App::make('dompdf.wrapper');
-            $pdf->loadHTML($view);
-
-            $output = $pdf->output();
-            $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
-            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
-
-            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
-
-                {
-                    $message->from('info@motostion.com', 'MotOstion');
-
-                    // SE ENVIARA A
-                    $message->to($purchase->email)->subject('Documento a Firmar');
-
-                    $message->attach(public_path().'/pdfs/'.$nameFile);
-                }); 
-
-            $out['message'] = 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>';
-        }else{
-            $out['message'] = 'Registro Actualizado Exitosamente.';
-        }
-
+        $out['message'] = 'Registro Actualizado Exitosamente.';
     
         if($request->sendMailMecanico == 1){
             $mecanico = $request->datos_del_mecanico;
@@ -2248,5 +2225,36 @@ class PurchaseValuationController extends Controller
             return view('backend.purchase_valuation.paginas',compact('motos'));  
         }
               
+    }
+
+    // SEND DOCUMENTS VIA EMAIL
+    public function send_mail_document($id){
+        $purchase = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
+            // CREATE PDF
+            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+
+            $output = $pdf->output();
+            $nameFile ='Ficha'.date('y-m-d-h-i-s').'.pdf';
+            file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
+
+            Mail::send('backend.emails.send-document-firma', ['purchase' => $purchase], function ($message) use ($purchase, $nameFile)
+
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to($purchase->email)->subject('Documento a Firmar');
+
+                    $message->attach(public_path().'/pdfs/'.$nameFile);
+                }); 
+            return Redirect::back()->with('notification', 'Registro Actualizado Exitosamente. Se ha enviado al correo el documento a firmar. <br> <a href="'.url('/local/public/pdfs/').'/'.$nameFile.'" target="_blank"> Descargar Ficha </a>');
+        }else{
+            return Redirect::back()->with('error', 'Ha ocurrido un error!');
+        }
     }
 }

@@ -25,7 +25,7 @@
 <br>
 @if (session('notification'))
     <div class="alert alert-success notification">
-        {{ session('notification') }}
+        {!! session('notification') !!}
     </div>
 @endif
 @if (session('error'))
@@ -194,7 +194,6 @@
                                             </span>
                                         @endif
                                     </div>
-                                    <button type="button" id="ver" class="btn btn-danger btn-sm mb-3">No encuentro Modelo/marca</button>
                                 </div>
                                 <div class="col-md-3 mostrar">
                                     <div class="position-relative form-group">
@@ -226,6 +225,12 @@
                                                 <strong>{{ $errors->first('model') }}</strong>
                                             </span>
                                         @endif
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <br>
+                                        <button type="button" id="ver" class="btn btn-danger btn-sm mb-3">No encuentro Modelo/marca</button>
                                     </div>
                                 </div>
 
@@ -1064,6 +1069,7 @@
                     <div class="row">
                         <div class="col-md-3"><button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button></div>
                         <div class="col-md-3" id="buttonLabelss"></div>
+                        <div class="col-md-3" id="buttonSendMail"></div>
                     </div>
                     
                     

@@ -19,7 +19,7 @@ $(document).ready(function () {
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
-                
+
                 $("#exist_model_brand").val(data.exist_model_brand);
 
                 if(data.exist_model_brand == 0){  // 0 IS TEXT, 1 IS SELECT
@@ -38,6 +38,8 @@ $(document).ready(function () {
                 $("#year").val(data.year).trigger('change');
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
+                $("#brand_text").val(data.brand);
+                $("#model_text").val(data.model);
                 $('#km').val(data.km);
                 $('#name').val(data.name);
                 $('#lastname').val(data.lastname);
@@ -327,6 +329,10 @@ $(document).ready(function () {
                     $("#button_destruction_deceased").attr("href", "send_destruction_deceased/"+data.id);
                     $("#button_possible_sale").attr("href", "send_possible_sale/"+data.id);
                     $("#button_sale_deceased").attr("href", "send_sale_deceased/"+data.id);
+
+                    let b3 = '';
+                    b3 = '<a class="btn btn-warning" href="send_mail_document/' + data.id + '">Enviar Documentos por Correo</a>';
+                    $('#buttonSendMail').html(b3);
                 }
                
                 if (data.status_ficha == 2) {
@@ -617,11 +623,24 @@ $(document).ready(function () {
         else if ($('#partially_disassembled').is(':checked'))
             vehicle_state = 'Parcialmente desmontado';
 
+
+        let brandform = '';
+        let modelform = '';
+
+        if(verify_model_brand == 0){
+            brandform = $("#brand_text").val();
+            modelform = $("#model_text").val();
+        }else{
+            brandform = $("#brand").val();
+            modelform = $("#model").val();
+        }
+
         var dataSerialize = JSON.stringify(dataArray, null, 2), dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2), dataSerialize3 = JSON.stringify(dataInternArray, null, 2) ;
         var formData = {
             purchase_id: $('#purchase_id').val(),
-            brand: $("#brand").val(),
-            model: $("#model").val(),
+            brand: brandform,
+            model: modelform,
+            exist_model_brand: $("#exist_model_brand").val(),
             year: $("#year").val(),
             km: $("#km").val(),
             name: $("#name").val(),
@@ -843,7 +862,6 @@ $(document).ready(function () {
     var verify_model_brand = null;
 
      $('#ver').click(function(){
-
         if(verify_model_brand == 1){
             $(this).html("Elegir marca y modelo de la lista");
             
@@ -885,8 +903,6 @@ $(document).ready(function () {
             $(".mostrar").show();
         }
     });
-
-
 
 
 });
