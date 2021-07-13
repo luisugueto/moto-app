@@ -356,10 +356,10 @@ class PurchaseValuationController extends Controller
                 $alta_motor = ApplySubProcessAndProcess::where('processes_id', $pro2->id)->where('purchase_valuation_id', $value->id)->first();
                 $alta_motor_subproceso = SubProcesses::where('id', $alta_motor['subprocesses_id'])->first();  
                 if(isset($alta_motor_subproceso)){ 
-                    if ($alta_motor_subproceso['name'] == 'Si Alta'){
+                    if ($alta_motor_subproceso['name'] == 'Si Alta Motor'){
                         $nestedData[] = '<span class="text-success"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }                 
-                    if ($alta_motor_subproceso['name'] == 'No Alta'){
+                    if ($alta_motor_subproceso['name'] == 'No Alta Motor'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }
                 }
