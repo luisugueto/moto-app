@@ -44,6 +44,7 @@ $(document).ready(function(){
             error: function () {  // error handling
             }
         },
+        deferLoading: 10,
         "columnDefs": [
         ],
         "order": [[1, "desc"]]
@@ -73,6 +74,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "columnDefs": [
                  
                 
@@ -130,6 +132,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "columnDefs": [
             ],
             "order": [[1, "desc"]]
@@ -182,6 +185,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[1, "desc"]]
         });
 
@@ -233,6 +237,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[0, "desc"]]
         });
 
@@ -283,6 +288,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[0, "desc"]]
         });
 
@@ -333,6 +339,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "columnDefs": [{
 				"targets": [1],
 				"visible": true
@@ -387,6 +394,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[0, "desc"]]
         });
 
@@ -438,6 +446,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[0, "desc"]]
         });
 
@@ -487,6 +496,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[0, "desc"]]
         });
 
@@ -537,6 +547,7 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
+            deferLoading: 10,
             "order": [[1, "desc"]]
         });
 
