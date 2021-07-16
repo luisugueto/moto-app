@@ -1774,6 +1774,8 @@ class PurchaseValuationController extends Controller
 
     public function getDataFicha($id)
     {
+ 
+        $id = str_replace('F', '', $id);       
         $view = getPermission('Motos que nos ofrecen', 'record-view');
 
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
