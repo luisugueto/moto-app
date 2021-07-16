@@ -337,7 +337,7 @@ class PurchaseValuationController extends Controller
                         $nestedData[] = '<span class="text-success"><b>' .nl2br('Si Grúa'). '</b></span>'; 
                     }  
                     
-                    if($grua_subproceso['name'] == 'Incidencia'){
+                    if($grua_subproceso['name'] == 'Incidencia Grua'){
                         $nestedData[] = '<span style="color:orange"><b>' .nl2br($grua_subproceso['name']). '</b></span>'; 
                     }              
                 }else {
@@ -354,7 +354,7 @@ class PurchaseValuationController extends Controller
                     if ($alta_motor_subproceso['name'] == 'Si Mot 1ª F'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }   
-                    if($alta_motor_subproceso['name'] == 'Incidencia'){
+                    if($alta_motor_subproceso['name'] == 'Incidencia Motor'){
                         $nestedData[] = '<span style="color:orange"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }                
                     if ($alta_motor_subproceso['name'] == 'Si Mot 2ª F'){
