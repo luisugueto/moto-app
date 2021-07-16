@@ -10,7 +10,7 @@ $(document).ready(function(){
 
     $('#tableTasacionMotos thead tr:eq(1) th').each( function (i) {
 
-        if (i == 0 || i == 13) {
+        if (i == 0 || i == 8) {
             $(this).css('color', 'transparent');
             
             // $(this).html('<input type="text" class="form-control" />');
@@ -45,46 +45,6 @@ $(document).ready(function(){
             }
         },
         "columnDefs": [
-            {
-                "targets": [ 1 ],
-                "visible": true,
-            },
-            {
-                "targets": [ 2 ],
-                "visible": false
-            },
-            {
-                "targets": [ 3 ],
-                "visible": false
-            },
-            {
-                "targets": [ 6 ],
-                "visible": false
-            },
-            {
-                "targets": [ 7 ],
-                "visible": false
-            },
-            {
-                "targets": [ 8 ],
-                "visible": false
-            },
-            {
-                "targets": [ 9 ],
-                "visible": false
-            },
-            {
-                "targets": [ 10 ],
-                "visible": false
-            },
-            {
-                "targets": [ 11 ],
-                "visible": false
-            },
-            {
-                "targets": [ 12 ],
-                "visible": false
-            }
         ],
         "order": [[1, "desc"]]
     });
@@ -114,46 +74,8 @@ $(document).ready(function(){
                 }
             },
             "columnDefs": [
-                {
-                    "targets": [ 1 ],
-                    "visible": true,
-                },
-                {
-                    "targets": [ 2 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 3 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 6 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 7 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 8 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 9 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 10 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 11 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 12 ],
-                    "visible": false
-                }
+                 
+                
             ],
             "order": [[1, "desc"]]
         });
@@ -173,11 +95,11 @@ $(document).ready(function(){
  
     $('#tableMotosQueInterensan thead tr:eq(1) th').each(function (i) {
     
-        if (i !== 14) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 8) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -209,46 +131,6 @@ $(document).ready(function(){
                 }
             },
             "columnDefs": [
-                {
-                    "targets": [ 4 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 5 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 6 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 7 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 8 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 9 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 10 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 11 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 12 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 13 ],
-                    "visible": false
-                }
             ],
             "order": [[1, "desc"]]
         });
@@ -267,11 +149,11 @@ $(document).ready(function(){
     $('#tableMotosParaDesguace thead tr').clone(true).appendTo('#tableMotosParaDesguace thead');
 
     $('#tableMotosParaDesguace thead tr:eq(1) th').each( function (i) {
-        if (i != 15) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 17) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -318,11 +200,11 @@ $(document).ready(function(){
     $('#tableMotosParaVenta thead tr').clone(true).appendTo('#tableMotosParaVenta thead');
 
     $('#tableMotosParaVenta thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 12) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -351,44 +233,6 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [
-                {
-                    "targets": [ 4 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 5 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 6 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 7 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 8 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 9 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 10 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 11 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 12 ],
-                    "visible": false
-                }
-            ],
             "order": [[0, "desc"]]
         });
 
@@ -406,11 +250,11 @@ $(document).ready(function(){
     $('#tableMotosParaSubasta thead tr').clone(true).appendTo('#tableMotosParaSubasta thead');
 
     $('#tableMotosParaSubasta thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 5) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -439,48 +283,6 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [
-                {
-                    "targets": [ 4 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 5 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 6 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 7 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 8 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 9 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 10 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 11 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 12 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 13 ],
-                    "visible": false
-                }
-            ],
             "order": [[0, "desc"]]
         });
 
@@ -498,11 +300,11 @@ $(document).ready(function(){
     $('#tableMotosQueNoInteresan thead tr').clone(true).appendTo('#tableMotosQueNoInteresan thead');
 
     $('#tableMotosQueNoInteresan thead tr:eq(1) th').each( function (i) {
-        if (i != 10) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 10) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -551,11 +353,11 @@ $(document).ready(function(){
     $('#tableMotosDesguazadas thead tr').clone(true).appendTo('#tableMotosDesguazadas thead');
 
     $('#tableMotosDesguazadas thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 10) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -585,36 +387,6 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [
-                {
-                    "targets": [ 4 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 5 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 7 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 8 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 10 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 11 ],
-                    "visible": false
-                },
-                {
-                    "targets": [ 12 ],
-                    "visible": false
-                }
-            ],
             "order": [[0, "desc"]]
         });
 
@@ -632,11 +404,11 @@ $(document).ready(function(){
     $('#tableMotosVendidas thead tr').clone(true).appendTo('#tableMotosVendidas thead');
 
     $('#tableMotosVendidas thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 5) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -666,46 +438,6 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-                "targets": [ 4 ],
-                "visible": false
-            },
-            {
-                "targets": [ 5 ],
-                "visible": false
-            },
-            {
-                "targets": [ 6 ],
-                "visible": false
-            },
-            {
-                "targets": [ 7 ],
-                "visible": false
-            },
-            {
-                "targets": [ 8 ],
-                "visible": false
-            },
-            {
-                "targets": [ 9 ],
-                "visible": false
-            },
-            {
-                "targets": [ 10 ],
-                "visible": false
-            },
-            {
-                "targets": [ 11 ],
-                "visible": false
-            },
-            {
-                "targets": [ 12 ],
-                "visible": false
-            },
-            {
-                "targets": [ 13 ],
-                "visible": false
-            }],
             "order": [[0, "desc"]]
         });
 
@@ -722,13 +454,12 @@ $(document).ready(function(){
     $('#tableMotosSubastadas thead tr').clone(true).appendTo('#tableMotosSubastadas thead');
 
     $('#tableMotosSubastadas thead tr:eq(1) th').each( function (i) {
-        if (i != 12) {
+        if (i == 0 || i == 7) {
+            $(this).css('color', 'transparent');
+        }
+        else {            
             $(this).html('<input type="text" class="form-control" />');
         }
-        else{
-            $(this).css('display', 'none');
-        }
-
         $( 'input', this ).on( 'keyup change', function () {
             if (dataTable.column(i).search() !== this.value) {             
                 dataTable
@@ -756,46 +487,6 @@ $(document).ready(function(){
                 error: function () {  // error handling
                 }
             },
-            "columnDefs": [{
-                "targets": [ 4 ],
-                "visible": false
-            },
-            {
-                "targets": [ 5 ],
-                "visible": false
-            },
-            {
-                "targets": [ 6 ],
-                "visible": false
-            },
-            {
-                "targets": [ 7 ],
-                "visible": false
-            },
-            {
-                "targets": [ 8 ],
-                "visible": false
-            },
-            {
-                "targets": [ 9 ],
-                "visible": false
-            },
-            {
-                "targets": [ 10 ],
-                "visible": false
-            },
-            {
-                "targets": [ 11 ],
-                "visible": false
-            },
-            {
-                "targets": [ 12 ],
-                "visible": false
-            },
-            {
-                "targets": [ 13 ],
-                "visible": false
-            }],
             "order": [[0, "desc"]]
         });
 
@@ -813,11 +504,11 @@ $(document).ready(function(){
     $('#tableMotosSinAcuerdo thead tr').clone(true).appendTo('#tableMotosSinAcuerdo thead');
 
     $('#tableMotosSinAcuerdo thead tr:eq(1) th').each( function (i) {
-        if (i != 10) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 10) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {

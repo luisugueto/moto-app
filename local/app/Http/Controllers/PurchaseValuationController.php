@@ -96,15 +96,11 @@ class PurchaseValuationController extends Controller
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
             $nestedData[] = $value->id;
             $nestedData[] = $value->date;
-            $nestedData[] = $value->brand;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
-            $nestedData[] = $value->km;
-            $nestedData[] = $value->email .' <br>' . $value->phone;
-            $nestedData[] = $value->name .' '. $value->lastname;
+            // $nestedData[] = $value->email .' <br>' . $value->phone;
+            $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = $value->status_trafic;
-            $nestedData[] = $value->motocycle_state;
             $nestedData[] = $value->price_min;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -178,15 +174,13 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = $value->date;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
-            $proceso = Processes::all();
-            foreach($proceso as $pro){
-                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
-                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
-                $nestedData[]= $subproceso['name'];
-            }
+            $nestedData[] = $value->phone;
+            $nestedData[] = $value->province;
+            $nestedData[] = $value->price_min;
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -257,7 +251,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model; 
             $nestedData[] = $value->year;
             $nestedData[] = $value->price_min;   
@@ -331,7 +325,7 @@ class PurchaseValuationController extends Controller
             }
 
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = nl2br($value->model);
 
             $pro1 = Processes::where('id', 12)->first();           
@@ -339,28 +333,32 @@ class PurchaseValuationController extends Controller
                 $grua = ApplySubProcessAndProcess::where('processes_id', $pro1->id)->where('purchase_valuation_id', $value->id)->first();
                 $grua_subproceso = SubProcesses::where('id', $grua['subprocesses_id'])->first();  
                 if(!!$grua_subproceso){ 
-                    if ($grua_subproceso['name'] == 'No Grúa'){
-                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($grua_subproceso['name']). '</b></span>'; 
-                    }                 
-                    else{
-                        $nestedData[] = '<span class="text-success"><b>' .nl2br($grua_subproceso['name']). '</b></span>';                          
-                    }               
+                    if (strpos($grua_subproceso, 'Recogida') !== false) {
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br('Si Grúa'). '</b></span>'; 
+                    }  
+                    
+                    if($grua_subproceso['name'] == 'Incidencia'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($grua_subproceso['name']). '</b></span>'; 
+                    }              
                 }else {
                     $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>';
                 }
                   
             }
 
-            $pro2 = Processes::where('id', 14)->first(); 
+            $pro2 = Processes::where('id', 8)->first(); 
             if(isset($pro2)){
                 $alta_motor = ApplySubProcessAndProcess::where('processes_id', $pro2->id)->where('purchase_valuation_id', $value->id)->first();
                 $alta_motor_subproceso = SubProcesses::where('id', $alta_motor['subprocesses_id'])->first();  
                 if(isset($alta_motor_subproceso)){ 
-                    if ($alta_motor_subproceso['name'] == 'Si Alta Motor'){
-                        $nestedData[] = '<span class="text-success"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
-                    }                 
-                    if ($alta_motor_subproceso['name'] == 'No Alta Motor'){
+                    if ($alta_motor_subproceso['name'] == 'Si Mot 1ª F'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
+                    }   
+                    if($alta_motor_subproceso['name'] == 'Incidencia'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
+                    }                
+                    if ($alta_motor_subproceso['name'] == 'Si Mot 2ª F'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }
                 }
                 else{
@@ -369,9 +367,53 @@ class PurchaseValuationController extends Controller
                         
             }
 
-            $pro3 = Processes::where('id', 3)->first(); 
+            $pro3 = Processes::where('id', 15)->first(); 
             if(isset($pro3)){
-                $recepcion_moto = ApplySubProcessAndProcess::where('processes_id', $pro3->id)->where('purchase_valuation_id', $value->id)->first();
+                $microfichas = ApplySubProcessAndProcess::where('processes_id', $pro3->id)->where('purchase_valuation_id', $value->id)->first();
+                $microfichas_subproceso = SubProcesses::where('id', $microfichas['subprocesses_id'])->first();  
+                             
+                if(isset($microfichas_subproceso)){ 
+                    if ($microfichas_subproceso['name'] == 'No MicroFich'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($microfichas_subproceso['name']). '</b></span>'; 
+                    }  
+                    if($microfichas_subproceso['name'] == 'Incidencia Microf'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($microfichas_subproceso['name']). '</b></span>'; 
+                    }                 
+                    if ($microfichas_subproceso['name'] == 'Si MicroFich'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($microfichas_subproceso['name']). '</b></span>';                          
+                    }                      
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }
+                       
+            } 
+
+            $pro4 = Processes::where('id', 24)->first(); 
+            if(isset($pro4)){
+                $greida_moto = ApplySubProcessAndProcess::where('processes_id', $pro4->id)->where('purchase_valuation_id', $value->id)->first();
+                $greida_moto_subproceso = SubProcesses::where('id', $greida_moto['subprocesses_id'])->first();  
+                             
+                if(isset($greida_moto_subproceso)){ 
+                    if ($greida_moto_subproceso['name'] == 'No Greida'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($greida_moto_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($greida_moto_subproceso['name'] == 'Incidencia Greida'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($greida_moto_subproceso['name']). '</b></span>'; 
+                    }                
+                    if($greida_moto_subproceso['name'] == 'Si Greida'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($greida_moto_subproceso['name']). '</b></span>';                          
+                    }                      
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }
+                        
+            }   
+
+            $pro5 = Processes::where('id', 3)->first(); 
+            if(isset($pro5)){
+                $recepcion_moto = ApplySubProcessAndProcess::where('processes_id', $pro5->id)->where('purchase_valuation_id', $value->id)->first();
                 $recepcion_moto_subproceso = SubProcesses::where('id', $recepcion_moto['subprocesses_id'])->first();  
                              
                 if(isset($recepcion_moto_subproceso)){ 
@@ -390,34 +432,22 @@ class PurchaseValuationController extends Controller
                 }
                         
             }   
-            
-            $pro4 = Processes::where('id', 15)->first(); 
-            if(isset($pro4)){
-                $microfichas = ApplySubProcessAndProcess::where('processes_id', $pro4->id)->where('purchase_valuation_id', $value->id)->first();
-                $microfichas_subproceso = SubProcesses::where('id', $microfichas['subprocesses_id'])->first();  
-                             
-                if(isset($microfichas_subproceso)){ 
-                    if ($microfichas_subproceso['name'] == 'No MicroFich'){
-                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($microfichas_subproceso['name']). '</b></span>'; 
-                    }                 
-                    if ($microfichas_subproceso['name'] == 'Si MicroFich'){
-                        $nestedData[] = '<span class="text-success"><b>' .nl2br($microfichas_subproceso['name']). '</b></span>';                          
-                    }                      
-                }
-                else{
-                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
-                }
-                       
-            } 
-          
 
-            $pro5 = Processes::where('id', 4)->first(); 
-            if(isset($pro5)){
-                $arranque = ApplySubProcessAndProcess::where('processes_id', $pro5->id)->where('purchase_valuation_id', $value->id)->first();
+            $pro6 = Processes::where('id', 4)->first(); 
+            if(isset($pro6)){
+                $arranque = ApplySubProcessAndProcess::where('processes_id', $pro6->id)->where('purchase_valuation_id', $value->id)->first();
                 $arranque_subproceso = SubProcesses::where('id', $arranque['subprocesses_id'])->first();  
                              
-                if(isset($arranque_subproceso)){                    
-                    $nestedData[] = '<span class="text-success"><b>' .nl2br($arranque_subproceso['name']). '</b></span>'; 
+                if(isset($arranque_subproceso)){      
+                    if ($arranque_subproceso['name'] == 'No arranca'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($arranque_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($arranque_subproceso['name'] == 'Si Arranca Def'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($arranque_subproceso['name']). '</b></span>'; 
+                    }                
+                    if($arranque_subproceso['name'] == 'Si Arrancada'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($arranque_subproceso['name']). '</b></span>';                          
+                    }; 
                 }
                 else{
                     $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
@@ -425,14 +455,17 @@ class PurchaseValuationController extends Controller
                         
             } 
             
-            $pro6 = Processes::where('id', 11)->first(); 
-            if(isset($pro6)){
-                $descontaminacion = ApplySubProcessAndProcess::where('processes_id', $pro6->id)->where('purchase_valuation_id', $value->id)->first();
+            $pro7 = Processes::where('id', 11)->first(); 
+            if(isset($pro7)){
+                $descontaminacion = ApplySubProcessAndProcess::where('processes_id', $pro7->id)->where('purchase_valuation_id', $value->id)->first();
                 $descontaminacion_subproceso = SubProcesses::where('id', $descontaminacion['subprocesses_id'])->first();  
                              
                 if(isset($descontaminacion_subproceso)){
                     if ($descontaminacion_subproceso['name'] == 'Si Descontam.'){
                         $nestedData[] = '<span class="text-success"><b>' .nl2br($descontaminacion_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($descontaminacion_subproceso['name'] == 'Incidencia Descont'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($descontaminacion_subproceso['name']). '</b></span>'; 
                     }                 
                     elseif ($descontaminacion_subproceso['name'] == 'No Descontam.'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($descontaminacion_subproceso['name']). '</b></span>'; 
@@ -444,17 +477,20 @@ class PurchaseValuationController extends Controller
                          
             } 
        
-            $pro7 = Processes::where('id', 6)->first(); 
-            if(isset($pro7)){
-                $inventario = ApplySubProcessAndProcess::where('processes_id', $pro7->id)->where('purchase_valuation_id', $value->id)->first();
-                $inventario_subproceso = SubProcesses::where('id', $inventario['subprocesses_id'])->first();  
+            $pro8 = Processes::where('id', 6)->first(); 
+            if(isset($pro8)){
+                $tpv = ApplySubProcessAndProcess::where('processes_id', $pro8->id)->where('purchase_valuation_id', $value->id)->first();
+                $tpv_subproceso = SubProcesses::where('id', $tpv['subprocesses_id'])->first();  
                     
-                if(isset($inventario_subproceso)){    
-                    if ($inventario_subproceso['name'] == 'TPV'){
-                        $nestedData[] = '<span class="text-success"><b>' .nl2br($inventario_subproceso['name']). '</b></span>'; 
-                    }                 
-                    if ($inventario_subproceso['name'] == 'Microfichas'){
-                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($inventario_subproceso['name']). '</b></span>'; 
+                if(isset($tpv_subproceso)){    
+                    if ($tpv_subproceso['name'] == 'Si TPV'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($tpv_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($tpv_subproceso['name'] == 'Incidencia TPV'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($tpv_subproceso['name']). '</b></span>'; 
+                    }                
+                    if ($tpv_subproceso['name'] == 'No TPV'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($tpv_subproceso['name']). '</b></span>'; 
                     }                   
                 }
                 else{
@@ -462,15 +498,71 @@ class PurchaseValuationController extends Controller
                 }                   
             }
 
-            $pro8 = Processes::where('id', 13)->first(); 
-            if(isset($pro8)){
-                $inventariada = ApplySubProcessAndProcess::where('processes_id', $pro8->id)->where('purchase_valuation_id', $value->id)->first();
+            $pro9 = Processes::where('id', 25)->first(); 
+            if(isset($pro9)){
+                $desmontaje = ApplySubProcessAndProcess::where('processes_id', $pro9->id)->where('purchase_valuation_id', $value->id)->first();
+                $desmontaje_subproceso = SubProcesses::where('id', $desmontaje['subprocesses_id'])->first();  
+                             
+                if(isset($desmontaje_subproceso)){
+                    if ($desmontaje_subproceso['name'] == 'Si desmontaje'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($desmontaje_subproceso['name']). '</b></span>'; 
+                    }
+                    if($desmontaje_subproceso['name'] == 'Incidencia desmontaje'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($desmontaje_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($desmontaje_subproceso['name'] == 'No desmontaje'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($desmontaje_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }                          
+            }
+
+            $pro10 = Processes::where('id', 23)->first(); 
+            if(isset($pro10)){
+                $fotos = ApplySubProcessAndProcess::where('processes_id', $pro10->id)->where('purchase_valuation_id', $value->id)->first();
+                $fotos_subproceso = SubProcesses::where('id', $fotos['subprocesses_id'])->first();  
+                             
+                if ($fotos_subproceso['name'] == 'Si Fotos'){
+                    $nestedData[] = '<span class="text-success"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                }
+                if($fotos_subproceso['name'] == 'Incidencia fotos'){
+                    $nestedData[] = '<span style="color:orange"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                }                  
+                if ($fotos_subproceso['name'] == 'No Fotos'){
+                    $nestedData[] = '<span class="text-danger"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }      
+            }
+
+            $pro11 = Processes::where('id', 9)->first(); 
+            if(isset($pro11)){
+                $prioridad = ApplySubProcessAndProcess::where('processes_id', $pro11->id)->where('purchase_valuation_id', $value->id)->first();
+                $prioridad_subproceso = SubProcesses::where('id', $prioridad['subprocesses_id'])->first();  
+                
+                if(isset($prioridad_subproceso)){   
+                    $nestedData[] = '<b>' .substr($prioridad_subproceso['name'], 0, 1). '</b>';                
+                }       
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }
+            }
+
+            $pro12 = Processes::where('id', 13)->first(); 
+            if(isset($pro12)){
+                $inventariada = ApplySubProcessAndProcess::where('processes_id', $pro12->id)->where('purchase_valuation_id', $value->id)->first();
                 $inventariada_subproceso = SubProcesses::where('id', $inventariada['subprocesses_id'])->first();  
                              
                 if(isset($inventariada_subproceso)){
                     if ($inventariada_subproceso['name'] == 'Si Inventariada'){
                         $nestedData[] = '<span class="text-success"><b>' .nl2br($inventariada_subproceso['name']). '</b></span>'; 
-                    }                 
+                    } 
+                    if($inventariada_subproceso['name'] == 'Incidencia Invent'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($inventariada_subproceso['name']). '</b></span>'; 
+                    }                  
                     if ($inventariada_subproceso['name'] == 'No Inventariada'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($inventariada_subproceso['name']). '</b></span>'; 
                     }                    
@@ -480,35 +572,9 @@ class PurchaseValuationController extends Controller
                 }                          
             }
 
-            $pro9 = Processes::where('id', 8)->first(); 
-            if(isset($pro9)){
-                $recogida = ApplySubProcessAndProcess::where('processes_id', $pro9->id)->where('purchase_valuation_id', $value->id)->first();
-                $recogida_subproceso = SubProcesses::where('id', $recogida['subprocesses_id'])->first();  
-                             
-                if(isset($recogida_subproceso)){   
-                   $nestedData[] = '<b>' .nl2br($recogida_subproceso['name']). '</b>';
-                }
-                else{
-                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
-                }      
-            }
-
-            $pro10 = Processes::where('id', 9)->first(); 
-            if(isset($pro10)){
-                $prioridad = ApplySubProcessAndProcess::where('processes_id', $pro10->id)->where('purchase_valuation_id', $value->id)->first();
-                $prioridad_subproceso = SubProcesses::where('id', $prioridad['subprocesses_id'])->first();  
-                
-                if(isset($prioridad_subproceso)){   
-                    $nestedData[] = '<b>' .nl2br($prioridad_subproceso['name']). '</b>';                
-                }       
-                else{
-                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
-                }
-            }
-
-            $pro11 = Processes::where('id', 10)->first(); 
-            if(isset($pro11)){
-                $bastidor = ApplySubProcessAndProcess::where('processes_id', $pro11->id)->where('purchase_valuation_id', $value->id)->first();
+            $pro13 = Processes::where('id', 10)->first(); 
+            if(isset($pro13)){
+                $bastidor = ApplySubProcessAndProcess::where('processes_id', $pro13->id)->where('purchase_valuation_id', $value->id)->first();
                 $bastidor_subproceso = SubProcesses::where('id', $bastidor['subprocesses_id'])->first();  
                              
                 if(isset($bastidor_subproceso)){    
@@ -530,7 +596,6 @@ class PurchaseValuationController extends Controller
             
             $data[] = $nestedData;
         }
-        //exit;
         $json_data = array(
             "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
             "recordsTotal" => intval($totalData), // total number of records
@@ -593,15 +658,164 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model;
-            $nestedData[] = $value->year;
-            $proceso = Processes::all();
-            foreach($proceso as $pro){
-                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
-                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
-                $nestedData[]= $subproceso['name'];
+            $nestedData[] = $value->date;
+
+            $pro1 = Processes::where('id', 16)->first(); 
+            if(isset($pro1)){
+                $anunciada = ApplySubProcessAndProcess::where('processes_id', $pro1->id)->where('purchase_valuation_id', $value->id)->first();
+                $anunciada_subproceso = SubProcesses::where('id', $anunciada['subprocesses_id'])->first();  
+                             
+                if(isset($anunciada_subproceso)){
+                    if ($anunciada_subproceso['name'] == 'Si Anunci'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($anunciada_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($anunciada_subproceso['name'] == 'Inciden Anunc'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($anunciada_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($anunciada_subproceso['name'] == 'No Anunci'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($anunciada_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
             }
+
+            $pro2 = Processes::where('id', 17)->first(); 
+            if(isset($pro2)){
+                $presu = ApplySubProcessAndProcess::where('processes_id', $pro2->id)->where('purchase_valuation_id', $value->id)->first();
+                $presu_subproceso = SubProcesses::where('id', $presu['subprocesses_id'])->first();  
+                             
+                if(isset($presu_subproceso)){
+                    if ($presu_subproceso['name'] == 'Si Presu'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($presu_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($presu_subproceso['name'] == 'Incide Presu'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($presu_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($presu_subproceso['name'] == 'No Presu'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($presu_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+
+            $pro3 = Processes::where('id', 18)->first(); 
+            if(isset($pro3)){
+                $pedido = ApplySubProcessAndProcess::where('processes_id', $pro3->id)->where('purchase_valuation_id', $value->id)->first();
+                $pedido_subproceso = SubProcesses::where('id', $pedido['subprocesses_id'])->first();  
+                             
+                if(isset($pedido_subproceso)){
+                    if ($pedido_subproceso['name'] == 'Si Pedid'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($pedido_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($pedido_subproceso['name'] == 'Incide Pedid'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($pedido_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($pedido_subproceso['name'] == 'No Pedid'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($pedido_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+
+            $pro4 = Processes::where('id', 19)->first(); 
+            if(isset($pro4)){
+                $recibido = ApplySubProcessAndProcess::where('processes_id', $pro4->id)->where('purchase_valuation_id', $value->id)->first();
+                $recibido_subproceso = SubProcesses::where('id', $recibido['subprocesses_id'])->first();  
+                             
+                if(isset($recibido_subproceso)){
+                    if ($recibido_subproceso['name'] == 'Si Recibido'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($recibido_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($recibido_subproceso['name'] == 'Incidenci Recambio'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($recibido_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($recibido_subproceso['name'] == 'No Recibido'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($recibido_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+
+            $pro5 = Processes::where('id', 20)->first(); 
+            if(isset($pro5)){
+                $reparacion = ApplySubProcessAndProcess::where('processes_id', $pro5->id)->where('purchase_valuation_id', $value->id)->first();
+                $reparacion_subproceso = SubProcesses::where('id', $reparacion['subprocesses_id'])->first();  
+                             
+                if(isset($reparacion_subproceso)){
+                    if ($reparacion_subproceso['name'] == 'Si Reparada'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($reparacion_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($reparacion_subproceso['name'] == 'Incidencia Reparación'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($reparacion_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($reparacion_subproceso['name'] == 'No Reparada'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($reparacion_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+
+            $pro6 = Processes::where('id', 21)->first(); 
+            if(isset($pro6)){
+                $probada = ApplySubProcessAndProcess::where('processes_id', $pro6->id)->where('purchase_valuation_id', $value->id)->first();
+                $probada_subproceso = SubProcesses::where('id', $probada['subprocesses_id'])->first();  
+                             
+                if(isset($probada_subproceso)){
+                    if ($probada_subproceso['name'] == 'Si Probada'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($probada_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($probada_subproceso['name'] == 'Inciden Pruebas'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($probada_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($probada_subproceso['name'] == 'No Probada'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($probada_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+
+            $pro7 = Processes::where('id', 22)->first(); 
+            if(isset($pro7)){
+                $anunciada_repa = ApplySubProcessAndProcess::where('processes_id', $pro7->id)->where('purchase_valuation_id', $value->id)->first();
+                $anunciada_repa_subproceso = SubProcesses::where('id', $anunciada_repa['subprocesses_id'])->first();  
+                             
+                if(isset($anunciada_repa_subproceso)){
+                    if ($anunciada_repa_subproceso['name'] == 'Si Anunci Repar'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($anunciada_repa_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($anunciada_repa_subproceso['name'] == 'Inciden Anunci'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($anunciada_repa_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($anunciada_repa_subproceso['name'] == 'No Anunci Repar'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($anunciada_repa_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -638,7 +852,8 @@ class PurchaseValuationController extends Controller
 
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
-        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.street', 'purchase_management.nro_street', 
+        'purchase_management.municipality','purchase_management.postal_code')
         ->where('purchase_valuation.states_id', '=', 6)
         ->get();
 
@@ -675,15 +890,9 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model;
-            $nestedData[] = $value->year;
-            $proceso = Processes::all();
-            foreach($proceso as $pro){
-                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
-                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
-                $nestedData[]= $subproceso['name'];
-            }
+            $nestedData[] = $value->street. ' ' . $value->nro_street. ' ' . $value->municipality. ' ' . $value->postal_code;
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -754,20 +963,135 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model;
-            $nestedData[] = $value->year;
-            $proceso = Processes::all();
-            foreach($proceso as $pro){
-                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
-                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
-                if($pro['name'] == 'Bastidor'){
-                    $subprocesoN = '<span class="text-danger">'.$subproceso['name'].'</span>';
-                }else{
-                    $subprocesoN = '<span>'.$subproceso['name'].'</span>';
+            $pro1 = Processes::where('id', 8)->first(); 
+
+            if(isset($pro1)){
+                $alta_motor = ApplySubProcessAndProcess::where('processes_id', $pro1->id)->where('purchase_valuation_id', $value->id)->first();
+                $alta_motor_subproceso = SubProcesses::where('id', $alta_motor['subprocesses_id'])->first();  
+                if(isset($alta_motor_subproceso)){ 
+                    if ($alta_motor_subproceso['name'] == 'Si Mot 1ª F'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
+                    }   
+                    if($alta_motor_subproceso['name'] == 'Incidencia'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
+                    }                
+                    if ($alta_motor_subproceso['name'] == 'Si Mot 2ª F'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
+                    }
                 }
-                $nestedData[]= $subprocesoN;
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }
+                        
             }
+
+            $pro2 = Processes::where('id', 4)->first(); 
+            if(isset($pro2)){
+                $arranque = ApplySubProcessAndProcess::where('processes_id', $pro2->id)->where('purchase_valuation_id', $value->id)->first();
+                $arranque_subproceso = SubProcesses::where('id', $arranque['subprocesses_id'])->first();  
+                             
+                if(isset($arranque_subproceso)){      
+                    if ($arranque_subproceso['name'] == 'No arranca'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($arranque_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($arranque_subproceso['name'] == 'Si Arranca Def'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($arranque_subproceso['name']). '</b></span>'; 
+                    }                
+                    if($arranque_subproceso['name'] == 'Si Arrancada'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($arranque_subproceso['name']). '</b></span>';                          
+                    }; 
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            } 
+
+            $pro3 = Processes::where('id', 11)->first(); 
+            if(isset($pro3)){
+                $descontaminacion = ApplySubProcessAndProcess::where('processes_id', $pro3->id)->where('purchase_valuation_id', $value->id)->first();
+                $descontaminacion_subproceso = SubProcesses::where('id', $descontaminacion['subprocesses_id'])->first();  
+                             
+                if(isset($descontaminacion_subproceso)){
+                    if ($descontaminacion_subproceso['name'] == 'Si Descontam.'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($descontaminacion_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($descontaminacion_subproceso['name'] == 'Incidencia Descont'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($descontaminacion_subproceso['name']). '</b></span>'; 
+                    }                 
+                    elseif ($descontaminacion_subproceso['name'] == 'No Descontam.'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($descontaminacion_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }
+                         
+            } 
+       
+            $pro4 = Processes::where('id', 6)->first(); 
+            if(isset($pro4)){
+                $tpv = ApplySubProcessAndProcess::where('processes_id', $pro4->id)->where('purchase_valuation_id', $value->id)->first();
+                $tpv_subproceso = SubProcesses::where('id', $tpv['subprocesses_id'])->first();  
+                    
+                if(isset($tpv_subproceso)){    
+                    if ($tpv_subproceso['name'] == 'Si TPV'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($tpv_subproceso['name']). '</b></span>'; 
+                    } 
+                    if($tpv_subproceso['name'] == 'Incidencia TPV'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($tpv_subproceso['name']). '</b></span>'; 
+                    }                
+                    if ($tpv_subproceso['name'] == 'No TPV'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($tpv_subproceso['name']). '</b></span>'; 
+                    }                   
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }                   
+            }
+
+            $pro5 = Processes::where('id', 25)->first(); 
+            if(isset($pro5)){
+                $desmontaje = ApplySubProcessAndProcess::where('processes_id', $pro5->id)->where('purchase_valuation_id', $value->id)->first();
+                $desmontaje_subproceso = SubProcesses::where('id', $desmontaje['subprocesses_id'])->first();  
+                             
+                if(isset($desmontaje_subproceso)){
+                    if ($desmontaje_subproceso['name'] == 'Si desmontaje'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($desmontaje_subproceso['name']). '</b></span>'; 
+                    }
+                    if($desmontaje_subproceso['name'] == 'Incidencia desmontaje'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($desmontaje_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($desmontaje_subproceso['name'] == 'No desmontaje'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($desmontaje_subproceso['name']). '</b></span>'; 
+                    }                    
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                }                          
+            }
+
+            $pro6 = Processes::where('id', 10)->first(); 
+            if(isset($pro6)){
+                $bastidor = ApplySubProcessAndProcess::where('processes_id', $pro6->id)->where('purchase_valuation_id', $value->id)->first();
+                $bastidor_subproceso = SubProcesses::where('id', $bastidor['subprocesses_id'])->first();  
+                             
+                if(isset($bastidor_subproceso)){    
+                    if ($bastidor_subproceso['name'] == 'Guardar Bastidor'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($bastidor_subproceso['name']). '</b></span>'; 
+                    }                 
+                    if ($bastidor_subproceso['name'] == 'No Guardar Bastidor'){
+                        $nestedData[] = '<b>' .nl2br($bastidor_subproceso['name']). '</b>'; 
+                    }                
+                }
+                else{
+                    $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
+                } 
+                        
+            }
+ 
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -803,10 +1127,12 @@ class PurchaseValuationController extends Controller
 
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
-        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.street', 'purchase_management.nro_street', 
+        'purchase_management.municipality','purchase_management.postal_code')
         ->where('purchase_valuation.states_id', '=', 8)
         ->get();
-
+        
+        
         $totalFiltered = $sqlTotalData;
         
         $view = getPermission('Motos que nos ofrecen', 'record-view');
@@ -837,15 +1163,9 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model;
-            $nestedData[] = $value->year;
-            $proceso = Processes::all();
-            foreach($proceso as $pro){
-                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
-                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
-                $nestedData[]= $subproceso['name'];
-            }
+            $nestedData[] = $value->street. ' ' . $value->nro_street. ' ' . $value->municipality. ' ' . $value->postal_code;
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -881,7 +1201,8 @@ class PurchaseValuationController extends Controller
 
         $purchases = DB::table('purchase_valuation')
         ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
-        ->select('purchase_valuation.*', 'purchase_management.status')
+        ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.street', 'purchase_management.nro_street', 
+        'purchase_management.municipality','purchase_management.postal_code')
         ->where('purchase_valuation.states_id', '=', 9)
         ->get();
 
@@ -915,15 +1236,11 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
-            $proceso = Processes::all();
-            foreach($proceso as $pro){
-                $apply = ApplySubProcessAndProcess::where('processes_id', $pro->id)->where('purchase_valuation_id', $value->id)->first();
-                $subproceso = SubProcesses::where('id', $apply['subprocesses_id'])->first();
-                $nestedData[]= $subproceso['name'];
-            }
+            $nestedData[] = $value->street. ' ' . $value->nro_street. ' ' . $value->municipality. ' ' . $value->postal_code;
+            $nestedData[] = $value->phone;
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -994,7 +1311,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'F'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
             $nestedData[] = $value->price_min;
