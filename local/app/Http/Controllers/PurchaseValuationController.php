@@ -85,6 +85,8 @@ class PurchaseValuationController extends Controller
         
         $data = array();
         foreach($purchases as $value){
+            $fieldsArray = json_decode($value->data_serialize, true);
+           
             $nestedData = array();       
 
             if($edit == true){             
@@ -94,17 +96,18 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = $value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->date;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
             // $nestedData[] = $value->email .' <br>' . $value->phone;
             $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = $value->price_min;
+            $nestedData[] = $fieldsArray[0]['value'];
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
         }
+        //exit;
         
         $json_data = array(
             "draw" => intval($requestData['draw']), // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
@@ -149,6 +152,8 @@ class PurchaseValuationController extends Controller
         
         $data = array();
         foreach($purchases as $value){
+            $fieldsArray = json_decode($value->data_serialize, true);
+
             $nestedData = array();   
 
             if($value->status == 2){
@@ -174,13 +179,13 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->date;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
             $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = $value->price_min;
+            $nestedData[] = $fieldsArray[0]['value'];
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -251,7 +256,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model; 
             $nestedData[] = $value->year;
             $nestedData[] = $value->price_min;   
@@ -325,7 +330,7 @@ class PurchaseValuationController extends Controller
             }
 
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = nl2br($value->model);
 
             $pro1 = Processes::where('id', 12)->first();           
@@ -658,7 +663,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->date;
 
@@ -890,7 +895,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->street. ' ' . $value->nro_street. ' ' . $value->municipality. ' ' . $value->postal_code;
             $nestedData[] = $status_ficha;
@@ -963,7 +968,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model;
             $pro1 = Processes::where('id', 8)->first(); 
 
@@ -1163,7 +1168,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->street. ' ' . $value->nro_street. ' ' . $value->municipality. ' ' . $value->postal_code;
             $nestedData[] = $status_ficha;
@@ -1236,7 +1241,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
             $nestedData[] = $value->street. ' ' . $value->nro_street. ' ' . $value->municipality. ' ' . $value->postal_code;
@@ -1311,7 +1316,7 @@ class PurchaseValuationController extends Controller
                 $botones = "No tienes permiso";
             }
             $nestedData[] ='<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_'.$value->id.'" value="'.$value->id.'" class="custom-control-input"><label class="custom-control-label" for="apply-1_'.$value->id.'"></label></div>';
-            $nestedData[] = 'F'.$value->id;
+            $nestedData[] = 'L'.$value->id;
             $nestedData[] = $value->model;
             $nestedData[] = $value->year;
             $nestedData[] = $value->price_min;
@@ -1426,6 +1431,7 @@ class PurchaseValuationController extends Controller
      */
     public function show($id)
     {
+        $id = str_replace('L', '', $id); 
         $purchase_valuation = PurchaseValuation::find($id);
         $forms = Forms::select(['form_display'])->where('id', 1)->first();
         $images = ImagesPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();  
@@ -1537,6 +1543,7 @@ class PurchaseValuationController extends Controller
      */
     public function destroy($id)
     {
+        $id = str_replace('L', '', $id); 
         $delete = getPermission('Motos que nos ofrecen', 'record-delete');
 
         if(!$delete) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
@@ -1558,7 +1565,7 @@ class PurchaseValuationController extends Controller
         $out['message'] = 'Hubo un error';
 
         foreach($motos as $purchase) {
-             
+            $id = str_replace('L', '', $purchase);  
             $purchase_model = PurchaseValuation::find($purchase);
             $purchase_model->states_id = $request->applyState;
             $purchase_model->update();
@@ -1715,7 +1722,8 @@ class PurchaseValuationController extends Controller
 
     public function showImages(Request $request)
     {
-        $data = $request->id;
+        $id = str_replace('L', '', $request->id); 
+        $data = $id;
        
         $images = ImagesPurchase::where('purchase_valuation_id', $data)->get();        
         return response()->json(['success'=> 200, 'data' => $images]);
@@ -1775,7 +1783,7 @@ class PurchaseValuationController extends Controller
     public function getDataFicha($id)
     {
  
-        $id = str_replace('F', '', $id);       
+        $id = str_replace('L', '', $id);       
         $view = getPermission('Motos que nos ofrecen', 'record-view');
 
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
@@ -2126,7 +2134,8 @@ class PurchaseValuationController extends Controller
 
     public function PublishMotocycle(Request $request)
     {
-        $user = PurchaseValuation::findOrFail($request->id);
+        $id = str_replace('L', '', $request->id); 
+        $user = PurchaseValuation::findOrFail($id);
         $status = '';
         $mensaje = '';
         if ($user->publish == 0) {
@@ -2149,7 +2158,8 @@ class PurchaseValuationController extends Controller
 
     public function verifyFicha(Request $request)
     {
-        $purchase = PurchaseManagement::where('purchase_valuation_id', $request->id)->first();
+        $id = str_replace('L', '', $request->id); 
+        $purchase = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $purchase->status = 2;
         $purchase->update();
 
