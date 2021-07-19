@@ -103,6 +103,12 @@
                         <option value="" disabled selected>Seleccione</option>
                     </select>
                 </div>
+
+                <div class="position-relative form-group" id="incidencia" style="display:none;">
+                    <label>Descripción de la incidencia: </label>
+                    <input type="text" class="form-control" name="incidencia" id="incidence">
+                </div>
+
                 <button type="button" class="btn btn-primary btn-block" id="btn-applySubProcess" value="add">Aplicar</button>
             </div>
         </div>
