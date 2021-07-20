@@ -7,6 +7,8 @@ $(document).ready(function () {
     var dataTable = $('#tableServices').DataTable({
         processing: true,
         responsive: true,
+        orderCellsTop: true,
+        fixedHeader: true, 
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             url: "getServices", // json datasource            

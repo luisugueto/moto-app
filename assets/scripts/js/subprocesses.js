@@ -3,6 +3,28 @@ $(document).ready(function () {
     //get base URL *********************
     var url = $('#url').val();
 
+    $('#tableSubProcesses thead tr').clone(true).appendTo('#tableSubProcesses thead');
+ 
+    $('#tableSubProcesses thead tr:eq(1) th').each( function (i) {
+        if (i == 0 || i == 6) {
+            $(this).css('color', 'transparent');
+            
+            // $(this).html('<input type="text" class="form-control" />');
+        }
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
+        }
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
     var dataTable = $('#tableSubProcesses').DataTable({
         processing: true,
         responsive: true,

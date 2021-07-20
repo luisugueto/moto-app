@@ -339,7 +339,7 @@ class PurchaseValuationController extends Controller
                 $grua = ApplySubProcessAndProcess::where('processes_id', $pro1->id)->where('purchase_valuation_id', $value->id)->first();
                 $grua_subproceso = SubProcesses::where('id', $grua['subprocesses_id'])->first();  
                 if(!!$grua_subproceso){ 
-                    if (strpos($grua_subproceso, 'Recogida') !== false) {
+                    if($grua_subproceso['name'] != 'Incidencia Grua'){
                         $nestedData[] = '<span class="text-success"><b>' .nl2br('Si Grúa'). '</b></span>'; 
                     }  
                     
