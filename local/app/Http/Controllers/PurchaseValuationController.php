@@ -103,7 +103,7 @@ class PurchaseValuationController extends Controller
             // $nestedData[] = $value->email .' <br>' . $value->phone;
             $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = $fieldsArray[0]['value'];
+            $nestedData[] = $value->price_min;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
         }
