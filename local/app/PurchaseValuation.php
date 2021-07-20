@@ -19,4 +19,8 @@ class PurchaseValuation extends Model
     public function purchase_management(){
         return $this->hasMany('App\PurchaseManagement');
     }
+
+    public function incidences(){
+        return $this->hasMany('App\IncidencePurchase', 'purchase_valuation_id', 'id');
+    }
 }

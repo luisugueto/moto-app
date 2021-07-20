@@ -16,6 +16,7 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -832,12 +833,36 @@ $(document).ready(function () {
         });
     });
 
+    var check_incide = false;
+
+    $("#subprocess").change(function (e){
+        let inci = $("#subprocess option:selected").text().toLowerCase().includes("incid");
+      
+        if(inci){
+            check_incide = true;
+            $("#incidencia").css('display', 'block');
+        }else{
+            check_incide = false;
+            $("#incidencia").css('display', 'none');
+        }
+    });
+
     $("#btn-applySubProcess").click(function (e) {
-        var formData = {
-            purchase_id: $('#purchase_id').val(),
-            processes_id: $('#process').val(),
-            subprocesses_id: $('#subprocess').val() 
-        };
+        if(!check_incide){
+            var formData = {
+                purchase_id: $('#purchase_id').val(),
+                processes_id: $('#process').val(),
+                subprocesses_id: $('#subprocess').val() 
+            };
+        }else{
+            var formData = {
+                purchase_id: $('#purchase_id').val(),
+                processes_id: $('#process').val(),
+                subprocesses_id: $('#subprocess').val(),
+                incidence: $("#incidence").val() 
+            };
+        }
+
         preloader('show');
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
@@ -848,6 +873,9 @@ $(document).ready(function () {
             success: function (data) {
                 // console.log(data);
                 if (data.code == 200) {
+                    if(check_incide)
+                        $("#incidence").val(''); 
+
                     preloader('hide', data.message, 'success');
                 }
                

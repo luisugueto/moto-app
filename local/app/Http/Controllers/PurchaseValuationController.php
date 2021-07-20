@@ -20,6 +20,7 @@ use App\Forms;
 use App\Business;
 use Yajra\Datatables\Datatables;
 use App\ApplySubProcessAndProcess;
+use App\IncidencePurchase;
 
 class PurchaseValuationController extends Controller
 {
@@ -1686,6 +1687,15 @@ class PurchaseValuationController extends Controller
         $apply->subprocesses_id = $subprocesses->id;
         $apply->purchase_valuation_id = $purchase->id;
         $apply->save();
+
+        if(isset($request->incidence)){
+            $inci = new IncidencePurchase();
+            $inci->processes_id = $processes->id;
+            $inci->subprocesses_id = $subprocesses->id;
+            $inci->purchase_valuation_id = $purchase->id;
+            $inci->description = $request->incidence;
+            $inci->save();
+        }
     
         if(!empty($subprocesses->business_id) && $processes->id == 12){
             $state = [];
