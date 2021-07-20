@@ -341,11 +341,13 @@ class PurchaseValuationController extends Controller
                 if(!!$grua_subproceso){ 
                     if($grua_subproceso['name'] != 'Incidencia Grua'){
                         $nestedData[] = '<span class="text-success"><b>' .nl2br('Si Grúa'). '</b></span>'; 
-                    }  
-                    
+                    } 
                     if($grua_subproceso['name'] == 'Incidencia Grua'){
                         $nestedData[] = '<span style="color:orange"><b>' .nl2br($grua_subproceso['name']). '</b></span>'; 
-                    }              
+                    }  
+                    if($grua_subproceso['name'] == 'No Grua'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br('No Grúa'). '</b></span>'; 
+                    }            
                 }else {
                     $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>';
                 }
