@@ -6,9 +6,9 @@ use App\PurchaseValuation;
 
 require_once dirname(__FILE__). '/oauth-php/OAuthRequestSigner.php';
 
-define("DOCUMENTS_API_URL", "https://sandbox.viafirma.com/documents/api/v3");
+define("DOCUMENTS_API_URL", "https://services.viafirma.com/documents/api/v3");
 define("DOCUMENTS_CONSUMER_KEY", "motostion");
-define("DOCUMENTS_CONSUMER_SECRET", "8793fEeQ9");
+define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
 
     function getPermission($menu, $permission){
 
