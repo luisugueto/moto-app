@@ -1676,6 +1676,7 @@ class PurchaseValuationController extends Controller
         $processes = Processes::find($request->processes_id);
         $subprocesses = SubProcesses::find($request->subprocesses_id);
         $purchase = PurchaseValuation::find($request->purchase_id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
 
         // check last process and delete
         $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', $processes->id)->where('purchase_valuation_id', $purchase->id)->get();
@@ -1705,7 +1706,7 @@ class PurchaseValuationController extends Controller
             $business = Business::find($subprocesses->business_id);
 
             
-            Mail::send('backend.emails.business', ['purchase' => $purchase, 'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token, 'business' => $business], function ($message) use ($subprocesses, $business)
+            Mail::send('backend.emails.business', ['purchase' => $purchase, 'purchase_management' => $purchase_management,'subprocesses' => $subprocesses, 'state' => $state, 'token' => $token, 'business' => $business], function ($message) use ($subprocesses, $business)
                 {
                     $message->from('info@motostion.com', 'MotOstion');
 
