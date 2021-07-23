@@ -886,10 +886,10 @@
                         continue; //if not found (error)
                     }
                 }
-                if(val.length < 24){
+                if(val.length < 29){
                     val += val_chars[index]; // add char to return Value
                 }
-                if(count%4 == 0 && val.length < 24) { //Avery 4 chars an space
+                if(count%4 == 0 && val.length < 29) { //Avery 4 chars an space
                     val += " "; 
                 }
                 
