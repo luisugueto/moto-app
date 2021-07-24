@@ -265,6 +265,14 @@
                                         @endif
                                     </div>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <label for="created_at" class="">Fecha de Ingreso:</label>
+                                        <input name="created_at" id="created_at" type="text" class="form-control" readonly="readonly">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <div class="tab-pane" id="tab-ficha-1" role="tabpanel">
@@ -1119,6 +1127,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <th>Fecha</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -1142,6 +1151,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <th>Fecha</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -1165,6 +1175,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <th>Fecha</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
@@ -1188,6 +1199,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Estado</th>
+                                    <th>Fecha</th>
                                     <th>Acción</th>
                                 </tr>
                             </thead>
