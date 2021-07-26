@@ -264,20 +264,20 @@
                                         <input class="toggle-vis-2" id="column_2-9" type="checkbox" data-column="9" checked><label class="inline-label tr" key="Fecha" for="column_2-9">Descontaminación </label>
                                     </button>  
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Fecha" for="column_2-10">TPV</label>
+                                        <input class="toggle-vis-2" id="column_2-10" type="checkbox" data-column="10" checked><label class="inline-label tr" key="Fecha" for="column_2-10">Motor 2ª fase</label>
+                                    </button>
+                                    <button type="button" tabindex="0" class="dropdown-item">
+                                        <input class="toggle-vis-2" id="column_2-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Fecha" for="column_2-11">TPV</label>
                                     </button>        
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-11" type="checkbox" data-column="11" checked><label class="inline-label tr" key="Fecha" for="column_2-11">Desmontaje</label>
+                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Fecha" for="column_2-12">Desmontaje</label>
                                     </button>  
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-12" type="checkbox" data-column="12" checked><label class="inline-label tr" key="Fecha" for="column_2-12">Fotos</label>
+                                        <input class="toggle-vis-2" id="column_2-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Fecha" for="column_2-13">Fotos</label>
                                     </button>   
                                     <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-13" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Fecha" for="column_2-13">Prioridad</label>
-                                    </button> 
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-2" id="column_2-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Fecha" for="column_2-14">Inventariada</label>
-                                    </button>
+                                        <input class="toggle-vis-2" id="column_2-14" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Fecha" for="column_2-14">Prioridad</label>
+                                    </button>                                     
                                     <button type="button" tabindex="0" class="dropdown-item">
                                         <input class="toggle-vis-2" id="column_2-15" type="checkbox" data-column="15" checked><label class="inline-label tr" key="Fecha" for="column_2-15">Bastidor</label>
                                     </button>    
@@ -298,11 +298,11 @@
                                     <th class="text-center">Recepción Moto</th>
                                     <th class="text-center">Proceso Arranque</th>
                                     <th class="text-center">Descontaminación</th>
+                                    <th class="text-center">Motor 2ª fase</th>
                                     <th class="text-center">TPV</th>
                                     <th class="text-center">Desmontaje</th>
                                     <th class="text-center">Fotos</th>
-                                    <th class="text-center">Prioridad</th>  
-                                    <th class="text-center">Inventariada</th> 
+                                    <th class="text-center">Prioridad</th> 
                                     <th class="text-center">Bastidor</th> 
                                     <th class="text-center">Estado Ficha</th>
                                     <th class="text-center">Acciones</th>
