@@ -365,7 +365,7 @@ class PurchaseValuationController extends Controller
                     if($alta_motor_subproceso['name'] == 'Incidencia Motor'){
                         $nestedData[] = '<span style="color:orange"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }                
-                    if ($alta_motor_subproceso['name'] == 'No Motor 1ª fase'){
+                    if ($alta_motor_subproceso['name'] == 'No Motor 1ª F'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($alta_motor_subproceso['name']). '</b></span>'; 
                     }
                 }
@@ -491,13 +491,13 @@ class PurchaseValuationController extends Controller
                 $motor2_subproceso = SubProcesses::where('id', $motor2['subprocesses_id'])->first();  
                              
                 if(isset($motor2_subproceso)){
-                    if ($motor2_subproceso['name'] == 'Si Motor 2ª fase'){
+                    if ($motor2_subproceso['name'] == 'Si Motor 2ª F'){
                         $nestedData[] = '<span class="text-success"><b>' .nl2br($motor2_subproceso['name']). '</b></span>'; 
                     } 
                     if($motor2_subproceso['name'] == 'Incidencia Motor'){
                         $nestedData[] = '<span style="color:orange"><b>' .nl2br($motor2_subproceso['name']). '</b></span>'; 
                     }                  
-                    if ($motor2_subproceso['name'] == 'No Motor 2ª fase'){
+                    if ($motor2_subproceso['name'] == 'No Motor 2ª F'){
                         $nestedData[] = '<span class="text-danger"><b>' .nl2br($motor2_subproceso['name']). '</b></span>'; 
                     }                    
                 }
