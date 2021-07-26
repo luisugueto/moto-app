@@ -1817,7 +1817,7 @@ class PurchaseValuationController extends Controller
             $subprocesses = SubProcesses::find($value->subprocesses_id);
             array_push($processes, ['name' => $process->name, 'subproceso' => $subprocesses->name, 'date' => date_format($value->created_at, 'Y-m-d')]);
 
-            if($subprocesses->id == 17)
+            if($subprocesses->id == 17 || $subprocesses->id == 18)
                 $dateDocuments = date_format($value->created_at, 'Y-m-d');
         }
 
@@ -1827,7 +1827,7 @@ class PurchaseValuationController extends Controller
         $documentsPossibleSale = array();
         $documentsPossibleSaleDeceased = array();
 
-        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0 || ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 18)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
             
             $data['documents_send'] = true;
 
