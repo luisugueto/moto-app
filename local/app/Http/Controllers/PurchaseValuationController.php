@@ -1796,7 +1796,6 @@ class PurchaseValuationController extends Controller
 
     public function getDataFicha($id)
     {
- 
         $id = str_replace('L', '', $id);       
         $view = getPermission('Motos que nos ofrecen', 'record-view');
 
@@ -1813,10 +1812,14 @@ class PurchaseValuationController extends Controller
         
         $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $id)->get();
         $processes = array();
+        $dateDocuments = '';
         foreach ($apply as $key => $value) {
             $process = Processes::find($value->processes_id);
             $subprocesses = SubProcesses::find($value->subprocesses_id);
-            array_push($processes, ['name' => $process->name, 'subproceso' => $subprocesses->name]);
+            array_push($processes, ['name' => $process->name, 'subproceso' => $subprocesses->name, 'date' => date_format($value->created_at, 'Y-m-d')]);
+
+            if($subprocesses->id == 17 || $subprocesses->id == 18)
+                $dateDocuments = date_format($value->created_at, 'Y-m-d');
         }
 
         $data['documents_send'] = false;
@@ -1825,7 +1828,7 @@ class PurchaseValuationController extends Controller
         $documentsPossibleSale = array();
         $documentsPossibleSaleDeceased = array();
 
-        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
+        if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0 || ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 18)->where('purchase_valuation_id', $purchase_valuation->id)->count() > 0){
             
             $data['documents_send'] = true;
 
@@ -1841,7 +1844,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Documentos para Destrucción';
 
 
-                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage) ]);
+                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
                 }
             }
 
@@ -1859,7 +1862,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Declaracion Responsable Fallecidos';
 
 
-                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage) ]);
+                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
                 }
             }
 
@@ -1877,7 +1880,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Documentos para venta';
 
 
-                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage) ]);
+                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
                 }
             }
 
@@ -1897,7 +1900,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Declaracion Responsable Fallecidos';
 
 
-                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage) ]);
+                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "documents-web/approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
                 }
             }
         }
@@ -1922,6 +1925,7 @@ class PurchaseValuationController extends Controller
         $data['data_serialize'] = ($purchase_valuation['data_serialize']);
         $data['states_id'] = $purchase_valuation['states_id'];
         $data['processes'] = $processes;
+        $data['created_at'] = date_format($purchase_valuation['created_at'], 'Y-m-d');
 
         //Datos Purchase Management
         $data['file_no'] = $purchase_management['file_no'];

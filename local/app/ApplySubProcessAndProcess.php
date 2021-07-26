@@ -9,7 +9,7 @@ class ApplySubProcessAndProcess extends Model
     protected $table = 'apply_sub_process_and_processes';
 
     protected $fillable = [
-        'processes_id', 'subprocesses_id', 'purchase_valuation_id'
+        'processes_id', 'subprocesses_id', 'purchase_valuation_id', 'created_at'
     ];
 
     public function processes(){
