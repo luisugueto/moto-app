@@ -14,6 +14,7 @@ use App\ApplySubProcessAndProcess;
 use App\Materials;
 use DB;
 use Redirect;
+use App\Residuos;
 
 class ResiduosController extends Controller
 {
@@ -401,11 +402,32 @@ class ResiduosController extends Controller
 
     public function getResiduos()
     {
-        
         $materials = Materials::select(['id','name']);
  
         return Datatables::of($materials)
  
             ->make(true);
+    }
+
+    public function retirarResiduos(Request $request){
+        $out['code'] = 204;
+        $out['message'] = 'Hubo un error';
+
+        $residuo = new Residuos();
+        $residuo->id_materials = $request->id_material;
+        $residuo->delivery = $request->entrega;
+        $residuo->in_installation = $request->en_instalaciones;
+        $residuo->dcs = $request->dcs;
+        $residuo->save();
+        
+        $out['code'] = 200;
+        $out['data'] = $request->all();
+        $out['message'] = 'Se ha aplicado el proceso Exitosamente';
+
+        return response()->json($out);
+    }
+
+    public function retirarVariosResiduos(Request $request){
+
     }
 }

@@ -88,6 +88,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('exportar-envios-quicenales-gestionados', 'ResiduosController@exportEnviosQuincenalesGestionadas');
     Route::get('envios-semestrales', 'ResiduosController@enviosSemestrales');
     Route::get('exportar-envios-semestrales', 'ResiduosController@exportEnviosSemestrales');
+    Route::post('/retiro-residuos/retirar', 'ResiduosController@retirarResiduos');
+    Route::post('/retiro-residuos/retirar_varios', 'ResiduosController@retirarVariosResiduos');
+
     // Route::get('envios-anuales', 'ResiduosController@enviosAnuales');
     // Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
 

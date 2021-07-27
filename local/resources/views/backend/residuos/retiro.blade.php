@@ -31,7 +31,7 @@
                                 <th></th>
                                 <th>Residuo</th>
                                 <th>Entrega</th>
-                                <th>En Instalciones</th>
+                                <th>En Instalaciones</th>
                                 <th>DCS (Cuando lo entregan)</th>
                                 <th>Acciones</th>
                             </tr>
