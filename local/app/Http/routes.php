@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/envios-anuales', 'HomeController@proximamente');
     Route::get('/cargar-cvs-formulario', 'HomeController@proximamente');
     Route::get('/estadisticas', 'HomeController@proximamente');
-    Route::get('/retiro-de-residuos', 'HomeController@proximamente');
+    Route::get('/retiro-de-residuos', 'ResiduosController@retiroResiduos');
 
     Route::post('show-images', 'PurchaseValuationController@showImages');
 
@@ -133,6 +133,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getMailBusiness', 'SubProcessesController@getMailBusiness');
     Route::post('getWasteCompanies', 'WasteCompaniesController@getWasteCompanies');
     Route::post('getMaterials', 'MaterialsController@getMaterials');
+    Route::post('getResiduos', 'ResiduosController@getResiduos');
 
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');

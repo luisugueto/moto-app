@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exports\EnviosQuincenalesExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Yajra\Datatables\Datatables;
 use App\Http\Requests;
 use App\PurchaseManagement;
 use App\PurchaseValuation;
 use App\Processes;
 use App\SubProcesses;
 use App\ApplySubProcessAndProcess;
+use App\Materials;
 use DB;
 use Redirect;
 
@@ -379,20 +381,31 @@ class ResiduosController extends Controller
                 $lastProcessApply->update();
 
         } 
-
-        // if($countLastProcessApply > 0)
-            // ApplySubProcessAndProcess::destroy($lastProcessApply->id);
-
-        // $apply = new ApplySubProcessAndProcess();
-        // $apply->processes_id = $processes->id;
-        // $apply->subprocesses_id = $subprocesses->id;
-        // $apply->purchase_valuation_id = $purchase->id;
-        // $apply->save();
          
         $out['code'] = 200;
         $out['data'] = $purchase;
         $out['message'] = 'Se ha aplicado el proceso Exitosamente';
 
         return response()->json($out);
+    }
+
+    //Retiro de Residuos
+    public function retiroResiduos()
+    {
+        $view = getPermission('Retiro de Residuos', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+        return view ('backend.residuos.retiro');
+       
+    }
+
+    public function getResiduos()
+    {
+        
+        $materials = Materials::select(['id','name']);
+ 
+        return Datatables::of($materials)
+ 
+            ->make(true);
     }
 }
