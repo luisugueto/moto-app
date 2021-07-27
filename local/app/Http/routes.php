@@ -155,6 +155,8 @@ Route::group(['middleware' => 'auth'], function () {
     //ADD MATERIALS TO WASTE COMPANIES
     Route::get('empresas-de-residuos/agregar-materiales/{id}', 'WasteCompaniesController@addMaterials');
 
+    Route::post('empresas-de-residuos/add_materials', 'WasteCompaniesController@addMaterialsCompanie');
+
     //BUSCADOR EN MOTOS QUE NOS OFRECEN
     Route::get('motos/buscador','PurchaseValuationController@buscador');
 

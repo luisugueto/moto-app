@@ -8,6 +8,7 @@ use App\WasteCompanies;
 use App\Waste;
 use App\Email;
 use App\Materials;
+use App\MaterialsCompanie;
 use DB;
 use Redirect;
 
@@ -183,4 +184,20 @@ class WasteCompaniesController extends Controller
 
         return response()->json($out);
     }
+
+    public function addMaterialsCompanie(Request $request)
+    {
+        foreach($request->apply as $apply){
+            $materials = new MaterialsCompanie();
+            $materials->materials_id = $apply;
+            $materials->waste_companies_id = $request->waste_companies_id;
+            $materials->save();
+        }
+
+        $out['code'] = 200;
+        $out['message'] = 'Registro eliminado exitosamente';
+
+        return response()->json($out);
+    }
+
 }
