@@ -194,6 +194,52 @@ $(document).ready(function(){
             }
         });
     });
+
+    //create new product / update existing product ***************************
+    $("#btn-save-materials").click(function (e) {
+        var values = $("input[name='apply[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        e.preventDefault();
+        var formData = {
+            waste_companies_id: $('#waste_companies_2_id').val(),
+            apply: values
+        }
+       
+        preloader('show');
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            type: 'POST',
+            url: url + '/add_materials',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#frmAddMaterials').trigger("reset");
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                    $('#myModalMaterials').modal('hide');
+                }
+                if (data.code == 422) {
+                    $('#errors').html('');
+                    preloader('hide', data.message, 'error');
+                    var list = '';
+                    $.each(data.response, function (i, value) {
+                        list += '<li>' + value + '</li>';
+                    });
+                    $('.alert').prop('hidden', false);
+                    $('#errors').html(list);
+                }              
+                                
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+    });       
+    
        
     
     //////////////////////////////////////////////////////////////////
@@ -210,7 +256,7 @@ $(document).ready(function(){
                 $('#tdListMaterials').html('');
                 $('#waste_companies_2_id').val('');
                 if (data.code == 200) {
-                    $('#waste_companies_2_id').val(data.waste);
+                    $('#waste_companies_2_id').val(data.waste.id);
                     var dt = '';
                     $.each(data.materials, function (i, val) {
                         console.log(val);
@@ -218,7 +264,7 @@ $(document).ready(function(){
                             <th scope="row">${val.id}</th>
                             <td>${val.name}</td>
                             <td>${val.stock}</td>
-                            <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input"><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
+                            <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input"><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
                         </tr> `;
                     });
                     $('#tdListMaterials').html(dt);
