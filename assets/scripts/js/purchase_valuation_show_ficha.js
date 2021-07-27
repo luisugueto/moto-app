@@ -159,6 +159,7 @@ $(document).ready(function () {
                 else if (data.fuel == 'Otros')
                     $('#others').attr('checked', true)
                 $('#registration_number').val(data.registration_number);
+                $('#weight').val(data.weight);
                 $('#registration_date').val(data.registration_date);
                 $('#registration_country').val(data.registration_country);
                 $('#frame_no').val(data.frame_no);

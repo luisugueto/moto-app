@@ -942,6 +942,19 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
+                                        <label for="weight" class="">Peso: </label>
+                                        <input name="weight" id="weight" type="number" step="0.1" class="form-control" value="{{ old('weight') }}">
+                                        @if ($errors->has('weight'))
+                                            <span class="error text-danger">
+                                                <strong>{{ $errors->first('weight') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="form-row row g-1">
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
                                         <label for="registration_date" class="">Fecha de Matriculación:</label>
                                         <input name="registration_date" id="registration_date" type="date" class="form-control"
                                             value="{{ old('registration_date') }}">
@@ -952,9 +965,7 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row row g-1">
-                                
+
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="registration_country" class="">País de Matriculación:</label>

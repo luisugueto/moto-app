@@ -1975,6 +1975,7 @@ class PurchaseValuationController extends Controller
         $data['vehicle_state_trafic'] = $purchase_management['vehicle_state_trafic'];
         $data['vehicle_state'] = $purchase_management['vehicle_state'];
         $data['status_ficha'] = $purchase_management['status'];
+        $data['weight'] = $purchase_management['weight'];
         //
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
         $data['images_purchase_valuation'] = $images_purchase_valuation;
@@ -2117,6 +2118,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->vehicle_state = $request->vehicle_state;
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
         $purchase_management->datos_internos = $request->datos_internos;
+        $purchase_management->weight = $request->weight;
         $purchase_management->update();
 
         $out['message'] = 'Registro Actualizado Exitosamente.';
