@@ -25,9 +25,8 @@ class WasteCompaniesController extends Controller
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $haspermision = getPermission('Empresas', 'record-create');
-        $emails = Email::where('type', 2)->get();
-        $materials = Materials::get();
-        return view('backend.waste_companies.index', compact('haspermision', 'emails', 'materials'));
+        $emails = Email::where('type', 2)->get();        
+        return view('backend.waste_companies.index', compact('haspermision', 'emails'));
     }
 
     public function getWasteCompanies()
@@ -178,6 +177,10 @@ class WasteCompaniesController extends Controller
     public function addMaterials($id)
     {
         $waste = WasteCompanies::findOrFail($id);
-        return response()->json($waste);
+        $out['code'] = 200;
+        $out['waste'] = $waste;
+        $out['materials'] = Materials::get();
+
+        return response()->json($out);
     }
 }

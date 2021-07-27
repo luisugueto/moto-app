@@ -243,12 +243,21 @@
                     </div>
                     <form id="frmAddMaterials" name="frmAddMaterials" novalidate="">
                         {{ csrf_field() }}
-                        <div class="divider"></div>
-                        <select name="add_materials" id="add_materials" class="form-control">
-                            @foreach ($materials as $material)
-                            <option value="{{ $material->id }}">{{ $material->name }}</option>
-                            @endforeach
-                        </select>
+                        <div class="table-responsive">
+                            <table class="mb-0 table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Material</th>
+                                        <th>Stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tdListMaterials">
+                                                                                
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">

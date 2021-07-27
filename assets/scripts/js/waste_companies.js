@@ -207,9 +207,26 @@ $(document).ready(function(){
             type: "GET",
             url: url + '/agregar-materiales/' + waste_companies_id,
             success: function (data) {
-                // console.log(data);
-                $('#waste_companies_2_id').val(data.id);
-                $('#myModalMaterials').modal('show');
+                $('#tdListMaterials').html('');
+                $('#waste_companies_2_id').val('');
+                if (data.code == 200) {
+                    $('#waste_companies_2_id').val(data.waste);
+                    var dt = '';
+                    $.each(data.materials, function (i, val) {
+                        console.log(val);
+                        dt += `<tr>
+                            <th scope="row">${val.id}</th>
+                            <td>${val.name}</td>
+                            <td>${val.stock}</td>
+                            <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input"><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
+                        </tr> `;
+                    });
+                    $('#tdListMaterials').html(dt);
+                    $('#myModalMaterials').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                }
             },
             error: function (data) {
                 console.log('Error:', data);
