@@ -553,15 +553,16 @@ class PurchaseValuationController extends Controller
             if(isset($pro11)){
                 $fotos = ApplySubProcessAndProcess::where('processes_id', $pro11->id)->where('purchase_valuation_id', $value->id)->first();
                 $fotos_subproceso = SubProcesses::where('id', $fotos['subprocesses_id'])->first();  
-                             
-                if ($fotos_subproceso['name'] == 'Si Fotos'){
-                    $nestedData[] = '<span class="text-success"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
-                }
-                if($fotos_subproceso['name'] == 'Incidencia fotos'){
-                    $nestedData[] = '<span style="color:orange"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
-                }                  
-                if ($fotos_subproceso['name'] == 'No Fotos'){
-                    $nestedData[] = '<span class="text-danger"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                if(isset($fotos_subproceso)){           
+                    if ($fotos_subproceso['name'] == 'Si Fotos'){
+                        $nestedData[] = '<span class="text-success"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                    }
+                    if($fotos_subproceso['name'] == 'Incidencia fotos'){
+                        $nestedData[] = '<span style="color:orange"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                    }                  
+                    if ($fotos_subproceso['name'] == 'No Fotos'){
+                        $nestedData[] = '<span class="text-danger"><b>' .nl2br($fotos_subproceso['name']). '</b></span>'; 
+                    }
                 }
                 else{
                     $nestedData[] = '<span class="badge badge-danger"><b>PROCESO <br> NO APLICADO</b></span>'; 
