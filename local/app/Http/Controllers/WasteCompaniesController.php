@@ -178,8 +178,15 @@ class WasteCompaniesController extends Controller
     public function addMaterials($id)
     {
         $waste = WasteCompanies::findOrFail($id);
+        $lastMaterialApply = MaterialsCompanie::where('waste_companies_id', $waste->id)->get();
+
+        if($lastMaterialApply->count() > 0){            
+            $out['materialApply'] = $lastMaterialApply;
+        }
+
         $out['code'] = 200;
         $out['waste'] = $waste;
+        
         $out['materials'] = Materials::get();
 
         return response()->json($out);

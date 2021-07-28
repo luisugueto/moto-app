@@ -257,15 +257,21 @@ $(document).ready(function(){
                 $('#waste_companies_2_id').val('');
                 if (data.code == 200) {
                     $('#waste_companies_2_id').val(data.waste.id);
-                    var dt = '';
+                    var dt = '', checked = '';
+                    console.log(data)
                     $.each(data.materials, function (i, val) {
-                        console.log(val);
+                        //console.log(val);
+                        $.each(data.materialApply, function (index, valor) {
+                            if (val.id == valor.materials_id) {
+                                checked = 'checked';
+                            }                            
+                        });
                         dt += `<tr>
-                            <th scope="row">${val.id}</th>
-                            <td>${val.name}</td>
-                            <td>${val.stock}</td>
-                            <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input"><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
-                        </tr> `;
+                                    <th scope="row">${val.id}</th>
+                                    <td>${val.name}</td>
+                                    <td>${val.stock}</td>
+                                    <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input" ${checked}><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
+                                </tr> `;
                     });
                     $('#tdListMaterials').html(dt);
                     $('#myModalMaterials').modal({

@@ -24,8 +24,14 @@ $(document).ready(function(){
         
                 },
                 "targets": -1
-            },  
-            { "data": "name" },
+            },
+            { "data": null,
+                render:function(data){
+                    return data.name +' / <br><b>'+ data.business +'</b>';
+        
+                },
+                "targets": -1
+            },
             { "data": null,
                 render:function(data){
                     return '<input name="entrega[]" id="entrega_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';

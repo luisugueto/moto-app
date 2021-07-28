@@ -403,18 +403,20 @@ class ResiduosController extends Controller
 
     public function getResiduos()
     {
-        // $materialsCompanie = array();
-        // $materials = MaterialsCompanie::all();
+        $materialsCompanie = array();
+        $materials = MaterialsCompanie::all();
 
-        // foreach($materials as $material){
-        //     array_push($materialsCompanie, ['id' => $material->id, 'name' => $material->material->name, 'business' => $material->waste_companie->name]);
-        // }
-        
-        $materials = Materials::select(['id','name']);
+        foreach($materials as $material){
+            array_push($materialsCompanie, ['id' => $material->id, 'name' => $material->material->name, 'business' => $material->waste_companie->name]);
+        }
+        //dd($materialsCompanie);
+        $json_data = array('data'=> $materialsCompanie);
+        $json_data= collect($json_data);  
+
+        return response()->json($json_data);
  
-        return Datatables::of($materials)
- 
-            ->make(true);
+        // return Datatables::of($json_data) 
+        //     ->make(true);
     }
 
     public function retirarResiduos(Request $request){

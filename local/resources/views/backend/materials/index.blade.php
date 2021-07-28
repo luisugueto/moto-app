@@ -86,6 +86,7 @@
                                 <option value="">Seleccionar</option>
                                 <option value="Plásticos" {{ old('type') == 'Plásticos' ? 'selected' : '' }}>Plásticos de gran tamaño</option>
                                 <option value="Metal" {{ old('type') == 'Metal' ? 'selected' : '' }}>Metal</option>
+                                <option value="Líquidos" {{ old('type') == 'Líquidos' ? 'selected' : '' }}>Líquidos</option>
                             </select>
                         </div>  
                          
