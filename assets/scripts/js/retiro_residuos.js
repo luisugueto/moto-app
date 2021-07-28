@@ -20,7 +20,7 @@ $(document).ready(function(){
             { "data": "id" },
             { "data": null,
                 render:function(data){
-                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
         
                 },
                 "targets": -1
@@ -28,21 +28,21 @@ $(document).ready(function(){
             { "data": "name" },
             { "data": null,
                 render:function(data){
-                    return '<input name="entrega" id="entrega" type="number" step="0.1" class="form-control" value="">';
+                    return '<input name="entrega" id="entrega_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';
         
                 },
                 "targets": -1
             }, 
             { "data": null,
                 render:function(data){
-                    return '<input name="en_instalaciones" id="en_instalaciones" type="number" step="0.1" class="form-control" value="">';
+                    return '<input name="en_instalaciones" id="en_instalaciones_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';
         
                 },
                 "targets": -1
             },
             { "data": null,
                 render:function(data){
-                    return '<input name="dcs" id="dcs" type="text"  class="form-control" value="">';
+                    return '<input name="dcs" id="dcs_'+data.id+'" type="text"  class="form-control" value="" required>';
         
                 },
                 "targets": -1
@@ -50,7 +50,7 @@ $(document).ready(function(){
             {"data": null,
                 render:function(data, type, row)
                     {
-                      var echo ="<a class='mb-2 mr-2 btn btn-info button_detail text-white' title='Info'> Retiro</a>";
+                      var echo ="<a class='mb-2 mr-2 btn btn-info button_retiro text-white' title='Info'> Retiro</a>";
                       return echo;
                     },
                     "targets": -1
@@ -66,4 +66,102 @@ $(document).ready(function(){
         ],
         "order": [[0, "desc"]]
     });
+
+    //display modal form for product EDIT ***************************
+    $(document).on('click', '.button_retiro', function (e) {
+        var $tr = $(this).closest('tr');
+        var data = dataTable.row($(this).parents($tr)).data();
+        var id_material = data.id;  
+        var entrega = $("#entrega_"+id_material).val();
+        var en_instalaciones = $("#en_instalaciones_"+id_material).val();
+        var dcs = $("#dcs_"+id_material).val();
+
+        if($.isNumeric(entrega)){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
+        if($.isNumeric(en_instalaciones)){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
+
+        e.preventDefault();
+        var formData = {
+            id_material: id_material,
+            entrega: entrega,
+            en_instalaciones: en_instalaciones,
+            dcs: dcs
+        }
+
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            type: 'POST',
+            url: url + '/retirar',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#apply_'+id_material).prop('checked', false);
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                }
+                if (data.code == 422) {
+                    $('#errors').html('');
+                    preloader('hide', data.message, 'error');
+                    var list = '';
+                    $.each(data.response, function (i, value) {
+                        list += '<li>' + value + '</li>';
+                    });
+                    $('.alert').prop('hidden', false);
+                    $('#errors').html(list);
+                }              
+                                
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+         
+    });
+
+    //create new product / update existing product ***************************
+    $("#btnRetiroAll").click(function (e) {
+        var values = $("input[name='apply[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        e.preventDefault();
+        var formData = {
+            apply: values
+        }
+
+        preloader('show');
+        // $.ajax({
+        //     headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+        //     type: 'POST',
+        //     url: url + '/retirar_varios',
+        //     data: formData,
+        //     dataType: 'json',
+        //     success: function (data) {
+        //         if (data.code == 200) {
+        //             dataTable.ajax.reload();
+        //             preloader('hide', data.message, 'success');
+        //             $('#frmAddMaterials').trigger("reset");
+        //             $('#errors').html('');
+        //             $('.alert').prop('hidden', true);
+        //             $('#myModalMaterials').modal('hide');
+        //         }
+        //         if (data.code == 422) {
+        //             $('#errors').html('');
+        //             preloader('hide', data.message, 'error');
+        //             var list = '';
+        //             $.each(data.response, function (i, value) {
+        //                 list += '<li>' + value + '</li>';
+        //             });
+        //             $('.alert').prop('hidden', false);
+        //             $('#errors').html(list);
+        //         }              
+                                
+        //     },
+        //     error: function (data) {
+        //         console.log(data)
+        //     }
+        // });
+    });  
 });
