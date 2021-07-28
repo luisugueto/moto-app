@@ -28,21 +28,21 @@ $(document).ready(function(){
             { "data": "name" },
             { "data": null,
                 render:function(data){
-                    return '<input name="entrega" id="entrega_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';
+                    return '<input name="entrega[]" id="entrega_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';
         
                 },
                 "targets": -1
             }, 
             { "data": null,
                 render:function(data){
-                    return '<input name="en_instalaciones" id="en_instalaciones_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';
+                    return '<input name="en_instalaciones[]" id="en_instalaciones_'+data.id+'" type="number" step="0.1" class="form-control" value="" required>';
         
                 },
                 "targets": -1
             },
             { "data": null,
                 render:function(data){
-                    return '<input name="dcs" id="dcs_'+data.id+'" type="text"  class="form-control" value="" required>';
+                    return '<input name="dcs[]" id="dcs_'+data.id+'" type="text"  class="form-control" value="" required>';
         
                 },
                 "targets": -1
@@ -67,7 +67,8 @@ $(document).ready(function(){
         "order": [[0, "desc"]]
     });
 
-    //display modal form for product EDIT ***************************
+    // RETIRO RESIDUO INDIVIDUAL
+    
     $(document).on('click', '.button_retiro', function (e) {
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
@@ -78,6 +79,8 @@ $(document).ready(function(){
 
         if($.isNumeric(entrega)){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
         if($.isNumeric(en_instalaciones)){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
+        if(dcs != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); return;}
+
 
         e.preventDefault();
         var formData = {
@@ -86,7 +89,7 @@ $(document).ready(function(){
             en_instalaciones: en_instalaciones,
             dcs: dcs
         }
-
+     
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
             type: 'POST',
@@ -121,47 +124,68 @@ $(document).ready(function(){
          
     });
 
-    //create new product / update existing product ***************************
+    // RETIRO VARIOS RESIDUOS
+
     $("#btnRetiroAll").click(function (e) {
         var values = $("input[name='apply[]']:checkbox:checked")
               .map(function(){return $(this).val();}).get();
 
+        if(values.length == 0){ preloader('hide', "Por favor seleccione residuos", 'warning'); e.preventDefault(); return;}
+
+        var entrega = $("input[name='entrega[]']")
+              .map(function(){return $(this).val();}).get();
+
+        var en_instalaciones = $("input[name='en_instalaciones[]']")
+              .map(function(){return $(this).val();}).get();
+
+        var dcs = $("input[name='dcs[]']")
+              .map(function(){return $(this).val();}).get();
+
         e.preventDefault();
         var formData = {
-            apply: values
+            material: values,
+            entrega: entrega,
+            en_instalaciones: en_instalaciones,
+            dcs: dcs
         }
 
+        values.forEach(function(val, index){
+            if($.isNumeric($("#entrega_"+val).val())){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
+            if($.isNumeric($("#en_instalaciones_"+val).val())){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
+            if($("#dcs_"+val).val() != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); return;}
+        });
+
         preloader('show');
-        // $.ajax({
-        //     headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-        //     type: 'POST',
-        //     url: url + '/retirar_varios',
-        //     data: formData,
-        //     dataType: 'json',
-        //     success: function (data) {
-        //         if (data.code == 200) {
-        //             dataTable.ajax.reload();
-        //             preloader('hide', data.message, 'success');
-        //             $('#frmAddMaterials').trigger("reset");
-        //             $('#errors').html('');
-        //             $('.alert').prop('hidden', true);
-        //             $('#myModalMaterials').modal('hide');
-        //         }
-        //         if (data.code == 422) {
-        //             $('#errors').html('');
-        //             preloader('hide', data.message, 'error');
-        //             var list = '';
-        //             $.each(data.response, function (i, value) {
-        //                 list += '<li>' + value + '</li>';
-        //             });
-        //             $('.alert').prop('hidden', false);
-        //             $('#errors').html(list);
-        //         }              
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            type: 'POST',
+            url: url + '/retirar_varios',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#frmAddMaterials').trigger("reset");
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                    $('#myModalMaterials').modal('hide');
+                }
+                if (data.code == 422) {
+                    $('#errors').html('');
+                    preloader('hide', data.message, 'error');
+                    var list = '';
+                    $.each(data.response, function (i, value) {
+                        list += '<li>' + value + '</li>';
+                    });
+                    $('.alert').prop('hidden', false);
+                    $('#errors').html(list);
+                }              
                                 
-        //     },
-        //     error: function (data) {
-        //         console.log(data)
-        //     }
-        // });
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
     });  
 });

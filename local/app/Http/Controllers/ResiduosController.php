@@ -12,6 +12,7 @@ use App\Processes;
 use App\SubProcesses;
 use App\ApplySubProcessAndProcess;
 use App\Materials;
+use App\MaterialsCompanie;
 use DB;
 use Redirect;
 use App\Residuos;
@@ -402,6 +403,13 @@ class ResiduosController extends Controller
 
     public function getResiduos()
     {
+        // $materialsCompanie = array();
+        // $materials = MaterialsCompanie::all();
+
+        // foreach($materials as $material){
+        //     array_push($materialsCompanie, ['id' => $material->id, 'name' => $material->material->name, 'business' => $material->waste_companie->name]);
+        // }
+        
         $materials = Materials::select(['id','name']);
  
         return Datatables::of($materials)
@@ -422,12 +430,28 @@ class ResiduosController extends Controller
         
         $out['code'] = 200;
         $out['data'] = $request->all();
-        $out['message'] = 'Se ha aplicado el proceso Exitosamente';
+        $out['message'] = 'Se ha retirado el residuo Exitosamente';
 
         return response()->json($out);
     }
 
     public function retirarVariosResiduos(Request $request){
+        $out['code'] = 204;
+        $out['message'] = 'Hubo un error';
 
+        foreach($request->material as $key => $material){
+            $residuo = new Residuos();
+            $residuo->id_materials = $material;
+            $residuo->delivery = $request->entrega[$key];
+            $residuo->in_installation = $request->en_instalaciones[$key];
+            $residuo->dcs = $request->dcs[$key];
+            $residuo->save();
+        }
+        
+        $out['code'] = 200;
+        $out['data'] = $request->all();
+        $out['message'] = 'Se han retirado los residuos Exitosamente';
+
+        return response()->json($out);
     }
 }
