@@ -1845,7 +1845,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Documentos para Destrucción';
 
 
-                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
+                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
 
@@ -1863,7 +1863,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Declaracion Responsable Fallecidos';
 
 
-                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
+                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
 
@@ -1881,7 +1881,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Documentos para venta';
 
 
-                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
+                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
 
@@ -1901,7 +1901,7 @@ class PurchaseValuationController extends Controller
                         $nameDocument = 'Declaracion Responsable Fallecidos';
 
 
-                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments ]);
+                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
         }

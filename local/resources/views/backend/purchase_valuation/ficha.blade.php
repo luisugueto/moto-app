@@ -1137,6 +1137,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Código</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
                                     <th>Acción</th>
@@ -1161,6 +1162,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Código</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
                                     <th>Acción</th>
@@ -1185,6 +1187,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Código</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
                                     <th>Acción</th>
@@ -1209,6 +1212,7 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Código</th>
                                     <th>Estado</th>
                                     <th>Fecha</th>
                                     <th>Acción</th>
