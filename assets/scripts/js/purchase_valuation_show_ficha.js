@@ -439,7 +439,7 @@ $(document).ready(function () {
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            ps += '<tr><th>'+element.name_document+'</th><th>';
+                            ps += '<tr><th>'+element.name_document+'</th>';
                             ps += '<th>Aprobado</th>'; 
                             ps += '<th>'+element.date+'</th>'; 
                             ps += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
