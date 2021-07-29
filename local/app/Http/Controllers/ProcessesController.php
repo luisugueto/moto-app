@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use App\Processes;
+use App\States;
 use Redirect;
 use App\Http\Requests;
 
@@ -22,12 +23,13 @@ class ProcessesController extends Controller
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
         
         $haspermision = getPermission('Procesos', 'record-create');
-        return view('backend.processes.index', compact('haspermision'));
+        $states = States::get();
+        return view('backend.processes.index', compact('haspermision', 'states'));
     }
 
     public function getProcesses()
     {
-        $procceses = Processes::select(['id','name','description','status'])->get();
+        $procceses = Processes::select(['id','name','description','status', 'destiny'])->get();
  
         $view = getPermission('Procesos', 'record-view');
         $edit = getPermission('Procesos', 'record-edit');
@@ -40,6 +42,7 @@ class ProcessesController extends Controller
             $row['id'] = $value->id;
             $row['name'] = $value->name;
             $row['description'] = $value->description;
+            $row['destiny'] = $value->destiny;
             $row['status'] = $value->status;
             $row['view'] = $view;
             $row['edit'] = $edit;
@@ -116,6 +119,7 @@ class ProcessesController extends Controller
         $process = Processes::find($id);
         $process->name = $request->name;
         $process->description = $request->description;
+        $process->destiny = $request->destiny;
         $process->status = $request->status;
         $process->save();
         return response()->json($process);

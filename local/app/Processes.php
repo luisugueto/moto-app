@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Processes extends Model
 {
     protected $fillable = [
-        'name', 'description', 'status',
+        'name', 'description', 'status', 'destiny'
     ];
 }

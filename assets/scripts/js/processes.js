@@ -18,6 +18,45 @@ $(document).ready(function () {
             { "data": "id" },
             { "data": "name" },
             { "data": "description" },
+            {
+                "data": null,
+                render: function (data)
+                {
+                    let destiny_status = '';
+                    if(data.destiny == 1){
+                        destiny_status = 'En Revisión';
+                    }
+                    if(data.destiny == 2){
+                        destiny_status = 'No Interesa';
+                    }
+                    if(data.destiny == 3){
+                        destiny_status = 'Interesa';
+                    }
+                    if(data.destiny == 4){
+                       destiny_status = 'Desguace';
+                    }
+                    if(data.destiny == 5){
+                        destiny_status = 'Venta';
+                    }
+                    if(data.destiny == 6){
+                        destiny_status = 'Subasta';
+                    }
+                    if(data.destiny == 7){
+                        destiny_status = 'Desguazadas';
+                    }
+                    if(data.destiny == 8){
+                        destiny_status = 'Vendidas';
+                    }
+                    if(data.destiny == 9){
+                        destiny_status = 'Subastada';
+                    }
+                    if(data.destiny == 10){
+                        destiny_status = 'Sin Acuerdo';
+                    }
+                    return destiny_status;
+                },
+                "targets": -1
+            },
             {"data": null,
                 render:function(data)
                     {
@@ -78,6 +117,7 @@ $(document).ready(function () {
                 $('#process_id').val(data.id);
                 $('#name').val(data.name);
                 $('#description').val(data.description);
+                $('#destiny').val(data.destiny);
                 $('#status').val(data.status);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
@@ -102,6 +142,7 @@ $(document).ready(function () {
         var formData = {
             name: $('#name').val(),
             description: $('#description').val(),
+            destiny: $('#destiny').val(),
             status: $('#status').val(),
         }
 

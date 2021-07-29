@@ -45,6 +45,7 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
+                                <th>Estado Destino</th>
                                 <th>Status</th>
                                 <th>Opciones</th>
                             </tr>
@@ -84,6 +85,14 @@
                             <label>Descripción</label>
                             <input class='form-control' id='description' name='description' type='text'
                                 value="{{ old('description') }}" required>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="destiny" class="">Estado Destino</label>
+                            <select name="destiny" id="destiny" class="custom-select" required>
+                                @foreach($states as $state)
+                                    <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="position-relative form-group">
                             <label for="status" class="">Estado</label>
