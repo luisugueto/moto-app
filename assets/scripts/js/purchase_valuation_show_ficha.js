@@ -350,28 +350,36 @@ $(document).ready(function () {
                     let dd = '<tbody>';                   
                     data.documentsDestruction.forEach(function (element) { 
                         if(element.get_status_document.status == 'WAITING'){
-                            dd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            dd += '<tr><th>'+element.name_document+'</th>';
+                            dd += '<th>'+element.code+'</th>';
+                            dd += '<th>Esperando firma</th>'; 
                             dd += '<th>'+element.date+'</th>';
                             dd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
-                            dd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            dd += '<tr><th>'+element.name_document+'</th>';
+                            dd += '<th>'+element.code+'</th>';
+                            dd += '<th>Error</th>'; 
                             dd += '<th>'+element.date+'</th>';
                             dd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
-                            dd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>';
+                            dd += '<tr><th>'+element.name_document+'</th>';
+                            dd += '<th>'+element.code+'</th>';
+                            dd += '<th>Esperando aprobación</th>';
                             dd += '<th>'+element.date+'</th>'; 
                             dd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             dd += '<tr><th>'+element.name_document+'</th>';
+                            dd += '<th>'+element.code+'</th>';
                             dd += '<th>Rechazado</th>'; 
                             dd += '<th>'+element.date+'</th>'; 
                             dd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
                             dd += '<tr><th>'+element.name_document+'</th>'; 
+                            dd += '<th>'+element.code+'</th>';
                             dd += '<th>Aprobado</th>'; 
                             dd += '<th>'+element.date+'</th>'; 
                             dd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
@@ -384,28 +392,36 @@ $(document).ready(function () {
                     let ddd = '<tbody>';  
                     data.documentsDestructionDeceased.forEach(function (element) { 
                         if(element.get_status_document.status == 'WAITING'){
-                            ddd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>'+element.code+'</th>';
+                            ddd += '<th>Esperando firma</th>'; 
                             ddd += '<th>'+element.date+'</th>'; 
                             ddd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
-                            ddd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>'+element.code+'</th>';
+                            ddd += '<th>Error</th>'; 
                             ddd += '<th>'+element.date+'</th>'; 
                             ddd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
-                            ddd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>';
+                            ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>'+element.code+'</th>';
+                            ddd += '<th>Esperando aprobación</th>';
                             ddd += '<th>'+element.date+'</th>';  
                             ddd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>'+element.code+'</th>';
                             ddd += '<th>Rechazado</th>'; 
                             ddd += '<th>'+element.date+'</th>'; 
                             ddd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
+                            ddd += '<th>'+element.code+'</th>';
                             ddd += '<th>Aprobado</th>'; 
                             ddd += '<th>'+element.date+'</th>'; 
                             ddd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
@@ -418,28 +434,36 @@ $(document).ready(function () {
                     let ps = '<tbody>';  
                     data.documentsPossibleSale.forEach(function (element) { 
                         if(element.get_status_document.status == 'WAITING'){
-                            ps += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>';
+                            ps += '<tr><th>'+element.name_document+'</th>';
+                            ps += '<th>'+element.code+'</th>';
+                            ps += '<th>Esperando firma</th>';
                             ps += '<th>'+element.date+'</th>';  
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
-                            ps += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            ps += '<tr><th>'+element.name_document+'</th>';
+                            ps += '<th>'+element.code+'</th>';
+                            ps += '<th>Error</th>'; 
                             ps += '<th>'+element.date+'</th>'; 
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
-                            ps += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            ps += '<tr><th>'+element.name_document+'</th>';
+                            ps += '<th>'+element.code+'</th>';
+                            ps += '<th>Esperando aprobación</th>'; 
                             ps += '<th>'+element.date+'</th>'; 
                             ps += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             ps += '<tr><th>'+element.name_document+'</th>';
+                            ps += '<th>'+element.code+'</th>';
                             ps += '<th>Rechazado</th>'; 
                             ps += '<th>'+element.date+'</th>'; 
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            ps += '<tr><th>'+element.name_document+'</th><th>';
+                            ps += '<tr><th>'+element.name_document+'</th>';
+                            ps += '<th>'+element.code+'</th>';
                             ps += '<th>Aprobado</th>'; 
                             ps += '<th>'+element.date+'</th>'; 
                             ps += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
@@ -452,28 +476,36 @@ $(document).ready(function () {
                     let psd = '<tbody>';  
                     data.documentsPossibleSaleDeceased.forEach(function (element) { 
                         if(element.get_status_document.status == 'WAITING'){
-                            psd += '<tr><th>'+element.name_document+'</th><th>Esperando firma</th>'; 
+                            psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>'+element.code+'</th>';
+                            psd += '<th>Esperando firma</th>'; 
                             psd += '<th>'+element.date+'</th>'; 
                             psd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
-                            psd += '<tr><th>'+element.name_document+'</th><th>Error</th>'; 
+                            psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>'+element.code+'</th>';
+                            psd += '<th>Error</th>'; 
                             psd += '<th>'+element.date+'</th>'; 
                             psd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
-                            psd += '<tr><th>'+element.name_document+'</th><th>Esperando aprobación</th>'; 
+                            psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>'+element.code+'</th>';
+                            psd += '<th>Esperando aprobación</th>'; 
                             psd += '<th>'+element.date+'</th>'; 
                             psd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>'+element.code+'</th>';
                             psd += '<th>Rechazado</th>'; 
                             psd += '<th>'+element.date+'</th>'; 
                             psd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
                             psd += '<tr><th>'+element.name_document+'</th>';
+                            psd += '<th>'+element.code+'</th>';
                             psd += '<th>Aprobado</th>'; 
                             psd += '<th>'+element.date+'</th>'; 
                             psd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
