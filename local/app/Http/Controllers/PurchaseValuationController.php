@@ -104,7 +104,7 @@ class PurchaseValuationController extends Controller
             // $nestedData[] = $value->email .' <br>' . $value->phone;
             $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = number_format($value->price_min, 2,',', '.');
+            $nestedData[] = $value->price_min;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
         }
@@ -157,7 +157,7 @@ class PurchaseValuationController extends Controller
             $fieldsArray = json_decode($value->data_serialize, true);
             $serializado = '0,00';
             if(isset($fieldsArray) && $fieldsArray != null){
-                $serializado  = number_format($fieldsArray[0]['value'], 2,',', '.');              
+                $serializado  = $fieldsArray[0]['value'];              
             }
 
             $nestedData = array();   
