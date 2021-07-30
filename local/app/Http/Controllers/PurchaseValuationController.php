@@ -104,7 +104,7 @@ class PurchaseValuationController extends Controller
             // $nestedData[] = $value->email .' <br>' . $value->phone;
             $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = $value->price_min;
+            $nestedData[] = number_format($value->price_min, 2,',', '.');
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
         }
@@ -153,7 +153,12 @@ class PurchaseValuationController extends Controller
         
         $data = array();
         foreach($purchases as $value){
+           
             $fieldsArray = json_decode($value->data_serialize, true);
+            $serializado = '0,00';
+            if(isset($fieldsArray) && $fieldsArray != null){
+                $serializado  = number_format($fieldsArray[0]['value'], 2,',', '.');              
+            }
 
             $nestedData = array();   
 
@@ -186,7 +191,7 @@ class PurchaseValuationController extends Controller
             $nestedData[] = $value->year;
             $nestedData[] = $value->phone;
             $nestedData[] = $value->province;
-            $nestedData[] = $fieldsArray[0]['value'];
+            $nestedData[] = $serializado;
             $nestedData[] = $status_ficha;
             $nestedData[] = '<center>' . $botones . '</center>';
             $data[] = $nestedData;
@@ -198,7 +203,7 @@ class PurchaseValuationController extends Controller
             "recordsFiltered" => intval($totalFiltered), // total number of records after searching, if there is no searching then totalFiltered = totalData
             "data" => $data, // total data array
         ); 
- 
+        // dd($json_data);
         return response()->json($json_data);
     }
 
