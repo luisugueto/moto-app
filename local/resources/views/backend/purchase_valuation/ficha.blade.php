@@ -1083,6 +1083,29 @@
                                 <button class="btn btn-warning float-right" id="editTabFicha9" type="button"><i class="fa fa-edit"></i> Editar</button>
                             </div>
                             <div class="card-body" id="form_display_datos_mecanico"></div>
+                            <div class="form-row row g-1">
+                                <div class="col-md-6">
+                                    <div class="position-relative form-group" id="checkChasisDiv" style="display: block">
+                                        <label for="check_chasis" class="">Check Chasis: </label>
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" id="iron" name="check_chasis"
+                                                class="custom-control-input" value="Hierro">
+                                            <label class="custom-control-label" for="iron">Hierro</label>
+                                        </div>
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" id="aluminium" name="check_chasis"
+                                                class="custom-control-input" value="Aluminio">
+                                            <label class="custom-control-label" for="aluminium">Aluminio</label>
+                                        </div>
+                                        @if ($errors->has('check_chasis'))
+                                            <span class="error text-danger">
+                                                <strong>{{ $errors->first('check_chasis') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                 </div>
+                             </div>
+                            
                         </div>
                         <div class="tab-pane" id="tab-ficha-10" role="tabpanel">
                             <div class="col-md-12">
@@ -1091,7 +1114,7 @@
                             <div class="card-body" id="form_display_datos_internos"></div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="form-row row g-1">
                         <div class="col-md-3"><button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button></div>
                         <div class="col-md-3" id="buttonLabelss"></div>
                         <div class="col-md-3" id="buttonSendMail"></div>

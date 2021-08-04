@@ -1997,6 +1997,7 @@ class PurchaseValuationController extends Controller
         $data['datos_del_mecanico'] = ($purchase_management['datos_del_mecanico']);
         $data['form_display_datos_internos'] = htmlspecialchars_decode($datos_interno->form_display);
         $data['datos_internos'] = ($purchase_management['datos_internos']);
+        $data['check_chasis'] = $purchase_management['check_chasis'];
         
         $data['link'] = url('/');
         $data['url_label'] = url('labels/'. $purchase_valuation['id']);
@@ -2125,6 +2126,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->datos_del_mecanico = $request->datos_del_mecanico;
         $purchase_management->datos_internos = $request->datos_internos;
         $purchase_management->weight = $request->weight;
+        $purchase_management->check_chasis = $request->check_chasis;
         $purchase_management->update();
 
         $out['message'] = 'Registro Actualizado Exitosamente.';

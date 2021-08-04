@@ -232,7 +232,11 @@ $(document).ready(function () {
                 if (data.states_id != 1) {
                     $('#divProcesosDesguace').css('display', 'block');
                     var sb2 = '';
-                    data.processes.forEach(function (element) {      
+                    data.processes.forEach(function (element) {
+                        console.log(element)
+                        if (element.name == 'Bastidor' && element.subproceso == 'No Guardar Bastidor') {
+                            $('#checkChasisDiv').css('display', 'none');
+                        }
                         $("#ulProcesses").append(
                             '<li class="list-group-item">' +
                             '<div class="todo-indicator bg-warning"></div>' +
@@ -342,6 +346,11 @@ $(document).ready(function () {
                     sb2 = '<a class="btn btn-info" href="' + data.url_label + '" target="_blank">Descargar etiquetas</a>';
                     $('#buttonLabelss').html(sb2);
                 }
+
+                if (data.check_chasis == 'Hierro')
+                    $('#iron').attr('checked', true)
+                else if (data.check_chasis == 'Aluminio')
+                    $('#aluminium').attr('checked', true)
 
                 if (!!data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
