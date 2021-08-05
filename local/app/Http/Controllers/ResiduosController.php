@@ -39,6 +39,7 @@ class ResiduosController extends Controller
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 6) 
+        ->where('pm.check_chasis', '!=', 'NULL') 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
         // dd($purchases);
@@ -93,8 +94,9 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)         
+        ->where('apply.processes_id', '=', 5) 
+        ->where('apply.subprocesses_id', '=', 5) 
+        ->where('pm.check_chasis', '!=', 'NULL')     
          
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
@@ -154,6 +156,7 @@ class ResiduosController extends Controller
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id','apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 6) 
+        ->where('pm.check_chasis', '!=', 'NULL') 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
         
@@ -212,6 +215,7 @@ class ResiduosController extends Controller
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 5) 
+        ->where('pm.check_chasis', '!=', 'NULL') 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
         
@@ -249,7 +253,6 @@ class ResiduosController extends Controller
             $data[] = $row;
         }
         // $json_data = array('data'=> $row);
-        
         Excel::create('envios_quincenales', function($excel) use($data) {
         
             $excel->sheet('Hoja1', function($sheet) use($data) {
