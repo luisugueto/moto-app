@@ -2571,7 +2571,8 @@ class PurchaseValuationController extends Controller
         if($request->get('texto')){
             $motos = DB::table('purchase_valuation')
             ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
-            ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.frame_no', 'purchase_management.registration_number')            
+            ->leftjoin('states', 'purchase_valuation.states_id', '=', 'states.id')
+            ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.frame_no', 'purchase_management.registration_number', 'states.name AS state')            
             ->where('purchase_valuation.id', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_valuation.phone', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_valuation.email', "LIKE", "%{$request->get('texto')}%")

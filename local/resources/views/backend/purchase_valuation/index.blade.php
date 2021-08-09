@@ -663,7 +663,7 @@
                         <div class="col-12">
                             <div class="input-group">
                                 <input type="text" class="form-control" id="texto" placeholder="Ingrese nombre">
-                                <div class="input-group-append"><span class="input-group-text">Buscar</span></div>
+                                <div class="input-group-append"><button class="btn btn-secondary" id="btnSearch">Buscar</button></div>
                             </div>
                             <div id="resultados" class="pb-2 border"></div>
                         </div>                     
