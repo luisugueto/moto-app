@@ -234,7 +234,7 @@ $(document).ready(function () {
                     var sb2 = '';
                     data.processes.forEach(function (element) {
                         console.log(element)
-                        if (element.name == 'Bastidor' && element.subproceso == 'No Guardar Bastidor') {
+                        if (element.name == 'Bastidor' && element.subproceso == 'Guardar Bastidor') {
                             $('#checkChasisDiv').css('display', 'none');
                         }
                         $("#ulProcesses").append(
