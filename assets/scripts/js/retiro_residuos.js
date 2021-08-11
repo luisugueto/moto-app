@@ -133,10 +133,19 @@ $(document).ready(function(){
     // RETIRO VARIOS RESIDUOS
 
     $("#btnRetiroAll").click(function (e) {
+        let error = 0;
         var values = $("input[name='apply[]']:checkbox:checked")
               .map(function(){return $(this).val();}).get();
 
         if(values.length == 0){ preloader('hide', "Por favor seleccione residuos", 'warning'); e.preventDefault(); return;}
+
+        values.forEach(function(val, index){
+            if($.isNumeric($("#entrega_"+val).val())){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); error = 1; return;}
+            if($.isNumeric($("#en_instalaciones_"+val).val())){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); error = 1; return;}
+            if($("#dcs_"+val).val() != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); error = 1; return;}
+        });
+
+        if(error) return;
 
         var entrega = $("input[name='entrega[]']")
               .map(function(){return $(this).val();}).get();
@@ -154,12 +163,6 @@ $(document).ready(function(){
             en_instalaciones: en_instalaciones,
             dcs: dcs
         }
-
-        values.forEach(function(val, index){
-            if($.isNumeric($("#entrega_"+val).val())){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
-            if($.isNumeric($("#en_instalaciones_"+val).val())){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
-            if($("#dcs_"+val).val() != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); return;}
-        });
 
         preloader('show');
         $.ajax({
