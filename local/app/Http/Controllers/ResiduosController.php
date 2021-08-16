@@ -40,7 +40,7 @@ class ResiduosController extends Controller
         ->where('apply.processes_id', '=', 5) 
         ->where('apply.subprocesses_id', '=', 6) 
         ->where('pm.check_chasis', '!=', 'NULL') 
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))        
         ->get();
         // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
@@ -158,6 +158,8 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 6) 
         ->where('pm.check_chasis', '!=', 'NULL') 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
+        // ->toSQL();
+  
         ->get();
         
         $data = array();
@@ -276,12 +278,15 @@ class ResiduosController extends Controller
         $view = getPermission('Envíos Semestrales', 'record-view');
 
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
-        
-        $purchases = DB::table('purchase_management')
-        ->select('purchase_management.*')
-        ->groupBy('purchase_management.id',DB::raw('MONTH(purchase_management.current_year)>6'))
-        // ->where('status', 1)
-        // ->toSql();
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->where('apply.processes_id', '=', 5) 
+        ->where('apply.subprocesses_id', '=', 5) 
+        ->where('pm.check_chasis', '!=', 'NULL') 
+        ->groupBy('pm.id',DB::raw('MONTH(pm.current_year)>6'))
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
         ->get();
   
         $view = getPermission('Envíos Semestrales', 'record-view');
@@ -292,24 +297,28 @@ class ResiduosController extends Controller
         foreach($purchases as $value){  
 
             $row = array();      
-            $row['id'] = $value->id;
-            $row['model'] = $value->model;
+            $row['id'] = $value->id_pv;
+            $row['model'] = $value->model1;
             $row['registration_number'] = $value->registration_number;
             $row['registration_date'] = $value->registration_date;
             $row['frame_no'] = $value->frame_no;
             $row['vehicle_state_trafic'] = $value->vehicle_state_trafic;
-            $row['weight'] = '';
-            $row['titular'] = $value->name. ' '. $value->firts_surname . ' '. $value->second_surtname;
+            $row['weight'] = round($value->weight, 2);
+            $row['titular'] = $value->pvname. ' '. $value->lastname;
             $row['dni'] = $value->dni;
             $row['birthdate'] = $value->birthdate;
             $row['direction'] = $value->street.' '. $value->nro_street;
             $row['postal_code'] = $value->postal_code;
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
-            $row['vehicle_state'] = $value->vehicle_state;
-            $row['current_year'] = $value->current_year;
-            $row['certificate_destruction_date'] = $value->current_year;
-            $row['collection_contract_date'] = $value->collection_contract_date;
+            $row['vehicle_state'] = $value->status_trafic;
+            $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
+            $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
+            $row['collection_contract_date'] = '';
+            foreach($apply as $key){          
+                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));                      
+            }
+           
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
