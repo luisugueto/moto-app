@@ -194,6 +194,11 @@ class WasteCompaniesController extends Controller
 
     public function addMaterialsCompanie(Request $request)
     {
+        $materials = MaterialsCompanie::where('waste_companies_id', $request->waste_companies_id)->get();
+
+        if($materials->count() > 0 )
+            MaterialsCompanie::where('waste_companies_id', $request->waste_companies_id)->delete();
+
         foreach($request->apply as $apply){
             $materials = new MaterialsCompanie();
             $materials->materials_id = $apply;
