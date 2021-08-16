@@ -25,7 +25,7 @@ class MaterialsController extends Controller
     public function getMaterials()
     {
        
-        $materials = Materials::select(['id','name','type', 'stock'])->get();
+        $materials = Materials::get();
  
         $edit = getPermission('Materiales', 'record-edit');
         $delete = getPermission('Materiales', 'record-delete');
@@ -35,9 +35,12 @@ class MaterialsController extends Controller
 
             $row = array();      
             $row['id'] = $value->id;
-            $row['name'] = $value->name;
-            $row['type'] = $value->type;
-            $row['stock'] = $value->stock;           
+            $row['LER'] = $value->LER;
+            $row['code'] = $value->code;
+            $row['description'] = $value->description;
+            $row['valorization'] = $value->valorization;             
+            $row['unit_of_measurement'] = $value->unit_of_measurement;
+            $row['percent_formula'] = $value->percent_formula;           
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -66,7 +69,7 @@ class MaterialsController extends Controller
      */
     public function store(Request $request)
     {       
-        $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'type' => 'required', 'stock' => 'required']);
+        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required']);
 
         if ($validator->fails()) {
             $out['code'] = 422;
@@ -117,7 +120,7 @@ class MaterialsController extends Controller
     {
         $material = Materials::find($id);
 
-        $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'type' => 'required', 'stock' => 'required']);
+        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required']);
 
 
         if ($validator->fails()) {
@@ -152,7 +155,7 @@ class MaterialsController extends Controller
         }
         else{
             $out['code'] = 422;
-            $out['message'] = 'Empresa no encontrada! No se pudo eliminar.';
+            $out['message'] = 'Material no encontrado! No se pudo eliminar.';
         }
         return response()->json($out);
     }

@@ -7,11 +7,13 @@ $(document).ready(function(){
     $('#tableMaterials thead tr').clone(true).appendTo('#tableMaterials thead');
 
     $('#tableMaterials thead tr:eq(1) th').each( function (i) {
-        if (i != 4) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0 || i == 7) {
+            $(this).css('color', 'transparent');
+            
+            // $(this).html('<input type="text" class="form-control" />');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
  
         $( 'input', this ).on( 'keyup change', function () {
@@ -39,9 +41,12 @@ $(document).ready(function(){
         },
         "columns": [
             { "data": "id" },
-            { "data": "name" },
-            { "data": "type" },
-            { "data": "stock" },
+            { "data": "LER" },
+            { "data": "code" },
+            { "data": "description" },
+            { "data": "valorization" },
+            { "data": "unit_of_measurement" },
+            { "data": "percent_formula" },
             {"data": null,
                 render: function (data, type, row) {
                     var echo = '';
@@ -88,9 +93,12 @@ $(document).ready(function(){
             success: function (data) {
                 // console.log(data);
                 $('#material_id').val(data.id);
-                $('#name').val(data.name);
-                $('#type').val(data.type);
-                $('#stock').val(data.stock);
+                $('#LER').val(data.LER);
+                $('#code').val(data.code);
+                $('#description').val(data.description);
+                $('#valorization').val(data.valorization);
+                $('#unit_of_measurement').val(data.unit_of_measurement);
+                $('#percent_formula').val(data.percent_formula);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -105,9 +113,12 @@ $(document).ready(function(){
 
         e.preventDefault();
         var formData = {
-            name: $('#name').val(),
-            type: $('#type').val(),
-            stock: $('#stock').val()
+            LER: $('#LER').val(),
+            code: $('#code').val(),
+            description: $('#description').val(),
+            valorization: $('#valorization').val(),
+            unit_of_measurement: $('#unit_of_measurement').val(),
+            percent_formula: $('#percent_formula').val()
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]
