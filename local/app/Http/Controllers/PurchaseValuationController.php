@@ -2577,8 +2577,9 @@ class PurchaseValuationController extends Controller
             ->orWhere('purchase_valuation.phone', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_valuation.email', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_management.registration_number','like',$request->texto."%")
-            ->orWhere('purchase_management.frame_no','like',$request->texto."%")     
-            ->paginate(5);
+            ->orWhere('purchase_management.frame_no','like',$request->texto."%") 
+            ->orderBy('purchase_valuation.id', 'asc')
+            ->paginate(10);
             
             return view('backend.purchase_valuation.paginas',compact('motos'));  
         }
