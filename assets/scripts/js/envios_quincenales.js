@@ -1,5 +1,5 @@
-$(document).ready(function(){
-
+$(document).ready(function () {
+ 
     //get base URL *********************
     var url = $('#url').val();
     var dataTable = '';
@@ -8,11 +8,11 @@ $(document).ready(function(){
 
     $('#tableEnviosQuincenalesSinGestionar thead tr:eq(1) th').each( function (i) {
       
-        if (i != 15) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
         
  
@@ -113,15 +113,35 @@ $(document).ready(function(){
         ],
         "columnDefs": [
             {
-                "targets": [ 15 ],
+                "targets": [ 3 ],
                 "visible": false,
             },
             {
-                "targets": [ 16 ],
-                "visible": false
+                "targets": [ 5 ],
+                "visible": false,
             },
             {
-                "targets": [ 17 ],
+                "targets": [ 6 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 9 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 10 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 11 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 12 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 18 ],
                 "visible": false
             }
         ],
@@ -228,15 +248,35 @@ $(document).ready(function(){
             ],
             "columnDefs": [
                 {
-                    "targets": [ 15 ],
+                    "targets": [ 3 ],
                     "visible": false,
                 },
                 {
-                    "targets": [ 16 ],
-                    "visible": false
+                    "targets": [ 5 ],
+                    "visible": false,
                 },
                 {
-                    "targets": [ 17 ],
+                    "targets": [ 6 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 12 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 18 ],
                     "visible": false
                 }
             ],
@@ -258,11 +298,11 @@ $(document).ready(function(){
  
     $('#tableEnviosQuincenalesGestionados thead tr:eq(1) th').each(function (i) {
     
-        if (i != 15) {
-            $(this).html('<input type="text" class="form-control" />');
+        if (i == 0) {
+            $(this).css('color', 'transparent');
         }
-        else{
-            $(this).css('display', 'none');
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
         }
 
         $( 'input', this ).on( 'keyup change', function () {
@@ -365,15 +405,35 @@ $(document).ready(function(){
             ],
             "columnDefs": [
                 {
-                    "targets": [ 15 ],
+                    "targets": [ 3 ],
                     "visible": false,
                 },
                 {
-                    "targets": [ 16 ],
-                    "visible": false
+                    "targets": [ 5 ],
+                    "visible": false,
                 },
                 {
-                    "targets": [ 17 ],
+                    "targets": [ 6 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 9 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 10 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 11 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 12 ],
+                    "visible": false,
+                },
+                {
+                    "targets": [ 18 ],
                     "visible": false
                 }
             ],

@@ -129,8 +129,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getPurchaseValuationsAuctioned', 'PurchaseValuationController@getPurchaseValuationsAuctioned');
     Route::post('getPurchaseValuationsAuction', 'PurchaseValuationController@getPurchaseValuationsAuction');
     Route::post('getPurchaseValuationsWhitoutDeal', 'PurchaseValuationController@getPurchaseValuationsWhitoutDeal');
+
     Route::post('getEnviosQuincenalesSinGestionar', 'ResiduosController@getEnviosQuincenalesSinGestionar');
     Route::post('getEnviosQuincenalesGestionadas', 'ResiduosController@getEnviosQuincenalesGestionadas');
+
     Route::post('getEnviosSemestrales', 'ResiduosController@getEnviosSemestrales');
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
     Route::post('getMailBusiness', 'SubProcessesController@getMailBusiness');

@@ -17,6 +17,19 @@
 </div>
 
 <div class="row">
+    <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
+        <li class="nav-item">
+            <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
+                <span>Retiro de Residuos</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
+                <span>Residuos Retirados</span>
+            </a>
+        </li>
+    </ul>
+
     <div class="col-md-12">
         <div class="main-card mb-3 card">
             <div class="card-body">
