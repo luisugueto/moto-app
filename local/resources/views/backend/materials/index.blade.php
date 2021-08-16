@@ -42,10 +42,13 @@
                     <table style="width: 100%;" class="table table-hover table-striped table-bordered" id="tableMaterials">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Tipo</th>
-                                <th>Cantidad</th>                                                                      
+                                <th style="width: 10px">#</th>
+                                <th>LER</th>
+                                <th>Código</th>
+                                <th>Descripción</th>  
+                                <th>Valorización</th>
+                                <th>Ud. medida</th>
+                                <th>% Formula</th>                                                                       
                                 <th>Opciones</th>
                             </tr>
                         </thead> 
@@ -75,32 +78,41 @@
                     <form id="frmMaterials" name="frmMaterials" novalidate="">
                         {{ csrf_field() }}
                         <div class="divider"></div>
-                        <div class="position-relative form-group">
-                            <label>Nombre</label>
-                            <input class='form-control' id='name' name='name' type='text' value="{{ old('name') }}"
-                                required>
-                        </div>       
-                        <div class="position-relative form-group">
-                            <label>Tipo</label>
-                            <select name="type" id="type" class="custom-select" required>
-                                <option value="">Seleccionar</option>
-                                <option value="Plásticos" {{ old('type') == 'Plásticos' ? 'selected' : '' }}>Plásticos de gran tamaño</option>
-                                <option value="Metal" {{ old('type') == 'Metal' ? 'selected' : '' }}>Metal</option>
-                                <option value="Líquidos" {{ old('type') == 'Líquidos' ? 'selected' : '' }}>Líquidos</option>
-                            </select>
-                        </div>  
-                         
-                        <div class="position-relative form-group">
-                            <label for="stock" class="">Stock:</label>
-                            <input name="stock" id="stock" type="number" class="form-control"
-                                value="{{ old('stock') }}">
-                            @if ($errors->has('stock'))
-                                <span class="error text-danger">
-                                    <strong>{{ $errors->first('stock') }}</strong>
-                                </span>
-                            @endif
+                        <div class="position-relative form-group row">
+                        
+                            <div class="col-md-6 position-relative form-group">
+                                <label>LER</label>
+                                <input class='form-control' id='LER' name='LER' type='text' value="{{ old('LER') }}"
+                                    required>
+                            </div>       
+                            <div class="col-md-6 position-relative form-group">
+                                <label>Código</label>
+                                <input class='form-control' id='code' name='code' type='text' value="{{ old('code') }}"
+                                    required>
+                            </div> 
                         </div>
-                           
+                        <div class="position-relative form-group">
+                            <label>Descripción</label>
+                            <input class='form-control' id='description' name='description' type='text' value="{{ old('description') }}"
+                                required>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label>Valorización</label>
+                            <input class='form-control' id='valorization' name='valorization' type='text' value="{{ old('valorization') }}"
+                                required>
+                        </div>
+                        <div class="position-relative form-group row">                        
+                            <div class="col-md-6 position-relative form-group">
+                                <label>Unidad de medida</label>
+                                <input class='form-control' id='unit_of_measurement' name='unit_of_measurement' type='text' value="{{ old('unit_of_measurement') }}"
+                                    required>
+                            </div>       
+                            <div class="col-md-6 position-relative form-group">
+                                <label>% Formula</label>
+                                <input class='form-control' id='percent_formula' name='percent_formula' type='text' value="{{ old('percent_formula') }}"
+                                    required>
+                            </div> 
+                        </div>   
                     </form>
                 </div>
                 <div class="modal-footer">
