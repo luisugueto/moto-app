@@ -248,9 +248,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Código</th>
                                         <th>Material</th>
-                                        <th>Stock</th>
-                                        <th>Action</th>
+                                        <th>Ud. Media</th>
+                                        <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tdListMaterials">

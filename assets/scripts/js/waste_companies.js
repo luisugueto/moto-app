@@ -268,8 +268,9 @@ $(document).ready(function(){
                         });
                         dt += `<tr>
                                     <th scope="row">${val.id}</th>
-                                    <td>${val.name}</td>
-                                    <td>${val.stock}</td>
+                                    <td>${val.code}</td>
+                                    <td>${val.description}</td>
+                                    <td>${val.unit_of_measurement }</td>
                                     <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input" ${checked}><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
                                 </tr> `;
                     });

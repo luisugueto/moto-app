@@ -90,7 +90,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('exportar-envios-semestrales', 'ResiduosController@exportEnviosSemestrales');
     Route::post('/retiro-residuos/retirar', 'ResiduosController@retirarResiduos');
     Route::post('/retiro-residuos/retirar_varios', 'ResiduosController@retirarVariosResiduos');
-
+    Route::get('/retiro-residuos/{id}', 'ResiduosController@editResiduo');
     // Route::get('envios-anuales', 'ResiduosController@enviosAnuales');
     // Route::get('exportar-envios-anuales', 'ResiduosController@exportEnviosAnuales');
 
@@ -139,6 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getWasteCompanies', 'WasteCompaniesController@getWasteCompanies');
     Route::post('getMaterials', 'MaterialsController@getMaterials');
     Route::post('getResiduos', 'ResiduosController@getResiduos');
+    Route::post('getResiduosRetirados', 'ResiduosController@getResiduosRetirados');
 
     Route::post('getForms', 'FormsController@getForms');
     Route::post('getDocumentsPurchaseValuations', 'DocumentsPurchaseValuationController@getDocumentsPurchaseValuations');

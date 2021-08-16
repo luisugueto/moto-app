@@ -419,7 +419,7 @@ class ResiduosController extends Controller
         $materials = MaterialsCompanie::all();
 
         foreach($materials as $material){
-            array_push($materialsCompanie, ['id' => $material->id, 'name' => $material->material->name, 'business' => $material->waste_companie->name]);
+            array_push($materialsCompanie, ['id' => $material->id, 'name' => $material->material->description, 'business' => $material->waste_companie->name]);
         }
         //dd($materialsCompanie);
         $json_data = array('data'=> $materialsCompanie);
@@ -468,4 +468,51 @@ class ResiduosController extends Controller
 
         return response()->json($out);
     }
+
+    public function getResiduosRetirados()
+    {
+        $view = getPermission('Retiro de Residuos', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
+        $residuos = DB::table('residuos AS r')
+        ->leftjoin('materials_companies AS mc', 'mc.materials_id', '=', 'r.id_materials')
+        ->join('materials AS m', 'm.id', '=', 'mc.materials_id')
+        ->join('waste_companies AS wc', 'wc.id', '=', 'mc.waste_companies_id')
+        ->select('r.id AS id_r', 'r.delivery','r.in_installation', 'r.dcs', 'r.created_at', 'm.description AS material', 'wc.name AS companie')
+        // ->toSql();
+        // dd($purchases);
+        ->get();  
+        
+        $edit = getPermission('Retiro de Residuos', 'record-edit');
+        $delete = getPermission('Retiro de Residuos', 'record-delete');
+
+        $retirados = array();
+        foreach($residuos as $residuo){
+            array_push($retirados, [
+                'id' => $residuo->id_r, 
+                'material' => $residuo->material, 
+                'companie' => $residuo->companie,
+                'delivery' => $residuo->delivery,
+                'in_installation' => $residuo->in_installation,
+                'dcs' => $residuo->dcs,
+                'created_at' => $residuo->created_at,
+                'edit' => $edit,
+                'delete' => $delete,
+            ]);
+        }
+        
+        $json_data = array('data'=> $retirados);
+        $json_data= collect($json_data);  
+
+        return response()->json($json_data);
+ 
+    }
+
+    public function editResiduo($id)
+    {
+        $residuos = Residuos::find($id);
+        return response()->json($residuos);
+    }
+    
 }
