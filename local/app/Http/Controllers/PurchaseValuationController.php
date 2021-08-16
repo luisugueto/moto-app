@@ -2582,8 +2582,7 @@ class PurchaseValuationController extends Controller
             ->paginate(10);
             
             return view('backend.purchase_valuation.paginas',compact('motos'));  
-        }
-              
+        }       
     }
 
     // SEND DOCUMENTS VIA EMAIL
