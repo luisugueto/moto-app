@@ -348,4 +348,57 @@ $(document).ready(function(){
         });
     });
 
+
+    // editar residuo
+     $(document).on('click', '#btn_edit_residuo', function (e) {
+        var id = $('#residuo_id').val();  
+        var entrega = $("#entrega").val();
+        var en_instalaciones = $("#en_instalaciones").val();
+        var dcs = $("#dcs").val();
+
+        if($.isNumeric(entrega)){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
+        if($.isNumeric(en_instalaciones)){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
+        if(dcs != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); return;}
+
+
+        e.preventDefault();
+        var formData = {
+            id: id,
+            delivery: entrega,
+            in_installation: en_instalaciones,
+            dcs: dcs
+        }
+     
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            type: 'POST',
+            url: url + '/editarResiduo',
+            data: formData,
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    dataTable.ajax.reload();
+                    preloader('hide', data.message, 'success');
+                    $('#myModal').modal('hide');
+                    $('#errors').html('');
+                    $('.alert').prop('hidden', true);
+                }
+                if (data.code == 422) {
+                    $('#errors').html('');
+                    preloader('hide', data.message, 'error');
+                    var list = '';
+                    $.each(data.response, function (i, value) {
+                        list += '<li>' + value + '</li>';
+                    });
+                    $('.alert').prop('hidden', false);
+                    $('#errors').html(list);
+                }      
+            },
+            error: function (data) {
+                console.log(data)
+            }
+        });
+         
+    });
+
 });

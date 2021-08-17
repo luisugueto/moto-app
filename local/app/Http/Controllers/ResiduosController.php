@@ -476,12 +476,11 @@ class ResiduosController extends Controller
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $residuos = DB::table('residuos AS r')
-        ->leftjoin('materials_companies AS mc', 'mc.materials_id', '=', 'r.id_materials')
+        ->leftjoin('materials_companies AS mc', 'mc.id', '=', 'r.id_materials')
         ->join('materials AS m', 'm.id', '=', 'mc.materials_id')
         ->join('waste_companies AS wc', 'wc.id', '=', 'mc.waste_companies_id')
         ->select('r.id AS id_r', 'r.delivery','r.in_installation', 'r.dcs', 'r.created_at', 'm.description AS material', 'wc.name AS companie')
         // ->toSql();
-        // dd($purchases);
         ->get();  
         
         $edit = getPermission('Retiro de Residuos', 'record-edit');
@@ -513,6 +512,18 @@ class ResiduosController extends Controller
     {
         $residuos = Residuos::find($id);
         return response()->json($residuos);
+    }
+
+    public function editarResiduo(Request $request)
+    {
+        $residuos = Residuos::find($request->id);
+        $residuos->update($request->all());
+
+        $out['code'] = 200;
+        $out['data'] = $request->all();
+        $out['message'] = 'Se ha editado el residuo exitosamente!';
+
+        return response()->json($out);
     }
     
 }

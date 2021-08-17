@@ -119,7 +119,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btn-save-materials" value="add">Guardar Cambios</button>
+                        <button type="button" class="btn btn-primary" id="btn_edit_residuo" value="add">Guardar Cambios</button>
                         <input type="hidden" id="residuo_id" name="residuo_id" >
                     </div>
                 </div>
