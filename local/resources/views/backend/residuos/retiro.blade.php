@@ -1,6 +1,19 @@
 @extends('layouts.backend')
 
 @section('content')
+
+@if (session('notification'))
+    <div class="alert alert-success notification">
+        {{ session('notification') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="alert alert-danger alert-block notification">
+        {{ session('error') }}
+    </div>
+    <br><br>
+@endif
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -60,8 +73,27 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Residuos Retirados
-                        </h5>     
+                        </h5>    
+                            {!! Form::open(['url' => 'applyInf', 'method' => 'post']) !!} 
+                                <div class="row">
+                                    <div class="input-group col-md-6 position-relative">
+                                        <select name="applyInf" class="custom-select custom-control custom-control-inline" id="applyInf">
+                                            <option value="" disabled selected>Elegir tipo de Informe</option>
+                                            <option value="np1">Proceso NP1</option>
+                                            <option value="np2">Proceso NP2</option>
+                                            <option value="np3">Proceso NP3</option>
+                                            <option value="reu">Proceso de Reutilización</option>
+                                        </select>
 
+                                        <label style="margin-top: 10px; margin-right: 10px"><b>Desde:</b> </label><input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="custom-control custom-control-inline" required>
+                                        <label style="margin-top: 10px; margin-right: 10px"><b>Hasta:</b> </label> <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="custom-control custom-control-inline" required>
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary">Aplicar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {!! Form::close() !!}
+                            <hr>
                             <table style="width: 100%" id="tableResiduosRetirados" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>

@@ -523,42 +523,62 @@ class ResiduosController extends Controller
         $out['message'] = 'Se ha editado el residuo exitosamente!';
 
         return response()->json($out);
-    }
+    }  
 
-    //EXCELS
-
-   
-
-    public function balanceSemestral()
+    public function applyInf(Request $request)
     {
-        $data = Residuos::all();
-        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
-        
-            $excel->sheet('PROCESO NP1', function($sheet) use($data) {
-        
-                $sheet->loadView('excel.proceso_np1', array('data' => $data));
-        
-            });
+        $validator = \Validator::make($request->all(),[
+            'applyInf' => 'required',
+        ]);
 
-            $excel->sheet('PROCESO NP2', function($sheet) use($data) {
-        
-                $sheet->loadView('excel.proceso_np2', array('data' => $data));
-        
-            });
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'Por favor seleccione un tipo de informe!')->withInput();
+        }
 
-            $excel->sheet('PROCESO NP3', function($sheet) use($data) {
-        
-                $sheet->loadView('excel.proceso_np3', array('data' => $data));
-        
-            });
+        $validator = \Validator::make($request->all(),[
+            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+        ]);
 
-            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($data) {
-        
-                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $data));
-        
-            });
-        
-        })->download('xls');
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+        }
+
+        dd($request->all());
     }
+
+     //EXCELS   
+
+     public function balanceSemestral()
+     {
+         $data = Residuos::all();
+         Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
+         
+             $excel->sheet('PROCESO NP1', function($sheet) use($data) {
+         
+                 $sheet->loadView('excel.proceso_np1', array('data' => $data));
+         
+             });
+ 
+             $excel->sheet('PROCESO NP2', function($sheet) use($data) {
+         
+                 $sheet->loadView('excel.proceso_np2', array('data' => $data));
+         
+             });
+ 
+             $excel->sheet('PROCESO NP3', function($sheet) use($data) {
+         
+                 $sheet->loadView('excel.proceso_np3', array('data' => $data));
+         
+             });
+ 
+             $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($data) {
+         
+                 $sheet->loadView('excel.proceso_reutilizacion', array('data' => $data));
+         
+             });
+         
+         })->download('xls');
+     }
     
 }
