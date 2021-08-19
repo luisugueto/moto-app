@@ -525,5 +525,27 @@ class ResiduosController extends Controller
 
         return response()->json($out);
     }
+
+    public function applyInf(Request $request)
+    {
+        $validator = \Validator::make($request->all(),[
+            'applyInf' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'Por favor seleccione un tipo de informe!')->withInput();
+        }
+
+        $validator = \Validator::make($request->all(),[
+            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+        }
+
+        dd($request->all());
+    }
     
 }

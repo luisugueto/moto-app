@@ -147,6 +147,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getServices', 'ServicesController@getServices');
     Route::post('getBusiness', 'BusinessController@getBusiness');
 
+    // RUTA PARA INFORMES
+    Route::post('applyInf', 'ResiduosController@applyInf');
+
+
     // GET FILES AND LABELS
     Route::get('document/{filename}', 'PurchaseValuationController@document');
     Route::get('image/{filename}', 'PurchaseValuationController@image');
