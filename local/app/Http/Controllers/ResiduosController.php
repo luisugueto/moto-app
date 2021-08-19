@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Exports\EnviosQuincenalesExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests;
@@ -524,6 +523,42 @@ class ResiduosController extends Controller
         $out['message'] = 'Se ha editado el residuo exitosamente!';
 
         return response()->json($out);
+    }
+
+    //EXCELS
+
+   
+
+    public function balanceSemestral()
+    {
+        $data = Residuos::all();
+        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
+        
+            $excel->sheet('PROCESO NP1', function($sheet) use($data) {
+        
+                $sheet->loadView('excel.proceso_np1', array('data' => $data));
+        
+            });
+
+            $excel->sheet('PROCESO NP2', function($sheet) use($data) {
+        
+                $sheet->loadView('excel.proceso_np2', array('data' => $data));
+        
+            });
+
+            $excel->sheet('PROCESO NP3', function($sheet) use($data) {
+        
+                $sheet->loadView('excel.proceso_np3', array('data' => $data));
+        
+            });
+
+            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($data) {
+        
+                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $data));
+        
+            });
+        
+        })->download('xls');
     }
     
 }
