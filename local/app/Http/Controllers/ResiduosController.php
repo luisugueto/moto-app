@@ -551,7 +551,8 @@ class ResiduosController extends Controller
 
      public function balanceSemestral()
      {
-         $data = Residuos::all();
+         $data = Residuos::where('created_at', '>=', '2021-08-16')->where('created_at', '<=', '2021-08-26')->get();
+
          Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
          
              $excel->sheet('PROCESO NP1', function($sheet) use($data) {
@@ -578,7 +579,7 @@ class ResiduosController extends Controller
          
              });
          
-         })->download('xls');
+         })->download('xlsx');
      }
     
 }

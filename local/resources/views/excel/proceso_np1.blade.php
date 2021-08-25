@@ -105,33 +105,33 @@
 <table>
     <?php 
         $contador = count($data); 
-        $celdas = 0;
-        if($contador < 10){
-            $celdas = 10;
-        }
-        if($contador > 10){
-            $celdas = 10 + 2;
-        }
+        // $celdas = 0;
+        // if($contador < 10){
+        //     $celdas = 10;
+        // }
+        // if($contador > 10){
+        //     $celdas = 10 + 2;
+        // }
     ?>
-    @for ($i = 0; $i < $celdas; $i++)
+    @for ($i = 0; $i < $contador; $i++)
     <tr>
         <td style="height: 20;text-align: left;border: 2px medium #000;">1</td>
         <td style="height: 20;text-align: left;border: 2px medium #000;">2</td>
-        <td style="height: 20;text-align: right;border: 2px medium #000;">3</td>
-        <td style="text-align: left;border: 2px medium #000;">4</td>
-        <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >5</td>
-        <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">6</td>
-        <td style="width: 20;height: 20;text-align: right;border: 2px medium #000;">7</td>
-        <td style="width: 30;height: 20;text-align: left;border: 2px medium #000;">8</td>
-        <td style="width: 30;height: 20;text-align: right;border: 2px medium #000;">9</td>
-        <td style="width: 50;height: 20;text-align: left;border: 2px medium #000;">10 </td>
-        <td style="width: 13;height: 20;text-align: right;border: 2px medium #000;">11</td>
-        <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">12</td>
-        <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">13</td>
-        <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">14</td>
-        <td style="height: 20;text-align: left;border: 2px medium #000;">15</td>
-        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">16</td>
-        <td style="height: 20;text-align: right;border: 2px medium #000;">17</td>
+        <td style="height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nima_inst_destination }}</td>
+        <td style="text-align: left;border: 2px medium #000;">NP01</td>
+        <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >{{ $data[$i]->materialC->material->LER }}</td>
+        <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->material->description }}</td>
+        <td style="width: 20;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nif_inst_destination }}</td>
+        <td style="width: 30;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->reason_social_inst_destination }}</td>
+        <td style="width: 30;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nima_inst_destination }}</td>
+        <td style="width: 50;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->type_via }}, {{ $data[$i]->materialC->waste_companie->name_via }}, {{ $data[$i]->materialC->waste_companie->number }}, {{ $data[$i]->materialC->waste_companie->flat }}, {{ $data[$i]->materialC->waste_companie->door }}</td>
+        <td style="width: 13;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->postal_code }}</td>
+        <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->location }}</td>
+        <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->province }}</td>
+        <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->country }}</td>
+        <td style="height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->authorization_no }}</td>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ str_replace(" ", "", $data[$i]->materialC->material->percent_formula) }}</td>
+        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ (int)str_replace(" ", "", $data[$i]->materialC->material->percent_formula)*0.26 }}</td>
     </tr>
     @endfor
 </table>
