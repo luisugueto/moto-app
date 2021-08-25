@@ -527,13 +527,13 @@ class ResiduosController extends Controller
 
     public function applyInf(Request $request)
     {
-        $validator = \Validator::make($request->all(),[
-            'applyInf' => 'required',
-        ]);
+        // $validator = \Validator::make($request->all(),[
+        //     'applyInf' => 'required',
+        // ]);
 
-        if ($validator->fails()) {
-            return Redirect::back()->with('error', 'Por favor seleccione un tipo de informe!')->withInput();
-        }
+        // if ($validator->fails()) {
+        //     return Redirect::back()->with('error', 'Por favor seleccione un tipo de informe!')->withInput();
+        // }
 
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
@@ -544,7 +544,35 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
-        dd($request->all());
+        $data = Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get();
+
+        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
+         
+            $excel->sheet('PROCESO NP1', function($sheet) use($data) {
+         
+                $sheet->loadView('excel.proceso_np1', array('data' => $data));
+         
+            });
+ 
+            $excel->sheet('PROCESO NP2', function($sheet) use($data) {
+         
+                $sheet->loadView('excel.proceso_np2', array('data' => $data));
+         
+            });
+ 
+            $excel->sheet('PROCESO NP3', function($sheet) use($data) {
+         
+                $sheet->loadView('excel.proceso_np3', array('data' => $data));
+         
+            });
+ 
+            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($data) {
+         
+                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $data));
+         
+            });
+         
+        })->download('xlsx');
     }
 
      //EXCELS   
