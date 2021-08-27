@@ -41,6 +41,7 @@ class MaterialsController extends Controller
             $row['valorization'] = $value->valorization;             
             $row['unit_of_measurement'] = $value->unit_of_measurement;
             $row['percent_formula'] = $value->percent_formula;           
+            $row['type'] = $value->type;           
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -69,7 +70,7 @@ class MaterialsController extends Controller
      */
     public function store(Request $request)
     {       
-        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required']);
+        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required', 'type' => 'required']);
 
         if ($validator->fails()) {
             $out['code'] = 422;
@@ -120,7 +121,7 @@ class MaterialsController extends Controller
     {
         $material = Materials::find($id);
 
-        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required']);
+        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required', 'type' => 'required']);
 
 
         if ($validator->fails()) {

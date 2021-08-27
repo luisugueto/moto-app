@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Materials extends Model
 {
     protected $fillable = [
-        'LER', 'code', 'valorization','description','unit_of_measurement', 'percent_formula'
+        'LER', 'code', 'valorization','description','unit_of_measurement', 'percent_formula', 'type'
     ];
 
     public function materials(){

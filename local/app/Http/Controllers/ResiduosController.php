@@ -546,23 +546,36 @@ class ResiduosController extends Controller
 
         $data = Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get();
 
-        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
+        $arrayNp1 = array();
+        $arrayNp2 = array();
+        $arrayNp3 = array();
+
+        foreach(Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get() as $residuos){
+            if(($residuos->materialC != null) && $residuos->materialC->material->type == 'Liquidos')
+                array_push($arrayNp1, $residuos);
+            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Metales')
+                array_push($arrayNp2, $residuos);
+            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Plasticos')
+                array_push($arrayNp3, $residuos);
+        }
+
+        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data, $arrayNp1, $arrayNp2, $arrayNp3) {
          
-            $excel->sheet('PROCESO NP1', function($sheet) use($data) {
+            $excel->sheet('PROCESO NP1', function($sheet) use($arrayNp1) {
          
-                $sheet->loadView('excel.proceso_np1', array('data' => $data));
+                $sheet->loadView('excel.proceso_np1', array('data' => $arrayNp1));
          
             });
  
-            $excel->sheet('PROCESO NP2', function($sheet) use($data) {
+            $excel->sheet('PROCESO NP2', function($sheet) use($arrayNp2) {
          
-                $sheet->loadView('excel.proceso_np2', array('data' => $data));
+                $sheet->loadView('excel.proceso_np2', array('data' => $arrayNp2));
          
             });
  
-            $excel->sheet('PROCESO NP3', function($sheet) use($data) {
+            $excel->sheet('PROCESO NP3', function($sheet) use($arrayNp3) {
          
-                $sheet->loadView('excel.proceso_np3', array('data' => $data));
+                $sheet->loadView('excel.proceso_np3', array('data' => $arrayNp3));
          
             });
  

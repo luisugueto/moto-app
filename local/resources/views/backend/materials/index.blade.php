@@ -48,6 +48,7 @@
                                 <th>Descripción</th>  
                                 <th>Valorización</th>
                                 <th>Ud. medida</th>
+                                <th>Tipo</th>
                                 <th>% Formula</th>                                                                       
                                 <th>Opciones</th>
                             </tr>
@@ -113,6 +114,14 @@
                                     required>
                             </div> 
                         </div>   
+                        <div class="position-relative form-group">
+                            <label>Tipo</label>
+                            <select name="type" id="type" class="custom custom-select" required>
+                                <option value="Liquidos">Liquidos</option>
+                                <option value="Metales">Metales</option>
+                                <option value="Plasticos">Plasticos</option>
+                            </select>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">

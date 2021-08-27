@@ -194,16 +194,16 @@ class WasteCompaniesController extends Controller
 
     public function addMaterialsCompanie(Request $request)
     {
-        $materials = MaterialsCompanie::where('waste_companies_id', $request->waste_companies_id)->get();
-
-        if($materials->count() > 0 )
-            MaterialsCompanie::where('waste_companies_id', $request->waste_companies_id)->delete();
+        // $materials = MaterialsCompanie::where('waste_companies_id', $request->waste_companies_id)->get();
+        // if($materials->count() > 0 ){}
 
         foreach($request->apply as $apply){
-            $materials = new MaterialsCompanie();
-            $materials->materials_id = $apply;
-            $materials->waste_companies_id = $request->waste_companies_id;
-            $materials->save();
+            if(MaterialsCompanie::where('waste_companies_id', $request->waste_companies_id)->where('materials_id', $apply)->count() > 0){}else{
+                $materials = new MaterialsCompanie();
+                $materials->materials_id = $apply;
+                $materials->waste_companies_id = $request->waste_companies_id;
+                $materials->save();
+            }
         }
 
         $out['code'] = 200;

@@ -46,6 +46,7 @@ $(document).ready(function(){
             { "data": "description" },
             { "data": "valorization" },
             { "data": "unit_of_measurement" },
+            { "data": "type" },
             { "data": "percent_formula" },
             {"data": null,
                 render: function (data, type, row) {
@@ -99,6 +100,7 @@ $(document).ready(function(){
                 $('#valorization').val(data.valorization);
                 $('#unit_of_measurement').val(data.unit_of_measurement);
                 $('#percent_formula').val(data.percent_formula);
+                $('#type').val(data.type);
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -118,7 +120,8 @@ $(document).ready(function(){
             description: $('#description').val(),
             valorization: $('#valorization').val(),
             unit_of_measurement: $('#unit_of_measurement').val(),
-            percent_formula: $('#percent_formula').val()
+            percent_formula: $('#percent_formula').val(),
+            type: $('#type').val()
         }
 
         //used to determine the http verb to use [add=POST], [update=PUT]

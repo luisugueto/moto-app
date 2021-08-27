@@ -40,10 +40,10 @@
             <p style="text-align: right;">160104</p>
         </td>
         <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $sumNumber }}</p>
+            <p style="text-align: right;">{{ $numberA }}</p>
         </td>
         <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $sumKilo }}</p>
+            <p style="text-align: right;">{{ $kiloA }}</p>
         </td>
     </tr>
     <tr stye="font-family: Arial;font-size: 10">
@@ -63,8 +63,8 @@
     <tr stye="font-family: Arial;font-size: 10">
         <td style="border:none;width: 60;height: 20;"></td>
         <td style="border:none;text-align: right">Total</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $sumNumber }}</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $sumKilo }}</td>
+        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $numberA }}</td>
+        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $kiloA }}</td>
     </tr>
 </table>
 <table>
@@ -140,8 +140,12 @@
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->province }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->country }}</td>
         <td style="height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->authorization_no }}</td>
-        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ str_replace(" ", "", $data[$i]->materialC->material->percent_formula) }}</td>
-        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ (int)str_replace(" ", "", $data[$i]->materialC->material->percent_formula)*0.26 }}</td>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ ($data[$i]->materialC->material->valorization * $data[$i]->delivery)/100 }}</td>
+
+        <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
+        $p = eval('return '.$formula.';'); ?>
+
+        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ (($data[$i]->materialC->material->valorization * $data[$i]->delivery)/100)*$p }}</td>
     </tr>
     @endfor
 </table>
