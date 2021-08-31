@@ -101,6 +101,7 @@ class PurchaseManagementController extends Controller
                 'registration_country' => 'required',
                 'frame_no' => ['required'],
                 'type_motor' => 'required',
+                'approval_certificate' => 'required',
                 'vehicle_state_trafic' => 'required',
                 'vehicle_state' => 'required',
                 'file-1' => 'required',
@@ -152,6 +153,7 @@ class PurchaseManagementController extends Controller
                 'frame_no' => 'required|max:17',
                 // 'frame_no' => ['required', "regex:/^[A-HJ-NPR-Z\\d]{8}[\\dX][A-HJ-NPR-Z\\d]{2}\\d{6}$/"],
                 'type_motor' => 'required',
+                'approval_certificate' => 'required',
                 'vehicle_state_trafic' => 'required',
                 'vehicle_state' => 'required',
                 'file-1' => 'required',
@@ -216,6 +218,7 @@ class PurchaseManagementController extends Controller
         $gestion->registration_country = $request->registration_country;
         $gestion->frame_no = $request->frame_no;
         $gestion->type_motor = $request->type_motor;
+        $gestion->approval_certificate = $request->approval_certificate;
         $gestion->motor_no = '';
         $gestion->vehicle_state_trafic = $request->vehicle_state_trafic;
         $gestion->vehicle_state = $request->vehicle_state;    

@@ -165,6 +165,7 @@ $(document).ready(function () {
                 $('#frame_no').val(data.frame_no);
                 $('#motor_no').val(data.motor_no);
                 $('#type_motor').val(data.type_motor);
+                $('#approval_certificate').val(data.approval_certificate);
                 if (data.vehicle_state_trafic == 'Alta')
                     $('#high_state').attr('checked', true)
                 else if (data.vehicle_state_trafic == 'Baja definitiva')
@@ -762,6 +763,7 @@ $(document).ready(function () {
             frame_no: $('#frame_no').val(),
             motor_no: $('#motor_no').val(),
             type_motor: $('#type_motor').val(),
+            approval_certificate: $('#approval_certificate').val(),
             datos_del_mecanico: dataSerialize2.replace(/\s+/g, " "),
             datos_internos: dataSerialize3.replace(/\s+/g, " "),
             sendMailMecanico: inputLenght == '6' ? 1 : 0

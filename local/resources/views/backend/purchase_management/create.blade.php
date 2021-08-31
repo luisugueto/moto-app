@@ -553,7 +553,7 @@
                             <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="weight" class="">Peso: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda4" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
-                                    <input name="weight" id="weight" type="number" step="0.1" class="form-control" value="{{ old('weight') }}">
+                                     
                                     @if ($errors->has('weight'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('weight') }}</strong>
@@ -621,6 +621,18 @@
                                     @if ($errors->has('type_motor'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('type_motor') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="position-relative form-group">
+                                    <label for="approval_certificate" class="">Certificado de Homologación: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda5" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
+                                    <input name="approval_certificate" id="approval_certificate" type="text" class="form-control"
+                                        value="{{ old('approval_certificate') }}">
+                                    @if ($errors->has('approval_certificate'))
+                                        <span class="error text-danger">
+                                            <strong>{{ $errors->first('approval_certificate') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -786,7 +798,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 
     <div class="modal fade modalAyuda3" id="" role="dialog" aria-labelledby="exampleModalLongTitle"
     aria-hidden="true">
@@ -822,7 +834,7 @@
                           <span class="carousel-control-next-icon" aria-hidden="true"></span>
                           <span class="sr-only">Siguiente</span>
                         </a>
-                      </div>
+                    </div>
                    
                 </div>
             </div>
@@ -861,6 +873,42 @@
                         </a>
                       </div>
                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modalAyuda5" id="" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">                 
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <br>
+                    <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators3" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators3" data-slide-to="1"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="{{ asset('assets/images/ayuda2.jpeg')}}" alt="" class="img-fluid w-100">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="{{ asset('assets/images/ayuda3.jpeg')}}" alt="" class="img-fluid w-100">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators3" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators3" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Siguiente</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

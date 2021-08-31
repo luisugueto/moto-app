@@ -1641,6 +1641,7 @@ class PurchaseValuationController extends Controller
                     $purchase_management->type_motor = '';
                     $purchase_management->vehicle_state_trafic = $purchase_model->status_trafic;
                     $purchase_management->vehicle_state = '';
+                    $purchase_management->approval_certificate = '';
                     $purchase_management->save();
                 }
                 
@@ -1982,6 +1983,7 @@ class PurchaseValuationController extends Controller
         $data['vehicle_state'] = $purchase_management['vehicle_state'];
         $data['status_ficha'] = $purchase_management['status'];
         $data['weight'] = $purchase_management['weight'];
+        $data['approval_certificate'] = $purchase_management['approval_certificate'];
         //
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
         $data['images_purchase_valuation'] = $images_purchase_valuation;
@@ -2040,6 +2042,7 @@ class PurchaseValuationController extends Controller
             'registration_country' => 'required',
             'frame_no' => ['required'],
             'type_motor' => 'required',
+            'approval_certificate' => 'required',
             'vehicle_state_trafic' => 'required',
             'vehicle_state' => 'required'
         ]);
@@ -2127,6 +2130,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->datos_internos = $request->datos_internos;
         $purchase_management->weight = $request->weight;
         $purchase_management->check_chasis = $request->check_chasis;
+        $purchase_management->approval_certificate  =$request->approval_certificate;
         $purchase_management->update();
 
         $out['message'] = 'Registro Actualizado Exitosamente.';

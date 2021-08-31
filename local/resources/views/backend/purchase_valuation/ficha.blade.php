@@ -1002,6 +1002,18 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="col-md-3">
+                                    <div class="position-relative form-group">
+                                        <label for="approval_certificate" class="">Certificado de Homologación:</label>
+                                        <input name="approval_certificate" id="approval_certificate" type="text" class="form-control"
+                                            value="{{ old('approval_certificate') }}">
+                                        @if ($errors->has('approval_certificate'))
+                                            <span class="error text-danger">
+                                                <strong>{{ $errors->first('approval_certificate') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane" id="tab-ficha-8" role="tabpanel">
