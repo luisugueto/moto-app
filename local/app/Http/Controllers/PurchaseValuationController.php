@@ -1581,15 +1581,14 @@ class PurchaseValuationController extends Controller
             $purchase_model->update();
 
             $token = create_token();
+            $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
 
             if($request->applyState == 3){ // CHECK IF IS INTERESTED
                 $linksRegister = new LinksRegister();
                 $linksRegister->token = $token;
                 $linksRegister->purchase_valuation_id = $purchase_model->id;
                 $linksRegister->status = 0;
-                $linksRegister->save();
-
-                $purchaseCount = PurchaseManagement::where('purchase_valuation_id', $purchase)->count();
+                $linksRegister->save();                
                 
                 if($purchaseCount == 0){
                     $purchase_management = new PurchaseManagement();
@@ -2130,7 +2129,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->datos_internos = $request->datos_internos;
         $purchase_management->weight = $request->weight;
         $purchase_management->check_chasis = $request->check_chasis;
-        $purchase_management->approval_certificate  =$request->approval_certificate;
+        $purchase_management->approval_certificate  = $request->approval_certificate;
         $purchase_management->update();
 
         $out['message'] = 'Registro Actualizado Exitosamente.';

@@ -151,7 +151,7 @@ $(document).ready(function () {
  */
  function preloader(type, message = '', status = '') {
 	Swal.fire({
-		title: message == '' ? "Loading!" : message,
+		title: message == '' ? "Cargando, Espere un momento por favor!" : message,
 		showConfirmButton: false,
 		showCancelButton: false,
 		allowOutsideClick: false,
