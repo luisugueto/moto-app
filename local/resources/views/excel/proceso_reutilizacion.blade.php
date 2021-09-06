@@ -39,23 +39,19 @@
 <table>
     <?php 
         $contador = count($data); 
-        $celdas = 0;
-        if($contador < 10){
-            $celdas = 10;
-        }
-        if($contador > 10){
-            $celdas = 10 + 2;
-        }
     ?>
-    @for ($i = 0; $i < $celdas; $i++)
+    @for ($i = 0; $i < $contador; $i++)
     <tr>
-        <td style="height: 20;text-align: left;border: 2px medium #000;">1</td>
-        <td style="height: 20;text-align: left;border: 2px medium #000;">2</td>
-        <td style="height: 20;text-align: right;border: 2px medium #000;">3</td>
-        <td style="text-align: left;border: 2px medium #000;">4</td>
-        <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >5</td>
-        <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">6</td>
-        <td style="width: 20;height: 20;text-align: right;border: 2px medium #000;">=('PROCESO NP1'!D6-('PROCESO NP1'!P12+'PROCESO NP1'!P13+'PROCESO NP1'!P14+'PROCESO NP1'!P15+'PROCESO NP2'!P16+'PROCESO NP2'!P10+'PROCESO NP2'!P11+'PROCESO NP3'!P11))*0,01%</td>
+        <td style="height: 20;text-align: left;border: 2px medium #000;">B8084156</td>
+        <td style="height: 20;text-align: left;border: 2px medium #000;">MOTOSTION SL</td>
+        <td style="height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nima_inst_destination }}</td>
+        <td style="text-align: left;border: 2px medium #000;">NP</td>
+        <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >{{ $data[$i]->materialC->material->LER }}</td>
+        <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->material->description }}</td>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ ($data[$i]->materialC->material->valorization * $data[$i]->delivery)/100 }}</td>
+
+        <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
+        $p = eval('return '.$formula.';'); ?>
     </tr>
     @endfor
 </table>

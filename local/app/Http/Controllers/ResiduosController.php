@@ -549,6 +549,7 @@ class ResiduosController extends Controller
         $arrayNp1 = array();
         $arrayNp2 = array();
         $arrayNp3 = array();
+        $arrayReu = array();
 
         foreach(Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get() as $residuos){
             if(($residuos->materialC != null) && $residuos->materialC->material->type == 'Liquidos')
@@ -557,9 +558,12 @@ class ResiduosController extends Controller
                 array_push($arrayNp2, $residuos);
             elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Plasticos')
                 array_push($arrayNp3, $residuos);
+            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Reutilizacion')
+                array_push($arrayReu, $residuos);
+            
         }
 
-        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data, $arrayNp1, $arrayNp2, $arrayNp3) {
+        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $arrayReu) {
          
             $excel->sheet('PROCESO NP1', function($sheet) use($arrayNp1) {
          
@@ -579,9 +583,9 @@ class ResiduosController extends Controller
          
             });
  
-            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($data) {
+            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($arrayReu) {
          
-                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $data));
+                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $arrayReu));
          
             });
          
