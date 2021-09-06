@@ -2,7 +2,10 @@
     @if (getPermission($item['name'], 'record-view'))
     <li>
         <a href="{{ $item['slug'] }}">
-            <i class="metismenu-icon fa fa-circle" style="font-size: .7rem;"></i>{{ $item['name'] }}
+            @if ($item['slug'] == 'estadisticas')
+            <i class="metismenu-icon pe-7s-graph2"></i>
+            @endif 
+            {{ $item['name'] }}
         </a>
     </li> 
     @endif
@@ -11,7 +14,28 @@
     @if (getPermission($item['name'], 'record-view')) 
     <li class="{{ request()->is($item['slug']) ? 'mm-active' : '' }}">
         <a href="#" aria-expanded="false">
-            <i class="metismenu-icon fa fa-circle" style="font-size: .7rem;"></i>
+            @if ($item['slug'] == 'administracion')
+            <i class="metismenu-icon pe-7s-tools"></i>
+            @endif
+            @if ($item['slug'] == 'empresas-colaboradoras')
+            <i class="metismenu-icon pe-7s-portfolio"></i>
+            @endif
+            @if ($item['slug'] == 'gestion-compras')
+            <i class="metismenu-icon pe-7s-bicycle"></i>
+            @endif 
+            @if ($item['slug'] == 'gestion-subastas')
+            <i class="metismenu-icon pe-7s-calculator"></i>
+            @endif
+            @if ($item['slug'] == 'gestion-desmontaje')
+            <i class="metismenu-icon pe-7s-scissors"></i>
+            @endif  
+            @if ($item['slug'] == 'clientes')
+            <i class="metismenu-icon pe-7s-users"></i>
+            @endif 
+            @if ($item['slug'] == 'residuos')
+            <i class="metismenu-icon pe-7s-bookmarks"></i>
+            @endif 
+            
             {{ $item['name'] }}
             <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
         </a>
