@@ -117,9 +117,10 @@
                         <div class="position-relative form-group">
                             <label>Tipo</label>
                             <select name="type" id="type" class="custom custom-select" required>
-                                <option value="Liquidos">Liquidos</option>
+                                <option value="Liquidos">Líquidos</option>
                                 <option value="Metales">Metales</option>
-                                <option value="Plasticos">Plasticos</option>
+                                <option value="Plasticos">Plásticos</option>
+                                <option value="Reutilizacion">Reutilización</option>
                             </select>
                         </div>
                     </form>
