@@ -115,11 +115,11 @@
                             </div> 
                         </div>   
                         <div class="position-relative form-group">
-                            <label>Tipo</label>
+                            <label>Proceso en Residuos</label>
                             <select name="type" id="type" class="custom custom-select" required>
-                                <option value="Liquidos">Líquidos</option>
-                                <option value="Metales">Metales</option>
-                                <option value="Plasticos">Plásticos</option>
+                                <option value="NP1">NP1</option>
+                                <option value="NP2">NP2</option>
+                                <option value="NP3">NP3</option>
                                 <option value="Reutilizacion">Reutilización</option>
                             </select>
                         </div>

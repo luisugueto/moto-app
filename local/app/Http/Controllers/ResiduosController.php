@@ -552,11 +552,11 @@ class ResiduosController extends Controller
         $arrayReu = array();
 
         foreach(Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get() as $residuos){
-            if(($residuos->materialC != null) && $residuos->materialC->material->type == 'Liquidos')
+            if(($residuos->materialC != null) && $residuos->materialC->material->type == 'NP1')
                 array_push($arrayNp1, $residuos);
-            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Metales')
+            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'NP2')
                 array_push($arrayNp2, $residuos);
-            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Plasticos')
+            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'NP3')
                 array_push($arrayNp3, $residuos);
             elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Reutilizacion')
                 array_push($arrayReu, $residuos);
