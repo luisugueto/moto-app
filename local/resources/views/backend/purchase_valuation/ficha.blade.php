@@ -850,7 +850,7 @@
                                 <div class="col-md-12">
                                     <button class="btn btn-warning float-right" id="editTabFicha7" type="button"><i class="fa fa-edit"></i> Editar</button>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="version" class="">Versión:</label>
                                         <input name="version" id="version" type="text" class="form-control"
@@ -862,7 +862,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="type" class="">Tipo:</label>
                                         <input name="type" id="type" type="text" class="form-control"
@@ -874,7 +874,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="kilometres" class="">Kilómetros:</label>
                                         <input name="kilometres" id="kilometres" type="tex" class="form-control"
@@ -886,7 +886,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="color" class="">Color:</label>
                                         <input name="color" id="color" type="text" class="form-control"
@@ -898,10 +898,7 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-row row g-1">
-                                
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="position-relative form-group">
                                         <div class="mt-3">
                                             Combustible:
@@ -928,7 +925,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                            </div>
+                            <div class="form-row row g-1">                                
+                                
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="registration_number" class="">Matricula:</label>
                                         <input name="registration_number" id="registration_number" type="text"
@@ -940,7 +940,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="weight" class="">Peso: </label>
                                         <input name="weight" id="weight" type="number" step="0.1" class="form-control" value="{{ old('weight') }}">
@@ -950,9 +950,7 @@
                                             </span>
                                         @endif
                                     </div>
-                                </div>                                
-                            </div>
-                            <div class="form-row row g-1">
+                                </div>           
                                 <div class="col-md-3">
                                     <div class="position-relative form-group">
                                         <label for="registration_date" class="">Fecha de Matriculación:</label>
@@ -966,7 +964,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="registration_country" class="">País de Matriculación:</label>
                                         <input name="registration_country" id="registration_country" type="text"
@@ -990,7 +988,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="position-relative form-group">
                                         <label for="type_motor" class="">Tipo de Motor:</label>
                                         <input name="type_motor" id="type_motor" type="text" class="form-control"

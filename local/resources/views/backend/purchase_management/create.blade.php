@@ -473,7 +473,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="version" class="">Versión:</label>
                                     <input name="version" id="version" type="text" class="form-control"
@@ -485,7 +485,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="type" class="">Tipo:</label>
                                     <input name="type" id="type" type="text" class="form-control"
@@ -497,9 +497,7 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row row g-1">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="kilometres" class="">Kilómetros:</label>
                                     <input name="kilometres" id="kilometres" type="tex" class="form-control"
@@ -511,6 +509,8 @@
                                     @endif
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-row row g-1">                            
                             <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="color" class="">Color:</label>
@@ -553,7 +553,8 @@
                             <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="weight" class="">Peso: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda4" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
-                                     
+                                    <input name="weight" id="weight" type="text" class="form-control"
+                                    value="{{ old('weight') }}">                              
                                     @if ($errors->has('weight'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('weight') }}</strong>
@@ -573,8 +574,6 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row row g-1">
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
                                     <label for="registration_date" class="">Fecha de Matriculación: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda1" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
@@ -587,7 +586,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="registration_country" class="">País de Matriculación:</label>
                                     <input name="registration_country" id="registration_country" type="text"
@@ -613,7 +612,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <div class="position-relative form-group">
                                     <label for="type_motor" class="">Tipo de Motor: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="type_motor" id="type_motor" type="text" class="form-control"
