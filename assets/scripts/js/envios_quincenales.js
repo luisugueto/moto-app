@@ -41,7 +41,7 @@ $(document).ready(function () {
         "columns": [
             { "data": null,
                 render:function(data){
-                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
         
                 },
                 "targets": -1
@@ -176,7 +176,7 @@ $(document).ready(function () {
             "columns": [
                 { "data": null,
                     render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
             
                     },
                     "targets": -1
