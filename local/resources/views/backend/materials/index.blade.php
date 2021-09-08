@@ -88,8 +88,7 @@
                             </div>       
                             <div class="col-md-6 position-relative form-group">
                                 <label>Código</label>
-                                <input class='form-control' id='code' name='code' type='text' value="{{ old('code') }}"
-                                    required>
+                                <input class='form-control' id='code' name='code' type='text' value="{{ old('code') }}">
                             </div> 
                         </div>
                         <div class="position-relative form-group">
@@ -99,8 +98,7 @@
                         </div>
                         <div class="position-relative form-group">
                             <label>Valorización</label>
-                            <input class='form-control' id='valorization' name='valorization' type='text' value="{{ old('valorization') }}"
-                                required>
+                            <input class='form-control' id='valorization' name='valorization' type='text' value="{{ old('valorization') }}">
                         </div>
                         <div class="position-relative form-group row">                        
                             <div class="col-md-6 position-relative form-group">

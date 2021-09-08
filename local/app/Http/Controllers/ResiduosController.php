@@ -439,6 +439,7 @@ class ResiduosController extends Controller
         $residuo->delivery = $request->entrega;
         $residuo->in_installation = $request->en_instalaciones;
         $residuo->dcs = $request->dcs;
+        $residuo->withdrawal_date = $request->fecha_retirada;
         $residuo->save();
         
         $out['code'] = 200;
@@ -458,6 +459,7 @@ class ResiduosController extends Controller
             $residuo->delivery = $request->entrega[$key];
             $residuo->in_installation = $request->en_instalaciones[$key];
             $residuo->dcs = $request->dcs[$key];
+            $residuo->withdrawal_date = $request->fecha_retirada[$key];
             $residuo->save();
         }
         
@@ -478,7 +480,7 @@ class ResiduosController extends Controller
         ->leftjoin('materials_companies AS mc', 'mc.id', '=', 'r.id_materials')
         ->join('materials AS m', 'm.id', '=', 'mc.materials_id')
         ->join('waste_companies AS wc', 'wc.id', '=', 'mc.waste_companies_id')
-        ->select('r.id AS id_r', 'r.delivery','r.in_installation', 'r.dcs', 'r.created_at', 'm.description AS material', 'wc.name AS companie')
+        ->select('r.id AS id_r', 'r.delivery','r.in_installation', 'r.dcs', 'r.withdrawal_date', 'r.created_at', 'm.description AS material', 'wc.name AS companie')
         // ->toSql();
         ->get();  
         
@@ -494,6 +496,7 @@ class ResiduosController extends Controller
                 'delivery' => $residuo->delivery,
                 'in_installation' => $residuo->in_installation,
                 'dcs' => $residuo->dcs,
+                'withdrawal_date' => $residuo->withdrawal_date,
                 'created_at' => $residuo->created_at,
                 'edit' => $edit,
                 'delete' => $delete,

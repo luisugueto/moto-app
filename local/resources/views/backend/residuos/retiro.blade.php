@@ -60,6 +60,7 @@
                                         <th>Entrega</th>
                                         <th>En Instalaciones</th>
                                         <th>DCS (Cuando lo entregan)</th>
+                                        <th>Fecha Retirada</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -102,7 +103,7 @@
                                         <th>Entrega</th>
                                         <th>En Instalaciones</th>
                                         <th>DCS (Cuando lo entregan)</th>
-                                        <th>Fecha</th>
+                                        <th>Fecha Retirada</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -147,6 +148,10 @@
                             <div class="position-relative form-group">
                                 <label>DCS (Cuando lo entregan)</label>
                                 <input name="dcs" id="dcs" type="text"  class="form-control" value="" required>
+                            </div>
+                            <div class="position-relative form-group">
+                                <label>Fecha Retirada</label>
+                                <input name="fecha_retirada" id="fecha_retirada" type="date"  class="form-control" value="" required>
                             </div> 
                         </form>
                     </div>

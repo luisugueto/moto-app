@@ -70,7 +70,7 @@ class MaterialsController extends Controller
      */
     public function store(Request $request)
     {       
-        $validator = \Validator::make($request->all(), ['code' => 'required|min:3', 'valorization' => 'required', 'description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required', 'type' => 'required']);
+        $validator = \Validator::make($request->all(), ['description' => 'required', 'unit_of_measurement' => 'required', 'percent_formula' => 'required', 'type' => 'required']);
 
         if ($validator->fails()) {
             $out['code'] = 422;

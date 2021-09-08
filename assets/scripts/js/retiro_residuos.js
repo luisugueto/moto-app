@@ -53,6 +53,13 @@ $(document).ready(function(){
                 },
                 "targets": -1
             },
+            { "data": null,
+                render:function(data){
+                    return '<input name="fecha_retirada[]" id="fecha_retirada_'+data.id+'" type="date"  class="form-control" value="" required>';
+        
+                },
+                "targets": -1
+            },
             {"data": null,
                 render:function(data, type, row)
                     {
@@ -125,6 +132,13 @@ $(document).ready(function(){
                     },
                     "targets": -1
                 },
+                { "data": null,
+                    render:function(data){
+                        return '<input name="fecha_retirada[]" id="fecha_retirada_'+data.id+'" type="date"  class="form-control" value="" required>';
+            
+                    },
+                    "targets": -1
+                },
                 {"data": null,
                     render:function(data, type, row)
                         {
@@ -174,7 +188,7 @@ $(document).ready(function(){
                 { "data": "delivery" },
                 { "data": "in_installation" },
                 { "data": "dcs" },
-                { "data": "created_at" },
+                { "data": "withdrawal_date" },
                 {"data": null,
                     render:function(data, type, row)
                         {
@@ -207,10 +221,12 @@ $(document).ready(function(){
         var entrega = $("#entrega_"+id_material).val();
         var en_instalaciones = $("#en_instalaciones_"+id_material).val();
         var dcs = $("#dcs_"+id_material).val();
+        var fecha_retirada = $("#fecha_retirada_"+id_material).val();
 
         if($.isNumeric(entrega)){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
         if($.isNumeric(en_instalaciones)){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
         if(dcs != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); return;}
+        if(fecha_retirada != ''){}else{preloader('hide', "El campo fecha retirada está vacío", 'error'); e.preventDefault(); return;}
 
 
         e.preventDefault();
@@ -218,7 +234,8 @@ $(document).ready(function(){
             id_material: id_material,
             entrega: entrega,
             en_instalaciones: en_instalaciones,
-            dcs: dcs
+            dcs: dcs,
+            fecha_retirada: fecha_retirada
         }
      
         $.ajax({
@@ -268,6 +285,7 @@ $(document).ready(function(){
             if($.isNumeric($("#entrega_"+val).val())){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); error = 1; return;}
             if($.isNumeric($("#en_instalaciones_"+val).val())){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); error = 1; return;}
             if($("#dcs_"+val).val() != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); error = 1; return;}
+            if($("#fecha_retirada_"+val).val() != ''){}else{preloader('hide', "El campo fecha retirada está vacío", 'error'); e.preventDefault(); error = 1; return;}
         });
 
         if(error) return;
@@ -281,12 +299,16 @@ $(document).ready(function(){
         var dcs = $("input[name='dcs[]']")
               .map(function(){return $(this).val();}).get();
 
+        var fecha_retirada = $("input[name='fecha_retirada[]']")
+              .map(function(){return $(this).val();}).get();
+
         e.preventDefault();
         var formData = {
             material: values,
             entrega: entrega,
             en_instalaciones: en_instalaciones,
-            dcs: dcs
+            dcs: dcs,
+            fecha_retirada: fecha_retirada
         }
 
         preloader('show');
@@ -339,6 +361,7 @@ $(document).ready(function(){
                 $('#entrega').val(data.delivery);
                 $('#en_instalaciones').val(data.in_installation);
                 $('#dcs').val(data.dcs);                 
+                $('#fecha_retirada').val(data.withdrawal_date);                 
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
@@ -355,10 +378,12 @@ $(document).ready(function(){
         var entrega = $("#entrega").val();
         var en_instalaciones = $("#en_instalaciones").val();
         var dcs = $("#dcs").val();
+        var fecha_retirada = $("#fecha_retirada").val();
 
         if($.isNumeric(entrega)){}else{preloader('hide', "El campo entrega no es númerico", 'error'); e.preventDefault(); return;}
         if($.isNumeric(en_instalaciones)){}else{preloader('hide', "El campo en instalaciones no es númerico", 'error'); e.preventDefault(); return;}
         if(dcs != ''){}else{preloader('hide', "El campo dcs está vacío", 'error'); e.preventDefault(); return;}
+        if(fecha_retirada != ''){}else{preloader('hide', "El campo fecha retirada está vacío", 'error'); e.preventDefault(); return;}
 
 
         e.preventDefault();
@@ -366,7 +391,8 @@ $(document).ready(function(){
             id: id,
             delivery: entrega,
             in_installation: en_instalaciones,
-            dcs: dcs
+            dcs: dcs,
+            withdrawal_date: fecha_retirada
         }
      
         $.ajax({
