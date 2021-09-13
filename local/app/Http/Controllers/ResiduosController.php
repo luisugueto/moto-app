@@ -196,7 +196,7 @@ class ResiduosController extends Controller
         }
         // $json_data = array('data'=> $row);
         
-        Excel::create('envios_quincenales', function($excel) use($data) {
+        Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
         
             $excel->sheet('Hoja1', function($sheet) use($data) {
         
@@ -254,7 +254,7 @@ class ResiduosController extends Controller
             $data[] = $row;
         }
         // $json_data = array('data'=> $row);
-        Excel::create('envios_quincenales', function($excel) use($data) {
+        Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
         
             $excel->sheet('Hoja1', function($sheet) use($data) {
         

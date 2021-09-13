@@ -113,7 +113,7 @@
                                     </button>
                                 </div>
                             </div>
-                            <a href="{{ url('exportar-envios-quicenales-sin-gestionar')}}" class="btn btn-info mr-2 float-right">Exportar</a>
+                            {{-- <a href="{{ url('exportar-envios-quicenales-sin-gestionar')}}" class="btn btn-info mr-2 float-right">Exportar</a> --}}
                         </h5>     
         
                             <table style="width: 100%" id="tableEnviosQuincenalesSinGestionar" class="table table-hover table-striped table-bordered">
