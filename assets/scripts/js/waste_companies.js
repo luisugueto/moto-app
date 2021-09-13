@@ -257,23 +257,27 @@ $(document).ready(function(){
                 $('#waste_companies_2_id').val('');
                 if (data.code == 200) {
                     $('#waste_companies_2_id').val(data.waste.id);
-                    var dt = '', checked = '';
-                    console.log(data)
-                    $.each(data.materials, function (i, val) {
-                        //console.log(val);
-                        $.each(data.materialApply, function (index, valor) {
-                            if (val.id == valor.materials_id) {
+                    var dt = '';
+                    var materiales = data.materials;
+                    var materiales_companias = data.materialApply;
+                    // console.log(data)
+                 
+                    $.each(materiales, function (index, value) {
+                        var checked = ''
+                        $.each(materiales_companias, function (subindex, subvalue) {
+                            if (value.id === subvalue.materials_id) {
                                 checked = 'checked';
-                            }                            
+                            }
                         });
                         dt += `<tr>
-                                    <th scope="row">${val.id}</th>
-                                    <td>${val.code}</td>
-                                    <td>${val.description}</td>
-                                    <td>${val.unit_of_measurement }</td>
-                                    <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${val.id}" value="${val.id}" class="custom-control-input" ${checked}><label class="custom-control-label" for="apply-1_${val.id}"></label></div></td>
-                                </tr> `;
+                            <th scope="row">${value.id}</th>
+                            <td>${value.code}</td>
+                            <td>${value.description}</td>
+                            <td>${value.unit_of_measurement }</td>
+                            <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${value.id}" value="${value.id}" class="custom-control-input" ${checked}><label class="custom-control-label" for="apply-1_${value.id}"></label></div></td>
+                        </tr> `;
                     });
+                    
                     $('#tdListMaterials').html(dt);
                     $('#myModalMaterials').modal({
                         backdrop: 'static',
