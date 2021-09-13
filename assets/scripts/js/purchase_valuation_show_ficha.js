@@ -97,7 +97,7 @@ $(document).ready(function () {
                                 $('.' + response[i].name + '').text(response[i].value);
 
                                 if (response[i].name == 'dLQrpaV2') {
-                                    $('#sale_amount').val(response[i].value);
+                                    $('#dLQrpaV2').val(response[i].value);
                                 }
                             }
                         }
@@ -531,8 +531,39 @@ $(document).ready(function () {
             }
         });
 
-        //Peticion para traer las imagenes
+      
 
+        //PARA VALIDACIONES DE CAMPO IBAN
+        $(".input-iban").keyup(function () { //Keylistener HTML: <input type="text" class="input-iban">
+            val = jQuery(this).val()
+                .replace(new RegExp(" ", 'g'), ''); //remove spaces
+                
+            val_chars = val.split(""); //split chars 
+            val = ""; //new value
+            
+            count = 1;
+            for(index in val_chars) {
+                if(count <= 2) { //first 2 alphabetical chars
+                    val_chars[index] = val_chars[index].toUpperCase(); //uppercase, example: dE => DE
+                    if (val_chars[index].search(/^[A-Z]+$/) == -1) { //search für A-Z
+                        break; //if not found (error)
+                    }
+                }else {
+                    if (val_chars[index].search(/^[0-9]+$/) == -1) { //search for 0-9
+                        continue; //if not found (error)
+                    }
+                }
+                if(val.length < 29){
+                    val += val_chars[index]; // add char to return Value
+                }
+                if(count%4 == 0 && val.length < 29) { //Avery 4 chars an space
+                    val += " "; 
+                }
+                
+                count++;
+            }
+            jQuery(this).val(val); //set to Textfield value
+        });
 
     }
 

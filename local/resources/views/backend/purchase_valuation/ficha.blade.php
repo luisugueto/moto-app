@@ -712,8 +712,8 @@
                                 <div class="col-md-6">
                                     <div class="position-relative form-group">
                                         <label for="iban" class="">IBAN: ES</label>
-                                        <input name="iban" id="iban" type="text" class="form-control"
-                                            value="{{ old('iban') }}">
+                                        <input name="iban" id="iban" type="text" class="form-control input-iban"
+                                            value="{{ old('iban') }}" max="28">
                                         @if ($errors->has('iban'))
                                             <span class="error text-danger">
                                                 <strong>{{ $errors->first('iban') }}</strong>

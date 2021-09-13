@@ -37,84 +37,27 @@ $(document).ready(function(){
             error: function () {  // error handling
             }
         },
-        "columns": [
-            { "data": "model" },
-            { "data": "registration_number" },
-            { "data": "registration_date" },
-            { "data": "frame_no" },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    
-                    if(data.vehicle_state_trafic == "Alta")
-                        echo = "Alta";
-                    else if(data.vehicle_state_trafic == "Baja definitiva")
-                        echo = "Baja definitiva";
-                    else if(data.vehicle_state_trafic == "Baja temporal")
-                        echo = "Baja temporal";
-
-
-                        if(data.vehicle_state == "Siniestrado")
-                        echo = "Baja definitiva";
-                        else if(data.vehicle_state == "Averiado")
-                        echo = "Baja definitiva";                        
-                        else if(data.vehicle_state == "Abandonado")
-                        echo = "Abandonado";
-                        else if(data.vehicle_state == "Completo")
-                        echo = "Completo";
-                        else if(data.vehicle_state == "Parcialmente desmontado")
-                        echo = "Parcialmente desmontado";
-                    
-
-                    return echo;
-                },
-                "targets": -1
-            },
-            { "data": "weight" },
-            { "data": "titular" },
-            { "data": "dni" },
-            { "data": "birthdate" },
-            { "data": "direction" },
-            { "data": "postal_code" },
-            { "data": "municipality" },
-            { "data": "province" },
-            { "data": null,
-                render:function(data){
-                    let echo = '';
-                    if(data.vehicle_state == "Siniestrado")
-                        echo = "Baja definitiva";
-                    else if(data.vehicle_state == "Averiado")
-                        echo = "Baja definitiva";                        
-                    else if(data.vehicle_state == "Abandonado")
-                        echo = "Abandonado";
-                    else if(data.vehicle_state == "Completo")
-                        echo = "Completo";
-                    else if(data.vehicle_state == "Parcialmente desmontado")
-                        echo = "Parcialmente desmontado";                    
-
-                    return echo;
-                },
-                "targets": -1
-            },
-            { "data": "current_year" },
+        "columns": [  
             { "data": "id" },
-            { "data": "certificate_destruction_date" },
-            { "data": "collection_contract_date" }
-             
+            { "data": "type_proccess" },
+            { "data": "LER" },
+            { "data": null,
+                render:function(data){
+                    return data.material +' / <br><b>'+ data.companie +'</b>';
+        
+                },
+                "targets": -1
+            },            
+            { "data": "delivery" },
+            { "data": "in_installation" },
+            { "data": "dcs" },
+            { "data": "withdrawal_date" }            
 
         ],
         "columnDefs": [
             {
-                "targets": [ 15 ],
+                "targets": [ 0 ],
                 "visible": false,
-            },
-            {
-                "targets": [ 16 ],
-                "visible": false
-            },
-            {
-                "targets": [ 17 ],
-                "visible": false
             }
         ],
         "order": [[0, "desc"]]
