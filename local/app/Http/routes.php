@@ -139,6 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
     Route::post('getMailBusiness', 'SubProcessesController@getMailBusiness');
     Route::post('getWasteCompanies', 'WasteCompaniesController@getWasteCompanies');
+    Route::post('getListMaterials', 'WasteCompaniesController@getListMaterials');
     Route::post('getMaterials', 'MaterialsController@getMaterials');
     Route::post('getResiduos', 'ResiduosController@getResiduos');
     Route::post('getResiduosRetirados', 'ResiduosController@getResiduosRetirados');

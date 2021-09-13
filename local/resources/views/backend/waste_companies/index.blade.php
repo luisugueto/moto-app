@@ -229,8 +229,8 @@
     </div>
     <div class="modal fade" id="myModalMaterials" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content ">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Agregar Materiales</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -244,19 +244,19 @@
                     <form id="frmAddMaterials" name="frmAddMaterials" novalidate="">
                         {{ csrf_field() }}
                         <div class="table-responsive">
-                            <table class="mb-0 table table-striped table-hover">
+                            <table class="mb-0 table table-striped table-hover" id="tdListMaterials" style="width: 100%;">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Código</th>
+                                        <th>LER</th>
                                         <th>Material</th>
                                         <th>Ud. Media</th>
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tdListMaterials">
+                                {{-- <tbody id="tdListMaterials">
                                                                                 
-                                </tbody>
+                                </tbody> --}}
                             </table>
                         </div>
                     </form>

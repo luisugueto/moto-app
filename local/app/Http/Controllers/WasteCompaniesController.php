@@ -212,4 +212,34 @@ class WasteCompaniesController extends Controller
         return response()->json($out);
     }
 
+    public function getListMaterials(Request $request)
+    {
+        
+        // dd($request->all());
+       
+        $materials = Materials::get();
+ 
+        $materiales = array();
+        foreach($materials as $material){
+            $waste = WasteCompanies::findOrFail($request->id_waste);
+            $lastMaterialApply = MaterialsCompanie::where('waste_companies_id', $waste->id)->get();
+            $materialApply = '';
+            if($lastMaterialApply->count() > 0){            
+                $materialApply = $lastMaterialApply;
+            }
+            array_push($materiales, [
+                'id' => $material->id, 
+                'LER' => $material->LER, 
+                'description' => $material->description,
+                'type' => $material->type,
+                'unit_of_measurement' => $material->unit_of_measurement,
+                'materiales_companias' => $materialApply
+            ]);
+        }
+
+        $json_data = array('data'=> $materiales); 
+        $json_data= collect($json_data);        
+        return response()->json($json_data);
+    }
+
 }

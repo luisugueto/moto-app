@@ -253,7 +253,9 @@ $(document).ready(function(){
             type: "GET",
             url: url + '/agregar-materiales/' + waste_companies_id,
             success: function (data) {
-                $('#tdListMaterials').html('');
+                if ($.fn.DataTable.isDataTable("#tdListMaterials")) {
+                    $('#tdListMaterials').DataTable().clear().destroy();
+                }
                 $('#waste_companies_2_id').val('');
                 if (data.code == 200) {
                     $('#waste_companies_2_id').val(data.waste.id);
@@ -261,24 +263,53 @@ $(document).ready(function(){
                     var materiales = data.materials;
                     var materiales_companias = data.materialApply;
                     // console.log(data)
-                 
-                    $.each(materiales, function (index, value) {
-                        var checked = ''
-                        $.each(materiales_companias, function (subindex, subvalue) {
-                            if (value.id === subvalue.materials_id) {
-                                checked = 'checked';
+
+                    var dataTable = $('#tdListMaterials').DataTable({
+                        processing: true,
+                        responsive: true,
+                        orderCellsTop: true,
+                        fixedHeader: true,
+                        pageLength : 5,
+                        lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                        ajax: {
+                            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                            url: "getListMaterials", // json datasource   
+                            data: {
+                                id_waste: waste_companies_id
+                            },
+                            type: "post", // method  , by default get           
+                            error: function () {  // error handling
                             }
-                        });
-                        dt += `<tr>
-                            <th scope="row">${value.id}</th>
-                            <td>${value.code}</td>
-                            <td>${value.description}</td>
-                            <td>${value.unit_of_measurement }</td>
-                            <td><div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${value.id}" value="${value.id}" class="custom-control-input" ${checked}><label class="custom-control-label" for="apply-1_${value.id}"></label></div></td>
-                        </tr> `;
+                        },
+                        "columns": [
+                            { "data": "id" },
+                            { "data": "LER" },
+                            { "data": null,
+                                render:function(data){
+                                    return data.description +' / <br><b>'+ data.type +'</b>';
+                        
+                                },
+                                "targets": -1
+                            }, 
+                            { "data": "unit_of_measurement" },  
+                            {"data": null,
+                                render: function (data) {
+                                    var echo = '';
+                                    var checked = '';
+                                    $.each(materiales_companias, function (subindex, subvalue) {
+                                        if (data.id === subvalue.materials_id) {
+                                            checked = 'checked';
+                                        }
+                                    });
+                                    echo = `<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply-1_${data.id}" value="${data.id}" class="custom-control-input" ${checked}><label class="custom-control-label" for="apply-1_${data.id}"></label></div>`;
+                                   
+                                    return echo;
+                                },
+                                "targets": -1
+                            } 
+                        ],
+                        "order": [[0, "asc"]]
                     });
-                    
-                    $('#tdListMaterials').html(dt);
                     $('#myModalMaterials').modal({
                         backdrop: 'static',
                         keyboard: false
