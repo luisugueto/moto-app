@@ -16,7 +16,7 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -54,7 +54,7 @@ $(document).ready(function () {
                 else if (data.status_trafic == 'Baja definitiva')
                     $('#low').attr('checked', true)
 
-     
+
                 if (data.motocycle_state == "Golpe Delantero")
                     $('#g_del').attr('checked', true)
                 else if (data.motocycle_state == "Golpe Trasero")
@@ -69,13 +69,13 @@ $(document).ready(function () {
                 $('#price_min').val(data.price_min);
                 $('#observations').val(data.observations);
 
-                
+
                 if (data.data_serialize !== '') {
                     var response = JSON.parse(data.data_serialize);
-                    
+
                     setTimeout(function () {
                         for (i = 0; i < response.length; i++) {
-                            
+
                             if ($('#' + response[i].name + '.date').length) {
 
                                 if (response[i].value != '') {
@@ -137,7 +137,7 @@ $(document).ready(function () {
                 $('#postal_code').val(data.postal_code);
                 $('#province_management').val(data.province_management);
                 $('#iban').val(data.iban);
-                
+
                 $('#name_representantive').val(data.name_representantive);
                 $('#firts_surname_representative').val(data.firts_surname_representative);
                 $('#second_surtname_representantive').val(data.second_surtname_representantive);
@@ -191,7 +191,7 @@ $(document).ready(function () {
                     $('#images').append(`<div class="col-lg-4 col-md-4 col-sm-6 "><span class="fa fa-times text-danger float-right" onclick="deleteImages(${element.id})"></span>
                         <a data-toggle="modal" data-target="#modal" href="#lightbox" id="imgModal" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
                     </div>`);
-                    
+
 
                     $(`<div class="carousel-item">
                         <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" data-slide-to="${i}" height="200">
@@ -202,13 +202,13 @@ $(document).ready(function () {
                 $('#titleModalImage').text('Imagenes de la moto ' + data.model);
                 $('.carousel-item').first().addClass('active');
                 $('.carousel-indicators > li').first().addClass('active');
-               
-               
+
+
                 data.documents_purchase_valuation.forEach(function (element) {
                     $("#documents").append(` <a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`);
                 });
 
-                if (!!data.dni_doc) { 
+                if (!!data.dni_doc) {
                     data.dni_doc.split(',').forEach(function (element) {
                         $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                     });
@@ -234,7 +234,7 @@ $(document).ready(function () {
                     $('#divProcesosDesguace').css('display', 'block');
                     var sb2 = '';
                     data.processes.forEach(function (element) {
-                        console.log(element)
+                        // console.log(element)
                         if (element.name == 'Bastidor' && element.subproceso == 'Guardar Bastidor') {
                             $('#checkChasisDiv').css('display', 'none');
                         }
@@ -249,7 +249,7 @@ $(document).ready(function () {
                             '</div>' +
                             '<div class="widget-content-right widget-content-actions"></div>' +
                             '<div class="widget-content-right ml-3" id="divSubProceso">' + element.date +
-                            
+
                             '<div class="badge badge-pill badge-primary" style="margin-left: 10px;">' + element.subproceso + '</div>' +
                             '</div>' +
                             '</div>' +
@@ -258,7 +258,7 @@ $(document).ready(function () {
                         );
                     });
                 }
-                
+
                 if (!!data.datos_del_mecanico) {
                     var response2 = JSON.parse(data.datos_del_mecanico);
                     setTimeout(function () {
@@ -289,14 +289,14 @@ $(document).ready(function () {
                 }
 
                 $('#form_display_datos_mecanico').html(data.form_display_datos_mecanico);
- 
+
                 $('#form_display_datos_mecanico').find('select, textarea, input').each(function (index, detalle) {
                     if (index === 0) $(this).val(data.brand);
                     if (index === 1) $(this).val(data.model);
                     if (index === 2) $(this).val(data.id);
                     if (index === 3) $(this).val(data.type_motor);
                     if (index === 7) $(this).val(data.km);
-                  
+
                     $(this).prop('disabled', true);
                 });
 
@@ -341,7 +341,7 @@ $(document).ready(function () {
                     b3 = '<a class="btn btn-warning" href="send_mail_document/' + data.id + '">Enviar Documentos por Correo</a>';
                     $('#buttonSendMail').html(b3);
                 }
-               
+
                 if (data.status_ficha == 2) {
                     let sb2 = '';
                     sb2 = '<a class="btn btn-info" href="' + data.url_label + '" target="_blank">Descargar etiquetas</a>';
@@ -357,19 +357,19 @@ $(document).ready(function () {
                     $('#divDocumentsViafirma').css('display', 'block');
 
                     // DOCUMENTS DESTRUCTION
-                    let dd = '<tbody>';                   
-                    data.documentsDestruction.forEach(function (element) { 
+                    let dd = '<tbody>';
+                    data.documentsDestruction.forEach(function (element) {
                         if(element.get_status_document.status == 'WAITING'){
                             dd += '<tr><th>'+element.name_document+'</th>';
                             dd += '<th>'+element.code+'</th>';
-                            dd += '<th>Esperando firma</th>'; 
+                            dd += '<th>Esperando firma</th>';
                             dd += '<th>'+element.date+'</th>';
                             dd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
                             dd += '<tr><th>'+element.name_document+'</th>';
                             dd += '<th>'+element.code+'</th>';
-                            dd += '<th>Error</th>'; 
+                            dd += '<th>Error</th>';
                             dd += '<th>'+element.date+'</th>';
                             dd += '<th></th></tr>';
                         }
@@ -377,21 +377,21 @@ $(document).ready(function () {
                             dd += '<tr><th>'+element.name_document+'</th>';
                             dd += '<th>'+element.code+'</th>';
                             dd += '<th>Esperando aprobación</th>';
-                            dd += '<th>'+element.date+'</th>'; 
+                            dd += '<th>'+element.date+'</th>';
                             dd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             dd += '<tr><th>'+element.name_document+'</th>';
                             dd += '<th>'+element.code+'</th>';
-                            dd += '<th>Rechazado</th>'; 
-                            dd += '<th>'+element.date+'</th>'; 
+                            dd += '<th>Rechazado</th>';
+                            dd += '<th>'+element.date+'</th>';
                             dd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
-                            dd += '<tr><th>'+element.name_document+'</th>'; 
+                            dd += '<tr><th>'+element.name_document+'</th>';
                             dd += '<th>'+element.code+'</th>';
-                            dd += '<th>Aprobado</th>'; 
-                            dd += '<th>'+element.date+'</th>'; 
+                            dd += '<th>Aprobado</th>';
+                            dd += '<th>'+element.date+'</th>';
                             dd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
@@ -399,41 +399,41 @@ $(document).ready(function () {
                     $("#tableDocumentsDestruction").append(dd);
 
                     // DOCUMENTS DESTRUCTION DECEASED
-                    let ddd = '<tbody>';  
-                    data.documentsDestructionDeceased.forEach(function (element) { 
+                    let ddd = '<tbody>';
+                    data.documentsDestructionDeceased.forEach(function (element) {
                         if(element.get_status_document.status == 'WAITING'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
                             ddd += '<th>'+element.code+'</th>';
-                            ddd += '<th>Esperando firma</th>'; 
-                            ddd += '<th>'+element.date+'</th>'; 
+                            ddd += '<th>Esperando firma</th>';
+                            ddd += '<th>'+element.date+'</th>';
                             ddd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
                             ddd += '<th>'+element.code+'</th>';
-                            ddd += '<th>Error</th>'; 
-                            ddd += '<th>'+element.date+'</th>'; 
+                            ddd += '<th>Error</th>';
+                            ddd += '<th>'+element.date+'</th>';
                             ddd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
                             ddd += '<th>'+element.code+'</th>';
                             ddd += '<th>Esperando aprobación</th>';
-                            ddd += '<th>'+element.date+'</th>';  
+                            ddd += '<th>'+element.date+'</th>';
                             ddd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
                             ddd += '<th>'+element.code+'</th>';
-                            ddd += '<th>Rechazado</th>'; 
-                            ddd += '<th>'+element.date+'</th>'; 
+                            ddd += '<th>Rechazado</th>';
+                            ddd += '<th>'+element.date+'</th>';
                             ddd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
                             ddd += '<tr><th>'+element.name_document+'</th>';
                             ddd += '<th>'+element.code+'</th>';
-                            ddd += '<th>Aprobado</th>'; 
-                            ddd += '<th>'+element.date+'</th>'; 
+                            ddd += '<th>Aprobado</th>';
+                            ddd += '<th>'+element.date+'</th>';
                             ddd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
@@ -441,41 +441,41 @@ $(document).ready(function () {
                     $("#tableDestructionDeceased").append(ddd);
 
                     // DOCUMENTS POSSIBLE SALE
-                    let ps = '<tbody>';  
-                    data.documentsPossibleSale.forEach(function (element) { 
+                    let ps = '<tbody>';
+                    data.documentsPossibleSale.forEach(function (element) {
                         if(element.get_status_document.status == 'WAITING'){
                             ps += '<tr><th>'+element.name_document+'</th>';
                             ps += '<th>'+element.code+'</th>';
                             ps += '<th>Esperando firma</th>';
-                            ps += '<th>'+element.date+'</th>';  
+                            ps += '<th>'+element.date+'</th>';
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
                             ps += '<tr><th>'+element.name_document+'</th>';
                             ps += '<th>'+element.code+'</th>';
-                            ps += '<th>Error</th>'; 
-                            ps += '<th>'+element.date+'</th>'; 
+                            ps += '<th>Error</th>';
+                            ps += '<th>'+element.date+'</th>';
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
                             ps += '<tr><th>'+element.name_document+'</th>';
                             ps += '<th>'+element.code+'</th>';
-                            ps += '<th>Esperando aprobación</th>'; 
-                            ps += '<th>'+element.date+'</th>'; 
+                            ps += '<th>Esperando aprobación</th>';
+                            ps += '<th>'+element.date+'</th>';
                             ps += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             ps += '<tr><th>'+element.name_document+'</th>';
                             ps += '<th>'+element.code+'</th>';
-                            ps += '<th>Rechazado</th>'; 
-                            ps += '<th>'+element.date+'</th>'; 
+                            ps += '<th>Rechazado</th>';
+                            ps += '<th>'+element.date+'</th>';
                             ps += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
                             ps += '<tr><th>'+element.name_document+'</th>';
                             ps += '<th>'+element.code+'</th>';
-                            ps += '<th>Aprobado</th>'; 
-                            ps += '<th>'+element.date+'</th>'; 
+                            ps += '<th>Aprobado</th>';
+                            ps += '<th>'+element.date+'</th>';
                             ps += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
@@ -483,47 +483,47 @@ $(document).ready(function () {
                     $("#tablePossibleSale").append(ps);
 
                     // DOCUMENTS POSSIBLE SALE DECEASED
-                    let psd = '<tbody>';  
-                    data.documentsPossibleSaleDeceased.forEach(function (element) { 
+                    let psd = '<tbody>';
+                    data.documentsPossibleSaleDeceased.forEach(function (element) {
                         if(element.get_status_document.status == 'WAITING'){
                             psd += '<tr><th>'+element.name_document+'</th>';
                             psd += '<th>'+element.code+'</th>';
-                            psd += '<th>Esperando firma</th>'; 
-                            psd += '<th>'+element.date+'</th>'; 
+                            psd += '<th>Esperando firma</th>';
+                            psd += '<th>'+element.date+'</th>';
                             psd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'ERROR'){
                             psd += '<tr><th>'+element.name_document+'</th>';
                             psd += '<th>'+element.code+'</th>';
-                            psd += '<th>Error</th>'; 
-                            psd += '<th>'+element.date+'</th>'; 
+                            psd += '<th>Error</th>';
+                            psd += '<th>'+element.date+'</th>';
                             psd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'WAITING_CHECK'){
                             psd += '<tr><th>'+element.name_document+'</th>';
                             psd += '<th>'+element.code+'</th>';
-                            psd += '<th>Esperando aprobación</th>'; 
-                            psd += '<th>'+element.date+'</th>'; 
+                            psd += '<th>Esperando aprobación</th>';
+                            psd += '<th>'+element.date+'</th>';
                             psd += '<th><a href="'+element.approval_document + '" target="_blank">Aprobar Documento</a></th></tr>';
                         }
                         else if(element.get_status_document.status == 'REJECTED'){
                             psd += '<tr><th>'+element.name_document+'</th>';
                             psd += '<th>'+element.code+'</th>';
-                            psd += '<th>Rechazado</th>'; 
-                            psd += '<th>'+element.date+'</th>'; 
+                            psd += '<th>Rechazado</th>';
+                            psd += '<th>'+element.date+'</th>';
                             psd += '<th></th></tr>';
                         }
                         else if(element.get_status_document.status == 'RESPONSED'){
                             psd += '<tr><th>'+element.name_document+'</th>';
                             psd += '<th>'+element.code+'</th>';
-                            psd += '<th>Aprobado</th>'; 
-                            psd += '<th>'+element.date+'</th>'; 
+                            psd += '<th>Aprobado</th>';
+                            psd += '<th>'+element.date+'</th>';
                             psd += '<th><a href="' + element.download_signed.link + '" target="_blank">Descargar Documento</a></th></tr>';
                         }
                     });
                     psd += '</tbody>';
                     $("#tableSaleDeceased").append(psd);
-                    
+
                 }
             },
             error: function (data) {
@@ -531,16 +531,16 @@ $(document).ready(function () {
             }
         });
 
-      
+
 
         //PARA VALIDACIONES DE CAMPO IBAN
         $(".input-iban").keyup(function () { //Keylistener HTML: <input type="text" class="input-iban">
             val = jQuery(this).val()
                 .replace(new RegExp(" ", 'g'), ''); //remove spaces
-                
-            val_chars = val.split(""); //split chars 
+
+            val_chars = val.split(""); //split chars
             val = ""; //new value
-            
+
             count = 1;
             for(index in val_chars) {
                 if(count <= 2) { //first 2 alphabetical chars
@@ -557,9 +557,9 @@ $(document).ready(function () {
                     val += val_chars[index]; // add char to return Value
                 }
                 if(count%4 == 0 && val.length < 29) { //Avery 4 chars an space
-                    val += " "; 
+                    val += " ";
                 }
-                
+
                 count++;
             }
             jQuery(this).val(val); //set to Textfield value
@@ -570,7 +570,7 @@ $(document).ready(function () {
     $("#btn-save").click(function (e) {
 
         e.preventDefault();
-        
+
         var data = $('#form_display_complement').find('select, textarea, input').serializeArray(),
             data3 = $(' #form_display_datos_internos').find('select, textarea, input').serializeArray(),
             data2 = $(' #form_display_datos_mecanico').find('select, textarea, input').serializeArray();
@@ -618,7 +618,7 @@ $(document).ready(function () {
         // esto es para verificar si los datos del formulario estan llenos, para que se pueda enviar el correo al mecanico
         var inputLenght = 0;
         $.each(dataMecanicArray, function (i, v) {
-            
+
             if (i === 4 && v.value != '')
                 inputLenght++;
             if (i === 5 && v.value != '')
@@ -630,9 +630,9 @@ $(document).ready(function () {
             if (i === 9 && v.value != '')
                 inputLenght++;
             if (i === 10 && v.value != '')
-                inputLenght++; 
+                inputLenght++;
         });
-        
+
         for (i = 0; i < data3.length; i++) {
             if ($('#' + data3[i].name + '.date').length) {
                 var today = new Date(data3[i].value);
@@ -663,13 +663,13 @@ $(document).ready(function () {
             non_existence_document = 1;
             documents_attached = 0;
         }
-        
+
         var status_trafic = '';
         if ($('#high').is(':checked'))
             status_trafic = 'Alta';
         else if ($('#low').is(':checked'))
             status_trafic = 'Baja definitiva';
-        
+
          var motocycle_state = '';
         if ($('#g_del').is(':checked'))
             motocycle_state = 'Golpe Delantero';
@@ -729,6 +729,12 @@ $(document).ready(function () {
             brandform = $("#brand").val();
             modelform = $("#model").val();
         }
+
+        var check_chasis = '';
+        if ($('#iron').is(':checked'))
+            check_chasis = 'Hierro';
+        else if ($('#aluminium').is(':checked'))
+            check_chasis = 'Aluminio';
 
         var dataSerialize = JSON.stringify(dataArray, null, 2), dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2), dataSerialize3 = JSON.stringify(dataInternArray, null, 2) ;
         var formData = {
@@ -797,8 +803,9 @@ $(document).ready(function () {
             approval_certificate: $('#approval_certificate').val(),
             datos_del_mecanico: dataSerialize2.replace(/\s+/g, " "),
             datos_internos: dataSerialize3.replace(/\s+/g, " "),
-            sendMailMecanico: inputLenght == '6' ? 1 : 0
-            
+            sendMailMecanico: inputLenght == '6' ? 1 : 0,
+            check_chasis: check_chasis
+
         }
         preloader('show');
         $.ajax({
@@ -890,7 +897,7 @@ $(document).ready(function () {
     ///////////////////////////////////////////////
     $('#editTabFicha9').click(function (e) {
         e.preventDefault();
-        $('#tab-ficha-9').find('select, textarea, input').each(function () {        
+        $('#tab-ficha-9').find('select, textarea, input').each(function () {
             if ($(this).attr('id') == 'V6RrZFvV') {
                 $(this).prop('disabled', true);
             } else {
@@ -912,10 +919,10 @@ $(document).ready(function () {
             type: "GET",
             url: url_process + '/' + $("#process").val(),
             success: function (data) {
-                
+
                 $('#subprocess').empty().append('<option disabled selected>Seleccione</option>');
                 data.data.forEach(function (element){
-                    
+
                     $('#subprocess').append($('<option>', {
                         value: element.id,
                         text: element.name
@@ -932,7 +939,7 @@ $(document).ready(function () {
 
     $("#subprocess").change(function (e){
         let inci = $("#subprocess option:selected").text().toLowerCase().includes("incid");
-      
+
         if(inci){
             check_incide = true;
             $("#incidencia").css('display', 'block');
@@ -947,14 +954,14 @@ $(document).ready(function () {
             var formData = {
                 purchase_id: $('#purchase_id').val(),
                 processes_id: $('#process').val(),
-                subprocesses_id: $('#subprocess').val() 
+                subprocesses_id: $('#subprocess').val()
             };
         }else{
             var formData = {
                 purchase_id: $('#purchase_id').val(),
                 processes_id: $('#process').val(),
                 subprocesses_id: $('#subprocess').val(),
-                incidence: $("#incidence").val() 
+                incidence: $("#incidence").val()
             };
         }
 
@@ -969,11 +976,11 @@ $(document).ready(function () {
                 // console.log(data);
                 if (data.code == 200) {
                     if(check_incide)
-                        $("#incidence").val(''); 
+                        $("#incidence").val('');
 
                     preloader('hide', data.message, 'success');
                 }
-               
+
             },
             error: function (data) {
                 console.log('Error:', data);
@@ -987,7 +994,7 @@ $(document).ready(function () {
      $('#ver').click(function(){
         if(verify_model_brand == 1){
             $(this).html("Elegir marca y modelo de la lista");
-            
+
             $('#model').attr('disabled', 'disabled');
             $('#brand').attr('disabled', 'disabled');
             $('#brand_text').removeAttr('disabled');
@@ -997,7 +1004,7 @@ $(document).ready(function () {
             $('#model_text').attr('required', 'required');
             $('#brand_text').val('');
             $('#model_text').val('');
-    
+
             $("#exist_model_brand").val(0);
 
             verify_model_brand = 0;
@@ -1007,7 +1014,7 @@ $(document).ready(function () {
         } else {
 
             $(this).html("No encuentro Modelo/marca");
-             
+
             $('#brand_text').removeAttr('required');
             $('#model_text').removeAttr('required');
             $('#brand_text').attr('disabled', 'disabled');
@@ -1017,7 +1024,7 @@ $(document).ready(function () {
 
             $('#brand').removeAttr('disabled');
             $('#model').removeAttr('disabled');
-            
+
             $("#exist_model_brand").val(1);
 
             verify_model_brand = 1;
@@ -1062,7 +1069,7 @@ Dropzone.options.myDropzone = {
                             $("#documents").append(`<a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`);
                         });
 
-                        if (!!data.dni_doc) { 
+                        if (!!data.dni_doc) {
                             data.dni_doc.split(',').forEach(function (element) {
                                 $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                             });
@@ -1083,7 +1090,7 @@ Dropzone.options.myDropzone = {
                             });
                         }
                     }
-                   
+
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -1095,7 +1102,7 @@ Dropzone.options.myDropzone = {
         );
     }
 };
- 
+
 Dropzone.options.imageDropzone = {
     autoProcessQueue: true,
     uploadMultiple: true,
@@ -1108,7 +1115,7 @@ Dropzone.options.imageDropzone = {
 
         this.on("addedfile", function (file) {
         });
-       
+
         this.on("complete", function (file) {
             var formData = {
                 id: $('#image_purchase_id').val()
@@ -1129,7 +1136,7 @@ Dropzone.options.imageDropzone = {
                             response += `<div class="col-lg-4 col-md-4 col-sm-6 "><span class="fa fa-times text-danger float-right" onclick="deleteImages(${element.id},'${element.name}')"></span>
                             <a data-toggle="modal" data-target="#modal" href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
                         </div>`;
-    
+
                             $(`<div class="carousel-item">
                             <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" height="200">
                         </div>`).appendTo('.carousel-inner');
@@ -1138,7 +1145,7 @@ Dropzone.options.imageDropzone = {
                         });
                         $('#images').append(response);
                     }
-                
+
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -1151,10 +1158,10 @@ Dropzone.options.imageDropzone = {
         );
     }
 };
- 
 
 
-function deleteImages(id) {     
+
+function deleteImages(id) {
 
     Swal.fire({
         title:  "Estas seguro?",
@@ -1197,16 +1204,16 @@ function deleteImages(id) {
                             response += `<div class="col-lg-4 col-md-4 col-sm-6 "><span class="fa fa-times text-danger float-right" onclick="deleteImages(${id},'${element.name}')"></span>
                                 <a data-toggle="modal" data-target="#modal" href="#lightbox" data-slide-to="${i}"><img src="${data.link}/local/public/img_app/images_purchase/${element.name}" class="img-thumbnail mt-1 mb-3"></a>
                             </div>`;
-        
+
                             $(`<div class="carousel-item">
                                 <img class="d-block w-100 img-fluid" src="${data.link}/local/public/img_app/images_purchase/${element.name}" alt="${i}" height="200">
                             </div>`).appendTo('.carousel-inner');
-                            $(`<li data-target="#lightbox" data-slide-to="${i}"></li>`).appendTo('.carousel-indicators');        
+                            $(`<li data-target="#lightbox" data-slide-to="${i}"></li>`).appendTo('.carousel-indicators');
                             i++;
                         });
                         $('#images').append(response);
                     }
-                   
+
                 },
                 error: function (data) {
                     console.log('Error:', data);
@@ -1217,7 +1224,7 @@ function deleteImages(id) {
 
 }
 
-function deleteDocuments(id) {     
+function deleteDocuments(id) {
 
     Swal.fire({
         title:  "Estas seguro?",
@@ -1259,7 +1266,7 @@ function deleteDocuments(id) {
                             response +=  `<a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`;
                         });
                         $("#documents").append(response);
-                        if (!!data.dni_doc) { 
+                        if (!!data.dni_doc) {
                             data.dni_doc.split(',').forEach(function (element) {
                                 $("#documents").append(`<a href="${data.link}/local/public/dni/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                             });
@@ -1280,7 +1287,7 @@ function deleteDocuments(id) {
                             });
                         }
                     }
-                   
+
                 },
                 error: function (data) {
                     console.log('Error:', data);
