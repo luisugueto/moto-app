@@ -18,7 +18,7 @@ use App\Residuos;
 
 class ResiduosController extends Controller
 {
-    
+
     public function enviosQuincenales()
     {
         $view = getPermission('Envíos Quincenales', 'record-view');
@@ -27,7 +27,7 @@ class ResiduosController extends Controller
 
         $subprocesses = SubProcesses::where('processes_id' , '=', 5)->get();
         return view ('backend.residuos.envios_quincenales', compact('subprocesses'));
-       
+
     }
 
     public function getEnviosQuincenalesSinGestionar()
@@ -36,25 +36,25 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5) 
-        ->where('apply.subprocesses_id', '=', 6) 
-        ->where('pm.check_chasis', '!=', 'NULL') 
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))        
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 6)
+        ->where('pm.check_chasis', '!=', 'NULL')
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         ->get();
         // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
-        
+
         $data = array();
-        foreach($purchases as $value){  
+        foreach($purchases as $value){
 
             $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11) 
-            ->where('subprocesses_id', '=', 32) 
+            ->where('processes_id', '=', 11)
+            ->where('subprocesses_id', '=', 32)
             ->get();
 
-            $row = array();      
+            $row = array();
             $row['id'] = $value->id_pv;
             $row['model'] = $value->model1;
             $row['registration_number'] = $value->registration_number;
@@ -73,8 +73,8 @@ class ResiduosController extends Controller
             $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
             $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['collection_contract_date'] = '';
-            foreach($apply as $key){          
-                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));                      
+            foreach($apply as $key){
+                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));
             }
             $row['edit'] = $edit;
             $row['delete'] = $delete;
@@ -82,7 +82,7 @@ class ResiduosController extends Controller
         }
 
         $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
+        $json_data= collect($json_data);
 
         return response()->json($json_data);
     }
@@ -93,27 +93,27 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5) 
-        ->where('apply.subprocesses_id', '=', 5) 
-        ->where('pm.check_chasis', '!=', 'NULL')     
-         
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
+        ->where('pm.check_chasis', '!=', 'NULL')
+
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         ->get();
         //dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
-        
+
         $data = array();
-        foreach($purchases as $value){  
+        foreach($purchases as $value){
             $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11) 
-            ->where('subprocesses_id', '=', 32) 
+            ->where('processes_id', '=', 11)
+            ->where('subprocesses_id', '=', 32)
             ->get();
-            
+
             //dd($apply);
-            
-            $row = array();      
+
+            $row = array();
             $row['id'] = $value->id_pv;
             $row['model'] = $value->model1;
             $row['registration_number'] = $value->registration_number;
@@ -132,17 +132,17 @@ class ResiduosController extends Controller
             $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
             $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['collection_contract_date'] = '';
-            foreach($apply as $key){          
-                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));                      
+            foreach($apply as $key){
+                $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));
             }
-           
+
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
         }
 
         $json_data = array('data'=> $data);
-        $json_data= collect($json_data);  
+        $json_data= collect($json_data);
 
         return response()->json($json_data);
     }
@@ -153,23 +153,23 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id','apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5) 
-        ->where('apply.subprocesses_id', '=', 6) 
-        ->where('pm.check_chasis', '!=', 'NULL') 
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 6)
+        ->where('pm.check_chasis', '!=', 'NULL')
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         // ->toSQL();
-  
+
         ->get();
-        
+
         $data = array();
-        foreach($purchases as $value){  
+        foreach($purchases as $value){
 
             $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11) 
-            ->where('subprocesses_id', '=', 32) 
+            ->where('processes_id', '=', 11)
+            ->where('subprocesses_id', '=', 32)
             ->get();
 
-            $row = array();      
+            $row = array();
             $row['id'] = $value->id_pv;
             $row['Modelo'] = $value->model1;
             $row['Matricula'] = $value->registration_number;
@@ -189,21 +189,21 @@ class ResiduosController extends Controller
             $row['N° Certificado de Destrucción'] = 'CATV/MD/12173/'.$value->purchase_valuation_id;
             $row['Fecha Certificado de Destrucción'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['Fecha de Descontaminacion'] = '';
-            foreach($apply as $key){          
-                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));                      
+            foreach($apply as $key){
+                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));
             }
             $data[] = $row;
         }
         // $json_data = array('data'=> $row);
-        
+
         Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
-        
+
             $excel->sheet('Hoja1', function($sheet) use($data) {
-        
+
                 $sheet->fromArray($data);
-        
+
             });
-        
+
         })->export('xls');
     }
 
@@ -214,21 +214,21 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5) 
-        ->where('apply.subprocesses_id', '=', 5) 
-        ->where('pm.check_chasis', '!=', 'NULL') 
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2')) 
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
+        ->where('pm.check_chasis', '!=', 'NULL')
+        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         ->get();
-        
+
         $data = array();
-        foreach($purchases as $value){  
+        foreach($purchases as $value){
 
             $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11) 
-            ->where('subprocesses_id', '=', 32) 
+            ->where('processes_id', '=', 11)
+            ->where('subprocesses_id', '=', 32)
             ->get();
 
-            $row = array();      
+            $row = array();
             $row['id'] = $value->id_pv;
             $row['Modelo'] = $value->model1;
             $row['Matricula'] = $value->registration_number;
@@ -248,20 +248,20 @@ class ResiduosController extends Controller
             $row['N° Certificado de Destrucción'] = 'CATV/MD/12173/'.$value->purchase_valuation_id;
             $row['Fecha Certificado de Destrucción'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['Fecha de Descontaminacion'] = '';
-            foreach($apply as $key){          
-                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));                      
+            foreach($apply as $key){
+                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));
             }
             $data[] = $row;
         }
         // $json_data = array('data'=> $row);
         Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
-        
+
             $excel->sheet('Hoja1', function($sheet) use($data) {
-        
+
                 $sheet->fromArray($data);
-        
+
             });
-        
+
         })->export('xls');
     }
 
@@ -269,7 +269,7 @@ class ResiduosController extends Controller
     public function enviosSemestrales()
     {
        return view ('backend.residuos.envios_semestrales');
-       
+
     }
 
     public function getEnviosSemestrales()
@@ -289,30 +289,30 @@ class ResiduosController extends Controller
         $retirados = array();
         foreach($residuos as $residuo){
             array_push($retirados, [
-                'id' => $residuo->id_r, 
+                'id' => $residuo->id_r,
                 'type_proccess' => $residuo->type,
                 'LER' => $residuo->LER,
-                'material' => $residuo->material, 
+                'material' => $residuo->material,
                 'companie' => $residuo->companie,
                 'delivery' => $residuo->delivery,
                 'in_installation' => $residuo->in_installation,
                 'dcs' => $residuo->dcs,
-                'withdrawal_date' => $residuo->withdrawal_date,
-                'created_at' => $residuo->created_at
+                'withdrawal_date' => date('d-m-Y', strtotime($residuo->withdrawal_date)),
+                'created_at' => date('d-m-Y', strtotime($residuo->created_at)),
             ]);
         }
-        
+
         $json_data = array('data'=> $retirados);
-        $json_data= collect($json_data);  
+        $json_data= collect($json_data);
 
         return response()->json($json_data);
     }
 
     public function applySubProcesses(Request $request)
     {
-        
+
         $motos = explode(",", $request->apply);
-       
+
         $out['code'] = 204;
         $out['message'] = 'Hubo un error';
 
@@ -327,8 +327,8 @@ class ResiduosController extends Controller
                 $lastProcessApply->subprocesses_id = $subprocesses->id;
                 $lastProcessApply->update();
 
-        } 
-         
+        }
+
         $out['code'] = 200;
         $out['data'] = $purchase;
         $out['message'] = 'Se ha aplicado el proceso Exitosamente';
@@ -343,7 +343,7 @@ class ResiduosController extends Controller
 
         if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
         return view ('backend.residuos.retiro');
-       
+
     }
 
     public function getResiduos()
@@ -356,11 +356,11 @@ class ResiduosController extends Controller
         }
         //dd($materialsCompanie);
         $json_data = array('data'=> $materialsCompanie);
-        $json_data= collect($json_data);  
+        $json_data= collect($json_data);
 
         return response()->json($json_data);
- 
-        // return Datatables::of($json_data) 
+
+        // return Datatables::of($json_data)
         //     ->make(true);
     }
 
@@ -375,7 +375,7 @@ class ResiduosController extends Controller
         $residuo->dcs = $request->dcs;
         $residuo->withdrawal_date = $request->fecha_retirada;
         $residuo->save();
-        
+
         $out['code'] = 200;
         $out['data'] = $request->all();
         $out['message'] = 'Se ha retirado el residuo Exitosamente';
@@ -396,7 +396,7 @@ class ResiduosController extends Controller
             $residuo->withdrawal_date = $request->fecha_retirada[$key];
             $residuo->save();
         }
-        
+
         $out['code'] = 200;
         $out['data'] = $request->all();
         $out['message'] = 'Se han retirado los residuos Exitosamente';
@@ -416,32 +416,32 @@ class ResiduosController extends Controller
         ->join('waste_companies AS wc', 'wc.id', '=', 'mc.waste_companies_id')
         ->select('r.id AS id_r', 'r.delivery','r.in_installation', 'r.dcs', 'r.withdrawal_date', 'r.created_at', 'm.description AS material', 'wc.name AS companie')
         // ->toSql();
-        ->get();  
-        
+        ->get();
+
         $edit = getPermission('Retiro de Residuos', 'record-edit');
         $delete = getPermission('Retiro de Residuos', 'record-delete');
 
         $retirados = array();
         foreach($residuos as $residuo){
             array_push($retirados, [
-                'id' => $residuo->id_r, 
-                'material' => $residuo->material, 
+                'id' => $residuo->id_r,
+                'material' => $residuo->material,
                 'companie' => $residuo->companie,
                 'delivery' => $residuo->delivery,
                 'in_installation' => $residuo->in_installation,
                 'dcs' => $residuo->dcs,
-                'withdrawal_date' => $residuo->withdrawal_date,
-                'created_at' => $residuo->created_at,
+                'withdrawal_date' => date('d-m-Y', strtotime($residuo->withdrawal_date)),
+                'created_at' => date('d-m-Y', strtotime($residuo->created_at)),
                 'edit' => $edit,
                 'delete' => $delete,
             ]);
         }
-        
+
         $json_data = array('data'=> $retirados);
-        $json_data= collect($json_data);  
+        $json_data= collect($json_data);
 
         return response()->json($json_data);
- 
+
     }
 
     public function editResiduo($id)
@@ -460,7 +460,7 @@ class ResiduosController extends Controller
         $out['message'] = 'Se ha editado el residuo exitosamente!';
 
         return response()->json($out);
-    }  
+    }
 
     public function applyInf(Request $request)
     {
@@ -482,7 +482,7 @@ class ResiduosController extends Controller
         }
 
         $data = Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get();
-
+        // dd($data);exit;
         $arrayNp1 = array();
         $arrayNp2 = array();
         $arrayNp3 = array();
@@ -497,71 +497,71 @@ class ResiduosController extends Controller
                 array_push($arrayNp3, $residuos);
             elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Reutilizacion')
                 array_push($arrayReu, $residuos);
-            
+
         }
 
         Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $arrayReu) {
-         
+
             $excel->sheet('PROCESO NP1', function($sheet) use($arrayNp1) {
-         
+
                 $sheet->loadView('excel.proceso_np1', array('data' => $arrayNp1));
-         
+
             });
- 
+
             $excel->sheet('PROCESO NP2', function($sheet) use($arrayNp2) {
-         
+
                 $sheet->loadView('excel.proceso_np2', array('data' => $arrayNp2));
-         
+
             });
- 
+
             $excel->sheet('PROCESO NP3', function($sheet) use($arrayNp3) {
-         
+
                 $sheet->loadView('excel.proceso_np3', array('data' => $arrayNp3));
-         
+
             });
- 
+
             $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($arrayReu) {
-         
+
                 $sheet->loadView('excel.proceso_reutilizacion', array('data' => $arrayReu));
-         
+
             });
-         
+
         })->download('xlsx');
     }
 
-     //EXCELS   
+     //EXCELS
 
      public function balanceSemestral()
      {
          $data = Residuos::where('created_at', '>=', '2021-08-16')->where('created_at', '<=', '2021-08-26')->get();
 
          Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
-         
+
              $excel->sheet('PROCESO NP1', function($sheet) use($data) {
-         
+
                  $sheet->loadView('excel.proceso_np1', array('data' => $data));
-         
+
              });
- 
+
              $excel->sheet('PROCESO NP2', function($sheet) use($data) {
-         
+
                  $sheet->loadView('excel.proceso_np2', array('data' => $data));
-         
+
              });
- 
+
              $excel->sheet('PROCESO NP3', function($sheet) use($data) {
-         
+
                  $sheet->loadView('excel.proceso_np3', array('data' => $data));
-         
+
              });
- 
+
              $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($data) {
-         
+
                  $sheet->loadView('excel.proceso_reutilizacion', array('data' => $data));
-         
+
              });
-         
+
          })->download('xlsx');
      }
-    
+
 }
