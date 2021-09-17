@@ -142,10 +142,10 @@
         <td style="height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->authorization_no }}</td>
         <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ $data[$i]->delivery/100 }}</td>
 
-        <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
+       <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
         $p = eval('return '.$formula.';'); ?>
 
-        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ ($data[$i]->delivery/100)*$p }}</td>
+        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ ($data[$i]->delivery/100)*$formula }}</td>
     </tr>
     @endfor
 </table>

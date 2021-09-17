@@ -49,7 +49,7 @@
                                 <th>Valorización</th>
                                 <th>Ud. medida</th>
                                 <th>Tipo</th>
-                                <th>% Formula</th>                                                                       
+                                <th>% (Porcentaje)</th>                                                                       
                                 <th>Opciones</th>
                             </tr>
                         </thead> 
@@ -107,7 +107,7 @@
                                     required>
                             </div>       
                             <div class="col-md-6 position-relative form-group">
-                                <label>% Formula</label>
+                                <label>% (Porcentaje)</label>
                                 <input class='form-control' id='percent_formula' name='percent_formula' type='text' value="{{ old('percent_formula') }}"
                                     required>
                             </div> 

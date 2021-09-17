@@ -145,7 +145,7 @@
         <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
         $p = eval('return '.$formula.';'); ?>
 
-        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ ($data[$i]->delivery/100)*$p }}</td>
+        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ ($data[$i]->delivery/100)*$formula }}</td>
     </tr>
     @endfor
 </table>
