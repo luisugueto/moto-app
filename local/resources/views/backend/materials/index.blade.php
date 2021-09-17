@@ -114,7 +114,7 @@
                         </div>   
                         <div class="position-relative form-group">
                             <label>Proceso en Residuos</label>
-                            <select name="type" id="type" class="custom custom-select" required>
+                            <select name="type[]" id="type" class="form-control" multiple required>
                                 <option value="NP1">NP1</option>
                                 <option value="NP2">NP2</option>
                                 <option value="NP3">NP3</option>

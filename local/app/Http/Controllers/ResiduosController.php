@@ -489,15 +489,14 @@ class ResiduosController extends Controller
         $arrayReu = array();
 
         foreach(Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get() as $residuos){
-            if(($residuos->materialC != null) && $residuos->materialC->material->type == 'NP1')
+            if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP1') !== false))
                 array_push($arrayNp1, $residuos);
-            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'NP2')
+            if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP2') !== false))
                 array_push($arrayNp2, $residuos);
-            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'NP3')
+            if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP3') !== false))
                 array_push($arrayNp3, $residuos);
-            elseif(($residuos->materialC != null) && $residuos->materialC->material->type == 'Reutilizacion')
+            if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'Reutilizacion') !== false))
                 array_push($arrayReu, $residuos);
-
         }
 
         Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $arrayReu) {

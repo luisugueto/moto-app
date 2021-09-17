@@ -141,8 +141,6 @@ $(document).ready(function(){
             data: formData,
             dataType: 'json',
             success: function (data) {
-
-                //console.log(data)
                 if (data.code == 200) {
                     dataTable.ajax.reload();
                     preloader('hide', data.message, 'success');

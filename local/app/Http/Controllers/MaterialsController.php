@@ -78,7 +78,18 @@ class MaterialsController extends Controller
             $out['response'] = $validator->errors();
       
         } else {
-            $materials = Materials::create($request->all());
+            $data = $request->all();
+
+            $type = '';
+            foreach($request->type as $key => $value){
+                if($key > 0)
+                    $type .= ','.$value;
+                else
+                    $type .=$value;
+            }
+            $data['type'] = $type;
+
+            $materials = Materials::create($data);
             $out['code'] = 200;
             $out['message'] = 'Datos registrados exitosamente.';
             $out['response'] = $materials;

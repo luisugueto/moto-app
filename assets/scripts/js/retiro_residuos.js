@@ -290,17 +290,19 @@ $(document).ready(function(){
 
         if(error) return;
 
-        var entrega = $("input[name='entrega[]']")
-              .map(function(){return $(this).val();}).get();
+        // FORM
+        var entrega = [];
+        var en_instalaciones = [];
+        var dcs = [];
+        var fecha_retirada = [];
 
-        var en_instalaciones = $("input[name='en_instalaciones[]']")
-              .map(function(){return $(this).val();}).get();
-
-        var dcs = $("input[name='dcs[]']")
-              .map(function(){return $(this).val();}).get();
-
-        var fecha_retirada = $("input[name='fecha_retirada[]']")
-              .map(function(){return $(this).val();}).get();
+        // ADD VALUES
+        values.forEach(function(val, index){
+            entrega.push($("#entrega_"+val).val());
+            en_instalaciones.push($("#en_instalaciones_"+val).val());
+            dcs.push($("#dcs_"+val).val());
+            fecha_retirada.push($("#fecha_retirada_"+val).val());
+        });
 
         e.preventDefault();
         var formData = {
@@ -310,7 +312,7 @@ $(document).ready(function(){
             dcs: dcs,
             fecha_retirada: fecha_retirada
         }
-
+        
         preloader('show');
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
