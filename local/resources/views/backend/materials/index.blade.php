@@ -101,20 +101,21 @@
                             <input class='form-control' id='valorization' name='valorization' type='text' value="{{ old('valorization') }}">
                         </div>
                         <div class="position-relative form-group row">                        
-                            <div class="col-md-6 position-relative form-group">
+                            <div class="col-md-5 position-relative form-group">
                                 <label>Unidad de medida</label>
                                 <input class='form-control' id='unit_of_measurement' name='unit_of_measurement' type='text' value="{{ old('unit_of_measurement') }}"
                                     required>
                             </div>       
-                            <div class="col-md-6 position-relative form-group">
+                            <div class="col-md-7 position-relative form-group">
                                 <label>% (Porcentaje)</label>
                                 <input class='form-control' id='percent_formula' name='percent_formula' type='text' value="{{ old('percent_formula') }}"
                                     required>
+                                    <small id="percent_formulalHelp" class="form-text text-muted">Este campo es en base a 1, ejmeplo si se aplicara 10% a un material, aqui se colocaria 0.010  NO COLOCAR EL * ni colocar %, tambien la separacion hacer con "." y no con ",".</small>
                             </div> 
                         </div>   
                         <div class="position-relative form-group">
                             <label>Proceso en Residuos</label>
-                            <select name="type[]" id="type" class="form-control" multiple required>
+                            <select name="type[]" id="type" class="form-control select-2" multiple required style="width: 100%">
                                 <option value="NP1">NP1</option>
                                 <option value="NP2">NP2</option>
                                 <option value="NP3">NP3</option>

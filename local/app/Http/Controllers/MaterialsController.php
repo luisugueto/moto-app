@@ -141,7 +141,20 @@ class MaterialsController extends Controller
             $out['response'] = $validator->errors();
       
         } else {
-            $material->update($request->all());
+            $data = $request->all();
+
+            $type = '';
+            foreach($request->type as $key => $value){
+                if($key > 0)
+                    $type .= ','.$value;
+                else
+                    $type .=$value;
+            }
+            $data['type'] = $type;           
+            
+            $material->type = $type;
+            $material->update($data);
+            
             $out['code'] = 200;
             $out['message'] = 'Registro actualizado exitosamente.';
             $out['response'] = $material;

@@ -1,8 +1,15 @@
 
 $(document).ready(function(){
-
+    $.fn.modal.Constructor.prototype.enforceFocus = function() {};
     //get base URL *********************
     var url = $('#url').val();
+    
+
+    $('#type').select2({
+        placeholder: "Seleccionar Tipo",
+        dropdownParent: $('#myModal .modal-content'),
+        tags: true
+    });
 
     $('#tableMaterials thead tr').clone(true).appendTo('#tableMaterials thead');
 
@@ -86,13 +93,13 @@ $(document).ready(function(){
         var $tr = $(this).closest('tr');
         var data = dataTable.row($(this).parents($tr)).data();
         var id = data.id; 
-
+        $('#frmMaterials').trigger("reset");
         // Populate Data in Edit Modal Form
         $.ajax({
             type: "GET",
             url: url + '/' + id,
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $('#material_id').val(data.id);
                 $('#LER').val(data.LER);
                 $('#code').val(data.code);
@@ -100,7 +107,20 @@ $(document).ready(function(){
                 $('#valorization').val(data.valorization);
                 $('#unit_of_measurement').val(data.unit_of_measurement);
                 $('#percent_formula').val(data.percent_formula);
-                $('#type').val(data.type);
+
+                if (data.type !== null && data.type !== '') {
+                    var types = data.type.split(',');
+                    //console.log(activities);
+                    //setTimeout(function(){
+                        $('#type').val(types);
+                        $('#type').trigger('change');
+                    //}, 1200);
+
+                } else {
+                    $('#type').val('');
+                    $('#type').trigger('change');
+                }
+                
                 $('#btn-save').val("update");
                 $('#myModal').modal('show');
             },
