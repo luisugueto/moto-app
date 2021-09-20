@@ -83,10 +83,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('purchase_valuation_interested/send_mail_document/{id}', 'PurchaseValuationController@send_mail_document');
 
     //Residuos
-    Route::get('envios-quincenales', 'ResiduosController@enviosQuincenales');
-    Route::get('exportar-envios-quicenales-sin-gestionar', 'ResiduosController@exportEnviosQuincenalesSinGestionar');
-    Route::get('exportar-envios-quicenales-gestionados', 'ResiduosController@exportEnviosQuincenalesGestionadas');
+    Route::get('envios-quincenales', 'ResiduosController@enviosQuincenales');  
+    // Route::get('exportar-envios-quicenales-gestionados', 'ResiduosController@exportEnviosQuincenalesGestionadas');
     Route::get('envios-semestrales', 'ResiduosController@enviosSemestrales');
+    Route::get('envios-chatarra', 'ResiduosController@enviosChatarra');
     Route::get('exportar-envios-semestrales', 'ResiduosController@exportEnviosSemestrales');
     Route::post('/retiro-residuos/retirar', 'ResiduosController@retirarResiduos');
     Route::post('/retiro-residuos/retirar_varios', 'ResiduosController@retirarVariosResiduos');
@@ -151,6 +151,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // RUTA PARA INFORMES
     Route::post('applyInf', 'ResiduosController@applyInf');
+    Route::post('applyInfQuincenal', 'ResiduosController@exportEnviosQuincenalesGestionadas');    
 
 
     // GET FILES AND LABELS

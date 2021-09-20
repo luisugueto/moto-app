@@ -208,7 +208,16 @@ class ResiduosController extends Controller
     }
 
 
-    public function exportEnviosQuincenalesGestionadas(){
+    public function exportEnviosQuincenalesGestionadas(Request $request){
+
+        $validator = \Validator::make($request->all(),[
+            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+        }
 
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
@@ -217,9 +226,10 @@ class ResiduosController extends Controller
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '!=', 'NULL')
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
+        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
-
+        
+        // var_dump($request->all());exit;
         $data = array();
         foreach($purchases as $value){
 
@@ -561,6 +571,11 @@ class ResiduosController extends Controller
              });
 
          })->download('xlsx');
-     }
+    }
+
+    public function enviosChatarra()
+    {
+        return view ('backend.residuos.envios_chatarra');
+    }
 
 }

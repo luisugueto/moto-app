@@ -9,7 +9,7 @@
                 </i>
             </div>
             <div>Residuos
-                <div class="page-title-subheading">Envios Quincenales.
+                <div class="page-title-subheading">Envios para chatarra.
                 </div>
             </div>
         </div>
@@ -18,29 +18,21 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="row">
-            <div class="input-group col-md-3">
-                <select name="applySubProcesses" class="custom-select" id="applySubProcesses">
-                    <option value="" disabled selected>Elegir Destino de la Moto</option>
-                    @foreach($subprocesses as $subprocesse)
-                        <option value="{{ $subprocesse->id }}">{{ $subprocesse->name }}</option>
-                    @endforeach
-                </select>
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary" id="btnApplySubProcesses">Aplicar</button>
-                </div>
-            </div>
-        </div>
 
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-                    <span>Sin Gestionar</span>
+                    <span>Aluminio</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-                    <span>Gestionados</span>
+                    <span>Hierro</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2">
+                    <span>Histórico</span>
                 </a>
             </li>
         </ul>
@@ -48,7 +40,7 @@
             <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">Envios Quincenales
+                        <h5 class="card-title">Envios para chatarra chasis de aluminio
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
@@ -148,9 +140,9 @@
             <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">Envios Quincenales
+                        <h5 class="card-title">Envios para chatarra chasis de hierro
                             <br><br>                   
-                            {!! Form::open(['url' => 'applyInfQuincenal', 'method' => 'post']) !!} 
+                            {!! Form::open(['url' => 'applyInfChasisHierro', 'method' => 'post']) !!} 
                                 <div class="row">
                                     
                                     <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>

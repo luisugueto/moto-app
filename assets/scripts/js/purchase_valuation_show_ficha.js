@@ -137,7 +137,7 @@ $(document).ready(function () {
                 $('#postal_code').val(data.postal_code);
                 $('#province_management').val(data.province_management);
                 $('#iban').val(data.iban);
-
+                $('#sale_amount').val(data.sale_amount);
                 $('#name_representantive').val(data.name_representantive);
                 $('#firts_surname_representative').val(data.firts_surname_representative);
                 $('#second_surtname_representantive').val(data.second_surtname_representantive);
