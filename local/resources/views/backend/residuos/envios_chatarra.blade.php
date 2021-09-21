@@ -41,95 +41,32 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Envios para chatarra chasis de aluminio
-                            <div class="mb-2 mr-2 btn-group float-right">
-                                <button type="button" aria-haspopup="true" aria-expanded="false"
-                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
-                                </button>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_1" type="checkbox" data-column="1" checked><label class="inline-label tr" key="Modelo" for="column_1">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_2" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Matricula" for="column_2">Matricula</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_3" type="checkbox" data-column="3"><label class="inline-label tr" key="Fecha Matriculación" for="column_3">Fecha Matriculación</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_4" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Bastidor" for="column_4">Bastidor</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_5" type="checkbox" data-column="5"><label class="inline-label tr" key="Estado en tráf." for="column_5">Estado en tráf.</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_6" type="checkbox" data-column="6"><label class="inline-label tr" key="Peso" for="column_6">Peso</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_8" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Titular" for="column_8">Titular</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_9" type="checkbox" data-column="8" checked><label class="inline-label tr" key="Dni" for="column_9">Dni</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_10" type="checkbox" data-column="9"><label class="inline-label tr" key="Fecha de Nacimiento" for="column_10">Fecha de Nacimiento</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_11" type="checkbox" data-column="10"><label class="inline-label tr" key="Direccion" for="column_11">Direccion</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_12" type="checkbox" data-column="11"><label class="inline-label tr" key="Codigo Postal" for="column_12">Codigo Postal</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_13" type="checkbox" data-column="12"><label class="inline-label tr" key="Poblacion" for="column_13">Poblacion</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_14" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Provincia" for="column_14">Provincia</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_15" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Estado Moto" for="column_15">Estado Moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_16" type="checkbox" data-column="15" checked><label class="inline-label tr" key="Fecha de Baja" for="column_16">Fecha de Baja</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_17" type="checkbox" data-column="16" checked>
-                                        <label class="inline-label tr" key="N° Certificado de Destrucción" for="column_17">N° Certificado de Destrucción</label>
-                                    </button>
+                            {!! Form::open(['url' => 'applyInfChasisAluminio', 'method' => 'post']) !!} 
+                                <div class="row">
                                     
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="444" type="checkbox" data-column="17" checked>
-                                        <label class="inline-label tr" key="Fecha Certificado de Destrucción" for="444">Fecha Certificado de Destrucción</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis" id="column_19" type="checkbox" data-column="18"><label class="inline-label tr" key="Fecha de Descontaminacion" for="column_19">Fecha de Descontaminacion</label>
-                                    </button>
+                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
+                                    <div class="col-sm-2">
+                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
+                                    <div class="col-md-2">
+                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <div class="col-md-2 mt-1">
+                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- <a href="{{ url('exportar-envios-quicenales-sin-gestionar')}}" class="btn btn-info mr-2 float-right">Exportar</a> --}}
+                            {!! Form::close() !!}
                         </h5>     
         
-                            <table style="width: 100%" id="tableEnviosQuincenalesSinGestionar" class="table table-hover table-striped table-bordered">
+                            <table style="width: 100%" id="tableEnviosChatarraAluminio" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
+                                        <th class="text-center">Bastidor</th>
                                         <th>Modelo</th>
                                         <th class="text-center">Matricula</th>
                                         <th class="text-center">Fecha Matriculación</th>
-                                        <th class="text-center">Bastidor</th>
-                                        <th class="text-center">Estado en tráf.</th>
-                                        <th class="text-center">Peso (kg)</th>
-                                        <th class="text-center">Titular</th>
-                                        <th class="text-center">Dni</th>
-                                        <th class="text-center">Fecha de Nacimiento</th>
-                                        <th class="text-center">Direccion</th>
-                                        <th class="text-center">Codigo Postal</th>
-                                        <th class="text-center">Poblacion</th>
-                                        <th class="text-center">Provincia</th>
-                                        <th class="text-center">Estado Moto</th>
-                                        <th class="text-center">Fecha de Baja</th>
-                                        <th class="text-center">N° Certificado de Destrucción</th>
-                                        <th class="text-center">Fecha Certificado de Destrucción</th>
-                                        <th class="text-center">Fecha de Descontaminacion</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -158,97 +95,39 @@
                                     </div>
                                 </div>
                             {!! Form::close() !!}
-
-                            <div class="mb-2 mr-2 btn-group float-right">
-                                <button type="button" aria-haspopup="true" aria-expanded="false"
-                                    data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
-                                </button>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu">
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_1-1" type="checkbox" data-column="1" checked><label class="inline-label tr" key="Modelo" for="column_1-1">Modelo</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_2-1" type="checkbox" data-column="2" checked><label class="inline-label tr" key="Matricula" for="column_2-1">Matricula</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_3-1" type="checkbox" data-column="3"><label class="inline-label tr" key="Fecha Matriculación" for="column_3-1">Fecha Matriculación</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_4-1" type="checkbox" data-column="4" checked><label class="inline-label tr" key="Bastidor" for="column_4-1">Bastidor</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_5-1" type="checkbox" data-column="5"><label class="inline-label tr" key="Estado en tráf." for="column_5-1">Estado en tráf.</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_6-1" type="checkbox" data-column="6"><label class="inline-label tr" key="Peso" for="column_6-1">Peso</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_8-1" type="checkbox" data-column="7" checked><label class="inline-label tr" key="Titular" for="column_8-1">Titular</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_9-1" type="checkbox" data-column="8" checked><label class="inline-label tr" key="Dni" for="column_9-1">Dni</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_10-1" type="checkbox" data-column="9"><label class="inline-label tr" key="Fecha de Nacimiento" for="column_10-1">Fecha de Nacimiento</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_11-1" type="checkbox" data-column="10"><label class="inline-label tr" key="Direccion" for="column_11-1">Direccion</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_12-1" type="checkbox" data-column="11"><label class="inline-label tr" key="Codigo Postal" for="column_12-1">Codigo Postal</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_13-1" type="checkbox" data-column="12"><label class="inline-label tr" key="Poblacion" for="column_13-1">Poblacion</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_14-1" type="checkbox" data-column="13" checked><label class="inline-label tr" key="Provincia" for="column_14-1">Provincia</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_15-1" type="checkbox" data-column="14" checked><label class="inline-label tr" key="Estado Moto" for="column_15-1">Estado Moto</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_16-1" type="checkbox" data-column="15" checked><label class="inline-label tr" key="Fecha de Baja" for="column_16-1">Fecha de Baja</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_17-1" type="checkbox" data-column="16" checked><label class="inline-label tr" key="N° Certificado de Destrucción" for="column_17-1">N° Certificado de Destrucción</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_18-1" type="checkbox" data-column="17" checked><label class="inline-label tr" key="Fecha Certificado de Destrucción" for="column_18-1">Fecha Certificado de Destrucción</label>
-                                    </button>
-                                    <button type="button" tabindex="0" class="dropdown-item">
-                                        <input class="toggle-vis-1" id="column_19-1" type="checkbox" data-column="18"><label class="inline-label tr" key="Fecha de Descontaminacion" for="column_19-1">Fecha de Descontaminacion</label>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            {{-- <a href="{{ url('exportar-envios-quicenales-gestionados')}}" class="btn btn-info mr-2 float-right">Exportar</a> --}}
                         </h5>     
         
-                            <table style="width: 100%" id="tableEnviosQuincenalesGestionados" class="table table-hover table-striped table-bordered">
+                            <table style="width: 100%" id="tableEnviosChatarraHierro" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th></th>
+                                        <th>#</th>
+                                        <th class="text-center">Bastidor</th>
                                         <th>Modelo</th>
                                         <th class="text-center">Matricula</th>
                                         <th class="text-center">Fecha Matriculación</th>
-                                        <th class="text-center">Bastidor</th>
-                                        <th class="text-center">Estado en tráf.</th>
-                                        <th class="text-center">Peso (kg)</th>
-                                        <th class="text-center">Titular</th>
-                                        <th class="text-center">Dni</th>
-                                        <th class="text-center">Fecha de Nacimiento</th>
-                                        <th class="text-center">Direccion</th>
-                                        <th class="text-center">Codigo Postal</th>
-                                        <th class="text-center">Poblacion</th>
-                                        <th class="text-center">Provincia</th>
-                                        <th class="text-center">Estado Moto</th>
-                                        <th class="text-center">Fecha de Baja</th>
-                                        <th class="text-center">N° Certificado de Destrucción</th>
-                                        <th class="text-center">Fecha Certificado de Destrucción</th>
-                                        <th class="text-center">Fecha de Descontaminacion</th>
                                     </tr>
-                                </thead>
                             </table>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Histórico de envios
+                            <br><br>   
+                        </h5> 
+                        <table style="width: 100%" id="tableEnviosChatarraHistorico" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">Bastidor</th>
+                                    <th>Modelo</th>
+                                    <th class="text-center">Matricula</th>
+                                    <th class="text-center">Fecha Matriculación</th>
+                                    <th class="text-center">Tipo Chasis</th>
+                                </tr>
+                        </table>
                         
                     </div>
                 </div>
@@ -257,8 +136,8 @@
 
     </div>
 </div>
-<input id="url" type="hidden" value="{{ url('/envios-quincenales') }}">
+<input id="url" type="hidden" value="{{ url('/envios-chatarra') }}">
 {{ csrf_field() }}
-<script src="{{ asset('assets/scripts/js/envios_quincenales.js') }}"></script>
+<script src="{{ asset('assets/scripts/js/envios_chatarra.js') }}"></script>
 
 @endsection

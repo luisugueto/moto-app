@@ -134,6 +134,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('getEnviosQuincenalesSinGestionar', 'ResiduosController@getEnviosQuincenalesSinGestionar');
     Route::post('getEnviosQuincenalesGestionadas', 'ResiduosController@getEnviosQuincenalesGestionadas');
+    Route::post('getEnviosChatarraAluminio', 'ResiduosController@getEnviosChatarraAluminio');
+    Route::post('getEnviosChatarraHierro', 'ResiduosController@getEnviosChatarraHierro');
+    Route::post('getEnviosChatarraHistorico', 'ResiduosController@getEnviosChatarraHistorico');
 
     Route::post('getEnviosSemestrales', 'ResiduosController@getEnviosSemestrales');
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
@@ -152,7 +155,8 @@ Route::group(['middleware' => 'auth'], function () {
     // RUTA PARA INFORMES
     Route::post('applyInf', 'ResiduosController@applyInf');
     Route::post('applyInfQuincenal', 'ResiduosController@exportEnviosQuincenalesGestionadas');    
-
+    Route::post('applyInfChasisAluminio', 'ResiduosController@exportEnviosChatarraAluminio');
+    Route::post('applyInfChasisHierro', 'ResiduosController@exportEnviosChatarraHierro');
 
     // GET FILES AND LABELS
     Route::get('document/{filename}', 'PurchaseValuationController@document');
