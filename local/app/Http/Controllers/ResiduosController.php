@@ -668,7 +668,7 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '=', 'Hierro')
 
-        ->get();
+        ->toSql();
         dd($purchases);
         $view = getPermission('Envíos Chatarra', 'record-view');
         $edit = getPermission('Envíos Chatarra', 'record-edit');
