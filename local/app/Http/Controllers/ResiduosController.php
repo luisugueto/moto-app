@@ -669,7 +669,7 @@ class ResiduosController extends Controller
         ->where('pm.check_chasis', '=', 'Hierro')
 
         ->get();
-        //dd($purchases);
+        dd($purchases);
         $view = getPermission('Envíos Chatarra', 'record-view');
         $edit = getPermission('Envíos Chatarra', 'record-edit');
         $delete = getPermission('Envíos Chatarra', 'record-delete');
