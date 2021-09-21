@@ -586,6 +586,7 @@ class ResiduosController extends Controller
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
+        ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Aluminio')
 
         ->get();
@@ -636,6 +637,7 @@ class ResiduosController extends Controller
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
+        ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Aluminio')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
@@ -666,10 +668,12 @@ class ResiduosController extends Controller
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
+        ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Hierro')
-
         ->get();
-        dd($purchases);
+        
+        // dd($purchases);
+
         $view = getPermission('Envíos Chatarra', 'record-view');
         $edit = getPermission('Envíos Chatarra', 'record-edit');
         $delete = getPermission('Envíos Chatarra', 'record-delete');
