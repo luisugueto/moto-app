@@ -39,7 +39,7 @@ class ResiduosController extends Controller
         ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 6)
-        // ->where('pm.check_chasis', '!=', 'NULL')
+        ->where('pm.check_chasis', '!=', 'NULL')
         ->get();
         // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
@@ -96,7 +96,7 @@ class ResiduosController extends Controller
         ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
-        // ->where('pm.check_chasis', '!=', 'NULL')
+        ->where('pm.check_chasis', '!=', 'NULL')
 
         // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
         ->get();
@@ -227,11 +227,11 @@ class ResiduosController extends Controller
         ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
-        // ->where('pm.check_chasis', '!=', 'NULL')
+        ->where('pm.check_chasis', '!=', 'NULL')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
         
-        // var_dump($request->all());exit;
+        // var_dump($purchases);exit;
         $data = array();
         foreach($purchases as $value){
 
@@ -265,7 +265,8 @@ class ResiduosController extends Controller
             }
             $data[] = $row;
         }
-        // $json_data = array('data'=> $row);
+    //    $json_data = array('data'=> $data); dd($json_data);exit;
+    
         Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
 
             $excel->sheet('Hoja1', function($sheet) use($data) {

@@ -49,6 +49,23 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
+                            {!! Form::open(['url' => 'applyInfQuincenal', 'method' => 'post']) !!} 
+                                <div class="row">
+                                    
+                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
+                                    <div class="col-sm-2">
+                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
+                                    <div class="col-md-2">
+                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <div class="col-md-2 mt-1">
+                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
+                                    </div>
+                                </div>
+                            {!! Form::close() !!}
+                            
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
@@ -149,24 +166,7 @@
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
-                            <br><br>                   
-                            {!! Form::open(['url' => 'applyInfQuincenal', 'method' => 'post']) !!} 
-                                <div class="row">
-                                    
-                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
-                                    <div class="col-sm-2">
-                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
-                                    <div class="col-md-2">
-                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <div class="col-md-2 mt-1">
-                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
-                                    </div>
-                                </div>
-                            {!! Form::close() !!}
-
+                            <br><br>
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
