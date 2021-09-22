@@ -86,8 +86,9 @@ $(document).ready(function () {
 
     setTimeout(function () {
         $(".notification").alert("close");
+        $(".error").alert('close');
         $(".notification_modal").css("display", "none");
-    }, 9000);
+    }, 6000);
  
     
     $('.pag-table').DataTable({

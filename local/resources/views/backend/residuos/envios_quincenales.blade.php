@@ -35,21 +35,32 @@
         <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
             <li class="nav-item">
                 <a role="tab" class="nav-link active" id="tab-0" data-toggle="tab" href="#tab-content-0">
-                    <span>Sin Gestionar</span>
+                    <span>Pendientes de descargas</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a role="tab" class="nav-link" id="tab-1" data-toggle="tab" href="#tab-content-1">
-                    <span>Gestionados</span>
+                    <span>Informes ya descargados</span>
                 </a>
             </li>
         </ul>
+        @if (session('notification'))
+            <div class="alert alert-success notification">
+                {!! session('notification') !!}
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger alert-block error">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="tab-content">
             <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
-                            {!! Form::open(['url' => 'applyInfQuincenal', 'method' => 'post']) !!} 
+                            <br><br>
+                            {!! Form::open(['url' => 'applyInfQuincenalSinGestionar', 'method' => 'post']) !!} 
                                 <div class="row">
                                     
                                     <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
@@ -65,7 +76,7 @@
                                     </div>
                                 </div>
                             {!! Form::close() !!}
-                            
+
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
@@ -167,6 +178,22 @@
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
                             <br><br>
+                            {!! Form::open(['url' => 'applyInfQuincenalGestionadas', 'method' => 'post']) !!} 
+                                <div class="row">
+                                    
+                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
+                                    <div class="col-sm-2">
+                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
+                                    <div class="col-md-2">
+                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <div class="col-md-2 mt-1">
+                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
+                                    </div>
+                                </div>
+                            {!! Form::close() !!}
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables

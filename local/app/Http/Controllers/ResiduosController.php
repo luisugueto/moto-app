@@ -148,64 +148,48 @@ class ResiduosController extends Controller
         return response()->json($json_data);
     }
 
-    public function exportEnviosQuincenalesSinGestionar(){
+    public function exportEnviosQuincenalesSinGestionar(Request $request){
+       
+        $validator = \Validator::make($request->all(),[
+            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+        ]);
 
-        $purchases = DB::table('purchase_valuation AS pv')
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+        }
+
+        $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id','apply.created_at AS destruction_date')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 6)
         ->where('pm.check_chasis', '!=', 'NULL')
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
-        // ->toSQL();
-
+        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
+          
+        
+        $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
+        ->where('subprocesses_id', '=', 32)
+        ->get();
+        
+        if(is_array($data)){     
 
-        $data = array();
-        foreach($purchases as $value){
+            Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data, $apply) {
 
-            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11)
-            ->where('subprocesses_id', '=', 32)
-            ->get();
+                $excel->sheet('Hoja1', function($sheet) use($data, $apply) {
 
-            $row = array();
-            $row['id'] = $value->id_pv;
-            $row['Modelo'] = $value->model1;
-            $row['Matricula'] = $value->registration_number;
-            $row['Fecha Matriculación'] = $value->registration_date;
-            $row['Bastidor'] = $value->frame_no;
-            $row['Estado en tráfico'] = $value->vehicle_state_trafic;
-            $row['Peso (kg)'] = round($value->weight, 2);
-            $row['Titular'] = $value->pvname. ' '. $value->lastname;
-            $row['Dni'] = $value->dni;
-            $row['Fecha de Nacimiento'] = $value->birthdate;
-            $row['Dirección'] = $value->street.' '. $value->nro_street;
-            $row['Codigo Postal'] = $value->postal_code;
-            $row['Población'] = $value->municipality;
-            $row['Provincia'] = $value->province;
-            $row['Estado Moto'] = $value->status_trafic;
-            $row['Fecha de Baja'] = date('d-m-Y', strtotime($value->current_year));
-            $row['N° Certificado de Destrucción'] = 'CATV/MD/12173/'.$value->purchase_valuation_id;
-            $row['Fecha Certificado de Destrucción'] = date('d-m-Y', strtotime($value->destruction_date));
-            $row['Fecha de Descontaminacion'] = '';
-            foreach($apply as $key){
-                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));
-            }
-            $data[] = $row;
+                    // $sheet->fromArray($data);
+                    $sheet->loadView('excel.envios_quincenal', array('data' => $data, 'apply' => $apply));
+                });
+
+            })->export('xls');
+        }else{
+            return Redirect::back()->with('error', 'No hay datos disponibles!');
         }
-        // $json_data = array('data'=> $row);
 
-        Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
-
-            $excel->sheet('Hoja1', function($sheet) use($data) {
-
-                $sheet->fromArray($data);
-
-            });
-
-        })->export('xls');
     }
 
 
@@ -220,7 +204,7 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
-        $purchases = DB::table('purchase_valuation AS pv')
+        $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
@@ -229,53 +213,26 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '!=', 'NULL')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
-        ->get();
+        ->get();  
         
-        // var_dump($purchases);exit;
-        $data = array();
-        foreach($purchases as $value){
+        $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
+        ->where('subprocesses_id', '=', 32)
+        ->get();
+       
+        if(is_array($data)){     
 
-            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11)
-            ->where('subprocesses_id', '=', 32)
-            ->get();
+            Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data, $apply) {
 
-            $row = array();
-            $row['id'] = $value->id_pv;
-            $row['Modelo'] = $value->model1;
-            $row['Matricula'] = $value->registration_number;
-            $row['Fecha Matriculación'] = $value->registration_date;
-            $row['Bastidor'] = $value->frame_no;
-            $row['Estado en tráfico'] = $value->vehicle_state_trafic;
-            $row['Peso (kg)'] = round($value->weight, 2);
-            $row['Titular'] = $value->pvname. ' '. $value->lastname;
-            $row['Dni'] = $value->dni;
-            $row['Fecha de Nacimiento'] = $value->birthdate;
-            $row['Dirección'] = $value->street.' '. $value->nro_street;
-            $row['Codigo Postal'] = $value->postal_code;
-            $row['Población'] = $value->municipality;
-            $row['Provincia'] = $value->province;
-            $row['Estado Moto'] = $value->status_trafic;
-            $row['Fecha de Baja'] = date('d-m-Y', strtotime($value->current_year));
-            $row['N° Certificado de Destrucción'] = 'CATV/MD/12173/'.$value->purchase_valuation_id;
-            $row['Fecha Certificado de Destrucción'] = date('d-m-Y', strtotime($value->destruction_date));
-            $row['Fecha de Descontaminacion'] = '';
-            foreach($apply as $key){
-                $row['Fecha de Descontaminacion'] = date('d-m-Y', strtotime($key->created_at));
-            }
-            $data[] = $row;
+                $excel->sheet('Hoja1', function($sheet) use($data, $apply) {
+
+                    // $sheet->fromArray($data);
+                    $sheet->loadView('excel.envios_quincenal', array('data' => $data, 'apply' => $apply));
+                });
+
+            })->export('xls');
+        }else{
+            return Redirect::back()->with('error', 'No hay datos disponibles!');
         }
-    //    $json_data = array('data'=> $data); dd($json_data);exit;
-    
-        Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data) {
-
-            $excel->sheet('Hoja1', function($sheet) use($data) {
-
-                $sheet->fromArray($data);
-
-            });
-
-        })->export('xls');
     }
 
     //////

@@ -154,7 +154,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // RUTA PARA INFORMES
     Route::post('applyInf', 'ResiduosController@applyInf');
-    Route::post('applyInfQuincenal', 'ResiduosController@exportEnviosQuincenalesGestionadas');    
+    Route::post('applyInfQuincenalGestionadas', 'ResiduosController@exportEnviosQuincenalesGestionadas');  
+    Route::post('applyInfQuincenalSinGestionar', 'ResiduosController@exportEnviosQuincenalesSinGestionar'); 
     Route::post('applyInfChasisAluminio', 'ResiduosController@exportEnviosChatarraAluminio');
     Route::post('applyInfChasisHierro', 'ResiduosController@exportEnviosChatarraHierro');
 
