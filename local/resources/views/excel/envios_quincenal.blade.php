@@ -87,14 +87,17 @@
         <td style="height: 20;text-align: left;border: 1px solid #000;">{{ date('d-m-Y', strtotime($data[$i]->current_year))}}</td>
         <td style="height: 20;text-align: left;border: 1px solid #000;">CATV/MD/12173/{{ $data[$i]->purchase_valuation_id }}</td>
         <td style="height: 20;text-align: left;border: 1px solid #000;">{{ date('d-m-Y', strtotime($data[$i]->destruction_date)) }}</td>
-        <td style="height: 20;text-align: left;border: 1px solid #000;"></td>
-        @if(isset($apply))
+        <td style="height: 20;text-align: left;border: 1px solid #000;">
+        @if(isset($apply))        
             @foreach ($apply as $key)
-             @if ($key->purchase_valuation_id == $data[$i]->id_pv)
-                <td style="height: 20;text-align: left;border: 1px solid #000;">{{ date('d-m-Y', strtotime($key['created_at'])) }}</td>
-            @endif                
+            @if ($key->purchase_valuation_id == $data[$i]->id_pv)
+            {{ date('d-m-Y', strtotime($key['created_at'])) }} 
+            @else
+                &nbsp;
+            @endif                         
             @endforeach
-        @endif    
+        @endif  
+        </td>   
     </tr>
     @endfor
     <tr></tr>

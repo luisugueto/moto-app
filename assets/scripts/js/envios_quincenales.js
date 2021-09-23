@@ -4,9 +4,9 @@ $(document).ready(function () {
     var url = $('#url').val();
     var dataTable = '';
 
-    $('#tableEnviosQuincenalesSinGestionar thead tr').clone(true).appendTo('#tableEnviosQuincenalesSinGestionar thead');
+    $('#tableEnviosQuincenalesSinDescargar thead tr').clone(true).appendTo('#tableEnviosQuincenalesSinDescargar thead');
 
-    $('#tableEnviosQuincenalesSinGestionar thead tr:eq(1) th').each( function (i) {
+    $('#tableEnviosQuincenalesSinDescargar thead tr:eq(1) th').each( function (i) {
       
         if (i == 0) {
             $(this).css('color', 'transparent');
@@ -26,14 +26,14 @@ $(document).ready(function () {
         } );
     } );
 
-    dataTable = $('#tableEnviosQuincenalesSinGestionar').DataTable({
+    dataTable = $('#tableEnviosQuincenalesSinDescargar').DataTable({
         processing: true,
         responsive: true,
         orderCellsTop: true,
         fixedHeader: true, 
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-            url: "getEnviosQuincenalesSinGestionar", // json datasource            
+            url: "getEnviosQuincenalesSinDescargar", // json datasource            
             type: "post", // method  , by default get
             error: function () {  // error handling
             }
@@ -157,18 +157,18 @@ $(document).ready(function () {
     });
     
     $('#tab-0').click(function () {
-        if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinGestionar")) {
-            $('#tableEnviosQuincenalesSinGestionar').DataTable().clear().destroy();
+        if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
+            $('#tableEnviosQuincenalesSinDescargar').DataTable().clear().destroy();
         }
         
-        dataTable = $('#tableEnviosQuincenalesSinGestionar').DataTable({
+        dataTable = $('#tableEnviosQuincenalesSinDescargar').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
             fixedHeader: true, 
             "ajax": {
                 headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-                url: "getEnviosQuincenalesSinGestionar", // json datasource            
+                url: "getEnviosQuincenalesSinDescargar", // json datasource            
                 type: "post", // method  , by default get
                 error: function () {  // error handling
                 }
@@ -294,9 +294,9 @@ $(document).ready(function () {
     
 
     //Tabla para el estado Interesa   
-    $('#tableEnviosQuincenalesGestionados thead tr').clone(true).appendTo('#tableEnviosQuincenalesGestionados thead');
+    $('#tableEnviosQuincenalesDescargados thead tr').clone(true).appendTo('#tableEnviosQuincenalesDescargados thead');
  
-    $('#tableEnviosQuincenalesGestionados thead tr:eq(1) th').each(function (i) {
+    $('#tableEnviosQuincenalesDescargados thead tr:eq(1) th').each(function (i) {
     
         if (i == 0) {
             $(this).css('color', 'transparent');
@@ -315,17 +315,17 @@ $(document).ready(function () {
         } );
     });
     $('#tab-1').click(function () {
-        if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesGestionados")) {
-            $('#tableEnviosQuincenalesGestionados').DataTable().clear().destroy();
+        if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesDescargados")) {
+            $('#tableEnviosQuincenalesDescargados').DataTable().clear().destroy();
         }
-        dataTable = $('#tableEnviosQuincenalesGestionados').DataTable({
+        dataTable = $('#tableEnviosQuincenalesDescargados').DataTable({
             processing: true,
             responsive: true,
             orderCellsTop: true,
             fixedHeader: true, 
             "ajax": {
                 headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-                url: "getEnviosQuincenalesGestionadas", // json datasource            
+                url: "getEnviosQuincenalesDescargados", // json datasource            
                 type: "post", // method  , by default get
                 error: function () {  // error handling
                 }

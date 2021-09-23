@@ -60,7 +60,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
                             <br><br>
-                            {!! Form::open(['url' => 'applyInfQuincenalSinGestionar', 'method' => 'post']) !!} 
+                            {!! Form::open(['url' => 'applyInfQuincenalSinDescargar', 'method' => 'post']) !!} 
                                 <div class="row">
                                     
                                     <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
@@ -141,10 +141,9 @@
                                     </button>
                                 </div>
                             </div>
-                            {{-- <a href="{{ url('exportar-envios-quicenales-sin-gestionar')}}" class="btn btn-info mr-2 float-right">Exportar</a> --}}
                         </h5>     
         
-                            <table style="width: 100%" id="tableEnviosQuincenalesSinGestionar" class="table table-hover table-striped table-bordered">
+                            <table style="width: 100%" id="tableEnviosQuincenalesSinDescargar" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -178,7 +177,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
                             <br><br>
-                            {!! Form::open(['url' => 'applyInfQuincenalGestionadas', 'method' => 'post']) !!} 
+                            {!! Form::open(['url' => 'applyInfQuincenalDescargados', 'method' => 'post']) !!} 
                                 <div class="row">
                                     
                                     <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
@@ -255,11 +254,9 @@
                                     </button>
                                 </div>
                             </div>
-                            
-                            {{-- <a href="{{ url('exportar-envios-quicenales-gestionados')}}" class="btn btn-info mr-2 float-right">Exportar</a> --}}
                         </h5>     
         
-                            <table style="width: 100%" id="tableEnviosQuincenalesGestionados" class="table table-hover table-striped table-bordered">
+                            <table style="width: 100%" id="tableEnviosQuincenalesDescargados" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th></th>

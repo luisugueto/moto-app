@@ -132,8 +132,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getPurchaseValuationsAuction', 'PurchaseValuationController@getPurchaseValuationsAuction');
     Route::post('getPurchaseValuationsWhitoutDeal', 'PurchaseValuationController@getPurchaseValuationsWhitoutDeal');
 
-    Route::post('getEnviosQuincenalesSinGestionar', 'ResiduosController@getEnviosQuincenalesSinGestionar');
-    Route::post('getEnviosQuincenalesGestionadas', 'ResiduosController@getEnviosQuincenalesGestionadas');
+    Route::post('getEnviosQuincenalesSinDescargar', 'ResiduosController@getEnviosQuincenalesSinDescargar');
+    Route::post('getEnviosQuincenalesDescargados', 'ResiduosController@getEnviosQuincenalesDescargados');
     Route::post('getEnviosChatarraAluminio', 'ResiduosController@getEnviosChatarraAluminio');
     Route::post('getEnviosChatarraHierro', 'ResiduosController@getEnviosChatarraHierro');
     Route::post('getEnviosChatarraHistorico', 'ResiduosController@getEnviosChatarraHistorico');
@@ -154,8 +154,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // RUTA PARA INFORMES
     Route::post('applyInf', 'ResiduosController@applyInf');
-    Route::post('applyInfQuincenalGestionadas', 'ResiduosController@exportEnviosQuincenalesGestionadas');  
-    Route::post('applyInfQuincenalSinGestionar', 'ResiduosController@exportEnviosQuincenalesSinGestionar'); 
+    Route::post('applyInfQuincenalDescargados', 'ResiduosController@exportEnviosQuincenalesDescargados');  
+    Route::post('applyInfQuincenalSinDescargar', 'ResiduosController@exportEnviosQuincenalesSinDescargar'); 
     Route::post('applyInfChasisAluminio', 'ResiduosController@exportEnviosChatarraAluminio');
     Route::post('applyInfChasisHierro', 'ResiduosController@exportEnviosChatarraHierro');
 

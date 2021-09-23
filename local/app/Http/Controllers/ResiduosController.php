@@ -30,16 +30,16 @@ class ResiduosController extends Controller
 
     }
 
-    public function getEnviosQuincenalesSinGestionar()
+    public function getEnviosQuincenalesSinDescargar()
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 6)
-        ->where('pm.check_chasis', '!=', 'NULL')
+        ->where('apply.subprocesses_id', '=', 5)
+        ->where('pm.status', '=', 2)
+        ->where('pm.download_certificate', '=', 0)
         ->get();
         // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
@@ -87,32 +87,29 @@ class ResiduosController extends Controller
         return response()->json($json_data);
     }
 
-    public function getEnviosQuincenalesGestionadas()
+    public function getEnviosQuincenalesDescargados()
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
-        ->where('pm.check_chasis', '!=', 'NULL')
-
-        // ->where(DB::raw('WEEK(purchase_management.current_year + 1) DIV 2'))
+        ->where('pm.status', '=', 2)
+        ->where('pm.download_certificate', '=', 1)
         ->get();
-        //dd($purchases);
+        // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
 
         $data = array();
         foreach($purchases as $value){
+
             $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
             ->where('processes_id', '=', 11)
             ->where('subprocesses_id', '=', 32)
             ->get();
-
-            //dd($apply);
 
             $row = array();
             $row['id'] = $value->id_pv;
@@ -136,7 +133,6 @@ class ResiduosController extends Controller
             foreach($apply as $key){
                 $row['collection_contract_date'] = date('d-m-Y', strtotime($key->created_at));
             }
-
             $row['edit'] = $edit;
             $row['delete'] = $delete;
             $data[] = $row;
@@ -148,7 +144,7 @@ class ResiduosController extends Controller
         return response()->json($json_data);
     }
 
-    public function exportEnviosQuincenalesSinGestionar(Request $request){
+    public function exportEnviosQuincenalesSinDescargar(Request $request){
        
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
@@ -163,10 +159,10 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 6)
-        ->where('pm.check_chasis', '!=', 'NULL')
+        ->where('apply.subprocesses_id', '=', 5)
+        ->where('pm.status', '=', 2)
+        ->where('pm.download_certificate', '=', 0)
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
           
@@ -193,7 +189,7 @@ class ResiduosController extends Controller
     }
 
 
-    public function exportEnviosQuincenalesGestionadas(Request $request){
+    public function exportEnviosQuincenalesDescargados(Request $request){
 
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
@@ -208,10 +204,10 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('pv.states_id', '!=', 10)
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
-        ->where('pm.check_chasis', '!=', 'NULL')
+        ->where('pm.status', '=', 2)
+        ->where('pm.download_certificate', '=', 1)
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();  
         
