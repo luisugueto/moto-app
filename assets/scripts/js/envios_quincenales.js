@@ -41,7 +41,7 @@ $(document).ready(function () {
         "columns": [
             { "data": null,
                 render:function(data){
-                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
         
                 },
                 "targets": -1
@@ -155,6 +155,20 @@ $(document).ready(function () {
         console.log(column);             
         column.visible(!column.visible());
     });
+
+    $("#applyInf").click(function(){
+        var values = $("input[name='apply[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        var apply = [];
+
+        values.forEach(function(val, index){
+            apply.push($("#apply_"+val).val());
+        });
+
+        $("#applyForm").val(apply);
+        $("#formApply").submit();
+    });
     
     $('#tab-0').click(function () {
         if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
@@ -176,7 +190,7 @@ $(document).ready(function () {
             "columns": [
                 { "data": null,
                     render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
             
                     },
                     "targets": -1
@@ -333,7 +347,7 @@ $(document).ready(function () {
             "columns": [
                 { "data": null,
                     render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
             
                     },
                     "targets": -1

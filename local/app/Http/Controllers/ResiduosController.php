@@ -39,7 +39,7 @@ class ResiduosController extends Controller
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.status', '=', 2)
-        ->where('pm.download_certificate', '=', 0)
+        // ->where('pm.download_certificate', '=', 0)
         ->get();
         // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
@@ -145,7 +145,6 @@ class ResiduosController extends Controller
     }
 
     public function exportEnviosQuincenalesSinDescargar(Request $request){
-       
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
             'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
@@ -155,6 +154,8 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
+        $apply = explode(",", $request->apply);
+   
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
