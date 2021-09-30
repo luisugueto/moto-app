@@ -16,7 +16,7 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-                // console.log(data);
+                console.log(data);
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -353,6 +353,8 @@ $(document).ready(function () {
                     $('#iron').attr('checked', true)
                 else if (data.check_chasis == 'Aluminio')
                     $('#aluminium').attr('checked', true)
+                else if (data.check_chasis == 'Camion')
+                    $('#truck').attr('checked', true)
 
                 if (!!data.documents_send) {
                     $('#divDocumentsViafirma').css('display', 'block');
@@ -736,6 +738,8 @@ $(document).ready(function () {
             check_chasis = 'Hierro';
         else if ($('#aluminium').is(':checked'))
             check_chasis = 'Aluminio';
+        else if ($('#truck').is(':checked'))
+            check_chasis = 'Camion';
 
         var dataSerialize = JSON.stringify(dataArray, null, 2), dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2), dataSerialize3 = JSON.stringify(dataInternArray, null, 2) ;
         var formData = {

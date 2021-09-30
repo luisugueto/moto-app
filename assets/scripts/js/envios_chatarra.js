@@ -153,6 +153,62 @@ $(document).ready(function () {
     });
 
     //Tabla para chatarra hierro  
+    $('#tableEnviosChatarraCamion thead tr').clone(true).appendTo('#tableEnviosChatarraCamion thead');
+ 
+    $('#tableEnviosChatarraCamion thead tr:eq(1) th').each(function (i) {
+    
+        if (i == 0) {
+            $(this).css('color', 'transparent');
+        }
+        else {            
+            $(this).html('<input type="text" class="form-control" />');
+        }
+
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    });
+    $('#tab-2').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableEnviosChatarraCamion")) {
+            $('#tableEnviosChatarraCamion').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableEnviosChatarraCamion').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true, 
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getEnviosChatarraCamion", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "frame_no" },
+                { "data": "model" },
+                { "data": "registration_number" },
+                { "data": "registration_date" },               
+    
+            ],             
+            "order": [[0, "desc"]]
+        });
+        $('input.toggle-vis-1').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column.visible(!column.visible());
+        });
+    });
+
+    //Tabla para chatarra hierro  
     $('#tableEnviosChatarraHistorico thead tr').clone(true).appendTo('#tableEnviosChatarraHistorico thead');
  
     $('#tableEnviosChatarraHistorico thead tr:eq(1) th').each(function (i) {
@@ -173,7 +229,8 @@ $(document).ready(function () {
             }
         } );
     });
-    $('#tab-1').click(function () {
+    
+    $('#tab-3').click(function () {
         if ($.fn.DataTable.isDataTable("#tableEnviosChatarraHistorico")) {
             $('#tableEnviosChatarraHistorico').DataTable().clear().destroy();
         }

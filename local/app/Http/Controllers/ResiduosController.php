@@ -539,11 +539,8 @@ class ResiduosController extends Controller
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '=', 'Aluminio')
 
         ->get();
@@ -554,13 +551,6 @@ class ResiduosController extends Controller
 
         $data = array();
         foreach($purchases as $value){
-            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11)
-            ->where('subprocesses_id', '=', 32)
-            ->get();
-
-            //dd($apply);
-
             $row = array();
             $row['id'] = $value->id_pv;
             $row['frame_no'] = $value->frame_no;
@@ -590,11 +580,8 @@ class ResiduosController extends Controller
 
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '=', 'Aluminio')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
@@ -621,11 +608,8 @@ class ResiduosController extends Controller
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '=', 'Hierro')
         ->get();
         
@@ -637,12 +621,6 @@ class ResiduosController extends Controller
 
         $data = array();
         foreach($purchases as $value){
-            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11)
-            ->where('subprocesses_id', '=', 32)
-            ->get();
-
-            //dd($apply);
 
             $row = array();
             $row['id'] = $value->id_pv;
@@ -673,11 +651,8 @@ class ResiduosController extends Controller
 
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '=', 'Hierro')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
@@ -693,15 +668,76 @@ class ResiduosController extends Controller
         })->export('xlsx');
     }
 
+    public function getEnviosChatarraCamion()
+    {
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->where('pv.states_id', '!=', 10)
+        ->where('pm.check_chasis', '=', 'Camion')
+        ->get();
+        
+        // dd($purchases);
+
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        $edit = getPermission('Envíos Chatarra', 'record-edit');
+        $delete = getPermission('Envíos Chatarra', 'record-delete');
+
+        $data = array();
+        foreach($purchases as $value){
+
+            $row = array();
+            $row['id'] = $value->id_pv;
+            $row['frame_no'] = $value->frame_no;
+            $row['model'] = $value->model1;            
+            $row['registration_number'] = $value->registration_number;
+            $row['registration_date'] = $value->registration_date;
+
+            $data[] = $row;
+        }
+
+        $json_data = array('data'=> $data);
+        $json_data= collect($json_data);
+
+        return response()->json($json_data);
+    }
+
+    public function exportEnviosChatarraCamion(Request $request){
+
+        $validator = \Validator::make($request->all(),[
+            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+        }
+
+        $data = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->where('pv.states_id', '!=', 10)
+        ->where('pm.check_chasis', '=', 'Camion')
+        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+        ->get();
+
+        Excel::create('BASTIDORES PARA CHATARRA PARA EL CAMION', function($excel) use($data) {
+
+            $excel->sheet('Entrega Camion', function($sheet) use($data) {
+
+                $sheet->loadView('excel.envios_chatarra_camion', array('data' => $data));
+
+            });
+
+        })->export('xlsx');
+    }
+
     public function getEnviosChatarraHistorico()
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.check_chasis', '!=', 'NULL')
 
         ->get();
@@ -712,12 +748,6 @@ class ResiduosController extends Controller
 
         $data = array();
         foreach($purchases as $value){
-            $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $value->id_pv)
-            ->where('processes_id', '=', 11)
-            ->where('subprocesses_id', '=', 32)
-            ->get();
-
-            //dd($apply);
 
             $row = array();
             $row['id'] = $value->id_pv;

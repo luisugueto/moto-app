@@ -1107,6 +1107,11 @@
                                                 class="custom-control-input" value="Aluminio">
                                             <label class="custom-control-label" for="aluminium">Aluminio</label>
                                         </div>
+                                        <div class="custom-radio custom-control custom-control-inline">
+                                            <input type="radio" id="truck" name="check_chasis"
+                                                class="custom-control-input" value="Camion">
+                                            <label class="custom-control-label" for="truck">Para el camión</label>
+                                        </div>
                                         @if ($errors->has('check_chasis'))
                                             <span class="error text-danger">
                                                 <strong>{{ $errors->first('check_chasis') }}</strong>

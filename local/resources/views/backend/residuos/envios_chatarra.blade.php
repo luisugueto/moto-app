@@ -32,6 +32,11 @@
             </li>
             <li class="nav-item">
                 <a role="tab" class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2">
+                    <span>Para el camión</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-3" data-toggle="tab" href="#tab-content-3">
                     <span>Histórico</span>
                 </a>
             </li>
@@ -112,6 +117,43 @@
                 </div>
             </div>
             <div class="tab-pane tabs-animation fade" id="tab-content-2" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Envios de chatarra para el camión
+                            <br><br>                   
+                            {!! Form::open(['url' => 'applyInfChasisCamion', 'method' => 'post']) !!} 
+                                <div class="row">
+                                    
+                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
+                                    <div class="col-sm-2">
+                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
+                                    <div class="col-md-2">
+                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
+                                    </div>
+                                    <div class="col-md-2 mt-1">
+                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
+                                    </div>
+                                </div>
+                            {!! Form::close() !!}
+                        </h5>     
+        
+                            <table style="width: 100%" id="tableEnviosChatarraCamion" class="table table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th class="text-center">Bastidor</th>
+                                        <th>Modelo</th>
+                                        <th class="text-center">Matricula</th>
+                                        <th class="text-center">Fecha Matriculación</th>
+                                    </tr>
+                            </table>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-3" role="tabpanel">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
                         <h5 class="card-title">Histórico de envios
