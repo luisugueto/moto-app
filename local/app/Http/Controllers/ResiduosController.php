@@ -541,6 +541,7 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Aluminio')
 
         ->get();
@@ -582,6 +583,7 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Aluminio')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
@@ -610,6 +612,7 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Hierro')
         ->get();
         
@@ -653,6 +656,7 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Hierro')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
@@ -674,6 +678,7 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Camion')
         ->get();
         
@@ -717,6 +722,7 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Camion')
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
@@ -738,11 +744,20 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
+        ->where('pm.status', '=', 2)
         ->where('pm.check_chasis', '=', 'Aluminio')
-        ->orWhere('pm.check_chasis', '=', 'Hierro')
-        ->orWhere('pm.check_chasis', '=', 'Camion')
+        ->orWhere(function($purchases) {   
+            $purchases->where('pv.states_id', '!=', 10)
+            ->where('pm.status', '=', 2)         
+            ->where('pm.check_chasis', '=', 'Hierro');
+        })
+        ->orWhere(function($purchases) {   
+            $purchases->where('pv.states_id', '!=', 10)
+            ->where('pm.status', '=', 2)         
+            ->where('pm.check_chasis', '=', 'Camion');
+        })
         ->get();
-        //dd($purchases);
+        // dd($purchases);
         $view = getPermission('Envíos Chatarra', 'record-view');
         $edit = getPermission('Envíos Chatarra', 'record-edit');
         $delete = getPermission('Envíos Chatarra', 'record-delete');
