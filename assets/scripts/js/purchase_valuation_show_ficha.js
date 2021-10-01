@@ -16,7 +16,7 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -36,6 +36,7 @@ $(document).ready(function () {
                 $('#purchase_id').val(data.id);
                 $('#document_purchase_id').val(data.id);
                 $('#image_purchase_id').val(data.id);
+                $('#certificate_purchase_id').val(data.id);
                 $("#year").val(data.year).trigger('change');
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
@@ -208,6 +209,13 @@ $(document).ready(function () {
                 data.documents_purchase_valuation.forEach(function (element) {
                     $("#documents").append(` <a href="${data.link}/local/public/documents_purchase/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteDocuments(${element.id})"></span>`);
                 });
+
+                data.certficates_purchase_valuation.forEach(function (element) {
+                    $("#certificates").append(` <a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a>
+                    `);
+                });
+                // <span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteCertificate(${element.id})"></span>
+                
 
                 if (!!data.dni_doc) {
                     data.dni_doc.split(',').forEach(function (element) {
@@ -1164,6 +1172,51 @@ Dropzone.options.imageDropzone = {
     }
 };
 
+Dropzone.options.certificateDropzone = {
+    autoProcessQueue: true,
+    uploadMultiple: true,
+    maxFilezise: 10,
+    // maxFiles: 1,
+    acceptedFiles: "application/pdf,.doc,.docx,.xls,.xlsx,.csv,.tsv,.ppt,.pptx,image/jpeg,image/png,image/gif",
+
+    init: function () {
+        certificateDropzone = this;
+
+        this.on("addedfile", function (file) {
+        });
+
+        this.on("complete", function (file) {
+            var formData = {
+                id: $('#certificate_purchase_id').val()
+            };
+            preloader('show');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                url: 'findCertificate',
+                success: function (data) {
+                    if (data.code == 200) {
+                        preloader('hide', data.message, 'success');
+                        $("#certificates").html('');
+                        data.certificates.forEach(function (element) {
+                            $("#certificates").append(`<a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a>`);
+                        });
+                    }
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
+        this.on("success",
+            certificateDropzone.processQueue.bind(certificateDropzone)
+        );
+    }
+};
+ 
 
 
 function deleteImages(id) {

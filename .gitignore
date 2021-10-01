@@ -4,6 +4,7 @@
 /local/public/dni/
 /local/public/documents_purchase/
 /local/public/img_app/
+/local/public/certificates/
 Homestead.yaml
 Homestead.json
 .env

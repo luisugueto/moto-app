@@ -22,6 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index')->name('dashboard');
     Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');    
     Route::post('uploadImage', 'PurchaseValuationController@uploadImage');    
+    Route::post('uploadCertificate', 'PurchaseValuationController@uploadCertificate');
 
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
@@ -169,6 +170,7 @@ Route::group(['middleware' => 'auth'], function () {
     //FIND IMAGES AND DOCUMENTS
     Route::post('purchase_valuation_interested/findImages', 'PurchaseValuationController@findImages');
     Route::post('purchase_valuation_interested/findDocuments', 'PurchaseValuationController@findDocuments');
+    Route::post('purchase_valuation_interested/findCertificate', 'PurchaseValuationController@findCertificate');
 
     // DELETE IMAGES AND DOCUMENTS
     Route::post('purchase_valuation_interested/deleteImages', 'PurchaseValuationController@deleteImages');

@@ -21,6 +21,7 @@ use App\Business;
 use Yajra\Datatables\Datatables;
 use App\ApplySubProcessAndProcess;
 use App\IncidencePurchase;
+use App\CertificatesPurchaseValuation;
 
 class PurchaseValuationController extends Controller
 {
@@ -1786,6 +1787,24 @@ class PurchaseValuationController extends Controller
         }
     }
 
+    public function uploadCertificate(Request $request)
+    {
+        $path = public_path().'/certificates/';
+        $files = $request->file('file');
+        foreach($files as $file){
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $file->move($path, $fileNameToStore);
+
+            $projectCertificate = new CertificatesPurchaseValuation();
+            $projectCertificate->purchase_valuation_id = $request->id;
+            $projectCertificate->name = $fileNameToStore;
+            $projectCertificate->save();
+        }
+    }
+
     public function showFicha()
     {
         $view = getPermission('Motos que nos ofrecen', 'record-view');
@@ -1815,6 +1834,7 @@ class PurchaseValuationController extends Controller
         $datos_del_mecanico = Forms::select(['form_display'])->where('id', 2)->first();
         $datos_interno = Forms::select(['form_display'])->where('id', 3)->first();
         $subprocesses_id = $purchase_valuation['subprocesses_id'];
+        $certficates_purchase_valuation = CertificatesPurchaseValuation::where('purchase_valuation_id', $id)->get();
 
         $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $id)->get();
         $processes = array();
@@ -1986,6 +2006,7 @@ class PurchaseValuationController extends Controller
         //
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
         $data['images_purchase_valuation'] = $images_purchase_valuation;
+        $data['certficates_purchase_valuation'] = $certficates_purchase_valuation;
 
         // GET DOCS FORM MAIL INTERESTED
         $data['dni_doc'] = $purchase_management['dni_doc'];
@@ -2211,6 +2232,11 @@ class PurchaseValuationController extends Controller
         return \Response::download($path);
     }
 
+    public function certificate($fileName){
+        $path = public_path().'/certificates/'.$fileName;
+        return \Response::download($path);
+    }
+
     public function deleteImages(Request $request){
         //dd($request->all());
         $purchase = ImagesPurchase::find($request->id);
@@ -2283,6 +2309,18 @@ class PurchaseValuationController extends Controller
         $out['per_circulacion'] = $purchase_management['per_circulacion'];
         $out['ficha_tecnica'] = $purchase_management['ficha_tecnica'];
         $out['other_docs'] = $purchase_management['other_docs'];
+        $out['link'] = url('/');
+
+        return response()->json($out);
+    }
+
+    public function findCertificate(Request $request)
+    {
+        $certficates_purchase_valuation = CertificatesPurchaseValuation::where('purchase_valuation_id', $request->id)->get();
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $request->id)->first();
+        $out['code'] = 200;
+        $out['message'] = 'Certificado agregado(s) exitosamente';
+        $out['certificates'] = $certficates_purchase_valuation;
         $out['link'] = url('/');
 
         return response()->json($out);
