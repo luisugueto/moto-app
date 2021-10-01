@@ -738,8 +738,9 @@ class ResiduosController extends Controller
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.check_chasis', '!=', 'NULL')
-
+        ->where('pm.check_chasis', '=', 'Aluminio')
+        ->orWhere('pm.check_chasis', '=', 'Hierro')
+        ->orWhere('pm.check_chasis', '=', 'Camion')
         ->get();
         //dd($purchases);
         $view = getPermission('Envíos Chatarra', 'record-view');
