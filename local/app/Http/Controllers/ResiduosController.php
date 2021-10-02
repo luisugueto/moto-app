@@ -154,8 +154,9 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
-        $apply = explode(",", $request->apply);
-   
+        $apply = array();
+        foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
+
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -165,15 +166,15 @@ class ResiduosController extends Controller
         ->where('pm.status', '=', 2)
         ->where('pm.download_certificate', '=', 0)
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
-        ->get();
-          
+        ->whereIn('pv.id', $apply)
+        ->get();      
         
         $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
         ->where('subprocesses_id', '=', 32)
         ->get();
         
         if(is_array($data)){     
-
+            
             Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data, $apply) {
 
                 $excel->sheet('Hoja1', function($sheet) use($data, $apply) {
@@ -182,7 +183,9 @@ class ResiduosController extends Controller
                     $sheet->loadView('excel.envios_quincenal', array('data' => $data, 'apply' => $apply));
                 });
 
-            })->export('xls');
+            })->export('xlsx');
+
+            \Response::download(public_path().'/certificates/test.xlsx');
         }else{
             return Redirect::back()->with('error', 'No hay datos disponibles!');
         }
