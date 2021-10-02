@@ -161,6 +161,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('applyInfChasisAluminio', 'ResiduosController@exportEnviosChatarraAluminio');
     Route::post('applyInfChasisHierro', 'ResiduosController@exportEnviosChatarraHierro');
     Route::post('applyInfChasisCamion', 'ResiduosController@exportEnviosChatarraCamion');
+    Route::post('downloadCertificados', 'ResiduosController@downloadCertificados');
 
     // GET FILES AND LABELS
     Route::get('document/{filename}', 'PurchaseValuationController@document');

@@ -15,6 +15,7 @@ use App\MaterialsCompanie;
 use DB;
 use Redirect;
 use App\Residuos;
+use App\CertificatesPurchaseValuation;
 use Chumper\Zipper\Zipper;
 
 class ResiduosController extends Controller
@@ -186,7 +187,6 @@ class ResiduosController extends Controller
 
             })->export('xlsx');
 
-            \Response::download(public_path().'/certificates/test.xlsx');
         }else{
             return Redirect::back()->with('error', 'No hay datos disponibles!');
         }
@@ -218,7 +218,7 @@ class ResiduosController extends Controller
         ->where('pm.download_certificate', '=', 1)
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->whereIn('pv.id', $apply)
-        ->toSql();  
+        ->get();  
         
         $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
         ->where('subprocesses_id', '=', 32)
@@ -791,17 +791,18 @@ class ResiduosController extends Controller
 
     public function downloadCertificados(Request $request){
 
-        $apply = array();
-        foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
-        
         $zipper = new \Chumper\Zipper\Zipper;
-        $zipper->make(public_path().'/certificados'.time().'.zip')->folder('certificados');
+        $nameZip = public_path().'/certificados'.time().'.zip';
+        $zipper->make($nameZip)->folder('certificados');
 
-        for($i = 0; $i < 2; $i++){
-            // $zipper->add(public_path().'/certificates/test'.$i.'.txt');
+        foreach(explode(",", $request->apply) as $id){
+            $cert = CertificatesPurchaseValuation::where('purchase_valuation_id', $id)->first();
+            $zipper->add(public_path().'/certificates/'.$cert->name);
         }
 
         $zipper->close();
+
+        return \Response::download($nameZip);
     }
 
 }

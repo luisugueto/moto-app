@@ -77,6 +77,13 @@
                                 </div>
                             {!! Form::close() !!}
 
+                            {!! Form::open(['url' => 'downloadCertificados', 'method' => 'post', 'id' => 'formDownload']) !!} 
+                                <input type="hidden" name="apply" id="applyFormDownload">
+                                <div class="col-md-2 mt-1">
+                                    <button id="applyDownload" class="btn btn-primary">Descargar Certificados</button>
+                                </div>
+                            {!! Form::close() !!}
+
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables
@@ -179,7 +186,7 @@
                             <br><br>
                             {!! Form::open(['url' => 'applyInfQuincenalDescargados', 'method' => 'post', 'id' => 'formApply1']) !!} 
                                 <div class="row">
-                                    <input type="hidden" name="apply1" id="applyForm1">
+                                    <input type="hidden" name="apply" id="applyForm1">
                                     <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
                                     <div class="col-sm-2">
                                         <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
@@ -193,6 +200,14 @@
                                     </div>
                                 </div>
                             {!! Form::close() !!}
+
+                             {!! Form::open(['url' => 'downloadCertificados', 'method' => 'post', 'id' => 'formDownload1']) !!} 
+                                <input type="hidden" name="apply" id="applyFormDownload1">
+                                <div class="col-md-2 mt-1">
+                                    <button type="button" id="applyDownload1" class="btn btn-primary">Descargar Certificados</button>
+                                </div>
+                            {!! Form::close() !!}
+
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
                                     data-toggle="dropdown" class="dropdown-toggle btn btn-primary">Columnas Plegables

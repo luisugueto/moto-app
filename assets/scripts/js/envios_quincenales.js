@@ -183,6 +183,33 @@ $(document).ready(function () {
         $("#applyForm1").val(apply);
         $("#formApply1").submit();
     });
+
+    $("#applyDownload").click(function(){
+        var values = $("input[name='apply[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        var apply = [];
+
+        values.forEach(function(val, index){
+            apply.push($("#apply_"+val).val());
+        });
+
+        $("#applyFormDownload").val(apply);
+        $("#formDownload").submit();
+    });
+
+    $("#applyDownload1").click(function(){
+        var values = $("input[name='apply1[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        var apply = [];
+
+        values.forEach(function(val, index){
+            apply.push($("#apply1_"+val).val());
+        });
+        $("#applyFormDownload1").val(apply);
+        $("#formDownload1").submit();
+    });
     
     $('#tab-0').click(function () {
         if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
