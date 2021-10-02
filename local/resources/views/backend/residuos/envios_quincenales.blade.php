@@ -177,9 +177,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Envios Quincenales
                             <br><br>
-                            {!! Form::open(['url' => 'applyInfQuincenalDescargados', 'method' => 'post']) !!} 
+                            {!! Form::open(['url' => 'applyInfQuincenalDescargados', 'method' => 'post', 'id' => 'formApply1']) !!} 
                                 <div class="row">
-                                    
+                                    <input type="hidden" name="apply1" id="applyForm1">
                                     <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
                                     <div class="col-sm-2">
                                         <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
@@ -189,7 +189,7 @@
                                         <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
                                     </div>
                                     <div class="col-md-2 mt-1">
-                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
+                                        <button id="applyInf1" class="btn btn-primary">Obtener Informe</button>
                                     </div>
                                 </div>
                             {!! Form::close() !!}

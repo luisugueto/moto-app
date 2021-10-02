@@ -169,6 +169,20 @@ $(document).ready(function () {
         $("#applyForm").val(apply);
         $("#formApply").submit();
     });
+
+    $("#applyInf1").click(function(){
+        var values = $("input[name='apply1[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        var apply = [];
+
+        values.forEach(function(val, index){
+            apply.push($("#apply1_"+val).val());
+        });
+
+        $("#applyForm1").val(apply);
+        $("#formApply1").submit();
+    });
     
     $('#tab-0').click(function () {
         if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
@@ -347,7 +361,7 @@ $(document).ready(function () {
             "columns": [
                 { "data": null,
                     render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply1[]" id="apply1_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply1_'+data.id+'"></label></div>';
             
                     },
                     "targets": -1
