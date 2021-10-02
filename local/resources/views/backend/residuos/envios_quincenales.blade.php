@@ -201,12 +201,12 @@
                                 </div>
                             {!! Form::close() !!}
 
-                             {!! Form::open(['url' => 'downloadCertificados', 'method' => 'post', 'id' => 'formDownload1']) !!} 
+                             <!-- {!! Form::open(['url' => 'downloadCertificados', 'method' => 'post', 'id' => 'formDownload1']) !!} 
                                 <input type="hidden" name="apply" id="applyFormDownload1">
                                 <div class="col-md-2 mt-1">
                                     <button type="button" id="applyDownload1" class="btn btn-primary">Descargar Certificados</button>
                                 </div>
-                            {!! Form::close() !!}
+                            {!! Form::close() !!} -->
 
                             <div class="mb-2 mr-2 btn-group float-right">
                                 <button type="button" aria-haspopup="true" aria-expanded="false"
