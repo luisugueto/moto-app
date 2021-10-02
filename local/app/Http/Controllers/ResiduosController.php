@@ -794,10 +794,18 @@ class ResiduosController extends Controller
         $zipper = new \Chumper\Zipper\Zipper;
         $nameZip = public_path().'/certificados'.time().'.zip';
         $zipper->make($nameZip)->folder('certificados');
-
+        
         foreach(explode(",", $request->apply) as $id){
             $cert = CertificatesPurchaseValuation::where('purchase_valuation_id', $id)->first();
-            $zipper->add(public_path().'/certificates/'.$cert->name);
+            
+            if(!is_null($cert)){ $zipper->add(public_path().'/certificates/'.$cert->name); }
+            else { 
+                $content = "Moto con id: ".$id. " no ha cargado el CERTIFICADO DE DESTRUCCION";
+                $fp = fopen(public_path().'/certificates/empty_'.$id.'.txt',"wb");
+                fwrite($fp,$content);
+                fclose($fp);
+
+                $zipper->add(public_path().'/certificates/empty_'.$id.'.txt'); }
         }
 
         $zipper->close();
