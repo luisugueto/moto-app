@@ -15,6 +15,7 @@ use App\MaterialsCompanie;
 use DB;
 use Redirect;
 use App\Residuos;
+use Chumper\Zipper\Zipper;
 
 class ResiduosController extends Controller
 {
@@ -39,7 +40,7 @@ class ResiduosController extends Controller
         ->where('apply.processes_id', '=', 5)
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.status', '=', 2)
-        // ->where('pm.download_certificate', '=', 0)
+        ->where('pm.download_certificate', '=', 0)
         ->get();
         // dd($purchases);
         $view = getPermission('Envíos Quincenales', 'record-view');
@@ -788,6 +789,19 @@ class ResiduosController extends Controller
         return response()->json($json_data);
     }
 
+    public function downloadCertificados(Request $request){
 
+        $apply = array();
+        foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
+        
+        $zipper = new \Chumper\Zipper\Zipper;
+        $zipper->make(public_path().'/certificados'.time().'.zip')->folder('certificados');
+
+        for($i = 0; $i < 2; $i++){
+            // $zipper->add(public_path().'/certificates/test'.$i.'.txt');
+        }
+
+        $zipper->close();
+    }
 
 }
