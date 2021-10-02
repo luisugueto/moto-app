@@ -791,11 +791,37 @@ class ResiduosController extends Controller
 
     public function downloadCertificados(Request $request){
 
+        $validator = \Validator::make($request->all(),[
+            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
+            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+        ]);
+
+        if ($validator->fails()) {
+            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+        }
+
         $zipper = new \Chumper\Zipper\Zipper;
         $nameZip = public_path().'/certificados'.time().'.zip';
         $zipper->make($nameZip)->folder('certificados');
         
-        foreach(explode(",", $request->apply) as $id){
+        $apply = array();
+        foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
+
+        $data = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
+        ->where('pm.status', '=', 2)
+        ->where('pm.download_certificate', '=', 0)
+        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+        ->whereIn('pv.id', $apply)
+        ->get();
+
+        foreach($data as $val){
+            $id = $val->id_pv;
+
             $cert = CertificatesPurchaseValuation::where('purchase_valuation_id', $id)->first();
             
             if(!is_null($cert)){ $zipper->add(public_path().'/certificates/'.$cert->name); }
@@ -805,7 +831,8 @@ class ResiduosController extends Controller
                 fwrite($fp,$content);
                 fclose($fp);
 
-                $zipper->add(public_path().'/certificates/empty_'.$id.'.txt'); }
+                $zipper->add(public_path().'/certificates/empty_'.$id.'.txt'); 
+            }
         }
 
         $zipper->close();

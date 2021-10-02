@@ -79,6 +79,9 @@
 
                             {!! Form::open(['url' => 'downloadCertificados', 'method' => 'post', 'id' => 'formDownload']) !!} 
                                 <input type="hidden" name="apply" id="applyFormDownload">
+                                <input type="hidden" name="start_at" id="start_at_download">
+                                <input type="hidden" name="end_at" id="end_at_download">
+
                                 <div class="col-md-2 mt-1">
                                     <button id="applyDownload" class="btn btn-primary">Descargar Certificados</button>
                                 </div>

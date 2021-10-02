@@ -195,6 +195,8 @@ $(document).ready(function () {
         });
 
         $("#applyFormDownload").val(apply);
+        $("#start_at_download").val($("#start_at").val());
+        $("#end_at_download").val($("#end_at").val());
         $("#formDownload").submit();
     });
 
