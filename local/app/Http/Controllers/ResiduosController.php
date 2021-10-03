@@ -799,10 +799,6 @@ class ResiduosController extends Controller
         if ($validator->fails()) {
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
-
-        $zipper = new \Chumper\Zipper\Zipper;
-        $nameZip = public_path().'/certificados'.time().'.zip';
-        $zipper->make($nameZip)->folder('certificados');
         
         $apply = array();
         foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
@@ -818,6 +814,14 @@ class ResiduosController extends Controller
         ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->whereIn('pv.id', $apply)
         ->get();
+
+        if(count($data) == 0){
+            return Redirect::back()->with('error', 'No se han podido generar certificados!')->withInput();
+        }
+
+        $zipper = new \Chumper\Zipper\Zipper;
+        $nameZip = public_path().'/certificados'.time().'.zip';
+        $zipper->make($nameZip)->folder('certificados');
 
         foreach($data as $val){
             $id = $val->id_pv;
