@@ -811,6 +811,7 @@ $(document).ready(function () {
             registration_date: $('#registration_date').val(),
             registration_country: $('#registration_country').val(),
             frame_no: $('#frame_no').val(),
+            weight: $('#weight').val(),
             motor_no: $('#motor_no').val(),
             type_motor: $('#type_motor').val(),
             approval_certificate: $('#approval_certificate').val(),
