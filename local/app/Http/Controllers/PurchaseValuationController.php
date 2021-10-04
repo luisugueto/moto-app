@@ -22,6 +22,7 @@ use Yajra\Datatables\Datatables;
 use App\ApplySubProcessAndProcess;
 use App\IncidencePurchase;
 use App\CertificatesPurchaseValuation;
+use App\DocumentsMailPurchaseValuation;
 
 class PurchaseValuationController extends Controller
 {
@@ -1805,6 +1806,24 @@ class PurchaseValuationController extends Controller
         }
     }
 
+    public function uploadDocumentsMail(Request $request)
+    {
+        $path = public_path().'/documents_mail/';
+        $files = $request->file('file');
+        foreach($files as $file){
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $file->move($path, $fileNameToStore);
+
+            $projectdocumentMail = new DocumentsMailPurchaseValuation();
+            $projectdocumentMail->purchase_valuation_id = $request->id;
+            $projectdocumentMail->name = $fileNameToStore;
+            $projectdocumentMail->save();
+        }
+    }
+
     public function showFicha()
     {
         $view = getPermission('Motos que nos ofrecen', 'record-view');
@@ -1835,7 +1854,8 @@ class PurchaseValuationController extends Controller
         $datos_interno = Forms::select(['form_display'])->where('id', 3)->first();
         $subprocesses_id = $purchase_valuation['subprocesses_id'];
         $certficates_purchase_valuation = CertificatesPurchaseValuation::where('purchase_valuation_id', $id)->get();
-
+        $documents_mail_purchase_valuation = DocumentsMailPurchaseValuation::where('purchase_valuation_id', $id)->get();
+        
         $apply = ApplySubProcessAndProcess::where('purchase_valuation_id', $id)->get();
         $processes = array();
         $dateDocuments = '';
@@ -2007,6 +2027,7 @@ class PurchaseValuationController extends Controller
         $data['documents_purchase_valuation'] = $documents_purchase_valuation;
         $data['images_purchase_valuation'] = $images_purchase_valuation;
         $data['certficates_purchase_valuation'] = $certficates_purchase_valuation;
+        $data['documents_mail_purchase_valuation'] = $documents_mail_purchase_valuation;
 
         // GET DOCS FORM MAIL INTERESTED
         $data['dni_doc'] = $purchase_management['dni_doc'];
@@ -2237,6 +2258,11 @@ class PurchaseValuationController extends Controller
         return \Response::download($path);
     }
 
+    public function documents_mail($fileName){
+        $path = public_path().'/documents_mail/'.$fileName;
+        return \Response::download($path);
+    }
+    
     public function deleteImages(Request $request){
         //dd($request->all());
         $purchase = ImagesPurchase::find($request->id);
@@ -2287,6 +2313,30 @@ class PurchaseValuationController extends Controller
         return response()->json($out);
     }
 
+    public function deleteDocumentsMail(Request $request){
+        //dd($request->all());
+        $purchase = DocumentsMailPurchaseValuation::find($request->id);
+        if(isset($purchase)){
+            $documentPath = public_path().'/documents_mail/'. $purchase->name; // For dynamic value
+            DocumentsMailPurchaseValuation::destroy($purchase->id);
+            \File::delete($documentPath); //delete image from server
+            $documents = DocumentsMailPurchaseValuation::where('purchase_valuation_id', $purchase->purchase_valuation_id)->get();
+            $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->purchase_valuation_id)->first();
+
+            $out['code'] = 200;
+            $out['message'] = 'Documento eliminado exitosamente';
+            $out['documents_mail_purchase_valuation'] = $documents;
+            $out['link'] = url('/');
+        }
+        else{
+            $out['code'] = 422;
+            $out['message'] = 'Documento no encontrado! No se pudo eliminar.';
+            $out['documents_mail_purchase_valuation'] = '';
+            $out['link'] = url('/');
+        }
+        return response()->json($out);
+    }
+
     public function findImages(Request $request)
     {
         $images_purchase_valuation = ImagesPurchase::where('purchase_valuation_id', $request->id)->get();
@@ -2325,6 +2375,19 @@ class PurchaseValuationController extends Controller
 
         return response()->json($out);
     }
+
+    public function findDocumentsMail(Request $request)
+    {
+        $documents = DocumentsMailPurchaseValuation::where('purchase_valuation_id', $request->id)->get();
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $request->id)->first();
+        $out['code'] = 200;
+        $out['message'] = 'Documento(s) agregado(s) exitosamente';
+        $out['documents_mail_purchase_valuation'] = $documents;
+        $out['link'] = url('/');
+
+        return response()->json($out);
+    }
+    
 
     public function labelsPdf($id)
     {

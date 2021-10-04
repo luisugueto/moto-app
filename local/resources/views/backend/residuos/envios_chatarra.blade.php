@@ -47,20 +47,13 @@
                     <div class="card-body">
                         <h5 class="card-title">Envios para chatarra chasis de aluminio
                             {!! Form::open(['url' => 'applyInfChasisAluminio', 'method' => 'post']) !!} 
-                                <div class="row">
-                                    
-                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
-                                    <div class="col-sm-2">
-                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
-                                    <div class="col-md-2">
-                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <div class="col-md-2 mt-1">
-                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
-                                    </div>
+                            <div class="row">
+                                <input type="hidden" name="send_date_chatarra" id="send_date_chatarra" value="{{ date('d-m-Y')}}">                                
+                                <div class="col-md-2 mt-1">
+                                    <button id="applyInf1" class="btn btn-primary">Obtener Informe</button>
                                 </div>
+                                
+                            </div>
                             {!! Form::close() !!}
                         </h5>     
         
@@ -82,23 +75,15 @@
             <div class="tab-pane tabs-animation fade" id="tab-content-1" role="tabpanel">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <h5 class="card-title">Envios para chatarra chasis de hierro
-                            <br><br>                   
+                        <h5 class="card-title">Envios para chatarra chasis de hierro                
                             {!! Form::open(['url' => 'applyInfChasisHierro', 'method' => 'post']) !!} 
-                                <div class="row">
-                                    
-                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
-                                    <div class="col-sm-2">
-                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
-                                    <div class="col-md-2">
-                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <div class="col-md-2 mt-1">
-                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
-                                    </div>
+                            <div class="row">
+                                <input type="hidden" name="send_date_chatarra" id="send_date_chatarra" value="{{ date('d-m-Y')}}">                                
+                                <div class="col-md-2 mt-1">
+                                    <button id="applyInf2" class="btn btn-primary">Obtener Informe</button>
                                 </div>
+                                
+                            </div>
                             {!! Form::close() !!}
                         </h5>     
         
@@ -122,20 +107,13 @@
                         <h5 class="card-title">Envios de chatarra para el camión
                             <br><br>                   
                             {!! Form::open(['url' => 'applyInfChasisCamion', 'method' => 'post']) !!} 
-                                <div class="row">
-                                    
-                                    <label class="col-sm-1 col-form-label"><b>Desde:</b> </label>
-                                    <div class="col-sm-2">
-                                        <input type="date" name="start_at" title="Desde" value="{{ old('start_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <label class="col-sm-1 col-form-label"><b>Hasta:</b> </label>
-                                    <div class="col-md-2">
-                                        <input type="date" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
-                                    </div>
-                                    <div class="col-md-2 mt-1">
-                                        <button type="submit" class="btn btn-primary">Obtener Informe</button>
-                                    </div>
+                            <div class="row">
+                                <input type="hidden" name="send_date_chatarra" id="send_date_chatarra" value="{{ date('d-m-Y')}}">                                
+                                <div class="col-md-2 mt-1">
+                                    <button id="applyInf3" class="btn btn-primary">Obtener Informe</button>
                                 </div>
+                                
+                            </div>
                             {!! Form::close() !!}
                         </h5>     
         
@@ -164,10 +142,11 @@
                                 <tr>
                                     <th>#</th>
                                     <th class="text-center">Bastidor</th>
-                                    <th>Modelo</th>
+                                    <th class="text-center">Modelo</th>
                                     <th class="text-center">Matricula</th>
                                     <th class="text-center">Fecha Matriculación</th>
                                     <th class="text-center">Tipo Chasis</th>
+                                    <th class="text-center">Fecha Envío</th>
                                 </tr>
                         </table>
                         

@@ -23,7 +23,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('uploadDocument', 'PurchaseValuationController@uploadDocument');    
     Route::post('uploadImage', 'PurchaseValuationController@uploadImage');    
     Route::post('uploadCertificate', 'PurchaseValuationController@uploadCertificate');
-
+    Route::post('uploadDocumentsMail', 'PurchaseValuationController@uploadDocumentsMail');
+    
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
     Route::resource('permisos', 'PermissionsController');
@@ -172,10 +173,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('purchase_valuation_interested/findImages', 'PurchaseValuationController@findImages');
     Route::post('purchase_valuation_interested/findDocuments', 'PurchaseValuationController@findDocuments');
     Route::post('purchase_valuation_interested/findCertificate', 'PurchaseValuationController@findCertificate');
+    Route::post('purchase_valuation_interested/findDocumentsMail', 'PurchaseValuationController@findDocumentsMail');
 
     // DELETE IMAGES AND DOCUMENTS
     Route::post('purchase_valuation_interested/deleteImages', 'PurchaseValuationController@deleteImages');
     Route::post('purchase_valuation_interested/deleteDocuments', 'PurchaseValuationController@deleteDocuments');
+    Route::post('purchase_valuation_interested/deleteCertificate', 'PurchaseValuationController@deleteCertificate');
+    Route::post('purchase_valuation_interested/deleteDocumentsMail', 'PurchaseValuationController@deleteDocumentsMail');
 
     //ADD MATERIALS TO WASTE COMPANIES
     Route::get('empresas-de-residuos/agregar-materiales/{id}', 'WasteCompaniesController@addMaterials');

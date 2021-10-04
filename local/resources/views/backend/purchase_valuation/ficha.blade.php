@@ -54,6 +54,11 @@
                             <span>Subir Certificado</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a role="tab" class="nav-link" id="tab-c-1" data-toggle="tab" href="#tab-animated-3">
+                            <span>Documentos Email</span>
+                        </a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab-animated-0" role="tabpanel">
@@ -90,6 +95,19 @@
                             <input type="hidden" id="certificate_purchase_id" name="id" value="0">
                             <div class="dz-message" style="height:100px;">
                                 Arratre su archivo aquí.
+                            </div>
+                            <div class="dropzone-previews"></div>
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="tab-pane" id="tab-animated-3" role="tabpanel">
+                        <div class="row" id="documents_mail">
+                            
+                        </div>
+                        <hr>
+                        {!! Form::open(['url'=> 'uploadDocumentsMail', 'method' => 'POST', 'files'=>'true', 'id' => 'documents-mail-dropzone' , 'class' => 'dropzone']) !!}
+                            <input type="hidden" id="documents_mail_purchase_id" name="id" value="0">
+                            <div class="dz-message" style="height:100px;">
+                                Arratre sus archivos aquí.
                             </div>
                             <div class="dropzone-previews"></div>
                         {!! Form::close() !!}

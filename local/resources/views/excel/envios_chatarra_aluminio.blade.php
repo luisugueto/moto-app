@@ -38,7 +38,7 @@
     ?>
     @for ($i = 0; $i < $contador; $i++)
     <tr>
-        <td style="height: 20;text-align: left;border: 1px solid #000;">{{ $data[$i]->id_pv }}</td>
+        <td style="height: 20;text-align: left;border: 1px solid #000;">L{{ $data[$i]->id_pv }}</td>
         <td style="height: 20;text-align: left;border: 1px solid #000;">{{$data[$i]->frame_no}}</td>
         <td style="height: 20;text-align: right;border: 1px solid #000;">{{ $data[$i]->model1 }}</td>
         <td style="text-align: left;border: 1px solid #000;"></td>
@@ -48,7 +48,7 @@
     <tr></tr>
     <tr>
         <td style="text-align: ;text-align: right;" colspan="3">Entregado Bastidores de Aluminio para Destruir</td>
-        <td style="text-align: left;font-weight: bold">{{ date('d/m/Y') }}</td>
+        <td style="text-align: left;font-weight: bold">{{ $fecha_envio }}</td>
     </tr>
 </table>
 

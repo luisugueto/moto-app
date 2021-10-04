@@ -547,9 +547,11 @@ class ResiduosController extends Controller
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Aluminio')
 
         ->get();
@@ -579,37 +581,37 @@ class ResiduosController extends Controller
     public function exportEnviosChatarraAluminio(Request $request){
 
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+            'send_date_chatarra' => 'required|date|date_format:d-m-Y'
         ]);
 
         if ($validator->fails()) {
-            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+            return Redirect::back()->with('error', 'Error en fecha!')->withInput();
         }
 
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Aluminio')
-        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
 
-        Excel::create('BASTIDORES PARA CHATARRA ALUMINIO', function($excel) use($data) {
+        foreach($data as $value){
+            $purchaseM = PurchaseManagement::where('purchase_valuation_id', $value->id_pv)->first();
+            $purchase_management = PurchaseManagement::find($purchaseM->id);
+            $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
+            $purchase_management->update();
+        }
+        $fecha_envio = $request->send_date_chatarra;
+        Excel::create('BASTIDORES PARA CHATARRA ALUMINIO', function($excel) use($data,$fecha_envio ) {
 
-            $excel->sheet('Entrega Aluminio', function($sheet) use($data) {
+            $excel->sheet('Entrega Aluminio', function($sheet) use($data, $fecha_envio) {
 
-                $sheet->loadView('excel.envios_chatarra_aluminio', array('data' => $data));
+                $sheet->loadView('excel.envios_chatarra_aluminio', array('data' => $data, 'fecha_envio' => $fecha_envio));
 
             });
-
-
-            // $excel->sheet('Hoja1', function($sheet) use($data) {
-
-            //     $sheet->fromArray($data);
-
-            // });
 
         })->export('xlsx');
     }
@@ -618,9 +620,11 @@ class ResiduosController extends Controller
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5) 
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Hierro')
         ->get();
         
@@ -652,28 +656,38 @@ class ResiduosController extends Controller
     public function exportEnviosChatarraHierro(Request $request){
 
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+            'send_date_chatarra' => 'required|date|date_format:d-m-Y'
         ]);
 
         if ($validator->fails()) {
-            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+            return Redirect::back()->with('error', 'Error en fecha!')->withInput();
         }
 
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Hierro')
-        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
 
-        Excel::create('BASTIDORES PARA CHATARRA HIERRO', function($excel) use($data) {
+        foreach($data as $value){
+            $purchaseM = PurchaseManagement::where('purchase_valuation_id', $value->id_pv)->first();
+            $purchase_management = PurchaseManagement::find($purchaseM->id);
+            if($purchase_management->send_date_chatarra !== NULL){
+                $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
+                $purchase_management->update();
+            }
+        }
+        $fecha_envio = $request->send_date_chatarra;
 
-            $excel->sheet('Entrega Hierro', function($sheet) use($data) {
+        Excel::create('BASTIDORES PARA CHATARRA HIERRO', function($excel) use($data, $fecha_envio) {
 
-                $sheet->loadView('excel.envios_chatarra_hierro', array('data' => $data));
+            $excel->sheet('Entrega Hierro', function($sheet) use($data, $fecha_envio) {
+
+                $sheet->loadView('excel.envios_chatarra_hierro', array('data' => $data, 'fecha_envio' => $fecha_envio));
 
             });
 
@@ -684,9 +698,11 @@ class ResiduosController extends Controller
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5) 
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Camion')
         ->get();
         
@@ -715,31 +731,42 @@ class ResiduosController extends Controller
         return response()->json($json_data);
     }
 
-    public function exportEnviosChatarraCamion(Request $request){
-
+    public function exportEnviosChatarraCamion(Request $request){ 
+        
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
+            'send_date_chatarra' => 'required|date|date_format:d-m-Y'
         ]);
 
         if ($validator->fails()) {
-            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+            return Redirect::back()->with('error', 'Error en fecha!')->withInput();
         }
 
         $data = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5) 
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)  
         ->where('pm.check_chasis', '=', 'Camion')
-        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
         ->get();
 
-        Excel::create('BASTIDORES PARA CHATARRA PARA EL CAMION', function($excel) use($data) {
+        foreach($data as $value){
+            $purchaseM = PurchaseManagement::where('purchase_valuation_id', $value->id_pv)->first();
+            $purchase_management = PurchaseManagement::find($purchaseM->id);
+            if($purchase_management->send_date_chatarra !== NULL){
+                $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
+                $purchase_management->update();
+            }
+            
+        }
+        $fecha_envio = $request->send_date_chatarra;
 
-            $excel->sheet('Entrega Camion', function($sheet) use($data) {
+        Excel::create('BASTIDORES PARA CHATARRA PARA EL CAMION', function($excel) use($data, $fecha_envio) {
 
-                $sheet->loadView('excel.envios_chatarra_camion', array('data' => $data));
+            $excel->sheet('Entrega Camion', function($sheet) use($data, $fecha_envio) {
+
+                $sheet->loadView('excel.envios_chatarra_camion', array('data' => $data, 'fecha_envio' => $fecha_envio));
 
             });
 
@@ -750,22 +777,26 @@ class ResiduosController extends Controller
     {
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
-        ->where('pm.status', '=', 2)
         ->where('pm.check_chasis', '=', 'Aluminio')
         ->orWhere(function($purchases) {   
-            $purchases->where('pv.states_id', '!=', 10)
-            ->where('pm.status', '=', 2)         
+            $purchases->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)    
+            ->where('pv.states_id', '!=', 10)    
             ->where('pm.check_chasis', '=', 'Hierro');
         })
         ->orWhere(function($purchases) {   
-            $purchases->where('pv.states_id', '!=', 10)
-            ->where('pm.status', '=', 2)         
+            $purchases->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)    
+            ->where('pv.states_id', '!=', 10)      
             ->where('pm.check_chasis', '=', 'Camion');
         })
         ->get();
-        // dd($purchases);
+        //dd($purchases);
         $view = getPermission('Envíos Chatarra', 'record-view');
         $edit = getPermission('Envíos Chatarra', 'record-edit');
         $delete = getPermission('Envíos Chatarra', 'record-delete');
@@ -780,6 +811,7 @@ class ResiduosController extends Controller
             $row['registration_number'] = $value->registration_number;
             $row['registration_date'] = $value->registration_date;
             $row['check_chasis'] = $value->check_chasis;
+            $row['send_date'] = $value->send_date_chatarra;
             $data[] = $row;
         }
 
