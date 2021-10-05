@@ -167,10 +167,10 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.status', '=', 2)
         ->where('pm.download_certificate', '=', 0)
-        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+        ->where('apply.created_at', '>=', $request->start_at)->where('apply.created_at', '<=', $request->end_at)
         ->whereIn('pv.id', $apply)
         ->get();      
-        
+
         $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
         ->where('subprocesses_id', '=', 32)
         ->get();
@@ -860,7 +860,7 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.status', '=', 2)
         ->where('pm.download_certificate', '=', 0)
-        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+        ->where('apply.created_at', '>=', $request->start_at)->where('apply.created_at', '<=', $request->end_at)
         ->whereIn('pv.id', $apply)
         ->get();
 
