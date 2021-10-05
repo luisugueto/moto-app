@@ -1135,24 +1135,32 @@
                                         <label for="check_chasis" class="">Check Chasis: </label>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="iron" name="check_chasis"
-                                                class="custom-control-input" value="Hierro">
+                                                class="custom-control-input myCheckbox" value="Hierro">
                                             <label class="custom-control-label" for="iron">Hierro</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="aluminium" name="check_chasis"
-                                                class="custom-control-input" value="Aluminio">
+                                                class="custom-control-input myCheckbox" value="Aluminio">
                                             <label class="custom-control-label" for="aluminium">Aluminio</label>
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" id="truck" name="check_chasis"
-                                                class="custom-control-input" value="Camion">
+                                                class="custom-control-input myCheckbox" value="Camion">
                                             <label class="custom-control-label" for="truck">Para el camión</label>
                                         </div>
+                                        
+                                        
                                         @if ($errors->has('check_chasis'))
                                             <span class="error text-danger">
                                                 <strong>{{ $errors->first('check_chasis') }}</strong>
                                             </span>
                                         @endif
+                                    </div>
+
+                                 </div>
+                                 <div class="col-md-3">
+                                    <div class="custom-radio custom-control custom-control-inline">
+                                        <button class="btn btn-secondary btn-sm" id="buttonResetCheckbox" type="button" disabled>Resetear Opciones</button>
                                     </div>
                                  </div>
                              </div>
