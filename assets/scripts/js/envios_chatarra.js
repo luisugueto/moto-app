@@ -261,7 +261,8 @@ $(document).ready(function () {
                         return echo;
                     },
                     "targets": -1
-                }
+                },
+                { "data": "send_date" },      
             ],             
             "order": [[0, "desc"]]
         });

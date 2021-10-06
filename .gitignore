@@ -5,6 +5,7 @@
 /local/public/documents_purchase/
 /local/public/img_app/
 /local/public/certificates/
+/local/public/documents_mail/
 Homestead.yaml
 Homestead.json
 .env

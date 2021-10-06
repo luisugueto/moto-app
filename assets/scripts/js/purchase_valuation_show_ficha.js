@@ -37,6 +37,7 @@ $(document).ready(function () {
                 $('#document_purchase_id').val(data.id);
                 $('#image_purchase_id').val(data.id);
                 $('#certificate_purchase_id').val(data.id);
+                $('#documents_mail_purchase_id').val(data.id); 
                 $("#year").val(data.year).trigger('change');
                 $('#brand').val(data.brand).trigger("change");
                 setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
@@ -213,6 +214,10 @@ $(document).ready(function () {
                 data.certficates_purchase_valuation.forEach(function (element) {
                     $("#certificates").append(` <a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a>
                     `);
+                });
+
+                data.documents_mail_purchase_valuation.forEach(function (element) {
+                    $("#documents_mail").append(`<a href="${data.link}/local/public/documents_mail/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><div class="custom-control custom-checkbox ml-2 mt-2"><input type="checkbox" name="apply[]" id="apply_${element.id}" value="${element.id}" class="custom-control-input" checked><label class="custom-control-label" for="apply_${element.id}"></label></div><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsMail(${element.id})"></span>`);
                 });
                 // <span class="fa fa-times text-danger float-right" style="margin-left: -15px;" onclick="deleteCertificate(${element.id})"></span>
                 
@@ -911,11 +916,11 @@ $(document).ready(function () {
     ///////////////////////////////////////////////
     $('#editTabFicha9').click(function (e) {
         e.preventDefault();
-        $('#tab-ficha-9').find('select, textarea, input').each(function () {
+        $('#tab-ficha-9').find('select, textarea, input, #buttonResetCheckbox').each(function () {
             if ($(this).attr('id') == 'V6RrZFvV') {
                 $(this).prop('disabled', true);
             } else {
-                if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+                if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);           
             }
         });
     });
@@ -1046,7 +1051,13 @@ $(document).ready(function () {
             $(".ocultar").hide();
             $(".mostrar").show();
         }
-    });
+     });
+    
+    //Resetear checbox para los envios chatarra 
+    $('#buttonResetCheckbox').click(function () {
+       $('.myCheckbox').prop('checked', false); 
+    })
+    
 
 
 });
@@ -1218,6 +1229,50 @@ Dropzone.options.certificateDropzone = {
     }
 };
  
+Dropzone.options.documentsMailDropzone = {
+    autoProcessQueue: true,
+    uploadMultiple: true,
+    maxFilezise: 10,
+    // maxFiles: 1,
+    acceptedFiles: "application/pdf,.doc,.docx,.xls,.xlsx,.csv,.tsv,.ppt,.pptx,image/jpeg,image/png,image/gif",
+
+    init: function () {
+        documentsMailDropzone = this;
+
+        this.on("addedfile", function (file) {
+        });
+
+        this.on("complete", function (file) {
+            var formData = {
+                id: $('#documents_mail_purchase_id').val()
+            };
+            preloader('show');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                url: 'findDocumentsMail',
+                success: function (data) {
+                    if (data.code == 200) {
+                        preloader('hide', data.message, 'success');
+                        $("#documents_mail").html('');
+                        data.documents_mail_purchase_valuation.forEach(function (element) {
+                            $("#documents_mail").append(`<a href="${data.link}/local/public/documents_mail/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><div class="custom-control custom-checkbox ml-2 mt-2"><input type="checkbox" name="apply[]" id="apply_${element.id}" value="${element.id}" class="custom-control-input" checked><label class="custom-control-label" for="apply_${element.id}"></label></div><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsMail(${element.id})"></span>`);
+                        });
+                    }
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
+        this.on("success",
+            documentsMailDropzone.processQueue.bind(documentsMailDropzone)
+        );
+    }
+};
 
 
 function deleteImages(id) {
@@ -1345,6 +1400,60 @@ function deleteDocuments(id) {
                                 $("#documents").append(`<a href="${data.link}/local/public/other_docs/${element}" target="_blank" style="margin: 15px">${element}</a>`);
                             });
                         }
+                    }
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        }
+    });
+
+}
+
+function deleteDocumentsMail(id) {
+
+    Swal.fire({
+        title:  "Estas seguro?",
+        text: "Quieres volver?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, hazlo!",
+        cancelButtonText: "No, cancelar!",
+        }).then(result => {
+        if (result.dismiss) {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: 'Operación cancelada :)',
+                showConfirmButton: !1,
+                timer: 1500
+            });
+            //swal("Cancelled", "Data is safe :)", "error");
+        }
+        if (result.value) {
+            var formData = {
+                id: id
+            };
+            preloader('show');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                url: 'deleteDocumentsMail',
+                success: function (data) {
+                    if (data.code == 200) {
+                        preloader('hide', data.message, 'success');
+                        $("#documents_mail").html('');
+                        var response = '';
+                        data.documents_mail_purchase_valuation.forEach(function (element) {
+                            response +=  `<a href="${data.link}/local/public/documents_mail/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><div class="custom-control custom-checkbox ml-2 mt-2"><input type="checkbox" name="apply[]" id="apply_${element.id}" value="${element.id}" class="custom-control-input" checked><label class="custom-control-label" for="apply_${element.id}"></label></div><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsMail(${element.id})"></span>`;
+                        });
+                        $("#documents_mail").append(response);                         
                     }
 
                 },

@@ -568,6 +568,7 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Aluminio')
+        ->where('pm.send_date_chatarra', '=', 0)
 
         ->get();
         //dd($purchases);
@@ -611,13 +612,16 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Aluminio')
+        ->where('pm.send_date_chatarra', '=', 0)
         ->get();
 
         foreach($data as $value){
             $purchaseM = PurchaseManagement::where('purchase_valuation_id', $value->id_pv)->first();
             $purchase_management = PurchaseManagement::find($purchaseM->id);
-            $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
-            $purchase_management->update();
+            if($purchase_management->send_date_chatarra !== 0){
+                $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
+                $purchase_management->update();
+            }
         }
         $fecha_envio = $request->send_date_chatarra;
         Excel::create('BASTIDORES PARA CHATARRA ALUMINIO', function($excel) use($data,$fecha_envio ) {
@@ -629,6 +633,8 @@ class ResiduosController extends Controller
             });
 
         })->export('xlsx');
+
+        return Redirect::back()->with('notificacion', 'Informe descargado!')->withInput();
     }
 
     public function getEnviosChatarraHierro()
@@ -641,6 +647,7 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5) 
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Hierro')
+        ->where('pm.send_date_chatarra', '=', 0)
         ->get();
         
         // dd($purchases);
@@ -686,12 +693,13 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Hierro')
+        ->where('pm.send_date_chatarra', '=', 0)
         ->get();
 
         foreach($data as $value){
             $purchaseM = PurchaseManagement::where('purchase_valuation_id', $value->id_pv)->first();
             $purchase_management = PurchaseManagement::find($purchaseM->id);
-            if($purchase_management->send_date_chatarra !== NULL){
+            if($purchase_management->send_date_chatarra !== 0){
                 $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
                 $purchase_management->update();
             }
@@ -707,6 +715,8 @@ class ResiduosController extends Controller
             });
 
         })->export('xlsx');
+
+        return Redirect::back()->with('notificacion', 'Informe descargado!')->withInput();
     }
 
     public function getEnviosChatarraCamion()
@@ -719,6 +729,7 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5) 
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Camion')
+        ->where('pm.send_date_chatarra', '=', 0)
         ->get();
         
         // dd($purchases);
@@ -764,12 +775,13 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5) 
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Camion')
+        ->where('pm.send_date_chatarra', '=', 0)
         ->get();
 
         foreach($data as $value){
             $purchaseM = PurchaseManagement::where('purchase_valuation_id', $value->id_pv)->first();
             $purchase_management = PurchaseManagement::find($purchaseM->id);
-            if($purchase_management->send_date_chatarra !== NULL){
+            if($purchase_management->send_date_chatarra !== 0){
                 $purchase_management->send_date_chatarra  = $request->send_date_chatarra;
                 $purchase_management->update();
             }
@@ -786,6 +798,8 @@ class ResiduosController extends Controller
             });
 
         })->export('xlsx');
+
+        return Redirect::back()->with('notificacion', 'Informe descargado!')->withInput();
     }
 
     public function getEnviosChatarraHistorico()
@@ -798,16 +812,19 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pv.states_id', '!=', 10)
         ->where('pm.check_chasis', '=', 'Aluminio')
+        ->where('pm.send_date_chatarra', '!=', 0)
         ->orWhere(function($purchases) {   
             $purchases->where('apply.processes_id', '=', 5)
             ->where('apply.subprocesses_id', '=', 5)    
             ->where('pv.states_id', '!=', 10)    
+            ->where('pm.send_date_chatarra', '!=', 0)
             ->where('pm.check_chasis', '=', 'Hierro');
         })
         ->orWhere(function($purchases) {   
             $purchases->where('apply.processes_id', '=', 5)
             ->where('apply.subprocesses_id', '=', 5)    
             ->where('pv.states_id', '!=', 10)      
+            ->where('pm.send_date_chatarra', '!=', 0)
             ->where('pm.check_chasis', '=', 'Camion');
         })
         ->get();
