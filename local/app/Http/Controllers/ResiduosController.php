@@ -148,11 +148,16 @@ class ResiduosController extends Controller
 
     public function exportEnviosQuincenalesSinDescargar(Request $request){
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
-        ]);
+            'start_at' => 'required|date|date_format:Y-m-d',
+            'end_at' => 'required|date|date_format:Y-m-d'
+        ]);  
 
         if ($validator->fails()) {
+            return Redirect::back()->with('error', 'Ha ocurrido un error!')->withInput();
+        }
+
+        if(strtotime($request->start_at) <= strtotime($request->end_at)){}
+        else{
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
@@ -167,9 +172,9 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.status', '=', 2)
         ->where('pm.download_certificate', '=', 0)
-        ->where('apply.created_at', '>=', $request->start_at)->where('apply.created_at', '<=', $request->end_at)
+        ->whereDate('apply.created_at', '>=', $request->start_at)->whereDate('apply.created_at', '<=', $request->end_at)
         ->whereIn('pv.id', $apply)
-        ->get();      
+        ->get();   
 
         $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
         ->where('subprocesses_id', '=', 32)
@@ -197,11 +202,16 @@ class ResiduosController extends Controller
     public function exportEnviosQuincenalesDescargados(Request $request){
 
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
-        ]);
+            'start_at' => 'required|date|date_format:Y-m-d',
+            'end_at' => 'required|date|date_format:Y-m-d'
+        ]);  
 
         if ($validator->fails()) {
+            return Redirect::back()->with('error', 'Ha ocurrido un error!')->withInput();
+        }
+
+        if(strtotime($request->start_at) <= strtotime($request->end_at)){}
+        else{
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
@@ -448,11 +458,16 @@ class ResiduosController extends Controller
         // }
 
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
-        ]);
+            'start_at' => 'required|date|date_format:Y-m-d',
+            'end_at' => 'required|date|date_format:Y-m-d'
+        ]);  
 
         if ($validator->fails()) {
+            return Redirect::back()->with('error', 'Ha ocurrido un error!')->withInput();
+        }
+
+        if(strtotime($request->start_at) <= strtotime($request->end_at)){}
+        else{
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
@@ -843,11 +858,16 @@ class ResiduosController extends Controller
     public function downloadCertificados(Request $request){
 
         $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d|before:end_at',
-            'end_at' => 'required|date|date_format:Y-m-d|after:start_at'
-        ]);
+            'start_at' => 'required|date|date_format:Y-m-d',
+            'end_at' => 'required|date|date_format:Y-m-d'
+        ]);  
 
         if ($validator->fails()) {
+            return Redirect::back()->with('error', 'Ha ocurrido un error!')->withInput();
+        }
+
+        if(strtotime($request->start_at) <= strtotime($request->end_at)){}
+        else{
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
         
@@ -862,7 +882,7 @@ class ResiduosController extends Controller
         ->where('apply.subprocesses_id', '=', 5)
         ->where('pm.status', '=', 2)
         ->where('pm.download_certificate', '=', 0)
-        ->where('apply.created_at', '>=', $request->start_at)->where('apply.created_at', '<=', $request->end_at)
+        ->whereDate('apply.created_at', '>=', $request->start_at)->whereDate('apply.created_at', '<=', $request->end_at)
         ->whereIn('pv.id', $apply)
         ->get();
 
