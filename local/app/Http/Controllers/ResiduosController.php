@@ -564,7 +564,7 @@ class ResiduosController extends Controller
         $data = array();
         foreach($purchases as $value){
             $row = array();
-            $row['id'] = $value->id_pv;
+            $row['id'] = 'L'.$value->id_pv;
             $row['frame_no'] = $value->frame_no;
             $row['model'] = $value->model1;            
             $row['registration_number'] = $value->registration_number;
@@ -609,6 +609,8 @@ class ResiduosController extends Controller
             }
         }
         $fecha_envio = $request->send_date_chatarra;
+
+
         Excel::create('BASTIDORES PARA CHATARRA ALUMINIO', function($excel) use($data,$fecha_envio ) {
 
             $excel->sheet('Entrega Aluminio', function($sheet) use($data, $fecha_envio) {
@@ -645,7 +647,7 @@ class ResiduosController extends Controller
         foreach($purchases as $value){
 
             $row = array();
-            $row['id'] = $value->id_pv;
+            $row['id'] = 'L'.$value->id_pv;
             $row['frame_no'] = $value->frame_no;
             $row['model'] = $value->model1;            
             $row['registration_number'] = $value->registration_number;
@@ -727,7 +729,7 @@ class ResiduosController extends Controller
         foreach($purchases as $value){
 
             $row = array();
-            $row['id'] = $value->id_pv;
+            $row['id'] = 'L'.$value->id_pv;
             $row['frame_no'] = $value->frame_no;
             $row['model'] = $value->model1;            
             $row['registration_number'] = $value->registration_number;
@@ -822,7 +824,7 @@ class ResiduosController extends Controller
         foreach($purchases as $value){
 
             $row = array();
-            $row['id'] = $value->id_pv;
+            $row['id'] = 'L'.$value->id_pv;
             $row['frame_no'] = $value->frame_no;
             $row['model'] = $value->model1;            
             $row['registration_number'] = $value->registration_number;

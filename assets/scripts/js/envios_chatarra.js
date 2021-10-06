@@ -8,13 +8,7 @@ $(document).ready(function () {
 
     $('#tableEnviosChatarraAluminio thead tr:eq(1) th').each( function (i) {
       
-        if (i == 0) {
-            $(this).css('color', 'transparent');
-        }
-        else {            
-            $(this).html('<input type="text" class="form-control" />');
-        }
-        
+        $(this).html('<input type="text" class="form-control" />');         
  
         $( 'input', this ).on( 'keyup change', function () {
             if (dataTable.column(i).search() !== this.value) {             
@@ -101,12 +95,7 @@ $(document).ready(function () {
  
     $('#tableEnviosChatarraHierro thead tr:eq(1) th').each(function (i) {
     
-        if (i == 0) {
-            $(this).css('color', 'transparent');
-        }
-        else {            
-            $(this).html('<input type="text" class="form-control" />');
-        }
+        $(this).html('<input type="text" class="form-control" />'); 
 
         $( 'input', this ).on( 'keyup change', function () {
             if (dataTable.column(i).search() !== this.value) {             
@@ -155,14 +144,9 @@ $(document).ready(function () {
     //Tabla para chatarra hierro  
     $('#tableEnviosChatarraCamion thead tr').clone(true).appendTo('#tableEnviosChatarraCamion thead');
  
-    $('#tableEnviosChatarraCamion thead tr:eq(1) th').each(function (i) {
-    
-        if (i == 0) {
-            $(this).css('color', 'transparent');
-        }
-        else {            
-            $(this).html('<input type="text" class="form-control" />');
-        }
+    $('#tableEnviosChatarraCamion thead tr:eq(1) th').each(function (i) {    
+                    
+        $(this).html('<input type="text" class="form-control" />');       
 
         $( 'input', this ).on( 'keyup change', function () {
             if (dataTable.column(i).search() !== this.value) {             
@@ -213,13 +197,8 @@ $(document).ready(function () {
  
     $('#tableEnviosChatarraHistorico thead tr:eq(1) th').each(function (i) {
     
-        if (i == 0) {
-            $(this).css('color', 'transparent');
-        }
-        else {            
-            $(this).html('<input type="text" class="form-control" />');
-        }
-
+        $(this).html('<input type="text" class="form-control" />');
+        
         $( 'input', this ).on( 'keyup change', function () {
             if (dataTable.column(i).search() !== this.value) {             
                 dataTable
