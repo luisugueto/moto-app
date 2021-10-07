@@ -100,9 +100,17 @@
                         {!! Form::close() !!}
                     </div>
                     <div class="tab-pane" id="tab-animated-3" role="tabpanel">
-                        <div class="row" id="documents_mail">
-                            
-                        </div>
+                        {!! Form::open(['url' => 'sendDocumentsEmail', 'method' => 'post']) !!} 
+                            <input type="hidden" name="purchase_valuation_id" id="purchase_valuation_id">
+                            <div class="row" id="documents_mail">
+                                
+                            </div>
+
+                            <button type="submit" id="buttonSendDocumentsEmail" class="btn btn-primary" style="display:none">Enviar Documentos</button>
+                        {!! Form::close() !!}
+
+                        
+
                         <hr>
                         {!! Form::open(['url'=> 'uploadDocumentsMail', 'method' => 'POST', 'files'=>'true', 'id' => 'documents-mail-dropzone' , 'class' => 'dropzone']) !!}
                             <input type="hidden" id="documents_mail_purchase_id" name="id" value="0">

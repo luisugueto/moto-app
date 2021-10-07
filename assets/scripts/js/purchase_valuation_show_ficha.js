@@ -33,6 +33,7 @@ $(document).ready(function () {
                     $("#ver").click();
                 }
 
+                $('#purchase_valuation_id').val(data.id);
                 $('#purchase_id').val(data.id);
                 $('#document_purchase_id').val(data.id);
                 $('#image_purchase_id').val(data.id);
@@ -215,6 +216,9 @@ $(document).ready(function () {
                     $("#certificates").append(` <a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a>
                     `);
                 });
+
+                if(data.documents_mail_purchase_valuation.length)
+                    $("#buttonSendDocumentsEmail").css('display', 'block');
 
                 data.documents_mail_purchase_valuation.forEach(function (element) {
                     $("#documents_mail").append(`<a href="${data.link}/local/public/documents_mail/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><div class="custom-control custom-checkbox ml-2 mt-2"><input type="checkbox" name="apply[]" id="apply_${element.id}" value="${element.id}" class="custom-control-input" checked><label class="custom-control-label" for="apply_${element.id}"></label></div><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsMail(${element.id})"></span>`);

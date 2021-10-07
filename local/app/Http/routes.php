@@ -24,6 +24,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('uploadImage', 'PurchaseValuationController@uploadImage');    
     Route::post('uploadCertificate', 'PurchaseValuationController@uploadCertificate');
     Route::post('uploadDocumentsMail', 'PurchaseValuationController@uploadDocumentsMail');
+
+    //ENVIAR DOCUMENTOS POR CORREO CARGADOS EN FICHA
+    Route::post('sendDocumentsEmail', 'PurchaseValuationController@sendDocumentsEmail');
     
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
@@ -188,8 +191,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     //BUSCADOR EN MOTOS QUE NOS OFRECEN
     Route::get('motos/buscador','PurchaseValuationController@buscador');
-
-
 });
 
 Route::get('/config-cache', function() {      $exitCode = Artisan::call('config:cache');      return '<h1>Clear Config cleared</h1>';  });

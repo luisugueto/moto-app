@@ -2719,4 +2719,26 @@ class PurchaseValuationController extends Controller
             return Redirect::back()->with('error', 'Ha ocurrido un error!');
         }
     }
+
+    //ENVIAR DOCUMENTOS POR CORREO CARGADOS EN FICHA
+    public function sendDocumentsEmail(Request $request){
+       
+        $purchase = PurchaseValuation::find($request->purchase_valuation_id);
+        $documentsPurchase = DocumentsMailPurchaseValuation::where('purchase_valuation_id', $purchase->id)->whereIn('id', $request->apply)->get();
+        $email = Email::find(10);
+
+        Mail::send('backend.emails.send-documents-ficha', ['purchase' => $purchase, 'email' => $email], function ($message) use ($purchase, $documentsPurchase, $email)
+                {
+                    $message->from('info@motostion.com', 'MotOstion');
+
+                    // SE ENVIARA A
+                    $message->to($purchase->email)->subject($email->subject);
+
+                    foreach($documentsPurchase as $document){
+                        $message->attach(public_path().'/documents_mail/'.$document->name);
+                    }
+                });
+
+        return Redirect::back()->with('notification', 'Se han enviado correctamente los documentos!');
+    }
 }
