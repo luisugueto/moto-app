@@ -40,6 +40,11 @@
                     <span>Histórico</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a role="tab" class="nav-link" id="tab-4" data-toggle="tab" href="#tab-content-4">
+                    <span>Incidencias <b><span id="count" class="text-danger">0</span></b></span>
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
@@ -147,6 +152,28 @@
                                     <th class="text-center">Fecha Matriculación</th>
                                     <th class="text-center">Tipo Chasis</th>
                                     <th class="text-center">Fecha Envío</th>
+                                </tr>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane tabs-animation fade" id="tab-content-4" role="tabpanel">
+                <div class="main-card mb-3 card">
+                    <div class="card-body">
+                        <h5 class="card-title">Envios Chatarra Incidencias
+                            <br><br>   
+                        </h5> 
+                        <table style="width: 100%" id="tableEnviosChatarraIncidencias" class="table table-hover table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th class="text-center">Bastidor</th>
+                                    <th class="text-center">Modelo</th>
+                                    <th class="text-center">Matricula</th>
+                                    <th class="text-center">Fecha Matriculación</th>
+                                    <th class="text-center">Tipo Chasis</th>
+                                    {{-- <th class="text-center">Fecha Envío</th> --}}
                                 </tr>
                         </table>
                         

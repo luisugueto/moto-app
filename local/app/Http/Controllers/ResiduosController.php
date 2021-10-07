@@ -32,18 +32,33 @@ class ResiduosController extends Controller
 
     }
 
-    public function getEnviosQuincenalesSinDescargar()
+    public function getEnviosQuincenalesSinDescargar(Request $request)
     {
-        $purchases = DB::table('purchase_valuation AS pv')
-        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
-        ->where('pm.status', '=', 2)
-        ->where('pm.download_certificate', '=', 0)
-        ->get();
-        // dd($purchases);
+         
+        if($request->from != '' && $request->to != ''){
+            $purchases = DB::table('purchase_valuation AS pv')
+            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+            ->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)
+            ->where('pm.status', '=', 2)
+            ->where('pm.download_certificate', '=', 0)
+            ->where('pm.created_at', '>=', $request->from)->where('pm.created_at', '<=', $request->to)
+            ->get();
+        }else{
+            $purchases = DB::table('purchase_valuation AS pv')
+            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+            ->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)
+            ->where('pm.status', '=', 2)
+            ->where('pm.download_certificate', '=', 0)
+            ->get();
+        }
+        
+        
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
         $delete = getPermission('Envíos Quincenales', 'record-delete');
@@ -853,6 +868,93 @@ class ResiduosController extends Controller
         $json_data= collect($json_data);
 
         return response()->json($json_data);
+    }
+
+    public function getEnviosChatarraIncidencias()
+    {
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 6)
+        ->where('pv.states_id', '!=', 10)
+        ->where('pm.check_chasis', '=', 'Aluminio')
+        ->where('pm.send_date_chatarra', '=', 0)
+        ->orWhere(function($purchases) {   
+            $purchases->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 6)    
+            ->where('pv.states_id', '!=', 10)    
+            ->where('pm.send_date_chatarra', '=', 0)
+            ->where('pm.check_chasis', '=', 'Hierro');
+        })
+        ->orWhere(function($purchases) {   
+            $purchases->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 6)    
+            ->where('pv.states_id', '!=', 10)      
+            ->where('pm.send_date_chatarra', '=', 0)
+            ->where('pm.check_chasis', '=', 'Camion');
+        })
+        ->get();
+        //dd($purchases);
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        $edit = getPermission('Envíos Chatarra', 'record-edit');
+        $delete = getPermission('Envíos Chatarra', 'record-delete');
+       
+
+        $data = array();
+        foreach($purchases as $value){
+
+            $row = array();
+            $row['id'] = 'L'.$value->id_pv;
+            $row['frame_no'] = $value->frame_no;
+            $row['model'] = $value->model1;            
+            $row['registration_number'] = $value->registration_number;
+            $row['registration_date'] = $value->registration_date;
+            $row['check_chasis'] = $value->check_chasis;
+            $row['send_date'] = $value->send_date_chatarra;
+            $data[] = $row;
+        }
+       
+        // $data['cuenta'] = $count;
+        
+        $json_data = array('data'=> $data);
+        $json_data= collect($json_data);
+
+        return response()->json($json_data);
+    }
+
+    public function getCountEnviosChatarraIncidencias(){
+        $purchases = DB::table('purchase_valuation AS pv')
+        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+        ->select('pv.id AS id_pv', 'pv.model AS model1', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id')
+        ->where('apply.processes_id', '=', 5)
+        ->where('apply.subprocesses_id', '=', 6)
+        ->where('pv.states_id', '!=', 10)
+        ->where('pm.check_chasis', '=', 'Aluminio')
+        ->where('pm.send_date_chatarra', '=', 0)
+        ->orWhere(function($purchases) {   
+            $purchases->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 6)    
+            ->where('pv.states_id', '!=', 10)    
+            ->where('pm.send_date_chatarra', '=', 0)
+            ->where('pm.check_chasis', '=', 'Hierro');
+        })
+        ->orWhere(function($purchases) {   
+            $purchases->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 6)    
+            ->where('pv.states_id', '!=', 10)      
+            ->where('pm.send_date_chatarra', '=', 0)
+            ->where('pm.check_chasis', '=', 'Camion');
+        })
+        ->count();
+
+        $out['code'] = 200;
+        $out['message'] = 'Registro actualizado exitosamente.';
+        $out['purchases'] = $purchases;
+
+        return response()->json($out);
     }
 
     public function downloadCertificados(Request $request){

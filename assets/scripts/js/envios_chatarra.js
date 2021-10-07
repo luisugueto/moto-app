@@ -3,6 +3,7 @@ $(document).ready(function () {
     //get base URL *********************
     var url = $('#url').val();
     var dataTable = '';
+    $('#count').html(0);
 
     $('#tableEnviosChatarraAluminio thead tr').clone(true).appendTo('#tableEnviosChatarraAluminio thead');
 
@@ -49,6 +50,20 @@ $(document).ready(function () {
         // Toggle the visibility
         console.log(column);             
         column.visible(!column.visible());
+    });
+
+    $.ajax({
+        headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+        type: "POST",
+        url: 'getCountEnviosChatarraIncidencias',
+        success: function (data) {
+            if (data.code == 200) {
+                $('#count').html(data.purchases);
+            }
+            
+        },
+        error: function (data) {
+        }
     });
     
     $('#tab-0').click(function () {
@@ -253,6 +268,54 @@ $(document).ready(function () {
             column.visible(!column.visible());
         });
     });
+
+    $('#tab-4').click(function () {
+        if ($.fn.DataTable.isDataTable("#tableEnviosChatarraIncidencias")) {
+            $('#tableEnviosChatarraIncidencias').DataTable().clear().destroy();
+        }
+        dataTable = $('#tableEnviosChatarraIncidencias').DataTable({
+            processing: true,
+            responsive: true,
+            orderCellsTop: true,
+            fixedHeader: true, 
+            "ajax": {
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                url: "getEnviosChatarraIncidencias", // json datasource            
+                type: "post", // method  , by default get
+                error: function () {  // error handling
+                }
+            },
+            "columns": [
+                { "data": "id" },
+                { "data": "frame_no" },
+                { "data": "model" },
+                { "data": "registration_number" },
+                { "data": "registration_date" },               
+                {
+                    "data": null,
+                    render: function (data) {
+                        let echo = '<b>' + data.check_chasis + '</b>';
+                                        
+    
+                        return echo;
+                    },
+                    "targets": -1
+                },
+                // { "data": "send_date" },      
+            ],             
+            "order": [[0, "desc"]]            
+        });
+        $('input.toggle-vis-2').on('change', function(e) {
+            e.preventDefault();
+            // Get the column API object
+            var column = dataTable.column($(this).attr('data-column'));
+            // Toggle the visibility            
+            column.visible(!column.visible());
+        });
+        
+    });
+
+
     
 
 });

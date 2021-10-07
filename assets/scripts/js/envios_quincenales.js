@@ -3,6 +3,8 @@ $(document).ready(function () {
     //get base URL *********************
     var url = $('#url').val();
     var dataTable = '';
+    var from = $("#start_at").val();
+    var to = $("#end_at").val();
 
     $('#tableEnviosQuincenalesSinDescargar thead tr').clone(true).appendTo('#tableEnviosQuincenalesSinDescargar thead');
 
@@ -33,7 +35,7 @@ $(document).ready(function () {
         fixedHeader: true, 
         "ajax": {
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
-            url: "getEnviosQuincenalesSinDescargar", // json datasource            
+            url: "getEnviosQuincenalesSinDescargar", // json datasource 
             type: "post", // method  , by default get
             error: function () {  // error handling
             }
@@ -213,6 +215,26 @@ $(document).ready(function () {
         $("#formDownload1").submit();
     });
     
+    $('#end_at').change(function () {        
+
+        if ($('#end_at').val() != '' && $('#start_at').val() != '') {
+            
+            from = $("#start_at").val();
+            to = $("#end_at").val();
+            dtEnviosQuincenalesSinDescargar(from, to);
+        }
+    });
+
+    $('#start_at').change(function () {        
+
+        if ($('#end_at').val() != '' && $('#start_at').val() != '') {
+            
+            from = $("#start_at").val();
+            to = $("#end_at").val();
+            dtEnviosQuincenalesSinDescargar(from, to);
+        }
+    });
+
     $('#tab-0').click(function () {
         if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
             $('#tableEnviosQuincenalesSinDescargar').DataTable().clear().destroy();
@@ -545,4 +567,138 @@ $(document).ready(function () {
     });
 
 });
+
+function dtEnviosQuincenalesSinDescargar(from, to) {
+
+    if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
+        $('#tableEnviosQuincenalesSinDescargar').DataTable().clear().destroy();
+    }
+
+
+    dataTable = $('#tableEnviosQuincenalesSinDescargar').DataTable({
+        processing: true,
+        responsive: true,
+        orderCellsTop: true,
+        fixedHeader: true, 
+        "ajax": {
+            headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+            url: "getEnviosQuincenalesSinDescargar", // json datasource    
+            data: {
+                "from": from,
+                "to": to,
+            },
+            type: "post", // method  , by default get
+            error: function () {  // error handling
+            }
+        },
+        "columns": [
+            { "data": null,
+                render:function(data){
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input" checked><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+        
+                },
+                "targets": -1
+            },  
+            { "data": "model" },
+            { "data": "registration_number" },
+            { "data": "registration_date" },
+            { "data": "frame_no" },
+            { "data": null,
+                render:function(data){
+                    let echo = '';
+                    
+                    if(data.vehicle_state_trafic == "Alta")
+                        echo = "Alta";
+                    else if(data.vehicle_state_trafic == "Baja definitiva")
+                        echo = "Baja definitiva";
+                    else if(data.vehicle_state_trafic == "Baja temporal")
+                        echo = "Baja temporal";
+
+
+                        if(data.vehicle_state == "Siniestrado")
+                        echo = "Baja definitiva";
+                        else if(data.vehicle_state == "Averiado")
+                        echo = "Baja definitiva";                        
+                        else if(data.vehicle_state == "Abandonado")
+                        echo = "Abandonado";
+                        else if(data.vehicle_state == "Completo")
+                        echo = "Completo";
+                        else if(data.vehicle_state == "Parcialmente desmontado")
+                        echo = "Parcialmente desmontado";
+                    
+
+                    return echo;
+                },
+                "targets": -1
+            },
+            { "data": "weight" },
+            { "data": "titular" },
+            { "data": "dni" },
+            { "data": "birthdate" },
+            { "data": "direction" },
+            { "data": "postal_code" },
+            { "data": "municipality" },
+            { "data": "province" },
+            { "data": null,
+                render:function(data){
+                    let echo = '';
+                    if(data.vehicle_state == "Siniestrado")
+                        echo = "Baja definitiva";
+                    else if(data.vehicle_state == "Averiado")
+                        echo = "Baja definitiva";                        
+                    else if(data.vehicle_state == "Abandonado")
+                        echo = "Abandonado";
+                    else if(data.vehicle_state == "Completo")
+                        echo = "Completo";
+                    else if(data.vehicle_state == "Parcialmente desmontado")
+                        echo = "Parcialmente desmontado";                    
+
+                    return echo;
+                },
+                "targets": -1
+            },
+            { "data": "current_year" },
+            { "data": "id" },
+            { "data": "certificate_destruction_date" },
+            { "data": "collection_contract_date" }
+             
+
+        ],
+        "columnDefs": [
+            {
+                "targets": [ 3 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 5 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 6 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 9 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 10 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 11 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 12 ],
+                "visible": false,
+            },
+            {
+                "targets": [ 18 ],
+                "visible": false
+            }
+        ],
+        "order": [[0, "desc"]]
+    });
+}
  

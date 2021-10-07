@@ -143,6 +143,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('getEnviosChatarraHierro', 'ResiduosController@getEnviosChatarraHierro');
     Route::post('getEnviosChatarraCamion', 'ResiduosController@getEnviosChatarraCamion');
     Route::post('getEnviosChatarraHistorico', 'ResiduosController@getEnviosChatarraHistorico');
+    Route::post('getEnviosChatarraIncidencias', 'ResiduosController@getEnviosChatarraIncidencias');
+    Route::post('getCountEnviosChatarraIncidencias', 'ResiduosController@getCountEnviosChatarraIncidencias');
 
     Route::post('getEnviosSemestrales', 'ResiduosController@getEnviosSemestrales');
     Route::post('getEnviosAnuales', 'ResiduosController@getEnviosAnuales');
