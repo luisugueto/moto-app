@@ -44,7 +44,7 @@ class ResiduosController extends Controller
             ->where('apply.subprocesses_id', '=', 5)
             ->where('pm.status', '=', 2)
             ->where('pm.download_certificate', '=', 0)
-            ->where('pm.created_at', '>=', $request->from)->where('pm.created_at', '<=', $request->to)
+            ->whereDate('apply.created_at', '>=', $request->from)->whereDate('apply.created_at', '<=', $request->to)
             ->get();
         }else{
             $purchases = DB::table('purchase_valuation AS pv')
