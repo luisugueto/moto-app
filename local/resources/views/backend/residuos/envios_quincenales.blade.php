@@ -72,6 +72,9 @@
                                         <input type="date" id="end_at" name="end_at" title="Hasta" value="{{ old('end_at') }}" class="form-control custom-control-inline" required>
                                     </div>
                                     <div class="col-md-2 mt-1">
+                                        <button class="btn btn-primary" id="clearFields">Limpiar campos</button>
+                                    </div>
+                                    <div class="col-md-2 mt-1">
                                         <button id="applyInf" class="btn btn-primary">Obtener Informe</button>
                                     </div>
                                 </div>
@@ -82,7 +85,7 @@
                                 <input type="hidden" name="start_at" id="start_at_download">
                                 <input type="hidden" name="end_at" id="end_at_download">
 
-                                <div class="col-md-2 mt-1">
+                                <div class="col-md-2 mt-2">
                                     <button id="applyDownload" class="btn btn-primary">Descargar Certificados</button>
                                 </div>
                             {!! Form::close() !!}

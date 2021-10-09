@@ -235,6 +235,11 @@ $(document).ready(function () {
         }
     });
 
+    $('#clearFields').click(function () {
+        $("#start_at").val('');
+        $("#end_at").val('');
+    });
+
     $('#tab-0').click(function () {
         if ($.fn.DataTable.isDataTable("#tableEnviosQuincenalesSinDescargar")) {
             $('#tableEnviosQuincenalesSinDescargar').DataTable().clear().destroy();
