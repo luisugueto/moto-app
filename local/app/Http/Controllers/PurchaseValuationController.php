@@ -2741,4 +2741,28 @@ class PurchaseValuationController extends Controller
 
         return Redirect::back()->with('notification', 'Se han enviado correctamente los documentos!');
     }
+
+    public function deleteCertificate(Request $request){
+        //dd($request->all());
+        $purchase = CertificatesPurchaseValuation::find($request->id);
+        if(isset($purchase)){
+            $documentPath = public_path().'/certificates/'. $purchase->name; // For dynamic value
+            CertificatesPurchaseValuation::destroy($purchase->id);
+            \File::delete($documentPath); //delete image from server
+            $documents = CertificatesPurchaseValuation::where('purchase_valuation_id', $purchase->purchase_valuation_id)->get();
+            $purchase_management = CertificatesPurchaseValuation::where('purchase_valuation_id', $purchase->purchase_valuation_id)->first();
+
+            $out['code'] = 200;
+            $out['message'] = 'Documento eliminado exitosamente';
+            $out['certificates'] = $documents;
+            $out['link'] = url('/');
+        }
+        else{
+            $out['code'] = 422;
+            $out['message'] = 'Documento no encontrado! No se pudo eliminar.';
+            $out['certificates'] = '';
+            $out['link'] = url('/');
+        }
+        return response()->json($out);
+    }
 }

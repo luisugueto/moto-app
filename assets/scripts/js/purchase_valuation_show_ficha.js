@@ -213,8 +213,8 @@ $(document).ready(function () {
                 });
 
                 data.certficates_purchase_valuation.forEach(function (element) {
-                    $("#certificates").append(` <a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a>
-                    `);
+                    $("#certificates").append(`<a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsCertificated(${element.id})"></span>`);
+
                 });
 
                 if(data.documents_mail_purchase_valuation.length)
@@ -1217,7 +1217,7 @@ Dropzone.options.certificateDropzone = {
                         preloader('hide', data.message, 'success');
                         $("#certificates").html('');
                         data.certificates.forEach(function (element) {
-                            $("#certificates").append(`<a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a>`);
+                            $("#certificates").append(`<a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsCertificated(${element.id})"></span>`);
                         });
                     }
 
@@ -1458,6 +1458,59 @@ function deleteDocumentsMail(id) {
                             response +=  `<a href="${data.link}/local/public/documents_mail/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><div class="custom-control custom-checkbox ml-2 mt-2"><input type="checkbox" name="apply[]" id="apply_${element.id}" value="${element.id}" class="custom-control-input" checked><label class="custom-control-label" for="apply_${element.id}"></label></div><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsMail(${element.id})"></span>`;
                         });
                         $("#documents_mail").append(response);                         
+                    }
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+            });
+        }
+    });
+
+}
+
+function deleteDocumentsCertificated(id) {
+    Swal.fire({
+        title:  "Estas seguro?",
+        text: "Quieres volver?!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, hazlo!",
+        cancelButtonText: "No, cancelar!",
+        }).then(result => {
+        if (result.dismiss) {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: 'Operación cancelada :)',
+                showConfirmButton: !1,
+                timer: 1500
+            });
+            //swal("Cancelled", "Data is safe :)", "error");
+        }
+        if (result.value) {
+            var formData = {
+                id: id
+            };
+            preloader('show');
+            $.ajax({
+                headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
+                type: 'POST',
+                data: formData,
+                dataType: 'json',
+                url: 'deleteCertificate',
+                success: function (data) {
+                    if (data.code == 200) {
+                        preloader('hide', data.message, 'success');
+                        $("#certificates").html('');
+                        var response = '';
+                        data.certificates.forEach(function (element) {
+                            response +=  `<a href="${data.link}/local/public/certificates/${element.name}" target="_blank" style="margin: 15px">${element.name}</a><span class="fa fa-times text-danger float-right ml-3 mt-2"  onclick="deleteDocumentsCertificated(${element.id})"></span>`;
+                        });
+                        $("#certificates").append(response);                         
                     }
 
                 },
