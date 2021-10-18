@@ -749,15 +749,56 @@
 
                     <p class="s3" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">Por
                         un total de <b>{{ $precio }}</b> Euros, por los siguientes repuestos:</p>
+                        <p style="text-indent: 0pt;text-align: justify;"><br /></p>
 
                 </td>
             </tr>
         </table>
+        <table style="border: 1px solid black; border-collapse: collapse;margin-left:15.04pt;width: 730px" cellspacing="0">
+            <tr>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre hel Recambio</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Precio €</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre del Recambio</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Precio €</b></span></th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">&nbsp;&nbsp;</span></td>
+            </tr>
+        </table>
+        <p style="text-indent: 0pt;text-align: justify;"><br /></p>
+        <p style="text-indent: 0pt;text-align: justify;"><br /></p>
         <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
             <tr style="height:35pt">
                 <td style="width:489pt">
                     <p class="s3" style="padding-top: 40pt; text-indent: 0pt;line-height: 11pt;text-align: center;">
-                        Forma de pago</p>
+                        <b>Forma de pago</b></p>
                 </td>
             </tr>
         </table>
