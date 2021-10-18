@@ -102,7 +102,14 @@ $(document).ready(function () {
                                 if (response[i].name == 'dLQrpaV2') {
                                     // $('#dLQrpaV2').val(response[i].value);
                                     $('#sale_amount').val(response[i].value);
+
+                                    if (response[i].value > 1) {
+                                        let b4 = '<a class="btn btn-success" href="rebu/' + data.id + '">REBU</a>';
+                                        $('#buttonREBU').html(b4);
+                                    }
                                 }
+
+                               
                             }
                         }
                     }, 3000);

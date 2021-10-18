@@ -1185,6 +1185,7 @@
                         <div class="col-md-3"><button type="button" class="btn btn-primary" id="btn-save" value="add">Guardar Cambios</button></div>
                         <div class="col-md-3" id="buttonLabelss"></div>
                         <div class="col-md-3" id="buttonSendMail"></div>
+                        <div class="col-md-3" id="buttonREBU"></div>
                     </div>
                     
                     

@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //ENVIAR DOCUMENTOS POR CORREO CARGADOS EN FICHA
     Route::post('sendDocumentsEmail', 'PurchaseValuationController@sendDocumentsEmail');
+
+    //REBU
+    Route::get('purchase_valuation_interested/rebu/{id}', 'PurchaseValuationController@rebuView');
     
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');

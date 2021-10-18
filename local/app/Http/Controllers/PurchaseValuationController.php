@@ -2741,4 +2741,19 @@ class PurchaseValuationController extends Controller
 
         return Redirect::back()->with('notification', 'Se han enviado correctamente los documentos!');
     }
+
+    //REBU
+    public function rebuView($id)
+    {
+        $view = getPermission('Motos que nos ofrecen', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
+        $haspermision = getPermission('Motos que nos ofrecen', 'record-create');
+
+        $purchase_valuation = PurchaseValuation::find($id);
+        $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
+        $forms = Forms::select(['form_display'])->where('id', 1)->first();
+        return view('backend.purchase_valuation.rebu', compact('purchase_valuation', 'purchase_management', 'forms', 'haspermision'));
+    }
 }
