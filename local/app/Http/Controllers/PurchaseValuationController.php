@@ -2410,7 +2410,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2452,7 +2452,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2504,7 +2504,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2557,7 +2557,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
