@@ -23,6 +23,7 @@ use App\ApplySubProcessAndProcess;
 use App\IncidencePurchase;
 use App\CertificatesPurchaseValuation;
 use App\DocumentsMailPurchaseValuation;
+use App\RebuPurchase;
 
 class PurchaseValuationController extends Controller
 {
@@ -2409,6 +2410,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2422,7 +2424,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
             // CREATE DOCUMENT DESTRUCTION
-            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf2 = \App::make('dompdf.wrapper');
             $pdf2->loadHTML($view2);
 
@@ -2450,6 +2452,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2463,7 +2466,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
             // CREATE DOCUMENT DESTRUCTION
-            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf2 = \App::make('dompdf.wrapper');
             $pdf2->loadHTML($view2);
 
@@ -2501,6 +2504,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2514,7 +2518,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
             // CREATE DOCUMENT DESTRUCTION
-            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf2 = \App::make('dompdf.wrapper');
             $pdf2->loadHTML($view2);
 
@@ -2553,6 +2557,7 @@ class PurchaseValuationController extends Controller
     {
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
 
@@ -2566,7 +2571,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile, $output);
 
             // CREATE DOCUMENT DESTRUCTION
-            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view2 =  \View::make('pdf.documentos-para-destruccion', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf2 = \App::make('dompdf.wrapper');
             $pdf2->loadHTML($view2);
 
@@ -2778,7 +2783,41 @@ class PurchaseValuationController extends Controller
         $purchase_valuation = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $id)->first();
         $forms = Forms::select(['form_display'])->where('id', 1)->first();
-        return view('backend.purchase_valuation.rebu', compact('purchase_valuation', 'purchase_management', 'forms', 'haspermision'));
 
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
+
+        return view('backend.purchase_valuation.rebu', compact('purchase_valuation', 'rebu','purchase_management', 'forms', 'haspermision'));
+
+    }
+
+    public function rebuSave(Request $request)
+    {
+        $purchase_valuation = PurchaseValuation::find($request->purchase_valuation_id);
+
+        // verificando errores
+        for($i = 1; $i <= 10; $i++){
+            if(empty($request["residuo".$i]) && !empty($request["price".$i])){
+                return Redirect::to('purchase_valuation_interested/rebu/'.$purchase_valuation->id)->with('error', 'Ha ocurrido un error en el REBU '.$i.'!')->withInput();
+            }
+        }
+
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase_valuation->id)->get();
+        if($rebu->count() > 0) DB::table("rebu_purchases")->where('purchase_valuation_id',$purchase_valuation->id)->delete();
+
+        // guardando datos
+        for($i = 1; $i <= 10; $i++){
+            if(empty($request["residuo".$i]) && !empty($request["price".$i])){
+                return Redirect::to('purchase_valuation_interested/rebu/'.$purchase_valuation->id)->with('error', 'Ha ocurrido un error en el REBU '.$i.'!')->withInput();
+            }
+            if(!empty($request["residuo".$i]) && !empty($request["price".$i])){
+                $rebu = new RebuPurchase();
+                $rebu->purchase_valuation_id = $purchase_valuation->id;
+                $rebu->name = $request["residuo".$i];
+                $rebu->price = $request["price".$i];
+                $rebu->save();
+            }
+        }
+
+        return Redirect::to('purchase_valuation_interested/rebu/'.$purchase_valuation->id)->with('notification', 'Se ha guardado REBU correctamente!');
     }
 }

@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //REBU
     Route::get('purchase_valuation_interested/rebu/{id}', 'PurchaseValuationController@rebuView');
+    Route::post('purchase_valuation_interested/rebu', 'PurchaseValuationController@rebuSave');
     
     Route::resource('empleados', 'UserController');
     Route::resource('perfiles', 'RoleController');
