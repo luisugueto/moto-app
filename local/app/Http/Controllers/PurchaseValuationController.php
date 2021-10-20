@@ -2698,10 +2698,11 @@ class PurchaseValuationController extends Controller
     public function send_mail_document($id){
         $purchase = PurchaseValuation::find($id);
         $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+        $rebu = RebuPurchase::where('purchase_valuation_id', $purchase->id)->get();
 
         if(ApplySubProcessAndProcess::where('processes_id', 7)->where('subprocesses_id', 17)->where('purchase_valuation_id', $purchase->id)->count() > 0){
             // CREATE PDF
-            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view =  \View::make('pdf.ficha', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadHTML($view);
 

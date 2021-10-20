@@ -4889,10 +4889,51 @@
 
                     <p class="s18" style="padding-left: 10pt;text-indent: 0pt;line-height: 14pt;text-align: left;">Por
                         un total de {{ $precio }} Euros, por los siguientes repuestos:</p>
+                    <p style="text-indent: 0pt;text-align: justify;"><br /></p>
 
                 </td>
             </tr>
         </table>
+        <table style="border: 1px solid black; border-collapse: collapse;margin-left:15.04pt;width: 730px" cellspacing="0">
+            <tr>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre hel Recambio</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Precio €</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre del Recambio</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Precio €</b></span></th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[0])) {{ $rebu[0]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[0])) {{ $rebu[0]->price }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[1])) {{ $rebu[1]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[1])) {{ $rebu[1]->price }} @else &nbsp;&nbsp; @endif</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[2])) {{ $rebu[2]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[2])) {{ $rebu[2]->price }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[3])) {{ $rebu[3]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[3])) {{ $rebu[3]->price }} @else &nbsp;&nbsp; @endif</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[4])) {{ $rebu[4]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[4])) {{ $rebu[4]->price }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[5])) {{ $rebu[5]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[5])) {{ $rebu[5]->price }} @else &nbsp;&nbsp; @endif</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[6])) {{ $rebu[6]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[6])) {{ $rebu[6]->price }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[7])) {{ $rebu[7]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[7])) {{ $rebu[7]->price }} @else &nbsp;&nbsp; @endif</span></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[8])) {{ $rebu[8]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[8])) {{ $rebu[8]->price }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[9])) {{ $rebu[9]->name }} @else &nbsp;&nbsp; @endif</span></td>
+                <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[9])) {{ $rebu[9]->price }} @else &nbsp;&nbsp; @endif</span></td>
+            </tr>
+        </table>
+        <p style="text-indent: 0pt;text-align: justify;"><br /></p>
+        <p style="text-indent: 0pt;text-align: justify;"><br /></p>
         <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
             <tr style="height:35pt">
                 <td style="width:489pt">
