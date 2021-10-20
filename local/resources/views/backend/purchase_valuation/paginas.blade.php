@@ -5,6 +5,7 @@
             <th>#</th>
             <th>Marca / Modelo</th>
             <th>No Bastidor / Matrícula / Año</th>
+            <th>Motor</th>
             <th>Teléfono / Email</th>
             <th>Estado Ficha</th>
             <th>Estado de la Moto</th>
@@ -38,6 +39,7 @@
                         </li>
                     </ul>
                 </td>
+                <td>{{ $item->motor_no }}</td>
                 <td class="project_progress">
                     <ul class="list-inline">
                         <li class="list-inline-item">

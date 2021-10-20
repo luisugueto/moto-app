@@ -2681,12 +2681,13 @@ class PurchaseValuationController extends Controller
             $motos = DB::table('purchase_valuation')
             ->leftjoin('purchase_management', 'purchase_valuation.id', '=', 'purchase_management.purchase_valuation_id')
             ->leftjoin('states', 'purchase_valuation.states_id', '=', 'states.id')
-            ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.frame_no', 'purchase_management.registration_number', 'states.name AS state')
+            ->select('purchase_valuation.*', 'purchase_management.status', 'purchase_management.frame_no', 'purchase_management.registration_number', 'purchase_management.motor_no', 'states.name AS state')
             ->where('purchase_valuation.id', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_valuation.phone', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_valuation.email', "LIKE", "%{$request->get('texto')}%")
             ->orWhere('purchase_management.registration_number','like',$request->texto."%")
             ->orWhere('purchase_management.frame_no','like',$request->texto."%")
+            ->orWhere('purchase_management.motor_no','like',$request->texto."%")
             ->orderBy('purchase_valuation.id', 'asc')
             ->paginate(10);
 
