@@ -39,7 +39,21 @@
                         </li>
                     </ul>
                 </td>
-                <td>{{ $item->motor_no }}</td>
+                
+                <td><?php
+                    $motor_no = '';
+                    $purchase_management = App\PurchaseManagement::where('purchase_valuation_id', $item->id)->first();
+                    if (isset($purchase_management->datos_del_mecanico)) {                    
+                        $fieldsArray = json_decode(utf8_encode($purchase_management->datos_del_mecanico));
+                        foreach ($fieldsArray as $key => $value) {
+                            if ($value->name == 'nEJmSDym') {
+                                $motor_no = $value->value;
+                            }
+                        }
+                    }                  
+                    ?>
+                    {{$motor_no}}
+                </td>
                 <td class="project_progress">
                     <ul class="list-inline">
                         <li class="list-inline-item">
