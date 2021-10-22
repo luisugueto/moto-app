@@ -2142,7 +2142,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->letter = $request->letter;
         $purchase_management->municipality = $request->municipality;
         $purchase_management->postal_code = $request->postal_code;
-        $purchase_management->province = $request->province;
+        $purchase_management->province = $request->province_management;
         $purchase_management->iban = $request->iban;
         $purchase_management->sale_amount = $request->sale_amount;
         $purchase_management->name_representantive = $request->name_representantive;
