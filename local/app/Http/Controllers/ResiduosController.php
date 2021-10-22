@@ -1009,7 +1009,14 @@ class ResiduosController extends Controller
                 fclose($fp);
 
                 $zipper->add(public_path().'/certificates/empty_'.$id.'.txt'); 
-            }
+
+                $purchaseM = PurchaseManagement::where('purchase_valuation_id', $val->id_pv)->first();
+                $purchase_management = PurchaseManagement::find($purchaseM->id);
+                if($purchase_management->download_certificate == 0){
+                    $purchase_management->download_certificate  = 1;
+                    $purchase_management->update();
+                }
+            }           
         }
 
         $zipper->close();
