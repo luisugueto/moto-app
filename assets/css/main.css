@@ -1743,6 +1743,12 @@ input:checked + .slider:before {
 .inputfile-3 + label:hover {
   color: #722040;
 }
+
+.custom-select[readonly] {
+  background: #eee; /*Simular campo inativo - Sugestão @GabrielRodrigues*/
+  pointer-events: none;
+  touch-action: none;
+}
  
 
 

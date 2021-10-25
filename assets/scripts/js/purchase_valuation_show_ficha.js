@@ -598,9 +598,16 @@ $(document).ready(function () {
 
         e.preventDefault();
 
+        $('#form_display_datos_mecanico').find('select, textarea, input').each(function (index, detalle) {
+            $(this).prop('disabled', false);
+            $(this).prop('readonly', true);
+        });
+
         var data = $('#form_display_complement').find('select, textarea, input').serializeArray(),
             data3 = $(' #form_display_datos_internos').find('select, textarea, input').serializeArray(),
             data2 = $(' #form_display_datos_mecanico').find('select, textarea, input').serializeArray();
+        
+        console.log(data2)
         var dataArray = [], dataMecanicArray = [], dataInternArray = []; ;
 
         for (i = 0; i < data.length; i++) {
@@ -622,25 +629,12 @@ $(document).ready(function () {
                 });
             }
         }
-
-        for (i = 0; i < data2.length; i++) {
-            if ($('#' + data2[i].name + '.date').length) {
-                var today = new Date(data2[i].value);
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                var yyyy = today.getFullYear();
-                today = yyyy + '-' + mm + '-' + dd;
-
-                dataMecanicArray.push({
-                    name: data2[i].name,
-                    value: today
-                });
-            } else {
-                dataMecanicArray.push({
-                    name: data2[i].name,
-                    value: data2[i].value
-                });
-            }
+       
+        for (i = 0; i < data2.length; i++) {            
+            dataMecanicArray.push({
+                name: data2[i].name,
+                value: data2[i].value
+            });
         }
         // esto es para verificar si los datos del formulario estan llenos, para que se pueda enviar el correo al mecanico
         var inputLenght = 0;
@@ -660,24 +654,11 @@ $(document).ready(function () {
                 inputLenght++;
         });
 
-        for (i = 0; i < data3.length; i++) {
-            if ($('#' + data3[i].name + '.date').length) {
-                var today = new Date(data3[i].value);
-                var dd = String(today.getDate()).padStart(2, '0');
-                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-                var yyyy = today.getFullYear();
-                today = yyyy + '-' + mm + '-' + dd;
-
-                dataInternArray.push({
-                    name: data3[i].name,
-                    value: today
-                });
-            } else {
-                dataInternArray.push({
-                    name: data3[i].name,
-                    value: data3[i].value
-                });
-            }
+        for (i = 0; i < data3.length; i++) {             
+            dataInternArray.push({
+                name: data3[i].name,
+                value: data3[i].value
+            });        
         }
 
         var documents_attached = '', non_existence_document = '';
@@ -765,7 +746,11 @@ $(document).ready(function () {
         else if ($('#truck').is(':checked'))
             check_chasis = 'Camion';
 
-        var dataSerialize = JSON.stringify(dataArray, null, 2), dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2), dataSerialize3 = JSON.stringify(dataInternArray, null, 2) ;
+        var dataSerialize = JSON.stringify(dataArray, null, 2),
+            dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2),
+            dataSerialize3 = JSON.stringify(dataInternArray, null, 2);
+        
+      
         var formData = {
             purchase_id: $('#purchase_id').val(),
             brand: brandform,

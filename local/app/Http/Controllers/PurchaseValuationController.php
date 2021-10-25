@@ -2058,6 +2058,8 @@ class PurchaseValuationController extends Controller
 
     public function updateFicha(Request $request)
     {
+        dd($request->all());
+        exit;
         $edit = getPermission('Motos que nos ofrecen', 'record-edit');
 
         if(!$edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
