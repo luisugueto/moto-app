@@ -924,14 +924,6 @@
             }
         }
     </style>
-    <?php
-        $fieldsArray = json_decode(utf8_encode($purchase->data_serialize));
-        foreach ($fieldsArray as $key => $value) {
-            if ($value->name == 'dLQrpaV2') {
-            $precio = $value->value;
-            }
-        }
-    ?>
 </head>
 
 <body>
