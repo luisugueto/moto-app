@@ -84,7 +84,7 @@
         <td style="text-align: left;border: 1px solid #000;">{{ $data[$i]->province }}</td>
         <td style="width: 15;text-align: right;border: 1px solid #000;" >{{ $data[$i]->status_trafic }}</td>
 
-        <td style="height: 20;text-align: left;border: 1px solid #000;">{{ date('d-m-Y', strtotime($data[$i]->current_year))}}</td>
+        <td style="height: 20;text-align: left;border: 1px solid #000;">{{ date('d-m-Y', strtotime($data[$i]->destruction_date))}}</td>
         <td style="height: 20;text-align: left;border: 1px solid #000;">CATV/MD/12173/{{ $data[$i]->purchase_valuation_id }}</td>
         <td style="height: 20;text-align: left;border: 1px solid #000;">{{ date('d-m-Y', strtotime($data[$i]->destruction_date)) }}</td>
         <td style="height: 20;text-align: left;border: 1px solid #000;">

@@ -87,7 +87,7 @@ class ResiduosController extends Controller
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
             $row['vehicle_state'] = $value->status_trafic;
-            $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
+            $row['current_year'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['collection_contract_date'] = '';
             foreach($apply as $key){
@@ -144,7 +144,7 @@ class ResiduosController extends Controller
             $row['municipality'] = $value->municipality;
             $row['province'] = $value->province;
             $row['vehicle_state'] = $value->status_trafic;
-            $row['current_year'] = date('d-m-Y', strtotime($value->current_year));
+            $row['current_year'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['certificate_destruction_date'] = date('d-m-Y', strtotime($value->destruction_date));
             $row['collection_contract_date'] = '';
             foreach($apply as $key){
