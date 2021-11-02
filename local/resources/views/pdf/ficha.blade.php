@@ -926,10 +926,15 @@
     </style>
     <?php
         $fieldsArray = json_decode(utf8_encode($purchase->data_serialize));
-        foreach ($fieldsArray as $key => $value) {
-            if ($value->name == 'dLQrpaV2') {
-            $precio = $value->value;
-            }
+    
+        $precio = 0;
+
+        if(!is_null($fieldsArray) && !empty($fieldsArray)){
+            foreach ($fieldsArray as $key => $value) {
+                if ($value->name == 'dLQrpaV2') {
+                $precio = $value->value;
+                }
+            } 
         }
     ?>
 </head>
