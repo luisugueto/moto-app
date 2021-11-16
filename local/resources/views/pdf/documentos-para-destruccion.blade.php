@@ -72,13 +72,16 @@
     </style>
     <?php
         $fieldsArray = json_decode(utf8_encode($purchase->data_serialize));
-        if(!is_null($fieldsArray)){
+    
+        $precio = 0;
+
+        if(!is_null($fieldsArray) && !empty($fieldsArray)){
             foreach ($fieldsArray as $key => $value) {
                 if ($value->name == 'dLQrpaV2') {
                 $precio = $value->value;
                 }
             } 
-        }else $precio = 0;
+        }
     ?>
 </head>
 
