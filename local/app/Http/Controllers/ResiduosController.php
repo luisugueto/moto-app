@@ -310,22 +310,23 @@ class ResiduosController extends Controller
 
     public function applySubProcesses(Request $request)
     {
-
+        // dd($request->all());exit;
         $motos = explode(",", $request->apply);
 
         $out['code'] = 204;
         $out['message'] = 'Hubo un error';
 
         foreach($motos as $purchase) {
-            $subprocesses = SubProcesses::find($request->applySubProcesses);
+            // $subprocesses = SubProcesses::find($request->applySubProcesses);
             $purchase = PurchaseValuation::find($purchase);
+            $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
             // check last process and delete
             $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->first();
             $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->count();
 
             if($countLastProcessApply > 0)
-                $lastProcessApply->subprocesses_id = $subprocesses->id;
-                $lastProcessApply->update();
+                $purchase_management->download_certificate = $request->applySubProcesses;
+                $purchase_management->update();
 
         }
 

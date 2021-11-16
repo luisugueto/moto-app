@@ -22,9 +22,11 @@
             <div class="input-group col-md-3">
                 <select name="applySubProcesses" class="custom-select" id="applySubProcesses">
                     <option value="" disabled selected>Elegir Destino de la Moto</option>
-                    @foreach($subprocesses as $subprocesse)
+                    {{-- @foreach($subprocesses as $subprocesse)
                         <option value="{{ $subprocesse->id }}">{{ $subprocesse->name }}</option>
-                    @endforeach
+                    @endforeach --}}
+                    <option value="0">Pendientes de descargas</option>
+                    <option value="1">Informes ya descargados</option>
                 </select>
                 <div class="input-group-append">
                     <button type="button" class="btn btn-primary" id="btnApplySubProcesses">Aplicar</button>

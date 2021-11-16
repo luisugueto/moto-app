@@ -417,7 +417,7 @@ $(document).ready(function () {
             "columns": [
                 { "data": null,
                     render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply1[]" id="apply1_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply1_'+data.id+'"></label></div>';
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
             
                     },
                     "targets": -1
@@ -537,12 +537,20 @@ $(document).ready(function () {
 
         var motos = '';
         preloader('show');
-       
-        $("input[name=apply]").each(function(index) {
-            if ($(this).is(':checked')) {
-                motos += $(this).val() + ',';
-            }
+        
+        var values = $("input[name='apply[]']:checkbox:checked")
+              .map(function(){return $(this).val();}).get();
+
+        values.forEach(function(val, index){
+            motos += val + ',';
         });
+
+        // values.each(function(index) {
+        //     if ($(this).is(':checked')) {
+        //         motos += $(this).val() + ',';
+        //     }
+        // });
+        // console.log(motos)
         var formData = {
             applySubProcesses: $('#applySubProcesses').val(),
             apply: motos.slice(0, -1)  
