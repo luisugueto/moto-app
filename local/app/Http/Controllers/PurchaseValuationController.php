@@ -1318,11 +1318,11 @@ class PurchaseValuationController extends Controller
                 $status_ficha = "<span class='badge badge-danger'>Ficha No <br> Registrada</span>";
             }
 
-            // if($edit == true && $delete == true){
-            //     $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
-            //     $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
-            // }
-            if ($delete == true) {
+            if($edit == true && $delete == true){
+                $botones = "<a class='mb-2 mr-2 btn btn-warning text-white button_ficha' title='Ficha Moto'> Editar</a>";
+                $botones .= "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
+            }
+            elseif ($delete == true) {
                 $botones = "<a class='mb-2 mr-2 btn btn-danger text-white button_delete' title='Eliminar Estado'>Eliminar</a>";
             }
             else {
