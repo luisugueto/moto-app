@@ -34,6 +34,9 @@ class ResiduosController extends Controller
 
     public function getEnviosQuincenalesSinDescargar(Request $request)
     {
+        $view = getPermission('Envíos Quincenales', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
          
         if($request->from != '' && $request->to != ''){
             $purchases = DB::table('purchase_valuation AS pv')
@@ -106,6 +109,10 @@ class ResiduosController extends Controller
 
     public function getEnviosQuincenalesDescargados()
     {
+        $view = getPermission('Envíos Quincenales', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -162,6 +169,11 @@ class ResiduosController extends Controller
     }
 
     public function exportEnviosQuincenalesSinDescargar(Request $request){
+        $view = getPermission('Envíos Quincenales', 'record-view');
+        $create = getPermission('Envíos Quincenales', 'record-create');
+
+        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d',
             'end_at' => 'required|date|date_format:Y-m-d'
@@ -215,6 +227,10 @@ class ResiduosController extends Controller
 
 
     public function exportEnviosQuincenalesDescargados(Request $request){
+        $view = getPermission('Envíos Quincenales', 'record-view');
+        $create = getPermission('Envíos Quincenales', 'record-create');
+
+        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d',
@@ -268,7 +284,11 @@ class ResiduosController extends Controller
     //////
     public function enviosSemestrales()
     {
-       return view ('backend.residuos.envios_semestrales');
+        $view = getPermission('Envíos Semestrales', 'record-view');
+
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
+        return view ('backend.residuos.envios_semestrales');
 
     }
 
@@ -310,6 +330,11 @@ class ResiduosController extends Controller
 
     public function applySubProcesses(Request $request)
     {
+        $view = getPermission('Envíos Quincenales', 'record-view');
+        $edit = getPermission('Envíos Quincenales', 'record-edit');
+
+        if(!$view || $edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         // dd($request->all());exit;
         $motos = explode(",", $request->apply);
 
@@ -349,6 +374,9 @@ class ResiduosController extends Controller
 
     public function getResiduos()
     {
+        $view = getPermission('Residuos', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $materialsCompanie = array();
         $materials = MaterialsCompanie::all();
 
@@ -366,6 +394,9 @@ class ResiduosController extends Controller
     }
 
     public function retirarResiduos(Request $request){
+        $create = getPermission('Residuos', 'record-create');
+        if(!$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $out['code'] = 204;
         $out['message'] = 'Hubo un error';
 
@@ -385,6 +416,9 @@ class ResiduosController extends Controller
     }
 
     public function retirarVariosResiduos(Request $request){
+        $create = getPermission('Residuos', 'record-create');
+        if(!$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $out['code'] = 204;
         $out['message'] = 'Hubo un error';
 
@@ -447,12 +481,18 @@ class ResiduosController extends Controller
 
     public function editResiduo($id)
     {
+        $edit = getPermission('Residuos', 'record-edit');
+        if(!$edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $residuos = Residuos::find($id);
         return response()->json($residuos);
     }
 
     public function editarResiduo(Request $request)
     {
+        $edit = getPermission('Residuos', 'record-edit');
+        if(!$edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $residuos = Residuos::find($request->id);
         $residuos->update($request->all());
 
@@ -472,6 +512,10 @@ class ResiduosController extends Controller
         // if ($validator->fails()) {
         //     return Redirect::back()->with('error', 'Por favor seleccione un tipo de informe!')->withInput();
         // }
+        $view = getPermission('Envíos Semestrales', 'record-view');
+        $create = getPermission('Envíos Semestrales', 'record-create');
+
+        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d',
@@ -538,6 +582,10 @@ class ResiduosController extends Controller
 
      public function balanceSemestral()
      {
+        $create = getPermission('Envíos Semestrales', 'record-create');
+
+        if(!$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
          $data = Residuos::where('created_at', '>=', '2021-08-16')->where('created_at', '<=', '2021-08-26')->get();
 
          Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($data) {
@@ -571,11 +619,17 @@ class ResiduosController extends Controller
 
     public function enviosChatarra()
     {
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         return view ('backend.residuos.envios_chatarra');
     }
 
     public function getEnviosChatarraAluminio()
     {
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -611,6 +665,9 @@ class ResiduosController extends Controller
     }
 
     public function exportEnviosChatarraAluminio(Request $request){
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        $create = getPermission('Envíos Chatarra', 'record-create'); 
+        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $validator = \Validator::make($request->all(),[
             'send_date_chatarra' => 'required|date|date_format:d-m-Y'
@@ -657,6 +714,9 @@ class ResiduosController extends Controller
 
     public function getEnviosChatarraHierro()
     {
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -694,6 +754,9 @@ class ResiduosController extends Controller
     }
 
     public function exportEnviosChatarraHierro(Request $request){
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        $create = getPermission('Envíos Chatarra', 'record-create'); 
+        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $validator = \Validator::make($request->all(),[
             'send_date_chatarra' => 'required|date|date_format:d-m-Y'
@@ -739,6 +802,10 @@ class ResiduosController extends Controller
 
     public function getEnviosChatarraCamion()
     {
+        $view = getPermission('Envíos Chatarra', 'record-view');
+ 
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -776,7 +843,10 @@ class ResiduosController extends Controller
     }
 
     public function exportEnviosChatarraCamion(Request $request){ 
-        
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        $create = getPermission('Envíos Chatarra', 'record-create'); 
+        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $validator = \Validator::make($request->all(),[
             'send_date_chatarra' => 'required|date|date_format:d-m-Y'
         ]);
@@ -822,6 +892,9 @@ class ResiduosController extends Controller
 
     public function getEnviosChatarraHistorico()
     {
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -873,6 +946,9 @@ class ResiduosController extends Controller
 
     public function getEnviosChatarraIncidencias()
     {
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -926,6 +1002,9 @@ class ResiduosController extends Controller
     }
 
     public function getCountEnviosChatarraIncidencias(){
+        $view = getPermission('Envíos Chatarra', 'record-view');
+        if(!$view) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+
         $purchases = DB::table('purchase_valuation AS pv')
         ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
         ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
@@ -959,6 +1038,9 @@ class ResiduosController extends Controller
     }
 
     public function downloadCertificados(Request $request){
+
+        $create = getPermission('Envíos Chatarra', 'record-create'); 
+        if(!$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
 
         $validator = \Validator::make($request->all(),[
             'start_at' => 'required|date|date_format:Y-m-d',
