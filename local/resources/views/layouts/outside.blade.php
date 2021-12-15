@@ -51,6 +51,10 @@
         });
     </script>
     
+
+    <script src="{{ asset('assets/scripts/base/sweetalert2@10.js') }}"></script>
+        
+    <script src="{{ asset('assets/scripts/page.js') }}"></script>
     
 </body>
 

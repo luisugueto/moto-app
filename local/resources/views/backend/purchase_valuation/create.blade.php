@@ -47,7 +47,7 @@
                             </div>
                         </strong>
                     </h4>
-                    {!! Form::open(['route' => 'motos-que-nos-ofrecen.store', 'method' => 'post', 'enctype' => 'multipart/form-data']) !!}
+                    {!! Form::open(['route' => 'motos-que-nos-ofrecen.store', 'method' => 'post', 'id' => 'formSend','enctype' => 'multipart/form-data']) !!}
 
                         {{ csrf_field() }}
                         <div class="divider"></div>
@@ -303,6 +303,10 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <div class="col-md-12">
+                                    <input type="checkbox" name="politicas" id="politicas" value="1" required><a href="https://motostion.com/content/13-politica-de-privaticidad" target="_blank"> Aceptar Políticas de Privacidad</a>
+                                </div>
+                                <hr>
                                 <div class="form-group">
                                     <button type="button" id="volverdatos" class="btn btn-danger pull-left">Atras</button>
                                     <button type="submit" id="tasacion" class="btn btn-primary pull-right finalizar">Finalizar</button>
@@ -424,7 +428,8 @@
         //
         //sigue a tasacion
         $('#tasacion').click(function(e){
-            e.preventDefault();
+            e.preventDefault();           
+
             var correo=$('#email').val();
             var nombre=$('#name').val();
             var telefono=$('#phone').val();
@@ -442,10 +447,44 @@
             $("#estado").addClass("disable");
         });
         //
+         $('#formSend').on('submit', function() {
+            if ($('#formSend').get(0).checkValidity() == false) {
+                return false;
+            }
+            else{
+                if($("#politicas").is(':checked'))
+                    return true;
+                else{
+                    preloader('show');
+                    preloader('hide', 'Por favor aceptar las políticas de privacidad', 'warning');
+
+                    return false;
+                } 
+
+                return true;
+                console.log('passed');
+            }
+        });
 
     </script>
 
     <script>
+
+       
+
+        function submitform() {
+            var $form = $('form')[0];
+
+            if ($form.checkValidity()) {
+                
+            } 
+            else {
+                $("#formSend").validate();
+            }
+          
+            return false;
+        }
+
         var setModel = () => {
         let id = $("#brand").find(':selected').data('id');
 
