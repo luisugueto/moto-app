@@ -14,6 +14,7 @@ Route::resource('purchase_management', 'PurchaseManagementController');
 Route::get('purchase_management/create/{purchase_valuation_id}', 'PurchaseManagementController@create');
 Route::resource('motos-que-nos-ofrecen', 'PurchaseValuationController');
 Route::post('getModel', 'HomeController@getModel');
+Route::get('datos-exitosos', 'HomeController@saving')->name('exitosamente');
 
 Route::post('purchase_valuation_interested/callback_document_viafirma', 'PurchaseValuationController@callback_document_viafirma');
 
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('servicios', 'ServicesController');
     Route::resource('empresas-de-residuos', 'WasteCompaniesController');
     Route::resource('materiales', 'MaterialsController');
+    
 
     //Vistas Proximanente
     Route::get('/calendarios', 'HomeController@proximamente');

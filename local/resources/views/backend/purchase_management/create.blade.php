@@ -761,6 +761,9 @@
                                 <small id="file-4Help" class="form-text text-muted text-center">Otros documentos</small>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <input type="checkbox" name="politicas" id="politicas" value="1" required><a href="https://motostion.com/content/13-politica-de-privaticidad" target="_blank"> Aceptar Políticas de Privacidad</a>
+                        </div>
                         <div class="float-right">
                             <button type='submit' class="mt-2 btn btn-primary btn-lg ">Enviar</button>
                         </div>

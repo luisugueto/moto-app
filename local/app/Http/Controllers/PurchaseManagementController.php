@@ -157,6 +157,7 @@ class PurchaseManagementController extends Controller
                 'vehicle_state_trafic' => 'required',
                 'vehicle_state' => 'required',
                 'file-1' => 'required',
+                'politicas' => 'required'
             ]);
         }
             
@@ -316,9 +317,9 @@ class PurchaseManagementController extends Controller
         $link->status = 1;
         $link->update();
 
-        return Redirect::to('/')->with('notification', '<b>Formulario registrado exitosamente. Para dirigirse a motOstion darle click al siguiente enlace <a class="class="alert-link"" href="'. url('https://motostion.com/') . '"> enlace </a></b>');
+        // return Redirect::to('/')->with('notification', '<b>Formulario registrado exitosamente. Para dirigirse a motOstion darle click al siguiente enlace <a class="class="alert-link"" href="'. url('https://motostion.com/') . '"> enlace </a></b>');
 
-        // return Redirect::to('https://motostion.com/');
+        return Redirect::route('exitosamente');
     }
 
     /**

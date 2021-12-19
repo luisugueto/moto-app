@@ -53,4 +53,9 @@ class HomeController extends Controller
     {
         return view('backend.proximamente.index');
     }
+
+    public function saving()
+    {
+        return view('backend.proximamente.saving');
+    }
 }
