@@ -22,10 +22,6 @@
                     Para dirigirse a motOstion darle click al siguiente enlace
                 </p>
                 <a class="flex-c-m s1-txt2 size3 how-btn" href="{{ url('https://motostion.com/')}}">MotOstion!</a>
-                <p class="txt-center l1-txt2 p-t-50 p-b-40">
-                    Ó dirigirse a la página principal de login
-                </p>
-                <a class="flex-c-m s1-txt2 size3 how-btn" href="{{ url('/login')}}">Gestion de MotOstion!</a>
             </div>
             <span class="s1-txt3 txt-center">
                 Copyright © 2021 MOTOSTION. Todos los derechos reservados
