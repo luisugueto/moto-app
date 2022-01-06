@@ -176,13 +176,13 @@ $(document).ready(function () {
         var values = $("input[name='apply1[]']:checkbox:checked")
               .map(function(){return $(this).val();}).get();
 
-        var apply = [];
+        var apply1 = [];
 
         values.forEach(function(val, index){
-            apply.push($("#apply1_"+val).val());
+            apply1.push($("#apply1_"+val).val());
         });
-
-        $("#applyForm1").val(apply);
+        console.log(apply1)
+        $("#applyForm1").val(apply1);
         $("#formApply1").submit();
     });
 
@@ -212,6 +212,8 @@ $(document).ready(function () {
             apply.push($("#apply1_"+val).val());
         });
         $("#applyFormDownload1").val(apply);
+        $("#start_at_download").val($("#start_at").val());
+        $("#end_at_download").val($("#end_at").val());
         $("#formDownload1").submit();
     });
     
@@ -417,7 +419,7 @@ $(document).ready(function () {
             "columns": [
                 { "data": null,
                     render:function(data){
-                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply[]" id="apply_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply_'+data.id+'"></label></div>';
+                        return '<div class="custom-control custom-checkbox"><input type="checkbox" name="apply1[]" id="apply1_'+data.id+'" value="'+data.id+'" class="custom-control-input"><label class="custom-control-label" for="apply1_'+data.id+'"></label></div>';
             
                     },
                     "targets": -1

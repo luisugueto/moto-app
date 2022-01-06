@@ -209,7 +209,8 @@
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/dataTables.responsive.min.js') }}">
     </script>
     <script src="{{ asset('assets/web_component/datatables.net-bs4/responsive/responsive.bootstrap4.js') }}">
-    <script src="{{ asset('assets/web_component/datatables.net/dataTables.fixedHeader.min.js') }}"></script>  
+    <script src="{{ asset('assets/web_component/datatables.net/dataTables.fixedHeader.min.js') }}"></script> 
+    <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/natural.js"></script>
     <script src="{{ asset('assets/web_component/jquery-ui-1.12.1/jquery-ui.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/metismenu"></script>

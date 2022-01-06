@@ -230,54 +230,58 @@ class ResiduosController extends Controller
         $view = getPermission('Envíos Quincenales', 'record-view');
         $create = getPermission('Envíos Quincenales', 'record-create');
 
-        if(!$view || !$create) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
-
-        $validator = \Validator::make($request->all(),[
-            'start_at' => 'required|date|date_format:Y-m-d',
-            'end_at' => 'required|date|date_format:Y-m-d'
-        ]);  
-
-        if ($validator->fails()) {
-            return Redirect::back()->with('error', 'Ha ocurrido un error!')->withInput();
+        if(!$view || !$create) {
+            return Redirect::to('/home')->with('error', 'Usted no posee permisos!');
         }
-
-        if(strtotime($request->start_at) <= strtotime($request->end_at)){}
         else{
-            return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
-        }
 
-        $apply = array();
-        foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
+            $validator = \Validator::make($request->all(),[
+                'start_at' => 'required|date|date_format:Y-m-d',
+                'end_at' => 'required|date|date_format:Y-m-d'
+            ]);  
 
-        $data = DB::table('purchase_valuation AS pv')
-        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
-        ->where('pm.status', '=', 2)
-        ->where('pm.download_certificate', '=', 1)
-        ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
-        ->whereIn('pv.id', $apply)
-        ->get();  
-        
-        $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
-        ->where('subprocesses_id', '=', 32)
-        ->get();
-       
-        if(is_array($data)){     
+            if ($validator->fails()) {
+                return Redirect::back()->with('error', 'Ha ocurrido un error!')->withInput();
+            }
 
-            Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data, $apply) {
+            if(strtotime($request->start_at) <= strtotime($request->end_at)){}
+            else{
+                return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
+            }
 
-                $excel->sheet('Hoja1', function($sheet) use($data, $apply) {
+            $apply = array();
+            foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
 
-                    // $sheet->fromArray($data);
-                    $sheet->loadView('excel.envios_quincenal', array('data' => $data, 'apply' => $apply));
-                });
+            $data = DB::table('purchase_valuation AS pv')
+            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+            ->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)
+            ->where('pm.status', '=', 2)
+            ->where('pm.download_certificate', '=', 1)
+            ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+            ->whereIn('pv.id', $apply)
+            ->get();  
+           
+            $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
+            ->where('subprocesses_id', '=', 32)
+            ->get();
+            // dd($data);exit;
+            if(is_array($data)){     
 
-            })->export('xlsx');
-        }else{
-            return Redirect::back()->with('error', 'No hay datos disponibles!');
+                Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data, $apply) {
+
+                    $excel->sheet('Hoja1', function($sheet) use($data, $apply) {
+
+                        // $sheet->fromArray($data);
+                        $sheet->loadView('excel.envios_quincenal', array('data' => $data, 'apply' => $apply));
+                    });
+
+                })->export('xlsx');
+            }else{
+                return Redirect::back()->with('error', 'No hay datos disponibles!');
+            }
         }
     }
 
@@ -332,34 +336,39 @@ class ResiduosController extends Controller
     {
         $view = getPermission('Envíos Quincenales', 'record-view');
         $edit = getPermission('Envíos Quincenales', 'record-edit');
+        // dd($view,$edit);exit;
+        if(!$view || !$edit) {
+            return Redirect::to('/home')->with('error', 'Usted no posee permisos!');
+        }else{
 
-        if(!$view || $edit) return Redirect::to('/')->with('error', 'Usted no posee permisos!');
+            $motos = explode(",", $request->apply);
 
-        // dd($request->all());exit;
-        $motos = explode(",", $request->apply);
+            $out['code'] = 204;
+            $out['message'] = 'Hubo un error';
 
-        $out['code'] = 204;
-        $out['message'] = 'Hubo un error';
+            foreach($motos as $purchase) {
+                // $subprocesses = SubProcesses::find($request->applySubProcesses);
+                $purchase = PurchaseValuation::find($purchase);
+                $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
+                // check last process and delete
+                $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->first();
+                $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->count();
 
-        foreach($motos as $purchase) {
-            // $subprocesses = SubProcesses::find($request->applySubProcesses);
-            $purchase = PurchaseValuation::find($purchase);
-            $purchase_management = PurchaseManagement::where('purchase_valuation_id', $purchase->id)->first();
-            // check last process and delete
-            $lastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->first();
-            $countLastProcessApply = ApplySubProcessAndProcess::where('processes_id', 5)->where('purchase_valuation_id', $purchase->id)->count();
+                if($countLastProcessApply > 0)
+                    $purchase_management->download_certificate = $request->applySubProcesses;
+                    $purchase_management->update();
 
-            if($countLastProcessApply > 0)
-                $purchase_management->download_certificate = $request->applySubProcesses;
-                $purchase_management->update();
+            }
 
-        }
+            $out['code'] = 200;
+            $out['data'] = $purchase;
+            $out['message'] = 'Se ha aplicado el proceso Exitosamente';
 
-        $out['code'] = 200;
-        $out['data'] = $purchase;
-        $out['message'] = 'Se ha aplicado el proceso Exitosamente';
+            return response()->json($out);
+            }
 
-        return response()->json($out);
+        
+        
     }
 
     //Retiro de Residuos

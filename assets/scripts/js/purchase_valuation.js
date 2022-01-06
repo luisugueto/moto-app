@@ -136,6 +136,7 @@ $(document).ready(function(){
             deferRender: true,
             deferLoading: 10,
             "columnDefs": [
+                { type: 'natural-nohtml-desc', targets: 1 }
             ],
             "order": [[1, "desc"]]
         });
