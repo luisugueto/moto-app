@@ -186,8 +186,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                               "value" : "+34'.$purchase->phone.'"
                             } ]
                           },
-                          "callbackMails": "webmaster@motostion.com",
-                          "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                          "callbackMails": "webmaster@motostion.com"
                         }';
 
         $ch = curl_init($url);
@@ -288,8 +287,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                                     }
                                 }
                             ],
-                            "callbackMails": "webmaster@motostion.com",
-                            "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                            "callbackMails": "webmaster@motostion.com"
                         }';
 
         $ch = curl_init($url);
@@ -404,8 +402,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                                     }
                                 }
                             ],
-                            "callbackMails": "webmaster@motostion.com",
-                            "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                            "callbackMails": "webmaster@motostion.com"
                         }';
 
         $ch = curl_init($url);
@@ -520,8 +517,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                                     }
                                 }
                             ],
-                            "callbackMails": "webmaster@motostion.com",
-                            "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                            "callbackMails": "webmaster@motostion.com"
                         }';
 
         $ch = curl_init($url);
@@ -644,8 +640,7 @@ define("DOCUMENTS_CONSUMER_SECRET", "xIHcdj");
                                     }
                                 }
                             ],
-                            "callbackMails": "webmaster@motostion.com",
-                            "callbackURL" : "'.url('/purchase_valuation_interested/callback_document_viafirma').'"
+                            "callbackMails": "webmaster@motostion.com"
                         }';
 
         $ch = curl_init($url);
