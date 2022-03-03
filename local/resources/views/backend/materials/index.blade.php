@@ -49,7 +49,8 @@
                                 <th>Valorización</th>
                                 <th>Ud. medida</th>
                                 <th>Tipo</th>
-                                <th>% (Porcentaje)</th>                                                                       
+                                <th>% (Porcentaje)</th>
+                                <th>Valor Fijo</th>                                                         
                                 <th>Opciones</th>
                             </tr>
                         </thead> 
@@ -113,6 +114,10 @@
                                     <small id="percent_formulalHelp" class="form-text text-muted">Este campo es en base a 1, ejmeplo si se aplicara 10% a un material, aqui se colocaria 0.010  NO COLOCAR EL * ni colocar %, tambien la separacion hacer con "." y no con ",".</small>
                             </div> 
                         </div>   
+                        <div class="position-relative form-group">
+                            <input type="checkbox" id="valor_fijo"><label>Es valor fijo?</label>
+                            <input class='form-control' placeholder="Valor Fijo" id='fix_value' name='fix_value' type='text' value="{{ old('fix_value') }}" style="display:none;">
+                        </div>
                         <div class="position-relative form-group">
                             <label>Proceso en Residuos</label>
                             <select name="type[]" id="type" class="form-control select-2" multiple required style="width: 100%">

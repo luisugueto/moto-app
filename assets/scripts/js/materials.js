@@ -55,6 +55,7 @@ $(document).ready(function(){
             { "data": "unit_of_measurement" },
             { "data": "type" },
             { "data": "percent_formula" },
+            { "data": "fix_value" },
             {"data": null,
                 render: function (data, type, row) {
                     var echo = '';
@@ -79,6 +80,15 @@ $(document).ready(function(){
     $('#btn_add').click(function () {
         $('#btn-save').val("add");
         $('#frmMaterials').trigger("reset");
+        $("#percent_formula").removeAttr('disabled');
+        $("#fix_value").css('display', 'none');
+
+        if($("#valor_fijo").is(':checked')){
+            $("#valor_fijo").removeAttr('checked');
+        }
+
+        $("#type option:selected").removeAttr("selected");
+
         $('#myModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -106,7 +116,26 @@ $(document).ready(function(){
                 $('#description').val(data.description);
                 $('#valorization').val(data.valorization);
                 $('#unit_of_measurement').val(data.unit_of_measurement);
-                $('#percent_formula').val(data.percent_formula);
+                
+                if(data.percent_formula != null && data.percent_formula != ''){
+                    $("#percent_formula").removeAttr('disabled');
+                    if($("#valor_fijo").is(':checked')){
+                        $("#valor_fijo").removeAttr('checked');
+                    }
+                    $("#fix_value").css('display', 'none');
+                    $('#fix_value').val(null);
+                    $('#percent_formula').val(data.percent_formula);
+                }
+
+                if(data.fix_value != null && data.fix_value != ''){
+                    $("#valor_fijo").attr('checked', 'true');
+                    $("#fix_value").removeAttr('disabled');
+                    $("#fix_value").css('display', 'block');
+                    $('#fix_value').val(data.fix_value);
+                    $("#percent_formula").attr('disabled', 'disabled');
+                    $('#percent_formula').val(null);
+                }
+
 
                 if (data.type !== null && data.type !== '') {
                     var types = data.type.split(',');
@@ -132,15 +161,25 @@ $(document).ready(function(){
     
     //create new product / update existing product ***************************
     $("#btn-save").click(function (e) {
-
         e.preventDefault();
+
+        var percent_formula = null, fix_value = null;
+
+        if($("#valor_fijo").is(':checked')){
+            fix_value = $("#fix_value").val();
+        }else{
+            fix_value = '';
+            percent_formula = $("#percent_formula").val();
+        }
+
         var formData = {
             LER: $('#LER').val(),
             code: $('#code').val(),
             description: $('#description').val(),
             valorization: $('#valorization').val(),
             unit_of_measurement: $('#unit_of_measurement').val(),
-            percent_formula: $('#percent_formula').val(),
+            percent_formula: percent_formula,
+            fix_value: fix_value,
             type: $('#type').val()
         }
 
@@ -161,6 +200,7 @@ $(document).ready(function(){
             data: formData,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 if (data.code == 200) {
                     dataTable.ajax.reload();
                     preloader('hide', data.message, 'success');
@@ -236,6 +276,16 @@ $(document).ready(function(){
                 });
             }
         });       
+    });
+
+    $("#valor_fijo").click(function(){
+        if($(this).is(':checked')){
+            $("#percent_formula").attr('disabled', 'disabled');
+            $("#fix_value").css('display', 'block');
+        }else{
+            $("#percent_formula").removeAttr('disabled');
+            $("#fix_value").css('display', 'none');
+        }
     });
  
     
