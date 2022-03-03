@@ -540,14 +540,19 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
-        $data = Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get();
+        //$data = Residuos::where('withdrawal_date', '>=', $request->start_at)->where('withdrawal_date', '<=', $request->end_at)->get();
         // dd($data);exit;
         $arrayNp1 = array();
         $arrayNp2 = array();
         $arrayNp3 = array();
         $arrayReu = array();
 
-        foreach(Residuos::where('created_at', '>=', $request->start_at)->where('created_at', '<=', $request->end_at)->get() as $residuos){
+        $data = Residuos::where('withdrawal_date', '>=', $request->start_at)->where('withdrawal_date', '<=', $request->end_at)->groupBy('id_materials')
+            ->selectRaw('*, sum(delivery) as sum')
+            ->get();
+        
+
+        foreach($data as $residuos){
             if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP1') !== false))
                 array_push($arrayNp1, $residuos);
             if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP2') !== false))

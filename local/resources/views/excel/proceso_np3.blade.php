@@ -142,10 +142,15 @@
         <td style="height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->authorization_no }}</td>
         <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ $data[$i]->delivery/100 }}</td>
 
-       <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
-        $p = eval('return '.$formula.';'); ?>
+        @if($data[$i]->materialC->material->percent_formula != null && $data[$i]->materialC->material->percent_formula != '')
+            <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
+                $p = eval('return '.($data[$i]->delivery/100)*(float)$formula.';'); 
+            ?>
 
-        <td style="height: 20;text-align: right;border: 2px medium #000;">={{ ($data[$i]->delivery/100)*$formula }}</td>
+            <td style="height: 20;text-align: right;border: 2px medium #000;">={{  (string)$p }}</td>
+        @else
+            <td style="height: 20;text-align: right;border: 2px medium #000;">={{  $data[$i]->materialC->material->fix_value }}</td>
+        @endif
     </tr>
     @endfor
 </table>
