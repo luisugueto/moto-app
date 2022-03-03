@@ -86,8 +86,8 @@ $(document).ready(function(){
         if($("#valor_fijo").is(':checked')){
             $("#valor_fijo").removeAttr('checked');
         }
-
-        $("#type option:selected").removeAttr("selected");
+        
+        $("#type").val(null).trigger("change"); 
 
         $('#myModal').modal({
             backdrop: 'static',
