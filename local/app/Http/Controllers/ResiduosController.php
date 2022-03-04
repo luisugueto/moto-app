@@ -188,20 +188,33 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
-        $apply = array();
-        foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
+        if(!empty($request->apply)){
+            $apply = array();
+            foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
 
-        $data = DB::table('purchase_valuation AS pv')
-        ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-        ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-        ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-        ->where('apply.processes_id', '=', 5)
-        ->where('apply.subprocesses_id', '=', 5)
-        ->where('pm.status', '=', 2)
-        ->where('pm.download_certificate', '=', 0)
-        ->whereDate('apply.created_at', '>=', $request->start_at)->whereDate('apply.created_at', '<=', $request->end_at)
-        ->whereIn('pv.id', $apply)
-        ->get();   
+            $data = DB::table('purchase_valuation AS pv')
+            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+            ->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)
+            ->where('pm.status', '=', 2)
+            ->where('pm.download_certificate', '=', 0)
+            ->whereDate('apply.created_at', '>=', $request->start_at)->whereDate('apply.created_at', '<=', $request->end_at)
+            ->whereIn('pv.id', $apply)
+            ->get();   
+        }else{
+            $data = DB::table('purchase_valuation AS pv')
+            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+            ->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)
+            ->where('pm.status', '=', 2)
+            ->where('pm.download_certificate', '=', 0)
+            ->whereDate('apply.created_at', '>=', $request->start_at)->whereDate('apply.created_at', '<=', $request->end_at)
+            ->get();   
+        }
 
         $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
         ->where('subprocesses_id', '=', 32)
@@ -249,25 +262,38 @@ class ResiduosController extends Controller
                 return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
             }
 
-            $apply = array();
-            foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
+            if(!empty($request->apply)){
+                $apply = array();
+                foreach(explode(",", $request->apply) as $id) array_push($apply, $id);
 
-            $data = DB::table('purchase_valuation AS pv')
-            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
-            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
-            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
-            ->where('apply.processes_id', '=', 5)
-            ->where('apply.subprocesses_id', '=', 5)
-            ->where('pm.status', '=', 2)
-            ->where('pm.download_certificate', '=', 1)
-            ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
-            ->whereIn('pv.id', $apply)
-            ->get();  
+                $data = DB::table('purchase_valuation AS pv')
+                ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+                ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+                ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+                ->where('apply.processes_id', '=', 5)
+                ->where('apply.subprocesses_id', '=', 5)
+                ->where('pm.status', '=', 2)
+                ->where('pm.download_certificate', '=', 1)
+                ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+                ->whereIn('pv.id', $apply)
+                ->get();  
+            }else{
+                $data = DB::table('purchase_valuation AS pv')
+                ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+                ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+                ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+                ->where('apply.processes_id', '=', 5)
+                ->where('apply.subprocesses_id', '=', 5)
+                ->where('pm.status', '=', 2)
+                ->where('pm.download_certificate', '=', 1)
+                ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+                ->get();  
+            }
            
             $apply = ApplySubProcessAndProcess::where('processes_id', '=', 11)
             ->where('subprocesses_id', '=', 32)
             ->get();
-            // dd($data);exit;
+ 
             if(is_array($data)){     
 
                 Excel::create('LISTADO DE CERT DE DESTRUCCION QUINCENA', function($excel) use($data, $apply) {
