@@ -11,7 +11,7 @@
     @foreach($data as $val)
         <?php
             $numberA+=$val->delivery;
-            $kiloA+=$val->materialC->material->valorization * $val->delivery;
+            $kiloA+=$val->materialC->material->valorization * $val->sum;
 
             $sumNumber+=$numberA;
             $sumKilo+=$kiloA;
