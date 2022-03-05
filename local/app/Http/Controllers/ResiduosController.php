@@ -274,7 +274,7 @@ class ResiduosController extends Controller
                 ->where('apply.subprocesses_id', '=', 5)
                 ->where('pm.status', '=', 2)
                 ->where('pm.download_certificate', '=', 1)
-                ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+                ->where('apply.created_at', '>=', $request->start_at)->where('apply.created_at', '<=', $request->end_at)
                 ->whereIn('pv.id', $apply)
                 ->get();  
             }else{
@@ -286,7 +286,7 @@ class ResiduosController extends Controller
                 ->where('apply.subprocesses_id', '=', 5)
                 ->where('pm.status', '=', 2)
                 ->where('pm.download_certificate', '=', 1)
-                ->where('pm.created_at', '>=', $request->start_at)->where('pm.created_at', '<=', $request->end_at)
+                ->where('apply.created_at', '>=', $request->start_at)->where('apply.created_at', '<=', $request->end_at)
                 ->get();  
             }
            
@@ -566,8 +566,6 @@ class ResiduosController extends Controller
             return Redirect::back()->with('error', 'La fecha "Desde" tiene que ser menor que la fecha "Hasta"!')->withInput();
         }
 
-        //$data = Residuos::where('withdrawal_date', '>=', $request->start_at)->where('withdrawal_date', '<=', $request->end_at)->get();
-        // dd($data);exit;
         $arrayNp1 = array();
         $arrayNp2 = array();
         $arrayNp3 = array();
@@ -576,6 +574,19 @@ class ResiduosController extends Controller
         $data = Residuos::where('withdrawal_date', '>=', $request->start_at)->where('withdrawal_date', '<=', $request->end_at)->groupBy('id_materials')
             ->selectRaw('*, sum(delivery) as sum')
             ->get();
+
+        $purchases = DB::table('purchase_valuation AS pv')
+            ->leftjoin('purchase_management AS pm', 'pm.purchase_valuation_id', '=', 'pv.id')
+            ->join('apply_sub_process_and_processes AS apply', 'apply.purchase_valuation_id', '=' ,'pv.id')
+            ->select('pv.id AS id_pv', 'pv.model AS model1','pv.name AS pvname', 'pv.lastname', 'pv.status_trafic', 'pm.*', 'apply.processes_id', 'apply.subprocesses_id', 'apply.created_at AS destruction_date')
+            ->where('apply.processes_id', '=', 5)
+            ->where('apply.subprocesses_id', '=', 5)
+            ->where('pm.status', '=', 2)
+            ->where('pm.download_certificate', '=', 1)
+            ->where('apply.created_at', '>=', $request->start_at)
+            ->where('apply.created_at', '<=', $request->end_at)
+            ->count();
+
         
 
         foreach($data as $residuos){
@@ -589,23 +600,23 @@ class ResiduosController extends Controller
                 array_push($arrayReu, $residuos);
         }
 
-        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $arrayReu) {
+        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $arrayReu, $purchases) {
 
-            $excel->sheet('PROCESO NP1', function($sheet) use($arrayNp1) {
+            $excel->sheet('PROCESO NP1', function($sheet) use($arrayNp1, $purchases) {
 
-                $sheet->loadView('excel.proceso_np1', array('data' => $arrayNp1));
-
-            });
-
-            $excel->sheet('PROCESO NP2', function($sheet) use($arrayNp2) {
-
-                $sheet->loadView('excel.proceso_np2', array('data' => $arrayNp2));
+                $sheet->loadView('excel.proceso_np1', array('data' => $arrayNp1, 'purchases' => $purchases));
 
             });
 
-            $excel->sheet('PROCESO NP3', function($sheet) use($arrayNp3) {
+            $excel->sheet('PROCESO NP2', function($sheet) use($arrayNp2, $purchases) {
 
-                $sheet->loadView('excel.proceso_np3', array('data' => $arrayNp3));
+                $sheet->loadView('excel.proceso_np2', array('data' => $arrayNp2, 'purchases' => $purchases));
+
+            });
+
+            $excel->sheet('PROCESO NP3', function($sheet) use($arrayNp3, $purchases) {
+
+                $sheet->loadView('excel.proceso_np3', array('data' => $arrayNp3, 'purchases' => $purchases));
 
             });
 
