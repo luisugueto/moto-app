@@ -4,6 +4,27 @@ $(document).ready(function(){
     var url = $('#url').val();
     var dataTable = '';
 
+    $('#tableResiduosRetirados thead tr').clone(true).appendTo('#tableResiduosRetirados thead');
+
+    $('#tableResiduosRetirados thead tr:eq(1) th').each( function (i) {
+      
+        if (i != 5) {
+            $(this).html('<input type="text" class="form-control" />');
+        }
+        else{
+            $(this).css('display', 'none');
+        }
+ 
+        $( 'input', this ).on( 'keyup change', function () {
+            if (dataTable.column(i).search() !== this.value) {             
+                dataTable
+                    .column(i)
+                    .search( this.value )
+                    .draw();
+            }
+        } );
+    } );
+
     dataTable = $('#tableRetiroResiduos').DataTable({
         processing: true,
         responsive: true,

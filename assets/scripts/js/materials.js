@@ -14,7 +14,7 @@ $(document).ready(function(){
     $('#tableMaterials thead tr').clone(true).appendTo('#tableMaterials thead');
 
     $('#tableMaterials thead tr:eq(1) th').each( function (i) {
-        if (i == 0 || i == 7) {
+        if (i == 0 || i == 9) {
             $(this).css('color', 'transparent');
             
             // $(this).html('<input type="text" class="form-control" />');

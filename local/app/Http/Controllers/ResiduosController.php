@@ -585,9 +585,7 @@ class ResiduosController extends Controller
             ->where('pm.download_certificate', '=', 1)
             ->where('apply.created_at', '>=', $request->start_at)
             ->where('apply.created_at', '<=', $request->end_at)
-            ->count();
-
-        
+            ->get();
 
         foreach($data as $residuos){
             if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP1') !== false))

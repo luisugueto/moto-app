@@ -10,11 +10,16 @@
     <?php $numberA = 0; $kiloA = 0; $numberB = 0; $kiloB = 0; $sumNumber = 0; $sumKilo = 0;  ?>
     @foreach($data as $val)
         <?php
-            $numberA+=$val->delivery;
+           /* $numberA+=$val->delivery;
             $kiloA+=$val->materialC->material->valorization * $val->sum;
 
             $sumNumber+=$numberA;
-            $sumKilo+=$kiloA;
+            $sumKilo+=$kiloA; */
+        ?>
+    @endforeach
+
+    @foreach($purchases as $purc)
+        <?php $sumKilo+=$purc->weight;
         ?>
     @endforeach
     <tr
@@ -40,10 +45,10 @@
             <p style="text-align: right;">160104</p>
         </td>
         <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $purchases }}</p>
+            <p style="text-align: right;">{{ count($purchases) }}</p>
         </td>
         <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $kiloA }}</p>
+            <p style="text-align: right;">{{ $sumKilo }}</p>
         </td>
     </tr>
     <tr stye="font-family: Arial;font-size: 10">
@@ -63,8 +68,8 @@
     <tr stye="font-family: Arial;font-size: 10">
         <td style="border:none;width: 60;height: 20;"></td>
         <td style="border:none;text-align: right">Total</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $purchases }}</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $kiloA }}</td>
+        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ count($purchases) }}</td>
+        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $sumKilo }}</td>
     </tr>
 </table>
 <table>
