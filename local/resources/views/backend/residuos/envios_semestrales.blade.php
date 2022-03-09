@@ -47,8 +47,8 @@
                             <th>Numero de Proceso</th>
                             <th>Codigo LER</th>
                             <th>Residuo</th>
-                            <th>Entrega</th>
-                            <th>En Instalaciones</th>
+                            <th>Entrega (Kg)</th>
+                            <th>En Instalaciones (Kg)</th>
                             <th>DCS (Cuando lo entregan)</th>
                             <th>Fecha Retirada</th>
                         </tr>

@@ -57,8 +57,8 @@
                                         <th></th>
                                         <th></th>
                                         <th>Residuo</th>
-                                        <th>Entrega</th>
-                                        <th>En Instalaciones</th>
+                                        <th>Entrega (Kg)</th>
+                                        <th>En Instalaciones (Kg)</th>
                                         <th>DCS (Cuando lo entregan)</th>
                                         <th>Fecha Retirada</th>
                                         <th>Acciones</th>
@@ -82,8 +82,8 @@
                                     <tr>
                                         <th></th>
                                         <th>Residuo</th>
-                                        <th>Entrega</th>
-                                        <th>En Instalaciones</th>
+                                        <th>Entrega (Kg)</th>
+                                        <th>En Instalaciones (Kg)</th>
                                         <th>DCS (Cuando lo entregan)</th>
                                         <th>Fecha Retirada</th>
                                         <th>Acciones</th>
