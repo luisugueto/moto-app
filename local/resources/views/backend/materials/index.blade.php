@@ -104,7 +104,7 @@
                         <div class="position-relative form-group row">                        
                             <div class="col-md-5 position-relative form-group">
                                 <label>Unidad de medida</label>
-                                <input class='form-control' id='unit_of_measurement' name='unit_of_measurement' type='text' value="{{ old('unit_of_measurement') }}"
+                                <input class='form-control' id='unit_of_measurement' name='unit_of_measurement' type='text' value="Kg"
                                     required>
                             </div>       
                             <div class="col-md-7 position-relative form-group">
