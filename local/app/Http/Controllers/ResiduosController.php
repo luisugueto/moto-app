@@ -80,7 +80,7 @@ class ResiduosController extends Controller
             $row['registration_number'] = $value->registration_number;
             $row['registration_date'] = $value->registration_date;
             $row['frame_no'] = $value->frame_no;
-            $row['vehicle_state_trafic'] = 'Alta';
+            $row['vehicle_state_trafic'] = $value->vehicle_state_trafic;
             $row['weight'] = round($value->weight, 2);
             $row['titular'] = $value->pvname. ' '. $value->lastname;
             $row['dni'] = $value->dni;
