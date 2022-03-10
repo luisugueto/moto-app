@@ -81,7 +81,7 @@
             <p style="text-align: center;">NIMA</p>
         </td>
         <td style="border: 2px medium #000;vertical-align:middle;" colspan="3">
-            <p style="text-align: center;">PROCESO DE GESTIÓN O PRODUCCIÓN EN LA PROPIA INSTALACION</p>
+            <p style="text-align: center;">PROCESO DE GESTIÓN O PRODUCCIÓN EN LA PROPIA INSTALACIÓN</p>
         </td>
         <td style="border: 2px medium #000;vertical-align:middle;" colspan="9">
             <p style="text-align: center;">Instalación de tratamiento de destino del residuo</p>

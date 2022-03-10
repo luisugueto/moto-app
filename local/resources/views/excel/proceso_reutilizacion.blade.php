@@ -22,7 +22,7 @@
 
 @foreach($np3 as $r)
     <?php 
-        if(str_contains($r->materialC->material->description, "NEUMATICOS"))
+        if($r->materialC->material->id == 11)
             $sumNp3+=$r->sum;
     ?>
 @endforeach
@@ -70,15 +70,14 @@
     <tr>
         <td style="height: 20;text-align: left;border: 2px medium #000;">B8084156</td>
         <td style="height: 20;text-align: left;border: 2px medium #000;">MOTOSTION SL</td>
-        <td style="height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nima_inst_destination }}</td>
+        <td style="height: 20;text-align: right;border: 2px medium #000;">2800018300</td>
         <td style="text-align: left;border: 2px medium #000;">NP</td>
-        <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >{{ $data[$i]->materialC->material->LER }}</td>
-        <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->material->description }}</td>
+        <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >{{ $data[$i]->LER }}</td>
+        <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->description }}</td>
 
         <?php 
-            $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
+            $formula = str_replace(" ", "", $data[$i]->percent_formula);
             $sumaProcesos = $sumNp1+$sumNp2+$sumNp3;
-
             $sumaTotal = eval('return '.(($sumKilo-$sumaProcesos)/1000)*(float)$formula.';'); 
 
         ?>

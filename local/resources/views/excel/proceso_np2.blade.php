@@ -50,12 +50,8 @@
         <td style="border: 2px medium #000;width:30;height: 20;">
             <p style="text-align: right;">160104</p>
         </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ count($purchases) }}</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $sumKilo-$sumNp1 }}</p>
-        </td>
+        <td style="border: 2px medium #000;width:30;height: 20;">{{ count($purchases) }}</td>
+        <td style="border: 2px medium #000;width:30;height: 20;">{{ $sumKilo-$sumNp1 }}</td>
     </tr>
     <tr stye="font-family: Arial;font-size: 10">
         <td style="border:none;width: 60;height: 20;"></td>
@@ -76,7 +72,7 @@
             <p style="text-align: center;">NIMA</p>
         </td>
         <td style="border: 2px medium #000;vertical-align:middle;" colspan="3">
-            <p style="text-align: center;">PROCESO DE GESTIÓN O PRODUCCIÓN EN LA PROPIA INSTALACION</p>
+            <p style="text-align: center;">PROCESO DE GESTIÓN O PRODUCCIÓN EN LA PROPIA INSTALACIÓN</p>
         </td>
         <td style="border: 2px medium #000;vertical-align:middle;" colspan="9">
             <p style="text-align: center;">Instalación de tratamiento de destino del residuo</p>

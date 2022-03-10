@@ -220,10 +220,7 @@ class WasteCompaniesController extends Controller
 
     public function getListMaterials(Request $request)
     {
-        
-        // dd($request->all());
-       
-        $materials = Materials::get();
+        $materials = Materials::where('id', '!=', 12)->where('id', '!=', 13)->where('id', '!=', 14)->where('id', '!=', 15)->where('id', '!=', 16)->get();
  
         $materiales = array();
         foreach($materials as $material){

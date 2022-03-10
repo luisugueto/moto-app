@@ -586,6 +586,9 @@ class ResiduosController extends Controller
             ->where('apply.created_at', '>=', $request->start_at)
             ->where('apply.created_at', '<=', $request->end_at)
             ->get();
+            
+        $idReutilizacion = [12, 13, 14, 15, 16];
+        $materialReutilizacion = Materials::whereIn('id', $idReutilizacion)->get();
 
         foreach($data as $residuos){
             if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP1') !== false))
@@ -594,11 +597,11 @@ class ResiduosController extends Controller
                 array_push($arrayNp2, $residuos);
             if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'NP3') !== false))
                 array_push($arrayNp3, $residuos);
-            if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'Reutilizacion') !== false))
-                array_push($arrayReu, $residuos);
+            /*if(($residuos->materialC != null) && (strpos($residuos->materialC->material->type, 'Reutilizacion') !== false))
+                array_push($arrayReu, $residuos); */
         }
 
-        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $arrayReu, $purchases) {
+        Excel::create('BALANCE SEMESTRAL 2021', function($excel) use($arrayNp1, $arrayNp2, $arrayNp3, $materialReutilizacion, $purchases) {
 
             $excel->sheet('PROCESO NP1', function($sheet) use($arrayNp1, $purchases) {
 
@@ -618,9 +621,9 @@ class ResiduosController extends Controller
 
             });
 
-            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($arrayReu, $purchases, $arrayNp1, $arrayNp2, $arrayNp3) {
+            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($materialReutilizacion, $purchases, $arrayNp1, $arrayNp2, $arrayNp3) {
 
-                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $arrayReu, 'purchases' => $purchases, 'np1' => $arrayNp1, 'np2' => $arrayNp2, 'np3' => $arrayNp3));
+                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $materialReutilizacion, 'purchases' => $purchases, 'np1' => $arrayNp1, 'np2' => $arrayNp2, 'np3' => $arrayNp3));
 
             });
 
