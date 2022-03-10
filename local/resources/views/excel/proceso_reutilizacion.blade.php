@@ -1,6 +1,32 @@
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"
     xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
- 
+
+<?php $sumNp1 = 0; $sumNp2 = 0; $sumNp3 = 0; $sumKilo = 0;  ?>
+
+@foreach($purchases as $purc)
+    <?php $sumKilo+=$purc->weight;
+    ?>
+@endforeach
+
+@foreach($np1 as $np)
+    <?php 
+        $sumNp1+=$np->sum;
+    ?>
+@endforeach
+
+@foreach($np2 as $n)
+    <?php 
+        $sumNp2+=$n->sum;
+    ?>
+@endforeach
+
+@foreach($np3 as $r)
+    <?php 
+        if(str_contains($r->materialC->material->description, "NEUMATICOS"))
+            $sumNp3+=$r->sum;
+    ?>
+@endforeach
+
 <table>
     <tr>
         <td style="font-weight: bold;width: 60;height: 20;font-family: Arial;font-size: 12">PROCESO DE REUTILIZACIÓN</td>
@@ -48,13 +74,16 @@
         <td style="text-align: left;border: 2px medium #000;">NP</td>
         <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >{{ $data[$i]->materialC->material->LER }}</td>
         <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->material->description }}</td>
-        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">{{ ($data[$i]->sum)/1000 }}</td>
 
-        <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
-            $p = eval('return '.($data[$i]->sum/1000)*(float)$formula.';'); 
+        <?php 
+            $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
+            $sumaProcesos = $sumNp1+$sumNp2+$sumNp3;
+
+            $sumaTotal = eval('return '.(($sumKilo-$sumaProcesos)/1000)*(float)$formula.';'); 
+
         ?>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">{{ $sumaTotal }}</td>
     </tr>
     @endfor
 </table>
-
 </html>

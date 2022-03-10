@@ -45,12 +45,8 @@
         <td style="border: 2px medium #000;width:30;height: 20;">
             <p style="text-align: right;">160104</p>
         </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ count($purchases) }}</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $sumKilo }}</p>
-        </td>
+        <td style="border: 2px medium #000;width:30;height: 20;">{{ count($purchases) }}</td>
+        <td style="border: 2px medium #000;width:30;height: 20;">{{ $sumKilo }}</td>
     </tr>
     <tr stye="font-family: Arial;font-size: 10">
         <td style="border: 2px medium #000;width: 60;height: 20;">

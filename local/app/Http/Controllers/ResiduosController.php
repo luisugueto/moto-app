@@ -618,9 +618,9 @@ class ResiduosController extends Controller
 
             });
 
-            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($arrayReu) {
+            $excel->sheet('PROCESO DE REUTILIZACIÓN', function($sheet) use($arrayReu, $purchases, $arrayNp1, $arrayNp2, $arrayNp3) {
 
-                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $arrayReu));
+                $sheet->loadView('excel.proceso_reutilizacion', array('data' => $arrayReu, 'purchases' => $purchases, 'np1' => $arrayNp1, 'np2' => $arrayNp2, 'np3' => $arrayNp3));
 
             });
 
