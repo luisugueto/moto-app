@@ -6,87 +6,22 @@
         <td style="font-weight: bold;width: 461;height: 20;font-family: Arial;font-size: 12">RESUMEN DE SALIDAS DE
             RESIDUOS PELIGROSOS NP03</td>
     </tr>
-    <tr></tr>
-    <?php $numberA = 0; $kiloA = 0; $numberB = 0; $kiloB = 0; $sumNumber = 0; $sumKilo = 0;  ?>
-    @foreach($data as $val)
-        <?php
-           /* $numberA+=$val->delivery;
-            $kiloA+=$val->materialC->material->valorization * $val->sum;
-
-            $sumNumber+=$numberA;
-            $sumKilo+=$kiloA; */
-        ?>
-    @endforeach
-
-    @foreach($purchases as $purc)
-        <?php $sumKilo+=$purc->weight;
-        ?>
-    @endforeach
-    <tr
-        style="border: 2px medium #000;background-color: #dddddd; text-align: center;vertical-align:middle;font-family: Arial;font-size: 10">
-        <td style="width: 80;height: 30;">
-            <p style="text-align: center;">Residuos</p>
-        </td>
-        <td style="width:30;height: 30;">
-            <p style="text-align: center;">CODIGO LER</p>
-        </td>
-        <td style="width:30;height: 30;">
-            <p style="text-align: center;">Unidades</p>
-        </td>
-        <td style="width:40;height: 30;">
-            <p style="text-align: center;">Kg</p>
-        </td>
-    </tr>
-    <tr stye="font-family: Arial;font-size: 10">
-        <td style="border: 2px medium #000;width: 60;height: 20;">
-            <p style="text-align: left;">Vehículos al final de su vida útil sometidos al RD 20/2017</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">160104</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ count($purchases) }}</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $sumKilo }}</p>
-        </td>
-    </tr>
-    <tr stye="font-family: Arial;font-size: 10">
-        <td style="border: 2px medium #000;width: 60;height: 20;">
-            <p style="text-align: left;">Vehículos al final de su vida útil sometidos al RD 20/2017</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">&nbsp;</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;"></p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;"></p>
-        </td>
-    </tr>
-    <tr stye="font-family: Arial;font-size: 10">
-        <td style="border:none;width: 60;height: 20;"></td>
-        <td style="border:none;text-align: right">Total</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ count($purchases) }}</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $sumKilo }}</td>
-    </tr>
-</table>
-<table>
+    <tr ></tr>
+    <tr style="background: #fff;border: 1px solid #d4d4d4"></tr>
     <tr stye="font-family: Arial;font-size: 10;text-align: center;vertical-align:middle;">
-        <td style="height: 60;border: 2px medium #000;vertical-align:middle;">
+        <td style="width:60;height: 60;border: 2px medium #000;vertical-align:middle;">
             <p style="text-align: center;">NIF del titular </p>
         </td>
-        <td style="height: 60;border: 2px medium #000;vertical-align:middle;">
+        <td style="width: 30;height: 60;border: 2px medium #000;vertical-align:middle;">
             <p style="text-align: center;">Razón social del titular</p>
         </td>
-        <td style="height: 60;border: 2px medium #000;vertical-align:middle;">
+        <td style="width: 30;height: 60;border: 2px medium #000;vertical-align:middle;">
             <p style="text-align: center;">NIMA</p>
         </td>
-        <td style="border: 2px medium #000;vertical-align:middle;" colspan="3">
+        <td style="width: 30;border: 2px medium #000;vertical-align:middle;" colspan="3">
             <p style="text-align: center;">PROCESO DE GESTIÓN O PRODUCCIÓN EN LA PROPIA INSTALACION</p>
         </td>
-        <td style="border: 2px medium #000;vertical-align:middle;" colspan="9">
+        <td style="width: 30;border: 2px medium #000;vertical-align:middle;" colspan="9">
             <p style="text-align: center;">Instalación de tratamiento de destino del residuo</p>
         </td>
         <td style="width: 30;border: 2px medium #000;">
@@ -100,7 +35,7 @@
         <td style="height: 20;vertical-align:middle;">&nbsp;</td>
         <td style="height: 20;vertical-align:middle;">&nbsp;</td>
         <td style="height: 20;vertical-align:middle;">&nbsp;</td>
-        <td style="border: 2px medium #000;vertical-align:middle;">NÚMERO PROCESO (NP)</td>
+        <td style="width: 30;height: 20;border: 2px medium #000;vertical-align:middle;">NÚMERO PROCESO (NP)</td>
         <td style="width: 15;border: 2px medium #000;vertical-align:middle;text-align: center" colspan="1">CODIGO LER</td>
         <td style="width: 15;height: 20;border: 2px medium #000;vertical-align:middle;">RESIDUO</td>
         <td style="width: 20;height: 20;border: 2px medium #000;vertical-align:middle;">NIF de Inst. destino</td>
@@ -120,13 +55,6 @@
 <table>
     <?php 
         $contador = count($data); 
-        // $celdas = 0;
-        // if($contador < 10){
-        //     $celdas = 10;
-        // }
-        // if($contador > 10){
-        //     $celdas = 10 + 2;
-        // }
     ?>
     @for ($i = 0; $i < $contador; $i++)
     <tr>
@@ -139,22 +67,32 @@
         <td style="width: 20;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nif_inst_destination }}</td>
         <td style="width: 30;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->reason_social_inst_destination }}</td>
         <td style="width: 30;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nima_inst_destination }}</td>
-        <td style="width: 50;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->type_via }}, {{ $data[$i]->materialC->waste_companie->name_via }}, {{ $data[$i]->materialC->waste_companie->number }}, {{ $data[$i]->materialC->waste_companie->flat }}, {{ $data[$i]->materialC->waste_companie->door }}</td>
+        <?php
+            $direccion = '';
+
+            if(!empty($data[$i]->materialC->waste_companie->type_via) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= $data[$i]->materialC->waste_companie->type_via;
+            if(!empty($data[$i]->materialC->waste_companie->name_via) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->name_via;
+            if(!empty($data[$i]->materialC->waste_companie->number) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->number;
+            if(!empty($data[$i]->materialC->waste_companie->flat) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->flat;
+            if(!empty($data[$i]->materialC->waste_companie->door) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->door;
+        ?>
+
+        <td style="width: 50;height: 20;text-align: left;border: 2px medium #000;">{{ $direccion }}</td>
         <td style="width: 13;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->postal_code }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->location }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->province }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->country }}</td>
         <td style="height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->authorization_no }}</td>
-        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ $data[$i]->sum/100 }}</td>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">{{ $data[$i]->sum/1000 }}</td>
 
         @if($data[$i]->materialC->material->percent_formula != null && $data[$i]->materialC->material->percent_formula != '')
             <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
-                $p = eval('return '.($data[$i]->sum/100)*(float)$formula.';'); 
+                $p = eval('return '.($data[$i]->sum/1000)*(float)$formula.';'); 
             ?>
 
-            <td style="height: 20;text-align: right;border: 2px medium #000;">={{  (string)$p }}</td>
+            <td style="height: 20;text-align: right;border: 2px medium #000;">{{  (string)$p }}</td>
         @else
-            <td style="height: 20;text-align: right;border: 2px medium #000;">={{  $data[$i]->materialC->material->fix_value }}</td>
+            <td style="height: 20;text-align: right;border: 2px medium #000;">{{  $data[$i]->materialC->material->fix_value }}</td>
         @endif
     </tr>
     @endfor

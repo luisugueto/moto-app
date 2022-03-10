@@ -137,11 +137,11 @@
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
                                     <label for="nro_street" class="">N°:</label>
-                                    <input name="nro_street" id="nro_street" type="number" class="form-control"
-                                        value="{{ old('nro_street') }}">
-                                    @if ($errors->has('nro_street'))
+                                    <input name="number" id="nro_street" type="number" class="form-control"
+                                        value="{{ old('number') }}">
+                                    @if ($errors->has('number'))
                                         <span class="error text-danger">
-                                            <strong>{{ $errors->first('nro_street') }}</strong>
+                                            <strong>{{ $errors->first('number') }}</strong>
                                         </span>
                                     @endif
                                 </div>

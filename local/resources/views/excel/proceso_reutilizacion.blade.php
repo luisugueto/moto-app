@@ -48,10 +48,10 @@
         <td style="text-align: left;border: 2px medium #000;">NP</td>
         <td style="width: 15;text-align: ;text-align: right;border: 2px medium #000;" >{{ $data[$i]->materialC->material->LER }}</td>
         <td style="width: 15;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->material->description }}</td>
-        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ ($data[$i]->delivery)/100 }}</td>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">{{ ($data[$i]->sum)/1000 }}</td>
 
         <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
-            $p = eval('return '.($data[$i]->delivery/100)*(float)$formula.';'); 
+            $p = eval('return '.($data[$i]->sum/1000)*(float)$formula.';'); 
         ?>
     </tr>
     @endfor

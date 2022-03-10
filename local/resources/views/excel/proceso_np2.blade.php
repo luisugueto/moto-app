@@ -7,7 +7,7 @@
             RESIDUOS PELIGROSOS NP02</td>
     </tr>
     <tr></tr>
-    <?php $numberA = 0; $kiloA = 0; $numberB = 0; $kiloB = 0; $sumNumber = 0; $sumKilo = 0;  ?>
+    <?php $numberA = 0; $kiloA = 0; $numberB = 0; $kiloB = 0; $sumNumber = 0; $sumKilo = 0;  $sumNp1 = 0;?>
     @foreach($data as $val)
         <?php
            /* $numberA+=$val->delivery;
@@ -20,6 +20,12 @@
 
     @foreach($purchases as $purc)
         <?php $sumKilo+=$purc->weight;
+        ?>
+    @endforeach
+
+    @foreach($np1 as $np)
+        <?php 
+            $sumNp1+=$np->sum;
         ?>
     @endforeach
     <tr
@@ -48,28 +54,14 @@
             <p style="text-align: right;">{{ count($purchases) }}</p>
         </td>
         <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">{{ $sumKilo }}</p>
-        </td>
-    </tr>
-    <tr stye="font-family: Arial;font-size: 10">
-        <td style="border: 2px medium #000;width: 60;height: 20;">
-            <p style="text-align: left;">Vehículos al final de su vida útil sometidos al RD 20/2017</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;">&nbsp;</p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;"></p>
-        </td>
-        <td style="border: 2px medium #000;width:30;height: 20;">
-            <p style="text-align: right;"></p>
+            <p style="text-align: right;">{{ $sumKilo-$sumNp1 }}</p>
         </td>
     </tr>
     <tr stye="font-family: Arial;font-size: 10">
         <td style="border:none;width: 60;height: 20;"></td>
         <td style="border:none;text-align: right">Total</td>
         <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ count($purchases) }}</td>
-        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $sumKilo }}</td>
+        <td style="border: 2px medium #000;text-align: right;color:#dd0000">{{ $sumKilo-$sumNp1 }}</td>
     </tr>
 </table>
 <table>
@@ -120,13 +112,6 @@
 <table>
     <?php 
         $contador = count($data); 
-        // $celdas = 0;
-        // if($contador < 10){
-        //     $celdas = 10;
-        // }
-        // if($contador > 10){
-        //     $celdas = 10 + 2;
-        // }
     ?>
     @for ($i = 0; $i < $contador; $i++)
     <tr>
@@ -139,22 +124,32 @@
         <td style="width: 20;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nif_inst_destination }}</td>
         <td style="width: 30;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->reason_social_inst_destination }}</td>
         <td style="width: 30;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->nima_inst_destination }}</td>
-        <td style="width: 50;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->type_via }}, {{ $data[$i]->materialC->waste_companie->name_via }}, {{ $data[$i]->materialC->waste_companie->number }}, {{ $data[$i]->materialC->waste_companie->flat }}, {{ $data[$i]->materialC->waste_companie->door }}</td>
+        <?php
+            $direccion = '';
+
+            if(!empty($data[$i]->materialC->waste_companie->type_via) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= $data[$i]->materialC->waste_companie->type_via;
+            if(!empty($data[$i]->materialC->waste_companie->name_via) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->name_via;
+            if(!empty($data[$i]->materialC->waste_companie->number) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->number;
+            if(!empty($data[$i]->materialC->waste_companie->flat) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->flat;
+            if(!empty($data[$i]->materialC->waste_companie->door) && $data[$i]->materialC->waste_companie->type_via != NULL) $direccion .= ', '.$data[$i]->materialC->waste_companie->door;
+        ?>
+
+        <td style="width: 50;height: 20;text-align: left;border: 2px medium #000;">{{ $direccion }}</td>
         <td style="width: 13;height: 20;text-align: right;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->postal_code }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->location }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->province }}</td>
         <td style="width: 10;height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->country }}</td>
         <td style="height: 20;text-align: left;border: 2px medium #000;">{{ $data[$i]->materialC->waste_companie->authorization_no }}</td>
-        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">={{ $data[$i]->sum/100 }}</td>
+        <td style="height: 20;text-align: right;color:#dd0000;border: 2px medium #000;">{{ $data[$i]->sum/1000 }}</td>
         
         @if($data[$i]->materialC->material->percent_formula != null && $data[$i]->materialC->material->percent_formula != '')
             <?php $formula = str_replace(" ", "", $data[$i]->materialC->material->percent_formula);
-                $p = eval('return '.($data[$i]->sum/100)*(float)$formula.';'); 
+                $p = eval('return '.($data[$i]->sum/1000)*(float)$formula.';'); 
             ?>
 
-            <td style="height: 20;text-align: right;border: 2px medium #000;">={{  (string)$p }}</td>
+            <td style="height: 20;text-align: right;border: 2px medium #000;">{{  (string)$p }}</td>
         @else
-            <td style="height: 20;text-align: right;border: 2px medium #000;">={{  $data[$i]->materialC->material->fix_value }}</td>
+            <td style="height: 20;text-align: right;border: 2px medium #000;">{{  $data[$i]->materialC->material->fix_value }}</td>
         @endif
         
     </tr>

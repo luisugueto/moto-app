@@ -138,13 +138,19 @@ class WasteCompaniesController extends Controller
 
         $validator = \Validator::make($request->all(), ['name' => 'required|min:5', 'nif_inst_destination' => 'required', 'reason_social_inst_destination' => 'required', 'nima_inst_destination' => 'required', 'postal_code' => 'required', 'location' => 'required', 'province' => 'required', 'country' => 'required', 'authorization_no' => 'required']);
 
+        $data = $request->all();
         if ($validator->fails()) {
             $out['code'] = 422;
             $out['message'] = 'Campos requeridos';
             $out['response'] = $validator->errors();
       
         } else {
-            $waste->update($request->all());
+
+            $data['name_via'] = $request->name_via;
+            $data['number'] = $request->nro_street;
+
+            $waste->update($data);
+
             $out['code'] = 200;
             $out['message'] = 'Registro actualizado exitosamente.';
             $out['response'] = $waste;

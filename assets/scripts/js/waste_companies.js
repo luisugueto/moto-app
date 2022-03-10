@@ -111,7 +111,7 @@ $(document).ready(function(){
                 $('#nima_inst_destination').val(data.nima_inst_destination);
                 $('#type_via').val(data.type_via);
                 $('#name_via').val(data.name_via);
-                $('#nro_street').val(data.nro_street);
+                $('#nro_street').val(data.number);
                 $('#flat').val(data.flat);
                 $('#door').val(data.door);
                 $('#postal_code').val(data.postal_code);
@@ -168,7 +168,7 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
 
-                //console.log(data)
+                console.log(data)
                 if (data.code == 200) {
                     dataTable.ajax.reload();
                     preloader('hide', data.message, 'success');

@@ -606,9 +606,9 @@ class ResiduosController extends Controller
 
             });
 
-            $excel->sheet('PROCESO NP2', function($sheet) use($arrayNp2, $purchases) {
+            $excel->sheet('PROCESO NP2', function($sheet) use($arrayNp1, $arrayNp2, $purchases) {
 
-                $sheet->loadView('excel.proceso_np2', array('data' => $arrayNp2, 'purchases' => $purchases));
+                $sheet->loadView('excel.proceso_np2', array('data' => $arrayNp2, 'np1' => $arrayNp1,'purchases' => $purchases));
 
             });
 
