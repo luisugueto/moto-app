@@ -1371,7 +1371,6 @@ aria-hidden="true">
         $('#year').append($('<option />').val(i).html(i));
     }
 </script>
-<script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>
 <script>
     var setModel = () => {
     let id = $("#brand").find(':selected').data('id');
@@ -1395,11 +1394,14 @@ aria-hidden="true">
                 }));
             });
 
-            select.prop('disabled', false);
-
+            sessionStorage.setItem('modelLoad', true);
+            // select.prop('disabled', false);
         }
     });
 };
 </script>
+
+<script src="{{ asset('assets/scripts/js/purchase_valuation_show_ficha.js') }}"></script>
+
 
 @endsection

@@ -16,7 +16,6 @@ $(document).ready(function () {
             url: 'ficha_de_la_moto/' + id,
             dataType: 'json',
             success: function (data) {
-                //console.log(data);
                 $('#formFichaTabs').find('select, textarea, input').each(function () {
                     $(this).prop('disabled', true);
                 });
@@ -41,7 +40,11 @@ $(document).ready(function () {
                 $('#documents_mail_purchase_id').val(data.id); 
                 $("#year").val(data.year).trigger('change');
                 $('#brand').val(data.brand).trigger("change");
-                setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 6000);
+               
+                if(sessionStorage.getItem('modelLoad')){
+                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 3500);
+                }
+
                 $("#brand_text").val(data.brand);
                 $("#model_text").val(data.model);
                 $('#km').val(data.km);
@@ -750,7 +753,6 @@ $(document).ready(function () {
             dataSerialize2 = JSON.stringify(dataMecanicArray, null, 2),
             dataSerialize3 = JSON.stringify(dataInternArray, null, 2);
         
-      
         var formData = {
             purchase_id: $('#purchase_id').val(),
             brand: brandform,
