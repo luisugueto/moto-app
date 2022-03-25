@@ -158,7 +158,7 @@
                         De otra parte: motOstion, con NIF: B80804156 y dirección en C/ Matilde Hernandez nº10, 28019,
                         Madrid. Tel.:914716248</span></p>
                         <p class="s1" style="padding-top: 4pt;text-indent: 14pt;text-align: justify;"><span>
-                        Con número de CAT: CATV/MD/12173 y e-mail: info@motostion.com. En calidad de centro autorizado
+                        Con número de CAT: 13G01A1200030572Y y e-mail: info@motostion.com. En calidad de centro autorizado
                         de tratamiento de vehículos al final de su vida útil.</span></p>
 
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>

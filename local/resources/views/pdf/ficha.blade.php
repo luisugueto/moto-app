@@ -3298,7 +3298,7 @@
                         Madrid. Tel.:914716248</p>
                     <p class="s21-1"
                         style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">
-                        Con número de CAT: CATV/MD/12173 y e-mail: info@motostion.com. En calidad de centro autorizado
+                        Con número de CAT: 13G01A1200030572Y y e-mail: info@motostion.com. En calidad de centro autorizado
                         de tratamiento de vehículos al final de su vida útil.</p>
 
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
@@ -3478,7 +3478,7 @@
                         Madrid. Tel.:914716248</p>
                     <p class="s21-1"
                         style="padding-top: 4pt;padding-left: 10pt;padding-right: 27pt;text-indent: 0pt;text-align: justify;">
-                        Con número de CAT: CATV/MD/12173 y e-mail: info@motostion.com. En calidad de centro autorizado
+                        Con número de CAT: 13G01A1200030572Y y e-mail: info@motostion.com. En calidad de centro autorizado
                         de tratamiento de vehículos al final de su vida útil.</p>
 
                     <p style="text-indent: 0pt;text-align: left;"><br /></p>
