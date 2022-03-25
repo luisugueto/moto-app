@@ -1957,7 +1957,7 @@ class PurchaseValuationController extends Controller
         $data['id'] = $purchase_valuation['id'];
         $data['date'] = $purchase_valuation['date'];
         $data['brand'] = $purchase_valuation['brand'];
-        $data['model'] = $purchase_valuation['model'];
+        $data['model'] = ($purchase_valuation['model'] == '') ? $purchase_management['model'] : $purchase_valuation['model'];
         $data['exist_model_brand'] = $purchase_valuation['exist_model_brand'];
         $data['year'] = $purchase_valuation['year'];
         $data['km'] = $purchase_valuation['km'];

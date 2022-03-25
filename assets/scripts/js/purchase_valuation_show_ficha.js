@@ -40,9 +40,10 @@ $(document).ready(function () {
                 $('#documents_mail_purchase_id').val(data.id); 
                 $("#year").val(data.year).trigger('change');
                 $('#brand').val(data.brand).trigger("change");
+                $('#model').val(data.model).trigger("change");
                
                 if(sessionStorage.getItem('modelLoad')){
-                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 3500);
+                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4500);
                 }
 
                 $("#brand_text").val(data.brand);
