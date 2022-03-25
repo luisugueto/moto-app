@@ -4,6 +4,7 @@ $(document).ready(function () {
     var url_index = $('#url_index').val();
 
     var action = sessionStorage.getItem('action');
+    var inputBloq = 0;
 
     if (action == 1) {
         sessionStorage.clear();
@@ -43,7 +44,7 @@ $(document).ready(function () {
                 $('#model').val(data.model).trigger("change");
                
                 if(sessionStorage.getItem('modelLoad')){
-                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4500);
+                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 9000);
                 }
 
                 $("#brand_text").val(data.brand);
@@ -849,7 +850,14 @@ $(document).ready(function () {
     $('#editTabFicha0').click(function (e) {
         e.preventDefault();
         $('#tab-ficha-0').find('select, textarea, input').each(function () {
-            if ($(this).prop('disabled')) $(this).prop('disabled', false); else $(this).prop('disabled', true);
+            if ($(this).prop('disabled')){
+                inputBloq = 0;
+                $(this).prop('disabled', false); 
+            } else {
+                inputBloq = 1;
+                $(this).prop('disabled', true);
+            }
+
         });
     });
     ///////////////////////////////////////////////
@@ -1015,8 +1023,11 @@ $(document).ready(function () {
 
             $('#model').attr('disabled', 'disabled');
             $('#brand').attr('disabled', 'disabled');
-            $('#brand_text').removeAttr('disabled');
-            $('#model_text').removeAttr('disabled');
+
+            if(inputBloq == 1){
+                $('#brand_text').removeAttr('disabled');
+                $('#model_text').removeAttr('disabled');
+            }
 
             $('#brand_text').attr('required', 'required');
             $('#model_text').attr('required', 'required');
@@ -1040,8 +1051,11 @@ $(document).ready(function () {
             $('#brand_text').val('');
             $('#model_text').val('');
 
-            $('#brand').removeAttr('disabled');
-            $('#model').removeAttr('disabled');
+            if(inputBloq == 1){
+                $('#brand').removeAttr('disabled');
+                $('#model').removeAttr('disabled');
+            }
+
 
             $("#exist_model_brand").val(1);
 
