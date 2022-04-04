@@ -761,7 +761,7 @@
         </table>
         <table style="border: 1px solid black; border-collapse: collapse;margin-left:15.04pt;width: 730px" cellspacing="0">
             <tr>
-                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre hel Recambio</b></span></th>
+                <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre del Recambio</b></span></th>
                 <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Precio €</b></span></th>
                 <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Nombre del Recambio</b></span></th>
                 <th style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3"><b>Precio €</b></span></th>
@@ -797,7 +797,7 @@
                 <td style="border: 1px solid black; border-collapse: collapse;height: 30px"><span class="s3">@if(isset($rebu[9])) {{ $rebu[9]->price }} @else &nbsp;&nbsp; @endif</span></td>
             </tr>
         </table>
-        <p style="text-indent: 0pt;text-align: justify;"><br /></p>
+        <p style="text-indent: 0pt;text-align: right;"><br />Fecha del Recambio: @if(isset($rebu[0])) {{date('d-m-Y',strtotime($rebu[0]->created_at))}}@endif</p>
         <p style="text-indent: 0pt;text-align: justify;"><br /></p>
         <table style="border-collapse:collapse;margin-left:8.04pt;width: 755px" cellspacing="0">
             <tr style="height:35pt">
