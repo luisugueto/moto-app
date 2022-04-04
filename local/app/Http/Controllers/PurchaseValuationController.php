@@ -2094,9 +2094,13 @@ class PurchaseValuationController extends Controller
         ]);
 
         $purchase = PurchaseValuation::find($request->purchase_id);
+
+        if($request->model == '') $model = $purchase->model;
+        else $model = $request->model;
+
         $purchase->date = $request->date;
         $purchase->brand = $request->brand;
-        $purchase->model = $request->model;
+        $purchase->model = $model;
         $purchase->year = $request->year;
         $purchase->km = $request->km;
         $purchase->email = $request->email;
@@ -2158,7 +2162,7 @@ class PurchaseValuationController extends Controller
         $purchase_management->email_representative = $request->email_representative;
         $purchase_management->representation_concept = $request->representation_concept;
         $purchase_management->brand = $request->brand;
-        $purchase_management->model = $request->model;
+        $purchase_management->model = $model;
         $purchase_management->version = $request->version;
         $purchase_management->type = $request->type;
         $purchase_management->kilometres = $request->kilometres;

@@ -44,7 +44,7 @@ $(document).ready(function () {
                 $('#model').val(data.model).trigger("change");
                
                 if(sessionStorage.getItem('modelLoad')){
-                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 9000);
+                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 5000);
                 }
 
                 $("#brand_text").val(data.brand);
