@@ -4,7 +4,7 @@ $(document).ready(function () {
     var url_index = $('#url_index').val();
 
     var action = sessionStorage.getItem('action');
-    var inputBloq = 0;
+    var inputBloq = 1;
 
     if (action == 1) {
         sessionStorage.clear();
@@ -612,7 +612,6 @@ $(document).ready(function () {
             data3 = $(' #form_display_datos_internos').find('select, textarea, input').serializeArray(),
             data2 = $(' #form_display_datos_mecanico').find('select, textarea, input').serializeArray();
         
-        console.log(data2)
         var dataArray = [], dataMecanicArray = [], dataInternArray = []; ;
 
         for (i = 0; i < data.length; i++) {
@@ -826,6 +825,12 @@ $(document).ready(function () {
             check_chasis: check_chasis
 
         }
+
+        if(inputBloq == 1){
+            delete formData.model;
+            delete formData.brand;
+        }
+
         preloader('show');
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('input[name=_token]').val() },
@@ -1024,7 +1029,7 @@ $(document).ready(function () {
             $('#model').attr('disabled', 'disabled');
             $('#brand').attr('disabled', 'disabled');
 
-            if(inputBloq == 1){
+            if(inputBloq == 0){
                 $('#brand_text').removeAttr('disabled');
                 $('#model_text').removeAttr('disabled');
             }
@@ -1050,8 +1055,8 @@ $(document).ready(function () {
             $('#model_text').attr('disabled', 'disabled');
             $('#brand_text').val('');
             $('#model_text').val('');
-
-            if(inputBloq == 1){
+            
+            if(inputBloq == 0){
                 $('#brand').removeAttr('disabled');
                 $('#model').removeAttr('disabled');
             }

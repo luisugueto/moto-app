@@ -2068,7 +2068,7 @@ class PurchaseValuationController extends Controller
 
         $validator = \Validator::make($request->all(),[
             'brand' => 'required',
-            'model' => 'required',
+            // 'model' => 'required',
             'year' => 'required',
             'km' => 'required',
             'email' => 'required',
@@ -2095,8 +2095,8 @@ class PurchaseValuationController extends Controller
 
         $purchase = PurchaseValuation::find($request->purchase_id);
 
-        if($request->model == '') $model = $purchase->model;
-        else $model = $request->model;
+        if(isset($request->model)) $model = $request->model;
+        else $model = $purchase->model;
 
         $purchase->date = $request->date;
         $purchase->brand = $request->brand;
