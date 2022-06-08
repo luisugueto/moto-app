@@ -1892,8 +1892,9 @@ class PurchaseValuationController extends Controller
                     elseif($key == 1)
                         $nameDocument = 'Documentos para Destrucción';
 
+                    $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
+                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
 
@@ -1910,8 +1911,9 @@ class PurchaseValuationController extends Controller
                     elseif($key == 2)
                         $nameDocument = 'Declaracion Responsable Fallecidos';
 
+                    $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
+                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' =>'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
 
@@ -1928,8 +1930,9 @@ class PurchaseValuationController extends Controller
                     elseif($key == 2)
                         $nameDocument = 'Documentos para venta';
 
+                    $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
+                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
 
@@ -1948,8 +1951,11 @@ class PurchaseValuationController extends Controller
                     elseif($key == 3)
                         $nameDocument = 'Declaracion Responsable Fallecidos';
 
+                    $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => str_replace("trail", "approval", get_document_info($code)->auditTrailPage), 'date' => $dateDocuments, 'code' => $code ]);
+                    // str_replace("trail", "approval", get_document_info($code)->auditTrailPage)
+                    
+                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
                 }
             }
         }
