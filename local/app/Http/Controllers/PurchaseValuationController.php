@@ -1894,7 +1894,9 @@ class PurchaseValuationController extends Controller
 
                     $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
+                    $timestamp = get_document_info($code)->workflow->initiate;
+
+                    array_push($documentsDestruction, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => date('Y-m-d', $timestamp/1000), 'code' => $code ]);
                 }
             }
 
@@ -1913,7 +1915,9 @@ class PurchaseValuationController extends Controller
 
                     $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' =>'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
+                    $timestamp = get_document_info($code)->workflow->initiate;
+
+                    array_push($documentsDestructionDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' =>'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => date('Y-m-d', $timestamp/1000), 'code' => $code ]);
                 }
             }
 
@@ -1932,7 +1936,9 @@ class PurchaseValuationController extends Controller
 
                     $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
-                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
+                    $timestamp = get_document_info($code)->workflow->initiate;
+
+                    array_push($documentsPossibleSale, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => date('Y-m-d', $timestamp/1000), 'code' => $code ]);
                 }
             }
 
@@ -1954,8 +1960,10 @@ class PurchaseValuationController extends Controller
                     $explodeToken = explode("trail/",  get_document_info($code)->auditTrailPage);
 
                     // str_replace("trail", "approval", get_document_info($code)->auditTrailPage)
+
+                    $timestamp = get_document_info($code)->workflow->initiate;
                     
-                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => $dateDocuments, 'code' => $code ]);
+                    array_push($documentsPossibleSaleDeceased, ['name_document' => $nameDocument,'get_status_document' =>  get_status_document($code), 'download_signed' => download_signed($code), 'approval_document' => 'https://services.viafirma.com/documents-web/approval/'.$explodeToken[1], 'date' => date('Y-m-d', $timestamp/1000), 'code' => $code ]);
                 }
             }
         }
