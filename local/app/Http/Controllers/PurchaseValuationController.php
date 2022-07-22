@@ -2549,7 +2549,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile2, $output2);
 
             // CREATE DOCUMENT SALE
-            $view3 =  \View::make('pdf.documentos-para-venta', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view3 =  \View::make('pdf.documentos-para-venta', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf3 = \App::make('dompdf.wrapper');
             $pdf3->loadHTML($view3);
 
@@ -2602,7 +2602,7 @@ class PurchaseValuationController extends Controller
             file_put_contents( public_path().'/pdfs/'.$nameFile2, $output2);
 
             // CREATE DOCUMENT SALE
-            $view3 =  \View::make('pdf.documentos-para-venta', compact('purchase', 'purchase_management'))->render(); // send data to view
+            $view3 =  \View::make('pdf.documentos-para-venta', compact('purchase', 'purchase_management', 'rebu'))->render(); // send data to view
             $pdf3 = \App::make('dompdf.wrapper');
             $pdf3->loadHTML($view3);
 
