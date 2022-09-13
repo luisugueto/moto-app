@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="position-relative form-group">
-                                    <label for="current_year" class="">Año en curso:</label>
+                                    <label for="current_year" class="">Fecha:</label>
                                     <input name="current_year" id="current_year" type="date" class="form-control"
                                         value="{{$gestion->current_year }}">
                                     @if ($errors->has('current_year'))
@@ -74,18 +74,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="position-relative form-group">
-                                    <label for="collection_contract_date" class="">Fecha de contrato de recogida:</label>
-                                    <input name="collection_contract_date" id="collection_contract_date" type="date"
-                                        class="form-control" value="{{ old('collection_contract_date') }}" readonly>
-                                    @if ($errors->has('collection_contract_date'))
-                                        <span class="error text-danger">
-                                            <strong>{{ $errors->first('collection_contract_date') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
+
                         </div>
                         <div class="form-row row g-1">                            
                             <div class="col-md-4">
@@ -277,7 +266,7 @@
                                 <div class="position-relative form-group">
                                     <label for="municipality" class="">Municipio:</label>
                                     <input name="municipality" id="municipality" type="text" class="form-control"
-                                        value="{{ old('municipality') }}">
+                                        value="{{ old('municipality') }}" required>
                                     @if ($errors->has('municipality'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('municipality') }}</strong>
@@ -489,7 +478,7 @@
                                 <div class="position-relative form-group">
                                     <label for="type" class="">Tipo:</label>
                                     <input name="type" id="type" type="text" class="form-control"
-                                        value="{{ old('type') }}">
+                                        value="{{ old('type') }}" required>
                                     @if ($errors->has('type'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('type') }}</strong>
@@ -554,7 +543,7 @@
                                 <div class="position-relative form-group">
                                     <label for="weight" class="">Peso: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda4" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="weight" id="weight" type="text" class="form-control"
-                                    value="{{ old('weight') }}">                              
+                                    value="{{ old('weight') }}" required>                              
                                     @if ($errors->has('weight'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('weight') }}</strong>
@@ -566,7 +555,7 @@
                                 <div class="position-relative form-group">
                                     <label for="registration_number" class="">Matricula:   <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="registration_number" id="registration_number" type="text"
-                                        class="form-control" value="{{ old('registration_number') }}">
+                                        class="form-control" value="{{ old('registration_number') }}" required>
                                     @if ($errors->has('registration_number'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('registration_number') }}</strong>
@@ -578,7 +567,7 @@
                                 <div class="position-relative form-group">
                                     <label for="registration_date" class="">Fecha de Matriculación: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda1" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="registration_date" id="registration_date" type="date" class="form-control"
-                                        value="{{ old('registration_date') }}">
+                                        value="{{ old('registration_date') }}" required>
                                     @if ($errors->has('registration_date'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('registration_date') }}</strong>
@@ -590,7 +579,7 @@
                                 <div class="position-relative form-group">
                                     <label for="registration_country" class="">País de Matriculación:</label>
                                     <input name="registration_country" id="registration_country" type="text"
-                                        class="form-control" value="España">
+                                        class="form-control" value="España" required>
                                     @if ($errors->has('registration_country'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('registration_country') }}</strong>
@@ -601,7 +590,7 @@
                             <div class="col-md-3">
                                 <div class="position-relative form-group">
                                     <label for="frame_no" class="">Nº Bastidor:  <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
-                                    <input name="frame_no" id="frame_no" type="text" maxlength="17" class="form-control" value="{{ old('frame_no') }}">
+                                    <input name="frame_no" id="frame_no" type="text" maxlength="17" class="form-control" value="{{ old('frame_no') }}" required>
                                     <input name="frame_no" id="frame_no_7" type="text" maxlength="7" class="form-control" style="display:none;" disabled>
                                     <label for="frame_no" class="">Si tú Nº Bastidor es 7 dígitos (click aquí): <input type="checkbox" id="vin7Digitos" name="vin7Digitos" value="{{ old('vin7Digitos') }}"></label>
                                     <!-- <span id="result"></span> -->
@@ -616,7 +605,7 @@
                                 <div class="position-relative form-group">
                                     <label for="type_motor" class="">Tipo de Motor: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda2" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="type_motor" id="type_motor" type="text" class="form-control"
-                                        value="{{ old('type_motor') }}">
+                                        value="{{ old('type_motor') }}" required>
                                     @if ($errors->has('type_motor'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('type_motor') }}</strong>
@@ -628,7 +617,7 @@
                                 <div class="position-relative form-group">
                                     <label for="approval_certificate" class="">Certificado de Homologación: <a class="mr-2 btn-icon btn-icon-only btn-pill btn btn-outline-light" data-toggle="modal" data-target=".modalAyuda5" data-backdrop="static" data-keyboard="false" style="margin-top:-11px"><i class="pe-7s-help1"></i></a></label>
                                     <input name="approval_certificate" id="approval_certificate" type="text" class="form-control"
-                                        value="{{ old('approval_certificate') }}">
+                                        value="{{ old('approval_certificate') }}" required>
                                     @if ($errors->has('approval_certificate'))
                                         <span class="error text-danger">
                                             <strong>{{ $errors->first('approval_certificate') }}</strong>
@@ -718,7 +707,7 @@
                                         </div>
                                         <div class="custom-radio custom-control custom-control-inline">
                                             <input type="radio" name="documents_attached" id="non_existence_document"
-                                                class="custom-control-input" value="2" @if(old('documents_attached') == '2') checked @endif>
+                                                class="custom-control-input" value="2" @if(old('documents_attached') == '2') checked @endif required>
                                             <label class="custom-control-label" for="non_existence_document">Inexistencia
                                                 del documento de matriulación:</label>
                                         </div>
@@ -731,7 +720,7 @@
                                 </div>
                             </div>
                             <div class="col-3 text-center">
-                                <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple />
+                                <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-3" data-multiple-caption="{count} files selected" multiple required/>
                                 <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Adjuntar&hellip;</span></label>
                                 <small id="file-1Help" class="form-text text-muted text-center">DNI obligatorio * <br>(Dos archivos, cara A del DNI y Cara B del DNI)</small>
                                 @if ($errors->has('file-1'))
