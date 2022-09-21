@@ -6,6 +6,8 @@ $(document).ready(function () {
     var action = sessionStorage.getItem('action');
     var inputBloq = 1;
 
+    let dataGlobal = null;
+
     if (action == 1) {
         sessionStorage.clear();
     }
@@ -21,17 +23,21 @@ $(document).ready(function () {
                     $(this).prop('disabled', true);
                 });
 
+                dataGlobal = data;
                 $("#exist_model_brand").val(data.exist_model_brand);
 
-                if(data.exist_model_brand == 0){  // 0 IS TEXT, 1 IS SELECT
-                    verify_model_brand = 1;
-                    $("#ver").click();
+                // if(data.exist_model_brand == 0){  // 0 IS TEXT, 1 IS SELECT
+                    
+                    // $("#ver").click();
+                    // verify_model_brand = 1;
                     $('#brand_text').val(data.brand);
                     $('#model_text').val(data.model);
-                }else{
-                    verify_model_brand = 0;
-                    $("#ver").click();
-                }
+                    $(".ocultar").show();
+                    $(".mostrar").hide();
+                // }else{
+                //     verify_model_brand = 0;
+                //     $("#ver").click();
+                // }
 
                 $('#purchase_valuation_id').val(data.id);
                 $('#purchase_id').val(data.id);
@@ -44,7 +50,7 @@ $(document).ready(function () {
                 $('#model').val(data.model).trigger("change");
                
                 if(sessionStorage.getItem('modelLoad')){
-                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 5000);
+                    setTimeout(() => { $('#model').val(data.model).trigger("change"); }, 4500);
                 }
 
                 $("#brand_text").val(data.brand);
@@ -854,16 +860,32 @@ $(document).ready(function () {
     ///////////////////////////////////////////////
     $('#editTabFicha0').click(function (e) {
         e.preventDefault();
-        $('#tab-ficha-0').find('select, textarea, input').each(function () {
+        
+        if(dataGlobal.exist_model_brand == 0){  // 0 IS TEXT, 1 IS SELECT
+            verify_model_brand = 1;
+            $('#brand_text').val(dataGlobal.brand);
+            $('#model_text').val(dataGlobal.model);
+            $("#ver").click();
+
+         }else{
+            verify_model_brand = 0;
+            $('#model').val(dataGlobal.model).trigger('change');
+            $("#ver").click();
+
+         }
+        
+        $('#tab-ficha-0').find('select, textarea, input, button#ver').each(function () {
             if ($(this).prop('disabled')){
                 inputBloq = 0;
                 $(this).prop('disabled', false); 
             } else {
                 inputBloq = 1;
+               
                 $(this).prop('disabled', true);
             }
-
+            
         });
+
     });
     ///////////////////////////////////////////////
     $('#editTabFicha1').click(function (e) {
@@ -1036,8 +1058,8 @@ $(document).ready(function () {
 
             $('#brand_text').attr('required', 'required');
             $('#model_text').attr('required', 'required');
-            $('#brand_text').val('');
-            $('#model_text').val('');
+            $('#brand_text').val(dataGlobal.brand);
+            $('#model_text').val(dataGlobal.model);
 
             $("#exist_model_brand").val(0);
 

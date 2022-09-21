@@ -232,7 +232,7 @@
                                 <div class="col-md-3 mostrar">
                                     <div class="position-relative form-group">
                                         <label for="brand" class="">Marca:</label>
-                                        <select class="form-control select" name="brand" id="brand" onChange="setModel()" style="width: 100%">
+                                        <select class="form-control select" name="brand" id="brand" onChange="setModel()" style="width: 100%;">
                                             <option value="" disabled selected="">Seleccione</option>
                                             @foreach($marcas as $marca)
                                                 <option data-id="{{ $marca->id_category }}" value="{{ $marca->marca }}">{{ $marca->marca }}</option>
@@ -248,7 +248,7 @@
                                 <div class="col-md-3 mostrar">
                                     <div class="position-relative form-group">
                                         <label for="model" class="">Modelo:</label>
-                                        <select class="form-control select" name="model" id="model" disabled  style="width: 100%">
+                                        <select class="form-control select" name="model" id="model" disabled  style="width: 100%;">
                                             <option disabled selected="">Seleccione</option>
                                         </select>
                                         @if ($errors->has('model'))
@@ -280,7 +280,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <br>
-                                        <button type="button" id="ver" class="btn btn-danger btn-sm mb-3">No encuentro Modelo/marca</button>
+                                        <button disabled="disabled" type="button" id="ver" class="btn btn-danger btn-sm mb-3">No encuentro Modelo/marca</button>
                                     </div>
                                 </div>
 
@@ -1384,7 +1384,7 @@ aria-hidden="true">
         type: 'POST',
         datatype: 'JSON',
         success: function (resp) {
-            let select = $("#model").prop('disabled', 'disabled').empty().append("<option disabled='disabled' selected>Seleccione</option>");
+            let select = $("#model").empty().append("<option disabled='disabled' selected>Seleccione</option>");
             
             resp.model.forEach(function(model, index){
          
